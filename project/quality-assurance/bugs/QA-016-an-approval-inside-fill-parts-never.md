@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -61,6 +61,7 @@ so no backend change. Handed to hotfix-python.
 - 2026-11-04 20:31 UTC: shipped in backend 1.1.27 with geomind 0.4.32 (holds 0.4.30); prod worker has the beside rule. Live retest by the bug's steps still to do.
 - 2026-11-04 23:11 UTC: qa-1 retest 23:12 UTC on 1.1.45: well engineer's approval in the parallel fill still never reaches the chat; run waited 90 min (see Retest)
 - 2026-11-04 23:13 UTC: reopen fixed in geomind 0.4.47 (commit 459ba00): every runs_beside delegate (the engineers, also called alone) uses the beside rule; deploy next
+- 2026-11-04 23:16 UTC: geomind 0.4.48 (holds 0.4.47, commit 459ba00), backend 1.1.47 (9e178a3), deployed by hotfix-python. Live retest: Auto-approve off, a design run whose engineers patch: no approval card for them, no stuck waiting row.
 ## Retest
 - 2026-11-04 22:01-23:10 UTC, qa-1, backend 1.1.40 to 1.1.45: NOT fixed. Run 0cb4b436 (project "QA qa-1 S1 end to end",
   chat 062b25d8), Auto-approve off: during the design lead's parallel fill ("The parallel fill crashed; retrying with the
