@@ -39,4 +39,5 @@ with a note but still spends the step. See IMPROVEMENTS.md, IMP-011 (a case summ
 
 ## Fix
 
+- 2026-11-04 20:37 UTC: fixed in geomind 0.4.37 (commit 537a317, engineer prompts), backend 1.1.33, waiting for deploy
 ## Retest
