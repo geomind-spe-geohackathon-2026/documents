@@ -54,6 +54,16 @@ to the last run, so the coordinator writes a fresh brief.
 Note (B, good news): the interrupted run now ends `failed` with the message "The run stopped because
 the app was updated or restarted; send your message again" (QA-017's case, handled).
 
+What memory does keep (checked 2026-11-04): the chat's problem state carries over between runs
+(goal, case, requirements, assumptions A1-A6, design.modules and design.owners), and run f78c671a used
+it: no case questions again, the same plant structure. What it does not keep is work in progress:
+values an agent found or worked out but had not written with a tool (the engineers' parameters
+behind a pending patch_plant, the geoscientist's values before set_case). The shared memory
+(search_memory) holds only approved designs, so it was empty ("0 experience, 0 lessons"), and the
+cancelled run's messages were gone from the chat (QA-022), so the coordinator saw "continue" without
+them. Proposal: each agent records its findings in the problem state (work in progress) before the
+write, and a new run's brief starts from them.
+
 ## Fix
 
 - 2026-11-04 21:28 UTC: part fixed in geomind 0.4.45 (commit 5ec7d83, project and design lead prompts: go on from the stored design after a stopped run); backend 1.1.43, waiting for deploy. The engineers' loss in (A) is QA-016 (fixed). Left for development mode: a work-in-progress record of unwritten findings (B: the geoscientist's answer before set_case).
