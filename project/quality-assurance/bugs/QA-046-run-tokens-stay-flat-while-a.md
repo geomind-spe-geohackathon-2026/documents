@@ -39,6 +39,7 @@ Guess: the nested run's usage is added to the root only when the nested run ends
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 21:32 UTC: backend 1.1.44 (40512c9) pushed 21:37 UTC, deploys in the 22:00 UTC window: the run row and a live root usage event (no id, parent null) add the latest totals of running nested runs to the root's last totals. Frontend: if the page sums only root usage events it now grows live; no frontend change expected.
 - 2026-11-04 21:33 UTC: deployed in backend 1.1.44 at 21:33 UTC; runs 0cb4b436, 6c5b17e1, f78c671a resumed. Retest: watch a run's total while a nested agent works.
+- 2026-11-04 21:34 UTC: correction: the deploy resumed 0cb4b436 and 6c5b17e1; f78c671a had gone to waiting (a question) before the worker restarted, so it was not cut.
 ## Retest
 
 (Who, when, result.)
