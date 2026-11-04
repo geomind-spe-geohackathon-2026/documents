@@ -63,3 +63,10 @@ ask_economics had before QA-004 was fixed; the same fix (check first, then ask) 
 ## Retest
 
 (Who, when, result.)
+
+## Also seen (qa-3, 2026-11-04 20:38-20:58 UTC)
+
+project "QA qa-3 questions approve all 3" (647b432b-b53c-4a5f-a854-38963af7180d), run b0ab49d0-6498-4bb0-a3a7-905a1c7afb7d, backend 1.1.27; run JSON in ../evidence/QA-042/run-b0ab49d0.json.gz. In one run I was asked to approve set_case 12 times. Gemini refused 9 of them right after
+the approval: files only (4 times, see QA-042), column `date` vs `time`, dates without an offset,
+the span shifted by the time zone, the DST step (QA-039), `source: project` with no case.json.
+![a card for a call gemini refused at once](../evidence/QA-037/qa-3-1.png)
