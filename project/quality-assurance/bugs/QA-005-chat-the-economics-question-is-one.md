@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -35,4 +35,5 @@ Not looked at yet.
 ## Fix
 
 - 2026-11-04 20:03 UTC: fixed in frontend 1.1.36 (817bd0f), waiting for deploy
+- 2026-11-04 21:05 UTC: frontend 1.1.36, commit 817bd0f, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
