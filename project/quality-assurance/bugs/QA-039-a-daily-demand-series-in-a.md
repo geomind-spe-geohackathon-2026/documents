@@ -64,3 +64,10 @@ checks the step on UTC instants, not on local calendar dates, for daily (and coa
 ## Retest
 
 (Who, when, result.)
+
+## Also seen (qa-3, 2026-11-04 20:46 UTC)
+
+project "QA qa-3 questions approve all 3" (647b432b-b53c-4a5f-a854-38963af7180d), run b0ab49d0-6498-4bb0-a3a7-905a1c7afb7d, backend 1.1.27; run JSON in ../evidence/QA-042/run-b0ab49d0.json.gz. I answered "Europe/Amsterdam" for the demand dates; gemini refused the case ("no sample in the
+step starting 2027-10-30T23:00:00+00:00", the DST change). The case lead then asked how to read the
+dates, with the options Etc/GMT-1, UTC or a corrected file; I chose UTC.
+![the DST question](../evidence/QA-039/qa-3-1.png)
