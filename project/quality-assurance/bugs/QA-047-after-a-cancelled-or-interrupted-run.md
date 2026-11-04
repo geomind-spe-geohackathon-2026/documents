@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (runs), Claude (write-up) |
@@ -67,4 +67,5 @@ write, and a new run's brief starts from them.
 ## Fix
 
 - 2026-11-04 21:28 UTC: part fixed in geomind 0.4.45 (commit 5ec7d83, project and design lead prompts: go on from the stored design after a stopped run); backend 1.1.43, waiting for deploy. The engineers' loss in (A) is QA-016 (fixed). Left for development mode: a work-in-progress record of unwritten findings (B: the geoscientist's answer before set_case).
+- 2026-11-04 21:39 UTC: shipped with backend 1.1.45 (geomind 0.4.46 holds 0.4.44/0.4.45); live retest still to do
 ## Retest
