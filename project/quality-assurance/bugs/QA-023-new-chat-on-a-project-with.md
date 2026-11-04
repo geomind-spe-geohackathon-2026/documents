@@ -42,7 +42,7 @@ project progress it also gets (case set). Not checked.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:38 UTC: cause: the backend's progress gives a set case the state ready (never done); geomind's project_stage wanted done. Fixed in geomind 0.4.38 (commit d804283), backend 1.1.34, waiting for deploy
 ## Retest
 
 (Who, when, result.)
