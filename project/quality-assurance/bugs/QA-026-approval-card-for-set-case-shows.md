@@ -54,3 +54,10 @@ arguments, or a summary of keys/values/sources, into the request; frontend: show
 ## Retest
 
 (Who, when, result.)
+- 2026-11-04 20:30-20:31 UTC, qa-1, backend 1.1.27, run 0cb4b436 (same chat): the set_case approval card now
+  shows "What the call sends:" with the call's JSON, one key per line (screenshot
+  [2-after-fix.png](../evidence/QA-026/2-after-fix.png)); the four set_case approvals of the same run before
+  the 20:30 deploy still showed only the question ([3-before-fix-run3.png](../evidence/QA-026/3-before-fix-run3.png)).
+  Values are visible now. Still missing: the units and the source (file, page) of each value; the JSON is long
+  and the card grows to the full screen height with no collapse. Left as fixed; the fixer decides whether
+  units/sources belong here or in a new bug.
