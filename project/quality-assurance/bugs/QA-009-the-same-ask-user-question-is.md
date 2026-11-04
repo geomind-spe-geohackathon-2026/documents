@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -47,4 +47,5 @@ not carry the answer either.
 ## Fix
 
 - 2026-11-04 20:08 UTC: fixed in geomind 0.4.29 (commit 0622c67), backend 1.1.20 (80eb493), waiting for deploy
+- 2026-11-04 20:21 UTC: shipped in backend 1.1.21/1.1.22 with geomind 0.4.29; prod worker has ask_user.on_answer (user_answered). Live retest by the bug's steps still to do.
 ## Retest
