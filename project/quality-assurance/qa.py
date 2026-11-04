@@ -43,8 +43,20 @@ def git(*args, check=True):
 
 
 def sync():
-    """Bring the clone up to date before reading, so ids and claims see every other machine."""
-    git("pull", "-q", "--rebase", "--autostash")
+    """Bring the clone up to date before reading, so ids and claims see every other machine.
+
+    Another session's commit may be landing at the same moment: try a few times before giving up.
+    """
+    import time
+
+    for _ in range(5):
+        done = subprocess.run(
+            ["git", "-C", str(HERE), "pull", "-q", "--rebase", "--autostash"], capture_output=True, text=True
+        )
+        if done.returncode == 0:
+            return
+        time.sleep(3)
+    sys.exit(f"git pull failed five times: {done.stderr.strip()}")
 
 
 def publish(message, paths):
@@ -217,6 +229,29 @@ def cmd_save(args):
     print(f"{row['id']} saved")
 
 
+SCENARIOS = HERE / "SCENARIOS.md"
+
+
+def cmd_scenario(args):
+    """Set the Status, Stopped at and Bugs cells of one scenario row; commit and push it."""
+    lines = SCENARIOS.read_text().splitlines()
+    for i, line in enumerate(lines):
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if line.startswith("| ") and cells and cells[0] == args.scenario.upper():
+            if len(cells) != 6:
+                sys.exit(f"SCENARIOS.md: row {cells[0]} has {len(cells)} cells, expected 6")
+            for index, value in ((3, args.status), (4, args.stopped), (5, args.bugs)):
+                if value is not None:
+                    cells[index] = value.replace("|", "/")
+            lines[i] = "| " + " | ".join(cells) + " |"
+            break
+    else:
+        sys.exit(f"{args.scenario}: no such scenario in SCENARIOS.md")
+    SCENARIOS.write_text("\n".join(lines) + "\n")
+    publish(f"QA {args.scenario.upper()}: {args.status or ''} {args.stopped or ''}".strip(), [SCENARIOS])
+    print(f"{args.scenario.upper()} updated")
+
+
 def cmd_list(args):
     """Print the rows, filtered by status and area."""
     for row in rows():
@@ -251,6 +286,11 @@ def main():
     put.add_argument("--retest", action="store_true")
     save = sub.add_parser("save")
     save.add_argument("bug")
+    scen = sub.add_parser("scenario")
+    scen.add_argument("scenario")
+    scen.add_argument("--status")
+    scen.add_argument("--stopped")
+    scen.add_argument("--bugs")
     show = sub.add_parser("list")
     show.add_argument("--status")
     show.add_argument("--area")
@@ -259,7 +299,7 @@ def main():
         fcntl.flock(lock, fcntl.LOCK_EX)
         if args.command != "list":
             sync()
-        {"new": cmd_new, "claim": cmd_claim, "next": cmd_next, "set": cmd_set, "save": cmd_save, "list": cmd_list}[args.command](args)
+        {"new": cmd_new, "claim": cmd_claim, "next": cmd_next, "set": cmd_set, "save": cmd_save, "scenario": cmd_scenario, "list": cmd_list}[args.command](args)
 
 
 if __name__ == "__main__":
