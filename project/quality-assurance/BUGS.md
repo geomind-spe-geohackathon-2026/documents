@@ -34,3 +34,4 @@ wont-fix, duplicate.
 | [QA-026](bugs/QA-026-approval-card-for-set-case-shows.md) | open | major | geomind | Approval card for set_case shows only 'Allow set_case (write)?': the user cannot see which values, units or sources they approve | qa-1 |  |
 | [QA-027](bugs/QA-027-run-log-page-does-not-update.md) | fixing | major | frontend | Run log page does not update during a run: status, steps and tokens stay as at page load until a reload | qa-7 | hotfix-front |
 | [QA-028](bugs/QA-028-the-first-request-typed-in-new.md) | fixing | minor | frontend | The first request typed in New project is lost when the user leaves the chat before sending it | qa-6 | hotfix-front |
+| [QA-029](bugs/QA-029-a-429-replaces-the-whole-page.md) | open | major | frontend | A 429 replaces the whole page with 'Rate limit exceeded'; no wait for Retry-After and no retry | hotfix-back |  |
