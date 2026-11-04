@@ -32,6 +32,7 @@ still shows "1 run active" with nothing to answer. The run cannot end on its own
 - Postgres `runs` row of a61cfb19, read 20:03 UTC: status waiting, ended empty.
 - `docker ps`: geomind-celery and geomind-fastapi up 52 s at 20:03 UTC.
 - [`run-...-step101.json.gz`](../evidence/QA-016/run-a61cfb19bfb04ae99e92060fc5bd2e40-step101.json.gz) (run JSON at 101 steps; `steps[i]` is the 0-based index)
+- Workaround works: Fatemeh pressed Cancel run; the row became `cancelled`, ended 2026-11-04 20:08:37 UTC.
 
 ## Cause
 
