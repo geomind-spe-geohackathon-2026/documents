@@ -34,6 +34,7 @@ python3 $QA next --area frontend --fixer hotfix-front    # claim the most severe
 python3 $QA claim QA-021 --fixer hotfix-back             # claim one bug by id
 python3 $QA set QA-021 --status fixed --note "frontend 1.1.35, commit 4b5c6d7"
 python3 $QA set QA-021 --status verified --note "checked again on geomind.team, works"
+python3 $QA set QA-021 --status open --area geomind --note "for hotfix-python: <why>"   # move to another area
 ```
 
 ## Report a bug
