@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (runs), Claude (write-up) |
 | Found | 2026-11-04 21:22 UTC |
 | Versions | frontend 1.1.33; backend 1.1.17 to 1.1.40 during these runs |
 | Where | (A) chat 33c76f29-064f-4047-9926-ff8937beddf7 (project test hack): run a61cfb19 cancelled, then run f78c671a on "continue"; (B) chat 1b669d3e-ea13-43ce-b2aa-9f3d8ab258da (project QA qa-6): run 55be0d14 interrupted, then run a2dd83e3 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
