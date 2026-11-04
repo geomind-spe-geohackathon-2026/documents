@@ -55,3 +55,4 @@ wont-fix, duplicate.
 | [QA-047](bugs/QA-047-after-a-cancelled-or-interrupted-run.md) | open | major | geomind | After a cancelled or interrupted run, the next run starts the work over: unsaved engineer work is lost, the stored design is not reused | Fatemeh |  |
 | [QA-048](bugs/QA-048-study-tab-the-missing-parameter-list.md) | open | cosmetic | frontend | Study tab: the missing-parameter list overflows; the table is cut on the left (Progress reads 'ess') | Fatemeh |  |
 | [QA-049](bugs/QA-049-the-plant-asks-again-for-reservoir.md) | open | minor | gemini,geomind | The plant asks again for reservoir pressure, permeability and thickness that the case already has | Fatemeh |  |
+| [QA-050](bugs/QA-050-a-connector-rate-limit-open-meteo.md) | open | major | geomind | A connector rate limit (Open-Meteo, per minute) stops the whole run after 3 tries; nothing waits for the window | Fatemeh |  |
