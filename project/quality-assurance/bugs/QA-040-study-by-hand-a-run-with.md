@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | backend |
 | Reporter | qa-8 |
 | Found | 2026-11-04 20:40 UTC |
 | Versions | frontend bundle index-DAOiLoAA.js, backend 1.1.27 |
 | Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/study; project QA qa-8 manual pipeline; case v10, plant v1 (template HeatingCoolingPlant); studies 'QA qa-8 run by hand', 'QA qa-8 run with size'; no chat |
-| Fixer |  |
+| Fixer | hotfix-back |
 
 ## Steps
 
