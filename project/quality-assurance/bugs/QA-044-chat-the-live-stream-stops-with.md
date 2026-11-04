@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | qa-5 |
@@ -44,6 +44,7 @@ Guess: after the WebSocket gave up (it got 404 while the backend restarted), the
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 21:14 UTC: backend 1.1.42 (d824f3b) pushed 21:14 UTC, rides the 21:30 UTC deploy: an empty or non-numeric Last-Event-ID is a new stream (replay from the start), no 422. Frontend: send only numeric ids and keep events deduplicated by sequence (for hotfix-front if replay shows doubles).
+- 2026-11-04 21:30 UTC: deployed in backend 1.1.43 at 21:30 UTC. Not retested signed in (the events route needs a token): QA, please probe Last-Event-ID '' and 'abc' again.
 ## Retest
 
 (Who, when, result.)
