@@ -1,0 +1,37 @@
+# QA-002: Case lead writes the pump efficiency requirement wrong; set_case refuses it
+
+| Field | Value |
+|---|---|
+| Status | open |
+| Severity | minor |
+| Area | geomind |
+| Reporter | Fatemeh (screenshots), Claude (write-up) |
+| Found | 2026-11-04 ~19:00 UTC |
+| Versions | frontend 1.1.33, backend 1.1.14 (geomind 0.4.25) |
+| Where | https://geomind.team/projects/886404e4-3b22-41bd-8986-1a8bc869e25e/assistant/chat/33c76f29-064f-4047-9926-ff8937beddf7; case lead, adding the brief's requirements |
+| Fixer | |
+
+## Steps
+
+1. Same run as QA-001.
+2. The case lead adds the brief's requirements with set_case.
+
+## Expected
+
+`pump_hydraulic_efficiency` as a fraction 0.7, no unit, no `over` / `when`.
+
+## Actual
+
+Sent as min = max = 70, unit `%`, with `over` and `when`; set_case refuses 4 paths. The message is clear, so the model can fix it in the next call: a bug if it repeats or costs many steps.
+
+## Evidence
+
+- ![screenshot 1](../evidence/QA-002/1.webp)
+
+## Cause
+
+Guess: nothing tells the case lead that efficiencies are fractions; the brief says 70 %. Possible fix: say so in the prompt or in describe_case, or let set_case convert a `%` value of a dimensionless quantity.
+
+## Fix
+
+## Retest
