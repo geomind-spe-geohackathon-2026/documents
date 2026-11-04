@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | backend |
 | Reporter | qa-8 |
@@ -56,3 +56,4 @@ themselves, which would explain why the chat path works and the hand path does n
 ## Retest
 
 (Who, when, result.)
+- 2026-11-04 21:04 UTC: checked in the production API container (1.1.40): with_time_column turns the header 'date,heating_demand_MWth' into 'time,heating_demand_MWth'. Not uploaded through the page.
