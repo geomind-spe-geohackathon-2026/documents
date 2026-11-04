@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-04 20:05 UTC |
 | Versions | frontend 1.1.33 |
 | Where | https://geomind.team/projects/886404e4-3b22-41bd-8986-1a8bc869e25e/assistant/runs/a61cfb19-bfb0-4ae9-9e92-060fc5bd2e40; the step list on the left |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
