@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | blocked |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -47,4 +47,5 @@ Needs Sahand's decision: what the agent does when the user delegates and no sour
 
 ## Fix
 
+- 2026-11-04 20:08 UTC: needs Sahand's decision (as STATUS.md says): what the agent does when the user delegates open values and no RAG/MCP source exists; the no-default-values rule forbids inventing them. hotfix-python did not change it.
 ## Retest
