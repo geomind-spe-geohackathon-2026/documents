@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | blocker |
 | Area | backend |
 | Reporter | qa-8 |
 | Found | 2026-11-04 20:40 UTC |
 | Versions | frontend bundle index-DAOiLoAA.js, backend 1.1.27 |
 | Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/study; project QA qa-8 manual pipeline; case v10, plant v1 (template HeatingCoolingPlant); studies 'QA qa-8 run by hand', 'QA qa-8 run with size'; no chat |
-| Fixer | hotfix-front |
+| Fixer |  |
 
 ## Steps
 
@@ -54,7 +54,7 @@ carry them. Area may be backend (templates/parameters API) as much as frontend.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:41 UTC: belongs in backend (hotfix-front checked live, 20:45 UTC): GET /plant/parameters/plant?project=55612f74... returns search keys size.doublets, depth, d1.* ... but no 'backup' (nor other plant-level options of the brief plant), and the plant 'missing' list never names params.backup, while the study requires it. The Plant page renders exactly the fields and missing values the API gives, so it cannot offer a field the API does not list. Fix: the backend's plant template / parameters API should carry backup (and list it as missing, or set it from the brief). Once the API lists it, the page shows it with no frontend change, unless it is a choice type the form does not handle: then hotfix-front adds that.
 ## Retest
 
 (Who, when, result.)
