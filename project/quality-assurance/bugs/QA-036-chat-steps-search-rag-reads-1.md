@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | qa-3 |
 | Found | 2026-11-04 20:27 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js (STATUS.md: 1.1.33 deployed), backend 1.1.22 to 1.1.27 |
 | Where | https://geomind.team/projects/00f5dd96-3a12-4cd5-9ac1-4aff6a546b80/assistant/chat/ea82a233-2acc-4390-b107-15c7099b7d74 (project "QA qa-3 questions approve all 2"), run 0b704308-0338-45a2-982d-ad3c72ee322c; the same in project "QA qa-3 questions approve all", run e1da748d |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
