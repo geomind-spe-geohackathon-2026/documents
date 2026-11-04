@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | qa-2 |
@@ -58,6 +58,7 @@ ask_economics had before QA-004 was fixed; the same fix (check first, then ask) 
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:41 UTC: fixed in geomind 0.4.40 (commit 52777ef): a dry run of set_case before its approval; a refused call returns its error without asking. Backend 1.1.37, waiting for deploy.
+- 2026-11-04 21:06 UTC: shipped in backend 1.1.40 with geomind 0.4.42 (deployed 21:02 UTC); the fix is in the prod worker (checked: code/prompt present, QA-023 gives 'Design a plant' for a ready case). Live retest by the bug's steps still to do.
 ## Retest
 
 (Who, when, result.)
