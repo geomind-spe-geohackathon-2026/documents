@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
-| Area | gemini |
+| Area | backend |
 | Reporter | qa-8 |
 | Found | 2026-11-04 20:26 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.22 |
 | Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/case; project QA qa-8 manual pipeline (case v3); no chat, no run; S8 step: Case by hand, Demand tab |
-| Fixer | hotfix-python |
+| Fixer |  |
 
 ## Steps
 
@@ -49,7 +49,7 @@ themselves, which would explain why the chat path works and the hand path does n
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:30 UTC: for hotfix-back/front: gemini's series reader wants a first column named time and the case has no column-rename field (changing gemini needs Sahand's OK). The backend's case-file upload can rename a first column date/datetime to time (or the Case page can offer it), as the agents already rewrite the file in the chat path. Area moved to backend.
 ## Retest
 
 (Who, when, result.)
