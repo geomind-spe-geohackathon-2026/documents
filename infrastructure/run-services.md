@@ -4,7 +4,7 @@ Repos sit side by side (laptop: ~/geomind-spe-hackathon-2026/; Mac: ~/Desktop/ge
 backend, frontend, infrastructure, gemini, geomind. Never commit any `.env` file.
 
 ## Where the settings live
-- infrastructure/<service>/.env  (one per shared service: traefik, cloudflared, postgres, redis, minio, influxdb, chromadb, pgadmin). Copy from that folder's .env.example. No .env at the infrastructure root.
+- infrastructure/<service>/.env  (one per shared service: traefik, cloudflared, postgres, redis, minio, influxdb, chromadb, pgadmin, searxng). Copy from that folder's .env.example. No .env at the infrastructure root.
 - backend/.env.production   server deploy (backend/compose.yml reads it). Passwords match the infrastructure services. backend/.env stays for the test suite only.
 - backend/.env.dev   local dev only (scripts/stack-up.sh generates it from .env.dev.example).
 - frontend/.env.production   committed; VITE_API_URL=https://api.geomind.team/api/v1, read only by `vite build`.
@@ -27,7 +27,7 @@ docker network inspect geomind >/dev/null 2>&1 || docker network create geomind
 # each shared service, from its own folder
 cd infrastructure/traefik     && docker compose up -d
 cd ../cloudflared             && docker compose up -d
-cd ../postgres                && docker compose up -d   # same for redis, minio, influxdb, chromadb (pgadmin optional)
+cd ../postgres                && docker compose up -d   # same for redis, minio, influxdb, chromadb, searxng (pgadmin optional)
 
 cd ../../backend  && docker compose up -d --build       # geomind-fastapi (runs migrations first) + geomind-celery
 cd ../frontend    && docker compose up -d --build       # geomind-frontend (nginx)
