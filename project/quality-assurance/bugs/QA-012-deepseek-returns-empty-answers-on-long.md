@@ -37,6 +37,12 @@ run's step budget).
 Guess: the provider or model fails on long contexts. The context is large because the case lead
 holds the full PDF, both 365-row CSVs and many catalogue rows (see IMPROVEMENTS.md, IMP-005).
 
+Correction (2026-11-04, from the run JSON at 101 steps): after each of these three calls the loop's
+next message is "Your last answer stopped at the output limit of one call (16000 tokens) and was cut,
+so nothing of it ran", but the recorded output tokens are 337, 185 and 1. So either the call really
+was cut (and the recorded token count is wrong), or the loop reads an empty answer as a cut one and
+gives the agent a wrong instruction. Same family as QA-013.
+
 ## Fix
 
 ## Retest

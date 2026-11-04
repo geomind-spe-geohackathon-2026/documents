@@ -34,6 +34,8 @@ still active, 58 steps.
 | IMP-007 | idea | data, geomind | Catch what gemini refuses before the agent sends it | fewer refused calls |
 | IMP-008 | idea | geomind | Keep the case lead's context small: drop file texts and old tool outputs once used | faster calls, lower cost |
 | IMP-009 | idea | geomind | read_case returns an unset section as empty with a note, not an error | fewer red errors (QA-001, QA-014) |
+| IMP-010 | idea | geomind | Ask only for the values gemini reports missing for the chosen plant | one question instead of six (QA-009, QA-010, QA-015) |
+| IMP-011 | idea | geomind | The design lead gives each engineer a case summary in its brief | fewer repeated reads, smaller contexts |
 
 ## IMP-001: ask_economics fills the recommended rows itself
 
@@ -99,3 +101,19 @@ let the case lead read the catalogue by key, not by whole groups.
 read_case on a project with no case, or on a section that is not set yet, returns a red error
 (QA-001, QA-014). Three agents in this run start with that error. Proposal: return the empty
 section with a note ("not set yet; set_case sets it"), and give the list of sections that exist.
+
+## IMP-010: ask only what gemini says is missing
+
+In run a61cfb19 the case lead asked for six values it called necessary (network return
+temperatures, site air temperature, humidity and pressure, electricity import limit), three times.
+Once the plant was built, gemini flagged only site.air.pressure. Proposal: before design, ask only
+what the case check requires; after build_plant, read the plant's missing list and ask the user for
+exactly those values, once, before any sizing (QA-015).
+
+## IMP-011: a case summary in every engineer's brief
+
+In fill_parts each engineer reads the case itself: read_case on site, demand, requirements,
+utilities and economics, read_profile, read_plant, and up to 16 describe_module calls (energy
+systems engineer, steps[94]). Each starts at 20 k to 50 k input tokens, and a restart (QA-016) reads
+it all again. Proposal: the design lead (or fill_parts) puts a short case and plant summary in each
+brief, and the engineers read only what their part needs.
