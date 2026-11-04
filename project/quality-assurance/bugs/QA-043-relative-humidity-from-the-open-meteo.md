@@ -35,8 +35,7 @@ the unit `%` is converted (80 to 0.80), on save or in the case. If it cannot be 
   "site.air.relative_humidity.unit = '%'; this value has no dimension, expected no unit" (step 20).
 - set_case with no unit: `out_of_bounds` "step 0 = 80.0 (SI); expected within the bounds {min 0, max 1}" (step 21).
 - Step 22: the agent sends the case without `site.air.relative_humidity` (screenshot 1 is the card
-  that still had it). It was accepted. Nothing in the chat says that the humidity was dropped,
-  and the user approved three set_case cards for it.
+  that still had it). It was accepted, after the user had approved three set_case cards for the humidity.
 - The same `%` refusal came at step 15 with the first saved file.
 
 ## Evidence
@@ -44,6 +43,19 @@ the unit `%` is converted (80 to 0.80), on save or in the case. If it cannot be 
 - ![set_case card with relative_humidity from open-meteo, unit %](../evidence/QA-043/1.png)
 - ![the next card, requirements, after the case was stored without humidity](../evidence/QA-043/2.png)
 - Run JSON (gzip): `../evidence/QA-043/run-a2dd83e3.json.gz`, case_lead steps 15, 19-22.
+
+### Later in the same run (21:06-21:11 UTC)
+
+- The confirmation question does tell the user (screenshot 3): "4. site.air.relative_humidity -
+  left OPEN. The server gives it in % (e.g. 80), but the key takes a fraction 0-1 and I do not
+  convert units. Say if you want it set and how."
+- The user typed: "set site.air.relative_humidity from the same open-meteo file, converting % to a
+  fraction (divide by 100)". The agent moved on to other values with no word on it; asked again, it
+  answered in the chat (screenshot 4): "I can't divide a 365-value series myself (no tool converts a
+  series, and I must not compute values), so I'll leave that one open". So no way exists to get the
+  connector's humidity into the case, not even when the user asks for the conversion.
+- ![confirmation question with item 4 humidity left open](../evidence/QA-043/3.png)
+- ![the agent says it cannot convert the series](../evidence/QA-043/4.png)
 
 ## Cause
 
