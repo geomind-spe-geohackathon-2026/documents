@@ -58,7 +58,7 @@ wont-fix, duplicate.
 | [QA-050](bugs/QA-050-a-connector-rate-limit-open-meteo.md) | open | major | geomind | A connector rate limit (Open-Meteo, per minute) stops the whole run after 3 tries; nothing waits for the window | Fatemeh |  |
 | [QA-051](bugs/QA-051-the-run-s-error-in-the.md) | open | minor | geomind,frontend | The run's error in the chat dumps the whole MCP tool input schema as a wall of red text | Fatemeh |  |
 | [QA-052](bugs/QA-052-build-plant-params-backup-control-outages.md) | open | minor | geomind | build_plant: params.backup, control.outages and control.dispatch sent as bare strings are refused, after the user's approval | Fatemeh |  |
-| [QA-053](bugs/QA-053-chat-an-agent-s-streamed-text.md) | open | minor | frontend | Chat: an agent's streamed text stops mid-word ("I have exhau"); the full text never replaces it | Fatemeh |  |
+| [QA-053](bugs/QA-053-chat-an-agent-s-streamed-text.md) | fixing | minor | frontend | Chat: an agent's streamed text stops mid-word ("I have exhau"); the full text never replaces it | Fatemeh | hotfix-front |
 | [QA-054](bugs/QA-054-agent-prompts-name-qa-bug-ids.md) | open | minor | geomind | Agent prompts name QA bug ids; agents quote them to the user ("Per QA-015 I stop here") | Fatemeh |  |
 | [QA-055](bugs/QA-055-design-lead-asks-the-user-for.md) | open | major | geomind | Design lead asks the user for an ESP pump curve no source has, offers an option (gemini derives it) gemini cannot do, and blocks the design | qa-4 |  |
 | [QA-056](bugs/QA-056-chat-shows-an-already-answered-question.md) | open | blocker | backend | Chat shows an already answered question while the run waits on a design_lead approval; no approval card, auto-approve cannot fire, the run is stuck | qa-5 |  |
