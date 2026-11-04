@@ -54,7 +54,7 @@ promise.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:40 UTC: fixed in geomind 0.4.39 (commit 7bc46ff, case lead prompt: no peak+annual way in), backend 1.1.36, waiting for deploy. A real profile builder would be a feature (development mode).
 ## Retest
 
 (Who, when, result.)
