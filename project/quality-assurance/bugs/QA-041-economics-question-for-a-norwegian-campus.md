@@ -54,7 +54,7 @@ country, and treats any user price as already in the catalogue's price year.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:43 UTC: fixed in geomind 0.4.41 (commit 03e776b, case lead row order: site country first, no bound/proxy rows recommended; a user price without a year is asked). Backend 1.1.38, waiting for deploy. discount_rate left open is against the prompt already (model).
 ## Retest
 
 (Who, when, result.)
