@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-5 |
 | Found | 2026-11-04 20:25 UTC |
 | Versions | frontend 1.1.33 (deployed), backend 1.1.22 (geomind 0.4.29) |
 | Where | https://geomind.team/projects/4d8fb808-9af1-493e-94e4-4d6d50916e5f/assistant/chat/f0388b3b-8f3a-4f97-8167-c7939e9bca9d; project QA qa-5 outputs report e2e; run 9a33db47-648f-435a-a3e1-a6ad0665b16b; case lead's set_case approval (request-179) |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
