@@ -36,4 +36,5 @@ Guess: the Study table puts the plant's whole missing list in a result cell and 
 - 2026-11-04 23:19 UTC: frontend 1.1.53 (3abe590), pushed, build checked; deploy in the 23:30 UTC window
 - 2026-11-04 23:31 UTC: frontend 1.1.53, commit 3abe590, deployed (1.1.54)
 - 2026-11-04 23:33 UTC: 1.1.53 live: 'Waits for 136 values' + 'Fill them in on Plant' (qa-8), but the table was still 850 px in a 572 px panel; 1.1.55 (a17... see git) shortens the row buttons to Start/Cancel and wraps the result, pushed and build-checked, deploy at the next window
+- 2026-11-04 23:33 UTC: correction to the note above: the follow-up is frontend 1.1.55, commit 2d5da06
 ## Retest
