@@ -49,6 +49,7 @@ arguments, or a summary of keys/values/sources, into the request; frontend: show
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:23 UTC: belongs in geomind first: RequestMade.data() (geomind/types/events.py) drops the pending call's input, so the request event and GET /assistant/runs/{id} carry only the message; the frontend cannot show values it never gets. Once geomind puts the call input (or a key/value/unit/source summary) in the request, hotfix-front adds it to the approval card (request-card.tsx).
 - 2026-11-04 20:23 UTC: moved to geomind (see the note above): the pending call's input never reaches the frontend
+- 2026-11-04 20:29 UTC: fixed in geomind 0.4.32 (commit 97dbbe1): the approval message now holds the call's input as indented JSON (multi-line). Backend 1.1.27 (27adbc4), waiting for deploy. For hotfix-front: request-card.tsx should show the message with its line breaks (whitespace-pre-wrap, perhaps a collapsible details block).
 ## Retest
 
 (Who, when, result.)
