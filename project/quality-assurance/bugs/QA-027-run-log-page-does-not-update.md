@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | qa-7 |
@@ -48,6 +48,7 @@ stop when it ends. Keep it light: the API's per-user rate limit (QA-024) is easi
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:24 UTC: fixed in frontend 1.1.39 (e2bc198), waiting for deploy: runLogQuery refetches every 15 s while the run is active (mind QA-024 rate limit: one log request per 15 s per open page)
+- 2026-11-04 21:05 UTC: frontend 1.1.39, commit e2bc198, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
 
 (Who, when, result.)

@@ -32,7 +32,7 @@ wont-fix, duplicate.
 | [QA-024](bugs/QA-024-api-rate-limit-100-requests-a.md) | fixed | major | backend | API rate limit (100 requests a minute per user) blocks normal page loads; the page shows only Rate limit exceeded | qa-8 | hotfix-back |
 | [QA-025](bugs/QA-025-chat-shows-internal-error-in-geomind.md) | fixing | minor | frontend | Chat shows 'internal error in geomind' for a run interrupted by an app restart; the run says send your message again | qa-1 | hotfix-front |
 | [QA-026](bugs/QA-026-approval-card-for-set-case-shows.md) | fixed | major | geomind | Approval card for set_case shows only 'Allow set_case (write)?': the user cannot see which values, units or sources they approve | qa-1 | hotfix-python |
-| [QA-027](bugs/QA-027-run-log-page-does-not-update.md) | fixing | major | frontend | Run log page does not update during a run: status, steps and tokens stay as at page load until a reload | qa-7 | hotfix-front |
+| [QA-027](bugs/QA-027-run-log-page-does-not-update.md) | fixed | major | frontend | Run log page does not update during a run: status, steps and tokens stay as at page load until a reload | qa-7 | hotfix-front |
 | [QA-028](bugs/QA-028-the-first-request-typed-in-new.md) | fixing | minor | frontend | The first request typed in New project is lost when the user leaves the chat before sending it | qa-6 | hotfix-front |
 | [QA-029](bugs/QA-029-a-429-replaces-the-whole-page.md) | fixing | major | frontend | A 429 replaces the whole page with 'Rate limit exceeded'; no wait for Retry-After and no retry | hotfix-back | hotfix-front |
 | [QA-030](bugs/QA-030-chat-shows-nothing-while-the-model.md) | fixing | minor | frontend | Chat shows nothing while the model provider is retried; show the live retry event | hotfix-back | hotfix-front |
