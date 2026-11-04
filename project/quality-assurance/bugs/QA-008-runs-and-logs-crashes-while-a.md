@@ -28,6 +28,14 @@ The whole page is the error page: "Something went wrong / n.includes is not a fu
 
 - No screenshot yet; the run JSON goes in `../evidence/QA-008/` once the run ends.
 
+- qa-7 (2026-11-04 20:33 UTC, frontend bundle index-DnxCbfcj.js, backend 1.1.27): the crash is not only
+  during a run. Run 668fb412 (project "QA qa-7 runs and logs", ended `cancelled`):
+  https://geomind.team/projects/b3245cdd-63d3-49d3-91e9-e3ec459cb7c1/assistant/runs/668fb412-f060-4bc5-92bf-5836ce5420d1?step=6
+  shows "Something went wrong / n.includes is not a function" (stack: usage-line-CYISQ_6h.js, log-page-8BupBPUp.js).
+  Steps 1, 2, 3 and 6 crash, exactly the steps with a tool call whose `error` is `true`; steps 0 and 7 open.
+  ![qa-7: run log step 6 of a cancelled run](../evidence/QA-008/qa-7-1.png)
+  Run JSON: [`../evidence/QA-008/run-668fb412.json`](../evidence/QA-008/run-668fb412.json)
+
 ## Cause
 
 Guess: the frontend calls `.includes` on a field it expects as a string or array, and this run's data holds another type there. One odd field must not take down the page. Check with the run's JSON once the run ends.
