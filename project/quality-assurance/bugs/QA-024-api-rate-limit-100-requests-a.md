@@ -30,6 +30,13 @@ under "Projects" (screenshot 1). No retry, no wait time, no way on but to reload
 
 - ![screenshot](../evidence/QA-024/1.png)
 
+- ![qa-5: chat page of project "QA qa-5 outputs report e2e" shows only Rate limit exceeded, 20:17 UTC](../evidence/QA-024/qa-5-1.png)
+- qa-5 (2026-11-04 20:17-20:19 UTC, backend 1.1.21): one browser tab on a chat with an active run made 16
+  API requests in 60 s, so a single user stays well under 100 a minute. The bucket is per user, and
+  every QA session (and Fatemeh, Sahand) signs in as the same admin, so together they exhaust it.
+  The page does not retry by itself: it stays on "Rate limit exceeded" until a manual reload
+  (it loaded again after about 15 s).
+
 ## Cause
 
 Fact: `backend/src/core/ratelimit/middleware.py` counts per `user:<id>` (or per IP), with
