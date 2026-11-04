@@ -43,7 +43,7 @@ with reason `error`, so the run's own message is never shown; show the message (
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:25 UTC: fixed in frontend 1.1.40 (a761607), waiting for deploy
 ## Retest
 
 (Who, when, result.)
