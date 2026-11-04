@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-4 |
 | Found | 2026-11-04 22:21 UTC |
 | Versions | backend 1.1.43 (deployed 21:30 UTC); run started on 1.1.27 |
 | Where | https://geomind.team/projects/d113b998-4b59-452e-a69c-128faca2a595/assistant/chat/a543367b-0304-4314-adbc-0bcc5192b015; project "QA qa-4 design and study from copied case"; run 641c7f5a-a0af-4747-b93c-c2bafb67fe8a; design lead, ask_user |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
