@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-8 |
 | Found | 2026-11-04 20:37 UTC |
 | Versions | frontend bundles index-DnxCbfcj.js and index-DAOiLoAA.js, backend 1.1.21 to 1.1.27 |
 | Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/case; project QA qa-8 manual pipeline; case v2 (CSV) and v9 (economics.json); no chat, no run |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
