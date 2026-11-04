@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | backend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -36,4 +36,5 @@ Guess: gemini's Doublet takes its reservoir as plant parameters, separate from t
 ## Fix
 
 - 2026-11-04 23:25 UTC: hotfix-python: gemini fills a Doublet's reservoir children from the case (engine/apply.py _doublets) once the doublet's design values are set. Checked with gemini 0.6.4: HackathonPlant without d0.reservoir pressure/permeability/thickness/temperature/top_depth and the example case: gm.check lists nothing; without d0.depth it lists only params.d0.depth. So the qa-8 plant (web template, project 55612f74) lists children because its doublet lacks its design values, or it was checked without the case (problems_of(content, None)). Needs that plant JSON (prod DB read was refused for hotfix-python): for hotfix-back to check the template plant and that the Study tab passes the case to gm.check.
+- 2026-11-04 23:33 UTC: hotfix-back, backend 1.1.52 (44cde3b), deployed: cause: the web template HeatingCoolingPlant has no plant-level depth and gemini's check does not name it; without it the doublet cannot take its reservoir values from the case (checked locally with gemini 0.6.4 and the hackathon example case: template lists 8 d0.reservoir.* values; with params.depth 2500 m only d0.reservoir.skin is left). Now the plant's problems and the study's missing list name params.depth (and params.backup) first, 'with it each doublet takes its reservoir values from the case'. No prod DB read was needed. gemini part for hotfix-python/Sahand's list: gm.check should name params.depth.
 ## Retest
