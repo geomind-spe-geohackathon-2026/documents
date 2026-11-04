@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -43,3 +43,5 @@ Guess: (a) the tool cannot drop the GWP row's unit (QA-004); (b) the check befor
 
 - 2026-11-04 20:02 UTC: geomind 0.4.27 (68e7bb2, tag v0.4.27, local wheel), backend 1.1.17 (ca5a9e0), deployed: ask_economics leaves out a non-economics key with a note instead of refusing
 ## Retest
+
+- 2026-11-04 20:03 UTC: checked in the production worker (backend 1.1.17, geomind 0.4.27): the bug's open list [accounting.gwp.CH4, utilities.electricity.co2_intensity] no longer refuses; co2_intensity is left out with the note, the economics keys stay. No full live run to the economics step (tool-level check).

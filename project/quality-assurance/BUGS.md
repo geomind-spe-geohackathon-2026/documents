@@ -12,7 +12,7 @@ wont-fix, duplicate.
 | [QA-004](bugs/QA-004-ask-economics-a-unit-the-key.md) | fixing | major | geomind, data | ask_economics: a unit the key refuses is found only after the user's approve all | Fatemeh | hotfix-python |
 | [QA-005](bugs/QA-005-chat-the-economics-question-is-one.md) | fixing | minor | frontend | Chat: the economics question is one unreadable wall of text, labelled "You answered" | Fatemeh | hotfix-front |
 | [QA-006](bugs/QA-006-many-economics-keys-stay-open-no.md) | open | minor | data | Many economics keys stay open: no catalogue row | Fatemeh |  |
-| [QA-007](bugs/QA-007-ask-economics-fails-again-and-again.md) | fixed | blocker | geomind | ask_economics fails again and again on a different check each time | Fatemeh | hotfix-back |
+| [QA-007](bugs/QA-007-ask-economics-fails-again-and-again.md) | verified | blocker | geomind | ask_economics fails again and again on a different check each time | Fatemeh | hotfix-back |
 | [QA-008](bugs/QA-008-runs-and-logs-crashes-while-a.md) | fixing | major | frontend | Runs and logs crashes while a run is active: "n.includes is not a function" | Fatemeh | hotfix-front |
 | [QA-009](bugs/QA-009-the-same-ask-user-question-is.md) | open | major | geomind | The same ask_user question is asked three times in one run | Fatemeh |  |
 | [QA-010](bugs/QA-010-a-delegated-answer-leaves-the-case.md) | open | major | geomind | The user delegates the open values to the agent; the agent sets nothing and proposes nothing | Fatemeh |  |
