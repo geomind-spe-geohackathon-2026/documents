@@ -44,7 +44,7 @@ Guess: the upload posts to `/design/case/files`, which saves a version; the edit
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:43 UTC: fixed in frontend 1.1.47 (fe1ae7a), waiting for deploy: the upload sets the field in the draft (series .file / the file field). The upload itself still saves a version (backend /design/case/files); the choice needs one more Save.
 ## Retest
 
 (Who, when, result.)
