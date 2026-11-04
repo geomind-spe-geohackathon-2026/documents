@@ -39,4 +39,5 @@ could return an unset section as empty with a note, not as an error (like QA-001
 
 ## Fix
 
+- 2026-11-04 20:35 UTC: fixed in geomind 0.4.35 (commit a6a4595), backend 1.1.31, waiting for deploy
 ## Retest
