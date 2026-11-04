@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | data,geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -62,3 +62,5 @@ row with a note instead of refusing the question (geomind).
 - 2026-11-04 23:23 UTC: geomind 0.4.52 (d1e4d7b, tag v0.4.52): catalogue holds only sourced rows (19 placeholders and the 3 unconvertible QA-045 rows removed, 4 QA-006 rows added; 153 rows). Knowledge NOT re-seeded yet (refused to this session); a person runs: cd ~/geomind-spe-hackathon-2026/geomind/data/knowledge && sg docker -c 'docker cp cost-sources.csv geomind-fastapi:/tmp/ && docker cp cost-sources.md geomind-fastapi:/tmp/' && for f in cost-sources.csv cost-sources.md; do sg docker -c "docker exec -w /app/backend geomind-fastapi sh -c 'python -m scripts.knowledge add /tmp/$f --by \"\$FIRST_ADMIN_EMAIL\"'"; done
 - 2026-11-04 23:26 UTC: geomind part (0.4.44+) leaves rows without value_2015 out; data part: the 3 unconvertible rows are removed in geomind 0.4.52, re-seeded by Sahand.
 ## Retest
+
+- 2026-11-04 23:26 UTC: hotfix-back: production Knowledge is geomind 0.4.52's catalogue (sizes match, ready); esp-geophires-500kw, injection-pump-geophires-500kw and corrosion-inhibitor-ouzounian-1989-dogger are no longer in it.
