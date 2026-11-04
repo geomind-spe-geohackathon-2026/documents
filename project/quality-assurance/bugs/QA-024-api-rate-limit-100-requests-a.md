@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend |
 | Reporter | qa-8 |
@@ -65,7 +65,7 @@ frontend side may belong to hotfix-front.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:25 UTC: backend 1.1.24 (4027b6b), deployed 20:24 UTC: the rate limit counts per verified access token (each browser sign-in) instead of per user; unauthenticated per CF-Connecting-IP. Not checked signed in (no credentials here): QA sessions, please retest. The frontend still shows only 'Rate limit exceeded' with no retry on a 429: for hotfix-front.
 ## Retest
 
 (Who, when, result.)
