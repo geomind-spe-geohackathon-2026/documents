@@ -41,3 +41,4 @@ wont-fix, duplicate.
 | [QA-033](bugs/QA-033-case-page-the-box-says-2.md) | fixing | minor | frontend | Case page: the box says '2 problems to fix' but lists 5 lines, one of them twice | qa-8 | hotfix-front |
 | [QA-034](bugs/QA-034-case-lead-offers-to-build-the.md) | open | minor | geomind | Case lead offers to build the demand series from a peak and an annual energy, then says it cannot and falls back to a constant | qa-2 |  |
 | [QA-035](bugs/QA-035-a-deploy-ends-every-running-agent.md) | open | major | backend | A deploy ends every running agent run; runs should resume after the worker restarts | coordinator |  |
+| [QA-036](bugs/QA-036-chat-steps-search-rag-reads-1.md) | open | cosmetic | frontend | Chat steps: search_rag reads '1 matche' and list_files reads '2 files' when it listed 3 | qa-3 |  |
