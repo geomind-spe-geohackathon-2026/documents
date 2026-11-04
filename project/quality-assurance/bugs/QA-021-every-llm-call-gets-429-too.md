@@ -42,4 +42,11 @@ logged, so which one is not known. Second issue: the user gets no message about 
 
 ## Fix
 
+hotfix-back (2026-11-04): the 429s came from the free nemotron tier; production left it at 20:16
+UTC (backend 1.1.22, deepseek-v4.1-flash on morph/fp8), so the refusals themselves are gone. Still
+true on any model: geomind's `retry` event is internal, so the chat shows only Thinking while the
+provider refuses. Backend 1.1.23 (7dd34f6) streams it as a live `retry` event
+`{attempt, model, delay, status}` (contract: live event table). The frontend still has to show it
+("the model provider is busy (429); trying again in 8 s") - for hotfix-front once deployed.
+- 2026-11-04 20:22 UTC: backend 1.1.23 (7dd34f6) pushed, NOT deployed yet: 2 runs running at 20:2x UTC; batched into the next deploy (at most 15 min).
 ## Retest
