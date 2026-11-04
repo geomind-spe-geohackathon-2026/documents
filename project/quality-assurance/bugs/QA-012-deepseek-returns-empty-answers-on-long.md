@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
 | Found | 2026-11-04 ~20:40 UTC (run started 18:51 UTC, still running) |
 | Versions | frontend 1.1.33; backend as at 18:51 UTC (1.1.14, geomind 0.4.25, per QA-007) |
 | Where | https://geomind.team/projects/886404e4-3b22-41bd-8986-1a8bc869e25e/assistant/chat/33c76f29-064f-4047-9926-ff8937beddf7; run a61cfb19bfb04ae99e92060fc5bd2e40; steps[16], steps[17], steps[56] |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
