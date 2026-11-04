@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-3 |
@@ -75,4 +75,5 @@ lost (dropped while the call is parsed, or put in the text). That is not checked
 ## Fix
 
 - 2026-11-04 20:56 UTC: cause (runs b0ab49d0, e1da748d): after the time-zone answer the case lead sent set_case(files, columns) alone; under geomind 0.4.32 each such call asked an approval the user had to deny. Fixed: 0.4.40 (QA-037) refuses it before any approval; geomind 0.4.42 (commit 3334d64) names the run's last full set_case step and asks to send it again whole. Backend 1.1.40, waiting for deploy.
+- 2026-11-04 21:06 UTC: shipped in backend 1.1.40 with geomind 0.4.42 (deployed 21:02 UTC); the fix is in the prod worker (checked: code/prompt present, QA-023 gives 'Design a plant' for a ready case). Live retest by the bug's steps still to do.
 ## Retest
