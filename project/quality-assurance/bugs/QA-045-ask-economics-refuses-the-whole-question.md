@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | blocked |
 | Severity | major |
 | Area | data,geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -59,4 +59,5 @@ row with a note instead of refusing the question (geomind).
   geomind 0.4.45 leaves those rows out with a note, so the question goes on.
 - 2026-11-04 21:31 UTC: geomind part deployed in backend 1.1.43 (21:30 UTC). Data part needs a person: price year and conversion of 3 rows, then a geomind release and a Knowledge re-seed (see Fix).
 - 2026-11-04 21:39 UTC: shipped with backend 1.1.45 (geomind 0.4.46 holds 0.4.44/0.4.45); live retest still to do
+- 2026-11-04 23:23 UTC: geomind 0.4.52 (d1e4d7b, tag v0.4.52): catalogue holds only sourced rows (19 placeholders and the 3 unconvertible QA-045 rows removed, 4 QA-006 rows added; 153 rows). Knowledge NOT re-seeded yet (refused to this session); a person runs: cd ~/geomind-spe-hackathon-2026/geomind/data/knowledge && sg docker -c 'docker cp cost-sources.csv geomind-fastapi:/tmp/ && docker cp cost-sources.md geomind-fastapi:/tmp/' && for f in cost-sources.csv cost-sources.md; do sg docker -c "docker exec -w /app/backend geomind-fastapi sh -c 'python -m scripts.knowledge add /tmp/$f --by \"\$FIRST_ADMIN_EMAIL\"'"; done
 ## Retest
