@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -33,4 +33,5 @@ Fact: the hotfixes wrote the bug id into the prompts' rules (for example `prompt
 
 ## Fix
 
+- 2026-11-04 23:16 UTC: geomind 0.4.48 (commit 7a82fcf): no QA ids in prompts or in set_case's message; backend 1.1.47 deployed
 ## Retest
