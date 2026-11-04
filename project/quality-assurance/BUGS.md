@@ -36,3 +36,4 @@ wont-fix, duplicate.
 | [QA-028](bugs/QA-028-the-first-request-typed-in-new.md) | fixing | minor | frontend | The first request typed in New project is lost when the user leaves the chat before sending it | qa-6 | hotfix-front |
 | [QA-029](bugs/QA-029-a-429-replaces-the-whole-page.md) | open | major | frontend | A 429 replaces the whole page with 'Rate limit exceeded'; no wait for Retry-After and no retry | hotfix-back |  |
 | [QA-030](bugs/QA-030-chat-shows-nothing-while-the-model.md) | open | minor | frontend | Chat shows nothing while the model provider is retried; show the live retry event | hotfix-back |  |
+| [QA-031](bugs/QA-031-auto-approve-works-only-while-the.md) | open | minor | frontend | Auto-approve works only while the chat tab is open; with the tab closed the run waits for an approval | qa-5 |  |
