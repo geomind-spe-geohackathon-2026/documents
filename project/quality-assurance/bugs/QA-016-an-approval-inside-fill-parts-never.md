@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -59,4 +59,14 @@ so no backend change. Handed to hotfix-python.
 - 2026-11-04 20:06 UTC: for hotfix-python: geomind Team (fill_parts) returns a member's request as output instead of pausing; the stale waiting row and the ignored auto-approve follow from that. See Fix section.
 - 2026-11-04 20:25 UTC: fixed in geomind 0.4.30 (commit b6f61d6), backend 1.1.25 (da5e79a), waiting for deploy (hotfix-python's deploy refused again)
 - 2026-11-04 20:31 UTC: shipped in backend 1.1.27 with geomind 0.4.32 (holds 0.4.30); prod worker has the beside rule. Live retest by the bug's steps still to do.
+- 2026-11-04 23:11 UTC: qa-1 retest 23:12 UTC on 1.1.45: well engineer's approval in the parallel fill still never reaches the chat; run waited 90 min (see Retest)
 ## Retest
+- 2026-11-04 22:01-23:10 UTC, qa-1, backend 1.1.40 to 1.1.45: NOT fixed. Run 0cb4b436 (project "QA qa-1 S1 end to end",
+  chat 062b25d8), Auto-approve off: during the design lead's parallel fill ("The parallel fill crashed; retrying with the
+  three briefs") the well engineer's patch_plant approval (request-1725, call-07dcda0c) put the run row in `waiting`
+  from about 21:39 UTC. The chat showed no approval card, also on fresh page loads at 22:01 and 23:10
+  ([qa-1-no-card.png](../evidence/QA-016/qa-1-no-card.png), run row
+  [qa-1-run-0cb4b436-waiting.json](../evidence/QA-016/qa-1-run-0cb4b436-waiting.json)). Earlier patch_plant approvals
+  of the integration and energy engineers (21:20-21:39) did show and were approved. The run sat 90 minutes. Detour:
+  `POST /assistant/runs/{id}/answer` with that request id and approved=true at 23:12; the run went back to running.
+
