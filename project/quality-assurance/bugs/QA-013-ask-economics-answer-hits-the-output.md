@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | blocked |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -42,4 +42,5 @@ See IMPROVEMENTS.md, IMP-001.
 ## Fix
 
 - 2026-11-04 20:34 UTC: hotfix-python: measured in the run JSON: the ask_economics input is about 8,500 characters (about 2,000 tokens) in steps[21] and [37], while the calls report 8,600-10,400 output tokens; steps[22] (13,244 tokens) sent an empty input. So the output is mostly the model's reasoning over 57 keys (41 with several rows), not the tool input, which already sends only row ids. The fix is IMP-001 (the tool picks the recommended row of each key itself by the prompt's rule, the model sends only exceptions): a feature for development mode with tests, and a decision on the rule. Production now runs another model (deepseek on morph/fp8), so recheck how long these calls are there.
+- 2026-11-04 23:35 UTC: IMP-001 built: geomind 0.4.54 (commit edd7927): ask_economics fills every catalogue key the case lead does not name with its recommended row (sourced, verified, no bound/proxy, latest year, real discount rate) and its others; the case lead sends only exceptions. Checked offline on the catalogue: 57 keys, discount rate pbl-sde-2025 real. Backend 1.1.53 deployed. Live retest still to do.
 ## Retest
