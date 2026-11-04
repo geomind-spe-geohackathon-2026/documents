@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -40,4 +40,5 @@ could return an unset section as empty with a note, not as an error (like QA-001
 ## Fix
 
 - 2026-11-04 20:35 UTC: fixed in geomind 0.4.35 (commit a6a4595), backend 1.1.31, waiting for deploy
+- 2026-11-04 21:05 UTC: shipped in backend 1.1.40 with geomind 0.4.42 (deployed 21:02 UTC); the fix is in the prod worker (checked: code/prompt present, QA-023 gives 'Design a plant' for a ready case). Live retest by the bug's steps still to do.
 ## Retest
