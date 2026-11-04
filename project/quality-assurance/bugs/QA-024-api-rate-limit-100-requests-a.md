@@ -37,6 +37,11 @@ under "Projects" (screenshot 1). No retry, no wait time, no way on but to reload
   The page does not retry by itself: it stays on "Rate limit exceeded" until a manual reload
   (it loaded again after about 15 s).
 
+- ![qa-1: chat page of project "QA qa-1 S1 end to end" shows only Rate limit exceeded, 20:18:52 UTC](../evidence/QA-024/qa-1-1.png)
+- qa-1 (2026-11-04 20:18 UTC, backend 1.1.21): the chat page, opened 14 s after sending a request, showed only
+  "Rate limit exceeded" while run b894b090 was running fine (the API reported it `running`); the chat gave no
+  sign that the run went on.
+
 ## Cause
 
 Fact: `backend/src/core/ratelimit/middleware.py` counts per `user:<id>` (or per IP), with
