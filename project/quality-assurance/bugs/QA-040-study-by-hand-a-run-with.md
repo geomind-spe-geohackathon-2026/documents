@@ -56,6 +56,7 @@ carry them. Area may be backend (templates/parameters API) as much as frontend.
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:41 UTC: belongs in backend (hotfix-front checked live, 20:45 UTC): GET /plant/parameters/plant?project=55612f74... returns search keys size.doublets, depth, d1.* ... but no 'backup' (nor other plant-level options of the brief plant), and the plant 'missing' list never names params.backup, while the study requires it. The Plant page renders exactly the fields and missing values the API gives, so it cannot offer a field the API does not list. Fix: the backend's plant template / parameters API should carry backup (and list it as missing, or set it from the brief). Once the API lists it, the page shows it with no frontend change, unless it is a choice type the form does not handle: then hotfix-front adds that.
 - 2026-11-04 20:44 UTC: backend 1.1.39 (commit after 355f631, see backend log) pushed 20:45 UTC, deploys at 21:00 UTC: GET /plant/parameters/plant lists backup with options [peak, none]; POST values {"backup": {"value": "peak"}} sets it; a plant without it shows the missing_value problem params.backup. Frontend: show an entry with options as a select (for hotfix-front).
+- 2026-11-04 20:45 UTC: frontend part by hotfix-front: 1.1.49 (8ad542a), pushed, not deployed yet: the Plant page shows entries with options (backup) as a select and posts {value: '<option>'}. Status left to hotfix-back.
 ## Retest
 
 (Who, when, result.)
