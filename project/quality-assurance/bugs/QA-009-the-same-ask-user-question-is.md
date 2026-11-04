@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -66,4 +66,5 @@ gave no value), but the "already answered" line is wrong and confusing.
 - 2026-11-04 20:08 UTC: fixed in geomind 0.4.29 (commit 0622c67), backend 1.1.20 (80eb493), waiting for deploy
 - 2026-11-04 20:21 UTC: shipped in backend 1.1.21/1.1.22 with geomind 0.4.29; prod worker has ask_user.on_answer (user_answered). Live retest by the bug's steps still to do.
 - 2026-11-04 21:32 UTC: seen again on 1.1.40: run f78c671a asks the six values a fourth time
+- 2026-11-04 23:23 UTC: geomind 0.4.51 (commit 5ed3269): an approve-all answer no longer counts the question's open keys as answered (qa-5's contradiction); the repeated case questions of f78c671a were a delegated answer, handled by QA-010 (0.4.46). Backend 1.1.51 deployed.
 ## Retest
