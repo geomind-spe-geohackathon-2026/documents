@@ -7,27 +7,30 @@
 | Area | frontend |
 | Reporter | hotfix-back |
 | Found | 2026-11-04 20:25 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.33+, backend 1.1.24 |
+| Where | any page, e.g. the chat or Settings of a project (follow-up of QA-024) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Make the API answer 429 (before backend 1.1.24: several browsers signed in as the same user).
+2. Open or reload any project page.
 
 ## Expected
 
+The page keeps what it shows, waits `Retry-After` seconds and tries again; at most a small notice.
+
 ## Actual
+
+The whole page is replaced by the red text "Rate limit exceeded" and stays so until a manual reload; a running run's question is not visible meanwhile.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-029/1.png)
-- Run JSON: `../evidence/QA-029/run-<id>.json`
+- QA-024 screenshots: `../evidence/QA-024/` (qa-1, qa-5, qa-6, qa-7). The 429 carries `Retry-After` (e.g. 2) and `X-RateLimit-*` headers.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact: the backend side is fixed in 1.1.24 (per sign-in bucket), so 429s should be rare; the page's handling of a 429 is still a full-page error with no retry.
 
 ## Fix
 
