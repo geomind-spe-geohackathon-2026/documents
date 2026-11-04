@@ -10,7 +10,7 @@ mode until the user changes it.
 | Branch | The second branch, `dev`. | The second branch, `dev`. | The default branch directly: `main`, except gemini, whose default is `dev`. |
 | Tests | Every automated test that needs no LLM: unit, integration, lint, type checks, release profile, end-to-end with fake models. | The same, on `dev` and in CI. | None. No test, lint or check runs. |
 | To `main` | The agent fast-forwards `main` to `dev` locally, tags and pushes. | Only a pull request on GitHub that a person approves and merges. The agent never merges locally. | The commit is on the default branch already; tag and push it. |
-| Deploy | After `main` is pushed, by the release-and-deploy steps. | After the person merged and the release is tagged. | Right after the push, only the service that changed. |
+| Deploy | After `main` is pushed, by the release-and-deploy steps. | After the person merged and the release is tagged. | Right after the push, only the service that changed, with `scripts/hotfix_deploy.sh`; packages as local wheels, no wait for GitHub. |
 | After | Report the commit, version and health. | Report the merge and the deploy. | Test the same thing again on the live site, then go on from where the work stopped. Bring `dev` up to `main` at the next development work. |
 
 ## One clone, no worktrees
@@ -26,14 +26,35 @@ sessions), and push to the branch of the mode.
 
 ## Hotfix, step by step
 
-1. Work on the default branch of the repo that needs the fix (`main`; for gemini `dev`); pull it
-   first. Push only to that branch.
-2. Change only the code the problem needs. Run no tests and no checks.
-3. Commit, tag a patch version, push the default branch.
-4. Deploy only that service at once.
-5. Check the same thing again on the live site, then go on from where the work stopped.
-6. Each fix goes in the work list with its commit and version. The full tests run later, in
-   development mode, and anything they find is fixed there.
+The fix reaches production as fast as possible.
+
+1. **Find the repo the bug really belongs in** before changing anything: the fix goes in that
+   repo. When it could as well be fixed in the frontend or the backend as in a Python package
+   (geomind, gemini), fix it in the frontend or the backend. Go to a package only when the bug
+   is truly there.
+2. Work on that repo's default branch (`main`; for gemini `dev`); pull it first. Change only the
+   code the bug needs. Run no tests, no lint, no checks.
+3. Raise the version in every project the fix touches, so the number of fixes shows: the patch
+   of the package, and the backend's or frontend's patch for every deploy (`CHANGELOG.md` line
+   with the bug id).
+4. Commit with the bug id and its title in the message (`QA-012: chat question shows as one
+   paragraph`), push the default branch.
+5. Deploy only what changed, with the repo's script; compose never builds anything:
+   - frontend: `frontend/scripts/hotfix_deploy.sh`;
+   - backend: `backend/scripts/hotfix_deploy.sh`;
+   - a Python package (geomind, gemini): build its wheel locally, do not wait for GitHub:
+     `backend/.venv/bin/python -m pip wheel --no-deps -w backend/.tmp/hotfix-wheels geomind/`
+     (remove that package's older wheel from `backend/.tmp/hotfix-wheels/` first), raise the
+     backend's patch with a CHANGELOG line naming the local wheel, then run
+     `backend/scripts/hotfix_deploy.sh`: it builds the image from `main` and installs every wheel
+     in `.tmp/hotfix-wheels/` on top (`backend/Dockerfile.hotfix`). The wheels stay there and
+     are installed on every hotfix deploy until a development release pins the released version
+     in `requirements.txt` and empties the folder. Tag the package's version and push the tag
+     too; its CI release may come later.
+   The scripts hold one lock, so two sessions never deploy at once.
+6. Check the same thing again on the live site, then go on from where the work stopped.
+7. Each fix goes in its bug file (`qa.py set ... --status fixed --note ...`). The full tests run
+   later, in development mode, and anything they find is fixed there.
 
 ## Production, step by step
 
