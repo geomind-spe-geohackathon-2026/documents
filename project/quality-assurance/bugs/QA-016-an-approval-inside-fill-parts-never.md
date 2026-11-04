@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
-| Area | geomind,backend |
+| Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
 | Found | 2026-11-04 20:04 UTC |
 | Versions | frontend 1.1.33; the run spans backend 1.1.14 to 1.1.16 (geomind 0.4.25/0.4.26), agents on deepseek-v4.1-flash |
@@ -47,4 +47,14 @@ up as a result.
 
 ## Fix
 
+hotfix-back (2026-11-04): the cause is in geomind, not the backend. `fill_parts` is a geomind
+`Team` (`geomind/agents/design/lead.py:side_by_side`); a member's `request` comes back as the
+Team's tool output instead of pausing the run. So the request never reaches the chat, the
+browser's auto-approve (frontend `auto-approve.tsx`, which answers approval requests that reach
+the chat) never sees it, and the engineer's work is dropped when the lead calls fill_parts again.
+The backend's `RunRecorder` sets `waiting` on a request of any agent, which is right for Delegate
+runs that do pause; once Team pauses the same way, the row is right too. A backend-only guess at
+"the run went on after a request" could clear a real wait while side-by-side engineers still run,
+so no backend change. Handed to hotfix-python.
+- 2026-11-04 20:06 UTC: for hotfix-python: geomind Team (fill_parts) returns a member's request as output instead of pausing; the stale waiting row and the ignored auto-approve follow from that. See Fix section.
 ## Retest
