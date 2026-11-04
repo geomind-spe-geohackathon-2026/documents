@@ -57,4 +57,5 @@ runs that do pause; once Team pauses the same way, the row is right too. A backe
 "the run went on after a request" could clear a real wait while side-by-side engineers still run,
 so no backend change. Handed to hotfix-python.
 - 2026-11-04 20:06 UTC: for hotfix-python: geomind Team (fill_parts) returns a member's request as output instead of pausing; the stale waiting row and the ignored auto-approve follow from that. See Fix section.
+- 2026-11-04 20:25 UTC: fixed in geomind 0.4.30 (commit b6f61d6), backend 1.1.25 (da5e79a), waiting for deploy (hotfix-python's deploy refused again)
 ## Retest
