@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-3 |
 | Found | 2026-11-04 20:47 UTC |
 | Versions | backend 1.1.27 (geomind 0.4.32 local wheel), models deepseek/deepseek-v4.1-flash-1017; frontend bundle index-DnxCbfcj.js |
 | Where | https://geomind.team/projects/647b432b-b53c-4a5f-a854-38963af7180d (project "QA qa-3 questions approve all 3"), chat of its first message, run b0ab49d0-6498-4bb0-a3a7-905a1c7afb7d; also run e1da748d (project "QA qa-3 questions approve all") |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
@@ -74,4 +74,5 @@ lost (dropped while the call is parsed, or put in the text). That is not checked
 
 ## Fix
 
+- 2026-11-04 20:56 UTC: cause (runs b0ab49d0, e1da748d): after the time-zone answer the case lead sent set_case(files, columns) alone; under geomind 0.4.32 each such call asked an approval the user had to deny. Fixed: 0.4.40 (QA-037) refuses it before any approval; geomind 0.4.42 (commit 3334d64) names the run's last full set_case step and asks to send it again whole. Backend 1.1.40, waiting for deploy.
 ## Retest
