@@ -42,6 +42,6 @@ wont-fix, duplicate.
 | [QA-034](bugs/QA-034-case-lead-offers-to-build-the.md) | fixing | minor | geomind | Case lead offers to build the demand series from a peak and an annual energy, then says it cannot and falls back to a constant | qa-2 | hotfix-python |
 | [QA-035](bugs/QA-035-a-deploy-ends-every-running-agent.md) | fixing | major | backend | A deploy ends every running agent run; runs should resume after the worker restarts | coordinator | hotfix-back |
 | [QA-036](bugs/QA-036-chat-steps-search-rag-reads-1.md) | open | cosmetic | frontend | Chat steps: search_rag reads '1 matche' and list_files reads '2 files' when it listed 3 | qa-3 |  |
-| [QA-037](bugs/QA-037-set-case-asks-for-approval-before.md) | open | minor | geomind | set_case asks for approval before the values are checked; gemini refuses mg/L and bare fractions, and the user must approve again | qa-2 |  |
+| [QA-037](bugs/QA-037-set-case-asks-for-approval-before.md) | fixing | minor | geomind | set_case asks for approval before the values are checked; gemini refuses mg/L and bare fractions, and the user must approve again | qa-2 | hotfix-python |
 | [QA-038](bugs/QA-038-case-page-upload-csv-json-saves.md) | open | minor | frontend | Case page: Upload CSV/JSON saves a version with the file only; the field falls back to empty and the file must be chosen again | qa-8 |  |
 | [QA-039](bugs/QA-039-a-daily-demand-series-in-a.md) | open | minor | gemini | A daily demand series in a time zone with DST (Europe/Amsterdam) is refused; the agent falls back to UTC against the user's answer | qa-5 |  |
