@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | hotfix-back |
@@ -36,6 +36,7 @@ Fact: the backend side is fixed in 1.1.24 (per sign-in bucket), so 429s should b
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:26 UTC: fixed in frontend 1.1.42 (8f3d186), waiting for deploy: client retries 429 after Retry-After (max 15 s, 5 tries); a 429 that outlasts that still shows the error
+- 2026-11-04 21:05 UTC: frontend 1.1.42, commit 8f3d186, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
 
 (Who, when, result.)
