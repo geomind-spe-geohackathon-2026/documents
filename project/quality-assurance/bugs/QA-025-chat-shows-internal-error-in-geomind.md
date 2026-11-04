@@ -33,6 +33,15 @@ as a geomind bug and does not know that sending the message again is the way on.
 - ![screenshot](../evidence/QA-025/1.png)
 - Run JSON: [run-851e9794.json](../evidence/QA-025/run-851e9794.json)
 
+### Also seen by qa-4 (2026-11-04 20:24 UTC)
+
+Project "QA qa-4 design and study from copied case" (d113b998-4b59-452e-a69c-128faca2a595), chat
+a543367b-0304-4314-adbc-0bcc5192b015, run 82c36a57-4f2b-4214-853c-a46ef3faabd2: cut by the
+backend 1.1.24 deploy while the integration engineer worked (36 steps). The run's error is
+`interrupted` ("The run stopped because the app was updated or restarted; send your message
+again."); the chat shows "The assistant stopped with an internal error in geomind".
+![qa-4 chat](../evidence/QA-025/qa-4-1.png)
+
 ## Cause
 
 Fact: `frontend/src/domains/assistant/chat/blocks.tsx` maps a stop with reason `error` to the
