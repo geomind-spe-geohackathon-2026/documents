@@ -7,7 +7,7 @@ wont-fix, duplicate.
 | Id | Status | Severity | Area | Title | Reporter | Fixer |
 |---|---|---|---|---|---|---|
 | [QA-001](bugs/QA-001-read-case-on-a-project-with.md) | fixed | minor | frontend, geomind | read_case on a project with no case shows a red failed with a wrong instruction | Fatemeh | hotfix-front |
-| [QA-002](bugs/QA-002-case-lead-writes-the-pump-efficiency.md) | fixing | minor | geomind | Case lead writes the pump efficiency requirement wrong; set_case refuses it | Fatemeh | hotfix-python |
+| [QA-002](bugs/QA-002-case-lead-writes-the-pump-efficiency.md) | fixed | minor | geomind | Case lead writes the pump efficiency requirement wrong; set_case refuses it | Fatemeh | hotfix-python |
 | [QA-003](bugs/QA-003-case-page-chart-the-y-axis.md) | fixed | cosmetic | frontend | Case page chart: the y-axis unit overlaps the top tick (reads MW0) | Fatemeh | hotfix-front |
 | [QA-004](bugs/QA-004-ask-economics-a-unit-the-key.md) | fixed | major | geomind, data | ask_economics: a unit the key refuses is found only after the user's approve all | Fatemeh | hotfix-python |
 | [QA-005](bugs/QA-005-chat-the-economics-question-is-one.md) | fixed | minor | frontend | Chat: the economics question is one unreadable wall of text, labelled "You answered" | Fatemeh | hotfix-front |

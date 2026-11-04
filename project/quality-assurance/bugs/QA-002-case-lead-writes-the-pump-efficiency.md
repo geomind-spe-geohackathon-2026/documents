@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -38,4 +38,5 @@ Guess: nothing tells the case lead that efficiencies are fractions; the brief sa
 ## Fix
 
 - 2026-11-04 20:31 UTC: fixed in geomind 0.4.33 (commit 02a8364), backend 1.1.28 (5789747), waiting for deploy
+- 2026-11-04 21:05 UTC: shipped in backend 1.1.40 with geomind 0.4.42 (deployed 21:02 UTC); the fix is in the prod worker (checked: code/prompt present, QA-023 gives 'Design a plant' for a ready case). Live retest by the bug's steps still to do.
 ## Retest
