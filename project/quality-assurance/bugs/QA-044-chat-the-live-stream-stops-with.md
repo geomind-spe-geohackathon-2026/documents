@@ -40,3 +40,9 @@ Guess: after the WebSocket gave up (it got 404 while the backend restarted), the
 ## Retest
 
 (Who, when, result.)
+
+## Also seen (qa-3, 2026-11-04 21:10 UTC)
+
+project "QA qa-3 questions approve all 3" (647b432b-b53c-4a5f-a854-38963af7180d), run b0ab49d0-6498-4bb0-a3a7-905a1c7afb7d, backend 1.1.27; run JSON in ../evidence/QA-042/run-b0ab49d0.json.gz. Right after I approved the economics set_case (about 38 minutes into the run), the chat said
+"The live stream stopped (validation_failed). Reload the page to continue." A reload showed the run
+going on (the case lead's next question). ![stream stopped](../evidence/QA-044/qa-3-1.png)
