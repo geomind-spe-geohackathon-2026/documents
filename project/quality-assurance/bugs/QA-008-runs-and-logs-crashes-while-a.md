@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | frontend |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -46,3 +46,5 @@ Guess: the frontend calls `.includes` on a field it expects as a string or array
 - 2026-11-04 20:02 UTC: fixed in frontend 1.1.34 (e7e40f1), waiting for deploy
 - 2026-11-04 21:05 UTC: frontend 1.1.34, commit e7e40f1, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
+
+- 2026-11-04 21:11 UTC: geomind.team 1.1.50, Playwright 21:15 UTC: run a61cfb19 log, steps 23 and 1 open without a crash; failed calls show their text
