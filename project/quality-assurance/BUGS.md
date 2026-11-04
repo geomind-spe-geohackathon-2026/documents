@@ -1,7 +1,7 @@
 # Bugs
 
-One line per bug; details in `bugs/`. How to report and fix: [README.md](README.md). Take the next
-id (highest + 1) and add your line at once. Statuses: open, fixing, fixed, verified, blocked,
+One line per bug; details in `bugs/`. Never edit this file by hand: use `qa.py` (see
+[README.md](README.md)), which takes the next id and claims bugs under a lock. Statuses: open, fixing, fixed, verified, blocked,
 wont-fix, duplicate.
 
 | Id | Status | Severity | Area | Title | Reporter | Fixer |
