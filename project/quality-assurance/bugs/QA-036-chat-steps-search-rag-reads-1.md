@@ -45,4 +45,5 @@ Guess for "2 files": the step summary the chat receives is a shortened text of t
 
 ## Fix
 
+- 2026-11-04 20:44 UTC: fixed in frontend 1.1.48 (598272c), waiting for deploy: singular fixed; counts from a cut summary show 'N+'. The exact count needs the full output or a count in the event (backend/geomind) if wanted.
 ## Retest
