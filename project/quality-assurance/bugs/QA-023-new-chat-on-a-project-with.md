@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | qa-4 |
 | Found | 2026-11-04 20:15 UTC |
 | Versions | frontend 1.1.33 (per STATUS.md), backend 1.1.19 (geomind 0.4.28) |
 | Where | https://geomind.team/projects/d113b998-4b59-452e-a69c-128faca2a595/assistant/chat; project "QA qa-4 design and study from copied case"; no chat yet; no run |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
