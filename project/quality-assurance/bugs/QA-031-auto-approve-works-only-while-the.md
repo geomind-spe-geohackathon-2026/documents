@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-5 |
 | Found | 2026-11-04 20:25 UTC |
 | Versions | frontend 1.1.33 (deployed), backend 1.1.22 (geomind 0.4.29) |
 | Where | https://geomind.team/projects/4d8fb808-9af1-493e-94e4-4d6d50916e5f/assistant/chat/f0388b3b-8f3a-4f97-8167-c7939e9bca9d; project QA qa-5 outputs report e2e; run 9a33db47-648f-435a-a3e1-a6ad0665b16b; case lead's set_case approval (request-179) |
-| Fixer | hotfix-back |
+| Fixer | hotfix-front |
 
 ## Steps
 
@@ -46,6 +46,7 @@ backend approve, or at least say "while this tab is open" on the button.
 - 2026-11-04 20:28 UTC: frontend part in 1.1.44 (b54b785), waiting for deploy: the button now says it approves only while the chat is open in this browser. The expected behaviour (approve with no tab open) needs the backend: the API has no auto-approve setting on a chat or message; once it has one, the frontend sends it. Needs a decision (backend change).
 - 2026-11-04 21:06 UTC: frontend 1.1.44, commit b54b785, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 - 2026-11-04 23:20 UTC: backend 1.1.50 (ddaddc1), deployed: GET/PUT /api/v1/assistant/chat/{chat_id}/auto-approve with {"auto_approve": bool}; while on, runs started or resumed afterwards run in geomind permission mode auto (no approvals, nested agents included), with no tab open. For hotfix-front: the Auto-approve button should read this on load and PUT it on toggle (instead of localStorage); a run already running picks up a change at its next resume.
+- 2026-11-04 23:23 UTC: option A frontend part: 1.1.54 (9a6ef13), pushed, build checked; the button reads/PUTs /assistant/chat/{chat_id}/auto-approve (backend 1.1.50). Deploy with the 23:30 UTC batch.
 ## Retest
 
 (Who, when, result.)

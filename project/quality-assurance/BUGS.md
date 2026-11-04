@@ -36,7 +36,7 @@ wont-fix, duplicate.
 | [QA-028](bugs/QA-028-the-first-request-typed-in-new.md) | fixed | minor | frontend | The first request typed in New project is lost when the user leaves the chat before sending it | qa-6 | hotfix-front |
 | [QA-029](bugs/QA-029-a-429-replaces-the-whole-page.md) | fixed | major | frontend | A 429 replaces the whole page with 'Rate limit exceeded'; no wait for Retry-After and no retry | hotfix-back | hotfix-front |
 | [QA-030](bugs/QA-030-chat-shows-nothing-while-the-model.md) | fixed | minor | frontend | Chat shows nothing while the model provider is retried; show the live retry event | hotfix-back | hotfix-front |
-| [QA-031](bugs/QA-031-auto-approve-works-only-while-the.md) | fixed | minor | frontend | Auto-approve works only while the chat tab is open; with the tab closed the run waits for an approval | qa-5 | hotfix-back |
+| [QA-031](bugs/QA-031-auto-approve-works-only-while-the.md) | fixing | minor | frontend | Auto-approve works only while the chat tab is open; with the tab closed the run waits for an approval | qa-5 | hotfix-front |
 | [QA-032](bugs/QA-032-case-page-the-challenge-demand-csvs.md) | verified | major | backend | Case page: the challenge demand CSVs are refused by hand (first column 'date', expected 'time'); no way to map the column | qa-8 | hotfix-back |
 | [QA-033](bugs/QA-033-case-page-the-box-says-2.md) | fixed | minor | frontend | Case page: the box says '2 problems to fix' but lists 5 lines, one of them twice | qa-8 | hotfix-front |
 | [QA-034](bugs/QA-034-case-lead-offers-to-build-the.md) | fixed | minor | geomind | Case lead offers to build the demand series from a peak and an annual energy, then says it cannot and falls back to a constant | qa-2 | hotfix-python |
