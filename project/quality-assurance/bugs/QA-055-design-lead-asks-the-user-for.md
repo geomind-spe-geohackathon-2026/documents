@@ -39,6 +39,13 @@ coefficients of one pump stage, which a user of the challenge does not have. The
 there ("the brine train carries no finite flow"). Detour tried: a typed answer telling it to use
 the efficiency 0.7 as the reference plant does (21:39 UTC); result in Retest/notes below.
 
+After the typed detour (use efficiency 0.7, no curve), the project lead asks a third question
+(21:45 UTC): "gemini's Doublet derives its production flow from an ESP head/power curve ...
+modelling the pump by the 0.7 efficiency alone ... is not implementable", offering (a) a
+different "nodal doublet" model, (b) stop and report. The project "SPE GeoHackathon 2026" (the
+source of this case) has 4 finished studies with this challenge, so a doublet without a pump
+curve did simulate before. qa-4 chose (a) to go on. ![third question](../evidence/QA-055/2.png)
+
 ## Evidence
 
 - ![second question, after option (a)](../evidence/QA-055/1.png)
