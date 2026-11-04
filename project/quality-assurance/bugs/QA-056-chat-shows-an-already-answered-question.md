@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend |
 | Reporter | qa-5 |
@@ -87,6 +87,7 @@ last question stays as the pending one. Workaround: answer request-3455 through 
   geomind waited on 3519 (likely the parallel/nested request order of QA-016, geomind's side).
   Run 6c5b17e1 itself stays failed; send its message again.
 - 2026-11-04 23:15 UTC: hotfix-back takes the root cause (row kept request-3455 after request-3519).
+- 2026-11-04 23:17 UTC: root cause, backend 1.1.48 (5edf544), deployed: a waiting run's request is reset to its newest stored request event whenever the run is read (GET /assistant/runs/{id}), answered or cancelled, so the chat and the answer check use geomind's pending request. With 1.1.46's safety net, a stale answer puts the run back to waiting. Ready for qa-5's retest.
 ## Retest
 
 (Who, when, result.)
