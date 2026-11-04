@@ -7,18 +7,23 @@
 | Area | backend,frontend |
 | Reporter | qa-7 |
 | Found | 2026-11-04 21:18 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.46-1.1.50, backend 1.1.40 |
+| Where | project "QA qa-7 runs and logs" (b3245cdd-63d3-49d3-91e9-e3ec459cb7c1), chat 51a987be, run d5765e1e, while the geoscientist ran nested under the case lead |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Start a run whose case lead delegates to the geoscientist.
+2. Watch the run's token total (chat usage or the run log) while the nested agent works.
 
 ## Expected
 
+The total grows with each model call, nested runs included.
+
 ## Actual
+
+Seen by qa-7 (not filed by it): the total stayed at 19,074 for about 7 minutes, then jumped to
+527k at once.
 
 ## Evidence
 
@@ -27,7 +32,7 @@
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: the nested run's usage is added to the root only when the nested run ends, or the live usage event counts only the root's own calls.
 
 ## Fix
 
