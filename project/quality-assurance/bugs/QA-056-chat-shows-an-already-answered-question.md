@@ -4,7 +4,7 @@
 |---|---|
 | Status | fixing |
 | Severity | blocker |
-| Area | backend,frontend |
+| Area | backend |
 | Reporter | qa-5 |
 | Found | 2026-11-04 22:35 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.45 (geomind 0.4.46) |
