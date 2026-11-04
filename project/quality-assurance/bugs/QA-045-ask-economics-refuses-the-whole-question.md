@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | blocked |
 | Severity | major |
 | Area | data,geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -57,5 +57,5 @@ row with a note instead of refusing the question (geomind).
   (and gemini/docs/cost-sources/sources.csv), release geomind, and re-seed Knowledge on
   production (`python -m scripts.knowledge` in the backend, as on 2026-11-04 16:15). Until then
   geomind 0.4.45 leaves those rows out with a note, so the question goes on.
-
+- 2026-11-04 21:31 UTC: geomind part deployed in backend 1.1.43 (21:30 UTC). Data part needs a person: price year and conversion of 3 rows, then a geomind release and a Knowledge re-seed (see Fix).
 ## Retest
