@@ -47,7 +47,7 @@ ask_economics had before QA-004 was fixed; the same fix (check first, then ask) 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:41 UTC: fixed in geomind 0.4.40 (commit 52777ef): a dry run of set_case before its approval; a refused call returns its error without asking. Backend 1.1.37, waiting for deploy.
 ## Retest
 
 (Who, when, result.)
