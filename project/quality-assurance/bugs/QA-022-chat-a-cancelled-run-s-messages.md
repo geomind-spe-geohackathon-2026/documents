@@ -43,4 +43,5 @@ live events), and a `cancelled` run's events are not loaded back; or the cancel'
 
 ## Fix
 
+- 2026-11-04 20:22 UTC: fixed in frontend 1.1.38 (8f4829e), waiting for deploy: an unanswered earlier run shows 'Show its steps' (event replay) and a Runs and logs link
 ## Retest
