@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend, geomind |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -40,3 +40,5 @@ Guess: frontend `src/shared/sse/pretty.ts:133` maps every `no_case` to that text
 - 2026-11-04 20:02 UTC: fixed in frontend 1.1.35 (cc53278), waiting for deploy; chat shows read_case no_case as done/info. The geomind side (case lead always calls read_case first) is unchanged.
 - 2026-11-04 21:05 UTC: frontend 1.1.35, commit cc53278, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
+
+- 2026-11-04 21:11 UTC: geomind.team 1.1.50, Playwright 21:15 UTC: chat 33c76f29 read_case no_case reads 'No case yet: the assistant builds it...' as done. The run log page still shows the old 'Fill in the missing values' text for the same call (outside this bug)
