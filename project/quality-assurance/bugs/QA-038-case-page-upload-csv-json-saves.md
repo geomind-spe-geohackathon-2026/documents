@@ -7,27 +7,39 @@
 | Area | frontend |
 | Reporter | qa-8 |
 | Found | 2026-11-04 20:37 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend bundles index-DnxCbfcj.js and index-DAOiLoAA.js, backend 1.1.21 to 1.1.27 |
+| Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/case; project QA qa-8 manual pipeline; case v2 (CSV) and v9 (economics.json); no chat, no run |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Case page, Demand > Heating > Power: click "series", then Upload CSV and pick a demand CSV.
+2. Economics: click "From a file", then Upload JSON and pick `gemini/examples/hackathon_2026/economics.json`.
 
 ## Expected
 
+After the upload the field uses the uploaded file (series: that file and its column chosen;
+economics: `"economics": "economics.json"`), and one Save version stores it.
+
 ## Actual
+
+Each upload saves a new case version at once (v2 note "File data/GEMINI_Heating_Demand_Daily_2027.csv";
+v9) that holds only the file. The field is not set: heating power falls back to the constant input
+with an empty value (screenshot 2), the Economics tab falls back to "Fill in here" with empty fields
+(screenshot 3), and the JSON stays `{}`. It looks as if the upload failed. The way on: click
+"series" / "From a file" again and choose the uploaded file in the select (screenshot 4), then save
+another version. Every upload adds an extra version to History.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-038/1.png)
-- Run JSON: `../evidence/QA-038/run-<id>.json`
+- ![series mode before upload](../evidence/QA-038/1.png)
+- ![after the CSV upload: v2, power empty, constant mode](../evidence/QA-038/2.png)
+- ![after the economics.json upload: v9, Fill in here, empty](../evidence/QA-038/3.png)
+- ![the detour: From a file, choose economics.json](../evidence/QA-038/4.png)
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: the upload posts to `/design/case/files`, which saves a version; the editor then reloads the case and loses its local mode and selection.
 
 ## Fix
 
