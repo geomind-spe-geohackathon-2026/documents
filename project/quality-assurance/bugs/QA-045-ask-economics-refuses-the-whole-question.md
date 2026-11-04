@@ -46,4 +46,5 @@ row with a note instead of refusing the question (geomind).
 ## Fix
 
 - 2026-11-04 21:27 UTC: geomind part fixed in 0.4.44 (commit 6c1a799): rows with no value_2015 are left out with a note, the question goes on. Wheel goes into the backend with QA-047. The data part (converting the three rows to 2015 EUR) remains for hotfix-back (area data).
+- 2026-11-04 21:28 UTC: geomind 0.4.45 in backend 1.1.43, waiting for deploy
 ## Retest
