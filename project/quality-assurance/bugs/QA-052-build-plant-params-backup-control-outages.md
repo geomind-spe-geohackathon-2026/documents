@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-04 21:27 UTC |
 | Versions | frontend 1.1.33; backend 1.1.40 |
 | Where | https://geomind.team/projects/886404e4-3b22-41bd-8986-1a8bc869e25e/assistant/chat/33c76f29-064f-4047-9926-ff8937beddf7 (project test hack); run f78c671a-82b9-45e1-832e-0c2466de6d77 (after "continue", QA-047) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
