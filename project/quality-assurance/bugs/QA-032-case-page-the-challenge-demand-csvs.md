@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
 | Area | backend |
 | Reporter | qa-8 |
 | Found | 2026-11-04 20:26 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.22 |
 | Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/case; project QA qa-8 manual pipeline (case v3); no chat, no run; S8 step: Case by hand, Demand tab |
-| Fixer | hotfix-python |
+| Fixer |  |
 
 ## Steps
 
