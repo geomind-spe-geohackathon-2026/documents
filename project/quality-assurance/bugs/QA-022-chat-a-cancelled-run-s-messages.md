@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend,backend |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -53,4 +53,5 @@ live events), and a `cancelled` run's events are not loaded back; or the cancel'
 ## Fix
 
 - 2026-11-04 20:22 UTC: fixed in frontend 1.1.38 (8f4829e), waiting for deploy: an unanswered earlier run shows 'Show its steps' (event replay) and a Runs and logs link
+- 2026-11-04 21:05 UTC: frontend 1.1.38, commit 8f4829e, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
