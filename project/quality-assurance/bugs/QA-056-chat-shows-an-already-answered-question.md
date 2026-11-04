@@ -47,6 +47,15 @@ fresh load, shows an older patch_plant approval card for the same design; clicki
 and the card shows "Request validation failed". The user cannot answer the real request.
 ![stale card, 422](../evidence/QA-056/qa-4-1.png)
 
+qa-4, 23:12 UTC: `GET /assistant/runs/641c7f5a...` said `waiting` on `request-2495`, so qa-4
+answered that request through the API (`POST /answer {"request":"request-2495","answer":{"approved":true}}`
+-> 200, status `running`). Within 20 s the run ended `failed` with
+`{"code":"error","message":"resume: request = 'request-2495'; expected 'request-2504'"}`.
+So the backend's stored pending request was stale too (geomind waited on request-2504, which the
+API never showed), and answering the request the API shows kills the run. The run had 179 steps,
+47 patch_plant calls, 4.67 M input tokens; all lost. Run JSON:
+[qa-4-run-641c7f5a.json.gz](../evidence/QA-056/qa-4-run-641c7f5a.json.gz).
+
 ## Cause
 
 Guess: the chat takes the pending request from the run's events and the nested design_lead approval
