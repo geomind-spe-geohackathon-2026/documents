@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | blocked |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
 | Found | 2026-11-04 ~20:40 UTC (run started 18:51 UTC, still running) |
 | Versions | frontend 1.1.33; backend as at 18:51 UTC (1.1.14, geomind 0.4.25, per QA-007) |
 | Where | https://geomind.team/projects/886404e4-3b22-41bd-8986-1a8bc869e25e/assistant/chat/33c76f29-064f-4047-9926-ff8937beddf7; run a61cfb19bfb04ae99e92060fc5bd2e40; steps[19], steps[35], steps[48], steps[57] |
-| Fixer | hotfix-python |
+| Fixer |  |
 
 ## Steps
 
@@ -48,4 +48,5 @@ Needs Sahand's decision: what the agent does when the user delegates and no sour
 ## Fix
 
 - 2026-11-04 20:08 UTC: needs Sahand's decision (as STATUS.md says): what the agent does when the user delegates open values and no RAG/MCP source exists; the no-default-values rule forbids inventing them. hotfix-python did not change it.
+- 2026-11-04 21:37 UTC: Sahand 2026-11-04 21:40 UTC chose option A: the agent first looks for each open value with RAG and MCP (open-meteo); for what it cannot find it asks ONE question with proposals labelled 'engineering assumption, no source' and a reason each; on approval they are stored with source 'agent assumption'. The no-default rule holds because the user approves.
 ## Retest
