@@ -47,7 +47,7 @@ stop when it ends. Keep it light: the API's per-user rate limit (QA-024) is easi
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:24 UTC: fixed in frontend 1.1.39 (e2bc198), waiting for deploy: runLogQuery refetches every 15 s while the run is active (mind QA-024 rate limit: one log request per 15 s per open page)
 ## Retest
 
 (Who, when, result.)
