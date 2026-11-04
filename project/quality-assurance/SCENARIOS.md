@@ -16,4 +16,4 @@ report. Mobile and responsive layout do not matter now.
 | S5 | qa-5 | Outputs: the report through chat and on the Report page, export (PDF), the results' numbers and charts, the next-step chips after each answer. | in progress | started 20:40 UTC | |
 | S6 | qa-6 | Knowledge (RAG) and Connectors (MCP) used by the agents in chat for values the files lack (site, prices, weather). | not started | in progress | start |  
 | S7 | qa-7 | Runs and logs during and after agent runs: steps, tool calls, per-agent usage, the JSON download, cancel and resume, a reload during a run. | in progress | starting (20:50 UTC): new project, first run | QA-008 |
-| S8 | qa-8 | The same pipeline by hand: Case, Plant, Study, Results and Report pages, then ask the agents to continue from what was set by hand. | not started | | |
+| S8 | qa-8 | The same pipeline by hand: Case, Plant, Study, Results and Report pages, then ask the agents to continue from what was set by hand. | in progress | start: Case page by hand |  |
