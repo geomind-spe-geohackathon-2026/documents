@@ -51,6 +51,9 @@ python3 $QA set QA-021 --status open --area geomind --note "for hotfix-python: <
 
 ## Fix a bug (hotfix session)
 
+Commit before you start a bug and as soon as it is fixed: a clone with uncommitted changes
+blocks every deploy of that repo (`hotfix_deploy.sh` refuses it), for every session and person.
+
 1. `python3 $QA next --area <your areas> --fixer <your name>` claims the most severe open bug of
    your areas. Never work on a bug you did not claim.
 2. Decide which repo the fix belongs in; if the bug is not in your areas after all, set it back to

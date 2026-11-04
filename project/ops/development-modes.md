@@ -20,6 +20,13 @@ Git worktrees are not used.
 
 ## Always commit and push
 
+**Commit before you start and when you finish.** Before you start a piece of work, the clone must
+be clean: commit and push anything left (yours), so you start from a known state. When the piece
+is done, commit and push at once, before anything else (a deploy, the next bug, a report). The
+deploy scripts refuse a clone with uncommitted changes, so one session's half-done work blocks
+every deploy of that repo until it is committed.
+
+
 In every mode, everything left in the working tree is committed and pushed when a piece of work
 ends: nothing stays only on the Dell. Stage files by path (the clones are shared by parallel
 sessions), and push to the branch of the mode.
