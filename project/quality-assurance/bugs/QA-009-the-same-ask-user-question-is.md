@@ -46,4 +46,5 @@ not carry the answer either.
 
 ## Fix
 
+- 2026-11-04 20:08 UTC: fixed in geomind 0.4.29 (commit 0622c67), backend 1.1.20 (80eb493), waiting for deploy
 ## Retest
