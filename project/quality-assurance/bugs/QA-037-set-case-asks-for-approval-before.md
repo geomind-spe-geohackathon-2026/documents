@@ -33,10 +33,20 @@ After the approval, set_case fails (run JSON, case_lead step 7):
 The agent fixes them and a second "Allow set_case (write)?" card appears with the whole case again;
 the user must read and approve it a second time. Nothing tells the user the first approval was refused.
 
+### The same for build_plant (qa-2, 21:00 UTC)
+
+In the same run the process engineer's first build_plant (a skeleton: "no parameter values, no
+connections") was shown as "Allow build_plant (write)?" (screenshot 2); after Approve it failed
+`unconnected_port` (d0.supply_out, degasser.liquid_out, ... ; run JSON `run-592f3730-design.json`,
+process_engineer step 5), and a second build_plant approval followed. A call that a dry check would
+refuse should not reach the user for approval.
+
 ## Evidence
 
 - ![first set_case approval card](../evidence/QA-037/1.png)
 - Run JSON: `../evidence/QA-037/run-592f3730.json` (step 7, set_case output)
+- ![first build_plant approval](../evidence/QA-037/2.png)
+- Run JSON with the design steps: `../evidence/QA-037/run-592f3730-design.json`
 
 ## Cause
 
