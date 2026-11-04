@@ -54,4 +54,5 @@ try). What remains is geomind's: resume the nested run after a provider failure 
 nemotron since 19:56 UTC, so this may not occur the same way. Handed to hotfix-python.
 - 2026-11-04 20:04 UTC: for hotfix-python: retry and nested-run recovery are in geomind (RetryLLM, Delegate); the backend only builds the provider. See Fix section.
 - 2026-11-04 20:04 UTC: area moved to geomind for hotfix-python
+- 2026-11-04 20:09 UTC: paused by coordinator: only analysed so far, no code changed. Seen: a 504 inside the stream is raised as retryable ProviderError, so RetryLLM retries it; open question is resuming the nested run instead of nested_stopped.
 ## Retest
