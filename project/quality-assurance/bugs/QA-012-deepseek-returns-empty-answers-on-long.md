@@ -45,4 +45,5 @@ gives the agent a wrong instruction. Same family as QA-013.
 
 ## Fix
 
+- 2026-11-04 20:33 UTC: fixed in geomind 0.4.34 (commit a682362), backend 1.1.30, waiting for deploy. Only the note is fixed; why the provider ends at 1-337 tokens with finish_reason length is not known (provider side).
 ## Retest
