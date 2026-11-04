@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -58,4 +58,5 @@ runs that do pause; once Team pauses the same way, the row is right too. A backe
 so no backend change. Handed to hotfix-python.
 - 2026-11-04 20:06 UTC: for hotfix-python: geomind Team (fill_parts) returns a member's request as output instead of pausing; the stale waiting row and the ignored auto-approve follow from that. See Fix section.
 - 2026-11-04 20:25 UTC: fixed in geomind 0.4.30 (commit b6f61d6), backend 1.1.25 (da5e79a), waiting for deploy (hotfix-python's deploy refused again)
+- 2026-11-04 20:31 UTC: shipped in backend 1.1.27 with geomind 0.4.32 (holds 0.4.30); prod worker has the beside rule. Live retest by the bug's steps still to do.
 ## Retest
