@@ -38,4 +38,5 @@ fixed narrow width.
 
 ## Fix
 
+- 2026-11-04 20:29 UTC: fixed in frontend 1.1.46 (48616e5), waiting for deploy
 ## Retest
