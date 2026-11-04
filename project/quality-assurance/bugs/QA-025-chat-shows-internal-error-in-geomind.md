@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-1 |
@@ -57,3 +57,4 @@ with reason `error`, so the run's own message is never shown; show the message (
 ## Retest
 
 (Who, when, result.)
+- 2026-11-04 21:11 UTC: geomind.team 1.1.50, Playwright 21:15 UTC: chat 062b25d8 shows 'The run stopped because the app was updated or restarted; send your message again.'; no 'internal error in geomind'
