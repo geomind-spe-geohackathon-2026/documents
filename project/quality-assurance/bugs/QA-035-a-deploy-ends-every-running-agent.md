@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend |
 | Reporter | coordinator |
 | Found | 2026-11-04 20:30 UTC |
 | Versions | backend 1.1.19 to 1.1.27 (geomind 0.4.28 to 0.4.32) |
 | Where | every hotfix deploy; reported by qa-5 (runs d0cced4f at 20:20, 9a33db47 at 20:30 UTC), qa-4 (82c36a57), and runs b894b090, b2088107 |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 
