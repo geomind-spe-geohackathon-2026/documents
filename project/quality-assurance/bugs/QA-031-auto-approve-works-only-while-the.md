@@ -43,7 +43,7 @@ backend approve, or at least say "while this tab is open" on the button.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:28 UTC: frontend part in 1.1.44 (b54b785), waiting for deploy: the button now says it approves only while the chat is open in this browser. The expected behaviour (approve with no tab open) needs the backend: the API has no auto-approve setting on a chat or message; once it has one, the frontend sends it. Needs a decision (backend change).
 ## Retest
 
 (Who, when, result.)
