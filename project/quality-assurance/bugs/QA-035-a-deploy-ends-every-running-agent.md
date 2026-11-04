@@ -40,7 +40,7 @@ Guess: the QA-017 start-up hook marks the runs failed; it could re-enqueue them 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:32 UTC: backend 1.1.29 (bb7a34e) pushed 20:32 UTC, not deployed: goes out in the 21:00 UTC window (hotfix-back deploys it unless another session's window deploy takes main first). The worker resumes runs left running (started within 12 h) via assistant.runs.resume with no request.
 ## Retest
 
 (Who, when, result.)
