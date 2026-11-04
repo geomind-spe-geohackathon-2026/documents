@@ -48,6 +48,11 @@ under "Projects" (screenshot 1). No retry, no wait time, no way on but to reload
   `retry-after: 2`, `x-ratelimit-limit: 100`, `x-ratelimit-remaining: 0`; the chat page of the same run, opened at
   20:21, showed only "Rate limit exceeded" while the run was `waiting` for an answer, so the question was not visible.
 
+- ![qa-6: Settings page of project "QA qa-6 knowledge and connectors" shows only Rate limit exceeded, 20:21 UTC](../evidence/QA-024/qa-6-1.png)
+- qa-6 (2026-11-04 20:21 UTC, backend 1.1.22): the project Settings page showed only "Rate limit exceeded", so the
+  connector checkbox could not be set; a script's login and `GET /workspace/projects` also got 429 for about 2 minutes
+  (20:17-20:19 UTC).
+
 ## Cause
 
 Fact: `backend/src/core/ratelimit/middleware.py` counts per `user:<id>` (or per IP), with
