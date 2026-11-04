@@ -59,3 +59,4 @@ wont-fix, duplicate.
 | [QA-051](bugs/QA-051-the-run-s-error-in-the.md) | open | minor | geomind,frontend | The run's error in the chat dumps the whole MCP tool input schema as a wall of red text | Fatemeh |  |
 | [QA-052](bugs/QA-052-build-plant-params-backup-control-outages.md) | open | minor | geomind | build_plant: params.backup, control.outages and control.dispatch sent as bare strings are refused, after the user's approval | Fatemeh |  |
 | [QA-053](bugs/QA-053-chat-an-agent-s-streamed-text.md) | open | minor | frontend | Chat: an agent's streamed text stops mid-word ("I have exhau"); the full text never replaces it | Fatemeh |  |
+| [QA-054](bugs/QA-054-agent-prompts-name-qa-bug-ids.md) | open | minor | geomind | Agent prompts name QA bug ids; agents quote them to the user ("Per QA-015 I stop here") | Fatemeh |  |
