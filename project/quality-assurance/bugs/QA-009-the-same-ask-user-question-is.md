@@ -50,6 +50,17 @@ not carry the answer either.
   the problem state records the user's answer (A2) and the design lead said so ("The state shows
   the user already answered A2").
 
+## Seen again (qa-5, 2026-11-04 21:46 UTC, backend 1.1.45)
+
+Project "QA qa-5 outputs report e2e", chat f0388b3b, run 6c5b17e1. The economics question (approved with
+"approve all" at 20:41) listed economics.opex.per_energy.absorption_chiller / compression_chiller as
+having no row. After the design lead's check, the case lead asks for the same two keys again, and the
+same question says: "Already answered in this run, not asked again: economics.opex.per_energy.absorption_chiller, ...
+(request-375): 'approve all'. Answer only economics.opex.per_energy." The text contradicts itself: it
+says the keys are not asked again while it asks them. Asking once more is right here (the first answer
+gave no value), but the "already answered" line is wrong and confusing.
+![qa-5: repeated question](../evidence/QA-009/qa-5-1.png)
+
 ## Fix
 
 - 2026-11-04 20:08 UTC: fixed in geomind 0.4.29 (commit 0622c67), backend 1.1.20 (80eb493), waiting for deploy
