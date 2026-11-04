@@ -4,7 +4,7 @@
 |---|---|
 | Status | fixing |
 | Severity | major |
-| Area | geomind,frontend |
+| Area | geomind |
 | Reporter | qa-1 |
 | Found | 2026-11-04 20:21 UTC |
 | Versions | frontend bundle assets/index-DnxCbfcj.js, backend 1.1.22; model deepseek/deepseek-v4.1-flash-1017 |
