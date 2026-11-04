@@ -29,6 +29,13 @@ Probe: `GET /api/v1/assistant/runs/<id>/events` with `Last-Event-ID: ''` or `abc
 
 - ![screenshot](../evidence/QA-044/1.png)
 
+- qa-1 (2026-11-04, backend 1.1.40, run 0cb4b436, chat 062b25d8, project "QA qa-1 S1 end to end"): the events
+  stream failed at 21:02 UTC (CORS preflight on `/runs/{id}/events`, during the 21:00 deploy), then at 21:07:19 the
+  reconnect got 422 and the chat showed "The live stream stopped (validation_failed). Reload the page to continue."
+  ([qa-1-1.png](../evidence/QA-044/qa-1-1.png)). Meanwhile the integration engineer asked for a patch_plant approval:
+  the run sat `waiting` for it from about 21:07 to 21:20 UTC with no card in the chat; only a reload showed it.
+  Impact: with Auto-approve off the user cannot see that the run waits for them; worse than minor.
+
 ## Cause
 
 Guess: after the WebSocket gave up (it got 404 while the backend restarted), the SSE fallback (`shared/sse/stream.ts`) sent a Last-Event-ID that is not an integer (empty or a non-numeric id), which `src/core/sse/follow.py:last_event_id` refuses; 422 is not retryable, so the chat stops. A fix: the backend treats an empty/invalid id as a new stream, and/or the frontend sends only numeric ids.
