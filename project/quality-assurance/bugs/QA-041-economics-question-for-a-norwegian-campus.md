@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-2 |
 | Found | 2026-11-04 20:41 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.27 |
 | Where | https://geomind.team/projects/c8482f7a-9ff9-4888-82ac-4c8402b29a46/assistant/chat/abfff893-d638-4b04-927c-e0c154aa2490; project QA qa-2 no files case by questions; run 592f3730-4743-490e-91f0-63d9330aa7f2; case_lead ask_economics question (call-d9e67516) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
