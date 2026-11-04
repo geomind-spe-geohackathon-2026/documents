@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
 | Found | 2026-11-04 ~19:00 UTC |
 | Versions | frontend 1.1.33, backend 1.1.14 (geomind 0.4.25) |
 | Where | https://geomind.team/projects/886404e4-3b22-41bd-8986-1a8bc869e25e/design/case; Demand > Cooling chart |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
