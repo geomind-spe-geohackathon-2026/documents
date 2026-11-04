@@ -58,3 +58,4 @@ wont-fix, duplicate.
 | [QA-050](bugs/QA-050-a-connector-rate-limit-open-meteo.md) | open | major | geomind | A connector rate limit (Open-Meteo, per minute) stops the whole run after 3 tries; nothing waits for the window | Fatemeh |  |
 | [QA-051](bugs/QA-051-the-run-s-error-in-the.md) | open | minor | geomind,frontend | The run's error in the chat dumps the whole MCP tool input schema as a wall of red text | Fatemeh |  |
 | [QA-052](bugs/QA-052-build-plant-params-backup-control-outages.md) | open | minor | geomind | build_plant: params.backup, control.outages and control.dispatch sent as bare strings are refused, after the user's approval | Fatemeh |  |
+| [QA-053](bugs/QA-053-chat-an-agent-s-streamed-text.md) | open | minor | frontend | Chat: an agent's streamed text stops mid-word ("I have exhau"); the full text never replaces it | Fatemeh |  |
