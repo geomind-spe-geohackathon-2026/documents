@@ -35,7 +35,7 @@ Fact: the frontend has no handler for the `retry` event type (it skips unknown t
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:27 UTC: fixed in frontend 1.1.43 (4f52d15), waiting for deploy
 ## Retest
 
 (Who, when, result.)
