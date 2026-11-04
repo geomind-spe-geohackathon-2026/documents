@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | minor |
-| Area | gemini,geomind |
+| Area | backend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-04 21:25 UTC |
 | Versions | frontend 1.1.33; backend 1.1.40 (API health at write-up) |
 | Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/study?chat=b34c9901-8c3d-4dad-9694-b33a3dd152a7 (project QA qa-8 manual pipeline) |
-| Fixer | hotfix-python |
+| Fixer |  |
 
 ## Steps
 
@@ -35,4 +35,5 @@ Guess: gemini's Doublet takes its reservoir as plant parameters, separate from t
 
 ## Fix
 
+- 2026-11-04 23:25 UTC: hotfix-python: gemini fills a Doublet's reservoir children from the case (engine/apply.py _doublets) once the doublet's design values are set. Checked with gemini 0.6.4: HackathonPlant without d0.reservoir pressure/permeability/thickness/temperature/top_depth and the example case: gm.check lists nothing; without d0.depth it lists only params.d0.depth. So the qa-8 plant (web template, project 55612f74) lists children because its doublet lacks its design values, or it was checked without the case (problems_of(content, None)). Needs that plant JSON (prod DB read was refused for hotfix-python): for hotfix-back to check the template plant and that the Study tab passes the case to gm.check.
 ## Retest
