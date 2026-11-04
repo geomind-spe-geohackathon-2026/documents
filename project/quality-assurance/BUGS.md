@@ -62,3 +62,4 @@ wont-fix, duplicate.
 | [QA-054](bugs/QA-054-agent-prompts-name-qa-bug-ids.md) | fixed | minor | geomind | Agent prompts name QA bug ids; agents quote them to the user ("Per QA-015 I stop here") | Fatemeh | hotfix-python |
 | [QA-055](bugs/QA-055-design-lead-asks-the-user-for.md) | fixed | major | geomind | Design lead asks the user for an ESP pump curve no source has, offers an option (gemini derives it) gemini cannot do, and blocks the design | qa-4 | hotfix-python |
 | [QA-056](bugs/QA-056-chat-shows-an-already-answered-question.md) | fixed | blocker | backend | Chat shows an already answered question while the run waits on a design_lead approval; no approval card, auto-approve cannot fire, the run is stuck | qa-5 | hotfix-back |
+| [QA-057](bugs/QA-057-approval-card-the-json-the-call.md) | open | minor | frontend | Approval card: the JSON the call sends loses its indentation (pre-line, proportional font); nested values unreadable | qa-ux |  |
