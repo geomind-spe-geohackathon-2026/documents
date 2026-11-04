@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | blocked |
+| Status | fixed |
 | Severity | major |
 | Area | data,geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -58,4 +58,5 @@ row with a note instead of refusing the question (geomind).
   production (`python -m scripts.knowledge` in the backend, as on 2026-11-04 16:15). Until then
   geomind 0.4.45 leaves those rows out with a note, so the question goes on.
 - 2026-11-04 21:31 UTC: geomind part deployed in backend 1.1.43 (21:30 UTC). Data part needs a person: price year and conversion of 3 rows, then a geomind release and a Knowledge re-seed (see Fix).
+- 2026-11-04 21:39 UTC: shipped with backend 1.1.45 (geomind 0.4.46 holds 0.4.44/0.4.45); live retest still to do
 ## Retest
