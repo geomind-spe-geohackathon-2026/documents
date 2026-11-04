@@ -7,27 +7,30 @@
 | Area | frontend |
 | Reporter | hotfix-back |
 | Found | 2026-11-04 20:25 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.33+, backend 1.1.24 (geomind 0.4.29) |
+| Where | any chat with a run whose model calls fail and are retried (follow-up of QA-021) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Send a message while the model provider answers 429 or 5xx (QA-021 saw this on the free nemotron tier).
 
 ## Expected
 
+Beside the running step, the chat says the provider is busy and when it tries again, e.g. "The model provider is busy (429); trying again in 8 s", until the next event of that agent.
+
 ## Actual
+
+The chat shows only "Thinking" for minutes. Since backend 1.1.23 the run stream carries a live `retry` event `{agent, parent, attempt, model, delay, status}` (never stored, no `id`); the frontend ignores it.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-030/1.png)
-- Run JSON: `../evidence/QA-030/run-<id>.json`
+- Backend contract: `backend/docs/app-build/contracts.md`, live event table, row `retry`.
+- QA-021 (evidence: celery-429.log).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact: the frontend has no handler for the `retry` event type (it skips unknown types).
 
 ## Fix
 
