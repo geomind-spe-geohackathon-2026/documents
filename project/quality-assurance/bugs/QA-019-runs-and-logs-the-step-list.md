@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -39,4 +39,5 @@ fixed narrow width.
 ## Fix
 
 - 2026-11-04 20:29 UTC: fixed in frontend 1.1.46 (48616e5), waiting for deploy
+- 2026-11-04 21:06 UTC: frontend 1.1.46, commit 48616e5, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
