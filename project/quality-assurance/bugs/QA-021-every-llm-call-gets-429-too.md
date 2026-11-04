@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend,infra |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -49,4 +49,5 @@ provider refuses. Backend 1.1.23 (7dd34f6) streams it as a live `retry` event
 `{attempt, model, delay, status}` (contract: live event table). The frontend still has to show it
 ("the model provider is busy (429); trying again in 8 s") - for hotfix-front once deployed.
 - 2026-11-04 20:22 UTC: backend 1.1.23 (7dd34f6) pushed, NOT deployed yet: 2 runs running at 20:2x UTC; batched into the next deploy (at most 15 min).
+- 2026-11-04 20:24 UTC: backend 1.1.23 (7dd34f6), deployed in 1.1.24 at 20:24 UTC: live retry event streamed. The 429s themselves are gone with the move off the free nemotron tier (1.1.22). Frontend must still show the retry event: for hotfix-front.
 ## Retest
