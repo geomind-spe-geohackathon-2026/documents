@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | backend,frontend |
 | Reporter | qa-7 |
 | Found | 2026-11-04 21:18 UTC |
 | Versions | frontend 1.1.46-1.1.50, backend 1.1.40 |
 | Where | project "QA qa-7 runs and logs" (b3245cdd-63d3-49d3-91e9-e3ec459cb7c1), chat 51a987be, run d5765e1e, while the geoscientist ran nested under the case lead |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 
