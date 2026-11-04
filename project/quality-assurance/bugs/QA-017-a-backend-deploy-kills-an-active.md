@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | backend |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -43,3 +43,5 @@ without a process. Only the user's Stop (cancel) may end it now; not tried.
 
 - 2026-11-04 20:07 UTC: backend 1.1.19, commit 8888753, deployed 20:07 UTC: on worker start every run still running is ended as failed (code interrupted, message 'The run stopped because the app was updated or restarted; send your message again.') with its run.finished. Waiting runs are left (they have no process until an answer). Run a61cfb19 itself is a stale waiting row (QA-016): Stop in the chat ends it. Retest: the next deploy while a run is running; the worker started cleanly at 20:07 with no hook error.
 ## Retest
+
+- 2026-11-04 20:24 UTC: deploy of 1.1.24 at 20:24 UTC with runs 82c36a57, b894b090, b2088107 running: the worker ended each as failed, code interrupted, with the message; waiting runs stayed.

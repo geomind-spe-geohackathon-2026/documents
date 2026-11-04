@@ -22,7 +22,7 @@ wont-fix, duplicate.
 | [QA-014](bugs/QA-014-project-lead-calls-read-case-with.md) | open | minor | geomind | Project lead calls read_case with sections the case does not have | Fatemeh |  |
 | [QA-015](bugs/QA-015-design-goes-on-while-gemini-reports.md) | open | major | geomind | Design goes on while gemini reports a case value the plant needs as missing | Fatemeh |  |
 | [QA-016](bugs/QA-016-an-approval-inside-fill-parts-never.md) | fixing | major | geomind | An approval inside fill_parts never reaches the user, ignores auto-approve, loses the engineer's work and leaves the run waiting | Fatemeh | hotfix-python |
-| [QA-017](bugs/QA-017-a-backend-deploy-kills-an-active.md) | fixed | major | backend | A backend deploy kills an active run; it stays waiting forever with no message | Fatemeh | hotfix-back |
+| [QA-017](bugs/QA-017-a-backend-deploy-kills-an-active.md) | verified | major | backend | A backend deploy kills an active run; it stays waiting forever with no message | Fatemeh | hotfix-back |
 | [QA-018](bugs/QA-018-process-engineer-s-first-build-plant.md) | open | minor | geomind | Process engineer's first build_plant sends a type with modules that differ from it; refused | Fatemeh |  |
 | [QA-019](bugs/QA-019-runs-and-logs-the-step-list.md) | open | cosmetic | frontend | Runs and logs: the step list's token numbers spill out of the card | Fatemeh |  |
 | [QA-020](bugs/QA-020-engineers-repeat-the-same-read-case.md) | open | minor | geomind | Engineers repeat the same read_case and read_plant calls many times in a row | Fatemeh |  |
