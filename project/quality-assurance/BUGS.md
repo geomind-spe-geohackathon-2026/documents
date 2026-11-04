@@ -46,3 +46,4 @@ wont-fix, duplicate.
 | [QA-038](bugs/QA-038-case-page-upload-csv-json-saves.md) | open | minor | frontend | Case page: Upload CSV/JSON saves a version with the file only; the field falls back to empty and the file must be chosen again | qa-8 |  |
 | [QA-039](bugs/QA-039-a-daily-demand-series-in-a.md) | open | minor | gemini | A daily demand series in a time zone with DST (Europe/Amsterdam) is refused; the agent falls back to UTC against the user's answer | qa-5 |  |
 | [QA-040](bugs/QA-040-study-by-hand-a-run-with.md) | open | blocker | frontend | Study by hand: a run with size fails 'params.backup is missing'; the Plant page neither lists nor offers backup | qa-8 |  |
+| [QA-041](bugs/QA-041-economics-question-for-a-norwegian-campus.md) | open | major | geomind | Economics question for a Norwegian campus recommends the Dutch heat price cap and the COVRA radioactive-waste drum tariff, and puts the user's 2026 electricity price into 2015 EUR | qa-2 |  |
