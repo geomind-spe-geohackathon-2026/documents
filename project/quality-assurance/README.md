@@ -61,6 +61,24 @@ python3 $QA set QA-021 --status verified --note "checked again on geomind.team, 
    `--status open` with what still fails.
 6. Tell the coordinator the ids and versions, then take the next bug.
 
+## Who fixes what (hotfix sessions)
+
+| Session | Claims (`qa.py next --area ...`) | Edits |
+|---|---|---|
+| hotfix-front | `frontend` | the frontend clone |
+| hotfix-back | `backend,data,infra` | the backend clone |
+| hotfix-python | `geomind,gemini` | the geomind and gemini clones; the backend clone only to raise its version and deploy a local wheel |
+
+Two sessions may edit the backend clone, so it has a lock. Take it before you change any backend
+file, keep it until your deploy is done, then free it:
+
+```sh
+until mkdir /tmp/geomind-backend.lock 2>/dev/null; do echo "backend busy: $(cat /tmp/geomind-backend.lock/owner 2>/dev/null)"; sleep 20; done
+echo "<your session> QA-<nnn> $(date -u +%H:%M)" > /tmp/geomind-backend.lock/owner
+# ... pull, edit, commit, push, scripts/hotfix_deploy.sh ...
+rm -rf /tmp/geomind-backend.lock
+```
+
 ## Statuses
 
 | Status | Means |
