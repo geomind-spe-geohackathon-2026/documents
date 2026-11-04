@@ -79,6 +79,14 @@ last question stays as the pending one. Workaround: answer request-3455 through 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 23:11 UTC: qa-5: stored pending request stale (3455 vs engine 3519); answering it failed the run
 - 2026-11-04 23:12 UTC: hotfix-front checked the run's event stream (GET /assistant/runs/6c5b17e1.../events): request-3455 (design_lead patch_plant approval, event 3455) was resolved: tool.started 3458 and design_lead run.finished 3463 follow it. The case lead then asked request-3519 (event 3519, kind question, the production_flow merge). That is the question the chat showed, so the chat was right. The run's stored request (GET /runs/<id>, read by POST /answer) stayed at request-3455, so the chip's answer to 3519 got 422 'not the pending request', and the API answer to 3455 killed the run. Fix in the backend (or geomind): store each new nested request as the run's pending request, and refuse a mismatched answer with 422 instead of failing the run. No frontend change needed.
+- 2026-11-05 hotfix-back, backend 1.1.46 (8162553), deployed: when geomind refuses an answer as
+  not its pending request ("expected 'request-N'"), the backend no longer fails the run: it sets
+  it back to `waiting` with request-N (read from the run's stored `request` event) and publishes
+  that `request` again, so the chat shows the right question. A 422 for a mismatched answer now
+  names the request the run waits on. Not done in the backend: why the row held 3455 while
+  geomind waited on 3519 (likely the parallel/nested request order of QA-016, geomind's side).
+  Run 6c5b17e1 itself stays failed; send its message again.
+
 ## Retest
 
 (Who, when, result.)
