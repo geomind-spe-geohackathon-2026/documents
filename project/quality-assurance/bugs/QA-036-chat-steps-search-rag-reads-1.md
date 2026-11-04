@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | qa-3 |
@@ -48,3 +48,5 @@ Guess for "2 files": the step summary the chat receives is a shortened text of t
 - 2026-11-04 20:44 UTC: fixed in frontend 1.1.48 (598272c), waiting for deploy: singular fixed; counts from a cut summary show 'N+'. The exact count needs the full output or a count in the event (backend/geomind) if wanted.
 - 2026-11-04 21:09 UTC: frontend 1.1.48, commit 598272c, deployed (1.1.50, 21:10 UTC)
 ## Retest
+
+- 2026-11-04 21:11 UTC: geomind.team 1.1.50, Playwright 21:15 UTC: chat steps read '1+ matches' / '2+ files' for cut summaries (no 'matche')
