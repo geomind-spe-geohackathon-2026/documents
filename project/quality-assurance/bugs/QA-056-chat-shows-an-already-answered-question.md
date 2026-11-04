@@ -35,7 +35,7 @@ The answered question closes; the chat shows the new approval card (or Auto-appr
 ## Evidence
 
 - ![screenshot](../evidence/QA-056/1.png)
-- Run JSON: [`../evidence/QA-056/run-6c5b17e1.json`](../evidence/QA-056/run-6c5b17e1.json)
+- Run JSON: [`../evidence/QA-056/run-6c5b17e1.json.gz`](../evidence/QA-056/run-6c5b17e1.json.gz) (gzip, 33 MB unpacked)
 
 ## Cause
 
