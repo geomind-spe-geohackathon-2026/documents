@@ -39,3 +39,4 @@ wont-fix, duplicate.
 | [QA-031](bugs/QA-031-auto-approve-works-only-while-the.md) | fixing | minor | frontend | Auto-approve works only while the chat tab is open; with the tab closed the run waits for an approval | qa-5 | hotfix-front |
 | [QA-032](bugs/QA-032-case-page-the-challenge-demand-csvs.md) | open | major | gemini | Case page: the challenge demand CSVs are refused by hand (first column 'date', expected 'time'); no way to map the column | qa-8 |  |
 | [QA-033](bugs/QA-033-case-page-the-box-says-2.md) | fixing | minor | frontend | Case page: the box says '2 problems to fix' but lists 5 lines, one of them twice | qa-8 | hotfix-front |
+| [QA-034](bugs/QA-034-case-lead-offers-to-build-the.md) | open | minor | geomind | Case lead offers to build the demand series from a peak and an annual energy, then says it cannot and falls back to a constant | qa-2 |  |
