@@ -1,0 +1,15 @@
+  . assistant.runs.start
+[2026-11-04 20:09:00,117: INFO/MainProcess] Task assistant.runs.start[363bf37f-aad5-4986-bd89-ab0861344b0e] received
+[2026-11-04 20:09:00,561: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:09:02,662: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:09:06,809: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:09:14,956: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:09:31,118: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:10:03,302: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:10:03,548: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:10:05,700: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:10:09,827: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:10:18,871: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:10:35,011: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:11:07,157: INFO/ForkPoolWorker-32] HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-11-04 20:11:07,195: INFO/ForkPoolWorker-32] Task assistant.runs.start[363bf37f-aad5-4986-bd89-ab0861344b0e] succeeded in 126.95833090494853s: None
