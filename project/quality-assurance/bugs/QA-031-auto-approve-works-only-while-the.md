@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-5 |
@@ -48,3 +48,4 @@ backend approve, or at least say "while this tab is open" on the button.
 ## Retest
 
 (Who, when, result.)
+- 2026-11-04 21:11 UTC: geomind.team 1.1.50, Playwright 21:15 UTC: button title says Auto-approve works only while the chat is open in this browser (server-side approval still needs a backend setting)
