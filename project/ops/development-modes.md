@@ -41,6 +41,9 @@ The fix reaches production as fast as possible.
    is truly there.
 2. Work on that repo's default branch (`main`; for gemini `dev`); pull it first. Change only the
    code the bug needs. Run no tests, no lint, no checks.
+   One exception: a frontend change must pass the image build (`sg docker -c "docker build -q -t
+   geomind-frontend:check ."` in `frontend/`) before the push; a failed build blocks every later
+   frontend fix (2026-11-04: a type error in 1.1.49 stopped the deploy).
 3. Raise the version in every project the fix touches, so the number of fixes shows: the patch
    of the package, and the backend's or frontend's patch for every deploy (`CHANGELOG.md` line
    with the bug id).
