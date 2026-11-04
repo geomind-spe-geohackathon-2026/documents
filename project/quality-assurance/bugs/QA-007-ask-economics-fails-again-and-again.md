@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -41,4 +41,5 @@ Guess: (a) the tool cannot drop the GWP row's unit (QA-004); (b) the check befor
 
 ## Fix
 
+- 2026-11-04 20:02 UTC: geomind 0.4.27 (68e7bb2, tag v0.4.27, local wheel), backend 1.1.17 (ca5a9e0), deployed: ask_economics leaves out a non-economics key with a note instead of refusing
 ## Retest
