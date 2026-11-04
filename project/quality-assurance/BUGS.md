@@ -9,7 +9,7 @@ wont-fix, duplicate.
 | [QA-001](bugs/QA-001-read-case-on-a-project-with.md) | fixing | minor | frontend, geomind | read_case on a project with no case shows a red failed with a wrong instruction | Fatemeh | hotfix-front |
 | [QA-002](bugs/QA-002-case-lead-writes-the-pump-efficiency.md) | open | minor | geomind | Case lead writes the pump efficiency requirement wrong; set_case refuses it | Fatemeh |  |
 | [QA-003](bugs/QA-003-case-page-chart-the-y-axis.md) | fixing | cosmetic | frontend | Case page chart: the y-axis unit overlaps the top tick (reads MW0) | Fatemeh | hotfix-front |
-| [QA-004](bugs/QA-004-ask-economics-a-unit-the-key.md) | fixing | major | geomind, data | ask_economics: a unit the key refuses is found only after the user's approve all | Fatemeh | hotfix-python |
+| [QA-004](bugs/QA-004-ask-economics-a-unit-the-key.md) | blocked | major | geomind, data | ask_economics: a unit the key refuses is found only after the user's approve all | Fatemeh | hotfix-python |
 | [QA-005](bugs/QA-005-chat-the-economics-question-is-one.md) | fixing | minor | frontend | Chat: the economics question is one unreadable wall of text, labelled "You answered" | Fatemeh | hotfix-front |
 | [QA-006](bugs/QA-006-many-economics-keys-stay-open-no.md) | open | minor | data | Many economics keys stay open: no catalogue row | Fatemeh |  |
 | [QA-007](bugs/QA-007-ask-economics-fails-again-and-again.md) | verified | blocker | geomind | ask_economics fails again and again on a different check each time | Fatemeh | hotfix-back |

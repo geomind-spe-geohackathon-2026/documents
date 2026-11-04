@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | blocked |
 | Severity | major |
 | Area | geomind, data |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -38,4 +38,5 @@ Guess: since geomind 0.4.25 the tool takes the unit from the catalogue row, so t
 
 ## Fix
 
+- 2026-11-04 20:04 UTC: geomind 0.4.28 (tag v0.4.28, commit 64ac883) and backend 1.1.18 (main 44b7ee5, wheel in backend/.tmp/hotfix-wheels) pushed; NOT deployed: hotfix-python's run of scripts/hotfix_deploy.sh was denied by its permission check. Needs a person (or a session allowed to deploy) to run backend/scripts/hotfix_deploy.sh.
 ## Retest
