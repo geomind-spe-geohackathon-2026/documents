@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-1 |
@@ -53,6 +53,7 @@ with reason `error`, so the run's own message is never shown; show the message (
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:25 UTC: fixed in frontend 1.1.40 (a761607), waiting for deploy
+- 2026-11-04 21:05 UTC: frontend 1.1.40, commit a761607, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
 
 (Who, when, result.)
