@@ -7,27 +7,37 @@
 | Area | frontend |
 | Reporter | qa-6 |
 | Found | 2026-11-04 20:24 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend bundle index-DnxCbfcj.js (1.1.33), backend 1.1.22 |
+| Where | https://geomind.team/projects/bc1d5450-590a-4dce-afe0-0d5ea13932bd/assistant/chat; project QA qa-6 knowledge and connectors; no chat yet; no run |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Projects, New project: Empty case, a name, Shared memory On, a request in "What do you want to work on?"
+   and the three challenge files (screenshot 0-dialog). Create.
+2. The chat opens with the request in the composer and the three files as `ready` chips (screenshot 1).
+3. Before sending, open the project's Settings (to turn on a connector: the New project dialog has no
+   connector choice, so this is the natural next step), tick open-meteo, then go back to Chat.
 
 ## Expected
 
+The request and the file chips still wait in the composer ("It waits in the first chat; you send it").
+
 ## Actual
+
+The composer is empty and the chips are gone (screenshot 2); the project has no chat. The three files
+are in the Library (`searchable: ready`), so only the request text and the attachment to the first
+message are lost; the user has to type the request again and re-attach the files.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-028/1.png)
-- Run JSON: `../evidence/QA-028/run-<id>.json`
+- ![dialog](../evidence/QA-028/0-dialog.png)
+- ![chat right after Create](../evidence/QA-028/1.png)
+- ![chat after Settings and back](../evidence/QA-028/2.png)
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: the draft is kept only in the page state of the first chat view, not in storage or on the server.
 
 ## Fix
 
