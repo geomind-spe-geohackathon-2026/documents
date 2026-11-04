@@ -51,6 +51,7 @@ themselves, which would explain why the chat path works and the hand path does n
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:30 UTC: for hotfix-back/front: gemini's series reader wants a first column named time and the case has no column-rename field (changing gemini needs Sahand's OK). The backend's case-file upload can rename a first column date/datetime to time (or the Case page can offer it), as the agents already rewrite the file in the chat path. Area moved to backend.
 - 2026-11-04 20:32 UTC: hint from hotfix-python: geomind's set_case renames a CSV's first column to time itself (argument columns, geomind/tools/gemini/case.py columns_schema/first_columns); the Case page's upload path does not, so the backend can do the same rename on a by-hand series upload.
+- 2026-11-04 20:39 UTC: backend 1.1.35 (355f631) pushed 20:39 UTC, not deployed: 21:00 UTC window. POST /design/case/files saves a CSV whose first column is date/datetime/timestamp with it named time. Date-only values need the case's time zone (gemini reads a time without offset as local in it).
 ## Retest
 
 (Who, when, result.)
