@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-1 |
 | Found | 2026-11-04 20:21 UTC |
 | Versions | frontend bundle assets/index-DnxCbfcj.js, backend 1.1.22; model deepseek/deepseek-v4.1-flash-1017 |
 | Where | https://geomind.team/projects/541aa78f-8181-45f4-ac36-e47305e33f37/assistant/chat/062b25d8-1e4a-4b38-aed3-2209baba430a; project "QA qa-1 S1 end to end"; run b894b090-ad7e-4ef6-8c92-412d63bdb989; case lead's first set_case (request-146), 20:20 UTC |
-| Fixer | hotfix-front |
+| Fixer |  |
 
 ## Steps
 
@@ -48,6 +48,7 @@ arguments, or a summary of keys/values/sources, into the request; frontend: show
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:23 UTC: belongs in geomind first: RequestMade.data() (geomind/types/events.py) drops the pending call's input, so the request event and GET /assistant/runs/{id} carry only the message; the frontend cannot show values it never gets. Once geomind puts the call input (or a key/value/unit/source summary) in the request, hotfix-front adds it to the approval card (request-card.tsx).
+- 2026-11-04 20:23 UTC: moved to geomind (see the note above): the pending call's input never reaches the frontend
 ## Retest
 
 (Who, when, result.)
