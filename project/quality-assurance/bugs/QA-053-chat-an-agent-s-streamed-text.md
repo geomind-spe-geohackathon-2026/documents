@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -36,4 +36,5 @@ Guess: the chat renders the text from the stream's deltas and does not replace i
 ## Fix
 
 - 2026-11-04 23:16 UTC: frontend 1.1.51 (87de23b), pushed, build checked; deploy with the batch. Events of f78c671a: step.finished 340 holds the full text; the live block now shows a finished step's text whole (no pacing)
+- 2026-11-04 23:31 UTC: frontend 1.1.51, commit 87de23b, deployed (1.1.54)
 ## Retest
