@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
-| Area | backend, geomind |
+| Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
 | Found | 2026-11-04 ~20:40 UTC (run started 18:51 UTC, still running) |
 | Versions | frontend 1.1.33; backend as at 18:51 UTC (1.1.14, geomind 0.4.25, per QA-007) |
@@ -43,4 +43,14 @@ loop has no retry for 5xx.
 
 ## Fix
 
+hotfix-back (2026-11-04): not fixable in the backend. The backend only builds
+`gd.providers.OpenRouter`; geomind's engine wraps it in `RetryLLM`, which already retries a 5xx
+(prod `.env`: GEOMIND_RETRY_COUNT=5, GEOMIND_RETRY_DELAY=2, so about 62 s of back-off). The message
+"status = 504; Upstream idle timeout exceeded" without a body is `_raise_api_error`: the error came
+as a chunk inside the stream. The run has 8 `retry` events, so the 504 was most likely retried and
+failed every time (the long generation that ran past the upstream idle timeout is repeated on each
+try). What remains is geomind's: resume the nested run after a provider failure instead of
+`nested_stopped`, and/or a longer back-off for 504. The run was on DeepSeek; production is on
+nemotron since 19:56 UTC, so this may not occur the same way. Handed to hotfix-python.
+- 2026-11-04 20:04 UTC: for hotfix-python: retry and nested-run recovery are in geomind (RetryLLM, Delegate); the backend only builds the provider. See Fix section.
 ## Retest
