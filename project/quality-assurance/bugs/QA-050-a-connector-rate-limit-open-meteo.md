@@ -35,4 +35,5 @@ Fact: the loop's "same call failed 3 times" guard counts a rate-limit refusal li
 
 ## Fix
 
+- 2026-11-04 23:20 UTC: fixed in geomind 0.4.50 (commit 82b6837), deploy next
 ## Retest
