@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | verified |
 | Severity | major |
 | Area | backend |
 | Reporter | coordinator |
@@ -44,3 +44,4 @@ Guess: the QA-017 start-up hook marks the runs failed; it could re-enqueue them 
 ## Retest
 
 (Who, when, result.)
+- 2026-11-04 21:03 UTC: backend 1.1.40 deployed 21:02 UTC (with 1.1.29). The new worker resumed the 5 runs it found running: 592f3730, 0cb4b436, 6c5b17e1, 60731e65, b0ab49d0 (log 'resuming it'); each wrote new events after 21:02:18 (101, 95, 37, 7, 20) and is still running. None was cut. a2dd83e3 and 641c7f5a were not running at that moment (a2dd83e3 runs again since).
