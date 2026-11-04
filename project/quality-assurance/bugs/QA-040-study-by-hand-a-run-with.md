@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | backend |
 | Reporter | qa-8 |
@@ -61,3 +61,4 @@ carry them. Area may be backend (templates/parameters API) as much as frontend.
 ## Retest
 
 (Who, when, result.)
+- 2026-11-04 21:04 UTC: checked in the production API container (1.1.40): plant_search of HeatingCoolingPlant lists backup with options [peak, none]; problems name params.backup missing_value; set_plant_values backup=peak stores {'value': 'peak'} and the problem goes. Not checked through the browser (the select is hotfix-front's); no study run.
