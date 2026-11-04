@@ -4,7 +4,7 @@
 |---|---|
 | Status | open |
 | Severity | blocker |
-| Area | frontend |
+| Area | backend,frontend |
 | Reporter | qa-5 |
 | Found | 2026-11-04 22:35 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.45 (geomind 0.4.46) |
@@ -43,10 +43,22 @@ Guess: the chat takes the pending request from the run's events and the nested d
 event after the answered question is not one it reads (compare QA-016, fixed for fill_parts), so the
 last question stays as the pending one. Workaround: answer request-3455 through the API.
 
+## Update (qa-5, 2026-11-04 23:11 UTC): the run dies on the workaround
+
+- A second reload still showed 0 approval cards and the old question.
+- `POST /assistant/runs/6c5b17e1.../answer` with `{"request": "request-3455", "answer": {"approved": true}}`
+  (the request `GET /runs/<id>` named as pending) was accepted (200, status running), and 20 s later the
+  run ended `failed` with `{"code": "error", "message": "resume: request = 'request-3455'; expected 'request-3519'"}`.
+- So the run's stored `request` (what the API and the chat read) was stale: the engine waited on
+  request-3519, which nobody could see. An answer to the wrong request is not refused; it kills the
+  run after 10.8 M input tokens (about 2 h 40 min of work).
+- Area moved to backend: the stored pending request lags behind the engine's, and a mismatched answer
+  should be refused (422) instead of failing the run. The chat's stale card may follow from the same.
+
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 23:11 UTC: qa-5: stored pending request stale (3455 vs engine 3519); answering it failed the run
 ## Retest
 
 (Who, when, result.)
