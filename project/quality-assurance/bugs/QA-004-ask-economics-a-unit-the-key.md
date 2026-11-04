@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind, data |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -40,4 +40,5 @@ Guess: since geomind 0.4.25 the tool takes the unit from the catalogue row, so t
 
 - 2026-11-04 20:04 UTC: geomind 0.4.28 (tag v0.4.28, commit 64ac883) and backend 1.1.18 (main 44b7ee5, wheel in backend/.tmp/hotfix-wheels) pushed; NOT deployed: hotfix-python's run of scripts/hotfix_deploy.sh was denied by its permission check. Needs a person (or a session allowed to deploy) to run backend/scripts/hotfix_deploy.sh.
 - 2026-11-04 20:05 UTC: fixed in geomind 0.4.28 (commit 64ac883), backend 1.1.18 (44b7ee5), waiting for deploy
+- 2026-11-04 20:08 UTC: shipped in backend 1.1.19 with geomind 0.4.28 (hotfix-back's deploy 20:07 UTC). Checked in the prod worker: accounting.gwp.CH4 with 'kg CO2e/kg CH4' is set with no unit and a note; '%' on discount_rate is refused before the question. Live retest by the bug's steps still to do.
 ## Retest
