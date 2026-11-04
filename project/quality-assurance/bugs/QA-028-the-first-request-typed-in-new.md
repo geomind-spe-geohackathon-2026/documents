@@ -44,6 +44,7 @@ Guess: the draft is kept only in the page state of the first chat view, not in s
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:26 UTC: fixed in frontend 1.1.41 (a73946a), waiting for deploy. The draft was in sessionStorage (per tab), cleared only on send; now localStorage and edits are kept. Not reproduced before the fix: if the retest still loses it in the same tab, the cause is elsewhere.
 - 2026-11-04 21:05 UTC: frontend 1.1.41, commit a73946a, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
+- 2026-11-04 21:12 UTC: code live in 1.1.50 (checked in the served chunks); behaviour not rechecked live: needs an active run, a 429, a provider retry, a bad CSV or an upload
 ## Retest
 
 (Who, when, result.)
