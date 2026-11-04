@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | data |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -39,3 +39,5 @@ A catalogue gap (partly a known issue of geomind 0.4.24), not a code bug.
 - 2026-11-04 23:23 UTC: geomind 0.4.52 (d1e4d7b, tag v0.4.52): catalogue holds only sourced rows (19 placeholders and the 3 unconvertible QA-045 rows removed, 4 QA-006 rows added; 153 rows). Knowledge NOT re-seeded yet (refused to this session); a person runs: cd ~/geomind-spe-hackathon-2026/geomind/data/knowledge && sg docker -c 'docker cp cost-sources.csv geomind-fastapi:/tmp/ && docker cp cost-sources.md geomind-fastapi:/tmp/' && for f in cost-sources.csv cost-sources.md; do sg docker -c "docker exec -w /app/backend geomind-fastapi sh -c 'python -m scripts.knowledge add /tmp/$f --by \"\$FIRST_ADMIN_EMAIL\"'"; done
 - 2026-11-04 23:26 UTC: Knowledge re-seeded by Sahand with geomind 0.4.52's cost-sources.csv and .md (153 sourced rows incl. the 4 QA-006 rows). Not covered (no citable source): opex.per_energy of the chillers, opex.fixed.adsorption_chiller; revenue.subsidy.capacity is a project value.
 ## Retest
+
+- 2026-11-04 23:26 UTC: hotfix-back: production Knowledge holds cost-sources.csv (109929 bytes) and cost-sources.md (10825 bytes), both searchable=ready, created 23:25 UTC; sizes equal geomind 0.4.52's files.
