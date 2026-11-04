@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-2 |
@@ -69,6 +69,7 @@ country, and treats any user price as already in the catalogue's price year.
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:43 UTC: fixed in geomind 0.4.41 (commit 03e776b, case lead row order: site country first, no bound/proxy rows recommended; a user price without a year is asked). Backend 1.1.38, waiting for deploy. discount_rate left open is against the prompt already (model).
+- 2026-11-04 21:06 UTC: shipped in backend 1.1.40 with geomind 0.4.42 (deployed 21:02 UTC); the fix is in the prod worker (checked: code/prompt present, QA-023 gives 'Design a plant' for a ready case). Live retest by the bug's steps still to do.
 ## Retest
 
 (Who, when, result.)
