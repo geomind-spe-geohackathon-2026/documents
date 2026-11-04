@@ -54,3 +54,4 @@ wont-fix, duplicate.
 | [QA-046](bugs/QA-046-run-tokens-stay-flat-while-a.md) | open | minor | backend,frontend | Run tokens stay flat while a nested agent runs, then jump (19,074 for ~7 min, then 527k) | qa-7 |  |
 | [QA-047](bugs/QA-047-after-a-cancelled-or-interrupted-run.md) | open | major | geomind | After a cancelled or interrupted run, the next run starts the work over: unsaved engineer work is lost, the stored design is not reused | Fatemeh |  |
 | [QA-048](bugs/QA-048-study-tab-the-missing-parameter-list.md) | open | cosmetic | frontend | Study tab: the missing-parameter list overflows; the table is cut on the left (Progress reads 'ess') | Fatemeh |  |
+| [QA-049](bugs/QA-049-the-plant-asks-again-for-reservoir.md) | open | minor | gemini,geomind | The plant asks again for reservoir pressure, permeability and thickness that the case already has | Fatemeh |  |
