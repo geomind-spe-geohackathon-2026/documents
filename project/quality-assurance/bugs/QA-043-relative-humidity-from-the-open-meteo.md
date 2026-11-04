@@ -56,6 +56,14 @@ the unit `%` is converted (80 to 0.80), on save or in the case. If it cannot be 
   connector's humidity into the case, not even when the user asks for the conversion.
 - ![confirmation question with item 4 humidity left open](../evidence/QA-043/3.png)
 - ![the agent says it cannot convert the series](../evidence/QA-043/4.png)
+- Seen by Fatemeh on chat 1b669d3e-ea13-43ce-b2aa-9f3d8ab258da (project bc1d5450): the user typed
+  "Convert all 365 relative humidity values from percentages to fractions by dividing each value by
+  100. Use a Python execution tool ..."; the agent answers that it may not compute or retype series
+  values and no tool converts a series, so the key stays open.
+  ![agent refuses to convert the % series](../evidence/QA-043/fatemeh-1.webp)
+  Note: run_python and the code sandbox were removed in geomind 0.4.22 (Sahand, "we don't write
+  code"), so the conversion has to be done by a tool in code (for example set_case or the connector
+  scaling a `%` column to a fraction), not by the agent.
 
 ## Cause
 
