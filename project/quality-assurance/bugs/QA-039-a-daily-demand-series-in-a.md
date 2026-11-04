@@ -43,6 +43,7 @@ checks the step on UTC instants, not on local calendar dates, for daily (and coa
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:43 UTC: hotfix-python: the fix is in gemini (check a daily or coarser series' step on local calendar dates, not UTC instants). gemini is frozen and its changes need Sahand's OK (rule of 2026-11-04 16:27: no bugs to gemini for now), so no change. For Sahand's list of gemini needs. Meanwhile the agent reads the dates as UTC and says so in its question.
+- 2026-11-04 20:45 UTC: listed as gemini request 37 in geomind .claude/docs/plan.md (commit ea16df4), for Sahand to approve
 ## Retest
 
 (Who, when, result.)
