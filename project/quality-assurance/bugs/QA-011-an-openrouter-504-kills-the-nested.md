@@ -53,4 +53,5 @@ try). What remains is geomind's: resume the nested run after a provider failure 
 `nested_stopped`, and/or a longer back-off for 504. The run was on DeepSeek; production is on
 nemotron since 19:56 UTC, so this may not occur the same way. Handed to hotfix-python.
 - 2026-11-04 20:04 UTC: for hotfix-python: retry and nested-run recovery are in geomind (RetryLLM, Delegate); the backend only builds the provider. See Fix section.
+- 2026-11-04 20:04 UTC: area moved to geomind for hotfix-python
 ## Retest
