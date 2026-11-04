@@ -21,3 +21,4 @@ wont-fix, duplicate.
 | [QA-013](bugs/QA-013-ask-economics-answer-hits-the-output.md) | open | minor | geomind | The case lead's ask_economics call hits the 16,000-token output limit and is cut | Fatemeh |  |
 | [QA-014](bugs/QA-014-project-lead-calls-read-case-with.md) | open | minor | geomind | Project lead calls read_case with sections the case does not have | Fatemeh |  |
 | [QA-015](bugs/QA-015-design-goes-on-while-gemini-reports.md) | open | major | geomind | Design goes on while gemini reports a case value the plant needs as missing | Fatemeh |  |
+| [QA-016](bugs/QA-016-an-approval-inside-fill-parts-never.md) | open | major | geomind,backend | An approval inside fill_parts never reaches the user, ignores auto-approve, loses the engineer's work and leaves the run waiting | Fatemeh |  |
