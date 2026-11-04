@@ -40,11 +40,25 @@ asked for its year (or converted) before it is set at `price_year = 2015`.
 - `economics.discount_rate` is left open ("no usable row"), so the economics cannot be complete
   without a typed answer; the question does not suggest a value.
 
+### After the user's changes (qa-2, 20:50 UTC)
+
+- The user answered by typing changes (discount rate 5 %, the Swedish heat row, the sewage-sludge
+  waste row, "80 EUR/MWh is a 2026 price, convert it to 2015 EUR like the catalogue rows"). The agent
+  replied it "does not compute conversions" and asked the user to work out the 2015 value
+  (80 x 0.7767, the catalogue's own index), one more round for a one-line product.
+- The second economics question (`economics-question-2.txt`) now lists five discount-rate rows
+  (0.051 PBL SDE 2025 geothermal real, 0.04, 0.04, 0.0225, 0.087) that the first question called
+  "no usable row".
+- `economics.capex.drilling` changed between the two questions without the user asking: first
+  1844.74 EUR/m (row drilling-nl-2013-3000m) recommended, then 1246.83 EUR/m (drilling-nl-2013-2300m).
+  Nothing in the second question says the recommendation changed.
+
 ## Evidence
 
 - ![economics question](../evidence/QA-041/1.png)
 - Full question text: `../evidence/QA-041/economics-question.txt`
 - Run JSON: `../evidence/QA-041/run-592f3730.json`
+- Second question text: `../evidence/QA-041/economics-question-2.txt`
 
 ## Cause
 
