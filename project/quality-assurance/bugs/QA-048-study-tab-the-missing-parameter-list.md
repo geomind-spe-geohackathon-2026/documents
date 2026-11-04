@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -34,4 +34,5 @@ Guess: the Study table puts the plant's whole missing list in a result cell and 
 ## Fix
 
 - 2026-11-04 23:19 UTC: frontend 1.1.53 (3abe590), pushed, build checked; deploy in the 23:30 UTC window
+- 2026-11-04 23:31 UTC: frontend 1.1.53, commit 3abe590, deployed (1.1.54)
 ## Retest
