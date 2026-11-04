@@ -33,4 +33,5 @@ Not looked at yet.
 
 ## Fix
 
+- 2026-11-04 20:03 UTC: fixed in frontend 1.1.37 (132bd2a), waiting for deploy
 ## Retest
