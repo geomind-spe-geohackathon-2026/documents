@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | hotfix-back |
 | Found | 2026-11-04 20:25 UTC |
 | Versions | frontend 1.1.33+, backend 1.1.24 |
 | Where | any page, e.g. the chat or Settings of a project (follow-up of QA-024) |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
