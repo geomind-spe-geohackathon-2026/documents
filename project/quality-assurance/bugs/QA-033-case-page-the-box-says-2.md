@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-8 |
@@ -40,6 +40,7 @@ line below it).
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:29 UTC: fixed in frontend 1.1.45 (5201081), waiting for deploy
+- 2026-11-04 21:06 UTC: frontend 1.1.45, commit 5201081, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
 
 (Who, when, result.)
