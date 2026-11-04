@@ -52,7 +52,7 @@ Fact: gemini's site.air.relative_humidity takes a bare fraction and refuses %. G
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 21:10 UTC: geomind converts no units (gemini does), and gemini knows no %: so the case lead now leaves a % humidity series out at once, says so and asks the user for the fraction (geomind 0.4.43, commit 9c30cd2, backend 1.1.41); gemini request 38 (accept % on a fraction leaf) is in geomind's plan.md for Sahand. Waiting for the 21:30 deploy.
 ## Retest
 
 (Who, when, result.)
