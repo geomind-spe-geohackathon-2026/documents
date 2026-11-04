@@ -35,4 +35,5 @@ Guess: the frontend calls `.includes` on a field it expects as a string or array
 ## Fix
 
 - 2026-11-04 20:01 UTC: frontend 1.1.34, commit e7e40f1 on main (pushed): tool_calls[].error is boolean true in 14 calls of run a61cfb19; step detail now reads the failure from output.error. NOT deployed: hotfix_deploy.sh was denied by this session's permission check; a person must run it or allow it.
+- 2026-11-04 20:02 UTC: fixed in frontend 1.1.34 (e7e40f1), waiting for deploy
 ## Retest
