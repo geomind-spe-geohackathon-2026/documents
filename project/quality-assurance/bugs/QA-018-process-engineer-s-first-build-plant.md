@@ -39,4 +39,5 @@ class's own.
 
 ## Fix
 
+- 2026-11-04 20:36 UTC: fixed in geomind 0.4.36 (commit 1105419, process engineer prompt), backend 1.1.32, waiting for deploy
 ## Retest
