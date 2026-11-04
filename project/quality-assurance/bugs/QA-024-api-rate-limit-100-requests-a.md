@@ -42,6 +42,12 @@ under "Projects" (screenshot 1). No retry, no wait time, no way on but to reload
   "Rate limit exceeded" while run b894b090 was running fine (the API reported it `running`); the chat gave no
   sign that the run went on.
 
+- ![qa-7: chat of project "QA qa-7 runs and logs" shows only Rate limit exceeded, 20:21 UTC](../evidence/QA-024/qa-7-1.png)
+- qa-7 (2026-11-04 20:17-20:21 UTC, backend 1.1.21): the Runs and logs page of run 668fb412 got 429 on its
+  `GET /assistant/runs?project=...&status=active` poll; a script's `GET /assistant/runs` got 429 with
+  `retry-after: 2`, `x-ratelimit-limit: 100`, `x-ratelimit-remaining: 0`; the chat page of the same run, opened at
+  20:21, showed only "Rate limit exceeded" while the run was `waiting` for an answer, so the question was not visible.
+
 ## Cause
 
 Fact: `backend/src/core/ratelimit/middleware.py` counts per `user:<id>` (or per IP), with
