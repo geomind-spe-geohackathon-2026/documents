@@ -188,7 +188,7 @@ def cmd_next(args):
 
 
 def cmd_set(args):
-    """Change a bug's status (and fixer), with an optional note in its Fix or Retest section."""
+    """Change a bug's status (and fixer, area), with an optional note in its Fix or Retest section."""
     if args.status not in STATUSES:
         sys.exit(f"status: expected one of {', '.join(STATUSES)}")
     items = rows()
@@ -199,6 +199,9 @@ def cmd_set(args):
     if args.fixer is not None:
         row["fixer"] = args.fixer
         set_field(path, "Fixer", args.fixer)
+    if args.area is not None:
+        row["area"] = args.area
+        set_field(path, "Area", args.area)
     if args.note:
         section = "Retest" if args.status in ("verified",) or args.retest else "Fix"
         append_note(path, section, args.note)
@@ -243,6 +246,7 @@ def main():
     put.add_argument("bug")
     put.add_argument("--status", required=True)
     put.add_argument("--fixer")
+    put.add_argument("--area", help="move the bug to other areas, e.g. geomind")
     put.add_argument("--note")
     put.add_argument("--retest", action="store_true")
     save = sub.add_parser("save")
