@@ -26,7 +26,14 @@ The retry puts `accounting.gwp.CH4` and `utilities.electricity.co2_intensity` in
 
 ## Evidence
 
-- No screenshot yet; the run JSON goes in `../evidence/QA-007/` once the run ends.
+- No screenshot yet. The run JSON below was downloaded while the run was still active (58 steps).
+- The run of this bug: [`run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz`](../evidence/QA-007/run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz) (`steps[i]`: 0-based index in `steps`). The case lead's ask_economics calls:
+  - steps[21]: refused, invalid_unit on accounting.gwp.CH4 (QA-004).
+  - steps[22]: cut at the 16,000-token output limit, nothing ran (QA-013).
+  - steps[23]: refused, unknown_name: `utilities.electricity.co2_intensity` put in the economics.
+  - Then an OpenRouter 504 stopped the case lead (QA-011). The second case lead set
+    co2_intensity with set_case (steps[34]) and ask_economics went through at steps[37].
+  - Each refusal names one problem only; set_case names every problem in one answer.
 
 ## Cause
 

@@ -11,6 +11,7 @@ one by one, fixes them, deploys and reports back here.
 | [BUGS.md](BUGS.md) | The index: one line per bug with its id, status, severity, area, title, reporter and fixer. | Everyone: add a line when you report, change the status when it changes. |
 | `bugs/QA-<nnn>-<slug>.md` | One file per bug: where, steps, expected, actual, evidence, cause, fix, retest. Made from [TEMPLATE.md](TEMPLATE.md). | The reporter writes the top; the hotfix session writes Fix and Retest. |
 | `evidence/QA-<nnn>/` | Screenshots (`1.png`, `2.png` ...), the run JSON (Runs and logs, download), logs. | The reporter. |
+| [IMPROVEMENTS.md](IMPROVEMENTS.md) | Ideas to make the app faster, cheaper or make fewer mistakes: one section per `IMP-<nnn>`. | Everyone. |
 | [SCENARIOS.md](SCENARIOS.md) | The test scenarios and where each one stands. | Testers. |
 | `reports/` | Reports of whole test rounds. | Testers, after a round. |
 

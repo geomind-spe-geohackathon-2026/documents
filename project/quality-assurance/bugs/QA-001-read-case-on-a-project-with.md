@@ -28,6 +28,8 @@ No case yet is a normal answer here: the case lead goes on and builds the case, 
 ## Evidence
 
 - ![screenshot 1](../evidence/QA-001/1.webp)
+- Seen again in run [`run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz`](../evidence/QA-007/run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz) (`steps[i]`: 0-based index in `steps`): the first call of three agents is read_case and each gets `no_case`
+  (steps[1] project lead, steps[3] case lead, steps[6] geoscientist).
 
 ## Cause
 

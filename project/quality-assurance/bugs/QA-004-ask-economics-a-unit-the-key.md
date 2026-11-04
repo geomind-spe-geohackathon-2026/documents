@@ -28,6 +28,9 @@ Ask economics `failed` after the answer: `economics.accounting.gwp.CH4.unit = 'k
 
 - ![screenshot 1](../evidence/QA-004/1.webp)
 - ![screenshot 2](../evidence/QA-004/2.webp)
+- Seen again in run [`run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz`](../evidence/QA-007/run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz) (`steps[i]`: 0-based index in `steps`), steps[21]: ask_economics refused `economics.accounting.gwp.CH4.unit =
+  'kg CO2e/kg CH4'` ("this value has no dimension, expected no unit"). The unit comes from the
+  catalogue row, so the data also needs fixing.
 
 ## Cause
 

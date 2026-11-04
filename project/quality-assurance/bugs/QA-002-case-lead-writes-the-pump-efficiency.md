@@ -27,6 +27,9 @@ Sent as min = max = 70, unit `%`, with `over` and `when`; set_case refuses 4 pat
 ## Evidence
 
 - ![screenshot 1](../evidence/QA-002/1.webp)
+- Seen again in run [`run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz`](../evidence/QA-007/run-a61cfb19bfb04ae99e92060fc5bd2e40.json.gz) (`steps[i]`: 0-based index in `steps`), steps[13]: set_case refused requirements[6] (pump_hydraulic_efficiency)
+  at 4 paths: `over` and `when` given, unit '%', value 70 not 0.7. The case lead fixed it in the
+  next call (steps[14]).
 
 ## Cause
 
