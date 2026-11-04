@@ -9,7 +9,7 @@ report. Mobile and responsive layout do not matter now.
 
 | # | Session | Scenario | Status | Stopped at | Bugs |
 |---|---|---|---|---|---|
-| S1 | qa-1 | Agent-first, end to end with the challenge PDF and the two demand CSVs (`gemini/examples/hackathon_2026/`): one chat request for a heating and cooling design; answer every question; reach the case, the economics, the design, the study, the results and the report. | not started | in progress (started 20:45 UTC) | starting: new project, chat request |
+| S1 | qa-1 | Agent-first, end to end with the challenge PDF and the two demand CSVs (`gemini/examples/hackathon_2026/`): one chat request for a heating and cooling design; answer every question; reach the case, the economics, the design, the study, the results and the report. | in progress (qa-1, started 2026-11-04 20:12 UTC) | starting: new project, chat request | QA-001 to QA-014 seen before |
 | S2 | qa-2 | The same goal, other ways in: no files (the case by questions), a short vague request, a request in steps ("set the case", then "design", then "report"). | in progress (20:40 UTC) | starting: no-files case by questions | |
 | S3 | qa-3 | The agents' questions: approve all, change some, a typed answer, "use your own assumptions", refusing; the economics question; values from the files, the knowledge base and the user. | not started | | |
 | S4 | qa-4 | Design and simulation through chat: plant design, sizing, a study (simulation, optimisation, comparison), the results in chat and on the Results page, adopting a result. | not started | | |
