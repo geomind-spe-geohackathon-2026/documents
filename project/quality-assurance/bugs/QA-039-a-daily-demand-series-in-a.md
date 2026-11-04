@@ -34,6 +34,23 @@ hours against local time. The agent says so openly, so the user can see it.
 
 - ![screenshot](../evidence/QA-039/1.png)
 
+### qa-6: the same with weather from the open-meteo connector (2026-11-04 20:38-21:04 UTC, backend 1.1.27)
+
+Project QA qa-6 knowledge and connectors, run a2dd83e3-f695-48a9-aaa4-e84b13003ed3 (run JSON in
+`../evidence/QA-043/run-a2dd83e3.json.gz`). The user answered "Delft, Netherlands; Europe/Amsterdam"
+(screenshot qa-6-1). The case lead then needed four set_case rounds and two climate fetches:
+1. `openmeteo_get_climate` with `timezone: Europe/Amsterdam`; `save_mcp_table` stored the 365 days as
+   2026-12-31T23:00Z to 2027-12-30T23:00Z; set_case refused it: "covers 2026-12-31T23:00 to
+   2027-12-31T23:00; requested 2027-01-01T00:00 to 2028-01-01T00:00" (step 15).
+2. With `time.start: 2027-01-01T00:00:00+01:00`: "no sample in the step starting 2027-10-30T23:00Z"
+   for the weather and both demand files (DST, step 17).
+3. A second fetch with `timezone: UTC` (steps 18-19), and the demand files read as `time_zone: UTC`,
+   against the user's answer, with no word to the user in that run.
+Also: `read_rag` cannot open the saved file `data/open-meteo_delft_2027_climate.csv` ("expected one of"
+the three uploaded files, step 16), so the agent cannot check what it saved.
+
+- ![qa-6: the question for site and time zone](../evidence/QA-039/qa-6-1.png)
+
 ## Cause
 
 Fact (the agent's words): gemini refuses a series whose step is not constant in UTC. Guess: gemini
