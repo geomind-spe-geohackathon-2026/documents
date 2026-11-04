@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-1 |
@@ -47,7 +47,7 @@ arguments, or a summary of keys/values/sources, into the request; frontend: show
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 20:23 UTC: belongs in geomind first: RequestMade.data() (geomind/types/events.py) drops the pending call's input, so the request event and GET /assistant/runs/{id} carry only the message; the frontend cannot show values it never gets. Once geomind puts the call input (or a key/value/unit/source summary) in the request, hotfix-front adds it to the approval card (request-card.tsx).
 ## Retest
 
 (Who, when, result.)
