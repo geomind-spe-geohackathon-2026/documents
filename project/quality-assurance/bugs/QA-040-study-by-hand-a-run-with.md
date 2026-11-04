@@ -4,7 +4,7 @@
 |---|---|
 | Status | fixing |
 | Severity | blocker |
-| Area | frontend |
+| Area | backend |
 | Reporter | qa-8 |
 | Found | 2026-11-04 20:40 UTC |
 | Versions | frontend bundle index-DAOiLoAA.js, backend 1.1.27 |
