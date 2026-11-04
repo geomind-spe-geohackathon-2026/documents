@@ -59,6 +59,9 @@ The fix reaches production as fast as possible.
      in `requirements.txt` and empties the folder. Tag the package's version and push the tag
      too; its CI release may come later.
    The scripts hold one lock, so two sessions never deploy at once.
+   During a QA round, deploy only in windows at :00 and :30 UTC, with every fix ready by then;
+   a blocker may go at once. A deploy recreates the worker and ends the running agent runs (until
+   QA-035), so check the runs table first and name the runs it cut in the bug note.
 6. Check the same thing again on the live site, then go on from where the work stopped.
 7. Each fix goes in its bug file (`qa.py set ... --status fixed --note ...`). The full tests run
    later, in development mode, and anything they find is fixed there.
