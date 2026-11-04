@@ -20,3 +20,4 @@ wont-fix, duplicate.
 | [QA-012](bugs/QA-012-deepseek-returns-empty-answers-on-long.md) | open | minor | geomind | DeepSeek returns an empty answer on long contexts; the call is lost | Fatemeh |  |
 | [QA-013](bugs/QA-013-ask-economics-answer-hits-the-output.md) | open | minor | geomind | The case lead's ask_economics call hits the 16,000-token output limit and is cut | Fatemeh |  |
 | [QA-014](bugs/QA-014-project-lead-calls-read-case-with.md) | open | minor | geomind | Project lead calls read_case with sections the case does not have | Fatemeh |  |
+| [QA-015](bugs/QA-015-design-goes-on-while-gemini-reports.md) | open | major | geomind | Design goes on while gemini reports a case value the plant needs as missing | Fatemeh |  |
