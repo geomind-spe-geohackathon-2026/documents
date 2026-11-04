@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -42,4 +42,5 @@ plant. Same family as QA-002 (a value in the wrong form) and QA-037 (approval be
 
 ## Fix
 
+- 2026-11-04 23:16 UTC: geomind 0.4.48 (commit 7a82fcf): build_plant/patch_plant wrap bare-string backup/outages/dispatch; backend 1.1.47 deployed
 ## Retest
