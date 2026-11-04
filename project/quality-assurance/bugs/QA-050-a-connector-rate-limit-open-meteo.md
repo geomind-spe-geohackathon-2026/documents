@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -36,4 +36,5 @@ Fact: the loop's "same call failed 3 times" guard counts a rate-limit refusal li
 ## Fix
 
 - 2026-11-04 23:20 UTC: fixed in geomind 0.4.50 (commit 82b6837), deploy next
+- 2026-11-04 23:23 UTC: geomind 0.4.51 (holds 0.4.50, commit 82b6837): read-only MCP calls wait 61 s and retry twice on a rate limit, then rate_limited; backend 1.1.51 (8b3721d) deployed by hotfix-python
 ## Retest
