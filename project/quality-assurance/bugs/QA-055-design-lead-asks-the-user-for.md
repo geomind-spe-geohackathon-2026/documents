@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-4 |
@@ -59,7 +59,7 @@ how the reference plant does it), and the ask_user options are not checked again
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-04 23:19 UTC: geomind 0.4.49 (commit ddeb5be: well engineer and design lead prompts: an ESP with no curve is pump_type unspecified and the doublet derives its curves from its design values and the case's pump efficiency; no curve question), backend 1.1.49 (2af2257) deployed by hotfix-python. Live retest by the bug's steps still to do.
 ## Retest
 
 (Who, when, result.)
