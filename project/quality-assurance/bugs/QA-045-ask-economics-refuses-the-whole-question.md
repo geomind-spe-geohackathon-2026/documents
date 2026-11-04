@@ -47,4 +47,15 @@ row with a note instead of refusing the question (geomind).
 
 - 2026-11-04 21:27 UTC: geomind part fixed in 0.4.44 (commit 6c1a799): rows with no value_2015 are left out with a note, the question goes on. Wheel goes into the backend with QA-047. The data part (converting the three rows to 2015 EUR) remains for hotfix-back (area data).
 - 2026-11-04 21:28 UTC: geomind 0.4.45 in backend 1.1.43, waiting for deploy
+- 2026-11-04 21:32 UTC, hotfix-back (data part): not converted. The three rows give a value in
+  USD (GEOPHIRES, 0.593 and 0.733 USD/W) and FRF (60000 FRF/yr, Ouzounian 1989) with no price
+  year; a 2015 EUR value needs a price year, an exchange rate and an index, each from a cited
+  source the user approves (no-defaults rule), so no session may pick them. A person must: choose
+  the price year of each row from its source, convert with the catalogue's method
+  (cost-sources.md: Eurostat HICP euro area 2015 = 100, plus the year's ECB USD/EUR or the
+  FRF/EUR fixed rate 6.55957), write value_2015 and unit_2015 in `geomind/data/knowledge/cost-sources.csv`
+  (and gemini/docs/cost-sources/sources.csv), release geomind, and re-seed Knowledge on
+  production (`python -m scripts.knowledge` in the backend, as on 2026-11-04 16:15). Until then
+  geomind 0.4.45 leaves those rows out with a note, so the question goes on.
+
 ## Retest
