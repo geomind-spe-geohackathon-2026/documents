@@ -52,3 +52,4 @@ wont-fix, duplicate.
 | [QA-044](bugs/QA-044-chat-the-live-stream-stops-with.md) | fixing | minor | frontend,backend | Chat: the live stream stops with validation_failed during a long run (Last-Event-ID refused); the chat says reload the page | qa-5 | hotfix-back |
 | [QA-045](bugs/QA-045-ask-economics-refuses-the-whole-question.md) | open | major | data,geomind | ask_economics refuses the whole question on a catalogue row with no 2015 value; the knowledge base offers such rows | Fatemeh |  |
 | [QA-046](bugs/QA-046-run-tokens-stay-flat-while-a.md) | open | minor | backend,frontend | Run tokens stay flat while a nested agent runs, then jump (19,074 for ~7 min, then 527k) | qa-7 |  |
+| [QA-047](bugs/QA-047-after-a-cancelled-or-interrupted-run.md) | open | major | geomind | After a cancelled or interrupted run, the next run starts the work over: unsaved engineer work is lost, the stored design is not reused | Fatemeh |  |
