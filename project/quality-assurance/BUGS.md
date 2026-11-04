@@ -35,7 +35,7 @@ wont-fix, duplicate.
 | [QA-027](bugs/QA-027-run-log-page-does-not-update.md) | fixing | major | frontend | Run log page does not update during a run: status, steps and tokens stay as at page load until a reload | qa-7 | hotfix-front |
 | [QA-028](bugs/QA-028-the-first-request-typed-in-new.md) | fixing | minor | frontend | The first request typed in New project is lost when the user leaves the chat before sending it | qa-6 | hotfix-front |
 | [QA-029](bugs/QA-029-a-429-replaces-the-whole-page.md) | fixing | major | frontend | A 429 replaces the whole page with 'Rate limit exceeded'; no wait for Retry-After and no retry | hotfix-back | hotfix-front |
-| [QA-030](bugs/QA-030-chat-shows-nothing-while-the-model.md) | open | minor | frontend | Chat shows nothing while the model provider is retried; show the live retry event | hotfix-back |  |
+| [QA-030](bugs/QA-030-chat-shows-nothing-while-the-model.md) | fixing | minor | frontend | Chat shows nothing while the model provider is retried; show the live retry event | hotfix-back | hotfix-front |
 | [QA-031](bugs/QA-031-auto-approve-works-only-while-the.md) | open | minor | frontend | Auto-approve works only while the chat tab is open; with the tab closed the run waits for an approval | qa-5 |  |
 | [QA-032](bugs/QA-032-case-page-the-challenge-demand-csvs.md) | open | major | gemini | Case page: the challenge demand CSVs are refused by hand (first column 'date', expected 'time'); no way to map the column | qa-8 |  |
 | [QA-033](bugs/QA-033-case-page-the-box-says-2.md) | open | minor | frontend | Case page: the box says '2 problems to fix' but lists 5 lines, one of them twice | qa-8 |  |

@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | hotfix-back |
 | Found | 2026-11-04 20:25 UTC |
 | Versions | frontend 1.1.33+, backend 1.1.24 (geomind 0.4.29) |
 | Where | any chat with a run whose model calls fail and are retried (follow-up of QA-021) |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
