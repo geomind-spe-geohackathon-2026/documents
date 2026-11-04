@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | blocked |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -41,4 +41,5 @@ See IMPROVEMENTS.md, IMP-001.
 
 ## Fix
 
+- 2026-11-04 20:34 UTC: hotfix-python: measured in the run JSON: the ask_economics input is about 8,500 characters (about 2,000 tokens) in steps[21] and [37], while the calls report 8,600-10,400 output tokens; steps[22] (13,244 tokens) sent an empty input. So the output is mostly the model's reasoning over 57 keys (41 with several rows), not the tool input, which already sends only row ids. The fix is IMP-001 (the tool picks the recommended row of each key itself by the prompt's rule, the model sends only exceptions): a feature for development mode with tests, and a decision on the rule. Production now runs another model (deepseek on morph/fp8), so recheck how long these calls are there.
 ## Retest

@@ -18,7 +18,7 @@ wont-fix, duplicate.
 | [QA-010](bugs/QA-010-a-delegated-answer-leaves-the-case.md) | blocked | major | geomind | The user delegates the open values to the agent; the agent sets nothing and proposes nothing | Fatemeh | hotfix-python |
 | [QA-011](bugs/QA-011-an-openrouter-504-kills-the-nested.md) | blocked | major | geomind | An OpenRouter 504 stops the whole nested case-lead run; nothing retries | Fatemeh | hotfix-python |
 | [QA-012](bugs/QA-012-deepseek-returns-empty-answers-on-long.md) | fixing | minor | geomind | DeepSeek returns an empty answer on long contexts; the call is lost | Fatemeh | hotfix-python |
-| [QA-013](bugs/QA-013-ask-economics-answer-hits-the-output.md) | fixing | minor | geomind | The case lead's ask_economics call hits the 16,000-token output limit and is cut | Fatemeh | hotfix-python |
+| [QA-013](bugs/QA-013-ask-economics-answer-hits-the-output.md) | blocked | minor | geomind | The case lead's ask_economics call hits the 16,000-token output limit and is cut | Fatemeh | hotfix-python |
 | [QA-014](bugs/QA-014-project-lead-calls-read-case-with.md) | open | minor | geomind | Project lead calls read_case with sections the case does not have | Fatemeh |  |
 | [QA-015](bugs/QA-015-design-goes-on-while-gemini-reports.md) | fixed | major | geomind | Design goes on while gemini reports a case value the plant needs as missing | Fatemeh | hotfix-python |
 | [QA-016](bugs/QA-016-an-approval-inside-fill-parts-never.md) | fixed | major | geomind | An approval inside fill_parts never reaches the user, ignores auto-approve, loses the engineer's work and leaves the run waiting | Fatemeh | hotfix-python |
