@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -41,3 +41,5 @@ fixed narrow width.
 - 2026-11-04 20:29 UTC: fixed in frontend 1.1.46 (48616e5), waiting for deploy
 - 2026-11-04 21:06 UTC: frontend 1.1.46, commit 48616e5, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
+
+- 2026-11-04 21:11 UTC: geomind.team 1.1.50, Playwright 21:15 UTC: run a61cfb19 step list 300 px, 101 rows, no token count past the card
