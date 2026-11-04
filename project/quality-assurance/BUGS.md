@@ -31,3 +31,4 @@ wont-fix, duplicate.
 | [QA-023](bugs/QA-023-new-chat-on-a-project-with.md) | open | minor | geomind | New chat on a project with a copied case offers only case-building chips (Build the case by questions, Which files do you need?) | qa-4 |  |
 | [QA-024](bugs/QA-024-api-rate-limit-100-requests-a.md) | open | major | backend | API rate limit (100 requests a minute per user) blocks normal page loads; the page shows only Rate limit exceeded | qa-8 |  |
 | [QA-025](bugs/QA-025-chat-shows-internal-error-in-geomind.md) | open | minor | frontend | Chat shows 'internal error in geomind' for a run interrupted by an app restart; the run says send your message again | qa-1 |  |
+| [QA-026](bugs/QA-026-approval-card-for-set-case-shows.md) | open | major | geomind,frontend | Approval card for set_case shows only 'Allow set_case (write)?': the user cannot see which values, units or sources they approve | qa-1 |  |
