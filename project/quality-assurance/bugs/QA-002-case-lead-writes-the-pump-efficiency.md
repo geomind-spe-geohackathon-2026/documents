@@ -37,4 +37,5 @@ Guess: nothing tells the case lead that efficiencies are fractions; the brief sa
 
 ## Fix
 
+- 2026-11-04 20:31 UTC: fixed in geomind 0.4.33 (commit 02a8364), backend 1.1.28 (5789747), waiting for deploy
 ## Retest
