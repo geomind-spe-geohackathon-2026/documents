@@ -7,18 +7,23 @@
 | Area | frontend |
 | Reporter | qa-ux |
 | Found | 2026-11-04 23:50 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.50 (per STATUS.md), backend 1.1.53 (health), geomind 0.4.54 |
+| Where | https://geomind.team/projects/4cfeab2d-73e3-4299-a1f8-afec3d7e4bae/assistant/chat; project QA2 qa-ux flow; first run of the first chat; approval of set_case |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. New project, attach the three competition files, send "read them and help me set up the case".
+2. Wait until the Approval needed card for set_case appears.
+3. Read the "What the call sends" block.
 
 ## Expected
 
+The call's input is readable: indentation kept, a monospace font or a formatted key/value list, long values wrapped.
+
 ## Actual
+
+The block is JSON text, but every line starts at the left edge (nested objects not indented), in the proportional UI font. The card's element has `white-space: pre-line` (computed style), which collapses the leading spaces. Nesting depth cannot be seen. The title "Allow set_case (write)?" also uses the tool's internal name.
 
 ## Evidence
 
@@ -27,7 +32,7 @@
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: the card text container uses class `whitespace-pre-line` (seen in the DOM); `whitespace-pre-wrap` with a `font-mono` block for the JSON part would keep the indentation.
 
 ## Fix
 
