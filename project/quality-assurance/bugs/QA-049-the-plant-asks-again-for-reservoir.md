@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | backend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-04 21:25 UTC |
 | Versions | frontend 1.1.33; backend 1.1.40 (API health at write-up) |
 | Where | https://geomind.team/projects/55612f74-441f-4a37-9859-a7ea43ab6600/design/study?chat=b34c9901-8c3d-4dad-9694-b33a3dd152a7 (project QA qa-8 manual pipeline) |
-| Fixer |  |
+| Fixer | hotfix-back |
 
 ## Steps
 
