@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | gemini |
 | Reporter | qa-5 |
 | Found | 2026-11-04 20:38 UTC |
 | Versions | frontend 1.1.33 (deployed bundle), backend 1.1.27 (geomind 0.4.29, gemini 0.6.4 per STATUS.md) |
 | Where | https://geomind.team/projects/4d8fb808-9af1-493e-94e4-4d6d50916e5f/assistant/chat/f0388b3b-8f3a-4f97-8167-c7939e9bca9d; project QA qa-5 outputs report e2e; run started 20:30 UTC; case lead's set_case and confirmation question (20:38 UTC) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
