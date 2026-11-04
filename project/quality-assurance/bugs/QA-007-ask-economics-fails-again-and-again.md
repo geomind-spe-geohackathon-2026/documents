@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
 | Found | 2026-11-04 ~19:00 UTC |
 | Versions | frontend 1.1.33, backend 1.1.14 (geomind 0.4.25) |
 | Where | https://geomind.team/projects/886404e4-3b22-41bd-8986-1a8bc869e25e/assistant/chat/33c76f29-064f-4047-9926-ff8937beddf7; economics question, retries after QA-004 |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 
