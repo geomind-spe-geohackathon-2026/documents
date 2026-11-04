@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | blocked |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -56,4 +56,5 @@ nemotron since 19:56 UTC, so this may not occur the same way. Handed to hotfix-p
 - 2026-11-04 20:04 UTC: area moved to geomind for hotfix-python
 - 2026-11-04 20:09 UTC: paused by coordinator: only analysed so far, no code changed. Seen: a 504 inside the stream is raised as retryable ProviderError, so RetryLLM retries it; open question is resuming the nested run instead of nested_stopped.
 - 2026-11-04 20:26 UTC: hotfix-python: no hotfix. A stream 504 is already a retryable ProviderError and RetryLLM retries it (prod GEOMIND_RETRY_COUNT=5, DELAY=2). What is missing is resuming a nested run from its log after a provider failure, instead of nested_stopped and a fresh case lead: an engine change (Delegate/run_child/recover) that needs development mode with tests. A person can decide: a development-mode task for it, and/or a longer retry back-off in the prod .env (not editable by sessions).
+- 2026-11-04 23:31 UTC: built in hotfix mode (Sahand 2026-11-05): geomind 0.4.53 (commit after d1e4d7b): the delegate reruns a nested run once after a provider failure (5xx, timeout), with a note to go on from the problem state; deploy with QA-013
 ## Retest
