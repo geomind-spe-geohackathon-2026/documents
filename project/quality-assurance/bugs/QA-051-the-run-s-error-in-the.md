@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind,frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -34,4 +34,5 @@ Guess: the read_mcp error message appends the tool's input_schema (meant for the
 ## Fix
 
 - 2026-11-04 23:18 UTC: frontend part 1.1.52 (af07031), pushed, build checked; deploy with the batch
+- 2026-11-04 23:31 UTC: frontend 1.1.52, commit af07031, deployed (1.1.54)
 ## Retest
