@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -44,8 +44,15 @@ Guess: ask_user answers live only in the nested run's messages, not in the probl
 (`/assumptions` gets one only at steps[50], after the third ask). The project lead's task text does
 not carry the answer either.
 
+- Seen again after the fix (2026-11-04 21:31 UTC, backend 1.1.40), chat 33c76f29, run f78c671a: the
+  case lead asks again "The design team is blocked on six case values that neither the project
+  files nor the knowledge base give. Please give each one" (run waiting on this question), although
+  the problem state records the user's answer (A2) and the design lead said so ("The state shows
+  the user already answered A2").
+
 ## Fix
 
 - 2026-11-04 20:08 UTC: fixed in geomind 0.4.29 (commit 0622c67), backend 1.1.20 (80eb493), waiting for deploy
 - 2026-11-04 20:21 UTC: shipped in backend 1.1.21/1.1.22 with geomind 0.4.29; prod worker has ask_user.on_answer (user_answered). Live retest by the bug's steps still to do.
+- 2026-11-04 21:32 UTC: seen again on 1.1.40: run f78c671a asks the six values a fourth time
 ## Retest
