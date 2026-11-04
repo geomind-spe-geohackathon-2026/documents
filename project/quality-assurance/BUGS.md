@@ -56,3 +56,4 @@ wont-fix, duplicate.
 | [QA-048](bugs/QA-048-study-tab-the-missing-parameter-list.md) | open | cosmetic | frontend | Study tab: the missing-parameter list overflows; the table is cut on the left (Progress reads 'ess') | Fatemeh |  |
 | [QA-049](bugs/QA-049-the-plant-asks-again-for-reservoir.md) | open | minor | gemini,geomind | The plant asks again for reservoir pressure, permeability and thickness that the case already has | Fatemeh |  |
 | [QA-050](bugs/QA-050-a-connector-rate-limit-open-meteo.md) | open | major | geomind | A connector rate limit (Open-Meteo, per minute) stops the whole run after 3 tries; nothing waits for the window | Fatemeh |  |
+| [QA-051](bugs/QA-051-the-run-s-error-in-the.md) | open | minor | geomind,frontend | The run's error in the chat dumps the whole MCP tool input schema as a wall of red text | Fatemeh |  |
