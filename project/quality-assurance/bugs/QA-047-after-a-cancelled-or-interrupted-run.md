@@ -56,4 +56,5 @@ the app was updated or restarted; send your message again" (QA-017's case, handl
 
 ## Fix
 
+- 2026-11-04 21:28 UTC: part fixed in geomind 0.4.45 (commit 5ec7d83, project and design lead prompts: go on from the stored design after a stopped run); backend 1.1.43, waiting for deploy. The engineers' loss in (A) is QA-016 (fixed). Left for development mode: a work-in-progress record of unwritten findings (B: the geoscientist's answer before set_case).
 ## Retest
