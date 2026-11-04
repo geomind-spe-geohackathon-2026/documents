@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | backend |
 | Reporter | qa-5 |
 | Found | 2026-11-04 22:35 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.45 (geomind 0.4.46) |
 | Where | https://geomind.team/projects/4d8fb808-9af1-493e-94e4-4d6d50916e5f/assistant/chat/f0388b3b-8f3a-4f97-8167-c7939e9bca9d; project QA qa-5 outputs report e2e; run 6c5b17e1-6ce7-4025-af28-fbb763938aaf; pending request-3455 (design_lead patch_plant) |
-| Fixer |  |
+| Fixer | hotfix-back |
 
 ## Steps
 
@@ -86,7 +86,7 @@ last question stays as the pending one. Workaround: answer request-3455 through 
   names the request the run waits on. Not done in the backend: why the row held 3455 while
   geomind waited on 3519 (likely the parallel/nested request order of QA-016, geomind's side).
   Run 6c5b17e1 itself stays failed; send its message again.
-
+- 2026-11-04 23:15 UTC: hotfix-back takes the root cause (row kept request-3455 after request-3519).
 ## Retest
 
 (Who, when, result.)
