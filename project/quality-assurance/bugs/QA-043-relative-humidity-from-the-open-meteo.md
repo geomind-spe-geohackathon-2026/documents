@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | qa-6 |
 | Found | 2026-11-04 21:05 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.27 (geomind 0.4.29) |
 | Where | https://geomind.team/projects/bc1d5450-590a-4dce-afe0-0d5ea13932bd/assistant/chat/1b669d3e-ea13-43ce-b2aa-9f3d8ab258da; project QA qa-6 knowledge and connectors (memory on, connector open-meteo on); run a2dd83e3-f695-48a9-aaa4-e84b13003ed3; case_lead steps 9-22 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
