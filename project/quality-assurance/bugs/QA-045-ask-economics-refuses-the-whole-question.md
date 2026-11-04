@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | data,geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-04 21:18 UTC |
 | Versions | frontend 1.1.33; API health at write-up: {"status":"ok","assistant":"model","version":"1.1.40"} |
 | Where | https://geomind.team/projects/bc1d5450-590a-4dce-afe0-0d5ea13932bd/assistant/chat/1b669d3e-ea13-43ce-b2aa-9f3d8ab258da (project QA qa-6 knowledge and connectors); the case lead's ask_economics |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
