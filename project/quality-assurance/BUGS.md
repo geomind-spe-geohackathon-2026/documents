@@ -60,3 +60,4 @@ wont-fix, duplicate.
 | [QA-052](bugs/QA-052-build-plant-params-backup-control-outages.md) | open | minor | geomind | build_plant: params.backup, control.outages and control.dispatch sent as bare strings are refused, after the user's approval | Fatemeh |  |
 | [QA-053](bugs/QA-053-chat-an-agent-s-streamed-text.md) | open | minor | frontend | Chat: an agent's streamed text stops mid-word ("I have exhau"); the full text never replaces it | Fatemeh |  |
 | [QA-054](bugs/QA-054-agent-prompts-name-qa-bug-ids.md) | open | minor | geomind | Agent prompts name QA bug ids; agents quote them to the user ("Per QA-015 I stop here") | Fatemeh |  |
+| [QA-055](bugs/QA-055-design-lead-asks-the-user-for.md) | open | major | geomind | Design lead asks the user for an ESP pump curve no source has, offers an option (gemini derives it) gemini cannot do, and blocks the design | qa-4 |  |
