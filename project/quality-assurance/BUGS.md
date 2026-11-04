@@ -29,3 +29,4 @@ wont-fix, duplicate.
 | [QA-021](bugs/QA-021-every-llm-call-gets-429-too.md) | open | blocker | backend,infra | Every LLM call gets 429 Too Many Requests on the free nemotron model; the chat shows Thinking with no message | Fatemeh |  |
 | [QA-022](bugs/QA-022-chat-a-cancelled-run-s-messages.md) | open | major | frontend,backend | Chat: a cancelled run's messages and steps disappear from the chat | Fatemeh |  |
 | [QA-023](bugs/QA-023-new-chat-on-a-project-with.md) | open | minor | geomind | New chat on a project with a copied case offers only case-building chips (Build the case by questions, Which files do you need?) | qa-4 |  |
+| [QA-024](bugs/QA-024-api-rate-limit-100-requests-a.md) | open | major | backend | API rate limit (100 requests a minute per user) blocks normal page loads; the page shows only Rate limit exceeded | qa-8 |  |
