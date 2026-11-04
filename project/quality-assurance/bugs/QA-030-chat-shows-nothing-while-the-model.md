@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | hotfix-back |
@@ -36,6 +36,7 @@ Fact: the frontend has no handler for the `retry` event type (it skips unknown t
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:27 UTC: fixed in frontend 1.1.43 (4f52d15), waiting for deploy
+- 2026-11-04 21:06 UTC: frontend 1.1.43, commit 4f52d15, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
 
 (Who, when, result.)
