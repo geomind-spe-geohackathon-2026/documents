@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (run), Claude (write-up) |
@@ -44,4 +44,5 @@ case lead had called necessary, gemini flags only this one for this plant (see I
 ## Fix
 
 - 2026-11-04 20:27 UTC: fixed in geomind 0.4.31 (commit fa8c813, prompts of design and project lead), backend 1.1.26 (62aab34), waiting for deploy
+- 2026-11-04 20:31 UTC: shipped in backend 1.1.27 with geomind 0.4.32 (holds 0.4.31); the design lead prompt in the prod worker has the stop rule. Live retest still to do.
 ## Retest
