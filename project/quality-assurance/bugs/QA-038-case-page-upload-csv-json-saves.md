@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-8 |
@@ -45,6 +45,7 @@ Guess: the upload posts to `/design/case/files`, which saves a version; the edit
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-04 20:43 UTC: fixed in frontend 1.1.47 (fe1ae7a), waiting for deploy: the upload sets the field in the draft (series .file / the file field). The upload itself still saves a version (backend /design/case/files); the choice needs one more Save.
+- 2026-11-04 21:09 UTC: frontend 1.1.47, commit fe1ae7a, deployed (1.1.50, 21:10 UTC)
 ## Retest
 
 (Who, when, result.)
