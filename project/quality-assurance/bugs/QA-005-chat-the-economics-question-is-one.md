@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -37,3 +37,5 @@ Not looked at yet.
 - 2026-11-04 20:03 UTC: fixed in frontend 1.1.36 (817bd0f), waiting for deploy
 - 2026-11-04 21:05 UTC: frontend 1.1.36, commit 817bd0f, deployed (1.1.46, bundle index-DAOiLoAA.js, 20:30 UTC)
 ## Retest
+
+- 2026-11-04 21:11 UTC: geomind.team 1.1.50, Playwright 21:15 UTC: chat 33c76f29 economics question: 'You answered this question:', 70 lines (pre-line), subsidy.amount = 48.7 EUR/MWh, no long decimals
