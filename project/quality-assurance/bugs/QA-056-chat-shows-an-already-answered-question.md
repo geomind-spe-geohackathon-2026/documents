@@ -37,6 +37,16 @@ The answered question closes; the chat shows the new approval card (or Auto-appr
 - ![screenshot](../evidence/QA-056/1.png)
 - Run JSON: [`../evidence/QA-056/run-6c5b17e1.json.gz`](../evidence/QA-056/run-6c5b17e1.json.gz) (gzip, 33 MB unpacked)
 
+### Also seen by qa-4 (2026-11-04 23:15 UTC), stale approval card variant
+
+Project "QA qa-4 design and study from copied case" (d113b998-...), chat a543367b-0304-4314-adbc-0bcc5192b015,
+run 641c7f5a-a0af-4747-b93c-c2bafb67fe8a, backend 1.1.45. The run waits on `request-2495`
+(design_lead, patch_plant on design/noesp2, with `"optional": ["d0.esp"]`). The chat, also after a
+fresh load, shows an older patch_plant approval card for the same design; clicking Approve gets
+`422 {"code":"validation_failed","details":{"fields":{"request":"This is not the pending request"}}}`
+and the card shows "Request validation failed". The user cannot answer the real request.
+![stale card, 422](../evidence/QA-056/qa-4-1.png)
+
 ## Cause
 
 Guess: the chat takes the pending request from the run's events and the nested design_lead approval
