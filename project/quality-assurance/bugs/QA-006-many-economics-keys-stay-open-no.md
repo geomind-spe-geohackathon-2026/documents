@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | blocked |
 | Severity | minor |
 | Area | data |
 | Reporter | Fatemeh (screenshots), Claude (write-up) |
@@ -35,4 +35,5 @@ A catalogue gap (partly a known issue of geomind 0.4.24), not a code bug.
 
 - 2026-11-04 20:08 UTC: hotfix-back: no code bug. Closing it needs new cost-catalogue rows (knowledge cost-sources.csv) for opex.fixed.production_pump, opex.fixed.compression_chiller, opex.per_energy.{compression,absorption,adsorption}_chiller, revenue.subsidy.capacity, each with a cited source a person approves (no-defaults rule), then a Knowledge re-seed. Today the question's Open list already asks the user once for them (the bug's own fallback). Needs Sahand/Fatemeh: who researches the sources, and whether a data round is wanted now.
 - 2026-11-04 21:37 UTC: Sahand 2026-11-04 21:40 UTC chose option A: find cited sources (publisher, year, currency year, URL) for the missing rows, propose them as new cost-sources.csv rows in a file for Sahand to approve; only after his OK are they added and Knowledge re-seeded. Until then the economics question asks the user once.
+- 2026-11-04 21:40 UTC: proposed rows ready for Sahand's approval: evidence/QA-006/proposed-rows.md (.csv). Not in the catalogue or Knowledge.
 ## Retest
