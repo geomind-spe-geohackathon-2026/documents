@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | qa-2 |
 | Found | 2026-11-04 20:30 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.24 when the run started (1.1.27 at report time) |
 | Where | https://geomind.team/projects/c8482f7a-9ff9-4888-82ac-4c8402b29a46/assistant/chat/abfff893-d638-4b04-927c-e0c154aa2490; project QA qa-2 no files case by questions; run 592f3730-4743-490e-91f0-63d9330aa7f2; case_lead questions request-71, request-83, request-115 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
