@@ -35,6 +35,15 @@ including the design lead's text and the tool rows that were there before.
 - The run itself still exists (runs row a61cfb19, status cancelled, 4,011,565 input tokens); not
   checked whether Runs and logs still shows its steps.
 
+- qa-7 (2026-11-04, frontend bundle index-DnxCbfcj.js, backend 1.1.21 to 1.1.27): project "QA qa-7 runs and logs",
+  chat 51a987be. Run 668fb412 cancelled at 20:27:43 UTC; right after, the chat showed "Worked through 21 steps,
+  4 needed another try", the case lead's last text and a red "Run cancelled" (screenshot 1). After a reload it read
+  "21 steps, 2 needed another try" (the count changed). After "continue" (run d5765e1e) the cancelled run shows only
+  "This run ended without an answer. Show its steps": its text and the "Run cancelled" mark are gone (screenshot 2).
+  Runs and logs still has all 10 steps of 668fb412.
+  ![qa-7 1: just cancelled](../evidence/QA-022/qa-7-1-just-cancelled.png)
+  ![qa-7 2: after continue](../evidence/QA-022/qa-7-2-after-continue.png)
+
 ## Cause
 
 Guess: the chat builds the agents' messages only from runs that ended `done` or `failed` (or from
