@@ -48,6 +48,7 @@ backend approve, or at least say "while this tab is open" on the button.
 - 2026-11-04 23:20 UTC: backend 1.1.50 (ddaddc1), deployed: GET/PUT /api/v1/assistant/chat/{chat_id}/auto-approve with {"auto_approve": bool}; while on, runs started or resumed afterwards run in geomind permission mode auto (no approvals, nested agents included), with no tab open. For hotfix-front: the Auto-approve button should read this on load and PUT it on toggle (instead of localStorage); a run already running picks up a change at its next resume.
 - 2026-11-04 23:23 UTC: option A frontend part: 1.1.54 (9a6ef13), pushed, build checked; the button reads/PUTs /assistant/chat/{chat_id}/auto-approve (backend 1.1.50). Deploy with the 23:30 UTC batch.
 - 2026-11-04 23:31 UTC: frontend 1.1.54, commit 9a6ef13, deployed (1.1.54)
+- 2026-11-04 23:33 UTC: 1.1.54 live: the chat loads GET /assistant/chat/{id}/auto-approve (200) and the title says it approves with the tab closed; the PUT on toggle and an approval with no tab open are not rechecked (that would change a QA chat's setting or need a run)
 ## Retest
 
 (Who, when, result.)
