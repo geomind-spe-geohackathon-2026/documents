@@ -56,7 +56,7 @@ wont-fix, duplicate.
 | [QA-048](bugs/QA-048-study-tab-the-missing-parameter-list.md) | fixed | cosmetic | frontend | Study tab: the missing-parameter list overflows; the table is cut on the left (Progress reads 'ess') | Fatemeh | hotfix-front |
 | [QA-049](bugs/QA-049-the-plant-asks-again-for-reservoir.md) | fixed | minor | backend | The plant asks again for reservoir pressure, permeability and thickness that the case already has | Fatemeh | hotfix-back |
 | [QA-050](bugs/QA-050-a-connector-rate-limit-open-meteo.md) | fixed | major | geomind | A connector rate limit (Open-Meteo, per minute) stops the whole run after 3 tries; nothing waits for the window | Fatemeh | hotfix-python |
-| [QA-051](bugs/QA-051-the-run-s-error-in-the.md) | fixed | minor | geomind,frontend | The run's error in the chat dumps the whole MCP tool input schema as a wall of red text | Fatemeh | hotfix-front |
+| [QA-051](bugs/QA-051-the-run-s-error-in-the.md) | verified | minor | geomind,frontend | The run's error in the chat dumps the whole MCP tool input schema as a wall of red text | Fatemeh | hotfix-front |
 | [QA-052](bugs/QA-052-build-plant-params-backup-control-outages.md) | fixed | minor | geomind | build_plant: params.backup, control.outages and control.dispatch sent as bare strings are refused, after the user's approval | Fatemeh | hotfix-python |
 | [QA-053](bugs/QA-053-chat-an-agent-s-streamed-text.md) | fixed | minor | frontend | Chat: an agent's streamed text stops mid-word ("I have exhau"); the full text never replaces it | Fatemeh | hotfix-front |
 | [QA-054](bugs/QA-054-agent-prompts-name-qa-bug-ids.md) | fixed | minor | geomind | Agent prompts name QA bug ids; agents quote them to the user ("Per QA-015 I stop here") | Fatemeh | hotfix-python |
