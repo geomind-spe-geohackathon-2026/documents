@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | qa-7 |
 | Found | 2026-11-04 20:23 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js, backend 1.1.21 |
 | Where | https://geomind.team/projects/b3245cdd-63d3-49d3-91e9-e3ec459cb7c1/assistant/runs/668fb412-f060-4bc5-92bf-5836ce5420d1; project "QA qa-7 runs and logs"; chat 51a987be-da15-4d1b-9756-62185507435b; run 668fb412 |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
