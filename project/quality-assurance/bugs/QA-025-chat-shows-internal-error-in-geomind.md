@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-1 |
 | Found | 2026-11-04 20:18 UTC |
 | Versions | frontend bundle assets/index-DnxCbfcj.js, backend 1.1.19 at the run (1.1.21 after the restart) |
 | Where | https://geomind.team/projects/541aa78f-8181-45f4-ac36-e47305e33f37/assistant/chat/062b25d8-1e4a-4b38-aed3-2209baba430a; project "QA qa-1 S1 end to end"; run 851e9794-7b7b-4e7c-b315-abec4a6d50f8; before the first step |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
