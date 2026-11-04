@@ -62,3 +62,4 @@ carry them. Area may be backend (templates/parameters API) as much as frontend.
 
 (Who, when, result.)
 - 2026-11-04 21:04 UTC: checked in the production API container (1.1.40): plant_search of HeatingCoolingPlant lists backup with options [peak, none]; problems name params.backup missing_value; set_plant_values backup=peak stores {'value': 'peak'} and the problem goes. Not checked through the browser (the select is hotfix-front's); no study run.
+- 2026-11-04 21:09 UTC: frontend part live: 1.1.49 + build fix 1.1.50 (90c10c2), deployed 21:10 UTC (hotfix-back owns the status)
