@@ -23,7 +23,7 @@ wont-fix, duplicate.
 | [QA-015](bugs/QA-015-design-goes-on-while-gemini-reports.md) | fixed | major | geomind | Design goes on while gemini reports a case value the plant needs as missing | Fatemeh | hotfix-python |
 | [QA-016](bugs/QA-016-an-approval-inside-fill-parts-never.md) | fixed | major | geomind | An approval inside fill_parts never reaches the user, ignores auto-approve, loses the engineer's work and leaves the run waiting | Fatemeh | hotfix-python |
 | [QA-017](bugs/QA-017-a-backend-deploy-kills-an-active.md) | verified | major | backend | A backend deploy kills an active run; it stays waiting forever with no message | Fatemeh | hotfix-back |
-| [QA-018](bugs/QA-018-process-engineer-s-first-build-plant.md) | fixing | minor | geomind | Process engineer's first build_plant sends a type with modules that differ from it; refused | Fatemeh | hotfix-python |
+| [QA-018](bugs/QA-018-process-engineer-s-first-build-plant.md) | fixed | minor | geomind | Process engineer's first build_plant sends a type with modules that differ from it; refused | Fatemeh | hotfix-python |
 | [QA-019](bugs/QA-019-runs-and-logs-the-step-list.md) | fixing | cosmetic | frontend | Runs and logs: the step list's token numbers spill out of the card | Fatemeh | hotfix-front |
 | [QA-020](bugs/QA-020-engineers-repeat-the-same-read-case.md) | fixing | minor | geomind | Engineers repeat the same read_case and read_plant calls many times in a row | Fatemeh | hotfix-python |
 | [QA-021](bugs/QA-021-every-llm-call-gets-429-too.md) | fixed | blocker | backend,infra | Every LLM call gets 429 Too Many Requests on the free nemotron model; the chat shows Thinking with no message | Fatemeh | hotfix-back |
