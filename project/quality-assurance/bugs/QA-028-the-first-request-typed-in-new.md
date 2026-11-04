@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-6 |
 | Found | 2026-11-04 20:24 UTC |
 | Versions | frontend bundle index-DnxCbfcj.js (1.1.33), backend 1.1.22 |
 | Where | https://geomind.team/projects/bc1d5450-590a-4dce-afe0-0d5ea13932bd/assistant/chat; project QA qa-6 knowledge and connectors; no chat yet; no run |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 

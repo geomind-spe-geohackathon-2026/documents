@@ -33,4 +33,4 @@ wont-fix, duplicate.
 | [QA-025](bugs/QA-025-chat-shows-internal-error-in-geomind.md) | fixing | minor | frontend | Chat shows 'internal error in geomind' for a run interrupted by an app restart; the run says send your message again | qa-1 | hotfix-front |
 | [QA-026](bugs/QA-026-approval-card-for-set-case-shows.md) | open | major | geomind | Approval card for set_case shows only 'Allow set_case (write)?': the user cannot see which values, units or sources they approve | qa-1 |  |
 | [QA-027](bugs/QA-027-run-log-page-does-not-update.md) | fixing | major | frontend | Run log page does not update during a run: status, steps and tokens stay as at page load until a reload | qa-7 | hotfix-front |
-| [QA-028](bugs/QA-028-the-first-request-typed-in-new.md) | open | minor | frontend | The first request typed in New project is lost when the user leaves the chat before sending it | qa-6 |  |
+| [QA-028](bugs/QA-028-the-first-request-typed-in-new.md) | fixing | minor | frontend | The first request typed in New project is lost when the user leaves the chat before sending it | qa-6 | hotfix-front |
