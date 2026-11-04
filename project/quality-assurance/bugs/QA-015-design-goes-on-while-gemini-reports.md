@@ -43,4 +43,5 @@ case lead had called necessary, gemini flags only this one for this plant (see I
 
 ## Fix
 
+- 2026-11-04 20:27 UTC: fixed in geomind 0.4.31 (commit fa8c813, prompts of design and project lead), backend 1.1.26 (62aab34), waiting for deploy
 ## Retest
