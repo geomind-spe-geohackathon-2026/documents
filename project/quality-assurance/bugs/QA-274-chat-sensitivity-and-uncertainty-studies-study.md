@@ -49,4 +49,4 @@ with its tornado / spread (the fields the Results page already reads), named aft
 
 Chat: simulate a design, then a sensitivity study on it. Report page: the Design list offers the study and 'Uncertainty and sensitivity' shows its tornado.
 
-(Who, when, result.)
+QA-E2E-report-I, 2026-11-05 19:40 UTC, backend 1.1.122+, project QA-TEST QA-E2E-report-I 3 (a9ff33c4): STILL FAILS. In the chat: run 12115d92 simulated design/v1 (result/9b0db55da13a4a5b), run f1108405 compared v1 and v2 (v2 result/11c2e401cd91606b), run e458852b (chip "Sensitivity analysis", 19:35:22-19:36:56 UTC) ran gemini sensitivity `study/sens_v1_main_inputs` on design/v1 (6 drivers, LCTS swing 13.59 EUR/MWh for the ground gradient). Report page, Options, Design list: only "simulation HackathonPlant" (the seeded page study). `GET /design/results?project=a9ff33c4...` returns that one result only: neither the chat sensitivity nor the chat's last plain simulate (QA-135 option C) was saved. Guess: the chat result ids are content digests (result/9b0db55da13a4a5b is the same id in projects 1, 2 and 3), so a save keyed by that id may be skipped as already stored in another project. Reopened.
