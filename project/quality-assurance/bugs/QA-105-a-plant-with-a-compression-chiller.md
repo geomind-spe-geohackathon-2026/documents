@@ -30,6 +30,7 @@ Cost of cold, Cost of heat, Cost of thermal supply and Operating cost are all "N
 - ![Days covered](../evidence/QA-105/2.webp)
 - ![Constraints](../evidence/QA-105/3.webp)
 - Postgres read-only: case_versions of project cf0c3d9c, number 3 (10 requirements).
+- ~12:00 UTC the run asks the user for `economics.opex.per_energy.compression_chiller` (EUR/MWh cold) and says "I will not propose a number of my own". That is against Sahand's QA-010 decision (option A, 2026-11-04 21:40 UTC: for a value no source gives, propose an engineering assumption labelled 'no source' with a reason, and set it on approval). A usable proxy is in the catalogue: the compression chiller is a HeatPump in cooling mode, and `per-energy-heat-pump-dea-ch40-excess-heat-10mw-2025col` gives 1.69 EUR/MWh (DEA, verified); another run used exactly that value with the user's approval (A13, run 3bdd7ebb). ![question](../evidence/QA-105/4-question.webp)
 
 ## Cause
 
