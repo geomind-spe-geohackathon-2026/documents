@@ -14,7 +14,7 @@ summary · 5 Design basis · 6 Alternatives · 7 Decisions · 8 Results (8.6 num
 source, 8.8 COP and SPF, 8.9 energy balance) · 9 Compliance (9.5 scope, 9.6 values) · 10
 Uncertainty · 11 Limitations · 12 Figures and tables · 13 Agent log · 14 Style · 15 Checklist ·
 16 Worked example · 17 Lessons from reviewed reports · 18 Explaining a result · 19
-Recommendations and risks · 20 Indicators beyond cost · A Templates · B References.
+Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · A Templates · B References.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -127,6 +127,7 @@ extra steps cost about four times the tokens of the whole review.
 | Why this design and not another | §18.3 |
 | How to write a recommendation, risks, next stage | §19 |
 | Full-load hours, capacity factor, specific indicators | §20 |
+| What a gemini metric name means (`cop`, `heat_useful`, `capacities` ...) | §21 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -1141,6 +1142,66 @@ peak heat (MEUR/MW), CO2 per MWh delivered (kg/MWh), electricity per MWh deliver
 energy and its factors follow EN ISO 52000-1:2017; state the factors and their source when a
 primary-energy figure is given. Each indicator says its numerator, denominator and boundary,
 as a COP does (§8.8).
+
+---
+
+# 21. gemini's metrics: what each one is
+
+Names, titles and display units are gemini's (`gemini/gemini/evaluate/_utils/display.py`,
+`summary.py`; `gm.evaluate.metrics()`). Write the title in prose and the unit as given. The
+search objectives are `annualised_cost`, `lcts`, `lcoh`, `lcoc` and `co2` (`OBJECTIVES`); the
+others are results, not targets.
+
+## 21.1 Energies and peaks
+
+| Name | Title | Means | Mistake to avoid |
+|---|---|---|---|
+| `heat_delivered` | Heat delivered | heat into the heating grid over the period | not the demand; may exceed it |
+| `heat_useful` | | the part of it that met demand | |
+| `heat_surplus` | | heat above demand | report it plainly (§8.3) |
+| `cold_delivered`, `cold_useful`, `cold_surplus` | | the same for cold | |
+| `boiler_heat` | Heat from the boilers | heat of the backup boilers | not "non-geothermal heat" (§17.10) |
+| `electricity_bought`, `electricity_sold` | Electricity bought / sold | energy over the grid edge | net export is sold, not negative bought |
+| `gas_bought` | Gas bought | gas from the grid | not all fuel: produced gas is separate (§8.9) |
+| `peak_heat`, `peak_cold` | Peak heat / cold demand | the highest delivered power of a step | per step: a daily step hides the hourly peak (§11) |
+| `annual_energy` | Energy per year | a period energy scaled to a year | state the basis once (QA-099) |
+
+A `None` value comes with its reason (for example "the plant has no CoolingGrid"): quote the
+reason, never a zero.
+
+## 21.2 Costs and emissions
+
+| Name | Title | Means |
+|---|---|---|
+| `capex` | Investment | overnight investment, MEUR |
+| `opex` | Operating cost | cost per year: fixed O&M, electricity, fuel, carbon |
+| `annualised_cost` | Annualised cost | capex as an annuity plus opex, per year |
+| `lcoh`, `lcoc` | Cost of heat / cold | levelised, with the `heat_cost_share` that splits shared costs |
+| `lcts` | Cost of thermal supply | levelised over heat and cold together; the ranking metric |
+| `payback` | Payback time | simple payback, `capex / (revenue − opex)`, not discounted; needs sale prices in the case (`gemini/gemini/evaluate/costs.py`) |
+| `co2` | CO2 emissions | CO2-equivalent of the period: fuel, released gas, vented methane by GWP, grid electricity (§8.5) |
+| `co2_emitted` | CO2 emitted | CO2 mass the plant itself releases to the atmosphere (kg), no grid share |
+| `methane_emitted` | Methane emitted | vented methane mass |
+
+Formulas: `knowledge/handbook-economics.md` §6, §16.4, §16.5. LCOH and LCOC depend on the split
+of shared costs: quote them with the split; compare plants by LCTS (§0.4).
+
+## 21.3 Ratios and capacities
+
+| Name | Means | Note |
+|---|---|---|
+| `heating_coverage`, `cooling_coverage` | share of the demand met over the period | a share 0..1: write it as a percent (§8.6) |
+| `heat_pump_cop` | heat of the heating heat pumps over their own electricity | the machines' seasonal ratio (§8.8) |
+| `cop` | heat delivered over all electricity bought | a plant ratio, not a machine's COP (QA-322) |
+
+`capacities` (from `compute_kpis`) gives, per unit, `{kind, capacity, peak, share}`: the rated
+capacity, the peak use over the period and `share` = peak / capacity. A `share` near 1 is a unit
+at its limit; one far below 1 an oversized unit (§17.8). `peak` `None` comes with the reason the
+unit carried nothing.
+
+Invented example: `heating_coverage` 0.99962 is "99.96 % of the heat demand met"; `cop` 15.2
+with `heat_pump_cop` 3.9 is "the heat pumps run at a seasonal ratio of 3.9; the plant delivers
+15.2 MWh of heat per MWh of electricity bought".
 
 ---
 
