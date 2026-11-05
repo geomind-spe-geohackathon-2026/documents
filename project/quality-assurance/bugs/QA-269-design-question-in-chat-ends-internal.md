@@ -57,6 +57,8 @@ from the plant's fluids (`plant.fluids[...]`) when the stored stream has none; t
 gets "stop calling evaluate_module, answer from read_result" and the lead finishes with what it
 has; (3) project lead prompt: "explain/why" questions on a stored result go to the explainer.
 
+- Note (QA-E2E-report-I, 2026-11-05 19:00 UTC): the next run in the same chat (8efe3722, a different question after a case change) answered the three questions of this bug without evaluate_module: brine 15.92 MW (hx duty) + 10.23 MW (heat pump source) + heat pump power_in 3.856 MW = 30.0 MW at the 2027-01-28 peak, from read_result series. So read_result alone suffices; the failure is the evaluate_module path plus the guard.
+
 ## Retest
 
 (Who, when, result.)
