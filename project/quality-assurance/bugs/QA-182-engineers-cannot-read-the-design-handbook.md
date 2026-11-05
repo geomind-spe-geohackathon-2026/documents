@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -33,4 +33,5 @@ Fix: accept a bare Knowledge name (add the prefix when the document exists) and 
 
 ## Fix
 
+- 2026-11-05 17:27 UTC: geomind 0.4.104, commit 356e1dc, deployed: read_knowledge adds the knowledge/ prefix
 ## Retest
