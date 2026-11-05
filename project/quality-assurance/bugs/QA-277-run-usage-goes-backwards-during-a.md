@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | duplicate |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-E2E-study-I |
@@ -37,4 +37,5 @@ only ever increase it.
 
 ## Fix
 
+- 2026-11-05 18:29 UTC: duplicate of QA-231 (hotfix-back-lead)
 ## Retest
