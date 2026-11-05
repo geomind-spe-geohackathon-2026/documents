@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -63,3 +63,7 @@ say why. Re-typing a plant through the LLM also drops values (step 15).
 2. `save_design`: refuse a name of the form `v<digits>` with a message naming the alias.
 3. Skill `designing-a-plant` / `prompts/design/lead.md`: "a plant version is a design: pass
    `design/v<N>` to every study tool; never re-type a stored plant with build_plant".
+
+## Fix
+
+- 2026-11-05 17:40 UTC: geomind 0.4.110, deployed: reuse design/v<N>, never re-type with build_plant
