@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -34,7 +34,7 @@ Missing feature in `shared/versions/history.tsx` VersionDetail.
 ## Fix
 
 hotfix-front-IV: VersionDetail takes extra `views`; the plant passes "Flowsheet", drawn with the report's full flowsheet SVG (`toFullFlowsheetSvg`) from that version's modules and connections, zoomable; above it a line names the modules added or changed from the version before (type, title or module spec differ). No in-diagram highlight (the SVG drawer has no mark for it). Frontend 1.1.109, commit ebc5b51, deployed 2026-11-05 (bundle index-DwO4tlF4.js).
-
+- 2026-11-05 14:58 UTC: frontend 1.1.109, commit ebc5b51, deployed
 ## Retest
 
 hotfix-front-IV, live: version 21 of geo mind testing shows the Flowsheet tab with the full diagram and "No module changed from version 20.".
