@@ -96,3 +96,4 @@ wont-fix, duplicate.
 | [QA-088](bugs/QA-088-study-list-an-agent-study-shows.md) | fixing | major | backend | Study list: an agent study shows done but has no result (Progress '-', Results tab empty) | Sahand | hotfix-back |
 | [QA-089](bugs/QA-089-runs-and-logs-the-step-list.md) | fixing | minor | frontend | Runs and logs: the step list is one long flat column and the right pane starts empty | Sahand | hotfix-front |
 | [QA-090](bugs/QA-090-the-design-loop-does-not-converge.md) | fixing | major | geomind | The design loop does not converge: 2h40, 17.7M input tokens, 900 tool calls, 18 plant variants, no saved simulation result | functional-qa-2 | hotfix-python |
+| [QA-091](bugs/QA-091-case-lead-writes-the-100-c.md) | open | major | geomind | Case lead writes the 100 C / 20 C supply temperatures as exact requirements checked 'always'; a zero-cooling day fails the plant | Fatemeh |  |
