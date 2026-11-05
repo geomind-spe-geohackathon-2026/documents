@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-3 |
 | Found | 2026-11-05 09:27 UTC |
 | Versions | frontend 1.1.71, backend 1.1.69-1.1.72 |
 | Where | https://geomind.team/projects, button 'New project'; browser window about 1280x577 |
-| Fixer | |
+| Fixer | hotfix-front-II |
 
 ## Steps
 
