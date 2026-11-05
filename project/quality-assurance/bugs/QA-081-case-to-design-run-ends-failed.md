@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend |
 | Reporter | functional-qa-3 |
@@ -56,7 +56,7 @@ Guess: the worker restart of the 1.1.73 deploy (05:26 UTC) ended the run as fail
   reconnect without a numeric Last-Event-ID replays the stream from the start; a page that adds
   replayed `step.started` events without dropping ids it has counts them again (about 14 long
   reconnects). For hotfix-front: keep events unique by `id` (and `text.delta` by step).
-
+- 2026-11-05 05:33 UTC: backend part in 1.1.74 (1b10ed7): refusals named geomind_refused and logged; the run was resumed at 05:00. Counter inflation is hotfix-front's (dedupe by event id). See Fix.
 ## Retest
 
 (Who, when, result.)
