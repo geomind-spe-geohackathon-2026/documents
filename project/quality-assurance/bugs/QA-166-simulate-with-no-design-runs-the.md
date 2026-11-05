@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -68,3 +68,4 @@ versions and no `plant_version`, refuse with the list of versions. Prompt/skill
 ## Retest
 
 QA-E2E-report-I, 2026-11-05 18:10 UTC, backend 1.1.109 (geomind 0.4.110), run d8662b0d: the agents simulated `design/v1` (built from plant_version 1), result/9b0db55da13a4a5b; its KPIs equal the page study of v1 to every digit (CAPEX 34.636 MEUR, LCTS 45.102 EUR/MWh, CO2 13.774 kt) and the report names plant version 1. The design=None path was not called in this run, so the exact failing call was not re-exercised; the user-visible symptom (v2 numbers under the v1 label) is gone. Verified.
+- 2026-11-05 18:04 UTC: retest QA-E2E-report-I 18:10 UTC run d8662b0d: v1 simulated and reported with v1 numbers
