@@ -7,27 +7,30 @@
 | Area | geomind,backend |
 | Reporter | Sahand |
 | Found | 2026-11-05 19:59 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 20:58 Trondheim |
+| Where | any chat with Auto-approve on |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Turn Auto-approve on in a chat.
+2. Ask for a case, economics or design (e.g. upload the files and ask for a heating and cooling design).
 
 ## Expected
 
+With Auto-approve on, the run asks the user nothing: no approval cards AND no question cards. Every question the agents would ask (case confirmation, ask_economics, ask_user choices, the step-limit 'go on?' question) is answered automatically with the agents' own proposal (the option they marked recommended / the values they proposed), recorded in the case 'about' as an assumption with its source and 'auto-approved', and the run goes on to the end. The final answer lists the assumptions taken automatically so the user can change them later.
+
 ## Actual
+
+Reported by Sahand: with Auto-approve on, the agents still stop and ask the user questions.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-339/1.png)
-- Run JSON: `../evidence/QA-339/run-<id>.json`
+Sahand, 2026-11-05 20:58 Trondheim. QA threads: please attach a run id with Auto-approve on that showed a question card.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: Auto-approve only covers write-tool approvals in the backend; question tools (ask_user, ask_economics, the case confirmation, step limit) are a separate path in geomind and are not auto-answered. Fix in geomind (question tools answer themselves with the proposal when the run's auto_approve flag is on) and the backend (pass the flag, record the auto-answer as an event). Sahand's bug: top priority. Related: QA-292, QA-329.
 
 ## Fix
 
