@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
 | Found | 2026-11-05 18:18 UTC |
 | Versions | backend 1.1.114, frontend live 2026-11-05 18:17 UTC |
 | Where | geomind.team chat busy list of a running run (Sahand's screenshot, 18:17 UTC) |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
