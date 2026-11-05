@@ -38,7 +38,15 @@ Fact: the one remaining failure is the zero-demand behaviour of the cooling loop
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-python-III, 2026-11-05, geomind 0.4.79 (tag v0.4.79), backend 1.1.84 (deploy 10:30 UTC).
+Duplicate in cause of QA-091: the one failing requirement was a supply temperature checked
+`always` on zero-demand days; fixed there (set_case converts it to `running`, the case lead writes
+`running` and adds heat/cold delivered). The loop's missing stop rule, geomind fc23de0: the design lead chases one failing
+requirement for at most three changes, then keeps the design that fails least (simulated for the
+whole year and checked), records it as final and names the open requirement (value, limit, steps,
+why); the project lead then asks the user once (accept the design with it open, change the
+requirement, stop) and never sends the same failure back. Results of agent-simulated designs on
+the Results tab: QA-088 / QA-092 (backend 1.1.81-1.1.83).
 
 ## Retest
 

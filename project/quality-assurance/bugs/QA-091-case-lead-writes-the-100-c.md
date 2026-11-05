@@ -53,4 +53,20 @@ sample does), or keep them with `when: running`. No change to gemini is needed f
 
 ## Fix
 
+hotfix-python-III, 2026-11-05, geomind 0.4.79 (tag v0.4.79), backend 1.1.84 (deploy 10:30 UTC).
+Cause: the case lead wrote the brief's "Fixed" supply temperatures as per-step requirements
+`when: always`; on zero-demand days the supply runs no flow and the idle loop sits at its return
+(25 C cooling), so `always` failed the plant. gemini's `running` (the module carried flow) is the
+right reading: no gemini change.
+- geomind 369b2f3: `set_case` turns a per-step `temperature` requirement on a `*_supply` role with
+  `when` `always` or none into `when: running`, and lists it in `converted` with the reason.
+- geomind 4e30728: the case lead writes fixed supply temperatures `when: running` and adds
+  `heat_delivered` / `cold_delivered` (`unmet_share` <= 0.01, an assumption) as gemini's sample
+  does, judged over the whole simulated year (330 d is the doublet's availability, not the
+  system's; organisers, Discord 2026-11-04 15:08).
+Project 61134432, case version 10: the next `set_case` of any kind on that project (for example
+the user asking "fix the supply temperature rules", or "add heat and cold delivered requirements")
+rewrites both rules to `running` and the case lead adds the delivered-energy rules; no manual DB
+edit. QA-090 is the same failure seen from the design loop; its stop rule is in QA-090.
+
 ## Retest

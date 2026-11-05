@@ -35,4 +35,13 @@ Fact: the prompts put the return temperature with the case. Proposal: list the n
 
 ## Fix
 
+hotfix-python-III, 2026-11-05, geomind 0.4.79 (tag v0.4.79, commit 0614dfe), backend 1.1.84
+(deploy 10:30 UTC). gemini's case still needs `demand.*.return_temperature`, so the value stays in
+the case, but as a design choice, not a missing value: the case lead proposes it in the one
+question as `<path> = <value> | design choice, the brief leaves it to the team | <reason>` and
+records it `source: agent`, `reason: design choice, approved by the user`, citation `design
+choice`; it never asks the user to supply it nor stops for it. `prompts/design/energy.md` and the
+`designing-a-plant` skill: the design team proposes a return temperature with its reason within
+the case's limits (brine cooling, demand met) and never stops the design to wait for one.
+
 ## Retest
