@@ -47,6 +47,22 @@ Guess: the run was resumed after the 00:3x deploy and stalled, or the provider c
   `sg docker -c "docker exec -i geomind-postgres sh -c 'psql -U \$POSTGRES_USER -d \$POSTGRES_DB -At'" <<< "select sequence, type, left(data->>'error', 160), data->>'delay', data->>'message' from run_events where run_id='92971ce5-...' and type in ('retry','error','run.finished') order by sequence;"`
   (the full run id from the Runs page). 429/402/403 in the errors confirms the cause.
 
+- 2026-11-05: production DB read by Claude for Fatemeh (read-only), run 92971ce5-5972-4c7f-a0cb-839f893a1b09:
+  - No `retry` and no `error` events at all, so not provider refusals. The run worked the whole
+    time: 23 llm.completed (coordinator, project lead, then the case lead from 00:29:14 to 00:39:23),
+    32 tool calls, and the runs row holds 708,733 input tokens. The "0 tokens, Steps so far (empty)"
+    was the page, not the run (the chat and Runs and logs did not show the nested case lead's steps
+    and usage while it ran).
+  - "18 needed another try" = 17 `calculate` calls, all refused, plus the case_lead call. The case
+    lead tried to compute the hydrostatic reservoir pressure (brine density x g x depth, "brief p.2
+    rule") and calculate refused every unit it tried for g and for the intermediate:
+    `kg/m2`, `m/s2`, `m/s^2`, `N/kg`, `m/s²`, `m/s/s` ... ("is not a unit gemini knows"),
+    13 different refusals. Two slow calls on top: 200.9 s (00:32:53 to 00:36:14) and 81 to 83 s.
+  - So the bug is two things: (1) calculate (gemini's unit registry) has no acceleration unit and no
+    kg/m2, so rho*g*h cannot be written; (2) the chat does not show a nested agent's steps and tokens
+    while they happen. Set back to open; areas geomind/gemini (calculate units) and frontend (live
+    nested steps).
+
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 04:14 UTC: hotfix-back: most likely provider refusals retried with back-off (0 tokens = no call succeeded) around the key limit (QA-068), not an idle worker or queue; visible now through the retry event (QA-021) once QA-030 shows it, and provider_refused (QA-068). Needs a person to read the run's retry/error events (query in Fix) to confirm; prod DB reads are refused to me.
 ## Retest
