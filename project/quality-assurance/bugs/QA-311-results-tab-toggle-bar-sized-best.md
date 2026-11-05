@@ -7,27 +7,29 @@
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 19:00 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 19:59 Trondheim |
+| Where | geomind.team Results page, the result tab toggle bar (e.g. 'sized', 'best', 'Compare') |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open Results of a project with two or more results.
 
 ## Expected
 
+No scrollbar when the tabs fit; when they do not fit, scroll horizontally with the scrollbar hidden (or wrap), never a vertical scrollbar beside the buttons.
+
 ## Actual
+
+A scrollbar shows at the right edge of the toggle bar (screenshot).
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-311/1.png)
-- Run JSON: `../evidence/QA-311/run-<id>.json`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: the toggle container has overflow:auto and a fixed height a few px smaller than the buttons (focus ring or border), so a vertical scrollbar appears. Sahand's bug: top priority.
 
 ## Fix
 
