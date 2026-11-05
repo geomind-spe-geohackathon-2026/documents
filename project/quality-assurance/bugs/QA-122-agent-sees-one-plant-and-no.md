@@ -30,11 +30,26 @@ Answer: "list_plants shows exactly one plant ... list_studies returned [] — no
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+hotfix-back-II, 2026-11-05 11:25 UTC (code read, no prod read). Two separate causes, by design
+of the backend-geomind contract, not a seed fault:
+1. Plants: the backend's `DatabaseWorkspace.plants` (`backend/src/api/v1/assistant/runs/adapters/workspace.py`,
+   `read_plants`) gives geomind only the project's LATEST plant version, under its name. QA3 report
+   has v1 HackathonPlant and v2 HeatingAbsorptionCoolingPlant, so the agent sees one plant. Giving
+   every version is not a safe backend-only change: geomind's `workspace_plant` refuses a call
+   with no name when the project has several plants, and since QA-092 every patched design saves
+   a version under its own name, so the default "the project's plant" would break.
+2. Studies: geomind's `list_studies` lists the studies stored in THIS CHAT (`study_index`); the
+   workspace contract has no method for the project's page studies or results, so studies run on
+   the Study page (or by the seed) are invisible to every agent.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+Proposal (needs a contract change and Sahand's OK, as it changes agent behaviour): an optional
+workspace method, e.g. `project_designs(project) -> {plants: [{version, name, note, by}],
+studies: [{id, name, kind, status, plant_version, settings, result: {kpis, checks}}]}`, which the
+backend serves from its tables, and geomind's `list_plants` / `list_studies` (or a new read tool for
+the explainer) show it read-only beside the chat's own designs. The backend side is small once
+geomind defines the method; routed to geomind (hotfix-python-III) and Coordinator-III.
 
 ## Retest
 
