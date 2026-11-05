@@ -48,4 +48,6 @@ backend: on resume and on GET of a run in `waiting`, (re)emit the pending reques
 
 ## Fix
 
+Frontend part (front-m1, commit 80d5d25, not deployed yet): when GET /assistant/runs/{id} says `waiting` with a `request` and the live view has no request (no request event came), the chat takes the card from run.request (view.ts `withStoredRequest`, used in workspace.tsx); a request the view already saw answered is not shown again. While a run is unfinished and shows no request, the run is refetched every 15 s, so a request stored without an event shows within 15 s. The answer goes through the same answer mutation.
+
 ## Retest
