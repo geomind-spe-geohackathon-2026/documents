@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
@@ -35,6 +35,7 @@ Sahand's request (top). text.delta events carry the agent and instance since IMP
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 20:16 UTC: frontend 1.1.140 (bundle index-CzdSC_uX.js)
+- 2026-11-05 20:35 UTC: Sahand: label inline 'Case lead: ...' on the same line, not above
 ## Retest
 
 (Who, when, result.)
