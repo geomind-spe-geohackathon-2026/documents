@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 17:08 UTC |
 | Versions | backend 1.1.103/1.1.104 (geomind 0.4.98), API only |
 | Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 2` (3901ff00-1047-4f82-8329-2ee02e450025); chat 7b90c59c-d002-47ec-b437-40b4bc66e18b; run a5ea3998-2945-403f-ab17-aa6991157aab |
-| Fixer | |
+| Fixer | hotfix-python-VIII |
 
 ## Steps
 
