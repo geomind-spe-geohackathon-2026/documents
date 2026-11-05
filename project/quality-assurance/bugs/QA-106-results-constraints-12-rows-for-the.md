@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
@@ -49,3 +49,4 @@ Fix: backend 1.1.85 (b0b90d1, d2fc41c): the repeat is `<module>.<name>.service`,
 "... (service supply rule)", with its own bound (≥ 100 degC, ≤ 20 degC); a case rule in °C now
 shows its direction (= 100 degC, = 20 degC). Constraints are computed on read, so result c16255f0
 shows 12 distinct rows at once. Deploy 11:00 UTC.
+- 2026-11-05 11:05 UTC: backend 1.1.85 deployed in 1.1.86 (11:00 UTC)
