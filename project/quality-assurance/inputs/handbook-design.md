@@ -3004,6 +3004,73 @@ design answers: keep CO2 in solution and the pH up (13.4), inhibitor dosing (5.3
 allowance on wall thickness, or corrosion-resistant alloys or lined tubulars in the worst
 sections. Costs of these belong to the economics (handbook-economics).
 
+# 18 Climate, air and heat rejection
+
+Every cooler, chiller condenser and loss to ambient sees the site's air. This chapter covers how
+gemini holds the air, the psychrometrics a designer needs, and how to choose and rate coolers.
+
+## 18.1 The air in gemini
+
+One `Atmosphere` module holds the air: its `temperature`, and `wet_bulb_temperature` for wet
+coolers, are boundaries of the run; no other module keeps an ambient temperature. Coolers take
+air from it, losses and flue gas arrive at it, and the plant's CO2 and methane emissions are
+computed there from what arrives. The ambient `pressure` is the case's `site.air.pressure`; a run
+without it raises `missing_value` [gemini: `gemini/modules/environment/atmosphere.py`].
+
+Air pressure from elevation, the standard atmosphere [standard: ISO 2533]:
+p = 101,325 (1 − 2.25577e-5 h)^5.25588 Pa, h in m. At 300 m: 97.8 kPa [derived]. A missing site
+pressure is a case value (0.5.1); this formula is how the case lead fills it with its source.
+
+## 18.2 Psychrometrics for plant design
+
+- **Dew point** (13.9): the temperature at which the air's water vapour condenses; gemini uses
+  Hyland and Wexler saturation pressure [gemini: `gemini/physics/psychrometrics.py`; ASHRAE
+  Handbook, Fundamentals, chapter 1].
+- **Wet-bulb temperature**: the lowest temperature water can reach by evaporating into the air;
+  the limit of a wet cooler. gemini uses Stull's fit, within 0.3 K over its range [paper: Stull
+  2011]. Worked: 30 °C at 40 % RH gives a wet bulb of about 20.4 °C [derived, Stull 2011], 9.6 K
+  below the dry bulb.
+- **Design condition**: a cooler must reject its duty on the hottest step of the case's air
+  series, not on the mean; dry coolers are rated at a high dry bulb, wet ones at a high wet bulb
+  (ASHRAE design conditions use exceedance percentiles such as 0.4 % of the hours) [ASHRAE
+  Handbook, Fundamentals, chapter on climatic design information].
+
+## 18.3 Dry or wet cooler
+
+gemini's `Cooler` is a closed-circuit cooler: `cooler_type` `dry` rejects sensible heat to the
+dry bulb, `wet` evaporates spray water and reaches toward the wet bulb; the outlet is the air
+temperature (dry or wet bulb) plus the `approach` (5 to 15 K dry, 3 to 8 K wet [ASHRAE]); fans
+draw `specific_fan_power` × duty [gemini: `gemini/modules/exchangers/cooler.py`].
+
+| | Dry cooler | Wet (evaporative) cooler |
+|---|---|---|
+| Coldest outlet | dry bulb + 5 to 15 K | wet bulb + 3 to 8 K |
+| Water use | none | evaporation + blowdown |
+| Cost and size | larger for the same duty | smaller, but water treatment |
+| Best when | water scarce, cool climate | hot, dry climate; chiller COP matters |
+
+Water use of a wet cooler: evaporation ṁ_ev = Q / L_v (gemini's `evaporation_rate` with the
+cooler's `latent_heat`) [gemini: `gemini/physics/psychrometrics.py`]. Worked: 10 MW at L_v
+2.43 MJ/kg evaporates 4.1 kg/s, about 15 m3/h [derived]; blowdown to hold the dissolved solids
+adds ṁ_ev / (N − 1) at N cycles of concentration (at N = 4, one third more) [ASHRAE Handbook, HVAC
+Systems and Equipment, chapter on cooling towers].
+
+Worked choice (invented): chiller condenser water must leave the cooler at 32 °C on a design day
+of 30 °C dry bulb and 20.4 °C wet bulb. Dry: 30 + 5 = 35 °C at best: fails. Wet: 20.4 + 5 =
+25.4 °C: meets it with 6.6 K to spare [derived]. A cooler that cannot meet the condenser limit on
+the hottest step makes the chiller deliver less (7.6, 12.9); check the cooling supply there.
+
+## 18.4 Rating a cooler and its loop
+
+1. Rejected heat = cold + compressor electricity (compression) or cold + drive heat
+   (absorption) (12.9) on the worst step.
+2. Outlet limit from the chiller (its condensing limit) against air + approach (18.3).
+3. `capacity` = the rejected heat with a stated margin (4.9; QA-324, QA-335).
+4. The condenser loop is a closed loop: give the cooler `loop_pressure`, `flow` and
+   `temperature_setpoint`, its first guess (0.5.1); flow = capacity / (c_p ΔT_loop).
+5. Fan power at `specific_fan_power` (row `cooler-specific-fan-power`, 0.02, a placeholder):
+   0.2 MW of fans per 10 MW rejected at 0.02 [derived]; count it as electricity (14.9).
+
 ---
 
 # Appendix A: Formulas
@@ -3173,6 +3240,9 @@ always in the original):
   326-334.
 - Gringarten, A. C., Sauty, J. P. (1975). A theoretical study of heat extraction from aquifers with
   uniform regional flow. *J. Geophys. Res.* 80(35), 4956-4962.
+- Hyland, R. W., Wexler, A. (1983). Formulations for the thermodynamic properties of the saturated
+  phases of H2O from 173.15 K to 473.15 K. *ASHRAE Transactions* 89(2A), 500-519.
+- ISO 2533. *Standard Atmosphere*. International Organization for Standardization.
 - Gülich, J. F. (2014). *Centrifugal Pumps*, 3rd ed. Springer.
 - GPSA. *Engineering Data Book*, 14th ed., section 13, Compressors. Gas Processors Suppliers
   Association.
@@ -3198,6 +3268,8 @@ always in the original):
   review of existing correlations and data. *Desalination and Water Treatment* 16, 354-380.
 - Stober, I., Bucher, K. (2013). *Geothermal Energy: From Theoretical Models to Exploration and
   Development*. Springer.
+- Stull, R. (2011). Wet-bulb temperature from relative humidity and air temperature. *J. Appl.
+  Meteorology and Climatology* 50, 2267-2269.
 - Svarovsky, L. (2000). *Solid-Liquid Separation*, 4th ed. Butterworth-Heinemann.
 - Takacs, G. (2009). *Electrical Submersible Pumps Manual*. Gulf Professional (quoted, not verified).
 - TEMA. *Standards of the Tubular Exchanger Manufacturers Association* (fouling resistances).
