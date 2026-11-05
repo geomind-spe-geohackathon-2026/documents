@@ -71,3 +71,4 @@ wont-fix, duplicate.
 | [QA-063](bugs/QA-063-case-page-shows-dissolved-gas-as.md) | fixing | major | frontend | Case page shows dissolved gas as CH4 8000 mol% and CO2 2000 mol% (total 10000 %, 'should be 100 %') while the stored case says 80 and 20 | qa-func-1 | hotfix-front |
 | [QA-064](bugs/QA-064-results-empty-state-the-sentence-no.md) | open | cosmetic | frontend | Results empty state: the sentence 'No results yet. Run a study to get one.' is split over three lines with the link alone in the middle | qa-ux |  |
 | [QA-065](bugs/QA-065-case-lacks-the-pdf-s-1.md) | open | minor | geomind | Case lacks the PDF's 1-3 doublets rule, yet the design lead says 'the case fixes the number of doublets at 1-3' | qa-func-1 |  |
+| [QA-066](bugs/QA-066-new-project-dialog-is-taller-than.md) | open | minor | frontend | New project dialog is taller than a 577 px window and cannot scroll: title and Create/Cancel buttons are cut off | qa-ux |  |
