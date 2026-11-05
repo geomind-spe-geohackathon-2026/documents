@@ -45,3 +45,10 @@ gemini: the sample summary takes `percentiles` (default [5, 10, 50, 90, 95]) or 
 ## Fix
 
 - 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
+
+## Retest
+
+- 2026-11-05 19:53 UTC, QA-AI-analysis-I, backend 1.1.124: project `QA-TEST QA-AI-analysis-I 8`, run
+  20bd2c15-1af8-4372-a47f-a32d054f339e: still p5/p50/p95 only ("gemini cannot give P10 and P90"), but now rounded to 5
+  digits (40.845 / 46.347 / 51.571 EUR/MWh). STATUS says gemini 0.6.27 (the fix) was pushed, not deployed, at 20:20 CET,
+  so this is not a failed retest; to retest once gemini 0.6.27+ is live.
