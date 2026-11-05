@@ -92,7 +92,7 @@ the case lead's one confirmation question must not ask for `site.air.relative_hu
 
 ## More evidence (QA-E2E-case-I, 2026-11-05)
 
-- Run a5118d9e (project QA-TEST QA-E2E-case-I 2, 17:09 UTC): the question still asks for both, with
+- Before the 17:20 UTC Knowledge fix: run a5118d9e (project QA-TEST QA-E2E-case-I 2, 17:09 UTC): the question still asks for both, with
   a false reason: "site.air.relative_humidity ... needed for the outside-air dew point and the cooler
   duty"; "utilities.gas.heating_value ... needed for the fuel input of any boiler or CHP". In gemini
   `site.air.relative_humidity` is read by no module (only `demand.cooling.indoor_relative_humidity` is,
