@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
 | Found | 2026-11-05 00:11 UTC |
 | Versions | frontend 1.1.5x, backend 1.1.55 (health) |
 | Where | https://geomind.team/projects, button New project |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
