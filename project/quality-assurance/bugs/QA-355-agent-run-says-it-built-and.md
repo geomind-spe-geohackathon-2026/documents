@@ -38,3 +38,5 @@ Workaround now: Results > the result > 'Use this design as the plant'.
 
 - 2026-11-05 20:58 UTC: geomind 0.4.137 (cf9536b / 67d1ac9); backend part with back-lead
 ## Retest
+
+Frontend part (hotfix-front-lead): frontend 1.1.146 (bundle index-CJaR7Yon.js): the empty Plant tab shows 'Use this design as the plant' when progress.plant.result is set; it calls POST /design/results/{id}/adopt and refreshes the project.
