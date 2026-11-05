@@ -33,3 +33,7 @@ Guess: the check that patch_plant runs (QA-175) treats values derived by `size` 
 ## Fix
 
 ## Retest
+
+## Also seen (QA-E2E-design-I, 2026-11-05 18:05-18:36 UTC)
+
+Project QA-TEST QA-E2E-design-I 2 (72df9c82-e577-4605-8743-ffcee53c3a73), run dca5ed1a-35f5-4975-ad6e-94069b640590, HeatingHeatPumpCoolingPlant. After size_plant (18:03) the design lead looped 31 min on the same three values: 15 patch_plant cards (B_two ... B_esp3), each answered by the next one of `d0.esp.stage_count` -> `d0.esp.power_coefficients` -> (ESP removed) `pump_type`, `motor_efficiency`, `minimum_flow` -> `injection_pump.pressure_setpoint` -> `stage_count` again; it branched from design/B_esp four times; one patch "changes nothing" (setting_depth null); it finally guessed `stage_count` 100 ("plausible", no source). No simulate in 50 min. Same plant class passed with `pump_type` unspecified and no stage_count at 17:12 UTC on the earlier gemini (run 76d19df6). The case says the pump efficiency is a simplified 70 %, so a curve-free ESP should be enough.
