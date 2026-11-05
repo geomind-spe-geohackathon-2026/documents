@@ -6,8 +6,8 @@ anyone who writes a feasibility study, concept design, competition entry or desi
 
 Cite as `knowledge/handbook-report.md`, with the section number (for example
 `knowledge/handbook-report.md §7.2`). Every numbered section stands alone. Chapter 0 is the short
-version for agents; chapter 15 the review checklist; chapter 16 the GEMINI hackathon 2026
-example; Appendix A templates.
+version for agents; chapter 15 the review checklist; chapter 16 a worked example for a scored
+brief; Appendix A templates.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -74,8 +74,8 @@ The explainer finishes with Markdown under exactly these headings, in this order
 
 A report asks the user nothing. A value it lacks is named under `Open points` ("not given:
 <what>, <why it matters>"); a missing economics key is named with its `economics.<key>` path for
-the case lead. Facts about a competition (deliverables, judging) come from Knowledge, such as §3.2
-and §16 here, never from memory.
+the case lead. A brief's own facts (deliverables, scoring, page limits) come from its document
+in Knowledge (search for it), never from memory; how to use them is §3.2 and §16.
 
 ---
 
@@ -195,25 +195,23 @@ asks the same questions:
 6. **What is left?** Limitations and open points, stated plainly.
 7. **Can it be reproduced?** Inputs, tools, versions, study keys and the log are given.
 
-## 3.2 Example: the judging criteria of a competition
+## 3.2 Scored briefs: competitions and tenders
 
-One example of what reviewers look for: the organisers' kick-off slides of the SPE Europe Energy
-GeoHackathon (2026, shared by the team on 2026-11-05):
+Some readers score the report against published criteria: a competition jury, a tender panel, a
+funding body. Then the criteria are the reader's questions:
 
-- **Challenge 1 (50 %), the agentic workflow**: it analyses the problem, works with the GEMINI
-  digital twin, selects and runs the right models, identifies missing modelling capabilities and
-  integrates extra calculations or tools, compares alternatives, and explains the reasoning
-  behind the final configuration.
-- **Challenge 2 (50 %), the heating and cooling system**: deep geothermal heat for direct heating
-  and, where possible, cooling; selected and sized technologies; the realised heating and
-  cooling capacities; the designed system; and the interaction with the agent (prompts,
-  answers, tokens).
-- **Bonus**: multi-agent collaboration, automated optimisation, uncertainty analysis,
-  techno-economic assessment, automatic model generation, autonomous verification.
+- read the criteria and the weights before writing, and map each to a section of the report
+  (a table, as in §16.1);
+- answer each criterion where the reader expects it, with its evidence: a criterion on the
+  workflow wants the method and the agent log (§13), one on the system wants capacities and
+  compliance (§8, §9), one on economics wants the economic basis and the costs (§5.4, §8.4);
+- keep to the format limits (pages, slides, video length): they are hard requirements of the
+  brief, like any other;
+- a brief's criteria, weights and limits are taken from its own document in Knowledge, never
+  recalled.
 
-These map onto the general criteria: 3.1 items 2 to 4 for the workflow, items 4 and 5 for the
-system, item 7 for the agent interaction. The worked example (chapter 16) shows a report built
-for them.
+These map onto the general criteria of §3.1: items 2 to 4 for a workflow, items 4 and 5 for a
+system, item 7 for the record of how the work was done.
 
 ---
 
@@ -444,7 +442,7 @@ A design is final only when gemini's verdict is feasible: `check_results` return
 true with no reason (skill `reading-results`; reviewer rule). The report's `passed` is not the
 verdict: it tallies only the checks that ran, so a plant that delivers no cold can show `passed`
 true while `cold_delivered` makes the verdict infeasible (`knowledge/handbook-economics.md`
-§17.9). gemini's verdict has four kinds of reason
+§16.7). gemini's verdict has four kinds of reason
 (`gemini/gemini/evaluate/verdict.py`): `requirement` (a requirement or a supply temperature
 failed, or none could be judged), `failed_step` (rows that failed or were skipped),
 `numerical` (a mass or energy residual above tolerance, a loop that did not converge) and
@@ -576,13 +574,12 @@ by source, 2027, daily; result/<id>").
 
 When agents did the work, the log is the method: it shows how the problem was analysed, which
 models were run, which questions the user answered, which gaps were found and filled. A
-reviewer who cannot see the log cannot judge the workflow; a competition may score it
+reviewer who cannot see the log cannot judge the workflow; a scored brief may score it
 (§3.2).
 
 ## 13.2 What to record
 
-- the model and provider of each agent role (the team's agents run on DeepSeek through
-  OpenRouter);
+- the model and provider of each agent role;
 - each LLM call: prompt, answer, tool calls with arguments and results, tokens in and out, by
   agent, session and step;
 - each question to the user and the answer;
@@ -600,9 +597,9 @@ chosen under "Agent log from" (`frontend/src/domains/design/report/report-option
 ## 13.4 Gaps found and filled
 
 Name every capability the tools lacked and how it was filled: a simplified model, a calculation
-with its id, a value found on the web with its source, and why it is appropriate. "Missing
-models are part of the challenge" in the competition example (§3.2), and in any real study a
-gap explained is better than a gap hidden.
+with its id, a value found on the web with its source, and why it is appropriate. A brief may
+expect gaps and score how they were filled; in any study a gap explained is better than a gap
+hidden.
 
 ---
 
@@ -668,86 +665,76 @@ For the reviewer and the project lead, before a report goes out:
 
 ---
 
-# 16. Worked example: the GEMINI hackathon 2026 report
+# 16. Worked example: a report for a scored design brief
 
-This chapter applies the handbook to one case only; the case itself is in
-`knowledge/handbook-case.md` chapter 12 and `knowledge/hackathon-2026-assumptions.md`.
+Every number in this chapter is **invented**. The brief, its scores and its limits stand for any
+competition, tender or client brief that scores the report; the real criteria of a given brief
+are in its own document in Knowledge (search for it), never in this handbook.
 
-## 16.1 What the jury scores
+## 16.1 Reading the scoring before writing
 
-See §3.2: Challenge 1 (agentic workflow, 50 %), Challenge 2 (heating and cooling system, 50 %),
-the bonus items; "missing models are part of the challenge": a simplified model or an external
-tool is welcome when its use is explained (`calculate`, `run_python`, `web_search` with their
-sources).
+An invented brief scores half the marks on the **workflow** (how the problem was analysed, which
+models ran, which gaps were found and filled, how alternatives were compared, how the final
+choice is explained) and half on the **system** (technologies chosen and sized, heating and
+cooling capacities, the design), with extra credit for uncertainty analysis, costs and
+autonomous verification. Map each criterion to a section before writing:
 
-## 16.2 Deliverables
-
-Hard limits from the organisers' slides:
-
-| Deliverable | Limit |
+| Criterion of the brief | Where the report answers it |
 |---|---|
-| Technical report, or presentation | at most 5 pages, or at most 10 slides |
-| Video pitch | at most 5 minutes: solution, key findings, design choices, novelty, main technical or economic results |
-| Evidence | the agentic system, with its interactions recorded (prompts, answers, token use); the final configuration and its supporting calculations explained |
-| Code | all contributions committed and pushed to GitHub (merging into main not required) |
+| Problem analysed | §5 design basis |
+| Models selected and run, gaps filled | §2.2 method, §13.4 |
+| Alternatives compared | §6 |
+| Final choice explained | §7 |
+| Technologies and capacities | §8.1, §8.2 |
+| Uncertainty, costs | §8.4, §10 |
+| Verification | §9 |
+| Agent interaction (prompts, answers, tokens) | §13 |
 
-The report must cover the geothermal assessment, the system design and the heating and cooling
-capacities, and document the agent architecture, models and libraries.
+A criterion with no section is a gap in the report, not in the scoring.
 
-## 16.3 The explainer's answer for this case
+## 16.2 Fitting the page limit
 
-Under the explainer's headings (§2.4):
+The invented brief allows 5 pages (or 10 slides). One allocation that covers every criterion:
 
-- **Design / Schematic:** the family, the doublets (number, depth, flow), each unit with its
-  capacity, how the 100 °C supply is reached (heat pump, boiler or depth, against the
-  production temperature gemini gives at the chosen depth), how the 20 °C cold is made, and
-  where the associated gas goes (flare, boiler, CHP).
-- **Capacities:** from `compute_kpis`'s `capacities`: each unit and the plant, against the
-  peaks of the case (30.0 MW heat, 10.0 MW cold, PDF p. 1, as checked against the CSV files).
-- **Delivered:** heat and cold delivered over 2027 beside the demand (111.67 GWh heat, 23.74 GWh
-  cold, PDF p. 1), the heat from geothermal, heat pump and boiler as gemini gives each, the days
-  not covered.
-- **Costs:** LCOH, LCOC, LCTS, capex, opex, NPV and CO2, with the economics source
-  (`knowledge/hackathon-2026-assumptions.md`: EUR at 2015 prices, discount rate 0.05, 25 yr,
-  `heat_cost_share` 0.8), the CH4 GWP 29.8 (IPCC AR6 WG1 table 7.15) and the grid intensity
-  300 g/kWh (organisers). Name the team placeholders (revenue 60 EUR/MWh, most capex factors) as
-  such, so NPV and payback read as indicative.
-- **Checks:** gemini's verdict for each of the 8 requirements by `name`
-  (`production_flow_range`, `brine_cooling_limit`, `running_time_limit`, `pump_efficiency`,
-  `full_reinjection`, `doublet_count`, `heat_delivered`, `cold_delivered`) and the two supply
-  temperatures.
-- **Open points:** what gemini cannot judge or the case does not constrain, and every
-  assumption not confirmed.
-- **Decisions:** the family over the others (the `run_study` ranking table), the depth and
-  number of doublets, the return temperatures (team design choice, QA-094), the backup policy,
-  the cooling technology (the jury scores geothermal-driven cooling), the gas handling, what the
-  optimisation changed from the sized start, and the uncertainty and sensitivity when they ran.
+1. Problem and inputs (half a page): the brief's files, the case, one assumptions table with
+   sources.
+2. Method and agent team (one page): roles, tools, gemini as the physics, the model behind the
+   agents, Knowledge, the gaps found and how they were filled.
+3. Alternatives and the chosen design (one and a half pages): the comparison table (§6.3), the
+   schematic, the capacities.
+4. Results (one and a half pages): delivered against demand, the compliance table, costs and
+   CO2 with the economic basis, uncertainty and sensitivity.
+5. Agent interaction and open points (half a page): questions to the user, tokens per agent, the
+   limitations.
 
-## 16.4 The 5-page report
+Detail goes to an appendix or a linked file (§2.3).
 
-1. Problem and inputs: the three competition files, the case, the assumptions (one table with
-   sources).
-2. Agent architecture: the teams (project lead; case lead and geoscientist; design lead with
-   the process, integration, reservoir, well and energy systems engineers; reviewer; analysis
-   lead and economist; explainer), the tools, gemini as the physics, the model (DeepSeek on
-   OpenRouter), the knowledge base.
-3. Geothermal assessment and design: the alternatives compared (at least two), the final plant
-   and its schematic.
-4. Results: capacities, energies delivered, checks, costs, CO2, uncertainty and sensitivity.
-5. Agent interaction: prompts, answers, questions to the user, tokens and cost per agent; what
-   the agents found missing in gemini and how they filled it.
+## 16.3 The explainer's answer for an invented case
 
-gemini's own sample (six stored plants on gemini's sample economics,
-`knowledge/handbook-economics.md` §17.9: LCTS 42.34 to 51.82 EUR/MWh for the feasible ones) is a
-reference to compare with, never a result of the team: if the team's numbers differ much from it
-on similar economics, check the economics of the case first.
+The case: 100 000 MWh/yr of heat at 90 °C (peak 25 MW) and 20 000 MWh/yr of cold at 12 °C from
+a deep doublet reservoir producing 75 °C brine with dissolved gas.
 
-## 16.5 For the reviewer and the project lead
+- **Design / Schematic:** two doublets at 3000 m, each at 200 m3/h; a heat pump lifts the
+  geothermal heat to 90 °C; an absorption chiller driven by hot water makes the cold; the
+  associated gas goes to a boiler (the reason under `Decisions`).
+- **Capacities:** each unit as `compute_kpis` gives it, beside the 25 MW peak heat.
+- **Delivered:** heat and cold delivered beside the 100 000 and 20 000 MWh/yr of the case; a
+  surplus named.
+- **Costs:** capex, opex, LCOH, LCOC, LCTS, NPV and CO2 with the economic basis once (currency,
+  price year, discount rate, period, `heat_cost_share`); placeholder values named, so NPV reads
+  as indicative.
+- **Checks:** the verdict first, then each requirement by `name` with its worst value and limit.
+- **Open points:** what gemini did not judge; assumptions not confirmed.
+- **Decisions:** the family ranking (`study/<name>`), the depth and number of doublets, the
+  supply temperature route, the cooling technology, the gas handling (vent, flare, boiler or CHP:
+  `knowledge/handbook-economics.md` §17.7), what the optimisation changed.
+
+## 16.4 For the reviewer and the project lead
 
 - A design is final only with gemini's verdict `feasible` true (§9.1; not the report's
-  `passed`). A zero-cooling day is no failure under `cold_delivered` (QA-091).
+  `passed`). A zero-cooling day is no failure of a cooling requirement judged while running.
 - When a rule keeps failing after a real change of approach, finish with the best design, the
-  passing and failing rules by name and their owners (QA-090).
+  passing and failing rules by name and their owners (§9.4).
 - Never call the design compliant on a point gemini did not judge.
 
 ---
@@ -820,9 +807,7 @@ on similar economics, check the economics of the case first.
 - BIPM (2019). *The International System of Units (SI)*, 9th ed.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
-- gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `_utils/display.py`;
-  gemini sample `examples/hackathon_2026`.
+- gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `_utils/display.py`.
 - geomind: prompts `geomind/geomind/prompts/project/explainer.md`, `reviewer.md`; skills
   `reading-results`, `comparing-designs`, `report`, `economics`, `calculator`, `python`.
-- Team: the organisers' kick-off slides (2026); bug files QA-090, QA-091, QA-094 of the team's
-  quality assurance.
+- Team: bug files QA-090, QA-091, QA-094 of the team's quality assurance.
