@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | Sahand |
@@ -41,3 +41,4 @@ Guess: Auto-approve only covers write-tool approvals in the backend; question to
 (Who, when, result.)
 
 Frontend part: frontend 1.1.140 (commit b30f5f3, bundle index-CzdSC_uX.js), by front-m1: question.auto_answered shows as a settled card 'Answered automatically'.
+- 2026-11-05 20:35 UTC: Manual QA-IV 21:36 CET, run 7fb2db3c (project 00553359, case only, auto-approve on): done in 5.5 min, 0.034 USD, no card answered by hand; final answer lists 'Answered automatically (Auto-approve on)' with every auto value; AUTO-1..AUTO-54 assumptions with source auto-approve in the state. Note: the run status showed 'waiting' with a request 3 times for up to 40 s before the automatic answer; and the agent's own time zone proposal (Europe/Amsterdam) was taken
