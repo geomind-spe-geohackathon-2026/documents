@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -60,3 +60,7 @@ The verdict did not change: the final report is `passed: result/305d0f094cf4abfb
 ## Fix
 
 - 2026-11-05 18:32 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
+
+## Retest
+
+- 2026-11-05 18:46 UTC: QA-AI-project-I 18:46 UTC, backend 1.1.116, run 569e8c99: reviewer 7 LLM calls, 94 s wall, 127 k input tokens (was 28 calls, 393 s, 754 k): check_results, case_changes, compute_kpis in step 1; still 2 read_result + 2 read_stored after the passed verdict (small). evidence/QA-187/retest-569e8c99.trace.txt
