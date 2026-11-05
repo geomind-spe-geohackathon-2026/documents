@@ -1,8 +1,8 @@
-# Swarmax — GeoHackathon System Design Notes
+# GeoMind — GeoHackathon System Design Notes
 
 ## 1. Project Context
 
-**Swarmax** is the proposed Agentic AI system for the **SPE Europe Energy GeoHackathon**.
+**GeoMind** is the proposed Agentic AI system for the **SPE Europe Energy GeoHackathon**.
 
 The hackathon has two main challenges:
 
@@ -100,7 +100,7 @@ The highest-level representation is:
 ```text
 Problem
    ↓
-Swarmax Agentic AI System
+GeoMind Agentic AI System
    ↓
 Solution
 ```
@@ -188,7 +188,7 @@ UI
   ↓
 API
   ↓
-Swarmax Core
+GeoMind Core
   ↓
 Engineering Capabilities
   ↓
@@ -214,7 +214,7 @@ The user should be able to:
 - change constraints
 - ask questions
 - interrupt or modify an ongoing workflow
-- understand what Swarmax is currently doing
+- understand what GeoMind is currently doing
 
 A good UI concept is:
 
@@ -303,7 +303,7 @@ The API is the boundary between the UI and the intelligent system.
 
 Current architectural preference:
 
-> Keep the API focused on communication and task management; keep agentic intelligence inside Swarmax Core.
+> Keep the API focused on communication and task management; keep agentic intelligence inside GeoMind Core.
 
 Possible API responsibilities:
 
@@ -325,12 +325,12 @@ UI
  ↕
 REST API / WebSocket
  ↕
-Swarmax Core
+GeoMind Core
 ```
 
 ---
 
-# 8. Swarmax Core
+# 8. GeoMind Core
 
 This is the intelligent center of the system.
 
@@ -351,7 +351,7 @@ We intentionally do not want to over-specify these too early.
 
 # 9. Problem Representation
 
-A major design requirement is that Swarmax needs an **internal representation of the engineering design problem**.
+A major design requirement is that GeoMind needs an **internal representation of the engineering design problem**.
 
 The system should transform:
 
@@ -449,7 +449,7 @@ Final Engineering Solution
 ## A. Human Interaction Branch
 The user can:
 
-- chat with Swarmax
+- chat with GeoMind
 - ask why a design was chosen
 - change objectives
 - add/remove constraints
@@ -457,7 +457,7 @@ The user can:
 - modify the problem while the system is running
 
 ## B. Autonomous Design Branch
-Swarmax can independently:
+GeoMind can independently:
 
 - generate designs
 - evaluate alternatives
@@ -636,7 +636,7 @@ This may later be a separate module or part of Evaluation. That decision is stil
 
 # 18. Memory and Context
 
-Swarmax should keep useful system state, such as:
+GeoMind should keep useful system state, such as:
 
 - user conversation
 - previous task decisions
@@ -713,7 +713,7 @@ Key principle:
 
 # 21. Agent Harness
 
-We want Swarmax to behave as a **large orchestration harness**, not just a single chatbot.
+We want GeoMind to behave as a **large orchestration harness**, not just a single chatbot.
 
 The harness can eventually manage:
 
@@ -764,7 +764,7 @@ However, presence of a template does not automatically mean the component is ful
 Therefore:
 
 ```text
-Swarmax
+GeoMind
    ↓
 GEMINI + Additional Engineering Models
 ```
@@ -795,7 +795,7 @@ Answer
 
 This is not yet the autonomous multi-agent workflow required for the hackathon.
 
-Therefore Swarmax should build the agentic layer around/above GEMINI.
+Therefore GeoMind should build the agentic layer around/above GEMINI.
 
 ---
 
@@ -817,7 +817,7 @@ Therefore Swarmax should build the agentic layer around/above GEMINI.
 └──────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────┐
-│              SWARMAX CORE                    │
+│              GEOMIND CORE                    │
 │ Problem | Design | Optimization |           │
 │ Orchestration | Memory                      │
 └──────────────────────────────────────────────┘
@@ -868,9 +868,9 @@ Results should influence the next design decision.
 
 Decisions that are relatively established:
 
-- Project name: **Swarmax**
-- Swarmax is an **Agentic AI System**
-- Highest-level abstraction: `Problem → Swarmax → Solution`
+- Project name: **GeoMind**
+- GeoMind is an **Agentic AI System**
+- Highest-level abstraction: `Problem → GeoMind → Solution`
 - Architecture should be **module-based**
 - We still want some logical layering
 - Each layer contains multiple modules
@@ -880,7 +880,7 @@ Decisions that are relatively established:
 - UI must expose autonomous tasks
 - Design and Optimization tasks should be visible
 - API should mostly handle communication/task management
-- Core intelligence should stay inside Swarmax
+- Core intelligence should stay inside GeoMind
 - Design and Optimization should remain separate conceptual modules
 - Optimization algorithms should be plug-and-play
 - System should support human interaction and autonomous design simultaneously
@@ -967,7 +967,7 @@ If not, it should probably be:
 - optimizer
 - simulator
 
-This keeps Swarmax technically credible and prevents an unnecessarily complicated multi-agent architecture.
+This keeps GeoMind technically credible and prevents an unnecessarily complicated multi-agent architecture.
 
 ---
 
@@ -989,7 +989,7 @@ This keeps Swarmax technically credible and prevents an unnecessarily complicate
                          │
                          ▼
               ┌──────────────────────┐
-              │     SWARMAX CORE     │
+              │     GEOMIND CORE     │
               │                      │
               │ Problem              │
               │ Orchestration        │

@@ -1,6 +1,6 @@
 # Benchmark plan: GEMINI (refactor branch) vs open-source geothermal tools
 
-Status 2026-10-28: plan only, waiting for the new repo (proposed `swarmax/geothermal-benchmark`, private).
+Status 2026-10-28: plan only, waiting for the new repo (proposed `geothermal-benchmark`, private).
 
 ## Tools to compare (all installable in this environment)
 | Tool | Scope | Install |
