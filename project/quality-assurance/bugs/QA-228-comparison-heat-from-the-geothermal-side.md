@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 17:38 UTC |
 | Versions | backend 1.1.106 |
 | Where | project `QA-TEST QA-E2E-study-I 1` (8fcbf709-537a-40d9-ac1f-abadd1061775); chat c0cae905-a2a8-44cf-8bec-f4899f313e8b; run 52383511-cdea-47d7-8f61-4a1737248856; design_lead calculate at 17:31:26 UTC |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
