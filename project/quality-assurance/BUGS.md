@@ -143,3 +143,4 @@ wont-fix, duplicate.
 | [QA-135](bugs/QA-135-overview-and-design-show-study-and.md) | fixing | minor | frontend | Overview and Design show Study and Results 'Out of date' on a freshly seeded project, and still after a fresh full-year run of the stored plant | functional-qa-study-I | hotfix-back-III |
 | [QA-136](bugs/QA-136-report-agent-log-and-tokens-raw.md) | verified | minor | backend | Report, Agent log and tokens: raw figures (Input tokens 14837406, Cost 0.45972432399999985) | hotfix-front-III | hotfix-back-III |
 | [QA-137](bugs/QA-137-plant-and-case-history-dialog-leaves.md) | open | minor | frontend | Plant and Case History dialog leaves a large empty area under the version table and under a version's changes | user via coordinator |  |
+| [QA-138](bugs/QA-138-plant-toolbar-still-shows-start-from.md) | open | minor | frontend | Plant toolbar still shows Start from template although templates were rejected (IMP-023) | user via coordinator |  |
