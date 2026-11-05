@@ -3,6 +3,8 @@ import asyncio
 import json
 import sys
 
+from sqlalchemy.ext.asyncio import async_sessionmaker
+
 from src.core.clients.postgres import models  # noqa: F401
 from src.core.clients.postgres.client import create_postgres_client
 from src.core.clients.postgres.repositories.memory import MemoryRepository
@@ -11,7 +13,8 @@ from src.core.clients.postgres.repositories.memory import MemoryRepository
 async def main(path: str) -> None:
     seed = json.load(open(path))
     section = seed["kind"]
-    engine, factory = create_postgres_client()
+    engine = create_postgres_client()
+    factory = async_sessionmaker(engine, expire_on_commit=False)
     added, kept = [], []
     async with factory() as session:
         repository = MemoryRepository(session)
