@@ -8,7 +8,8 @@ rows) on 2026-11-05.
 Cite as `knowledge/handbook-economics.md` with the section (for example
 `knowledge/handbook-economics.md §6.3`). Every section stands alone: read the one you need
 (`read_knowledge` with its number). Chapter 0 is the short version for agents; chapter 18 holds
-the lessons from practice (source order, units, basis, analysis period, stale results, sizing).
+the lessons from practice (source order, units, basis, analysis period, stale results, sizing);
+chapter 19 says where to find a value the catalogue lacks (other countries, grid CO2, chillers).
 
 This handbook explains no tool. Running costs, sensitivity and uncertainty: skill `economics`.
 Setting economics in a case (`ask_economics`, `set_case`): skill `setting-the-case`. Defining the
@@ -1664,6 +1665,94 @@ An economics request that names a place asks for prices of that place, not for n
 
 ---
 
+## 19. Finding a value the catalogue lacks
+
+The questions agents search for most often (QA run logs, 2026-11-05) and what answers them. The
+rule of §0.2 still holds: a value enters the case only with a source a reader can open and with
+the user's approval. These sections say **where such a source is** and **how to bring it into
+the case's currency and price year**, so that a search ends quickly with a value or with a named
+gap.
+
+### 19.1 Energy prices for a country without catalogue rows
+
+The catalogue holds the countries its sources cover (§0.4.3). For any other country:
+
+1. **Official statistics first.** Eurostat publishes non-household prices twice a year by
+   annual consumption band: electricity `nrg_pc_205` (bands IA to IG, MWh/yr) and gas
+   `nrg_pc_203` (bands I1 to I6, GJ/yr), with three tax levels (without taxes, without VAT and
+   recoverable taxes, all taxes). The geo list covers the EU and several other European countries
+   (check the dataset's list for the country). Choose band and tax level as in §10.2.
+2. **National statistics office or regulator** when Eurostat lacks the country or the band.
+3. **A contract or quote** from the user beats both (step 1 of §0.2).
+
+If Knowledge holds none of these and no web connector is available, the key stays `open` and the
+question names the dataset that would give it ("electricity: Eurostat `nrg_pc_205`, country X,
+band ID, without VAT"). Do not take a neighbouring country's price as a stand-in without the
+user approving it as such.
+
+**Bring it to the case's terms** (currency and price year of the case, §4.2, §4.3):
+
+1. Convert the currency in the **source year** at that year's average rate (Eurostat
+   `ert_bil_eur_a`, or the ECB euro reference rates, annual average).
+2. Deflate the euro amount to the case's price year with the euro-area HICP (§4.2).
+
+Worked example (invented numbers): a price of 900 XCU/MWh in 2023, average rate 10.0 XCU per EUR
+in 2023: 900 / 10.0 = 90 EUR(2023)/MWh; to 2015 prices: 90 x 100 / 123.15 = 73.08 EUR(2015)/MWh.
+Record both steps and both sources in the value's source text. gemini converts nothing
+(§16.1: `currency` is a label), so the number entered must already be in the case's terms.
+
+### 19.2 Grid CO2 intensity for a country
+
+The key is the case's `utilities.electricity.co2_intensity` (g/kWh), not an economics key
+(§9.4). Sources, in order of preference for a location-based average:
+
+| Source | What it gives | Note |
+|---|---|---|
+| A factor the client or brief prescribes | the case's value | takes precedence |
+| National inventory or energy agency | official national factor | check generation or consumption basis |
+| EEA, "Greenhouse gas emission intensity of electricity generation" | EU and EEA countries, yearly | generation-based |
+| Ember, Yearly Electricity Data | most countries, yearly | generation-based (catalogue rows `co2-grid-eu-*`) |
+
+A generation-based factor ignores imports: a country that imports much fossil power has a higher
+consumption-based factor. The GHG Protocol Scope 2 Guidance (2015) requires the location-based
+figure in every report and the market-based figure in addition when contracts are bought (§9.4).
+Grids change fast: state the year, and for a plant that runs for decades give a range or a
+projection as an uncertainty (§18.9), not the latest year as a fixed truth.
+
+### 19.3 Variable O&M of chillers and the per-energy map
+
+Many searches ask for a chiller's variable O&M in EUR/MWh of cold. The catalogue has no such row
+(§0.4.2), and the main European technology catalogues used here (Danish Energy Agency, technology
+data for electricity and district heating) cover heat producers, not chillers. What follows:
+
+- A chiller's **electricity** is not O&M: gemini computes it from the chiller's COP and prices it
+  with `energy.electricity`. Do not add it again as variable O&M (§15 item 6).
+- Its **maintenance** is in `opex.fixed.<chiller>` (share of capex per year, rows exist).
+- `opex.per_energy` is all or nothing (§16.1): once one producing kind has a price, every
+  producing kind of the plant needs one. With a chiller unpriced, `ask_economics` moves the whole
+  map to `open` and says so; the plant is then costed with no per-energy O&M for any kind. Report
+  that as a stated simplification, and do not search further for a chiller value unless the user
+  asks for one or gives one.
+
+### 19.4 A national carbon tax next to an emissions trading system
+
+Some countries tax CO2 on fuels in addition to, or instead of, an emissions trading system. Which
+applies depends on the installation (size, sector, fuel) and the country's rules. `carbon.price`
+is one price per t CO2e on the plant's own emissions (§3.6, §16.7). Add a national tax to an ETS
+price only when a source says both apply to an installation of this kind; otherwise take the one
+that applies and say why. Exchange and price-year steps as in §19.1.
+
+### 19.5 Gas: gross or net heating value
+
+Eurostat gas prices are per kWh of gross calorific value (GCV); gemini prices bought gas per
+energy of its **lower** heating value (§3.3, §16.1). The net calorific value of natural gas is
+about 10 % below the gross value (IEA, Energy Statistics Manual, 2005, on gross and net calorific
+values), so a price per MWh(GCV) is about 1.11 times higher per MWh(NCV). The exact ratio
+depends on the gas composition (ISO 6976 gives the calculation); use the ratio of the case's own
+gas when it is known, and record the conversion in the source text.
+
+---
+
 ## Appendix A. Symbols and formulas
 
 | Symbol | Meaning | Unit |
@@ -1719,6 +1808,16 @@ handbook.
   (abstract and summaries read; section 2.2).
 - *Products Finishing*, "Capital cost estimate classes", https://www.pfonline.com/articles/capital-cost-estimate-classes
   (summary of AACE 18R-97; section 11.2).
+- GHG Protocol (2015), *Scope 2 Guidance*, World Resources Institute and WBCSD (location-based
+  and market-based methods; section 19.2).
+- International Energy Agency (2005), *Energy Statistics Manual*, OECD/IEA and Eurostat (gross and
+  net calorific values; section 19.5).
+- ISO 6976:2016, Natural gas: calculation of calorific values, density, relative density and Wobbe
+  indices from composition (section 19.5).
+- European Environment Agency, indicator "Greenhouse gas emission intensity of electricity
+  generation" (section 19.2).
+- Eurostat, `ert_bil_eur_a`, euro exchange rates, annual data; European Central Bank, euro foreign
+  exchange reference rates (section 19.1).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
