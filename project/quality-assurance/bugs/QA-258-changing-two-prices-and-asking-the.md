@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -81,3 +81,4 @@ opex 4.035 MEUR/yr, equal to a page `run` study on that case version 4).
   page study of run ce5d9ffc. The bookkeeping design lead is gone. Verified (the old-result re-costing and the 15 min).
   Left: still serial design_lead -> analysis_lead -> explainer, and the project lead calls `finish` 3 times.
   Log: `../evidence/QA-258/run-ac818659-retest-log.json`.
+- 2026-11-05 18:59 UTC: retest QA-AI-analysis-I 18:59 UTC: 3 min of agent time after the case (was 15 min), right numbers; case lead delayed by QA-268
