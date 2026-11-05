@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -31,3 +31,5 @@ Guess: the injection side of three doublets at 2,500 m is sized for one doublet 
 
 - 2026-11-05 21:35 UTC: gemini 0.6.35 (55f2ddff) + geomind 0.4.138; pending deploy
 ## Retest
+
+- 2026-11-05 22:12 UTC: Manual QA-IV, 2026-11-05 23:15 CET, same build: agent-built absorption plants now run. 19f6c002's winner F2 (direct heat + absorption, 3 doublets) is feasible at LCTS 30.68 with 0 failed steps; 807ac8c3's family B (deeper doublet + absorption) is feasible at 33.00 with 0 failed steps.
