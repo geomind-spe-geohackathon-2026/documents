@@ -35,6 +35,7 @@ Old RAG names kept beside the new Knowledge names (the read_rag -> read_file/rea
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 21:23 UTC: Sahand: the frontend label only (read rag -> read knowledge); geomind rename stopped, nothing pushed
+- 2026-11-05 21:24 UTC: Sahand: frontend labels only
 ## Retest
 
 (Who, when, result.)
