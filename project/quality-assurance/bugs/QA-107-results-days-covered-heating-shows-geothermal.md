@@ -29,6 +29,7 @@ Heating: "Geothermal: 0 days, Backup: 0 days, Short: 365 days": every day red. Y
 - ![Days covered](../evidence/QA-107/2.webp)
 - ![Constraints](../evidence/QA-107/3.webp)
 - Postgres read-only: case_versions of project cf0c3d9c, number 3 (10 requirements).
+- The report of the same result says "Geothermal share of heat 96%" in its Summary, while Days covered says Geothermal 0 days: the two contradict each other.
 
 ## Cause
 
