@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -52,3 +52,7 @@ instruction), and the economist reads every value in its task as the user's. Pro
 the task quotes the user; record it as `source: agent`, `confirmed: false` unless the problem state
 already holds it confirmed." Optionally `update_state` refuses `source: user, confirmed: true` from a
 sub-agent that has no `ask_user`.
+
+## Fix
+
+- 2026-11-05 17:40 UTC: geomind 0.4.109, deployed: economist prompt records task values as source agent, confirmed false
