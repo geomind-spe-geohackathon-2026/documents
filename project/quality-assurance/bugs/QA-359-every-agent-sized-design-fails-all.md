@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -31,3 +31,5 @@ Guess: the ESP solve diverges after sizing (unset ESP curves derived from the de
 
 - 2026-11-05 21:35 UTC: gemini 0.6.35 (55f2ddff) + geomind 0.4.138; pending deploy
 ## Retest
+
+- 2026-11-05 22:12 UTC: Manual QA-IV, 2026-11-05 23:15 CET, live build (backend 1.1.134, geomind 0.4.138, gemini 0.6.35): reruns 807ac8c3 (manual) and 19f6c002 (auto) sized and optimised 5 families, all feasible with 20/20 checks; no 'esp: flow =' error in either run log.
