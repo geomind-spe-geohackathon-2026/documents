@@ -102,3 +102,4 @@ wont-fix, duplicate.
 | [QA-094](bugs/QA-094-return-temperatures-are-treated-as-case.md) | fixing | major | geomind | Return temperatures are treated as case values that need a source; the organisers say they are the team's design choice within the constraints | Fatemeh | hotfix-python |
 | [QA-095](bugs/QA-095-grid-co2-intensity-the-knowledge-base.md) | fixing | major | data | Grid CO2 intensity: the knowledge base has only Ember EU 209 g/kWh; the organisers' reference value 0.3 kg/kWh is missing | Fatemeh | hotfix-back-II |
 | [QA-096](bugs/QA-096-knowledge-csv-view-every-cell-wraps.md) | fixing | minor | frontend | Knowledge CSV view: every cell wraps its full text, rows are huge and columns too wide | user via coordinator | hotfix-front-II |
+| [QA-097](bugs/QA-097-case-lead-reads-plants-need-from.md) | open | minor | geomind | Case lead reads plants_need from the set_case result with read_stored; the stored result has no plants_need key | Fatemeh |  |
