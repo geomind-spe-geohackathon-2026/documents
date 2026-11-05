@@ -1,0 +1,126 @@
+[
+ {
+  "t": 191,
+  "request": "request-337",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "case_lead",
+   "parent": "9c02d335d9e548a8a6871c244aeeaee4",
+   "call_id": "call-5a5c5064-dae5-4ccd-b77d-cd821e5ed8ee",
+   "message": "Case values that no project file gives \u2014 all from `knowledge/hackathon-2026-assumptions.md` (the assumptions document of this competition case), plus the time zone and the two tolerances. Approve all, change some, or stop.\n\nTIME ZONE (needed: the CSV dates carry no offset and gemini has no default zone)\n- time_zone of both demand series = UTC | assumption, no file states it | the brief's dates are calendar days; gemini's own sample case uses UTC timestamps\n\nDEMAND \u2014 return side and cooling indoor values (the brief fixes only the 100 \u00b0C and 20 \u00b0C supplies)\n- demand.heating.return_temperature = 60 degC | design choice, the brief leaves it to the team | below the 100 degC supply\n- demand.heating.return_pressure = 6 bar | assumptions document (team)\n- demand.cooling.return_temperature = 25 degC | design choice, the brief leaves it to the team | above the 20 degC supply\n- demand.cooling.return_pressure = 4 bar | assumptions document (team)\n- demand.cooling.dew_point_margin = 1 K | assumptions document (team)\n- demand.cooling.indoor_temperature = 26 degC | assumptions document (team)\n- demand.cooling.indoor_relative_humidity = 0.5 | assumptions document (team; 50 % as a fraction)\n\nSITE \u2014 air and brine\n- site.air.temperature = 10 degC (constant) | assumptions document (team)\n- site.air.pressure = 101325 Pa | assumptions document (team)\n- site.fluid.sand_concentration = 20 mg/l | assumptions document (team)\n\nUTILITIES\n- utilities.electricity.co2_intensity = 300 g/kWh | organisers (Discord #technical-q-and-a, 2026-11-04), location-based grid average\n- utilities.gas.composition (bought natural gas, mole fraction) = CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233 | assumptions document (team; digits as written, not rounded)\n\nUNCERTAINTY (ranges the assumptions document gives with the value)\n- site.ground.gradient = 30 \u00b0C/km with uncertainty normal, std 2 K/km, min 25, max 35 K/km | assumptions document (team)\n- site.reservoir.permeability = 200 mD with uncertainty triangular, min 100, max 400 mD | assumptions document (team)\n\nREQUIREMENT TOLERANCES (the brief says \"demand met\" and \"equal volumes\" but gives no tolerance)\n- heat_delivered: heating_supply unmet_share max 0.01 | assumptions document (1 % of the year's heat demand, all 365 days)\n- cold_delivered: cooling_supply unmet_share max 0.01 | assumptions document (1 % of the year's cold demand, all 365 days)\n- full_reinjection: doublet reinjection_ratio min 0.99999, max 1.00001, each step while running | assumptions document (band around 1)\n\nSet from the files without asking: time 2027-01-01 to 2028-01-01 at 1 d; both demand series; heating supply 100 degC and cooling supply 20 degC; reservoir 2500 m / 100 m / 250 barg / 200 mD; gradient 30 \u00b0C/km; surface 12 degC; brine 1030 kg/m3, 0.4 mPa.s, GLR 0.8 Nm3/m3, produced gas CH4 0.8 / CO2 0.2; and the 8 requirements of the brief (flow 50\u2013300 m3/h, brine cooling \u2264 40 K, 330 d, pump efficiency 0.7, 1\u20133 doublets, plus the two tolerances above).",
+   "options": [
+    {
+     "label": "approve all",
+     "value": "approve all"
+    },
+    {
+     "label": "change some",
+     "value": "change some"
+    },
+    {
+     "label": "stop",
+     "value": "stop"
+    }
+   ],
+   "request": "request-337"
+  },
+  "answer": {
+   "text": "approve all"
+  }
+ },
+ {
+  "t": 736,
+  "request": "request-977",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "project_lead",
+   "parent": null,
+   "call_id": "call-8e8f36bc-d458-460c-aa08-e72188de53d7",
+   "message": "Allow set_case (write)?\n\nChange the case: format, kind, name, time.start, time.end, time.step and 37 more; files GEMINI_Heating_Demand_Daily_2027.csv, GEMINI_Cooling_Demand_Daily_2027.csv.\n\nWhat the call sends:\nchanges.format: 1\nchanges.kind: \"case\"\nchanges.name: \"GEMINI hackathon 2026 geothermal heating and cooling\"\nchanges.time.start: \"2027-01-01\"\nchanges.time.end: \"2028-01-01\"\nchanges.time.step: 1 d\nchanges.site.ground.surface_temperature: 12 degC\nchanges.site.ground.gradient: 30 degC/km\nchanges.site.reservoir.reference_depth: 2500 m\nchanges.site.reservoir.thickness: 100 m\nchanges.site.reservoir.permeability: 200 mD\nchanges.site.reservoir.pressure: 250 barg\nchanges.site.fluid.density: 1030 kg/m3\nchanges.site.fluid.viscosity: 0.4 mPa.s\nchanges.site.fluid.gas_liquid_ratio: 0.8 Nm3/m3\nchanges.site.fluid.dissolved_gas.CH4: 0.8 -\nchanges.site.fluid.dissolved_gas.CO2: 0.2 -\nchanges.site.fluid.sand_concentration: 20 mg/l\nchanges.site.air.temperature: 10 degC\nchanges.site.air.pressure: 101325 Pa\nchanges.demand.heating.power.file: \"GEMINI_Heating_Demand_Daily_2027.csv\"\nchanges.demand.heating.power.column: \"heating_demand_MWth\"\nchanges.demand.heating.power.unit: \"MW\"\nchanges.demand.heating.power.time_zone: \"UTC\"\nchanges.demand.heating.supply_temperature: 100 degC\nchanges.demand.heating.return_temperature: 60 degC\nchanges.demand.heating.return_pressure: 6 bar\nchanges.demand.cooling.power.file: \"GEMINI_Cooling_Demand_Daily_2027.csv\"\nchanges.demand.cooling.power.column: \"cooling_demand_MWcool\"\nchanges.demand.cooling.power.unit: \"MW\"\nchanges.demand.cooling.power.time_zone: \"UTC\"\nchanges.demand.cooling.supply_temperature: 20 degC\nchanges.demand.cooling.return_temperature: 25 degC\nchanges.demand.cooling.return_pressure: 4 bar\nchanges.demand.cooling.dew_point_margin: 1 K\nchanges.demand.cooling.indoor_temperature: 26 degC\nchanges.demand.cooling.indoor_relative_humidity: 0.5 -\nchanges.utilities.electricity.co2_intensity: 300 g/kWh\nchanges.utilities.gas.composition.CH4: 0.8249507401227822 -\nchanges.utilities.gas.composition.C2H6: 0.039549858193534584 -\nchanges.utilities.gas.composition.C3H8: 0.012748086337494389 -\nchanges.utilities.gas.composition.CO2: 0.011912342910726407 -\nchanges.utilities.gas.composition.N2: 0.11083897243546233 -\nfiles: [\"GEMINI_Heating_Demand_Daily_2027.csv\", \"GEMINI_Cooling_Demand_Daily_2027.csv\"]\ncolumns.GEMINI_Heating_Demand_Daily_2027.csv.date: \"time\"\ncolumns.GEMINI_Cooling_Demand_Daily_2027.csv.date: \"time\"",
+   "request": "request-977"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 747,
+  "request": "request-991",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "project_lead",
+   "parent": null,
+   "call_id": "call-113830a3-b617-4825-8f30-f879d29f147e",
+   "message": "Allow set_case (write)?\n\nSet the case.\n\nWhat the call sends:\nrequirements.production_flow_range.name: \"production_flow_range\"\nrequirements.production_flow_range.on: \"doublet\"\nrequirements.production_flow_range.quantity: \"production_flow\"\nrequirements.production_flow_range.over: \"each\"\nrequirements.production_flow_range.when: \"running\"\nrequirements.production_flow_range.min: 50\nrequirements.production_flow_range.max: 300\nrequirements.production_flow_range.unit: \"m3/h\"\nrequirements.brine_cooling_limit.name: \"brine_cooling_limit\"\nrequirements.brine_cooling_limit.on: \"doublet\"\nrequirements.brine_cooling_limit.quantity: \"brine_cooling\"\nrequirements.brine_cooling_limit.over: \"each\"\nrequirements.brine_cooling_limit.when: \"running\"\nrequirements.brine_cooling_limit.max: 40\nrequirements.brine_cooling_limit.unit: \"K\"\nrequirements.running_time_limit.name: \"running_time_limit\"\nrequirements.running_time_limit.on: \"doublet\"\nrequirements.running_time_limit.quantity: \"production_flow\"\nrequirements.running_time_limit.over: \"duration\"\nrequirements.running_time_limit.when: \"running\"\nrequirements.running_time_limit.max: 330\nrequirements.running_time_limit.unit: \"d\"\nrequirements.pump_efficiency.name: \"pump_efficiency\"\nrequirements.pump_efficiency.on: \"doublet\"\nrequirements.pump_efficiency.quantity: \"pump_efficiency\"\nrequirements.pump_efficiency.min: 0.7\nrequirements.pump_efficiency.max: 0.7\nrequirements.full_reinjection.name: \"full_reinjection\"\nrequirements.full_reinjection.on: \"doublet\"\nrequirements.full_reinjection.quantity: \"reinjection_ratio\"\nrequirements.full_reinjection.over: \"each\"\nrequirements.full_reinjection.when: \"running\"\nrequirements.full_reinjection.min: 0.99999\nrequirements.full_reinjection.max: 1.00001\nrequirements.doublet_count.name: \"doublet_count\"\nrequirements.doublet_count.on: \"doublet\"\nrequirements.doublet_count.quantity: \"count\"\nrequirements.doublet_count.min: 1\nrequirements.doublet_count.max: 3\nrequirements.heat_delivered.name: \"heat_delivered\"\nrequirements.heat_delivered.on: \"heating_supply\"\nrequirements.heat_delivered.quantity: \"unmet_share\"\nrequirements.heat_delivered.max: 0.01\nrequirements.cold_delivered.name: \"cold_delivered\"\nrequirements.cold_delivered.on: \"cooling_supply\"\nrequirements.cold_delivered.quantity: \"unmet_share\"\nrequirements.cold_delivered.max: 0.01",
+   "request": "request-991"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 768,
+  "request": "request-1017",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "project_lead",
+   "parent": null,
+   "call_id": "call-5ac0440f-ec45-4a03-bac0-449ef09e8937",
+   "message": "The case is now stored from the challenge brief and the two daily demand files (site, reservoir, brine, both demand series, and the 8 requirements). The one part still open is the case's economics, which no competition file gives. All of it comes from `knowledge/hackathon-2026-assumptions.md`, the assumptions document of this competition case, in EUR of 2015: discount rate 0.05, analysis period 25 yr, electricity 105.75 EUR/MWh, natural gas 39.92 EUR/MWh, CO2 57.03 EUR/t, heat and cold revenue 60 EUR/MWh each, heat cost share 0.8, CH4 GWP 29.8, chemicals 3 EUR/kg and waste disposal 0.2 EUR/kg, plus the capital-cost and fixed-opex table per equipment kind (drilling 1239.1304347826087 EUR/m, heat pump 0.73786 EUR/W, gas boiler 0.06073 EUR/W, CHP 0.96155 EUR/W, degasser 1,000,000 EUR, chillers 0.3 EUR/W, pumps 0.5 EUR/W, heat exchanger 0.5 EUR/(W/K), flare 100,000 EUR, gas make-up 50,000 EUR, cooler 0.1 EUR/W, pipe 500 EUR/m). No subsidy and no per-MWh chiller price is set. Do you approve these economics values for the case?",
+   "options": [
+    {
+     "label": "Approve all (recommended)",
+     "value": "approve all economics values from knowledge/hackathon-2026-assumptions.md"
+    },
+    {
+     "label": "Change some",
+     "value": "change some economics values"
+    },
+    {
+     "label": "Stop",
+     "value": "stop"
+    }
+   ],
+   "request": "request-1017"
+  },
+  "answer": {
+   "text": "approve all economics values from knowledge/hackathon-2026-assumptions.md"
+  }
+ },
+ {
+  "t": 799,
+  "request": "request-1087",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "project_lead",
+   "parent": null,
+   "call_id": "call-8258fc88-4ece-4d8c-b599-ad41b58ce710",
+   "message": "Allow set_case (write)?\n\nChange the case: economics.currency, economics.price_year.\n\nWhat the call sends:\n{\n  \"changes\": {\n    \"economics\": {\n      \"currency\": {\n        \"value\": \"EUR\"\n      },\n      \"price_year\": {\n        \"value\": 2015\n      }\n    }\n  }\n}",
+   "request": "request-1087"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 867,
+  "request": "request-1165",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "project_lead",
+   "parent": null,
+   "call_id": "call-22cc82d6-a7b5-4328-bd95-8ef542f25b3b",
+   "message": "Allow set_case (write)?\n\nChange the case: economics.discount_rate, economics.analysis_period, economics.energy.electricity, economics.energy.gas, economics.carbon.price, economics.revenue.heat and 36 more.\nEconomics values:\n- discount_rate: 0.05\n- analysis_period: 25 yr\n- energy.electricity: 105.75 EUR/MWh\n- energy.gas: 39.92 EUR/MWh\n- carbon.price: 57.03 EUR/t\n- revenue.heat: 60 EUR/MWh\n- revenue.cold: 60 EUR/MWh\n- accounting.allocation.heat_cost_share: 0.8\n- accounting.gwp.CH4: 29.8\n- accounting.gwp.standard: IPCC AR6 WG1 table 7.15, GWP100 of fossil methane\n- opex.variable.chemical: 3 EUR/kg\n- opex.variable.waste_disposal: 0.2 EUR/kg\n- opex.fixed.drilling: 1 %/yr\n- opex.fixed.heat_pump: 0.2239 %/yr\n- opex.fixed.boiler: 3.25 %/yr\n- opex.fixed.chp: 1.0263 %/yr\n- opex.fixed.degasser: 2 %/yr\n- opex.fixed.compression_chiller: 2 %/yr\n- opex.fixed.absorption_chiller: 2 %/yr\n- opex.fixed.adsorption_chiller: 2 %/yr\n- opex.fixed.production_pump: 2 %/yr\n- opex.fixed.injection_pump: 2 %/yr\n- opex.fixed.heat_exchanger: 1 %/yr\n- opex.fixed.flare: 2 %/yr\n- opex.fixed.gas_makeup: 2 %/yr\n- opex.fixed.cooler: 2 %/yr\n- opex.fixed.pipe: 0.5 %/yr\n- capex.drilling: 1239.1304347826087 EUR/m\n- capex.heat_pump: 0.73786 EUR/W\n- capex.boiler: 0.06073 EUR/W\n- capex.chp: 0.96155 EUR/W\n- capex.degasser: 1000000 EUR\n- capex.compression_chiller: 0.3 EUR/W\n- capex.absorption_chiller: 0.3 EUR/W\n- capex.adsorption_chiller: 0.3 EUR/W\n- capex.production_pump: 0.5 EUR/W\n- capex.injection_pump: 0.5 EUR/W\n- capex.heat_exchanger: 0.5 EUR/(W/K)\n- capex.flare: 100000 EUR\n- capex.gas_makeup: 50000 EUR\n- capex.cooler: 0.1 EUR/W\n- capex.pipe: 500 EUR/m\n\nWhat the call sends:\neconomics.discount_rate: 0.05\neconomics.analysis_period: 25 yr\neconomics.energy.electricity: 105.75 EUR/MWh\neconomics.energy.gas: 39.92 EUR/MWh\neconomics.carbon.price: 57.03 EUR/t\neconomics.revenue.heat: 60 EUR/MWh\neconomics.revenue.cold: 60 EUR/MWh\neconomics.accounting.allocation.heat_cost_share: 0.8\neconomics.accounting.gwp.CH4: 29.8\neconomics.accounting.gwp.standard: IPCC AR6 WG1 table 7.15, GWP100 of fossil methane\neconomics.opex.variable.chemical: 3 EUR/kg\neconomics.opex.variable.waste_disposal: 0.2 EUR/kg\neconomics.opex.fixed.drilling: 1 %/yr\neconomics.opex.fixed.heat_pump: 0.2239 %/yr\neconomics.opex.fixed.boiler: 3.25 %/yr\neconomics.opex.fixed.chp: 1.0263 %/yr\neconomics.opex.fixed.degasser: 2 %/yr\neconomics.opex.fixed.compression_chiller: 2 %/yr\neconomics.opex.fixed.absorption_chiller: 2 %/yr\neconomics.opex.fixed.adsorption_chiller: 2 %/yr\neconomics.opex.fixed.production_pump: 2 %/yr\neconomics.opex.fixed.injection_pump: 2 %/yr\neconomics.opex.fixed.heat_exchanger: 1 %/yr\neconomics.opex.fixed.flare: 2 %/yr\neconomics.opex.fixed.gas_makeup: 2 %/yr\neconomics.opex.fixed.cooler: 2 %/yr\neconomics.opex.fixed.pipe: 0.5 %/yr\neconomics.capex.drilling: 1239.1304347826087 EUR/m\neconomics.capex.heat_pump: 0.73786 EUR/W\neconomics.capex.boiler: 0.06073 EUR/W\neconomics.capex.chp: 0.96155 EUR/W\neconomics.capex.degasser: 1000000 EUR\neconomics.capex.compression_chiller: 0.3 EUR/W\neconomics.capex.absorption_chiller: 0.3 EUR/W\neconomics.capex.adsorption_chiller: 0.3 EUR/W\neconomics.capex.production_pump: 0.5 EUR/W\neconomics.capex.injection_pump: 0.5 EUR/W\neconomics.capex.heat_exchanger: 0.5 EUR/(W/K)\neconomics.capex.flare: 100000 EUR\neconomics.capex.gas_makeup: 50000 EUR\neconomics.capex.cooler: 0.1 EUR/W\neconomics.capex.pipe: 500 EUR/m",
+   "request": "request-1165"
+  },
+  "answer": {
+   "approved": true
+  }
+ }
+]
