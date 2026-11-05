@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-report-I |
 | Found | 2026-11-05 11:17 UTC |
 | Versions | backend 1.1.84 (geomind 0.4.80), frontend not read |
 | Where | https://geomind.team/projects/91b202b6-6236-45e7-8860-a58437d6eb98/assistant/chat; project QA3 report; run result/11c2e401cd91606b |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
