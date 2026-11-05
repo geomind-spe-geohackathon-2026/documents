@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | backend,geomind |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 19:31 UTC |
 | Versions | backend 1.1.117 (geomind and gemini of that image) |
 | Where | project QA-TEST QA-E2E-design-I 3 (d555740a-1054-4642-b905-4919d36702a7); chat 135dd243-9b7a-4c0f-8763-c64729265b80; runs 06fd16f0 (18:51-19:12 UTC) and e3c10ff9-933a-4ab4-abf5-591d4f2d63f8 (19:15:31-19:31:17 UTC) |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -38,4 +38,5 @@ Log the permission mode on run.started (and in the run log); build Permissions f
 
 ## Fix
 
+- 2026-11-05 19:41 UTC: geomind 0.4.132 a04e761; pending deploy
 ## Retest
