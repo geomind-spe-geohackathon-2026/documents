@@ -40,6 +40,14 @@ Same for typed answers: after I answered the question card with 'leave open' (En
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 00:08 UTC: frontend 1.1.59 (55ef789), pushed, build checked, deploy at 00:30 UTC: the tab remembers its answers and the chat shows 'You approved/denied "X": reason'. A lasting record (other browsers, after the tab closes, auto-approve by the worker) needs geomind/backend to publish the answer: the 'permission' event with decision 'answer' (request id, approved, reason) is internal today.
+- 2026-11-05 hotfix-back, backend 1.1.59 (868f498), deployed: backend part. A person's decision
+  is now a public `answer` event, live and on replay (`GET /assistant/runs/{id}/events`, the
+  WebSocket), from geomind's internal `permission` event with `rule: user` and, for typed text,
+  its `tool.result` with `source: answer`. Shape (contracts.md live event table):
+  `{agent, parent, request, kind, message, tool, call_id, decision, reason, text, by, time}`;
+  `decision` allow / deny / answer; its `id` is the sequence of the internal event, so a reload
+  shows the same record. No geomind change needed. Frontend (hotfix-front) shows it.
+
 ## Retest
 
 (Who, when, result.)
