@@ -36,7 +36,7 @@ Also seen on the Case page (own project): the File and Column selects cut their 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:15 UTC: frontend 1.1.64 (8adf94a), pushed, build checked, deploy at 00:30 UTC: the sentence. The side notes are not changed: the Case selects already carry the full value as a tooltip (title), and per-page tab titles are left for development mode.
 ## Retest
 
 (Who, when, result.)
