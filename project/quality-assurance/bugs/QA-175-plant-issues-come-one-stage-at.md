@@ -52,4 +52,5 @@ Guess: `build_plant`/`patch_plant` stop at the first failing stage of gemini's v
 
 ## Fix
 
+- 2026-11-05 17:15 UTC: gemini part needs Sahand's OK (gemini-requests.md)
 ## Retest
