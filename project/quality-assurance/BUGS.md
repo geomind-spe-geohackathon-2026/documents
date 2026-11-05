@@ -78,3 +78,4 @@ wont-fix, duplicate.
 | [QA-070](bugs/QA-070-nested-design-lead-is-interrupted-by.md) | fixed | major | geomind | Nested design_lead is 'interrupted by a crash' twice in one start-to-end run (duration 0 s); the project lead gives up the full brief and narrows the scope | functional-qa-I | hotfix-python |
 | [QA-071](bugs/QA-071-web-search-agents-send-poor-queries.md) | fixing | major | geomind | web_search: agents send poor queries; search should be English-only | Sahand | hotfix-python |
 | [QA-072](bugs/QA-072-case-lead-s-set-case-card.md) | open | major | geomind | Case lead's set_case card claims 'the user's instruction is that the times are UTC' when the user never said so | functional-qa-I |  |
+| [QA-073](bugs/QA-073-approval-card-has-only-approve-deny.md) | open | minor | frontend | Approval card has only Approve, Deny and a reason box: a proposed value cannot be edited before approving | functional-qa-I |  |
