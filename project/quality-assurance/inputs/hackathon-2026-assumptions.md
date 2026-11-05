@@ -1,10 +1,16 @@
 # Assumptions for the GEMINI hackathon case (2026)
 
-Upload this file next to the three competition files (`GEMINI_Heating_Demand_Daily_2027.csv`,
-`GEMINI_Cooling_Demand_Daily_2027.csv`, `GEMINI_Hackathon_Challenge_Requirements.pdf`). It holds
-every value the case and the economics need that the competition files do not give. The user
-approves these values by uploading this file: use them as given, cite this file as their source,
-and do not ask for them again.
+Guidance for the GEMINI hackathon 2026 case only; a starting point, the agents may depart from it
+with a recorded reason.
+
+This file lives in the global Knowledge of geomind.team (never in a project's files). It holds
+every value the case and the economics need that the three competition files
+(`GEMINI_Heating_Demand_Daily_2027.csv`, `GEMINI_Cooling_Demand_Daily_2027.csv`,
+`GEMINI_Hackathon_Challenge_Requirements.pdf`) do not give. Cite it as
+`knowledge/hackathon-2026-assumptions.md`. The case lead puts these values in its ONE
+confirmation question (case values) and its ONE `ask_economics` call (economics), each with this
+file as the source; after the user approves them they are never asked again. How each value goes
+into the case: `knowledge/hackathon-2026-case-guide.md`.
 
 Each value says where it comes from:
 - **Organisers**: answers of the organisers on Discord #technical-q-and-a, 2026-11-04.
@@ -36,7 +42,7 @@ Each value says where it comes from:
 | Indoor temperature / relative humidity (cooling) | 26 degC / 50 % | Team |
 | Ambient air | 10 degC, 101325 Pa | Team |
 | Sand in the brine | 20 mg/l | Team |
-| Grid electricity CO2 intensity | 300 g/kWh | Organisers |
+| Grid electricity CO2 intensity (`utilities.electricity.co2_intensity`) | 300 g/kWh | Organisers |
 | Bought natural gas composition (mole fraction) | CH4 0.825, C2H6 0.040, C3H8 0.013, CO2 0.012, N2 0.111 | Team |
 | Heat pump / compression chiller efficiency | 50 % of the Carnot COP | Team (Frutschi, ABB Review 5/1996, pp. 33-34) |
 
@@ -55,21 +61,23 @@ Each value says where it comes from:
 
 ## Economics
 
-Currency EUR, price year 2015.
+Currency EUR, price year 2015 (`currency`, `price_year`). Keys under `economics.` as in gemini's
+`examples/hackathon_2026/economics.json`. The sample sets no `opex.per_energy` map and no
+`revenue.subsidy`.
 
 | Item | Value | Source |
 |---|---|---|
-| Discount rate | 5 %/yr | Team |
-| Analysis period | 25 years | Team (DEA sheets give 25 yr technical lifetime for heat pump and boiler) |
-| Electricity price | 105.75 EUR/MWh | Cited: Eurostat nrg_pc_205, EU non-household, band IE, excl. VAT, 2025 |
-| Natural gas price | 39.92 EUR/MWh | Cited: Eurostat nrg_pc_203, EU non-household, band I4, excl. VAT, 2025 |
-| CO2 price | 57.03 EUR/t | Cited: Instrat, EU ETS 2025 average allowance price (8 Jan 2026) |
-| Heat revenue / cold revenue | 60 EUR/MWh each | Team |
-| Cost share of heat (allocation heat vs cold) | 0.8 | Team |
-| CH4 global warming potential | 29.8 | Cited: IPCC AR6 WG1 table 7.15, GWP100, fossil methane |
-| Chemicals / waste disposal | 3 EUR/kg / 0.2 EUR/kg | Team |
+| Discount rate (`discount_rate`) | 0.05 | Team |
+| Analysis period (`analysis_period`) | 25 yr | Team (DEA sheets give 25 yr technical lifetime for heat pump and boiler) |
+| Electricity price (`energy.electricity`) | 105.75 EUR/MWh | Cited: Eurostat nrg_pc_205, EU non-household, band IE, excl. VAT, 2025 |
+| Natural gas price (`energy.gas`) | 39.92 EUR/MWh | Cited: Eurostat nrg_pc_203, EU non-household, band I4, excl. VAT, 2025 |
+| CO2 price (`carbon.price`) | 57.03 EUR/t | Cited: Instrat, EU ETS 2025 average allowance price (8 Jan 2026) |
+| Heat revenue / cold revenue (`revenue.heat`, `revenue.cold`) | 60 EUR/MWh each | Team |
+| Cost share of heat (`accounting.allocation.heat_cost_share`) | 0.8 | Team |
+| CH4 global warming potential (`accounting.gwp.CH4`) | 29.8 | Cited: IPCC AR6 WG1 table 7.15, GWP100, fossil methane |
+| Chemicals / waste disposal (`opex.variable.chemical`, `opex.variable.waste_disposal`) | 3 EUR/kg / 0.2 EUR/kg | Team |
 
-Capital cost and fixed operating cost (% of capital cost per year). Source: Cited = Danish Energy
+Capital cost (`capex.<kind>`) and fixed operating cost (`opex.fixed.<kind>`, % of capital cost per year). Source: Cited = Danish Energy
 Agency, Technology Data for Generation of Electricity and District Heating, version 0019 (Aug 2026);
 every other row is Team.
 
