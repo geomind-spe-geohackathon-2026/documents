@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-study-II |
@@ -36,7 +36,7 @@ Both answers end with a section 'What could improve it' with two lines that star
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 20:48 UTC: geomind a8e5366 + dce3cb0; pending deploy
 ## Retest
 
 (Who, when, result.)
