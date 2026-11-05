@@ -29,6 +29,8 @@ A structured, readable engineering report (also in PDF/Markdown export), e.g.:
 9. Assumptions and sources (table)
 Every chart and table has a caption and a short paragraph generated from the result numbers (no fixed boilerplate, general wording, nothing competition-specific baked in).
 
+Typography and layout (Sahand, 20:06 CET): more space between sections and subsections (clear vertical rhythm: larger gap before each heading than after it); headings visibly larger and bolder per level; paragraph width limited for reading (~70-80 characters); captions under each chart/table in a smaller muted style; consistent number formatting (units, thousands separators, 2-3 significant digits); tables with aligned numeric columns; no dense blocks, KPI tiles not crammed; page breaks between main sections in the PDF; the same spacing in the PDF and Markdown exports. Follow normal technical-report writing practice.
+
 ## Actual
 
 KPI tiles, one summary paragraph, then mostly charts and tables with almost no text and no section numbering (screenshot).
