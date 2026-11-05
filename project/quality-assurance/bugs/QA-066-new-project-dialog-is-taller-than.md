@@ -36,7 +36,7 @@ Measured with the dialog open: height 671 px, top -48 px, bottom 625 px in a 577
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:14 UTC: frontend 1.1.63 (70cf8ac), pushed, build checked, deploy at 00:30 UTC
 ## Retest
 
 (Who, when, result.)
