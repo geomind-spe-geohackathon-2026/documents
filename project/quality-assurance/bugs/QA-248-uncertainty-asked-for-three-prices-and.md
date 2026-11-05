@@ -58,3 +58,13 @@ labelled as such), and say in one line which parameters were varied.
 - 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 - 2026-11-05 18:28 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+- 2026-11-05 18:47 UTC, QA-AI-analysis-I, backend 1.1.117: fresh project `QA-TEST QA-AI-analysis-I 8`
+  (485dbcfc-63f4-474f-a2dd-b94ab85bc34f, reference case + HackathonPlant), same chat text, run
+  8d7c09f7-3356-4e40-8c37-40fefeeacc1e. The economist called `sample_uncertainty(values=[economics.energy.gas,
+  economics.energy.electricity, economics.carbon.price], samples=200, seed=42)` (37 s); each draw has exactly these 3
+  parameters; discount rate, gradient and permeability held at the case values; no case change proposed. LCTS p5 40.84,
+  p50 46.35, p95 51.57 EUR/MWh (point value 45.10). 1 min 31 s, 0.0071 USD. Verified for the subset (the title). Still
+  open, filed as QA-299: P10 and P90 are not available ("gemini's Monte Carlo output carries only p5, p50 and p95"),
+  and values are given with 15 digits (QA-099).
+  Log: `../evidence/QA-248/run-8d7c09f7-retest-log.json`.
