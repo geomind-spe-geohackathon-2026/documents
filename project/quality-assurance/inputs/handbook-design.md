@@ -245,7 +245,7 @@ Read the worst step of the failing reason first (11.7), then the module's result
 | Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | drive from hotter water (first in the cascade), larger cooler, or another chiller (7.2) | IV |
 | `heat_delivered` / `cold_delivered` fails | not enough capacity on peak days or outage days, or a unit capped | read the worst step; add boiler/chiller capacity, or check the backup policy covers outage days (8.4, 8.5) | III (IV for cold) |
 | `brine_cooling_limit` fails | brine cooled beyond the cap (heat pump on brine too large or its source limit missing) | set the heat pump's `minimum_source_outlet_temperature` to the production temperature less the cap, or lower its capacity | III |
-| `running_time_limit` fails | a doublet runs more days than allowed | outages policy `lowest_demand`, a second doublet, backup that covers the days off (8.5) | I, II |
+| `running_time_limit` fails | a doublet runs more days than allowed | outages policy `lowest_demand`, a second doublet, backup that covers the days off (8.5) | lead; III |
 | `numerical` reason | a loop that does not close, or water returned into a fixed-temperature supply | plan where each stream goes; do not mix a colder return into a fixed supply (skill `designing-a-plant`, "What gemini can run") | lead |
 | Supply temperature rule fails on zero-demand days | a rule with `when: always` | a case change: the rule holds only while that supply runs (9.4, QA-091); never force circulation | lead; case lead for the rule |
 | `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call (QA-083) | lead |
