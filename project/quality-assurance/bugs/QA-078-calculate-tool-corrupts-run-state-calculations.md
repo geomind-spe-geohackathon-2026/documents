@@ -40,4 +40,4 @@ Cause (code and run_events of 6921d00e): `calculate` and `run_python` numbered i
 
 ## Retest
 
-(Who, when, result.)
+functional-qa-2, 2026-11-05 09:30 UTC, backend 1.1.79 (geomind with random ids): NOT RETESTED FULLY. In run cef908d9 (2 h 40 and 575 steps) `calculate` was used only once and without error, so the original failure (parallel engineers each adding C1) was not provoked again. The same duplicate-id validator fired twice on a different list: `update_state: questions: ids = ['Q-indoor']; expected each id once` (events of run cef908d9, case_lead/design_lead); the run recovered and went on. Suggest the same random-id fix for the `questions` list and a retest with several engineers using `calculate`.
