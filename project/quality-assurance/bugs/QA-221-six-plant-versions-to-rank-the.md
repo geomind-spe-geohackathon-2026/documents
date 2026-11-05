@@ -81,3 +81,13 @@ complete plant to 4 engineers with `fill_parts` (183.8 s, each engineer step 45-
 version already had, then `optimize(design/sized2)` failed all 270 trials (68 s, a bypass map lost in re-typing), and
 only then `optimize(design/v2)` worked (60 s). 33 min, 0.101 USD for a 60 s study. Log:
 `../evidence/QA-205/run-73ef62c4-retest-log.json`.
+
+## Retest
+
+- 2026-11-05 19:04 UTC, QA-AI-analysis-I, backend 1.1.117 -> 1.1.118 (geomind 0.4.130, gemini 0.6.26): fresh project
+  `QA-TEST QA-AI-analysis-I 10` (f764f087-1d13-4dcf-9ae2-9cce205fa3d0, the same six versions), run
+  923b728e-4f88-47dc-b812-f693c33e7ea1, "Size each one, optimise it on LCTS (20 evaluations per doublet count, seed 0),
+  and rank all six". The design lead used `design/v1` ... `design/v6` directly (`size_plant` on each, 3 at a time in
+  parallel), 0 `build_plant`, 0 `patch_plant`, 0 approval cards. 14 min 14 s, 0.066 USD (was 56 min 49 s, 0.168 USD).
+  Verified. Waste left: v2 and v3 first optimised with 60 evaluations (the user said 20), then again with 20.
+  The ranking is still wrong for v1 and v4: see QA-278. Log: `../evidence/QA-278/run-923b728e-retest-log.json`.
