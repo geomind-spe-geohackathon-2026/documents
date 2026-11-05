@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-I |
@@ -53,7 +53,7 @@ Facts: ownership checks (design.owners) refuse writes of roles that do not own a
   case)` runs. Per QA-049, gemini fills a doublet's reservoir from the case only once the plant's
   `depth` is set, and gemini's check does not name `depth`. For hotfix-python-II (geomind
   `read_plant` / gemini).
-
+- 2026-11-05 05:01 UTC: gemini 0.6.7 (20db3c5a: gm.check returns issues, no raise) + geomind 0.4.67 (b7e7a8d: owner names map to disciplines), backend 1.1.72 (8722a33), deployed 05:00 UTC; raw final error not reproduced
 ## Retest
 
 (Who, when, result.)
