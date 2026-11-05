@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-report-I |
@@ -43,7 +43,7 @@ Fix: `compute_kpis` and `estimate_costs` give every figure to five significant d
 year (EUR 2015 for catalogue rows), each price's source as `about.sources` names it, and that
 gemini scales annual figures to a 365.25-day year (`gemini.units.SECONDS_PER_YEAR`), hence the
 0.07 % gap to a 365-day sum of the demand file.
-
+- 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
 ## Retest
 
 (Who, when, result.)
