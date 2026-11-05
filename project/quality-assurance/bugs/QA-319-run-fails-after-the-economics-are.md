@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 19:20 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130) |
 | Where | project "QA-TEST QA-E2E-economics-I 11"; chat 20335356-7c60-41f8-8951-05bfa0c86d31; run 6bb98a04-1d74-4207-a96c-89aa9058909e |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
