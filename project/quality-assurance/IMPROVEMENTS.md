@@ -253,7 +253,7 @@ whether that counts as a source under the no-default rule).
 
 Decision (user, 2026-11-05 14:20 UTC, via Coordinator-IV): (a) to (c) REJECTED. No gemini sample
 plant as a template: the product is general. The failing design path is solved with
-`handbook-plant-design.md` in the global Knowledge (read by section; chapter 10 sizing and
+`handbook-design.md` in the global Knowledge (read by section; chapter 10 sizing and
 optimisation, chapter 11 designing in gemini), which the design lead's and engineers' prompts and
 skills point to. A free plant must take a doublet range: gemini 0.6.15 accepts `size.doublets`
 on a plant without a class on one doublet `d0` and the optimiser searches the count (QA-129).

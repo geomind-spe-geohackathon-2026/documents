@@ -31,7 +31,7 @@ gemini prices carbon on ALL CO2e, grid electricity included (`gemini/evaluate/_u
 
 ## Cause
 
-Found by handbook-economics (via Coordinator-IV, 2026-11-05 ~14:20 UTC) while writing handbook-techno-economics.
+Found by handbook-economics (via Coordinator-IV, 2026-11-05 ~14:20 UTC) while writing handbook-economics.
 
 ## Fix
 

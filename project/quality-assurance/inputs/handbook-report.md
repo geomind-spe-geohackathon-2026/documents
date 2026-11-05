@@ -3,8 +3,8 @@
 How to report a plant design so that a reviewer can follow every decision back to its reason and
 its source, and check every number.
 
-Cite as `knowledge/handbook-engineering-reporting.md`, with the section number (for example
-`knowledge/handbook-engineering-reporting.md §7.2`).
+Cite as `knowledge/handbook-report.md`, with the section number (for example
+`knowledge/handbook-report.md §7.2`).
 
 ---
 
@@ -27,9 +27,9 @@ example.
 It does not explain any agent tool. How to read results is the skill `reading-results`; how to
 quote a study is `comparing-designs` and `report`; uncertainty and sensitivity runs are
 `economics`; derived numbers are `calculator` and `python`. How to define the case is
-`knowledge/handbook-case-definition.md`; how to design the plant is
-`knowledge/handbook-plant-design.md`; the economics behind the costs is
-`knowledge/handbook-techno-economics.md`.
+`knowledge/handbook-case.md`; how to design the plant is
+`knowledge/handbook-design.md`; the economics behind the costs is
+`knowledge/handbook-economics.md`.
 
 ### How to read it
 
@@ -295,13 +295,13 @@ step, each service (demand file, peak, annual energy as gemini gave them, supply
 temperatures), the site (ground, reservoir, brine, gas, air), the utilities (grid CO2
 intensity, bought gas). Each row: the value, the unit, the source (file and page, knowledge
 document and section, or user answer). How the case was set:
-`knowledge/handbook-case-definition.md`.
+`knowledge/handbook-case.md`.
 
 ## 5.2 Requirements
 
 One row per requirement of the case, by its `name`, as a sentence: "each doublet's production
 flow between 50 and 300 m3/h in every step it runs". Add the source page and, for a tolerance
-the brief did not give, that it is an assumption (`knowledge/handbook-case-definition.md`
+the brief did not give, that it is an assumption (`knowledge/handbook-case.md`
 §6.8). Rules gemini cannot express are listed here as well, marked "not judged by gemini".
 
 ## 5.3 Assumptions and their sources
@@ -317,7 +317,7 @@ or reason, and whether the user confirmed it. Separate the three kinds:
 
 Currency and price year, discount rate (real or nominal), analysis period, energy and CO2
 prices, revenue, cost allocation between heat and cold, the CH4 GWP and its standard; each with
-its source. Explained in `knowledge/handbook-techno-economics.md`. A cost without its price year
+its source. Explained in `knowledge/handbook-economics.md`. A cost without its price year
 and currency cannot be compared with any other.
 
 ---
@@ -456,13 +456,13 @@ gemini's metrics with their display titles (`gemini/gemini/evaluate/_utils/displ
 
 Give LCOH, LCOC and LCTS, capex and opex, with the economic basis (§5.4). Say which economic
 assumptions are missing or not confirmed. What each metric means and how it is computed:
-`knowledge/handbook-techno-economics.md`.
+`knowledge/handbook-economics.md`.
 
 ## 8.5 Emissions
 
 CO2-equivalent of the period, with what it contains: CO2 from burnt fuel and released brine
 gas, vented methane times its GWP, grid electricity times the grid intensity, and any offset of
-on-site power (`knowledge/handbook-techno-economics.md`, carbon accounting). State the GWP
+on-site power (`knowledge/handbook-economics.md`, carbon accounting). State the GWP
 standard and the grid intensity's source.
 
 ## 8.6 Quoting numbers
@@ -508,7 +508,7 @@ runs.
 ## 9.3 What was not judged
 
 Never call the design compliant on a point gemini did not judge. List as open: rules the case
-could not express (`knowledge/handbook-case-definition.md` §6.10), checks with `passed` `None`,
+could not express (`knowledge/handbook-case.md` §6.10), checks with `passed` `None`,
 and everything outside the model (permits, noise, land, grid connection).
 
 ## 9.4 A design that does not pass
@@ -710,7 +710,7 @@ For the reviewer and the project lead, before a report goes out:
 # 16. Worked example: the GEMINI hackathon 2026 report
 
 This chapter applies the handbook to one case only; the case itself is in
-`knowledge/handbook-case-definition.md` chapter 12 and `knowledge/hackathon-2026-assumptions.md`.
+`knowledge/handbook-case.md` chapter 12 and `knowledge/hackathon-2026-assumptions.md`.
 
 ## 16.1 What the jury scores
 

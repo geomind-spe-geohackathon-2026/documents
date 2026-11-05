@@ -3,8 +3,8 @@
 How to turn a client's brief and data files into a complete, sourced and checkable case for the
 design of a geothermal heating and cooling plant.
 
-Cite as `knowledge/handbook-case-definition.md`, with the section number (for example
-`knowledge/handbook-case-definition.md §6.4`).
+Cite as `knowledge/handbook-case.md`, with the section number (for example
+`knowledge/handbook-case.md §6.4`).
 
 ---
 
@@ -30,9 +30,9 @@ It does not explain any agent tool. How to call `set_case`, `read_case`, `descri
 (`read_skill('setting-the-case')`); how to find a value in files and the knowledge base is the
 skill `finding-sources`; values from a connected server are the skill `connectors`. Where this
 handbook says "set" or "read", the skill says how. The economics of a case (prices, discounting,
-levelised costs, carbon accounting) are the subject of `knowledge/handbook-techno-economics.md`;
-the design of the plant is `knowledge/handbook-plant-design.md`; the report is
-`knowledge/handbook-engineering-reporting.md`.
+levelised costs, carbon accounting) are the subject of `knowledge/handbook-economics.md`;
+the design of the plant is `knowledge/handbook-design.md`; the report is
+`knowledge/handbook-report.md`.
 
 ### How to read it
 
@@ -248,7 +248,7 @@ A brief packs most rules into notes, footnotes and table captions. Read in this 
 5. The freedoms: every "may", "can be chosen", "allowed", "up to the team".
 6. The reading instructions: every "use ... to obtain ...", "assume ... if ...".
 7. The deliverables and the judging criteria: they say what the result must show
-   (`knowledge/handbook-engineering-reporting.md` chapter 3).
+   (`knowledge/handbook-report.md` chapter 3).
 
 Keep the page of every value: it is the source you cite.
 
@@ -349,7 +349,7 @@ never work out a date or a count.
   stated year.
 - **Period length.** One year is the usual design period; an economic analysis period (often
   20 to 30 years) is an economics value, not the case's `time`
-  (`knowledge/handbook-techno-economics.md`).
+  (`knowledge/handbook-economics.md`).
 
 ## 3.4 Checks on a demand series
 
@@ -478,7 +478,7 @@ exactly this: it is a reading instruction, no value.
   by gemini). It is the gas that comes out of the brine, never the gas bought from a grid
   (`utilities.gas.composition`, §5.3): never put one in the other.
 - Methane in the produced gas matters twice: as a fuel the plant may burn (boiler, CHP, flare)
-  and as a strong greenhouse gas if vented (`knowledge/handbook-techno-economics.md`, carbon
+  and as a strong greenhouse gas if vented (`knowledge/handbook-economics.md`, carbon
   accounting).
 
 ## 4.6 Outside air
@@ -524,7 +524,7 @@ For a plant design, the location-based average of the site's grid is the usual b
 method must be stated. A brief or an organiser's value comes first (§8.1). An hourly or daily
 series of the grid's intensity may be given; a constant is a simplification. The value goes
 into the case (`utilities.electricity.co2_intensity`), not into the economics, although the
-economics price the CO2 (`knowledge/handbook-techno-economics.md`).
+economics price the CO2 (`knowledge/handbook-economics.md`).
 
 ## 5.3 Bought gas
 
@@ -538,7 +538,7 @@ assumptions document. Keep every digit as the source writes it: a composition mu
 Prices (electricity, gas, CO2, heat sale), the discount rate, the analysis period, capital and
 operating costs, the CH4 global warming potential and the cost allocation between heat and cold
 are economics, set in the case's economics file (`ask_economics`, skill `setting-the-case`).
-How to choose them: `knowledge/handbook-techno-economics.md`.
+How to choose them: `knowledge/handbook-economics.md`.
 
 ---
 
@@ -837,7 +837,7 @@ which reading was chosen.
 
 The uncertainty sits on the value leaf; a run, sizing and optimisation use only the value
 itself, and only uncertainty studies draw from the range. The report states which values were
-uncertain and which study used them (`knowledge/handbook-engineering-reporting.md` §8).
+uncertain and which study used them (`knowledge/handbook-report.md` §8).
 
 ---
 
@@ -1042,7 +1042,7 @@ with source `knowledge/hackathon-2026-assumptions.md` (keys as in gemini's `econ
 so the economics match gemini's sample and its rankings can be compared. Every
 `opex.per_energy.*` and `revenue.subsidy.*` key goes to `open`: the sample has neither, there is
 no subsidy, and a per-energy map would need a price for each chiller no source gives. Method:
-`knowledge/handbook-techno-economics.md`.
+`knowledge/handbook-economics.md`.
 
 ## 12.8 Checklist of this case
 
