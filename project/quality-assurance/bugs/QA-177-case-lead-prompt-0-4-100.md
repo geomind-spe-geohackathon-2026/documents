@@ -45,6 +45,21 @@ general textbook) and other lines of `lead.md` still follow the old order.
 See the table: geomind `prompts/case/lead.md`, `prompts/case/geoscientist.md`; Knowledge
 `handbook-case.md` (§0.1, §8.1, §8.4, §8.5), then re-upload.
 
+## Decision (handbook-case-I, 2026-11-05 17:45 UTC)
+
+Which rule is right, under the general handbook (documents 2afde46, Knowledge handbook-case 8caaf7c4,
+since replaced by later revisions):
+
+| # | Right rule | Change where |
+|---|---|---|
+| 1 | The prompt's QA-153 order: read, split, merge, search gaps, ONE confirmation question, then ONE `set_case`. Nothing that needs approval is saved before `approve all`. | handbook §0.1 done; `lead.md` step 1 still says "write the case ONCE with set_case" after merging: change to "merge; save nothing yet". |
+| 2 | `converted`, the ISA pressure and `plants_need` are not in the one question. After the one `set_case`, ONE follow-up `ask_user` only for `plants_need` paths (by path and unit, no number) or a unit NAME `set_case` mapped. Conversions between units a key accepts are gemini's; the ISA pressure is derived, the elevation is what is confirmed. | handbook §0.1, §2.4, §8.4, §10.3, §10.4 done; `lead.md`: drop "put each converted in the ONE question" and "show the ISA value in the ONE question", checklist `plants_need` line to "asked in the follow-up". |
+| 3 | The prompt: never compute a case value; `calculate` is not for the case. | handbook §8.5 done. |
+| 4 | Both: `search_rag`/`read_rag` for the lead, `search_knowledge`/`read_knowledge` for a geoscientist. | handbook §8.1 done. |
+| 5 | The handbook §8.3: Knowledge value `source: "knowledge"`, server value `source: "connector"`; `agent` only for design choices, the time zone and delegated assumptions. | `lead.md` "Confirming". |
+| 6 | Geoscientists read the handbook sections their brief names (§0.4) and keep the requirement rules (§6.7, §6.11, §6.12). | `geoscientist.md`. |
+| 7 | The handbook §0.4 groups, `site.air` in group III. | `lead.md` step 1. |
+
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
