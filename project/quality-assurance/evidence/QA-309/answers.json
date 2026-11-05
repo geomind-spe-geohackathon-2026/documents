@@ -1,0 +1,198 @@
+[
+ {
+  "t": 10,
+  "request": "request-30",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "project_lead",
+   "parent": null,
+   "call_id": "call-44705cf3-983b-40c1-83eb-bf39fa75825e",
+   "message": "The project is empty \u2014 no case, no demand file, no site data \u2014 so I need three things from you before the team can design anything: (1) where the site is (a place name or coordinates), (2) the demand (a file to upload with the heating/cooling load, or the services with their power), and (3) which services the plant must supply (heating, cooling, or both). If you would rather not gather that now, I can build the plant on the GEMINI hackathon example case instead.",
+   "options": [
+    {
+     "label": "Use the GEMINI hackathon example case",
+     "value": "Use the GEMINI hackathon example case (hackathon-2026-*)"
+    },
+    {
+     "label": "I will give site, demand and services",
+     "value": "I will give the site, the demand and the services"
+    }
+   ],
+   "request": "request-30"
+  },
+  "answer": {
+   "text": "Use the GEMINI hackathon example case (hackathon-2026-*)"
+  }
+ },
+ {
+  "t": 129,
+  "request": "request-336",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "case_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-1e80f269-2bce-4f4a-b480-b43ca715ef33",
+   "message": "The GEMINI hackathon case's demand is two daily series files \u2014 `GEMINI_Heating_Demand_Daily_2027.csv` (column `heating_demand_MWth`) and `GEMINI_Cooling_Demand_Daily_2027.csv` (column `cooling_demand_MWcool`), 365 daily values for 2027. Neither is in this project (it is empty) and neither is in the Knowledge base, so the case's two required demand series cannot be set from what I have. Please upload the two competition CSV files to the project. If you cannot, tell me and I will record the demand as open (the case cannot be completed without it).",
+   "request": "request-336"
+  },
+  "answer": {
+   "text": "I do not know the details. Use your own reasonable assumptions for anything you need."
+  }
+ },
+ {
+  "t": 155,
+  "request": "request-378",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "case_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-8ec6a8d4-69e1-4ecd-add9-bdfe48537862",
+   "message": "Allow web_search (external)?\n\nWhat the call sends:\n{\n  \"query\": \"GEMINI hackathon 2026 geothermal challenge GEMINI_Heating_Demand_Daily_2027.csv download\"\n}",
+   "request": "request-378"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 191,
+  "request": "request-398",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "case_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-e1a7f80c-37b2-4359-a60c-f7877c7c8722",
+   "message": "Approve the case values for the GEMINI hackathon 2026 example case. All come from `knowledge/hackathon-2026-assumptions.md` (which restates the competition PDF p. 2 and the organisers' answers) unless marked otherwise.\n\nTIME\n- time_zone = UTC | agent assumption | the competition CSVs' `date` column has no offset and no file or user states the site's location; gemini's sample case uses UTC timestamps\n- time.start 2027-01-01, time.end 2028-01-01 (excluded), time.step 1 d | doc, \"Competition: Values from the files\" (the CSVs' span)\n\nDEMAND\n- demand.heating.supply_temperature = 100 degC | doc (PDF p. 2, fixed)\n- demand.heating.return_temperature = 60 degC | doc (team design choice)\n- demand.heating.return_pressure = 6 bar | doc\n- demand.cooling.supply_temperature = 20 degC | doc (PDF p. 2, fixed)\n- demand.cooling.return_temperature = 25 degC | doc (team design choice)\n- demand.cooling.return_pressure = 4 bar | doc\n- demand.cooling.dew_point_margin = 1 K | doc\n- demand.cooling.indoor_temperature = 26 degC | doc\n- demand.cooling.indoor_relative_humidity = 50 % | doc\n\nSITE\n- site.ground.surface_temperature = 12 degC | doc (PDF p. 2)\n- site.ground.gradient = 30 degC/km, uncertainty normal std 2 K/km, 25 to 35 K/km | doc\n- site.reservoir.reference_depth = 2500 m | doc (PDF p. 2, midpoint TVD)\n- site.reservoir.thickness = 100 m | doc (PDF p. 2, gross)\n- site.reservoir.permeability = 200 mD, uncertainty triangular 100 to 400 mD | doc\n- site.reservoir.pressure = 250 barg | doc (PDF p. 2)\n- site.fluid.density = 1030 kg/m3 | doc (PDF p. 2)\n- site.fluid.viscosity = 0.4 mPa.s | doc (PDF p. 2)\n- site.fluid.gas_liquid_ratio = 0.8 Nm3/m3 | doc (PDF p. 2)\n- site.fluid.dissolved_gas.CH4 = 0.8, .CO2 = 0.2 | doc (PDF p. 2, produced gas)\n- site.fluid.sand_concentration = 20 mg/l | doc\n- site.air.temperature = 10 degC (constant) | doc\n- site.air.pressure = 101325 Pa (constant) | doc\n\nUTILITIES\n- utilities.electricity.co2_intensity = 300 g/kWh | doc (organisers)\n- utilities.gas.composition: CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233 | doc (bought gas, digits as printed)\n\nREQUIREMENTS (8, from the doc's \"Competition: Requirements (8)\")\n- production_flow_range: doublet, production_flow, each, running, 50 to 300 m3/h\n- brine_cooling_limit: doublet, brine_cooling, each, running, max 40 K\n- running_time_limit: doublet, production_flow, duration, running, max 330 d\n- pump_efficiency: doublet, pump_efficiency, 0.7 to 0.7 (no unit)\n- full_reinjection: doublet, reinjection_ratio, each, running, 0.99999 to 1.00001\n- doublet_count: doublet, count, 1 to 3\n- heat_delivered: heating_supply, unmet_share, max 0.01\n- cold_delivered: cooling_supply, unmet_share, max 0.01\n\nNote: the two demand series (`GEMINI_Heating_Demand_Daily_2027.csv`, `GEMINI_Cooling_Demand_Daily_2027.csv`) are still missing \u2014 they are not in the project, not in Knowledge and not on the web, and a series is never built from a peak and an annual energy. The case's two required demand powers therefore stay open.",
+   "options": [
+    {
+     "label": "approve all",
+     "value": "approve all"
+    },
+    {
+     "label": "change some",
+     "value": "change some"
+    },
+    {
+     "label": "stop",
+     "value": "stop"
+    }
+   ],
+   "request": "request-398"
+  },
+  "answer": {
+   "text": "approve all"
+  }
+ },
+ {
+  "t": 274,
+  "request": "request-429",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "case_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-feb3f4e8-d11d-4afc-8e55-3dc85e00a496",
+   "message": "The case is refused for one reason only: `demand.heating.power` and `demand.cooling.power` are required and the two competition demand files (GEMINI_Heating_Demand_Daily_2027.csv, GEMINI_Cooling_Demand_Daily_2027.csv) are not in the project, not in the Knowledge base and not on the web. A series is never built from a peak and an annual energy, so the only series-free form is a constant power. You said to use my own reasonable assumptions, so I propose, as engineering assumptions with no source:\n\n- demand.heating.power = 30.0 MW constant | engineering assumption, no source | the brief's own heating peak (PDF p. 1, 30.0 MWth on 28 January); the demand file is unavailable, and a constant power at the stated peak is the only option that uses no number of mine. Consequence: the year's heat is far above the brief's 111.67 GWhth/year, so the plant will be oversized and the economics pessimistic.\n- demand.cooling.power = 10.0 MW constant | engineering assumption, no source | the brief's own cooling peak (PDF p. 1, 10.0 MWcool on 19 July); same reason and same consequence against 23.74 GWhcool/year.\n\nUploading the two CSV files instead would give the real series and is much better. Approve all to set the case with these two constant powers, change some to give other values, or stop.",
+   "options": [
+    {
+     "label": "approve all",
+     "value": "approve all"
+    },
+    {
+     "label": "change some",
+     "value": "change some"
+    },
+    {
+     "label": "stop",
+     "value": "stop"
+    }
+   ],
+   "request": "request-429"
+  },
+  "answer": {
+   "text": "approve all"
+  }
+ },
+ {
+  "t": 290,
+  "request": "request-440",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "case_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-1c39cd99-72ba-4094-8866-37af51409b51",
+   "message": "Allow set_case (write)?\n\nChange the case: format, kind, name, about.brief, about.open, time.start and 34 more.\n\nWhat the call sends:\nchanges.format: 1\nchanges.kind: \"case\"\nchanges.name: \"GEMINI hackathon 2026 example case\"\nchanges.about.brief: \"GEMINI hackathon 2026 example case, set from knowledge/hackathon-2026-assumptions.md (which restates GEMINI_Hackathon_Challenge_Requirements.pdf p. 2 and the organisers' answers). The two competition demand CSVs are not in the project, not in Knowledge and not on the web: the demand is a constant power at the brief's own peak, approved by the user as an engineering assumption.\"\nchanges.about.open: [\"demand series: the competition CSVs GEMINI_Heating_Demand_Daily_2027.csv and GEMINI_Cooling_Demand_Daily_2027.csv are unavailable; constant powers at the brief's peaks stand in for them\", \"site.air.relative_humidity: not needed, not set (no module of this case reads it)\", \"utilities.gas.heating_value: not needed, gemini computes it from the composition\", \"utilities.electricity.import_limit and export_limit: no grid operator data\", \"pump intake limits (free gas 18.75 %, intake pressure 5 bar): conditional, handed to the design team, not requirements\", \"well depth 2000-3500 m and doublet count 1-3: design freedoms, not case values\"]\nchanges.time.start: \"2027-01-01\"\nchanges.time.end: \"2028-01-01\"\nchanges.time.step: 1 d\nchanges.demand.heating.power: 30.0 MW\nchanges.demand.heating.supply_temperature: 100 degC\nchanges.demand.heating.return_temperature: 60 degC\nchanges.demand.heating.return_pressure: 6 bar\nchanges.demand.cooling.power: 10.0 MW\nchanges.demand.cooling.supply_temperature: 20 degC\nchanges.demand.cooling.return_temperature: 25 degC\nchanges.demand.cooling.return_pressure: 4 bar\nchanges.demand.cooling.indoor_temperature: 26 degC\nchanges.demand.cooling.indoor_relative_humidity: 50 %\nchanges.demand.cooling.dew_point_margin: 1 K\nchanges.site.ground.surface_temperature: 12 degC\nchanges.site.ground.gradient: 30 degC/km\nchanges.site.reservoir.reference_depth: 2500 m\nchanges.site.reservoir.thickness: 100 m\nchanges.site.reservoir.permeability: 200 mD\nchanges.site.reservoir.pressure: 250 barg\nchanges.site.fluid.density: 1030 kg/m3\nchanges.site.fluid.viscosity: 0.4 mPa.s\nchanges.site.fluid.gas_liquid_ratio: 0.8 Nm3/m3\nchanges.site.fluid.sand_concentration: 20 mg/l\nchanges.site.fluid.dissolved_gas.CH4: 0.8 -\nchanges.site.fluid.dissolved_gas.CO2: 0.2 -\nchanges.site.air.temperature: 10 degC\nchanges.site.air.pressure: 101325 Pa\nchanges.utilities.electricity.co2_intensity: 300 g/kWh\nchanges.utilities.gas.composition.CH4: 0.8249507401227822 -\nchanges.utilities.gas.composition.C2H6: 0.039549858193534584 -\nchanges.utilities.gas.composition.C3H8: 0.012748086337494389 -\nchanges.utilities.gas.composition.CO2: 0.011912342910726407 -\nchanges.utilities.gas.composition.N2: 0.11083897243546233 -\nchanges.requirements: [{\"name\": \"production_flow_range\", \"on\": \"doublet\", \"quantity\": \"production_flow\", \"over\": \"each\", \"when\": \"running\", \"min\": 50, \"max\": 300, \"unit\": \"m3/h\"}, {\"name\": \"brine_cooling_limit\", \"on\": \"doublet\", \"quantity\": \"brine_cooling\", \"over\": \"each\", \"when\": \"running\", \"max\": 40, \"unit\": \"K\"}, {\"name\": \"running_time_limit\", \"on\": \"doublet\", \"quantity\": \"production_flow\", \"over\": \"duration\", \"when\": \"running\", \"max\": 330, \"unit\": \"d\"}, {\"name\": \"pump_efficiency\", \"on\": \"doublet\", \"quantity\": \"pump_efficiency\", \"min\": 0.7, \"max\": 0.7}, {\"name\": \"full_reinjection\", \"on\": \"doublet\", \"quantity\": \"reinjection_ratio\", \"over\": \"each\", \"when\": \"running\", \"min\": 0.99999, \"max\": 1.00001}, {\"name\": \"doublet_count\", \"on\": \"doublet\", \"quantity\": \"count\", \"min\": 1, \"max\": 3}, {\"name\": \"heat_delivered\", \"on\": \"heating_supply\", \"quantity\": \"unmet_share\", \"max\": 0.01}, {\"name\": \"cold_delivered\", \"on\": \"cooling_supply\", \"quantity\": \"unmet_share\", \"max\": 0.01}]",
+   "request": "request-440"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 316,
+  "request": "request-460",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "case_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-c66ad153-2ae6-45cb-8256-ab7242d6c58b",
+   "message": "Economics of the case, from the cost catalogue.\nEvery value is the exact figure of knowledge/hackathon-2026-assumptions.md (gemini's hackathon sample economics.json, EUR at 2015 prices), so results compare with the sample. The per-energy O&M map is open (no source prices the chillers or the heat pump per MWh) and there is no subsidy in this case.\n\nValues (approve all sets each, with its row):\neconomics.discount_rate = 0.05 | no row | knowledge/hackathon-2026-assumptions.md\neconomics.currency = EUR | no row | the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)\neconomics.price_year = 2015 | no row | the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)\neconomics.analysis_period = 25 yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.energy.electricity = 105.75 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.energy.gas = 39.92 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.carbon.price = 57.03 EUR/t | no row | knowledge/hackathon-2026-assumptions.md\neconomics.revenue.heat = 60 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.revenue.cold = 60 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.accounting.allocation.heat_cost_share = 0.8 | no row | knowledge/hackathon-2026-assumptions.md\neconomics.accounting.gwp.CH4 = 29.8 | no row | knowledge/hackathon-2026-assumptions.md\neconomics.accounting.gwp.standard = IPCC AR6 WG1 table 7.15, GWP100 of fossil methane | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.variable.chemical = 3 EUR/kg | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.variable.waste_disposal = 0.2 EUR/kg | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.drilling = 1239.13 EUR/m | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.drilling = 1 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.heat_pump = 0.73786 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.heat_pump = 0.2239 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.boiler = 0.06073 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.boiler = 3.25 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.chp = 0.96155 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.chp = 1.0263 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.degasser = 1000000 EUR | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.degasser = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.compression_chiller = 0.3 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.compression_chiller = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.absorption_chiller = 0.3 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.absorption_chiller = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.adsorption_chiller = 0.3 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.adsorption_chiller = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.production_pump = 0.5 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.production_pump = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.injection_pump = 0.5 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.injection_pump = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.heat_exchanger = 0.5 EUR/(W/K) | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.heat_exchanger = 1 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.flare = 100000 EUR | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.flare = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.gas_makeup = 50000 EUR | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.gas_makeup = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.cooler = 0.1 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.cooler = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.pipe = 500 EUR/m | no row | knowledge/hackathon-2026-assumptions.md | the key reads EUR/m per metre: each module of this kind needs that size in the plant, else the plant is not simulated; the key also takes EUR/MW/m\neconomics.opex.fixed.pipe = 0.5 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.electric_boiler = 0.07 EUR/W | row boiler-electric-dea-2017-over-10mw | verified | 2017 | Technology Data for Generation of Electricity and District Heating (DEA data sheet workbook, mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_for_el_and_dh.xlsx (recommended; other rows: 0.15 EUR/W [boiler-electric-dea-2017-1-5mw, verified])\neconomics.capex.ice_storage = 23249.9 EUR/MWh | row ice-storage-mlakar-2022-low | secondary | 2022 | Upgrade of ice storage system in congress centre (Mlakar and Stritih, CLIMA 2022) | https://proceedings.open.tudelft.nl/clima2022/article/download/235/218/227 | the row's unit is EUR/MWh cold; set as EUR/MWh; the key reads EUR/MWh per J of energy capacity: each module of this kind needs that size in the plant, else the plant is not simulated; the key also takes EUR/m3 (recommended; other rows: 31704.4 EUR/MWh cold [ice-storage-mlakar-2022-high, secondary]; 10062 EUR/MWh cold [ice-storage-proxy-irena-2013-pcm-low, secondary]; 50310 EUR/MWh cold [ice-storage-proxy-irena-2013-pcm-high, secondary])\neconomics.capex.thermal_storage = 168.554 EUR/m3 | row thermal-storage-tank-dea-2025-3000m3 | verified | 2025 | Technology Data for Energy Storage, data sheet workbook Version 9 (mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_catalogue_for_energy_storage.xlsx | the key reads EUR/m3 per m3: each module of this kind needs that size in the plant, else the plant is not simulated; the key also takes EUR/MWh (recommended; other rows: 64.8547 EUR/m3 [thermal-storage-pit-dea-2025-70000m3, verified])\neconomics.opex.fixed.circulation_pump = 2 %/yr | row circulation-pump-om-vdi2067-vicus-2026-low | secondary | 2026 | VDI 2067: Economic Analysis and Service Life (section 3, Operation-related costs: maintenance and servicing) | https://vicus-software.com/en/knowledge/economics/vdi2067/ (recommended; other rows: 3 %/yr [circulation-pump-om-vdi2067-vicus-2026-high, secondary])\neconomics.opex.fixed.electric_boiler = 1070 EUR/MW/yr | row opex-boiler-electric-dea-2017 | verified | 2017 | Technology Data for Generation of Electricity and District Heating (DEA data sheet workbook, mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_for_el_and_dh.xlsx\neconomics.opex.fixed.ice_storage = 0.876924 %/yr | row ice-storage-om-spice-2024-single-building-2000kwh | secondary | 2024 | Ice Storage vs. Battery Storage for Cooling Systems - A Cost and Performance Comparison | https://sp-icestorage.com/vblog/ice-storage-vs-battery-storage/ (recommended; other rows: 0.742728 %/yr [ice-storage-om-spice-2024-mid-size-10000kwh, secondary]; 0.513 %/yr [ice-storage-om-spice-2024-district-cooling-50000kwh, secondary]; 2 %/yr [ice-storage-om-proxy-hao-2022-cooling-plant, secondary]; 1.66667 %/yr [ice-storage-om-proxy-irena-2013-pcm-low, secondary]; 4.16667 %/yr [ice-storage-om-proxy-irena-2013-pcm-high, secondary])\neconomics.opex.fixed.thermal_storage = 0.282326 %/yr | row opex-thermal-storage-tank-dea-2025 | verified | 2025 | Technology Data for Energy Storage, data sheet workbook Version 9 (mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_catalogue_for_energy_storage.xlsx\n\nOpen (no usable row; give a value with change some, or leave it open):\neconomics.opex.per_energy.boiler\neconomics.opex.per_energy.electric_boiler\neconomics.opex.per_energy.chp\neconomics.opex.per_energy.heat_pump\neconomics.opex.per_energy.compression_chiller\neconomics.opex.per_energy.absorption_chiller\neconomics.opex.per_energy.adsorption_chiller\neconomics.revenue.subsidy.amount\neconomics.revenue.subsidy.duration\neconomics.revenue.subsidy.cap\neconomics.revenue.subsidy.capacity\neconomics.capex.circulation_pump (the row's unit is EUR/W heat; set as EUR/W, which the key reads per W of shaft power at the nominal flow; the row is heat, not shaft power: not converted, the user decides)",
+   "options": [
+    {
+     "label": "approve all",
+     "value": "approve all"
+    },
+    {
+     "label": "change some",
+     "value": "change some"
+    },
+    {
+     "label": "stop",
+     "value": "stop"
+    }
+   ],
+   "request": "request-460"
+  },
+  "answer": {
+   "text": "approve all"
+  }
+ },
+ {
+  "t": 389,
+  "request": "request-598",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "design_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-7afcd445-bf2f-4a8a-b3a8-24c421c75baa",
+   "message": "Allow build_plant (write)?\n\nBuild plant 'start' of class HeatingHeatPumpCoolingPlant.\n\nWhat the call sends:\n{\n  \"plant\": {\n    \"format\": 1,\n    \"kind\": \"plant\",\n    \"name\": \"hack2026_hp_cooling\",\n    \"type\": \"HeatingHeatPumpCoolingPlant\",\n    \"size\": {\n      \"doublets\": {\n        \"value\": 1\n      }\n    },\n    \"params\": {\n      \"backup\": {\n        \"value\": \"peak\"\n      },\n      \"control\": {\n        \"dispatch\": {\n          \"value\": \"least_cost\"\n        },\n        \"outages\": {\n          \"value\": \"lowest_demand\"\n        }\n      }\n    }\n  },\n  \"name\": \"start\",\n  \"from_class\": \"HeatingHeatPumpCoolingPlant\"\n}",
+   "request": "request-598"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 627,
+  "request": "request-892",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "design_lead",
+   "parent": "55a9cd7b18ce43a9b260a4982eb07a1c",
+   "call_id": "call-82b54995-def9-4bb9-b2d5-1fc0dafaec35",
+   "message": "Allow patch_plant (write)?\n\nChange 113 value(s) of design/start and save it as 'filled': params.d0.depth, params.d0.drainage_radius, params.d0.roughness, params.d0.reservoir.drainage_radius, params.d0.sink.drainage_radius, params.d0.reservoir.skin and 107 more.\n\nWhat the call sends:\ndesign: \"design/start\"\nchanges: [{\"path\": \"params.d0.depth\", \"value\": {\"value\": 2500, \"unit\": \"m\"}}, {\"path\": \"params.d0.drainage_radius\", \"value\": {\"value\": 1000, \"unit\": \"m\"}}, {\"path\": \"params.d0.roughness\", \"value\": {\"value\": 4.5e-05, \"unit\": \"m\"}}, {\"path\": \"params.d0.reservoir.drainage_radius\", \"value\": {\"value\": 1000, \"unit\": \"m\"}}, {\"path\": \"params.d0.sink.drainage_radius\", \"value\": {\"value\": 1000, \"unit\": \"m\"}}, {\"path\": \"params.d0.reservoir.skin\", \"value\": {\"value\": 0}}, {\"path\": \"params.d0.sink.skin\", \"value\": {\"value\": 0}}, {\"path\": \"params.d0.reservoir.top_depth\", \"value\": {\"value\": 2450, \"unit\": \"m\"}}, {\"path\": \"params.d0.sink.top_depth\", \"value\": {\"value\": 2450, \"unit\": \"m\"}}, {\"path\": \"params.d0.reservoir.wellbore_radius\", \"value\": {\"value\": 0.122, \"unit\": \"m\"}}, {\"path\": \"params.d0.sink.wellbore_radius\", \"value\": {\"value\": 0.122, \"unit\": \"m\"}}, {\"path\": \"params.degasser.nominal_pressure_drop\", \"value\": {\"value\": 14900, \"unit\": \"Pa\"}}, {\"path\": \"params.degasser.separation_efficiency\", \"value\": {\"value\": 1.0}}, {\"path\": \"params.filters.hot.nominal_pressure_drop\", \"value\": {\"value\": 1600, \"unit\": \"Pa\"}}, {\"path\": \"params.filters.hot.nominal_mass_flow\", \"value\": {\"value\": 85.8333333333, \"unit\": \"kg/s\"}}, {\"path\": \"params.filters.cold.nominal_pressure_drop\", \"value\": {\"value\": 1600, \"unit\": \"Pa\"}}, {\"path\": \"params.filters.cold.nominal_mass_flow\", \"value\": {\"value\": 85.8333333333, \"unit\": \"kg/s\"}}, {\"path\": \"params.flare.combustion_efficiency\", \"value\": {\"value\": 0.98}}, {\"path\": \"params.d0.well_diameter\", \"value\": {\"value\": 0.244, \"unit\": \"m\"}}, {\"path\": \"params.d0.nominal_flow\", \"value\": {\"value\": 300, \"unit\": \"m3/h\"}}, {\"path\": \"params.d0.pump_efficiency\", \"value\": {\"value\": 0.7}}, {\"path\": \"params.d0.nominal_wellhead_pressure\", \"value\": {\"value\": 10, \"unit\": \"bar\"}}, {\"path\": \"params.d0.well.section_length\", \"value\": {\"value\": [2500], \"unit\": \"m\"}}, {\"path\": \"params.d0.well.section_inclination\", \"value\": {\"value\": [1.5708], \"unit\": \"rad\"}}, {\"path\": \"params.d0.well.section_diameter\", \"value\": {\"value\": [0.244], \"unit\": \"m\"}}, {\"path\": \"params.d0.well.section_roughness\", \"value\": {\"value\": [4.5e-05], \"unit\": \"m\"}}, {\"path\": \"params.d0.well.friction_correlation\", \"value\": {\"value\": \"darcy_weisbach\"}}, {\"path\": \"params.d0.well.two_phase_friction_correlation\", \"value\": {\"value\": \"BeggsBrill\"}}, {\"path\": \"params.d0.well.correction_factors\", \"value\": {\"value\": [1.0, 0.0]}}, {\"path\": \"params.d0.well.soil_temperature\", \"value\": {\"value\": 12, \"unit\": \"degC\"}}, {\"path\": \"params.d0.well.heat_transfer_coefficient\", \"value\": {\"value\": 10, \"unit\": \"W/m2/K\"}}, {\"path\": \"params.d0.well.segment\", \"value\": {\"value\": \"below_esp\"}}, {\"path\": \"params.d0.well.esp_depth\", \"value\": {\"value\": 1000, \"unit\": \"m\"}}, {\"path\": \"params.d0.riser.section_length\", \"value\": {\"value\": [2500], \"unit\": \"m\"}}, {\"path\": \"params.d0.riser.section_inclination\", \"value\": {\"value\": [1.5708], \"unit\": \"rad\"}}, {\"path\": \"params.d0.riser.section_diameter\", \"value\": {\"value\": [0.244], \"unit\": \"m\"}}, {\"path\": \"params.d0.riser.section_roughness\", \"value\": {\"value\": [4.5e-05], \"unit\": \"m\"}}, {\"path\": \"params.d0.riser.friction_correlation\", \"value\": {\"value\": \"darcy_weisbach\"}}, {\"path\": \"params.d0.riser.two_phase_friction_correlation\", \"value\": {\"value\": \"BeggsBrill\"}}, {\"path\": \"params.d0.riser.correction_factors\", \"value\": {\"value\": [1.0, 0.0]}}, {\"path\": \"params.d0.riser.soil_temperature\", \"value\": {\"value\": 12, \"unit\": \"degC\"}}, {\"path\": \"params.d0.riser.heat_transfer_coefficient\", \"value\": {\"value\": 10, \"unit\": \"W/m2/K\"}}, {\"path\": \"params.d0.riser.segment\", \"value\": {\"value\": \"above_esp\"}}, {\"path\": \"params.d0.riser.esp_depth\", \"value\": {\"value\": 1000, \"unit\": \"m\"}}, {\"path\": \"params.d0.injector.section_length\", \"value\": {\"value\": [2500], \"unit\": \"m\"}}, {\"path\": \"params.d0.injector.section_inclination\", \"value\": {\"value\": [1.5708], \"unit\": \"rad\"}}, {\"path\": \"params.d0.injector.section_diameter\", \"value\": {\"value\": [0.244], \"unit\": \"m\"}}, {\"path\": \"params.d0.injector.section_roughness\", \"value\": {\"value\": [4.5e-05], \"unit\": \"m\"}}, {\"path\": \"params.d0.injector.friction_correlation\", \"value\": {\"value\": \"darcy_weisbach\"}}, {\"path\": \"params.d0.injector.two_phase_friction_correlation\", \"value\": {\"value\": \"BeggsBrill\"}}, {\"path\": \"params.d0.injector.correction_factors\", \"value\": {\"value\": [1.0, 0.0]}}, {\"path\": \"params.d0.injector.soil_temperature\", \"value\": {\"value\": 12, \"unit\": \"degC\"}}, {\"path\": \"params.d0.injector.heat_transfer_coefficient\", \"value\": {\"value\": 10, \"unit\": \"W/m2/K\"}}, {\"path\": \"params.d0.esp.pump_type\", \"value\": {\"value\": \"unspecified\"}}, {\"path\": \"params.d0.esp.motor_efficiency\", \"value\": {\"value\": 1.0}}, {\"path\": \"params.d0.esp.minimum_flow\", \"value\": {\"value\": 40, \"unit\": \"m3/h\"}}, {\"path\": \"params.d0.esp.maximum_flow\", \"value\": {\"value\": 400, \"unit\": \"m3/h\"}}, {\"path\": \"params.d0.esp.best_efficiency_flow\", \"value\": {\"value\": 300, \"unit\": \"m3/h\"}}, {\"path\": \"params.d0.esp.correction_factors\", \"value\": {\"value\": [1.0, 0.0]}}, {\"path\": \"params.d0.esp.drift_threshold\", \"value\": {\"value\": 0.15}}, {\"path\": \"params.d0.esp.minimum_intake_pressure\", \"value\": {\"value\": 5, \"unit\": \"bar\"}}, {\"path\": \"params.d0.esp.maximum_gas_fraction\", \"value\": {\"value\": 0.1875}}, {\"path\": \"params.injection_pump.pump_type\", \"value\": {\"value\": \"unspecified\"}}, {\"path\": \"params.heat_exchanger.thermal_conductance\", \"value\": {\"value\": 1500000.0, \"unit\": \"W/K\"}}, {\"path\": \"params.heat_exchanger.arrangement\", \"value\": {\"value\": \"counterflow\"}}, {\"path\": \"params.heat_exchanger.hot_nominal_pressure_drop\", \"value\": {\"value\": 0.5, \"unit\": \"bar\"}}, {\"path\": \"params.heat_exchanger.cold_nominal_pressure_drop\", \"value\": {\"value\": 0.5, \"unit\": \"bar\"}}, {\"path\": \"params.heat_exchanger.hot_nominal_mass_flow\", \"value\": {\"value\": 85.8333333333, \"unit\": \"kg/s\"}}, {\"path\": \"params.heat_exchanger.cold_nominal_mass_flow\", \"value\": {\"value\": 179.425837321, \"unit\": \"kg/s\"}}, {\"path\": \"params.heat_pump.mode\", \"value\": {\"value\": \"heating\"}}, {\"path\": \"params.heat_pump.cop_model\", \"value\": {\"value\": \"carnot\"}}, {\"path\": \"params.heat_pump.carnot_fraction\", \"value\": {\"value\": 0.5}}, {\"path\": \"params.heat_pump.lorenz_fraction\", \"value\": {\"value\": 0.5}}, {\"path\": \"params.heat_pump.minimum_temperature_lift\", \"value\": {\"value\": 10, \"unit\": \"K\"}}, {\"path\": \"params.heat_pump.minimum_source_outlet_temperature\", \"value\": {\"value\": 47, \"unit\": \"degC\"}}, {\"path\": \"params.heat_pump.temperature_setpoint\", \"value\": {\"value\": 100, \"unit\": \"degC\"}}, {\"path\": \"params.peak_boiler.capacity\", \"value\": {\"value\": 30, \"unit\": \"MW\"}}, {\"path\": \"params.peak_boiler.efficiency\", \"value\": {\"value\": 0.9}}, {\"path\": \"params.peak_boiler.temperature_setpoint\", \"value\": {\"value\": 100, \"unit\": \"degC\"}}, {\"path\": \"params.heating_supply_pipe.length\", \"value\": {\"value\": 100, \"unit\": \"m\"}}, {\"path\": \"params.heating_supply_pipe.inner_diameter\", \"value\": {\"value\": 0.5, \"unit\": \"m\"}}, {\"path\": \"params.heating_supply_pipe.roughness\", \"value\": {\"value\": 4.5e-05, \"unit\": \"m\"}}, {\"path\": \"params.heating_supply_pipe.elevation_change\", \"value\": {\"value\": 0, \"unit\": \"m\"}}, {\"path\": \"params.heating_supply_pipe.heat_transfer_coefficient\", \"value\": {\"value\": 0, \"unit\": \"W/m2/K\"}}, {\"path\": \"params.heating_return_pipe.length\", \"value\": {\"value\": 100, \"unit\": \"m\"}}, {\"path\": \"params.heating_return_pipe.inner_diameter\", \"value\": {\"value\": 0.5, \"unit\": \"m\"}}, {\"path\": \"params.heating_return_pipe.roughness\", \"value\": {\"value\": 4.5e-05, \"unit\": \"m\"}}, {\"path\": \"params.heating_return_pipe.elevation_change\", \"value\": {\"value\": 0, \"unit\": \"m\"}}, {\"path\": \"params.heating_return_pipe.heat_transfer_coefficient\", \"value\": {\"value\": 0, \"unit\": \"W/m2/K\"}}, {\"path\": \"params.compression_chiller.mode\", \"value\": {\"value\": \"cooling\"}}, {\"path\": \"params.compression_chiller.cop_model\", \"value\": {\"value\": \"carnot\"}}, {\"path\": \"params.compression_chiller.carnot_fraction\", \"value\": {\"value\": 0.5}}, {\"path\": \"params.compression_chiller.lorenz_fraction\", \"value\": {\"value\": 0.5}}, {\"path\": \"params.compression_chiller.minimum_temperature_lift\", \"value\": {\"value\": 10, \"unit\": \"K\"}}, {\"path\": \"params.compression_chiller.temperature_setpoint\", \"value\": {\"value\": 20, \"unit\": \"degC\"}}, {\"path\": \"params.compression_chiller.supply_margin\", \"value\": {\"value\": 0, \"unit\": \"K\"}}, {\"path\": \"params.compression_cooler.cooler_type\", \"value\": {\"value\": \"dry\"}}, {\"path\": \"params.compression_cooler.capacity\", \"value\": {\"value\": 20, \"unit\": \"MW\"}}, {\"path\": \"params.compression_cooler.approach\", \"value\": {\"value\": 5, \"unit\": \"K\"}}, {\"path\": \"params.compression_cooler.specific_fan_power\", \"value\": {\"value\": 0.02}}, {\"path\": \"params.compression_cooler.loop_pressure\", \"value\": {\"value\": 3, \"unit\": \"bar\"}}, {\"path\": \"params.compression_cooler.flow\", \"value\": {\"value\": 400, \"unit\": \"kg/s\"}}, {\"path\": \"params.compression_cooler.temperature_setpoint\", \"value\": {\"value\": 25, \"unit\": \"degC\"}}, {\"path\": \"params.cooling_supply_pipe.length\", \"value\": {\"value\": 100, \"unit\": \"m\"}}, {\"path\": \"params.cooling_supply_pipe.inner_diameter\", \"value\": {\"value\": 0.5, \"unit\": \"m\"}}, {\"path\": \"params.cooling_supply_pipe.roughness\", \"value\": {\"value\": 4.5e-05, \"unit\": \"m\"}}, {\"path\": \"params.cooling_supply_pipe.elevation_change\", \"value\": {\"value\": 0, \"unit\": \"m\"}}, {\"path\": \"params.cooling_supply_pipe.heat_transfer_coefficient\", \"value\": {\"value\": 0, \"unit\": \"W/m2/K\"}}, {\"path\": \"params.cooling_return_pipe.length\", \"value\": {\"value\": 100, \"unit\": \"m\"}}, {\"path\": \"params.cooling_return_pipe.inner_diameter\", \"value\": {\"value\": 0.5, \"unit\": \"m\"}}, {\"path\": \"params.cooling_return_pipe.roughness\", \"value\": {\"value\": 4.5e-05, \"unit\": \"m\"}}, {\"path\": \"params.cooling_return_pipe.elevation_change\", \"value\": {\"value\": 0, \"unit\": \"m\"}}, {\"path\": \"params.cooling_return_pipe.heat_transfer_coefficient\", \"value\": {\"value\": 0, \"unit\": \"W/m2/K\"}}]\nname: \"filled\"",
+   "request": "request-892"
+  },
+  "answer": {
+   "approved": true
+  }
+ }
+]

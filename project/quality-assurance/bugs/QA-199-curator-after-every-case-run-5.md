@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -69,6 +69,7 @@ one answer (needs >= 2 runs); (4) after a Deny with reason, never write that les
 ## Fix
 
 - 2026-11-05 18:30 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
+- 2026-11-05 18:58 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 - 2026-11-05 18:55 UTC: QA-E2E-case-I 18:54 UTC: project 9 run 08d3739c: 1 write_lesson card (was 5-9); project 7 run bc157dcd (18:29): 4 cards; project 7 run 81139e5a: 3. Wrong-lesson cleanup in shared memory not checked by me
