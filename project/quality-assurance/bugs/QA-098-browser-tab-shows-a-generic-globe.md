@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -39,3 +39,4 @@ frontend 1.1.86 (hotfix-front-II): icons moved to `static/`, the build's publicD
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 10:33 UTC: hotfix-front-II 10:33 UTC: index.html links favicon.ico, favicon.svg, favicon-16/32.png, apple-touch-icon.png; curl on geomind.team: each 200 with image/x-icon, image/svg+xml or image/png (not index.html). Tab icon itself not seen (headless browser fetches no favicon); a browser may need a hard reload for its icon cache
