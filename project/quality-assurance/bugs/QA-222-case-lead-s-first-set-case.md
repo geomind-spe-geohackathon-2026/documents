@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | duplicate |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -61,7 +61,7 @@ requirements in a separate `set_case` (another approval card).
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 18:35 UTC: duplicate of QA-200
 ## Retest
 
 (Who, when, result.)
