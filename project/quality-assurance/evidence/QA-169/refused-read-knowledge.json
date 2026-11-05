@@ -1,0 +1,164 @@
+[
+ {
+  "fill_parts_brief_reservoir_engineer": "You are Reservoir engineer I: subsurface and wells. Design the doublet d0 of design/geo_hp_chiller (plant class HeatingHeatPumpCoolingPlant, size.doublets = 2, so d0's values hold for every copy). Read handbook chapters 3 and 4 (knowledge/handbook-design.md sections '3 Wells' and '4 ...') before answering.\n\nCASE VALUES (from read_case, hackathon_2026; do not change them): site.ground.surface_temperature = 12 degC; site.ground.gradient = 30 K/km; site.reservoir.reference_depth = 2500 m; site.reservoir.pressure = 250 barg; site.reservoir.thickness = 100 m; site.reservoir.permeability = 200 mD; site.fluid.density = 1030 kg/m3; site.fluid.viscosity = 0.4 mPa.s; site.fluid.gas_liquid_ratio = 0.8 Nm3/m3; site.fluid.sand_concentration = 20 mg/l; site.fluid.dissolved_gas CH4 0.8, CO2 0.2. Case requirements on the doublet: production_flow_range 50-300 m3/h while running; brine_cooling_limit max 4"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:55:03.228171+00:00",
+  "call_id": "call-84556552-612f-4879-9321-576e77131995",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "3 Wells"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:55:03.228171+00:00",
+  "call_id": "call-7cc020d8-8e38-4295-bd50-bd6ef8d9d9cc",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "4 "
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:55:03.231671+00:00",
+  "call_id": "call-a288f78b-0235-4c13-961d-fb2de67c316f",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "5"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:55:04.804799+00:00",
+  "call_id": "call-c3ac2651-b1b8-42f2-a140-ca200b18eb2d",
+  "input": {
+   "name": "knowledge/handbook-design.md",
+   "section": "3 Wells"
+  },
+  "error": "read_rag: section = '3 Wells' is no heading of knowledge/handbook-design.md; expected a number or a title of its outline (read_rag(name, outline=true)): 1 Designing Geothermal Heating and Cooling Plants, 1.1 Preface, 1.1.1 Who this handbook is for, 1.1.2 How to read it, 1.1.3 How values are labelled, 1.2 Table of contents, 0 0 Design path in gemini, 0.1 0.1 How the lead uses it, 0.2 0.2 Choosing the plant family, 0.3 0.3 Module groups for up to four engineers, 0.4 0.4 The order: build, size, simulate, check, optimize, 0.5 0.5 Failure to fix, 1 1 Introduction and design philosophy, 1.1 1.1 What"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:55:06.385626+00:00",
+  "call_id": "call-7e1743f3-5f03-409a-aaa5-9c3f99fa63aa",
+  "input": {
+   "name": "knowledge/handbook-design.md",
+   "section": "5.5 Gas use and disposal"
+  },
+  "error": "read_rag: section = '5.5 Gas use and disposal' is no heading of knowledge/handbook-design.md; expected a number or a title of its outline (read_rag(name, outline=true)): 1 Designing Geothermal Heating and Cooling Plants, 1.1 Preface, 1.1.1 Who this handbook is for, 1.1.2 How to read it, 1.1.3 How values are labelled, 1.2 Table of contents, 0 0 Design path in gemini, 0.1 0.1 How the lead uses it, 0.2 0.2 Choosing the plant family, 0.3 0.3 Module groups for up to four engineers, 0.4 0.4 The order: build, size, simulate, check, optimize, 0.5 0.5 Failure to fix, 1 1 Introduction and design philoso"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:56:43.270172+00:00",
+  "call_id": "call-34945cc3-e8c4-4954-af77-c773f42cb1fa",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "3 Wells"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:56:43.270172+00:00",
+  "call_id": "call-15740c61-2c7d-4efc-8fc2-27d2880399c4",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "4 "
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:56:45.170859+00:00",
+  "call_id": "call-305081ad-c87e-4630-b634-06309273bd40",
+  "input": {
+   "name": "knowledge/handbook-design.md",
+   "section": "3 Wells"
+  },
+  "error": "read_rag: section = '3 Wells' is no heading of knowledge/handbook-design.md; expected a number or a title of its outline (read_rag(name, outline=true)): 1 Designing Geothermal Heating and Cooling Plants, 1.1 Preface, 1.1.1 Who this handbook is for, 1.1.2 How to read it, 1.1.3 How values are labelled, 1.2 Table of contents, 0 0 Design path in gemini, 0.1 0.1 How the lead uses it, 0.2 0.2 Choosing the plant family, 0.3 0.3 Module groups for up to four engineers, 0.4 0.4 The order: build, size, simulate, check, optimize, 0.5 0.5 Failure to fix, 1 1 Introduction and design philosophy, 1.1 1.1 What"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:56:43.277420+00:00",
+  "call_id": "call-c029c9d7-0d88-4432-ba55-ffa7f0ba5e24",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "5"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:56:46.860895+00:00",
+  "call_id": "call-cfe2445b-41bb-4f25-9a87-86cd63f602ae",
+  "input": {
+   "name": "knowledge/handbook-design.md",
+   "section": "5.5 Gas use and disposal"
+  },
+  "error": "read_rag: section = '5.5 Gas use and disposal' is no heading of knowledge/handbook-design.md; expected a number or a title of its outline (read_rag(name, outline=true)): 1 Designing Geothermal Heating and Cooling Plants, 1.1 Preface, 1.1.1 Who this handbook is for, 1.1.2 How to read it, 1.1.3 How values are labelled, 1.2 Table of contents, 0 0 Design path in gemini, 0.1 0.1 How the lead uses it, 0.2 0.2 Choosing the plant family, 0.3 0.3 Module groups for up to four engineers, 0.4 0.4 The order: build, size, simulate, check, optimize, 0.5 0.5 Failure to fix, 1 1 Introduction and design philoso"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:59:57.437699+00:00",
+  "call_id": "call-50d9f7d2-0ab1-4272-bae5-6610469fc917",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "5"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:59:57.433036+00:00",
+  "call_id": "call-b86b1fdb-6b26-4fed-97b2-b1ecfed16116",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "3 Wells"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "reservoir_engineer",
+  "ts": "2026-11-05T16:59:57.433036+00:00",
+  "call_id": "call-50a17590-081c-4cbb-be6b-359549bc0db1",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "4 "
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "energy_systems_engineer",
+  "ts": "2026-11-05T16:59:57.443268+00:00",
+  "call_id": "call-f006f64a-d441-45a9-a4e9-e66a1fe7456b",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "6"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "energy_systems_engineer",
+  "ts": "2026-11-05T16:59:57.443268+00:00",
+  "call_id": "call-69631dbc-9053-4545-b95c-d3459fae4447",
+  "input": {
+   "name": "handbook-design.md",
+   "section": "8.3"
+  },
+  "error": "read_knowledge: name = 'handbook-design.md'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ },
+ {
+  "agent": "energy_systems_engineer",
+  "ts": "2026-11-05T17:00:47.582853+00:00",
+  "call_id": "call-1981c8dc-5bc3-4be5-8bd6-d9c80812ed2f",
+  "input": {
+   "name": "finding-53de5f90"
+  },
+  "error": "read_knowledge: name = 'finding-53de5f90'; expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read"
+ }
+]
