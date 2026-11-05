@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | handbook-econ-report-I |
@@ -128,7 +128,7 @@ title).
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
 
 (Who, when, result.)
