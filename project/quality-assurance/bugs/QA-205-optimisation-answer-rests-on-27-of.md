@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
@@ -95,3 +95,4 @@ history by hand.
   QA-285). The run itself took 33 min / 0.101 USD, mostly because the design lead re-built the stored plant 5 times and
   sent it to 4 engineers before using `design/v2` (QA-221; the re-built `sized2` failed all 270 trials, 68 s).
   Log: `../evidence/QA-205/run-73ef62c4-retest-log.json`.
+- 2026-11-05 18:44 UTC: retest QA-AI-analysis-I 18:44 UTC backend 1.1.112: no one-by-one trial reading; answer on all 270 trials (no history summary given)
