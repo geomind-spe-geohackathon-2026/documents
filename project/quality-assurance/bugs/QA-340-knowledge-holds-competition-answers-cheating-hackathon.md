@@ -36,10 +36,11 @@ Fix plan:
      COPs, efficiencies, with their citations) into a general catalogue (e.g.
      knowledge/data-equipment.csv/.md, like data-economics), written for any plant, no
      'hackathon' label; Team-only placeholders are marked as such.
-   - The organisers' Discord answers and the team's own assumptions for this case become a
-     PROJECT file the user uploads with the case files (user input, shown and approved), not
-     global Knowledge.
-3. Prompts, skills and handbooks: remove every reference to knowledge/hackathon-2026-* ; the case
+   - KEEP in hackathon-2026-assumptions.md (stays in Knowledge, Sahand 21:04 Trondheim): the
+     organisers' Discord answers and the team's assumptions, i.e. everything we know that the
+     inputs (PDF, CSVs) do not give. These stay as proposed assumptions with their source, shown
+     to the user and approved. Only the pre-solved and pre-extracted parts are removed.
+3. Prompts, skills and handbooks: remove every reference to knowledge/hackathon-2026-brief.md; keep the assumptions-document references, for missing values only; the case
    lead proposes missing values from general catalogues (with sources) and asks the user once.
 4. QA: rerun the competition case from the three files + the uploaded team-assumptions file and
    check the agents still reach a sound design.
