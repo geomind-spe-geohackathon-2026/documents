@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 20:07 UTC |
 | Versions | backend 1.1.125+ (geomind 0.4.132, gemini 0.6.33) |
 | Where | run 86867082-66b2-4cb1-9c34-bdfc479f278c, project e7dd5fb1-4fb5-477e-969a-9378a3ba803f, design_lead family B, 21:05-21:07 CET |
-| Fixer | m6 |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -35,4 +35,5 @@ Guess: the run/simulate path after sizing raises the first binding or design err
 
 ## Fix
 
+- 2026-11-05 20:12 UTC: QA-343 gemini 14d7ab5f (0.6.34); QA-339 geomind e7ccb36; pending deploy
 ## Retest
