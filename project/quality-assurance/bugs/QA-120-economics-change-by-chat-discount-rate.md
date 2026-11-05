@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-case-I |
 | Found | 2026-11-05 11:14 UTC |
 | Versions | backend 1.1.84 (geomind 0.4.80) |
 | Where | https://geomind.team/projects/15b2f15f-46d0-4b09-a44b-0f849127c1f0 (QA3 case); chat 37fb7886-a3b0-46b3-b36f-6afb72971d14; request "I do not accept the economics ... discount rate 8 %"; Set case approval card |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
