@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 21:16 UTC |
 | Versions | backend 1.1.133 (geomind 0.4.137, gemini 0.6.34) |
 | Where | project 32236adb-aa7a-4be9-83fd-40fcedc1238c (sahand test 5), run 8cef3941, minimize hp_boost_opt_lcts_v2, result 5cf8577e-853c-4201-b016-9e135bb82d99 |
-| Fixer | |
+| Fixer | m3 |
 
 ## Steps
 
