@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-II |
 | Found | 2026-11-05 19:40 UTC |
 | Versions | backend 1.1.119-1.1.121 era (deploy 36, geomind 0.4.130) |
 | Where | project `QA-TEST QA-E2E-study-II 1` (0ce04203-df3c-4259-b9bf-d7c5ebdce123); chat bb245cd8-1ff3-4bdc-b8bd-1eb88f953519; run e49bf334-fe77-4ef2-aa9c-f111f7d17200 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -37,7 +37,7 @@ adopt_design(design/v1) returns "design/v1 is plant version 1 already; nothing t
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 19:44 UTC: geomind main after 137797b (0.4.132); pending deploy
 ## Retest
 
 (Who, when, result.)
