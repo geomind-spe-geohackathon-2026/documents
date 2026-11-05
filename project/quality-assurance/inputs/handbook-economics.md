@@ -2124,6 +2124,84 @@ gas when it is known, and record the conversion in the source text.
 
 ---
 
+## 20. Subsurface economics: depth, flow, doublets and exploration risk
+
+The wells are usually the largest capex item (§2.1). This chapter shows how the subsurface
+choices trade cost against heat. The physics (productivity, breakthrough, pumps) is in
+`knowledge/handbook-design.md` chapter 3; here the question is what each choice costs and earns.
+
+### 20.1 Depth: hotter water against dearer wells
+
+The produced temperature rises with depth, `T(z) = T_s + g z` (surface temperature `T_s`,
+gradient `g`), and the heat of a doublet is `Q = rho c V (T_prod - T_inj)`. Drilling cost rises
+faster than depth (§2.2). The economic depth is where the cost per MW of useful heat is lowest,
+counting the heat pump or boiler a shallower, cooler doublet needs to reach the network
+temperature.
+
+Worked example (invented): `T_s` 10 °C, `g` 30 K/km, injection 35 °C, flow 0.05 m3/s,
+`rho c` 4.0 MJ/(m3 K), drilling 1 200 / 1 400 / 1 800 EUR/m at 2 000 / 2 500 / 3 000 m.
+
+| Depth | T_prod | Heat | Two wells | MEUR per MW |
+|---|---|---|---|---|
+| 2 000 m | 70 °C | 7.0 MW | 4.8 MEUR | 0.69 |
+| 2 500 m | 85 °C | 10.0 MW | 7.0 MEUR | 0.70 |
+| 3 000 m | 100 °C | 13.0 MW | 10.8 MEUR | 0.83 |
+
+On wells alone 2 000 to 2 500 m are equal. If the network needs 80 °C, the 2 000 m doublet also
+needs a heat pump (capex and electricity, chapter 22) and the 2 500 m one does not: the cheaper
+plant is the deeper one. Always compare whole plants (wells plus upgrade), never wells alone.
+
+### 20.2 Flow rate: heat against pumping power
+
+Heat grows linearly with flow; with a linear productivity and injectivity the pressure drop
+grows linearly too, so pump power `P = dp V / eta` grows with the square of the flow
+(Grant and Bixley 2011, productivity index). Example (invented): productivity and injectivity
+10 m3/h per bar each, so `dp = 2 V / 10` bar with `V` in m3/h; efficiency 0.6; `T_prod - T_inj`
+50 K.
+
+| Flow | dp | Pump power | Heat | Heat / pump power |
+|---|---|---|---|---|
+| 200 m3/h | 40 bar | 0.37 MW | 11.1 MW | 30 |
+| 300 m3/h | 60 bar | 0.83 MW | 16.7 MW | 20 |
+
+The step from 200 to 300 m3/h adds 5.6 MW of heat for 0.46 MW of electricity, a marginal ratio
+of 12: still far cheaper heat than a boiler. The economic flow is therefore usually set by a hard
+limit (pump size, wellhead or injection pressure, sand, thermal breakthrough; handbook-design
+3.3, 3.5), not by the pump's electricity. Check the limit that binds, then cost at that flow.
+
+### 20.3 Doublet count: a step in capex
+
+Each added doublet is a large step in capex. It pays only if its heat is used for enough hours.
+Example (invented): a second doublet of 8 MEUR adds 5 000 MWh/yr that is only needed at peak.
+Its heat costs `8 x CRF(5 %, 25) / 5 000 MWh = 8 x 0.0710 / 5 000 = 113.5 EUR/MWh` before any
+opex, against a peak boiler at roughly gas price / efficiency (§21.2). A doublet that runs base
+load all year (say 40 000 MWh/yr) costs 14.2 EUR/MWh in capital. Size the doublet count with a
+study over the count (handbook-studies, `size`/`optimize`), never by adding wells "for safety".
+
+### 20.4 Exploration risk
+
+A first well can fail to find the expected flow or temperature. The expected cost of a project
+includes that chance: with probability of success `PoS`, a failed well whose cost `C_f` is lost
+adds `(1 - PoS) x C_f` to the expected capex (ESMAP 2012 discusses success rates and risk
+mitigation for geothermal). Example (invented): `PoS` 0.8, a 5 MEUR well: expected loss
+1.0 MEUR. Risk insurance or a guarantee scheme converts that uncertain loss into a premium.
+
+gemini models no exploration risk. Represent it as an uncertainty on the reservoir inputs
+(permeability, gradient) in a study, or as a stated, sourced contingency on the drilling capex;
+never as a hidden factor.
+
+### 20.5 In gemini and geomind
+
+| Choice | Where |
+|---|---|
+| Depth and well paths | the plant's doublet wells (measured depth, §2.2, §16.2) |
+| Drilling price over depth | `capex.drilling` as a depth table (§16.1) |
+| Flow, pump size, limits | the plant and the case's hard limits (§0.6; handbook-design 3) |
+| Doublet count, depth, flow search | `size`, `optimize` studies (handbook-studies) |
+| Reservoir uncertainty | `sensitivity`, `sample_uncertainty` on the case's site keys |
+
+---
+
 ## Appendix A. Symbols and formulas
 
 | Symbol | Meaning | Unit |
@@ -2196,6 +2274,13 @@ handbook.
 - Morgan, M. G. and Henrion, M. (1990), *Uncertainty: A Guide to Dealing with Uncertainty in
   Quantitative Risk and Policy Analysis*, Cambridge University Press (section 13.4).
 - Saltelli, A. et al. (2008), *Global Sensitivity Analysis: The Primer*, Wiley (section 12.4).
+- Beckers, K. F. and McCabe, K. (2019), "GEOPHIRES v2.0: updated geothermal techno-economic
+  simulation tool", *Geothermal Energy* 7, 5, https://doi.org/10.1186/s40517-019-0119-6 (coupled
+  reservoir, well and cost models; chapter 20).
+- ESMAP (2012), *Geothermal Handbook: Planning and Financing Power Generation*, World Bank, ESMAP
+  Technical Report 002/12 (exploration risk and its mitigation; section 20.4).
+- Grant, M. A. and Bixley, P. F. (2011), *Geothermal Reservoir Engineering*, 2nd ed., Academic
+  Press (productivity and injectivity; section 20.2).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
