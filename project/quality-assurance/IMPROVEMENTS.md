@@ -48,6 +48,7 @@ still active, 58 steps.
 | IMP-021 | idea | geomind | Examples in the skills generated from gemini's own schema; evals from the real refusals | prompts that do not drift from gemini |
 | IMP-022 | idea | QA | Two measures after every deploy: first-try error rate per tool; runs that reach simulate, check and optimize | shows whether a fix helps |
 | IMP-023 | rejected | geomind, frontend | Start from gemini's six hackathon plant files (125 values each) and a complete case; size then optimize; no hand-built plants | the only path that has reached a passing result |
+| IMP-025 | approved, TOP | geomind, frontend | Parallel agents: a lead runs several instances of one role (Geoscientist I, II, III) or of different roles at once, each on a task the lead assigns; each reports back to the lead | a complete case in about 5 minutes |
 
 ## IMP-001: ask_economics fills the recommended rows itself
 
@@ -268,3 +269,23 @@ settings and type them again, and a QA session could not check gemini on that pr
 current plant (v3) has no doublet. Proposal: "Run again" on each study row opens New study filled
 with the study's kind, settings and plant version (editable), and the backend needs nothing new
 (`POST /design/study` takes them). Frontend.
+
+## IMP-025: parallel agents, one lead assigns
+
+Status: approved by the user, TOP priority (Coordinator-IV's chat, 2026-11-05 15:05 UTC). Goal: a
+complete case in about 5 minutes instead of 30+.
+
+The lead of a stage splits its work into tasks and assigns each to an agent instance; instances
+run at the same time and report back to the lead, which merges, checks and assigns again. An
+instance can be another copy of the same role (Geoscientist I, Geoscientist II, Geoscientist III,
+each "Thinking" in the UI) or a different role; this holds for every stage (case, design,
+analysis, report), the case first.
+
+Today: `geomind/tools/delegate.py` `Team` runs different members side by side, one brief each;
+it cannot run several copies of one role. Needed: (a) briefs as a list of {role, task}, each
+entry an instance named `<Role> <Roman numeral>`; (b) each instance owns distinct fields (for the
+case: e.g. subsurface, demand, brine/gas, economics) so parallel writes never clash; the lead
+merges and resolves; (c) the case lead's prompt/skill: split the case by field groups and assign
+in one Team call, then check gaps and assign again; (d) frontend: show each instance by its name
+with its own activity line; (e) a measure: time from first request to a complete case.
+
