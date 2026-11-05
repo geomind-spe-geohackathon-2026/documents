@@ -6,7 +6,7 @@
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
-| Found | 2026-11-05 18:40 UTC |
+| Found | 2026-11-05 18:36 UTC |
 | Versions | backend 1.1.109+ (geomind 0.4.110+), frontend bundle index-TsXgd_n9.js |
 | Where | https://geomind.team/projects/0e44cb05-6096-434e-95ee-56b434898015/assistant/chat/b31664b0-44c2-4d20-9ee7-987f592b5aff; run cb6ce579-1959-45e2-8ab0-37f70074ca1e (18:24:23-18:35:23 UTC) |
 | Fixer | |
