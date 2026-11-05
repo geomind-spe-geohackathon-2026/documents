@@ -44,4 +44,7 @@ Separate question for the design team (not this bug): why the boiler runs in Jul
 ## Fix
 
 - 2026-11-05 14:14 UTC: for hotfix-front-III (hotfix-back-III): no backend change needed. GET result detail already gives coverage.heating/cooling[] per day with demand, geothermal, backup, short (MWh Figures) besides source; stacked bars, the three classes (geothermal only / both / backup only = geothermal 0), the year's backup share and doublet-off day count can all be computed from those. gemini's source classes unchanged.
+
+hotfix-front-III, frontend 1.1.101 (af9f9e9), proposal 2+3+4: `shared/charts/days-strip.tsx` has five classes: main only, main topped up by backup (geothermal above 0.1 % of the demand), backup only (main off), partly short, short; a line 'Backup gave 21.5% of the delivered energy (23975 of 111668 MWh); geothermal was off on 35 days'; what backup is (shown only when there is backup); a topped-up day's hover gives its backup share. Checked locally on lcts_best: 116 / 214 / 35 days. The stacked daily chart (proposal 1) is not done. Deploy 14:30 UTC.
+
 ## Retest
