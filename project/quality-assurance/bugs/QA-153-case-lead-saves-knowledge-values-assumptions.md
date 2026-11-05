@@ -76,6 +76,10 @@ stops a `set_case` of Knowledge-sourced values before the confirmation `ask_user
 - Accuracy of the final case vs. `gemini/examples/hackathon_2026/case.json`: all values equal
   (units written as the PDF writes them: degC as °C, 80 mol% for 0.8, 50 % for 0.5).
 
+## Reproduced
+
+Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4386e6e3c744, run 519ccc65-564e-4d1e-9139-a23777cd1107, backend 1.1.104, log `../evidence/QA-153/run-519ccc65.json`): same pattern. The first stored `set_case` (approval request-315, 17:02:09) already holds the Knowledge values (return temperatures, return pressures, dew point margin, indoor 26 degC / 50 %, air, gas composition, CO2 intensity); the confirmation question comes at 17:02:24. Again 5 `set_case`, 2 refused (`source="project"`, then the missing `time_zone`).
+
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
