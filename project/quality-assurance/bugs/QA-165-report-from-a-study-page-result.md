@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
 | Found | 2026-11-05 17:10 UTC |
 | Versions | backend 1.1.102-1.1.104 during the run (geomind 0.4.97/0.4.98, gemini 0.6.16/0.6.17), frontend bundle index-TsXgd_n9.js |
 | Where | https://geomind.team/projects/0e44cb05-6096-434e-95ee-56b434898015/assistant/chat; project QA-TEST QA-E2E-report-I 1; chat b31664b0-44c2-4d20-9ee7-987f592b5aff; run 3f8270d5-b11e-4c86-b3ca-b0b4d4feb61c; design_lead steps 7-9, reviewer steps 1-23 (16:58-17:03 UTC) |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
