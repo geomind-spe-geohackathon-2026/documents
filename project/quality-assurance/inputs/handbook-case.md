@@ -51,6 +51,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
     solids
 21. Case inputs as uncertain values: kinds, from a source's statement to a leaf, dependent
     inputs, worked example
+22. Worked example II: hourly heating and cooling, weather from a connector
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1444,8 +1445,9 @@ step. It extends the table of §3.3. Every finding is a flaw to report (§1.4), 
 1. **Shape.** Columns, header, delimiter, decimal mark (`,` vs `.`), units in the header or a
    separate row. A decimal comma read as a thousands separator turns 4,2 MW into 42 MW.
 2. **Time axis.** First and last stamp, step, count. Expected count = span / step: 365 or 366
-   daily rows a year, 8 760 or 8 784 hourly; an hourly local-time year has 8 759 or 8 761 rows
-   in the spring and autumn DST weeks unless it is in UTC or has offsets (§3.2).
+   daily rows a year, 8 760 or 8 784 hourly; an hourly local-time year without offsets still has 8 760 rows,
+   but one hour is missing in spring and one repeated in autumn (daylight saving), unless it is
+   in UTC or has offsets (§3.2).
 3. **Gaps and duplicates.** Every expected stamp once. A repeated hour in autumn is DST, not
    an error, when the file is local time without offsets: name the zone (§3.2).
 4. **Values.** Finite, non-negative for a demand; no text in a number column; no sentinel
@@ -1918,6 +1920,68 @@ net thickness 55 m "well constrained", gradient "31 K/km, likely 28 to 34".
 - Gradient: `triangular`, value 31, min 28, max 34 K/km ("likely" read as the range ends: name it).
 - Reservoir temperature: unset (derived), no range.
 All four readings go into the one question as the agent's mapping of the report's words.
+
+# 22. Worked example II: hourly heating and cooling, weather from a connector
+
+A second pattern, different from chapter 12: one hourly meter file with both services, a short
+requirements memo, no reservoir report yet, and the outside air from a weather connector.
+Everything is invented. It walks chapters 0 to 21 end to end.
+
+## 22.1 Inputs and first reading
+
+| File | Holds |
+|---|---|
+| `campus_meter_hourly.csv` | `timestamp` (local, "hour ending", no offset), `heat_kW`, `cool_kW`; 8 760 rows |
+| `requirements_memo.pdf` | 2 pages: temperatures, a grid limit, an emissions target, an exploration well's results |
+
+Findings (§16.1): the time column is `timestamp`, stamps run `01:00 ... 24:00`: interval-ending
+(§17.6); local time without offsets in a zone with daylight saving, so the file has a 23-hour and
+a 25-hour day: one hour missing in spring and one duplicated in autumn. The row count, 8 760,
+fits the calendar year (not a leap year). Units are kW (factor 1 000 to MW, Appendix A). Peak
+heating 9 400 kW in January, peak cooling 3 100 kW in July, cooling never below 250 kW (a data
+centre in the building: §18.1).
+
+## 22.2 Classifying the memo
+
+| Memo says (invented) | Kind | Goes to |
+|---|---|---|
+| "Heating water shall be supplied at 70 °C; it returns at 40 °C" | case values | `demand.heating.supply_temperature`, `return_temperature` |
+| "Chilled water 6 °C supply, 12 °C return; rooms 24 °C, 50 % RH" | case values | `demand.cooling.*`, `indoor_temperature`, `indoor_relative_humidity` with `"unit": "%"` |
+| "Coils need the water at least 3 K below the room's dew point" | case value | `dew_point_margin` 3 K (§15.2) |
+| "The connection allows at most 3.5 MW import" | case value | `utilities.electricity.import_limit` (§15.5) |
+| "Purchased electricity should stay under 8 GWh a year" | recommendation ("should") | handover; requirement only if the user makes it binding; then `over: mean`, 8 GWh / 8 760 h = 0.913 MW (§17.1, §17.2) |
+| "Exploration well: 1 650 m TVD, stabilised temperature 58 °C, kh 9 D·m over 45 m, 165 barg" | case values | reference depth, temperature (stabilised = measurement, §19.2), permeability 200 mD and thickness 45 m (§19.3), pressure |
+| "Both demands shall be met" | rule without tolerance | `unmet_share` per supply, tolerance proposed (§17.3) |
+
+## 22.3 Gaps, sources and the one question
+
+Open after the files: surface temperature and gradient (gemini can use the measured reservoir
+temperature, so `describe_case` may not need them), brine density and viscosity, GLR and gas,
+outside air, grid CO₂ factor, the time zone and the timestamp convention.
+
+Searches (§17.4): Knowledge has no site fluid; a weather connector gives an hourly air series
+for the site's coordinates and the year (saved with `save_mcp_table`, zone `UTC`; `GMT` reads as
+UTC, §13.8); a catalogue row gives a national location-based grid factor with its year (§13.7).
+
+The one question lists, numbered: the zone (`Europe/<city>`, from the site's location: agent's
+choice); "hour ending" reading; the air series (connector, date); the grid factor (row, year,
+method); brine values "unknown: no fluid sample yet" (the user may give them or leave them
+open); the two tolerances (agent's proposals with reasons); the "should" on electricity as a
+question: binding or not?
+
+## 22.4 After approval
+
+- ONE `set_case` with the file columns mapped (`timestamp`, `heat_kW`, `cool_kW` with unit
+  `kW`), the zone, the approved values exactly as approved (§14.1), the requirements.
+- `read_case` and compare every approved path; `describe_case` for anything still missing.
+- Handover (§11.2): heating peak 9.4 MW, cooling 3.1 MW with a 0.25 MW all-year base;
+  simultaneous heating and cooling on many spring and autumn days (heat recovery worth a look,
+  §18.3); exploration well only, so permeability is epistemic (§21.1); the import limit binds
+  any electric heat pump or chiller sizing.
+
+**Traps of this pattern.** Treating "should" as "shall"; dividing kW by 1 000 by hand; shifting
+the hours by reading interval-ending as interval-beginning; filling the duplicated autumn hour
+by averaging; asking the user for the air temperature when a connector has it.
 
 # Appendix A. Unit pitfalls
 
