@@ -25,7 +25,7 @@ The case lead gets the words, proposes set_case again with 55 °C, a new card co
 
 ## Actual
 
-The QA-116 guard (, geomind engine/session.py) treats this denial as "the user denied
+The QA-116 guard (`earlier_denial`, geomind engine/session.py) treats this denial as "the user denied
 set_case for this request": every later set_case is refused without a card:
 "set_case: the user denied this tool earlier in this request (...), so it is not asked again".
 - case_lead 10-12: 3 refused; it asks an extra question "shall I now write the whole case with 55 °C?" (17:33:00);
