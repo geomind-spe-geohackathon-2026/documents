@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend,geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 20:52 UTC |
 | Versions | backend 1.1.130 (geomind 0.4.135); run started on 1.1.128 before deploy 62 |
 | Where | run b3a69d7c-58c4-4322-a747-203c5e206af6 (clean report run), project bf1bccef-f12e-43e5-b273-9040337062cc, chat 185e5160 (auto_approve true) |
-| Fixer | m2 |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
@@ -31,4 +31,5 @@ Guess: the automatic answer is scheduled in the worker when the request opens; a
 ## Fix
 
 - 2026-11-05 20:58 UTC: geomind 0.4.137 (cf9536b / 67d1ac9); backend part with back-lead
+- 2026-11-05 21:08 UTC: backend part 1.1.133 195de4e + geomind 0.4.137
 ## Retest
