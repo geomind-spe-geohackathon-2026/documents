@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -37,7 +37,7 @@ Guess: the lead re-submits the values with a source but without the value field 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 21:51 UTC: geomind 0.4.139 (894802d, f7d75af); pending deploy
 ## Retest
 
 (Who, when, result.)
