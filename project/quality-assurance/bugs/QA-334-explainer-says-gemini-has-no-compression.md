@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
 | Found | 2026-11-05 19:53 UTC |
 | Versions | backend 1.1.122+ (geomind 0.4.130+, gemini 0.6.26+), frontend live |
 | Where | https://geomind.team/projects/a9ff33c4-6e46-4eaf-be31-5277221dd51d/assistant/chat; project QA-TEST QA-E2E-report-I 3; run fd996d09-a51d-4f0b-8c1a-a73240bfe0ab, analysis_lead steps with list_modules |
-| Fixer | |
+| Fixer | m3 |
 
 ## Steps
 
