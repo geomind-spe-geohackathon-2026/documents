@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 01:49 UTC |
 | Versions | backend 1.1.53-1.1.62 (see Where), geomind per backend |
 | Where | project a0947848, chat 235c60c5, run 92971ce5 (backend 1.1.62, started 00:28 UTC) |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 

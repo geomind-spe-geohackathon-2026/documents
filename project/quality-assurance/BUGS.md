@@ -79,4 +79,4 @@ wont-fix, duplicate.
 | [QA-071](bugs/QA-071-web-search-agents-send-poor-queries.md) | fixed | major | geomind | web_search: agents send poor queries; search should be English-only | Sahand | hotfix-python |
 | [QA-072](bugs/QA-072-case-lead-s-set-case-card.md) | fixing | major | geomind | Case lead's set_case card claims 'the user's instruction is that the times are UTC' when the user never said so | functional-qa-I | hotfix-python |
 | [QA-073](bugs/QA-073-approval-card-has-only-approve-deny.md) | open | minor | frontend | Approval card has only Approve, Deny and a reason box: a proposed value cannot be edited before approving | functional-qa-I |  |
-| [QA-074](bugs/QA-074-agent-run-sat-at-0-tokens.md) | open | major | backend | Agent run sat at 0 tokens for about 10 minutes (running, no steps) after the answer to a question, then had to be cancelled | functional-qa-I |  |
+| [QA-074](bugs/QA-074-agent-run-sat-at-0-tokens.md) | fixing | major | backend | Agent run sat at 0 tokens for about 10 minutes (running, no steps) after the answer to a question, then had to be cancelled | functional-qa-I | hotfix-back |
