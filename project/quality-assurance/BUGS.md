@@ -103,3 +103,4 @@ wont-fix, duplicate.
 | [QA-095](bugs/QA-095-grid-co2-intensity-the-knowledge-base.md) | fixing | major | data | Grid CO2 intensity: the knowledge base has only Ember EU 209 g/kWh; the organisers' reference value 0.3 kg/kWh is missing | Fatemeh | hotfix-back-II |
 | [QA-096](bugs/QA-096-knowledge-csv-view-every-cell-wraps.md) | fixing | minor | frontend | Knowledge CSV view: every cell wraps its full text, rows are huge and columns too wide | user via coordinator | hotfix-front-II |
 | [QA-097](bugs/QA-097-case-lead-reads-plants-need-from.md) | open | minor | geomind | Case lead reads plants_need from the set_case result with read_stored; the stored result has no plants_need key | Fatemeh |  |
+| [QA-098](bugs/QA-098-browser-tab-shows-a-generic-globe.md) | open | minor | frontend | Browser tab shows a generic globe instead of the GeoMind icon (no favicon) | user via coordinator |  |
