@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind,gemini |
 | Reporter | QA-AI-design-I |
@@ -39,4 +39,5 @@ Facts: gemini's set_ranges validates per-doublet paths against the plant's curre
 
 ## Fix
 
+- 2026-11-05 18:34 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
