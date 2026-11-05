@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 17:29 UTC |
 | Versions | backend 1.1.104 (geomind 0.4.98, gemini 0.6.17) |
 | Where | https://geomind.team/projects/fcc641c0-0119-4182-9a72-adce5a17b3ed; run d4ab496f-4a1f-43fa-b760-0f550fda0714 (hackathon report run), design stage 17:07-17:29 UTC |
-| Fixer | hotfix-python-lead |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -42,6 +42,7 @@ Guess: the lead patches after each refusal of `check`/`simulate` (one missing va
 - 2026-11-05 18:34 UTC: QA-AI-design-I retest on 0.4.119 (run 2b72af99): 5 patch_plant (2 refused) instead of 7-10; tear stream and simulate's control check still come later
 - 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 - 2026-11-05 19:16 UTC: QA-E2E-design-I retest: 5 patches + 1 refused in run 06fd16f0 (was 9); one-value patches remain (QA-171)
+- 2026-11-05 19:23 UTC: geomind 0.4.130 (deploy 36) + 4f1a9e3
 ## Retest
 
 ## Retest: not fixed (QA-AI-design-I, 2026-11-05 17:50 UTC)
