@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 21:46 UTC |
 | Versions | backend 1.1.134 (geomind 0.4.138), gemini 0.6.35 |
 | Where | https://geomind.team/projects/6314fe82-909f-4f26-b952-fcac92baf50b; chat 6880e841-6d8d-4acd-9f65-ce00d1ae4bf6; run 807ac8c3-15ad-4d6a-9534-cd90fc8e6dd6; case_lead, requests 367 and 390 |
-| Fixer | |
+| Fixer | m4 |
 
 ## Steps
 
