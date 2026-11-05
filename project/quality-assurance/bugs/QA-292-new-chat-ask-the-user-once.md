@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 18:41 UTC |
 | Versions | live 2026-11-05 19:40 Trondheim |
 | Where | geomind.team chat, the Auto-approve toggle in the chat header |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
