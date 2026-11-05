@@ -31,4 +31,5 @@ Guess: the dot is the project progress state (QA-135: 'Out of date' when the pla
 
 Fix: frontend 1.1.135 (bundle index-BDDoP4gT.js, by front-m1): every Design tab dot has a tooltip (state, reason, action); stray study-name tooltip removed. Cause of the amber dot (fact): frontend rule overview/stale.ts toStaleSteps marks Study/Results 'Out of date' when the newest result is older than the current case/plant version. Plant grey dot: backend plant_version null, passed to back-lead. frontend 1.1.136 (bundle index-BXjvGV5t.js, by front-m2): Study and Results pages show the same reason as an alert with New study / Run the study.
 - 2026-11-05 19:44 UTC: frontend 1.1.135 + 1.1.136
+- 2026-11-05 20:26 UTC: backend part 1.1.126 f206c7a
 ## Retest
