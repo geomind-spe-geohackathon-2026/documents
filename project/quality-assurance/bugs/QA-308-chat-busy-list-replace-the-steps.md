@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | duplicate |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
@@ -32,7 +32,7 @@
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 18:58 UTC: duplicate of QA-307
 ## Retest
 
 (Who, when, result.)
