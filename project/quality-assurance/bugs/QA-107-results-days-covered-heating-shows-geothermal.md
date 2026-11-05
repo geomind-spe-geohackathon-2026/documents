@@ -5,34 +5,35 @@
 | Status | open |
 | Severity | minor |
 | Area | frontend,backend |
-| Reporter | Fatemeh |
+| Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
 | Found | 2026-11-05 10:41 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.84 |
+| Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/results/c16255f0-a84b-4d1a-91ae-9c6e8af39550 (project geo mind testing, study sized1, chat 27379f2e) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open the Results of study sized1; Days covered.
 
 ## Expected
 
+The heating strip shows the days the geothermal doublet carried the heat (the doublet ran 230 d, Doublet running time on the same page) and the days the boilers or backup did.
+
 ## Actual
+
+Heating: "Geothermal: 0 days, Backup: 0 days, Short: 365 days": every day red. Yet Heat delivered is 96.6 GWh of 111.7 GWh demand, heat from the boilers 25.7 GWh and the doublet ran 230 days. Either every day is a little short (then the strip should say how short) or the classes are wrong.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-107/1.png)
-- Run JSON: `../evidence/QA-107/run-<id>.json`
+- ![Results: economics and energy](../evidence/QA-107/1.webp)
+- ![Days covered](../evidence/QA-107/2.webp)
+- ![Constraints](../evidence/QA-107/3.webp)
+- Postgres read-only: case_versions of project cf0c3d9c, number 3 (10 requirements).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: a day counts as Short when the supply temperature misses 100 °C (93 °C every day here) or when any MWh is unmet, so the strip hides that geothermal did run. The legend needs the rule, or a "partly short" class.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
