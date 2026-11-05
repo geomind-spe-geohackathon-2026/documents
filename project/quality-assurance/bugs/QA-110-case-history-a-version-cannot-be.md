@@ -45,4 +45,6 @@ base); assistant case notes name up to six changed paths and files; `Version.by`
 `user` on case and plant versions. Deploy 11:30 UTC. Still owed (frontend): open a version
 read-only, diff with the previous one, Restore, Saved by from `by`.
 - 2026-11-05 11:05 UTC: backend part done in 1.1.87 (11:30 UTC); frontend part for hotfix-front-III
+- 2026-11-05 ~12:40 UTC (live backend 1.1.86, so 1.1.87 not out yet): the Plant History has the same gaps, so the frontend part should cover both panels: a version cannot be opened or compared (only Restore); Saved by "Administrator" on assistant versions; the notes are cut ("Plant energy_r8 changed by the assist...") and say only the design's name, not what changed; a "#" column (1, 2, 3 ...) beside Version repeats the order and means nothing to the user. ![plant history](../evidence/QA-110/2-plant-history.webp)
+
 ## Retest
