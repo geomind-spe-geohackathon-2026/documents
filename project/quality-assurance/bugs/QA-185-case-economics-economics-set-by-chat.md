@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
@@ -62,3 +62,4 @@ frontend 1.1.116 (commit 7340b3d, bundle index-B5FsgIA4.js): `VariantField` (`sh
 ## Retest
 
 Not run (no tests now). Retest: project QA-TEST QA-E2E-economics-I 1, Case > Economics > Fill in here shows the 30+ values.
+- 2026-11-05 17:27 UTC: QA-E2E-economics-I 2026-11-05 17:29 UTC, frontend bundle index-CnfyoHnO.js: Fill in here loads the 30+ values of economics.json (discount 0.06, carbon 80 ...), about.sources kept in the JSON; Discard returns to the file. Sources per key still not shown in the form (improvement). evidence/QA-185/retest-1.png
