@@ -9,7 +9,7 @@
 | Found | 2026-11-05 18:27 UTC |
 | Versions | backend 1.1.108-1.1.11x during the run (geomind main 6724bdf at report time) |
 | Where | project `QA-TEST QA-E2E-study-I 2` (8eabf827-1f43-4cf8-86a4-39147bea32a0); chat ae934804-eca5-4b3c-99a7-dd60665b5ee9; run 83182f0e-8ee2-4230-a98f-8f0bc905caf3 |
-| Fixer | m7 |
+| Fixer | m3 |
 
 ## Steps
 
