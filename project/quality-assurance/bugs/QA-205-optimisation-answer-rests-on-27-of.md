@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 17:24 UTC |
 | Versions | backend 1.1.104 (deploy during the run from 1.1.102), frontend bundle index-CEvw1roy.js |
 | Where | https://geomind.team; project `QA-TEST QA-E2E-study-I 1` (8fcbf709-537a-40d9-ac1f-abadd1061775); chat c0cae905-a2a8-44cf-8bec-f4899f313e8b; run 4eb8e2f4-e775-4e2a-b257-853eae883724; analysis_lead 17:14:24-17:18:06 UTC |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
