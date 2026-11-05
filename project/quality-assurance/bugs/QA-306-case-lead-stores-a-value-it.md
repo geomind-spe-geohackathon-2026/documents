@@ -45,4 +45,17 @@ implies) and let gemini derive at run time; prompt: never write a formula result
 
 ## Fix
 
+- 2026-11-05 20:08 CET, hotfix-python member-5: by design, no code change. The value is no number
+  the agent computed: geomind's `set_case` (`geomind/tools/gemini/air.py`, `pressure_from_elevation`)
+  takes `site.air.pressure` as `{"elevation": {value, unit}}` and sets the ISA pressure in Pa at
+  that elevation (ISO 2533:1975), with its source in `site.air.about.pressure` and an entry in
+  `converted`. gemini's case schema has no elevation form, and a case without `site.air.pressure`
+  is `missing_value`, so the case keeps the pressure, not the elevation. The approved input (the
+  elevation 10 m) is what the card showed; the stored Pa value is its documented conversion.
+- What was wrong is the question's wording, "gemini derives the ISA pressure": it is `set_case`.
+  The case lead's prompt now says "set_case sets the ISA pressure from it (ISO 2533); the user
+  confirms the elevation, never the ISA pressure" (geomind commit 76a46bd).
+- Status: wont-fix (by design); the wording fix is in 76a46bd. Keeping the elevation in the case
+  would need gemini to take an elevation form: a gemini request, only with Sahand's permission.
+
 ## Retest
