@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -69,3 +69,5 @@ the request tree). Final summary must name the user's stop as the reason.
   Nothing stored (`GET /design/case` 404), so no unconfirmed value leaked, but 2 min and
   ~300 k input tokens after `stop`. Evidence: `../evidence/QA-197/run-dd6b4700.json`,
   `steps-run-dd6b4700.txt`. Not a retest of the fix: a `stop` run on 0.4.114 follows (QA-AI-case-I run 7).
+- 2026-11-05 18:08 UTC (19:08 CET), QA-AI-case-I, run efe4576b-9617-466a-b4e3-88e99a492133 (project QA-TEST QA-AI-case-I 7, 980d5448-36ec-41e0-af2a-28686d9f1be9; geomind 0.4.114, backend 1.1.110): `stop` on the confirmation question (18:06:58). The case lead finished at once ("Stopped by the user: nothing was set and nothing is stored"); the project lead finished with that answer in the next step (no LLM call, no second `case_lead`). No `set_case` at all, `GET /design/case` 404. Run 3 min 26 s, 0.020 USD. Verified. Evidence: `../evidence/QA-197/run-efe4576b.json`.
+- 2026-11-05 18:07 UTC: QA-AI-case-I run efe4576b, geomind 0.4.114
