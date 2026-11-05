@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -62,7 +62,7 @@ simulate time (`{result}.design` = the design reference and its digest), and tes
 design built from a project plant version. Also: the project lead should not hit a 30-step
 ask on a report (raise its budget or drop the ask with Auto-approve, as QA-086 did for the
 design lead).
-
+- 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 ## Retest
 
 (Who, when, result.)
