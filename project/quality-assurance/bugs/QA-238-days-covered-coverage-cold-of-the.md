@@ -7,32 +7,27 @@
 | Area | gemini |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 17:42 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.108 (geomind 0.4.110, gemini 0.6.17) |
+| Where | https://geomind.team/projects/4678c5c6-66fc-46dd-9d1e-358c3c5c1d24 (No-agent showcase); result 137473a6-8f6c-4f69-b9b4-bbe5dd414092 (run of plant version 8, the best evolve structure) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Plant with an absorption chiller (driven by brine heat) and an electric compression chiller; run the whole year.
+2. Read `coverage.cooling` of the result (Days covered, Results).
 
 ## Expected
 
+Cold from the compression chiller (electricity) counted as not geothermal (backup or its own class); only the absorption chiller's cold geothermal.
+
 ## Actual
 
-## Evidence
-
-- ![screenshot](../evidence/QA-238/1.png)
-- Run JSON: `../evidence/QA-238/run-<id>.json`
+`coverage.cooling`: geothermal 23,743 MWh, backup 0, on all 365 days 'geothermal', although `capacities` shows compression_chiller peak 4.13 MW (absorption 5.87 MW). The share of cold from geothermal is overstated.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: gemini's daily_coverage classes every cooling unit as geothermal, or classes by role, not by drive (QA-107a treated an ElectricBoiler as backup for heat; the same rule is missing for cold).
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
