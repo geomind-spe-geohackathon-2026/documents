@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | functional-qa-3 |
@@ -40,7 +40,7 @@ Guess: an uncaught exception in gemini 0.6.8 (new in 0.6.7/0.6.8, since QA-076/Q
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 06:31 UTC: geomind 0.4.71 (2be9007: internal errors carry class, message, file:line) + gemini 0.6.10 (bare inlet name is invalid_connection, was KeyError), backend 1.1.75 (6dfb1c7), deployed 06:30 UTC; ESP-flow patch internals not reproduced, their cause now shows in the message
 ## Retest
 
 (Who, when, result.)
