@@ -1,4 +1,4 @@
-# QA-321: Drilling capex misses the riser of a producer split at the ESP: agent design B_r1_best (1 doublet, 3,500 m: riser 1,500 m + well 2,000 m + injector 3,500 m) is costed for 5,500 m, not 7,000 m (-1.86 MEUR, LCTS about -1 EUR/MWh)
+# QA-321: Producer split at the ESP into riser 1,500 m + well 2,000 m is accepted and simulated as a 2,000 m producer on a 3,500 m doublet (design invalid, cost follows the simulated well)
 
 | Field | Value |
 |---|---|
@@ -31,3 +31,7 @@ Guess: the drilling cost sums the well and injector section lengths of a Doublet
 ## Fix
 
 ## Retest
+
+## Update 2026-11-05 20:25 CET (from hotfix-python-lead-II)
+
+The cost is not under-counted: the design is invalid. The producer was given as two separate paths (riser 1,500 m and well 2,000 m) that do not add up to the doublet depth of 3,500 m in one path, so gemini simulated a 2,000 m producer and costed what it simulated; adding the riser to the cost would double-count normal designs. Consequence for the report: B_r1_best (LCTS 29.55, 12/12 checks) rests on an inconsistent well and is not a valid result. Fix: gemini 0.6.30 refuses a producer whose riser and well paths differ from the depth, plus a design prompt line; deploys with QA-278 (0.6.29).
