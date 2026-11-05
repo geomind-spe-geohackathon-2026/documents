@@ -94,3 +94,4 @@ wont-fix, duplicate.
 | [QA-086](bugs/QA-086-design-lead-stops-every-30-steps.md) | fixing | minor | geomind | design_lead stops every 30 steps and asks the user to continue, also with Auto-approve on | functional-qa-2 | hotfix-python |
 | [QA-087](bugs/QA-087-web-search-case-lead-spends-39.md) | fixed | minor | geomind | web_search: case_lead spends 39 searches on one value (compression chiller variable O&M); half refused for >8 words, many empty; no value or source returned | functional-qa-3 | hotfix-python |
 | [QA-088](bugs/QA-088-study-list-an-agent-study-shows.md) | fixing | major | backend | Study list: an agent study shows done but has no result (Progress '-', Results tab empty) | Sahand | hotfix-back |
+| [QA-089](bugs/QA-089-runs-and-logs-the-step-list.md) | open | minor | frontend | Runs and logs: the step list is one long flat column and the right pane starts empty | Sahand |  |
