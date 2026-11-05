@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -50,3 +50,5 @@ read-only, diff with the previous one, Restore, Saved by from `by`.
 hotfix-front-III, frontend part: 1.1.97 (f19a7da) and 1.1.98 (464d96d), shared `frontend/src/shared/versions/` (diff and history views) for Case and Plant History: no "#" column beside Version; the full note; Saved by "Assistant" from `Version.by`; Open on every row opens the version read-only with "Changes from version N-1" (path, added/removed/changed, old and new value, source; case files included; plant modules, connections, spec, structure) and "All values". Case: "Restore this version" posts `/design/case/versions/{n}/restore` with the latest number as base (a 409 says the case was saved again; disabled while the form has unsaved changes). Plant: Restore loads the version into the editor as before. Deploy 11:30 UTC.
 - 2026-11-05 14:11 UTC: frontend 1.1.99 (e9435c4) deployed 14:10 UTC, bundle index-BlepNtQt.js
 ## Retest
+
+- 2026-11-05 14:12 UTC: live 1.1.99 with backend 1.1.87: Case and Plant History without # column, Saved by Assistant, Open shows read-only version, case v8 vs v7 diff (reference_depth 2500->3000 m, heating return 60->55 degC), plant v2 vs v1 diff. Restore not pressed live (would write a version)
