@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-case-I |
@@ -38,7 +38,7 @@ hotfix-python-III, 2026-11-05, geomind 0.4.85 (tag v0.4.85), backend 1.1.88 (dep
 Fix: `ask_economics` refuses a fraction key (`discount_rate`, `*share*`, `*fraction*`) given a
 number above 1 with no unit: "8 reads as 800 %. For 8 % give 0.08" (`refuse_percents`), before
 the user is asked.
-
+- 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
 ## Retest
 
 (Who, when, result.)
