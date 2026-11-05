@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -56,3 +56,4 @@ saying an option cannot be modelled.
 ## Retest
 
 QA-E2E-report-I, 2026-11-05 20:16 UTC, live geomind 0.4.133+, project QA-TEST QA-E2E-report-I 5 (c60d19cd), run 4ffa1142 (20:07:58-20:14:27 UTC), question 'Why an absorption chiller instead of a compression chiller ... Could the compression option be simulated?': the answer now says 'gemini does model it - an electric (vapour-compression) chiller is a HeatPump in cooling mode, and the reference plant HeatingHeatPumpCoolingPlant holds one as compression_chiller', and gives a design reason from the result (chiller electricity 237 MWh/yr, grid 300 g/kWh, electricity 8.02 of 13.77 kt CO2). Verified. The comparison itself was not made: routing gap filed as a new bug. Text: `../evidence/QA-334/retest-answer.txt`.
+- 2026-11-05 20:15 UTC: retest QA-E2E-report-I run 4ffa1142: compression chiller = HeatPump stated
