@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 19:59 UTC |
 | Versions | backend 1.1.125 |
 | Where | POST /reporting/design/export (md, all parts), project `QA-TEST QA-AI-analysis-I 1` (4ce816b1-4bd1-48a5-8e77-9414c2b86301), result b7af0082-b903-4346-a084-11e01f8e2710 (page study minimize "QA-332 retest minimize") |
-| Fixer | back-m2 |
+| Fixer | back-m1 |
 
 ## Steps
 
@@ -47,3 +47,7 @@ Backend report builder (`src/core/.../report` studies part): for a minimize/evol
 variables with range, start and best, trials and feasible count, and a reading line; list the project's sensitivity and
 sample studies of the same plant version (or say none exists). Print unmet energy below 0.01 % of demand as "all demand
 met".
+
+## Fix
+
+- 2026-11-05 20:00 UTC: reporting/** is back-m1's; handed over by back-m2
