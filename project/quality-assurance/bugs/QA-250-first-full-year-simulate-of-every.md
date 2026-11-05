@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,geomind |
 | Reporter | QA-AI-design-I |
 | Found | 2026-11-05 17:55 UTC |
 | Versions | backend 1.1.102-1.1.109 (geomind 0.4.98-0.4.110, gemini 0.6.16/0.6.17) |
 | Where | api.geomind.team; run 0df89b7e-69e0-46b3-abe1-231e51d9570a (project QA-TEST QA-AI-design-I 1) simulate 17:11:53 UTC; run 5d0216a6-4acb-487b-a885-396a5e99366d (project QA-TEST QA-AI-design-I 2) simulate 17:41:05 and 17:47:36 UTC |
-| Fixer | hotfix-python-lead |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -47,6 +47,7 @@ Facts above. Guesses: (1) the case's flow band (a requirement on the doublet) is
 
 - 2026-11-05 18:29 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 - 2026-11-05 19:16 UTC: QA-E2E-design-I retest: first full-year simulate 365/365 failed (m_dot nan), then 330/365 (ESP flow 8.8e6 m3/s) until d0.well/riser segment set; run 06fd16f0
+- 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
 
 Retest (QA-E2E-design-I, 2026-11-05 19:20 UTC, backend 1.1.117): still fails, other messages. Run 06fd16f0 (project QA-TEST QA-E2E-design-I 3, HeatingHeatPumpCoolingPlant, 1 doublet x 300 m3/h): first whole-year `simulate design/hc_ready` (18:57:50) **365 of 365 steps failed**: "Stream: m_dot = nan kg/s; expected a finite mass flow" (path ""); after one more patch `simulate design/hc_fixed` (18:58:24) **330 of 365 failed**: "d0.esp: flow = 8808335.2 m3/s gives head = 3824522 Pa and power = 4.8e13 W; expected flow at most 0.1133 m3/s". The design lead then needed a well engineer round (6 min) to set `d0.well.segment` below_esp / `d0.riser.segment` above_esp and 6 more values; `simulate design/hc_wellfix` (19:06:01) passed with 0 failed steps. So an agent-built plant still does not run on its first full-year simulate; the missing segment values were not reported as missing by patch_plant's check.
