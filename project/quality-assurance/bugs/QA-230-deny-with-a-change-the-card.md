@@ -59,3 +59,7 @@ after a change-denial, propose again with the change.
 ## Fix
 
 ## Retest
+
+## Also seen: build_plant (QA-E2E-design-I, 2026-11-05 17:47 UTC, backend 1.1.108)
+
+Project QA-TEST QA-E2E-design-I 2 (72df9c82-e577-4605-8743-ffcee53c3a73), run dca5ed1a-35f5-4975-ad6e-94069b640590. Chat "Design the plant for this case."; the build_plant card (1 doublet, backup none) denied with the words "Start with 2 doublets instead of 1, and use backup peak so the boiler can cover a doublet outage." The design lead built exactly that (2 doublets, backup peak) three times (17:47:18, 17:47:26, 17:47:44); each was refused with "build_plant: the user denied this tool earlier in this request (...), so it is not asked again". The design lead finished with "I could not produce a design"; the project lead then sent the case lead to ask about network pipes. The fix must cover every write tool (build_plant, patch_plant, set_ranges), not only set_case.
