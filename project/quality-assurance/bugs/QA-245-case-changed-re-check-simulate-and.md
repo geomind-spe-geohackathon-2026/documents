@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -44,4 +44,5 @@ Design lead: `simulate` on the new case, `check_results`, record `design.result`
 
 ## Fix
 
+- 2026-11-05 18:32 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
