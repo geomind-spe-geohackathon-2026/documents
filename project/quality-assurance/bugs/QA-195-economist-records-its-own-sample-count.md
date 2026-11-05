@@ -56,3 +56,12 @@ sub-agent that has no `ask_user`.
 ## Fix
 
 - 2026-11-05 17:40 UTC: geomind 0.4.109, deployed: economist prompt records task values as source agent, confirmed false
+
+## Retest
+
+- 2026-11-05 18:51 UTC, QA-AI-analysis-I, backend 1.1.117: project `QA-TEST QA-AI-analysis-I 8`, "Run a Monte Carlo of
+  the LCTS over every uncertainty the case declares and give the mean, p5 and p95." (no sample count, no seed), run
+  bbff4ad3-a996-4ec8-a958-eb9682d75681, 1 min 27 s, 0.0031 USD. The economist chose 200 draws, seed 42 and recorded no
+  assumption claiming they came from the user (its update_state records only the result). Numbers: p5 37.97, p50 46.10,
+  p95 54.31 EUR/MWh, equal to the page study 5d7bbf26. Verified. (Side note: the lead's brief said "the case declares
+  four uncertainties"; the economist corrected it to six.) Log: `../evidence/QA-195/run-bbff4ad3-retest-log.json`.
