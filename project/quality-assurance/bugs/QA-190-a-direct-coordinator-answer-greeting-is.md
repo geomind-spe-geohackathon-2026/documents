@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -36,3 +36,7 @@ The coordinator routes it `kind: "answer"` (it did, 3.7 s, 2 250 tokens, a good 
 ## Proposed fix
 
 geomind: record the loop as `answer` for a `kind: "answer"` route (a named `answer` entry in `LOOPS`, or the loop name taken from `route.kind` when it is `answer`). Backend needs no change if it stores geomind's loop name; check the Runs page filter accepts `answer`.
+
+## Fix
+
+- 2026-11-05 18:59 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
