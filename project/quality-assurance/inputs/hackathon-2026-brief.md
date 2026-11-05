@@ -1,7 +1,7 @@
 # GEMINI hackathon 2026: judging, deliverables and reference results
 
 > NOT FOR KNOWLEDGE (2026-11-05): this file holds solved reference results; it was deleted from
-> the live Knowledge at 21:33 UTC and must never be uploaded again. Agents never read it.
+> the live Knowledge on 2026-11-05 and must never be uploaded again. Agents never read it.
 
 What the SPE Europe Energy GeoHackathon 2026 (GEMINI digital twin challenge) asks of the report,
 and reference results to check against. Cite as `knowledge/hackathon-2026-brief.md`.
