@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-report-I |
 | Found | 2026-11-05 18:37 UTC |
 | Versions | backend 1.1.109+, frontend bundle index-TsXgd_n9.js |
 | Where | https://geomind.team/projects/fa329839-43df-48c3-81c3-89af503b92c0/design/report; project QA-TEST QA-E2E-report-I 2 |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
