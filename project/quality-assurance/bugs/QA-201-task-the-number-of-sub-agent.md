@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend,geomind |
 | Reporter | Sahand (task) |
@@ -37,7 +37,7 @@ prompts (case lead, geoscientist, design lead, engineers) take the number throug
 Set to 8 in backend `.env`, `.env.dev`, `.env.dev.example`, `.env.example` (all four now hold the
 same 89+1 variables; `.env.dev` got the 8 it lacked); geomind `.env.example`; prod worker
 `GEOMIND_TEAM_SIZE=8` checked. Infrastructure `.env` / `.env.example` pairs: names match.
-
+- 2026-11-05 17:29 UTC: geomind 0.4.106 2aabaa5, backend 1.1.106
 ## Retest
 
 Recipe: Ask a lead for a split into more than 4 groups; up to 8 instances run (Roman I-VIII); 9 briefs are refused naming 8.
