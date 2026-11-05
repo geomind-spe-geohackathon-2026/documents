@@ -1,4 +1,4 @@
-# QA-246: One browser tab gets 429 rate_limited (56 requests in a few minutes) and the Plant page shows 'The plant could not be loaded. rate_limited': the chat page alone fires bursts of the same GET (20x runs?status=active at once), over the 100 requests/min token bucket
+# QA-246: One browser tab gets 429 rate_limited (56 requests in a few minutes, ~17:38 UTC) and the Plant page shows 'The plant could not be loaded. rate_limited': the chat page alone fires bursts of the same GET (20x runs?status=active at once), over the 100 requests/min token bucket
 
 | Field | Value |
 |---|---|
@@ -6,7 +6,7 @@
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-design-I |
-| Found | 2026-11-05 17:50 UTC |
+| Found | 2026-11-05 17:38 UTC |
 | Versions | frontend 1.1.113 (index-TsXgd_n9.js), backend 1.1.107-1.1.108 |
 | Where | https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7/design/plant (chat pane open beside it); one agent-browser tab, one sign-in |
 | Fixer | |
