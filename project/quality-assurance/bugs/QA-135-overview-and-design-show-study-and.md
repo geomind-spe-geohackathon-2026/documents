@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | backend |
 | Reporter | functional-qa-study-I |
 | Found | 2026-11-05 14:21 UTC |
 | Versions | frontend as live 2026-11-05, backend 1.1.83-1.1.84 |
 | Where | https://geomind.team/projects/7a852d89-dfe5-423c-980a-a4ca231353bc/overview; project QA3 study |
-| Fixer | |
+| Fixer | hotfix-back-III |
 
 ## Steps
 
