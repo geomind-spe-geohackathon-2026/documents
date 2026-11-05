@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 18:50 UTC |
 | Versions | geomind 0.4.114, backend 1.1.110 |
 | Where | api.geomind.team; project QA-TEST QA-AI-case-I 5 (77e0d7c1-cf15-4931-a74d-71516aafd0a4); chat 2b692128-ea48-473f-8959-828ef6c73b98; run 7ff26b69-e0a2-4407-912c-34266af8a216; case_lead steps 15-17 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -81,7 +81,7 @@ until the design stage.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 19:11 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
 
 (Who, when, result.)
