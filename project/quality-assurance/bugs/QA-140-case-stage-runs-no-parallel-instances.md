@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-II (timed run approved by the user), Claude (write-up) |
@@ -55,3 +55,5 @@ The run itself was fast and complete:
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 17:35 UTC, QA-AI-case-I, run 3 (geomind 0.4.100, backend 1.1.104; project QA-TEST QA-AI-case-I 3 f400fa2d-292d-4358-b3c1-9f4a51f51f7f; run 84526204-bfb7-4611-a476-abde6317c58e; log `../evidence/QA-153/run-84526204.json`): the case lead calls `geoscientists` once with 4 briefs (Geoscientist I-IV, `instance` set on each), 84 s; also in runs f5f86362 and 519ccc65 (0.4.98). Verified.
+- 2026-11-05 17:32 UTC: QA-AI-case-I run 84526204 on geomind 0.4.100
