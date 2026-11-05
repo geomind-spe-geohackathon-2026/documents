@@ -49,6 +49,8 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
     conflicting sources
 20. Produced fluid in depth: reading an analysis, gas and degassing, corrosion, scaling and
     solids
+21. Case inputs as uncertain values: kinds, from a source's statement to a leaf, dependent
+    inputs, worked example
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1853,6 +1855,70 @@ same idea expressed as a temperature drop (§6.9). Never derive a scaling limit 
 expected Ba and SO₄; keep injection at 40 °C or above". Requirement:
 `injection_temperature_floor`, doublet, injection_temperature, each, running, min 40 degC.
 
+# 21. Case inputs as uncertain values
+
+How to turn what a source says about uncertainty into a gemini `uncertainty` leaf (§9.2), and
+which inputs carry which kind. How studies use the ranges: `knowledge/handbook-studies.md`.
+Examples use invented numbers.
+
+## 21.1 Kinds of uncertainty in a case
+
+- **Epistemic** (lack of knowledge): reservoir permeability, thickness, temperature before
+  drilling; fluid properties before a test. It shrinks with data. It usually dominates a
+  geothermal project before the first well (Huenges 2010; Stober and Bucher 2021).
+- **Aleatory** (natural variability): the weather of a year, hence the demand of a year. A
+  single demand year is one sample; a different year gives a different peak and energy
+  (CIBSE TM41 on year-to-year degree-day spread).
+- **Measurement**: a meter's or a log's accuracy (JCGM 100:2008); usually small next to the two
+  above.
+
+**Rule.** Declare a range only for a value whose source states one, or when a study the user
+asked for needs it (§9.3); name the kind and the source. A demand series carries no
+`uncertainty` leaf: a different weather year is a different series, which is a separate case
+or scenario.
+
+## 21.2 From a source's statement to a leaf
+
+| Source states | Leaf (gemini kinds: `uniform`, `triangular`, `normal`) | Note |
+|---|---|---|
+| "between A and B" | `uniform`, min A, max B | no preferred value |
+| "most likely M, from A to B" | `triangular`, value M, min A, max B | the value is the mode |
+| "mean μ, standard deviation σ" | `normal`, value μ, std σ, min, max | truncate at physical limits |
+| "P90 / P50 / P10" | `triangular` with value P50, ends at the stated low and high percentiles | the 80 % interval taken as the full range narrows the tails: say so |
+| "± x %" | `uniform` or `normal` as the source implies | ask if it does not say |
+| a log-normal (common for permeability) | not a gemini kind: `triangular` with the mode below the mean, or ask | name the substitution |
+
+**Percentile convention.** In PRMS and finance P90 is the low value (exceeded with 90 %
+probability); some sources use the opposite. Read the source's definition before mapping
+(`knowledge/handbook-studies.md §4.3`).
+
+**Physical limits.** Truncate a `normal` at limits that cannot be crossed (a permeability > 0, a
+fraction in 0 to 1). The ends are part of the source's statement or a stated physical bound,
+never the agent's taste.
+
+## 21.3 Dependent inputs
+
+Some inputs move together: permeability and thickness of one interpretation (kh is what the
+test constrains), gradient and reservoir temperature, density and salinity. Drawing both of a
+dependent pair independently gives combinations no source supports.
+
+**Rule.** When the source constrains a product or a combination (kh), declare the range on one
+member and keep the other at its value, and name the choice; or declare both only when the
+source gives them as independent. Do not give `reservoir.temperature` a range when it is unset
+and gemini derives it from the gradient: the gradient's range covers it.
+
+## 21.4 Worked example (invented)
+
+A reservoir report gives net permeability "P90 180 mD, P50 300 mD, P10 480 mD (P90 = low)",
+net thickness 55 m "well constrained", gradient "31 K/km, likely 28 to 34".
+
+- Permeability: `{"value": 300, "unit": "mD", "uncertainty": {"kind": "triangular", "min": 180,
+  "max": 480}}`, noted "80 % interval used as the full range; tails narrowed".
+- Thickness: value only (the report says well constrained; kh variation carried by k).
+- Gradient: `triangular`, value 31, min 28, max 34 K/km ("likely" read as the range ends: name it).
+- Reservoir temperature: unset (derived), no range.
+All four readings go into the one question as the agent's mapping of the report's words.
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -1943,6 +2009,7 @@ expected Ba and SO₄; keep injection at 40 °C or above". Requirement:
 - NORSOK M-506 (2017). *CO2 corrosion rate calculation model*. Standards Norway.
 - NIST SP 811 (2008). *Guide for the Use of the International System of Units*.
 - RFC 2119 (1997). *Key words for use in RFCs to indicate requirement levels*.
+- SPE, AAPG, WPC, SPEE, SEG (2018). *Petroleum Resources Management System* (PRMS), rev. 2018.
 - Ramey, H.J. (1962). Wellbore heat transmission. *Journal of Petroleum Technology* 14(4),
   427-435.
 - gemini physics: `gemini/gemini/physics/ground.py` (geotherm, Gringarten-Sauty doublet, Ramey),
