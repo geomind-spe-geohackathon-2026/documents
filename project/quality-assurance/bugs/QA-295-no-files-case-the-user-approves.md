@@ -78,6 +78,10 @@ Accuracy: 4 of the 20 approved site values stored wrong (gradient +20 %, depth +
 +25 %, GLR +60 %). Speed: case stage 8 min 34 s (17:55:16 to 18:03:50 economics question), 0.014 USD
 until the design stage.
 
+## Seen again
+
+- 2026-11-05 19:50 UTC (20:50 CET), QA-AI-case-I, run 52794bcf-2667-40fc-934c-074afea0fbd7 (project QA-TEST QA-AI-case-I 15, d264173a-8b14-4778-98b8-39cecc08226c; only the PDF uploaded; geomind 0.4.131): the confirmation question (request-391) lists `time_zone = UTC | assumption ... gemini's sample uses UTC timestamps`; the user approves all; the case lead then records assumption A2 "time_zone of both series Europe/Amsterdam (assumed, the brief gives none)" as `confirmed: true`, and the final answer says "I have assumed `Europe/Amsterdam` ... Confirm it". Same defect as above: what is recorded differs from what the user approved (no case is stored in this run: the demand files are missing, so nothing wrong reached the case yet). Evidence: `../evidence/QA-295/run-52794bcf.json` (case_lead `update_state` 19:48:53).
+
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
