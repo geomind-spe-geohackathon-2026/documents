@@ -28,6 +28,10 @@ simulate fills d0.gradient, surface_temperature, permeability, thickness, reserv
 - ![screenshot](../evidence/QA-082/1.png)
 - Run JSON: `../evidence/QA-082/run-<id>.json`
 
+## Update 2026-11-05 ~06:40 UTC, backend 1.1.75 / gemini 0.6.10 (functional-qa-I)
+
+Retried in chat cb8b9b2d (new message, same project; run 004bb7f9, 114 s, done). The design lead again ends without a simulation. In its own words (full text: evidence/QA-082/final-chat-0640.txt, screenshot final-chat-0640.png): 'the simulator reports [gradient 30 C/km, surface temperature 12 C, permeability 200 mD, thickness 100 m] as missing. The only route that accepts them is passing them in the simulation call - and the moment the pump's six operating values are supplied alongside, GEMINI demands a pump stage count and head/power curve coefficients that no project file ... provides ... If instead the plant is left for the case to fill, the reservoir and sink sub-values are not filled from the case, and GEMINI's own two checks contradict each other: the plant reader reports zero issues while the simulator demands values.' So the plain d0.gradient error still reproduced for the agent in the prod worker at about 06:35 UTC (design names: design/A_sized, a_start_2, b_nogas; I could not export the run JSON, the download did not land). Full text per call is in the earlier run JSON c4f00b5c. Good: the final answer is plain and honest (what, why, what the user can decide).
+
 ## Cause
 
 Guess: the case fallback ('empty takes it from the case') works only when the doublet sub-objects are absent, not for a doublet with explicit sub-blocks; the agent builds the doublet with sub-blocks and then cannot clear them.
