@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -113,3 +113,7 @@ Extra proposed fix from the E2E side: the `economics` skill (geomind/agents/anal
 tells the economist to call `sensitivity(design, ...)` "on the verified design"; until the tools
 take the project plant (no design = the project plant, as `simulate` does), the skill should say
 so, and the lead should not re-delegate the same refused call.
+
+## Fix
+
+- 2026-11-05 17:02 UTC: geomind 0.4.99 (163c82b, tag v0.4.99), pushed 2026-11-05; NOT deployed yet (deploy freeze during the live run): the backend hotfix-mode deploy picks it up. QA-152: design/<project plant name> or design/v<N> in every design tool; QA-158: case lead prompt asks time_zone as an assumption.
