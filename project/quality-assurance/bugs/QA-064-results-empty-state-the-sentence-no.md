@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | qa-ux |
@@ -41,3 +41,4 @@ Also seen on the Case page (own project): the File and Column selects cut their 
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 00:32 UTC: geomind.team 1.1.67 (index-D3Dw0_He.js), Playwright 00:35 UTC: project ae542488 Results: 'No results yet. Run a study to get one.' as one 20 px line
