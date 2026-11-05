@@ -105,3 +105,4 @@ wont-fix, duplicate.
 | [QA-097](bugs/QA-097-case-lead-reads-plants-need-from.md) | open | minor | geomind | Case lead reads plants_need from the set_case result with read_stored; the stored result has no plants_need key | Fatemeh |  |
 | [QA-098](bugs/QA-098-browser-tab-shows-a-generic-globe.md) | verified | minor | frontend | Browser tab shows a generic globe instead of the GeoMind icon (no favicon) | user via coordinator | hotfix-front-II |
 | [QA-099](bugs/QA-099-economics-answer-prints-15-digit-figures.md) | open | minor | geomind | Economics answer prints 15-digit figures and uses a 365.25-day energy basis it never states (heat 111744 MWh vs the run's 111667.68) | functional-qa-report-I |  |
+| [QA-100](bugs/QA-100-runs-and-logs-the-section-titles.md) | open | cosmetic | frontend | Runs and logs: the section titles Per agent and Per model are the size and weight of the column headers; they do not read as titles | Fatemeh |  |
