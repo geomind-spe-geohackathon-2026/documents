@@ -65,6 +65,7 @@ the Results page shows: kpis, checks, capacities, coverage, series). Backend par
 serve that method from the results table. Also: an `unknown_name` error for a uuid that
 `list_studies` listed should say how to read it, not "none stored".
 - 2026-11-05 17:13 UTC: geomind 0.4.101 (QA-162 af0d5bf) / 0.4.102 (QA-165 c5ed1b1), pushed 2026-11-05; NOT deployed yet: hotfix_deploy.sh fails at backend requirements (kombu 5.7.0 vs redis<6), told the coordinator. QA-165: result tools explain a Study-page result (quote kpis/checks or simulate design/v<N>).
+- 2026-11-05 17:27 UTC: deployed in backend 1.1.106 (geomind 0.4.106)
 ## Retest
 
 (Who, when, result.)
