@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -36,7 +36,7 @@ The window always filled the screen height: the version list showed about 10 row
 ## Fix
 
 hotfix-front-IV: DialogContent `max-h` instead of `h` (height follows content, at most the screen); version list max `100svh-13rem`, changes/values tables max `100svh-20rem`, each scrolls inside. Frontend 1.1.109, commit ebc5b51, deployed 2026-11-05 (bundle index-DwO4tlF4.js).
-
+- 2026-11-05 14:58 UTC: frontend 1.1.109, commit ebc5b51, deployed
 ## Retest
 
 hotfix-front-IV, live, Playwright /tmp/hf-check/qa137.js: list window and version window size to their content; Flowsheet view fits.
