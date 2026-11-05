@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -81,3 +81,11 @@ geomind:
 
 - 2026-11-05 18:30 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+- 2026-11-05 18:55 UTC, QA-E2E-economics-I: PASSES (backend 1.1.116/1.1.118). Project 5, run
+  bfe3d68d-4f9c-479c-9a02-10643b68349e: "Use the Instrat EU ETS 2025 average from the cost
+  catalogue as the carbon price again." -> ONE economics question (58 s; "One change only ...
+  every other value passed as the case holds it"), approve all, done at 1 min 39 s; no set_case
+  cards; `economics.carbon.price` 57.03 EUR/t with source row `carbon-price-eu-ets-instrat-price-2025`;
+  case top-level `about.sources` empty. 263k tokens, 0.0077 USD. Card: `../evidence/QA-256/retest-card.txt`.
+- 2026-11-05 18:55 UTC: QA-E2E-economics-I 18:55 UTC run bfe3d68d: one card, 1 min 39 s, source right; see Retest
