@@ -1,0 +1,277 @@
+{
+ "project": "9a3f8f4b-8a49-446d-b665-8eb1dbb92709",
+ "version": 2,
+ "content": {
+  "kind": "case",
+  "name": "GEMINI hackathon 2026 - geothermal heating and cooling, 2027",
+  "site": {
+   "air": {
+    "pressure": {
+     "unit": "Pa",
+     "value": 101325
+    },
+    "temperature": {
+     "unit": "\u00b0C",
+     "value": 10
+    }
+   },
+   "fluid": {
+    "density": {
+     "unit": "kg/m3",
+     "value": 1030
+    },
+    "viscosity": {
+     "unit": "mPa.s",
+     "value": 0.4
+    },
+    "dissolved_gas": {
+     "CH4": {
+      "unit": "mol%",
+      "value": 80
+     },
+     "CO2": {
+      "unit": "mol%",
+      "value": 20
+     }
+    },
+    "gas_liquid_ratio": {
+     "unit": "Nm3/m3",
+     "value": 0.8
+    },
+    "sand_concentration": {
+     "unit": "mg/l",
+     "value": 20
+    }
+   },
+   "ground": {
+    "gradient": {
+     "unit": "\u00b0C/km",
+     "value": 30
+    },
+    "surface_temperature": {
+     "unit": "\u00b0C",
+     "value": 12
+    }
+   },
+   "reservoir": {
+    "pressure": {
+     "unit": "barg",
+     "value": 250
+    },
+    "thickness": {
+     "unit": "m",
+     "value": 100
+    },
+    "permeability": {
+     "unit": "mD",
+     "value": 200
+    },
+    "reference_depth": {
+     "unit": "m",
+     "value": 2500
+    }
+   }
+  },
+  "time": {
+   "end": "2028-01-01",
+   "step": {
+    "unit": "d",
+    "value": 1
+   },
+   "start": "2027-01-01"
+  },
+  "about": {
+   "brief": "GEMINI_Hackathon_Challenge_Requirements.pdf (28 October 2026), 2 pages",
+   "services": "annual heating and cooling load, deep geothermal",
+   "open_rules": [
+    "'same reservoir' for production and injection: no case key; the reinjection_ratio requirement covers the equal-liquid-volumes part only",
+    "the brief's '330 daily steps' is read as the availability of each doublet (organisers' rule, knowledge/hackathon-2026-assumptions.md); the whole system meets the demand on all 365 days",
+    "design freedoms left to the design team: well depth (2000-3500 m), number of doublets (1-3), return temperatures, backup policy, how the associated gas is handled (flare, boiler, CHP)"
+   ]
+  },
+  "demand": {
+   "cooling": {
+    "power": {
+     "file": "GEMINI_Cooling_Demand_Daily_2027.csv",
+     "unit": "MW",
+     "column": "cooling_demand_MWcool",
+     "time_zone": "UTC"
+    },
+    "return_pressure": {
+     "unit": "bar",
+     "value": 4
+    },
+    "dew_point_margin": {
+     "unit": "K",
+     "value": 1
+    },
+    "indoor_temperature": {
+     "unit": "\u00b0C",
+     "value": 26
+    },
+    "return_temperature": {
+     "unit": "\u00b0C",
+     "value": 25
+    },
+    "supply_temperature": {
+     "unit": "\u00b0C",
+     "value": 20
+    },
+    "indoor_relative_humidity": {
+     "unit": "-",
+     "value": 0.5
+    }
+   },
+   "heating": {
+    "power": {
+     "file": "GEMINI_Heating_Demand_Daily_2027.csv",
+     "unit": "MW",
+     "column": "heating_demand_MWth",
+     "time_zone": "UTC"
+    },
+    "return_pressure": {
+     "unit": "bar",
+     "value": 6
+    },
+    "return_temperature": {
+     "unit": "\u00b0C",
+     "value": 60
+    },
+    "supply_temperature": {
+     "unit": "\u00b0C",
+     "value": 100
+    }
+   }
+  },
+  "format": 1,
+  "utilities": {
+   "gas": {
+    "composition": {
+     "N2": {
+      "unit": "-",
+      "value": 0.11083897243546233
+     },
+     "CH4": {
+      "unit": "-",
+      "value": 0.8249507401227822
+     },
+     "CO2": {
+      "unit": "-",
+      "value": 0.011912342910726407
+     },
+     "C2H6": {
+      "unit": "-",
+      "value": 0.039549858193534584
+     },
+     "C3H8": {
+      "unit": "-",
+      "value": 0.012748086337494389
+     }
+    }
+   },
+   "electricity": {
+    "co2_intensity": {
+     "unit": "g/kWh",
+     "value": 300
+    }
+   }
+  },
+  "requirements": [
+   {
+    "on": "doublet",
+    "max": 3,
+    "min": 1,
+    "name": "doublet_count",
+    "quantity": "count"
+   },
+   {
+    "on": "cooling_supply",
+    "max": 0.01,
+    "name": "cold_delivered",
+    "quantity": "unmet_share"
+   },
+   {
+    "on": "heating_supply",
+    "max": 0.01,
+    "name": "heat_delivered",
+    "quantity": "unmet_share"
+   },
+   {
+    "on": "doublet",
+    "max": 0.7,
+    "min": 0.7,
+    "name": "pump_efficiency",
+    "quantity": "pump_efficiency"
+   },
+   {
+    "on": "doublet",
+    "max": 1.00001,
+    "min": 0.99999,
+    "name": "full_reinjection",
+    "over": "each",
+    "when": "running",
+    "quantity": "reinjection_ratio"
+   },
+   {
+    "on": "doublet",
+    "max": 330,
+    "name": "running_time_limit",
+    "over": "duration",
+    "unit": "d",
+    "when": "running",
+    "quantity": "production_flow"
+   },
+   {
+    "on": "doublet",
+    "max": 40,
+    "name": "brine_cooling_limit",
+    "over": "each",
+    "unit": "K",
+    "when": "running",
+    "quantity": "brine_cooling"
+   },
+   {
+    "on": "doublet",
+    "max": 300,
+    "min": 50,
+    "name": "production_flow_range",
+    "over": "each",
+    "unit": "m3/h",
+    "when": "running",
+    "quantity": "production_flow"
+   },
+   {
+    "on": "cooling_supply",
+    "max": 20,
+    "min": 20,
+    "name": "cooling_supply_temperature",
+    "over": "each",
+    "unit": "\u00b0C",
+    "when": "running",
+    "quantity": "temperature"
+   },
+   {
+    "on": "heating_supply",
+    "max": 100,
+    "min": 100,
+    "name": "heating_supply_temperature",
+    "over": "each",
+    "unit": "\u00b0C",
+    "when": "running",
+    "quantity": "temperature"
+   }
+  ]
+ },
+ "files": [
+  {
+   "name": "GEMINI_Cooling_Demand_Daily_2027.csv",
+   "size": 6599
+  },
+  {
+   "name": "GEMINI_Heating_Demand_Daily_2027.csv",
+   "size": 6795
+  }
+ ],
+ "missing": [],
+ "problems": []
+}

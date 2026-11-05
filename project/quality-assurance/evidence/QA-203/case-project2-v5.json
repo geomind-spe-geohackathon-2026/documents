@@ -1,0 +1,291 @@
+{
+ "project": "8e0bf258-f94b-4f81-8611-980fd8f59b9d",
+ "version": 5,
+ "content": {
+  "kind": "case",
+  "name": "GEMINI Hackathon 2026 - geothermal heating and cooling, 2027",
+  "site": {
+   "air": {
+    "pressure": {
+     "unit": "Pa",
+     "value": 101325
+    },
+    "temperature": {
+     "unit": "\u00b0C",
+     "value": 10
+    },
+    "relative_humidity": {
+     "unit": "-",
+     "value": 0.8
+    }
+   },
+   "fluid": {
+    "density": {
+     "unit": "kg/m3",
+     "value": 1030
+    },
+    "viscosity": {
+     "unit": "mPa.s",
+     "value": 0.4
+    },
+    "dissolved_gas": {
+     "CH4": {
+      "unit": "mol%",
+      "value": 80
+     },
+     "CO2": {
+      "unit": "mol%",
+      "value": 20
+     }
+    },
+    "gas_liquid_ratio": {
+     "unit": "Nm3/m3",
+     "value": 0.8
+    },
+    "sand_concentration": {
+     "unit": "mg/l",
+     "value": 30
+    }
+   },
+   "ground": {
+    "gradient": {
+     "unit": "\u00b0C/km",
+     "value": 30
+    },
+    "surface_temperature": {
+     "unit": "\u00b0C",
+     "value": 12
+    }
+   },
+   "reservoir": {
+    "pressure": {
+     "unit": "bar(g)",
+     "value": 250
+    },
+    "thickness": {
+     "unit": "m",
+     "value": 100
+    },
+    "permeability": {
+     "unit": "mD",
+     "value": 200
+    },
+    "reference_depth": {
+     "unit": "m",
+     "value": 2500
+    }
+   }
+  },
+  "time": {
+   "end": "2028-01-01",
+   "step": {
+    "unit": "d",
+    "value": 1
+   },
+   "start": "2027-01-01"
+  },
+  "about": {
+   "site": "No site, country or coordinates are stated in the files; the reservoir, brine and air values are the challenge's fixed inputs.",
+   "brief": "GEMINI Hackathon Challenge Requirements (28 October 2026)",
+   "time_zone": "The demand CSVs carry dates with no offset; the series' time_zone is UTC (gemini's reading of offset-less dates), an assumption recorded as A1.",
+   "same_reservoir": "The brief requires the producer and injector of a doublet to be completed in the same reservoir (production/injection volume balance, 'same reservoir; equal liquid volumes'). This is a configuration fact, not a numeric requirement; it is recorded here beside the reinjection_ratio requirement."
+  },
+  "demand": {
+   "cooling": {
+    "power": {
+     "file": "GEMINI_Cooling_Demand_Daily_2027.csv",
+     "unit": "MW",
+     "column": "cooling_demand_MWcool",
+     "time_zone": "UTC"
+    },
+    "return_pressure": {
+     "unit": "bar",
+     "value": 4
+    },
+    "dew_point_margin": {
+     "unit": "K",
+     "value": 1
+    },
+    "indoor_temperature": {
+     "unit": "\u00b0C",
+     "value": 26
+    },
+    "return_temperature": {
+     "unit": "\u00b0C",
+     "value": 24
+    },
+    "supply_temperature": {
+     "unit": "\u00b0C",
+     "value": 20
+    },
+    "indoor_relative_humidity": {
+     "unit": "%",
+     "value": 50
+    }
+   },
+   "heating": {
+    "power": {
+     "file": "GEMINI_Heating_Demand_Daily_2027.csv",
+     "unit": "MW",
+     "column": "heating_demand_MWth",
+     "time_zone": "UTC"
+    },
+    "return_pressure": {
+     "unit": "bar",
+     "value": 6
+    },
+    "return_temperature": {
+     "unit": "\u00b0C",
+     "value": 55
+    },
+    "supply_temperature": {
+     "unit": "\u00b0C",
+     "value": 100
+    }
+   }
+  },
+  "format": 1,
+  "economics": "economics.json",
+  "utilities": {
+   "gas": {
+    "composition": {
+     "N2": {
+      "unit": "-",
+      "value": 0.11083897243546233
+     },
+     "CH4": {
+      "unit": "-",
+      "value": 0.8249507401227822
+     },
+     "CO2": {
+      "unit": "-",
+      "value": 0.011912342910726407
+     },
+     "C2H6": {
+      "unit": "-",
+      "value": 0.039549858193534584
+     },
+     "C3H8": {
+      "unit": "-",
+      "value": 0.012748086337494389
+     }
+    }
+   },
+   "electricity": {
+    "co2_intensity": {
+     "unit": "g/kWh",
+     "value": 300
+    }
+   }
+  },
+  "requirements": [
+   {
+    "on": "doublet",
+    "max": 3,
+    "min": 1,
+    "name": "doublet_count",
+    "quantity": "count"
+   },
+   {
+    "on": "doublet",
+    "min": 50,
+    "name": "min_stable_flow",
+    "over": "each",
+    "unit": "m3/h",
+    "when": "running",
+    "quantity": "production_flow"
+   },
+   {
+    "on": "doublet",
+    "max": 40,
+    "name": "max_brine_cooling",
+    "over": "each",
+    "unit": "\u00b0C",
+    "when": "running",
+    "quantity": "brine_cooling"
+   },
+   {
+    "on": "doublet",
+    "max": 300,
+    "name": "max_production_flow",
+    "over": "each",
+    "unit": "m3/h",
+    "when": "running",
+    "quantity": "production_flow"
+   },
+   {
+    "on": "doublet",
+    "max": 1,
+    "min": 1,
+    "name": "reinjection_balance",
+    "over": "each",
+    "when": "running",
+    "quantity": "reinjection_ratio"
+   },
+   {
+    "on": "doublet",
+    "max": 330,
+    "name": "annual_operation_days",
+    "over": "duration",
+    "unit": "d",
+    "when": "running",
+    "quantity": "production_flow"
+   },
+   {
+    "on": "doublet",
+    "max": 0.7,
+    "min": 0.7,
+    "name": "pump_hydraulic_efficiency",
+    "quantity": "pump_efficiency"
+   },
+   {
+    "on": "cooling_supply",
+    "max": 20,
+    "min": 20,
+    "name": "cooling_supply_temperature",
+    "over": "each",
+    "unit": "\u00b0C",
+    "when": "running",
+    "quantity": "temperature"
+   },
+   {
+    "on": "heating_supply",
+    "max": 100,
+    "min": 100,
+    "name": "heating_supply_temperature",
+    "over": "each",
+    "unit": "\u00b0C",
+    "when": "running",
+    "quantity": "temperature"
+   },
+   {
+    "on": "cooling_supply",
+    "max": 0.01,
+    "name": "cold_delivered",
+    "quantity": "unmet_share"
+   },
+   {
+    "on": "heating_supply",
+    "max": 0.01,
+    "name": "heat_delivered",
+    "quantity": "unmet_share"
+   }
+  ]
+ },
+ "files": [
+  {
+   "name": "GEMINI_Cooling_Demand_Daily_2027.csv",
+   "size": 6599
+  },
+  {
+   "name": "GEMINI_Heating_Demand_Daily_2027.csv",
+   "size": 6795
+  },
+  {
+   "name": "economics.json",
+   "size": 13117
+  }
+ ],
+ "missing": [],
+ "problems": []
+}
