@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -46,3 +46,5 @@ Design lead: `simulate` on the new case, `check_results`, record `design.result`
 
 - 2026-11-05 18:32 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+- 2026-11-05 18:46 UTC: QA-AI-project-I 18:46 UTC, backend 1.1.116, run 569e8c99 (case 175 -> 160 mD, 'what moved against the last result'): design lead 8 calls, 20 s (simulate, check_results, record, finish; no result diffing); the before/after went to the analysis lead. That part hit QA-294 (project results invisible in a new chat). evidence/QA-245/retest-569e8c99.trace.txt
