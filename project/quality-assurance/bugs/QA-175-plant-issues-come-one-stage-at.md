@@ -38,6 +38,10 @@ The plant write chain (`../evidence/QA-175/plant-writes.json`):
 
 7 patch_plant (3 refused) and 4 plant versions in 6 minutes, after 16 min of team work, and still no simulate; the lead hit its 30-step limit at 17:10:56 and asked the user to continue. Each discovery costs one LLM round trip of the lead at 40-60 k input tokens (5-58 s).
 
+## Reproduced in run 2 (QA-AI-design-I, 17:31-17:41 UTC)
+
+Run 5d0216a6-4acb-487b-a885-396a5e99366d (project QA-TEST QA-AI-design-I 2, compare loop, family C HeatingAbsorptionCoolingPlant): the same chain. build_plant 17:31:35 -> team -> patch_plant `filled` refused (bare string choice values) 17:38:26 -> `filled` saved, new missing `params.d0.well_diameter` ... 17:39:03 -> `complete`: `peak_boiler.temperature_setpoint` 17:40:29 -> `ready`: `absorption_chiller.temperature_setpoint` 17:40:38 -> `built`: invalid_binding (simulation input) 17:40:41 -> `ready2`: `absorption_cooler.fluid_out` tear stream 17:40:49 -> `ready3` missing 0 at 17:40:56. 7 patch_plant, 1 refused, 6 plant versions for one family; then the second family (B) starts the same chain at 17:42:00.
+
 ## Cause
 
 Facts: gemini's plant check reports a stage at a time: the design-mode values of the doublet (`well_diameter`, `nominal_flow`, `pump_efficiency`, `nominal_wellhead_pressure`) only after `d0.depth` is set; schedule setpoints (`invalid_design`) only after `missing_value` is empty; simulation inputs (`invalid_binding`) only after the schedule is complete. The refusals are geomind/gemini shape checks on values the engineers returned in a free form (bare strings for choices).
