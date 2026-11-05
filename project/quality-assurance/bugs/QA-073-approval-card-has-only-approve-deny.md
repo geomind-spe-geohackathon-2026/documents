@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 01:49 UTC |
 | Versions | backend 1.1.53-1.1.62 (see Where), geomind per backend |
 | Where | https://geomind.team chat approval card (set_case), project a0947848 chat 235c60c5 |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
