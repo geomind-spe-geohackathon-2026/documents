@@ -43,3 +43,9 @@ value types, not "object").
 
 `tools/state.py`: render a `dict[...]` annotation as `object {title?, publisher?, year?, page?,
 link?, note?}` (or `object`). Optionally accept a plain string citation as `{"note": <string>}`.
+
+## More evidence (2026-11-05 17:16 UTC)
+
+Run 57c42f61-2a89-48ba-933c-e87fc348084f, economist steps 11 and 15: the same refusal twice
+(`citation: 'user instruction in this chat'`), accepted at step 16 without the citation. Log:
+`../evidence/QA-176/run-57c42f61-log.json`.
