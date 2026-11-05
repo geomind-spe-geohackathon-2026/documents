@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -40,5 +40,5 @@ Fact (code): `li` has `px-3` while CardHeader has its own padding; the time span
 ## Fix
 
 hotfix-front-III, frontend 1.1.96 (16c45af): the list is a grid with subgrid rows (`auto | 1fr | auto`), so the time column is as wide as its longest label and titles line up; rows use the header's `px-6`; the title truncates with the full text on hover; the badge sits in its own column; the card is `self-start`. Deploy 11:30 UTC.
-
+- 2026-11-05 14:11 UTC: frontend 1.1.99 (e9435c4) deployed 14:10 UTC, bundle index-BlepNtQt.js
 ## Retest
