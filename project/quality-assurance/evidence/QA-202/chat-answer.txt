@@ -1,0 +1,60 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA-TEST QA-E2E-economics-I 2
+Overview
+Library
+Runs and logs
+Chats
+Set up the economics of this case.
+done · 18:11
+AD
+Administrator
+admin
+Projects
+QA-TEST QA-E2E-economics-I 2
+Chat
+Design
+Chat
+Set up the economics of this case.
+18:11
+Copy
+This run ended without an answer. Show its steps
+Two changes to the economics: use a discount rate of 7 %, and take the carbon price from the ESMA EU ETS 2025 row of the cost catalogue instead. Also tell me: is the CO2 of the grid electricity priced too?
+18:18
+Copy
+Worked through 26 steps
+You approved "Set case"
+You approved "Accept case"
+
+The economics of case hackathon_2026 are set up with your two changes, and the case is saved.
+
+1. Discount rate: 7 % economics.discount_rate is now 0.07, replacing the earlier 5 %. Source: your instruction in this chat.
+
+2. Carbon price: ESMA EU ETS 2025 row of the cost catalogue economics.carbon.price is now 51.55865788847466 EUR/t, replacing 57.03 EUR/t. It is the value of cost catalogue row carbon-price-eu-ets-esma-2025 (status verified, year 2025), taken exactly as the row gives it: EU ETS EUA average spot price 2024 of 65 EUR/t CO2e, deflated to 2015 prices with the HICP factor 0.7932. Source: EU Carbon Markets 2025 (ESMA50-481369926-30552), European Securities and Markets Authority, p. 6, https://www.esma.europa.eu/sites/default/files/2025-10/ESMA50-481369926-30552_Carbon_Markets_Report_2025.pdf — document knowledge/data-economics.csv. The row's unit is EUR/t CO2e; the case key takes EUR/t, so it is set as EUR/t on the same CO2e basis.
+
+Nothing else in the economics changed: the other values (analysis period 25 yr, electricity 105.75 EUR/MWh, gas 39.92 EUR/MWh, heat and cold revenue 60 EUR/MWh, the capex and opex lines, currency EUR at 2015 prices) stay as they were, and the requirements, site, demand and time frame are untouched.
+
+Is the CO2 of the grid electricity priced too? No. In this case's economics the carbon price applies only to the plant's own CO2 and methane — on-site combustion (gas boiler, CHP, flare) and the CO2 and methane released from the brine. The CO2 of purchased grid electricity is counted in the CO2 metric but is not priced again, because the electricity price already carries the generators' ETS cost; pricing it a second time in the plant's opex would count it twice.
+
+The case paths behind that:
+
+economics.carbon.price = 51.55865788847466 EUR/t (row carbon-price-eu-ets-esma-2025) — the only carbon price in the case.
+economics.energy.electricity = 105.75 EUR/MWh — the grid electricity price, which already embeds the generators' carbon cost.
+utilities.electricity.co2_intensity = 300 g/kWh (organisers' reference row co2-grid-organisers-2026) — a case value used for the CO2 metric, not an economics key, so it is not priced.
+
+Sources: knowledge/handbook-economics.md section 3.6 ("Carbon cost in the opex": grid electricity's CO2 is already in the electricity price where the generators pay for allowances) and section 16.7 ("Conventions and limits": the carbon price applies to the plant's own CO2 and methane only; grid electricity's CO2 is counted in the co2 metric but not priced). Section 8.2 notes that a social view may apply a shadow price to all emissions including grid electricity, but then must not also count the carbon cost inside the electricity price — this case uses the financial convention.
+
+If you would rather price grid electricity's CO2 as well (a social/analyst view), that is a change of the case's convention and I would need your go-ahead before it is applied.
+
+Copy
+Design the plant on this case
+Review the economics
+Check the case
+The assistant changed:
+Open Case
+Auto-approve
