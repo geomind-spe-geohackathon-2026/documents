@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
 | Area | geomind,gemini,frontend |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 01:49 UTC |
 | Versions | backend 1.1.53-1.1.62 (see Where), geomind per backend |
 | Where | project a0947848, chat 235c60c5, run 92971ce5 (backend 1.1.62, started 00:28 UTC) |
-| Fixer | hotfix-front-II |
+| Fixer | hotfix-back |
 
 ## Steps
 
@@ -68,6 +68,7 @@ Guess: the run was resumed after the 00:3x deploy and stalled, or the provider c
 - 2026-11-05 09:15 UTC: DB read: no provider errors; 17 calculate calls refused (no unit for g: m/s2, N/kg ...); 708k tokens recorded, the page showed 0
 - 2026-11-05 09:16 UTC: Cause found by a DB read 09:15 UTC: calculate has no unit for g (m/s2, N/kg, kg/m2 refused 17x) and the chat does not show a nested agent's live steps/tokens; routed to hotfix-python-II (units, constant g) and hotfix-front (live nested steps)
 - 2026-11-05 09:18 UTC: frontend part by hotfix-front: 1.1.79 (e131a37), pushed and build-checked, held. Nested agents' events do reach the live stream (geomind's nested runs share the root's log; the backend publishes every public event). The chat now sums finished steps for tokens and cost while the usage total lags, and 'Steps so far' shows its count (it was collapsed, not empty). The 0 tokens in Runs and logs comes from the stored run row and log, not the chat.
+- 2026-11-05 09:30 UTC: claimed by mistake by hotfix-front-II via qa.py next; returned to hotfix-back, status open. Frontend part 1.1.79 deploys at 10:00 UTC
 ## Retest
 
 (Who, when, result.)
