@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,data |
 | Reporter | QA-AI-design-I |
 | Found | 2026-11-05 17:30 UTC |
 | Versions | backend 1.1.102 at run start, 1.1.104-1.1.106 during the run (geomind 0.4.98, gemini 0.6.16 then 0.6.17) |
 | Where | api.geomind.team; project QA-TEST QA-AI-design-I 1 (b9ef5c9a-e030-4357-91ee-b17dabfdeaa6); chat efb95fd0-f997-4530-a314-f93baf64ef5f; run 0df89b7e-69e0-46b3-abe1-231e51d9570a; energy_systems_engineer finish 16:56:50 and 17:01:14 UTC; design_lead #41-#58; project_lead question 17:26 UTC |
-| Fixer | |
+| Fixer | hotfix-python-VIII |
 
 ## Steps
 
