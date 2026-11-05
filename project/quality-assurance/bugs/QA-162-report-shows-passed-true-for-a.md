@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | handbook-econ-report-I |
@@ -36,7 +36,7 @@ Fix (proposed): geomind prompts and skills (design lead, reviewer, explainer, re
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 17:13 UTC: geomind 0.4.101 (QA-162 af0d5bf) / 0.4.102 (QA-165 c5ed1b1), pushed 2026-11-05; NOT deployed yet: hotfix_deploy.sh fails at backend requirements (kombu 5.7.0 vs redis<6), told the coordinator. QA-165: result tools explain a Study-page result (quote kpis/checks or simulate design/v<N>).
 ## Retest
 
 (Who, when, result.)
