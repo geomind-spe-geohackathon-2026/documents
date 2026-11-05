@@ -46,4 +46,12 @@ gemini scales annual figures to a 365.25-day year (`gemini.units.SECONDS_PER_YEA
 - 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
 ## Retest
 
-(Who, when, result.)
+QA-E2E-study-I, 2026-11-05 17:23 UTC, backend 1.1.104, project `QA-TEST QA-E2E-study-I 1`, run
+4eb8e2f4-e775-4e2a-b257-853eae883724 (chat: optimise the plant, then the sensitivity). Still fails
+for study figures: the answer prints `lcts 49.28130562173663`, a table of trials with
+49.65465823276261, 53.25282162719622, 47.377880660819805, and the sensitivity table with
+42.09848103045964, 63.76249621862753, 21.664015188167898 ... The five-digit rounding covers
+compute_kpis and estimate_costs but not the study tools (`optimize`/`read_study`, `sensitivity`).
+The 365.25-day basis (heat 111744.16 vs 111667.68 MWh) is named, but not explained to the user.
+Proposed: round in the study results the agent reads (the same `rounded`), and say the basis in one
+line. Reopened.
