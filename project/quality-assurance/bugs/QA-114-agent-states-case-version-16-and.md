@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-case-I |
@@ -40,7 +40,7 @@ Cause: `set_case` returns `version`, the problem state's change count, and the a
 as the case version. Fix: the answer adds `version_is` (what it counts, never to quote as the case
 version); the case lead, project lead and explainer prompts name no version number to the user
 (the app shows its own).
-
+- 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
 ## Retest
 
 (Who, when, result.)
