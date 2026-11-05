@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -74,3 +74,7 @@ chars) whose note says "Every other economics key keeps the value the case alrea
 catalogue's recommended rows, not the case's: heat_cost_share 0.76 (case 0.8), gwp.CH4 27.9 (29.8),
 capex.absorption_chiller 0.233861 EUR/W (0.3), ... "approve all" would overwrite them. I answered with text "Keep
 every other value exactly as the case already has it." Question: `../evidence/QA-268/question-request-107-run-ac818659.json`.
+
+## Fix
+
+- 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
