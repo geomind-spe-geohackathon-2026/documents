@@ -46,3 +46,5 @@ hotfix-back-lead, backend 1.1.111 (additive): every run of `GET /assistant/runs`
 ## Retest
 
 Recipe: GET /assistant/runs?project=...: each item has prompt = the chat message text; front shows it in Runs and logs.
+
+QA-E2E-study-I, 2026-11-05 18:40 UTC: verified: each row shows its own request (e.g. 'Compare the two plants of this project...'), the chat title under it.
