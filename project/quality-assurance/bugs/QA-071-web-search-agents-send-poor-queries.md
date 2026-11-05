@@ -28,6 +28,17 @@ The agents generate poor queries (Sahand, 2026-11-05): results do not answer the
 
 ## Evidence
 
+Example from Sahand (live site, 2026-11-05 ~01:50 UTC): web_search, 0.467 s,
+`{"limit": 5, "query": "produced sand concentration geothermal well kg/m3 brine solids removal
+cyclone specification"}`. Results: a review of EGS (ResearchGate), a reservoir engineering
+textbook (tracer concentration), SIMS 2012 proceedings, a UNESCO geochemistry text, an Epiroc
+drilling book. None gives a sand concentration or a desander specification.
+Reading: one query mixes three questions (sand rate, solids removal, cyclone spec) and twelve
+keywords, so the engine matches generic geothermal pages. Better: one value per query, few
+terms, e.g. "geothermal well sand production ppm" then "hydrocyclone desander geothermal brine
+specification", and a check first whether the challenge needs that value at all (the PDF gives
+no sand data; an approval card for sand concentration also appeared in qa-func-2-II's run).
+
 - Sahand's report in the coordinator chat; the fixer reads recent web_search calls in prod runs.
 
 ## Cause
