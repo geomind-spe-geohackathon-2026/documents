@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 19:14 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130, gemini 0.6.26) |
 | Where | run bfcec811-c5ad-496e-a829-6ec44de3251c (hackathon report run II), project 0b986dd6-8f95-4383-9d15-5e589ff122c9; ended failed 20:13 CET |
-| Fixer | hotfix-python-lead-II (m5) |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -35,4 +35,5 @@ Guess: the reviewer compares the case with the 'given' origin (the files) throug
 
 ## Fix
 
+- 2026-11-05 19:33 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
