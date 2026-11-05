@@ -1,0 +1,352 @@
+[
+ {
+  "call_id": "call-32cf78e6-c1d9-4f7b-af45-790e95bf7488",
+  "tool": "calculate",
+  "input": {
+   "unit": "degC",
+   "label": "Undisturbed reservoir temperature at reference depth",
+   "operands": [
+    {
+     "case": "site.ground.surface_temperature"
+    },
+    {
+     "calculation": "calc-1"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": "operands[1]",
+    "message": "calculate: calculation 'calc-1' does not exist (none); read_skill('calculator') for the rules",
+    "suggestions": []
+   }
+  },
+  "duration": 9.068299550563097e-05,
+  "error": true
+ },
+ {
+  "call_id": "call-448a7833-1cae-41da-8eb6-e3c178131edc",
+  "tool": "calculate",
+  "input": {
+   "unit": "m",
+   "label": "Depth of the top of the aquifer",
+   "operands": [
+    {
+     "case": "site.reservoir.reference_depth"
+    },
+    {
+     "calculation": "calc-3"
+    }
+   ],
+   "operation": "subtract"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": "operands[1]",
+    "message": "calculate: calculation 'calc-3' does not exist (none); read_skill('calculator') for the rules",
+    "suggestions": []
+   }
+  },
+  "duration": 7.869699038565159e-05,
+  "error": true
+ },
+ {
+  "call_id": "call-558ed9a0-47e8-4473-a3f1-0ec47543744a",
+  "tool": "calculate",
+  "input": {
+   "unit": "degC",
+   "label": "Reservoir temperature rise from surface to reference depth",
+   "operands": [
+    {
+     "case": "site.ground.gradient"
+    },
+    {
+     "case": "site.reservoir.reference_depth"
+    }
+   ],
+   "operation": "multiply"
+  },
+  "output": {
+   "id": "C1",
+   "unit": "degC",
+   "label": "Reservoir temperature rise from surface to reference depth",
+   "value": -198.15,
+   "version": 20,
+   "operands": [
+    {
+     "unit": "\u00b0C/km",
+     "value": 30.0,
+     "source": {
+      "kind": "case",
+      "path": "site.ground.gradient"
+     },
+     "reference": {
+      "case": "site.ground.gradient"
+     }
+    },
+    {
+     "unit": "m",
+     "value": 2500.0,
+     "source": {
+      "kind": "case",
+      "path": "site.reservoir.reference_depth"
+     },
+     "reference": {
+      "case": "site.reservoir.reference_depth"
+     }
+    }
+   ],
+   "operation": "multiply",
+   "expression": "case:site.ground.gradient [30 \u00b0C/km] \u00d7 case:site.reservoir.reference_depth [2500 m]"
+  },
+  "duration": 0.02077497006393969
+ },
+ {
+  "call_id": "call-f100854b-7e0f-4c20-9a55-dd3b086b45a0",
+  "tool": "calculate",
+  "input": {
+   "unit": "m",
+   "label": "Half the aquifer thickness",
+   "operands": [
+    {
+     "case": "site.reservoir.thickness"
+    },
+    {
+     "unit": "-",
+     "number": 2
+    }
+   ],
+   "operation": "divide"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": null,
+    "message": "update_state: : Value error, calculations: ids = ['C1']; expected each id once",
+    "suggestions": []
+   }
+  },
+  "duration": 0.04174784605856985,
+  "error": true
+ },
+ {
+  "call_id": "call-ca10cec6-790e-441a-a543-c3f149380466",
+  "tool": "calculate",
+  "input": {
+   "unit": "K",
+   "label": "Reservoir temperature rise from surface to reference depth",
+   "exponent": null,
+   "operands": [
+    {
+     "case": "site.ground.gradient"
+    },
+    {
+     "case": "site.reservoir.reference_depth"
+    }
+   ],
+   "operation": "multiply"
+  },
+  "output": {
+   "id": "C2",
+   "unit": "K",
+   "label": "Reservoir temperature rise from surface to reference depth",
+   "value": 75.0,
+   "version": 21,
+   "operands": [
+    {
+     "unit": "\u00b0C/km",
+     "value": 30.0,
+     "source": {
+      "kind": "case",
+      "path": "site.ground.gradient"
+     },
+     "reference": {
+      "case": "site.ground.gradient"
+     }
+    },
+    {
+     "unit": "m",
+     "value": 2500.0,
+     "source": {
+      "kind": "case",
+      "path": "site.reservoir.reference_depth"
+     },
+     "reference": {
+      "case": "site.reservoir.reference_depth"
+     }
+    }
+   ],
+   "operation": "multiply",
+   "expression": "case:site.ground.gradient [30 \u00b0C/km] \u00d7 case:site.reservoir.reference_depth [2500 m]"
+  },
+  "duration": 0.0037123169749975204
+ },
+ {
+  "call_id": "call-d73a9a27-8d3b-4136-b0e4-e6a69db02572",
+  "tool": "calculate",
+  "input": {
+   "unit": "K",
+   "label": "Undisturbed reservoir temperature at reference depth",
+   "operands": [
+    {
+     "case": "site.ground.surface_temperature"
+    },
+    {
+     "calculation": "C2"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "id": "C3",
+   "unit": "K",
+   "label": "Undisturbed reservoir temperature at reference depth",
+   "value": 360.15,
+   "version": 22,
+   "operands": [
+    {
+     "unit": "\u00b0C",
+     "value": 12.0,
+     "source": {
+      "kind": "case",
+      "path": "site.ground.surface_temperature"
+     },
+     "reference": {
+      "case": "site.ground.surface_temperature"
+     }
+    },
+    {
+     "unit": "K",
+     "value": 75.0,
+     "source": {
+      "id": "C2",
+      "kind": "calculation",
+      "label": "Reservoir temperature rise from surface to reference depth",
+      "expression": "case:site.ground.gradient [30 \u00b0C/km] \u00d7 case:site.reservoir.reference_depth [2500 m]"
+     },
+     "reference": {
+      "calculation": "C2"
+     }
+    }
+   ],
+   "operation": "add",
+   "expression": "case:site.ground.surface_temperature [12 \u00b0C] + calculation:C2 [75 K]"
+  },
+  "duration": 0.006776449037715793
+ },
+ {
+  "call_id": "call-6be1d881-6ee7-4d61-b8af-8e97d929291e",
+  "tool": "calculate",
+  "input": {
+   "unit": "m",
+   "label": "Depth of the top of the aquifer",
+   "operands": [
+    {
+     "case": "site.reservoir.reference_depth"
+    },
+    {
+     "unit": "m",
+     "number": 50
+    }
+   ],
+   "operation": "subtract"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": null,
+    "message": "update_state: : Value error, calculations: ids = ['C3']; expected each id once",
+    "suggestions": []
+   }
+  },
+  "duration": 0.005339822033420205,
+  "error": true
+ },
+ {
+  "call_id": "call-c0a4e8ad-7cc1-4eac-b322-26eb833298ca",
+  "tool": "calculate",
+  "input": {
+   "unit": "kg/s",
+   "label": "Brine mass flow at 300 m3/h design flow",
+   "operands": [
+    {
+     "case": "site.fluid.density"
+    },
+    {
+     "unit": "h/m3*s",
+     "number": 3.6
+    }
+   ],
+   "operation": "divide"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_unit",
+    "path": "operands[1]",
+    "message": "calculate: unit = 'h/m3*s' is not a unit gemini knows; read_skill('calculator') for the rules",
+    "suggestions": []
+   }
+  },
+  "duration": 0.00011686491779983044,
+  "error": true
+ },
+ {
+  "call_id": "call-b0740155-dae9-4cf5-a712-281c1b76b31b",
+  "tool": "calculate",
+  "input": {
+   "unit": "kg/m3",
+   "label": "Brine mass flow per m3/h",
+   "operands": [
+    {
+     "case": "site.fluid.density"
+    },
+    {
+     "unit": "s/h",
+     "number": 3600
+    }
+   ],
+   "operation": "divide"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_unit",
+    "path": "operands[1]",
+    "message": "calculate: unit = 's/h' is not a unit gemini knows; read_skill('calculator') for the rules",
+    "suggestions": []
+   }
+  },
+  "duration": 0.00010119995567947626,
+  "error": true
+ },
+ {
+  "call_id": "call-76570787-d4b4-412c-9f4c-a93ab2878c3d",
+  "tool": "calculate",
+  "input": {
+   "unit": "kg/s",
+   "label": "Brine mass flow at 300 m3/h design flow",
+   "operands": [
+    {
+     "case": "site.fluid.density"
+    },
+    {
+     "unit": "m3/h",
+     "number": 12
+    }
+   ],
+   "operation": "divide"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_unit",
+    "path": "unit",
+    "message": "calculate: unit = 'kg/s' is kg s-1, but the result is kg m-6 s; expected one of no unit gemini knows; read_skill('calculator') for the rules",
+    "suggestions": []
+   }
+  },
+  "duration": 0.000823832000605762,
+  "error": true
+ }
+]
