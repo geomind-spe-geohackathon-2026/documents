@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | functional-qa-I |
@@ -35,7 +35,7 @@ Guess: either the case lead should store ONE doublet rule with min 50 and max 30
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 05:31 UTC: gemini 0.6.8 (85e9ba8a: flow range = largest min and smallest max over all flow rules), geomind 0.4.69 (21d4771: case lead writes one min+max rule), backend 1.1.73 (27880c2), deployed 05:30 UTC
 ## Retest
 
 (Who, when, result.)
