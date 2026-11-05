@@ -39,4 +39,4 @@ Guess: the run ended failed in the worker but the DB status stayed waiting (depl
 - 2026-11-05 04:31 UTC: backend 1.1.70 (511b718), live in 1.1.71 (hotfix-python-II's deploy, 04:3x UTC): ended runs never return to waiting/running; a waiting run whose root run.finished is newer than its last request is ended when read, answered, cancelled or when its chat gets a message. Retest: open chat 81b51db5 (project 61134432) and send a message; run 861ef137 should show failed and the message go through. Cancel for every non-finished run is hotfix-front's.
 ## Retest
 
-(Who, when, result.)
+functional-qa-I, 2026-11-05 ~05:25 UTC, backend 1.1.72: opening chat 81b51db5 showed a 'Cancel run' button again (and no Send button, so a message could not be sent as the coordinator suggested). Clicking 'Cancel run' turned run 861ef137 from 'waiting' to 'failed' at once; Runs and logs confirms. So the chat can be freed by Cancel, not by sending a message. Partly passed: the stuck state is recoverable. Still open: a run that ended failed in the worker should not stay 'waiting' by itself.
