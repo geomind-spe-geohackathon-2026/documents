@@ -18,6 +18,11 @@
 
 ## Expected
 
+Added by Sahand (2026-11-05 21:07 Trondheim): after the run finishes, keep the whole busy list too,
+not only the summary line: one line per agent with steps · tokens · cost · time, and the Total line
+(QA-291/307), frozen at their final values (activity shown as 'done'), collapsible but not removed,
+and still there after a page reload.
+
 ## Actual
 
 ## Evidence
