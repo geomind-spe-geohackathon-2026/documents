@@ -1,4 +1,4 @@
-# Writing an Engineering Design Report: A Handbook for Geothermal Heating and Cooling
+**Writing an Engineering Design Report: A Handbook for Geothermal Heating and Cooling**
 
 How to report a plant design so that a reviewer can follow every decision back to its reason and
 its source, and check every number. For the explainer, the reviewer and the project lead, and for
@@ -13,7 +13,8 @@ Outline: 0 Quick reference · 1 Purpose · 2 Structure · 3 What reviewers look 
 summary · 5 Design basis · 6 Alternatives · 7 Decisions · 8 Results (8.6 numbers, 8.7 heat by
 source, 8.8 COP and SPF, 8.9 energy balance) · 9 Compliance (9.5 scope, 9.6 values) · 10
 Uncertainty · 11 Limitations · 12 Figures and tables · 13 Agent log · 14 Style · 15 Checklist ·
-16 Worked example · 17 Lessons from reviewed reports · A Templates · B References.
+16 Worked example · 17 Lessons from reviewed reports · 18 Explaining a result · 19
+Recommendations and risks · 20 Indicators beyond cost · A Templates · B References.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -122,6 +123,10 @@ extra steps cost about four times the tokens of the whole review.
 | Does the energy balance close; fuel by source | §8.9 |
 | What the checks cover; every check with its number | §9.5, §9.6 |
 | A short form; which design when several; stale results | §17 |
+| Why a cost is what it is; what moved between two results | §18.1, §18.2 |
+| Why this design and not another | §18.3 |
+| How to write a recommendation, risks, next stage | §19 |
+| Full-load hours, capacity factor, specific indicators | §20 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -955,6 +960,188 @@ after recording it; an explainer reads the five tools of §0.3 once and writes (
 A section of a handbook is opened by its number with `read_knowledge`, after the outline;
 `search_rag` only finds which document holds a topic (QA-351).
 
+## 17.7 Name the design and the case that ran
+
+Say which design a result ran, by the reference the state gives (`design.reference`,
+`design.result`), and on which case. A simulate without a named design may run another plant
+than the one the answer describes (QA-166). Internal version numbers differ from what the app
+shows: say "the saved case" or "the plant saved as the project's design", not "case version 16"
+(QA-114). "The plant simulates the full year" is true only of a result that did; a plant page
+that still lists missing values contradicts it (QA-092).
+
+## 17.8 A claim about a unit rests on its series
+
+"Not used", "runs at full load" or "oversized" is read from the unit's results, not guessed.
+
+- Used or not: a unit that carries flow on any step is used; give its peak and its mean (or its
+  energy of the period). Two answers about the same result must agree (QA-123).
+- Capacity against peak use: when a unit's rated capacity is far above its peak use, say so
+  with both numbers; a capacity left at the top of its search range is a sign the sizing did not
+  bound it (QA-324).
+- Rated against operating point: a pump or a machine running above its rating is a finding,
+  even when every check of the case passes, because the case may not bound it (QA-130). Name it
+  under `Open points` and for the design lead.
+
+Invented example: an exchanger rated 12 MW peaks at 7.9 MW and averages 4.1 MW: "used all
+year; peak 66 % of rating". A dry cooler rated 20 MW peaks at 6 MW: "oversized: peak 30 % of
+rating; its size was not optimised".
+
+## 17.9 When two outputs disagree, say so
+
+Two outputs of one result that contradict each other (a coverage that says the source was off
+while the running-time check says it ran; a delivered energy above the demand while coverage
+says met exactly; a feasible verdict beside a value over a hard limit) are a finding, not a
+choice (QA-214, QA-226, QA-132). The reviewer names both numbers, their tools and the gap; the
+report quotes neither as settled until it is explained. A verdict is only as good as the checks
+the case holds (§9.5).
+
+## 17.10 No number by subtraction or by hand
+
+A quantity the tools do not give is not built from two that they do: "geothermal heat =
+heat delivered − boiler heat" is wrong when other sources (heat-pump electricity, produced gas)
+also feed the heat (QA-228). Use the tool's split (§8.7) or leave it out.
+
+## 17.11 Say how much evidence an answer rests on
+
+An optimisation or study answer says how many trials it ran and how many it read: "best of
+240 trials, all read" (QA-205; `knowledge/handbook-studies.md` §6.1). A ranking of families
+rests on a like-for-like comparison (§6.2); a winner chosen between a sized design and a
+re-typed or unsized rival is no result (QA-278). A broad question ("is it a good investment?")
+covers every declared uncertainty (`knowledge/handbook-studies.md` §3.1; QA-263).
+
+## 17.12 An approved change is not a deviation
+
+Every case change the user approved (`case_changes`) is part of the case. A reviewer that
+rejects a design because the case "differs from what the user gave" after the user approved the
+difference is wrong (QA-317). Report approved changes under `Decisions` (§7.3); reject only a
+change nobody approved.
+
+## 17.13 What moved between two results
+
+Before saying "nothing changed", compare the versions: the case, the plant and the economics of
+each result (QA-266, QA-294). The answer names what differs between them and the effect on each
+headline metric (§18.2). A user who says "do not change the case, just tell me X" gets X from a
+what-if that is not saved, or the reason it cannot be given (QA-268).
+
+---
+
+# 18. Explaining a result: why, and what moved
+
+## 18.1 Why a cost is what it is
+
+A levelised cost is the discounted cost of the period divided by the discounted energy
+delivered (Short, Packey and Holt, 1995, ch. 4; IEA/NEA, 2020, ch. 2). Its definitions in gemini
+are `knowledge/handbook-economics.md` §6 and §16.4. To explain a levelised cost, split its
+numerator into its parts, as the tools give them:
+
+| Part | From | Typical driver |
+|---|---|---|
+| Annualised capex | `estimate_costs` (capex by kind, annuity) | wells (drilling depth, count), heat pumps |
+| Fixed opex | `estimate_costs` | share of capex per year |
+| Electricity | `estimate_costs`, `compute_kpis` | pumps, heat pumps, chillers |
+| Fuel | `estimate_costs`, `compute_kpis` | backup boilers, gas bought |
+| Carbon | `estimate_costs` | the plant's own CO2 and methane |
+
+The explanation names the largest two parts with their share, then what drives each.
+Shares are the tool's or come from `calculate` with its id (§8.6). For geothermal heat the
+wells usually dominate capex, so the cost falls with flow per doublet and full-load hours
+(Frederiksen and Werner, 2013, ch. 8; Grant and Bixley, 2011).
+
+Invented example: LCTS 52.0 EUR/MWh = annualised capex 31.0, electricity 12.5, fixed opex
+6.0, fuel 2.0, carbon 0.5 (EUR/MWh, all from the tool). "Capex is 60 % of the cost, mostly the
+two doublets; electricity 24 %, mostly the heat pump. More full-load hours on the wells lower
+the cost most."
+
+## 18.2 What moved between two results
+
+Explain a change between two results by its causes, one at a time:
+
+1. List what differs: case, plant, economics, period (§17.13). Name each difference with both
+   values.
+2. Give each headline metric for both results and the change, as the tools give them.
+3. Attribute the change: when only one input differs, the whole change is its effect. When
+   several differ, the effect of each is known only from runs that change one at a time (a
+   one-at-a-time sensitivity, `knowledge/handbook-studies.md` §3.2); without them, say the
+   effects are not separated.
+
+| Metric | Result A | Result B | Change |
+|---|---|---|---|
+| LCTS (EUR/MWh) | 48.20 | 51.60 | +3.40 |
+| Capex (MEUR) | 41.00 | 41.00 | 0 |
+| Electricity bought (GWh) | 18.30 | 18.30 | 0 |
+
+Invented example: only the electricity price differs (60 to 75 EUR/MWh). LCTS rises 3.40
+EUR/MWh; capex and energies are unchanged, so the whole rise is the electricity cost.
+
+## 18.3 Why this design and not another
+
+A recommendation says why the chosen design beats each rival on the criterion the case ranks by
+(usually LCTS among feasible designs), and what it gives up: "v1 costs 4.1 EUR/MWh less than v2
+because it needs no heat pump; it emits 2.0 kt more CO2 a year from backup gas". Every rival
+named was simulated and checked on the same case (§6.2); a rival not simulated is named as
+screened out with its reason. When two designs are within the cost estimate's accuracy (§10.4),
+say the ranking is not decided by cost alone and name the other criteria (CO2, risk,
+robustness under the uncertainty study).
+
+---
+
+# 19. Recommendations, risks and next steps
+
+## 19.1 Project stages
+
+A geothermal heating project moves from screening through feasibility, exploration drilling,
+field development and construction to operation; the cost and the risk of each stage differ,
+and the largest risk (the resource) is resolved only by the first well (ESMAP, 2012, ch. 2).
+Cost estimates follow the same stages (AACE 18R-97; §10.4). A concept-stage report recommends
+what the next stage must establish, not only the design: the resource (flow, temperature,
+injectivity, gas), the demand (measured profiles), the prices, the permits.
+
+## 19.2 Writing a recommendation
+
+Each recommendation has an action, its reason, the evidence and the condition under which it
+holds (Markel and Selber, 2021). Write it as one sentence plus the evidence:
+
+"Build two doublets with a heat pump (action), because it is the only feasible design below 50
+EUR/MWh (reason; `study/<name>`, ranked table), provided the production flow of 200 m3/h per
+doublet is confirmed by the first well test (condition)."
+
+Recommendations the user did not ask for go into the finish suggestions as next steps (§17.2).
+
+## 19.3 Risks
+
+A risk register lists each risk with its cause, consequence, likelihood, effect on the headline
+metric and the response (ISO 31000:2018). For geothermal heat the usual ones are: resource
+below expectation (flow or temperature), reinjection problems (injectivity, scaling,
+corrosion), induced seismicity, price risk (electricity, gas, carbon), demand below forecast,
+and cost overrun (ESMAP, 2012; Grant and Bixley, 2011). Quantify a risk only from a study
+(sensitivity or uncertainty); otherwise name it as open with the study that would size it.
+
+| Risk | Cause | Effect on | Evidence | Response |
+|---|---|---|---|---|
+| Flow below plan | lower permeability | LCTS, heat coverage | `study/<name>` tornado | well test; heat pump margin |
+
+---
+
+# 20. Indicators beyond cost
+
+## 20.1 Full-load hours and capacity factor
+
+Full-load hours are the energy a unit delivers in a year divided by its capacity; the capacity
+factor is that over the hours of the year (8760 h) (Frederiksen and Werner, 2013). A base-load
+geothermal unit has many full-load hours, a peak boiler few; both say whether a unit is sized
+to its role. Quote them from a tool or compute with `calculate` and its id.
+
+Invented example: a 10 MW geothermal exchanger delivers 60 GWh in a year: `calculate`
+60000 / 10 = 6000 full-load hours, capacity factor 6000 / 8760 = 0.68 (68 %).
+
+## 20.2 Specific indicators
+
+Indicators per unit of service let a reader compare plants of different size: capex per MW of
+peak heat (MEUR/MW), CO2 per MWh delivered (kg/MWh), electricity per MWh delivered. Primary
+energy and its factors follow EN ISO 52000-1:2017; state the factors and their source when a
+primary-energy figure is given. Each indicator says its numerator, denominator and boundary,
+as a COP does (§8.8).
+
 ---
 
 ---
@@ -1040,6 +1227,13 @@ A section of a handbook is opened by its number with `read_knowledge`, after the
 - Willems, C. J. L., Nick, H. M., Weltje, G. J. and Bruhn, D. F. (2017). "An evaluation of
   interferences in heat production from low enthalpy geothermal doublets systems". *Energy* 135,
   500–512.
+- Short, W., Packey, D. J. and Holt, T. (1995). *A Manual for the Economic Evaluation of Energy
+  Efficiency and Renewable Energy Technologies*. NREL/TP-462-5173. Golden, CO: NREL.
+- IEA and NEA (2020). *Projected Costs of Generating Electricity, 2020 Edition*. Paris: OECD.
+- ESMAP (2012). *Geothermal Handbook: Planning and Financing Power Generation*. Technical Report
+  002/12. Washington, DC: World Bank.
+- ISO 31000:2018. *Risk management — Guidelines*.
+- EN ISO 52000-1:2017. *Energy performance of buildings — Overarching EPB assessment — Part 1*.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
 - gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `coverage.py`,
@@ -1047,5 +1241,7 @@ A section of a handbook is opened by its number with `read_knowledge`, after the
 - geomind: prompts `geomind/geomind/prompts/project/explainer.md`, `reviewer.md`; skills
   `reading-results`, `comparing-designs`, `report`, `economics`, `calculator`, `python`.
 - Team: bug files QA-090, QA-091, QA-094, QA-099, QA-124, QA-187, QA-218, QA-233, QA-234,
-  QA-257, QA-270, QA-289, QA-290, QA-322, QA-323, QA-325, QA-333, QA-334, QA-337, QA-351 of the
+  QA-257, QA-270, QA-289, QA-290, QA-322, QA-323, QA-325, QA-333, QA-334, QA-337, QA-351,
+  QA-092, QA-114, QA-123, QA-130, QA-132, QA-166, QA-205, QA-214, QA-226, QA-228, QA-263,
+  QA-266, QA-268, QA-278, QA-294, QA-317, QA-324 of the
   team's quality assurance.
