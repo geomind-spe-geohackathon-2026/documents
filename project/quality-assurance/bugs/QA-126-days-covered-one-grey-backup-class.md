@@ -47,4 +47,6 @@ Separate question for the design team (not this bug): why the boiler runs in Jul
 
 hotfix-front-III, frontend 1.1.101 (af9f9e9), proposal 2+3+4: `shared/charts/days-strip.tsx` has five classes: main only, main topped up by backup (geothermal above 0.1 % of the demand), backup only (main off), partly short, short; a line 'Backup gave 21.5% of the delivered energy (23975 of 111668 MWh); geothermal was off on 35 days'; what backup is (shown only when there is backup); a topped-up day's hover gives its backup share. Checked locally on lcts_best: 116 / 214 / 35 days. The stacked daily chart (proposal 1) is not done. Deploy 14:30 UTC.
 
+Addition 1.1.103: the year line is on the report's basis (shares of the demand), so it matches 'Geothermal share of heat': lcts_best 'Geothermal gave 78.5% of the year's demand (87692 of 111668 MWh), backup 21.5%'.
+
 ## Retest
