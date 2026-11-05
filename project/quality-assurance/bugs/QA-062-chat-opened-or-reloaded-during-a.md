@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
@@ -37,6 +37,7 @@ The chat shows the first user message and the word 'Thinking' (screenshot 1). Th
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 00:11 UTC: frontend 1.1.61 (c3028a8), pushed, build checked, deploy at 00:30 UTC
+- 2026-11-05 00:31 UTC: frontend 1.1.61, commit c3028a8, deployed (1.1.67)
 ## Retest
 
 (Who, when, result.)
