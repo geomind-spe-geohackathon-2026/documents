@@ -17,7 +17,10 @@ invented case. Checked against gemini 0.6.17 and the geomind design prompts.
   once: it does not change during a run.
 - Chapters: 0 design path, 1 philosophy, 2 demand, 3 subsurface, 4 wells and pumps, 5 brine and
   gas, 6 surface heat, 7 cooling, 8 configurations, 9 control, 10 sizing and optimisation, 11
-  gemini, 12 worked lessons; appendices A formulas, B rules of thumb, C glossary, D references.
+  gemini, 12 worked lessons, 13 answers to the design questions agents ask (one per
+  section: ESP curves, split wells, injection pump, wellhead pressure, productivity and skin,
+  pressure drops, degasser, boiler efficiency, dew point, storage, part load, COP models, brine
+  cooling, network); appendices A formulas, B rules of thumb, C glossary, D references.
 - **Chapter 0 is the working chapter**: the checklist, the decision order, where each value comes
   from, a table of design values with units and how to choose them, and how a case's limits bind
   the design. Chapters 1 to 11 give the reasons; chapter 12 worked lessons; the appendices formulas,
@@ -1885,7 +1888,7 @@ pump of 1,700 m; the injector reaches the same 2,500 m TVD.
 - Drilled length = riser + well below the pump + injector = 800 + 1,700 + 2,500 = 5,000 m
   [derived]. Costing 1,700 + 2,500 = 4,200 m, as a split well once was, leaves out 16 % of the
   drilling (QA-321).
-- A deviated well is longer than its depth: a section of length L at inclination θ adds only
+- A deviated well is longer than its depth: a section of length L at inclination θ from the vertical adds only
   L cos θ of depth [textbook: Stober and Bucher 2013]. An injector placed 1.5 km away (3.5) from a
   shared pad needs a deviated section; its measured depth, not its TVD, is costed.
 - Check the drilled length a cost reports against the sum of the well sections of the plant
@@ -1925,6 +1928,325 @@ What the lesson teaches:
   Answer the question asked; offer the other family in one line.
 - QA-245: after a case change, re-run the checks of the stored design (`check_results`) and read
   its verdict; do not diff old and new results step by step.
+
+# 13 Answers to the design questions agents ask
+
+Each section answers one question that design agents searched Knowledge for again and again in
+QA runs. Every section names the gemini path, the `knowledge/data-equipment.csv` row when one
+exists (cite it by its row id; its `status` says verified, secondary or placeholder), the theory,
+a typical range with its source, and the mistake to avoid. A `placeholder` row is a starting
+value only: record it as an assumption (0.6), never as a fact.
+
+## 13.1 ESP curves, stages and operating window: do I need a catalogue?
+
+**Answer: no.** Leave `esp.pump_type` `"unspecified"` with no `stage_count`, `head_coefficients`
+or `power_coefficients` (row `esp-pump-type-unspecified`). A designed `Doublet` derives a
+one-stage ESP of constant head that reaches `nominal_wellhead_pressure` at `nominal_flow` with
+the doublet's `pump_efficiency`, and the shallowest setting depth that keeps that pressure at
+the intake [gemini: `gemini/plants/doublet.py`]. Searching a vendor catalogue for curve
+coefficients cost QA runs 20 minutes and gave nothing usable (QA-287).
+
+Theory, when real curves are given. A centrifugal pump stage follows the affinity laws with
+speed N: Q ∝ N, H ∝ N², P ∝ N³ [textbook: Gülich 2014]. gemini holds one stage's head and power
+as polynomials in flow at a reference frequency (`ESP_REFERENCE_FREQUENCY`) and scales them by
+frequency and `stage_count` [gemini: `gemini/modules/pumps/esp.py`, `gemini/physics/pumps.py`].
+
+Operating window (`minimum_flow`, `maximum_flow`, `best_efficiency_flow`):
+
+- A pump runs well near its best efficiency point (BEP). The preferred operating region is about
+  70 % to 120 % of the BEP flow; the allowable region is wider and set by the maker
+  [standard: ANSI/HI 9.6.3]. Far below BEP: recirculation, heating and vibration; far above:
+  cavitation risk and motor overload [Gülich 2014].
+- With no curve, the rows `esp-minimum-flow-unbounded` and `esp-maximum-flow-unbounded` leave
+  the window open; then the window check says nothing and the flow is limited by the case.
+- A window that equals the case's flow band puts the design flow on its edge and fails every
+  step by rounding (QA-250): keep the window wider than the band (4.9).
+
+Check: after `size_plant`, read the ESP's results (`read_result`) for `intake_pressure`,
+`gas_volume_fraction` and its health against the window, on the worst step (11.7).
+
+## 13.2 Production wells split at the pump: riser, well below the pump, sections
+
+A free plant may model the producer as two wells: a riser (`segment` `above_esp`) from the pump
+to the wellhead and a well below the pump (`segment` `below_esp`) from the reservoir to the pump,
+with `dN.riser.esp_depth` the pump depth. A designed `Doublet` builds these paths itself from
+`depth` and `well_diameter`; do not state them by hand on a class plant (11.10).
+
+- Section lengths add up to the measured depth: riser + well below the pump = producer MD.
+  The drilled length costed is the sum over every section and the injector (12.11, QA-321).
+- gemini measures `section_inclination` **from the horizontal** [gemini:
+  `gemini/modules/wells/well.py`]: a vertical section is π/2 rad (90°). A section of length L at
+  inclination β from the horizontal adds L sin β of depth (drilling texts measure from the
+  vertical, θ = 90° − β, and write L cos θ) [textbook: Economides et al. 2013]. Writing 0 for a
+  vertical well makes it horizontal. Check the unit (rad) in `describe_module`.
+- The tubing above the pump is narrower than the casing below; friction above the pump grows
+  as 1/D⁵ at a given flow (Darcy-Weisbach, A.3) and can dominate at high flow (4.2).
+
+Mistake to avoid: changing the case's reference depth to move the reservoir; change the plant's
+`depth` (QA-119).
+
+## 13.3 Injection pump: setpoint, head and wellhead pressure
+
+The injection wellhead pressure needed to push the flow Q into the injector [textbook: Economides
+et al. 2013; Dake 1978]:
+
+p_wh,inj = p_res + Q / II + Δp_f − ρ_inj g z_res
+
+with II the injectivity index (m3/h/bar), Δp_f the friction down the injector and ρ_inj the
+density of the cooled brine. Cold brine is denser than reservoir brine, so the column helps.
+
+Invented numbers: p_res 250 bar at 2,500 m, II 25 m3/h/bar, Q 300 m3/h (12 bar), friction 4 bar,
+ρ_inj 1,060 kg/m3 (column 260 bar): p_wh,inj = 250 + 12 + 4 − 260 = 6 bar [derived]. With a skin
+of +5 on the injector (13.5) the 12 bar of injectivity loss rises to about 18.5 bar (II scales with
+1 / (ln(r_e/r_w) + S), 13.5), and the pump must deliver about 12.5 bar [derived].
+
+In gemini:
+
+- An injection pump without curves needs a `pressure_setpoint` (its discharge target) or a head;
+  `size_plant` sets the setpoint to the wellhead pressure that injects the nominal flow, its
+  `efficiency` to the doublets' `pump_efficiency` and its `frequency` to gemini's reference
+  frequency, and names them in one note [gemini: `gemini/study/size.py`, 0.6.34; QA-287, QA-343].
+  Do not patch these by hand before sizing.
+- The pump's suction is the surface loop's outlet pressure; discharge below suction means no
+  setpoint or no rating (0.5.2).
+
+Mistake to avoid: a large positive skin on the injector raises the needed pressure for the whole
+life; injectors lose injectivity with fines and scale (5.3, 5.4), so keep a margin (4.9).
+
+## 13.4 Wellhead pressure of the producer: how high?
+
+`dN.nominal_wellhead_pressure` (row `doublet-nominal-wellhead-pressure`, a placeholder) is the
+pressure the ESP must deliver at the producer's wellhead at the design flow. Choose it from what
+the surface loop needs, not from a habit:
+
+1. Keep dissolved gas in solution through the surface loop when the plant has no degasser: the
+   lowest pressure anywhere in the loop must stay above the bubble point of the brine at that
+   temperature (5.1) [textbook: DiPippo 2016]. With a degasser, the wellhead must still reach the
+   degasser's `outlet_pressure` plus the losses before it.
+2. Add the pressure losses of the surface loop at the design flow: filters, desander, exchangers'
+   hot sides, pipes (13.6, 2.5).
+3. Add what the injection pump does not supply: with no injection pump, the wellhead pressure
+   must also cover the injection wellhead pressure of 13.3.
+
+A higher wellhead pressure costs ESP power: P = Q Δp / η (4.5). Each extra bar at 300 m3/h and
+η 0.6 costs about 300 / 3600 × 1e5 / 0.6 = 14 kW [derived]. A lower one risks gas break-out,
+scaling of carbonates when CO2 leaves (5.3) and pump cavitation at the next pump.
+
+Mistake to avoid: a wellhead pressure that only "feels safe" with no line of the three above
+recorded with it.
+
+## 13.5 Productivity, injectivity, skin and wellbore radius
+
+For steady radial Darcy flow to a well [textbook: Dake 1978]:
+
+PI = 2π k h / (μ (ln(r_e / r_w) + S))   (m3/s per Pa; ×3600×1e5 for m3/h per bar)
+
+with k permeability (m², 1 mD ≈ 9.87e-16 m²), h thickness, μ viscosity, r_e drainage radius,
+r_w wellbore radius and S skin. gemini computes the same for the producer (`productivity_index`)
+and the injector (`injectivity_index`) of a designed doublet, with r_w = `well_diameter` / 2
+[gemini: `gemini/plants/_utils/doublet_design.py`, `gemini/physics/hydraulics.py`].
+
+Invented numbers: k 200 mD, h 100 m, μ 0.4 mPa s, r_e 1,000 m, r_w 0.1 m [derived]:
+
+| Skin S | PI m3/h/bar | Drawdown at 300 m3/h, bar |
+|---|---|---|
+| −2 (stimulated) | 15.7 | 19 |
+| 0 (ideal) | 12.3 | 24 |
+| +5 (damaged) | 8.0 | 37 |
+
+Typical skins: negative after acid or fracture stimulation (to about −4), zero for an undamaged
+well, positive for drilling damage and fines, +10 or more for badly damaged wells [textbook:
+Economides et al. 2013]. Injectors in sandstone tend to lose injectivity over time (5.3, 5.4).
+
+What follows:
+
+- r_e enters only by a logarithm: doubling it changes PI by a few per cent; do not search it.
+- Skin can matter as much as permeability. Rows `reservoir-skin-production` and
+  `reservoir-skin-injection` are 0 placeholders: 0 on an injector is optimistic; treat skin as an
+  uncertainty (10.5, handbook-studies) rather than a fixed truth.
+- PI scales with k h: a case's permeability uncertainty is usually the largest driver of pump
+  power and of the doublet count (3.7).
+
+## 13.6 Pressure drops of exchangers, filters, degassers and desanders
+
+| Unit | gemini path | Typical clean loss | Source |
+|---|---|---|---|
+| Plate heat exchanger, each side | `hot_nominal_pressure_drop`, `cold_nominal_pressure_drop` at `*_nominal_mass_flow` | about 20 to 100 kPa at design flow; the designer trades loss for UA | [textbook: Kakaç et al. 2012] |
+| Cartridge or bag filter | `filters.<f>.nominal_pressure_drop`; `clogging_pressure_drop` | small when clean; change-out at a few tenths of a bar | [vendor practice; assumption] |
+| Hydrocyclone desander | `desander.nominal_pressure_drop` | of the order of 1 bar | [Svarovsky 2000] |
+| Two-phase separator (degasser) | `degasser.nominal_pressure_drop` | small; the vessel is sized for residence time, not loss | [Arnold and Stewart 2008] |
+
+How gemini uses them: for exchangers, filters and the desander a nominal loss holds at the
+nominal mass flow and scales with the square of the flow ratio, Δp = Δp_n (ṁ / ṁ_n)², the
+turbulent law [gemini: `gemini/modules/treatment/desander.py`, `filter.py`,
+`gemini/modules/exchangers/heatexchanger.py`]. The degasser takes its `nominal_pressure_drop` as
+a fixed loss, or holds its `outlet_pressure` when one is given [gemini:
+`gemini/modules/treatment/degasser.py`]. A zero loss (row
+`heat-exchanger-pressure-drop-neglected`) means the pumps never pay for the exchanger; it is a
+simplification to record, not a design value.
+
+Sum the losses at design flow and check them against the wellhead pressure (13.4). A filter near
+its clogging loss raises the loss by an order of magnitude; plan the check of 0.8 at the clogged
+value when the plant has to run between change-outs.
+
+## 13.7 Degasser and separator: efficiency, pressure, sizing
+
+A degasser is a two-phase separator: free gas rises out of the brine in a vessel held at a set
+pressure [textbook: Arnold and Stewart 2008; standard: API 12J].
+
+- **Only free gas separates.** At the vessel pressure the brine still holds the gas its
+  solubility allows; lowering the vessel pressure frees more gas (5.1). gemini's
+  `separation_efficiency` is the share of the inlet *free* gas that leaves by the gas outlet
+  [gemini: `gemini/modules/treatment/degasser.py`]. Row `degasser-separation-efficiency` is a
+  placeholder of 1 (perfect); a well designed gravity separator removes most free gas, and the
+  rest is carried as bubbles; record any value below 1 with its source.
+- **Pressure.** `outlet_pressure` sets the vessel pressure; empty keeps the inlet pressure less
+  `nominal_pressure_drop`. The vessel pressure trades gas recovered (lower is more) against
+  pumping (the brine must be raised again to inject) and scaling (CO2 loss raises pH, 5.3).
+- **Size.** Separators are sized for liquid retention time, of the order of 1 to 3 minutes for
+  two-phase service, and for gas velocity below the droplet settling limit (Souders-Brown)
+  [standard: API 12J; Arnold and Stewart 2008]. Vessel size enters cost, not gemini's physics.
+- **The gas goes somewhere**: a flare (`flare.combustion_efficiency` 0.98, row
+  `flare-combustion-efficiency` [US EPA AP-42 13.5]), a boiler or a CHP (5.5); unburned methane
+  counts at its global warming potential (5.6).
+
+Mistake to avoid: a degasser downstream of a unit that already sees free gas; the gas must leave
+before pumps and exchangers that cannot take two-phase flow.
+
+## 13.8 Boiler efficiency: which number?
+
+gemini's `boiler.efficiency` is heat to water over fuel energy, and the fuel energy uses the
+**lower heating value** of the gas [gemini: `gemini/modules/heating/boiler.py`,
+`gemini/modules/heating/_burner.py`]. A datasheet efficiency must be on the same basis:
+
+- On the higher heating value basis the same boiler reads lower; for natural gas HHV / LHV is
+  about 1.11 [textbook: Cengel and Boles 2015, heating values of methane]. Convert:
+  η_LHV = η_HHV × HHV / LHV.
+- A **condensing** boiler recovers the latent heat of the flue gas water only when the return
+  water is below the flue gas dew point, about 54 °C (130 °F) for natural gas; then its LHV
+  efficiency can exceed 1 [ASHRAE Handbook, HVAC Systems and Equipment, chapter on boilers]. With a hotter
+  return it behaves as a non-condensing boiler.
+- Non-condensing hot water boilers are of the order of 0.9 on the LHV basis; row
+  `boiler-efficiency-gas` (0.9) is a placeholder: check the boiler row of
+  `knowledge/data-economics.csv` and cite the one used.
+
+The fuel's heating value is the case's (`utilities.gas`), never a design value (0.6).
+
+## 13.9 Chilled water supply and the dew point
+
+The cooling supply temperature is the case's (`demand.cooling`); what the designer checks is
+whether it can do its job:
+
+- **Dehumidifying** coils (air handling units) need water below the dew point of the air.
+- **Sensible-only** terminals (chilled ceilings, slabs, beams) need water above the room dew
+  point with a margin, or they condense.
+
+Dew point by the Magnus form [paper: Alduchov and Eskridge 1996]:
+γ = ln(RH) + a T / (b + T), T_dp = b γ / (a − γ), a = 17.625, b = 243.04 °C.
+
+Invented numbers: room 24 °C at 50 % RH gives T_dp = 12.9 °C; at 26 °C and 60 % RH,
+17.6 °C [derived]. A 20 °C supply suits sensible cooling for both; a 6 °C supply is needed to
+dehumidify. Psychrometric relations: ASHRAE Handbook, Fundamentals, chapter 1.
+
+In gemini the air state of a site is the case's; gemini's psychrometrics are in
+`gemini/physics/psychrometrics.py`. A dew point rule, when the case states one, is a case
+requirement; never invent one in the plant.
+
+## 13.10 Thermal storage: size, effectiveness and the initial state
+
+gemini's `ThermalStorage` is a fully mixed tank with charge and discharge circuits of constant
+effectiveness [gemini: `gemini/modules/storage/thermalstorage.py`, after Duffie and Beckman
+2013, section 8.3].
+
+- Energy held: E = ρ c_p V ΔT. Invented: 1,000 m3, ΔT 40 K, ρ 980 kg/m3, c_p 4,190 J/kg/K:
+  E = 45.6 MWh [derived]. That covers a 5 MW peak excess for about 9 hours.
+- A fully mixed model is pessimistic: a real stratified tank delivers water near its top
+  temperature until the thermocline arrives [textbook: Dincer and Rosen 2011]. A mixed tank
+  model's outlet drops as soon as it discharges.
+- `charge_effectiveness`, `discharge_effectiveness`: 1 is a direct connection; through a plate
+  exchanger use its effectiveness (6.1, A.8).
+- **Initial state**: the tank temperature at the start of a run is a case value,
+  `initial_state.<module>.temperature` [gemini: `gemini/engine/check.py`]. It is not a plant
+  value. For a year-long run the effect fades after a few cycles; for a short run choose it with
+  a reason (a full or an empty tank) and record it.
+
+Storage pays when it moves heat from cheap or idle hours to peak hours: daily peaks, not
+seasonal ones, unless the store is large (an aquifer store, 6.7).
+
+## 13.11 Minimum part load, turndown and staging
+
+gemini's `HeatPump` (and a compression chiller, the same class in cooling mode) is off below
+`minimum_part_load × capacity` [gemini: `gemini/modules/heating/heatpump.py`]; absorption
+chillers and boilers have their own limits (7.2, 6.5).
+
+- Turndown depends on the compressor: screw and centrifugal machines unload to a share of their
+  capacity, often with falling efficiency; below it they cycle or stop. No single published
+  figure fits all machines: take the maker's, else record an assumption (0.6).
+- **Staging** lowers the plant's minimum: n equal units, each with a minimum share m, reach
+  m / n of the total capacity. Invented: 12 MW as one unit at m 0.3 runs down to 3.6 MW; as three
+  4 MW units down to 1.2 MW [derived].
+- A unit that is off on low-demand steps leaves that demand to the next unit in the merit order
+  (9.1) or to backup; read the low-demand steps of the results, not only the peak (11.7).
+
+Mistake to avoid: one large unit sized for the peak that is off for half the year; check its
+running hours in the results.
+
+## 13.12 COP models in gemini: Carnot fraction or Lorenz fraction
+
+gemini computes the heat pump COP from the **outlet temperatures** of both circuits, with a
+lift floor [gemini: `gemini/modules/heating/heatpump.py`]:
+
+- `carnot`: COP = carnot_fraction × T_sink,out / max(T_sink,out − T_source,out,
+  minimum_temperature_lift), all in kelvin; cooling mode uses T_source,out in the numerator.
+- `lorenz` (heating only): COP = lorenz_fraction × T̄_h / (T̄_h − T̄_c) with the log-mean
+  temperatures of each stream's glide, T̄ = (T_in − T_out) / ln(T_in / T_out) [paper: Lorenz
+  1894; textbook: Cengel and Boles 2015 for the Carnot limit]. A Lorenz machine in cooling mode
+  is refused.
+
+Why it matters. Invented: sink 50 → 80 °C, source 60 → 30 °C. Carnot on outlets: 353.15 / 50 =
+7.06; Lorenz on log-means (64.8 °C and 44.8 °C): 16.9 [derived]. The Lorenz limit is higher
+because it credits the glides; a **fraction of a Lorenz COP is a smaller number than a fraction
+of a Carnot COP for the same machine**. Never put a Carnot fraction (about 0.5, row
+`heat-pump-carnot-fraction` [Frutschi 1996]) into a Lorenz model: it would double the COP. Row
+`heat-pump-lorenz-fraction` is a placeholder.
+
+Use `lorenz` when both glides are large (brine cooled by tens of K, network heated by tens of K);
+`carnot` otherwise. Record which, with its fraction's source.
+
+## 13.13 How far may the brine be cooled? Reinjection temperature
+
+The brine cooling of a doublet is ΔT = T_production − T_injection. A larger ΔT gives more heat
+per cubic metre (Q = ṁ c_p ΔT) but has limits:
+
+- **Scaling and corrosion**: cooling lowers the solubility of silica and raises it for
+  carbonates; some brines scale below a temperature, which then is a lower bound on the
+  injection temperature [Gallup 2009]. A case's brine cooling cap or a chemistry limit binds the
+  heat pump's `minimum_source_outlet_temperature` (0.8, 12.4).
+- **Injectivity**: colder water is more viscous; at 40 °C water viscosity is about twice that at
+  90 °C, so the same injectivity index falls and the injection pressure rises (13.3)
+  [textbook: Incropera et al. 2007, property tables].
+- **Thermal breakthrough** comes earlier with colder injection at the same flow, as the cold
+  front carries more cooling (3.5) [Gringarten and Sauty 1975].
+
+`knowledge/data-equipment.csv` has no row for a cap: no general figure exists; it is the case's
+or the brine chemistry's.
+
+## 13.14 Network pressures, pipe heat loss and roughness
+
+The district network's pressures and lengths are the case's (`demand`, `site`; 0.6); the plant
+designer checks the plant pipes against them.
+
+- Pressure: the network's static pressure keeps the hottest point above saturation; water at
+  120 °C boils below 2 bar(a) [textbook: Cengel and Boles 2015, steam tables]. A supply loop at
+  6 to 10 bar is common in practice (pipe class PN 16 or 25) [textbook: Frederiksen and Werner
+  2013].
+- Velocity: 1 to 3 m/s at design flow for plant pipes (2.5).
+- Roughness: 4.5e-5 m for new commercial steel (rows `roughness-new-commercial-steel-pipe`,
+  `roughness-new-commercial-steel-well`) [Moody 1944].
+- Heat loss: pre-insulated buried pipes lose a few per cent of the heat delivered per year, more
+  in summer at low load [Frederiksen and Werner 2013]. Row
+  `pipe-heat-transfer-coefficient-insulated` is 0 (no loss), a placeholder: a stated
+  simplification, not a design value.
 
 ---
 
@@ -2053,16 +2375,29 @@ Orientation only: never an input without its source and the user's approval (1.5
 Textbooks and papers (cited as named; figures quoted through gemini were checked there, not
 always in the original):
 
+- Alduchov, O. A., Eskridge, R. E. (1996). Improved Magnus form approximation of saturation
+  vapor pressure. *J. Appl. Meteorology* 35, 601-609.
+- API Specification 12J. *Specification for Oil and Gas Separators*. American Petroleum
+  Institute.
+- ANSI/HI 9.6.3. *Rotodynamic Pumps: Guideline for Operating Regions*. Hydraulic Institute.
+- Arnold, K., Stewart, M. (2008). *Surface Production Operations, Vol. 1: Design of Oil Handling
+  Systems and Facilities*, 3rd ed. Gulf Professional.
 - Arpagaus, C., Bless, F., Uhlmann, M., Schiffmann, J., Bertsch, S. S. (2018). High temperature heat
   pumps: market overview, state of the art, research status, refrigerants, and application
   potentials. *Energy* 152, 985-1010.
 - ASHRAE. *ASHRAE Handbook: HVAC Systems and Equipment* (chapter on cooling towers and fluid coolers).
 - Cengel, Y. A., Boles, M. A. (2015). *Thermodynamics: An Engineering Approach*, 8th ed.
   McGraw-Hill.
+- Dincer, I., Rosen, M. A. (2011). *Thermal Energy Storage: Systems and Applications*, 2nd ed.
+  Wiley.
 - Dake, L. P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
 - DiPippo, R. (2016). *Geothermal Power Plants*, 4th ed. Butterworth-Heinemann.
 - Danish Energy Agency. *Technology Data for Generation of Electricity and District Heating*,
   version 0019 (August 2026), data sheets 06, 40, 44, 45.
+- Duffie, J. A., Beckman, W. A. (2013). *Solar Engineering of Thermal Processes*, 4th ed. Wiley
+  (section 8.3, as cited in gemini).
+- Economides, M. J., Hill, A. D., Ehlig-Economides, C., Zhu, D. (2013). *Petroleum Production
+  Systems*, 2nd ed. Prentice Hall.
 - Forster, P., et al. (2021). The Earth's energy budget, climate feedbacks and climate sensitivity.
   IPCC AR6 WG1, chapter 7 (table 7.15).
 - Frederiksen, S., Werner, S. (2013). *District Heating and Cooling*. Studentlitteratur.
@@ -2071,6 +2406,7 @@ always in the original):
   326-334.
 - Gringarten, A. C., Sauty, J. P. (1975). A theoretical study of heat extraction from aquifers with
   uniform regional flow. *J. Geophys. Res.* 80(35), 4956-4962.
+- Gülich, J. F. (2014). *Centrifugal Pumps*, 3rd ed. Springer.
 - Hellmann, H.-M., Schweigler, C., Ziegler, F. (1999). The characteristic equations of absorption
   chillers. International Sorption Heat Pump Conference.
 - Herold, K. E., Radermacher, R., Klein, S. A. (2016). *Absorption Chillers and Heat Pumps*, 2nd ed.
@@ -2078,8 +2414,12 @@ always in the original):
 - Heywood, J. B. (1988). *Internal Combustion Engine Fundamentals*. McGraw-Hill.
 - Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007). *Fundamentals of Heat and Mass
   Transfer*, 6th ed. Wiley.
+- Kakaç, S., Liu, H., Pramuanjaroenkij, A. (2012). *Heat Exchangers: Selection, Rating, and
+  Thermal Design*, 3rd ed. CRC Press.
 - Lindal, B. (1973). Industrial and other applications of geothermal energy. UNESCO, Geothermal
   Energy, Earth Sciences 12.
+- Lorenz, H. (1894). Die Ermittlung der Grenzwerte der thermodynamischen Energieumwandlung.
+  *Zeitschrift für die gesamte Kälte-Industrie* 1.
 - Lund, H., et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
 - Mijnlieff, H., et al. (2013). SDE+ reference case, European Geothermal Congress (as cited in gemini).
 - Moody, L. F. (1944). Friction factors for pipe flow. *Trans. ASME* 66.
