@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-design-I |
@@ -39,4 +39,5 @@ In `call_summary` for patch_plant: when `changes` is a list, `paths = [c.get("pa
 
 ## Fix
 
+- 2026-11-05 17:27 UTC: geomind 0.4.105, commit d687b9d, deployed: patch_plant card counts list changes
 ## Retest
