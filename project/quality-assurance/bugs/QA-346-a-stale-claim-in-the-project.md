@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-II |
@@ -39,7 +39,7 @@ Prompts: a tool limit stated in state or history is re-checked against the skill
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 20:21 UTC: geomind 97f55fe + 9e67aa0: findings stamped with versions; older or other-minor findings marked to re-check; pending deploy
 ## Retest
 
 (Who, when, result.)
