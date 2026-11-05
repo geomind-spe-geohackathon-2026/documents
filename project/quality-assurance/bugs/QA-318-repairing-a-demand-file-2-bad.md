@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -57,7 +57,7 @@ tell the lead to ask the user for a fixed file. `calculate`: accept a file cell 
 
 Update 19:19 UTC: a 6th cut save_profile (output tokens 124774 -> 140774); I cancelled the run at 19:19
 (QA-TEST QA-E2E-case-I 10, 19 min, ~1.5 M input tokens, no case).
-
+- 2026-11-05 20:55 UTC: QA-E2E-case-I 20:55 UTC, backend 1.1.130 / geomind 0.4.135: project QA-TEST QA-E2E-case-I 17 run 5c0ad032: repair_series adds 2027-03-15 = 17272.5 and sets 2027-07-04 = 5289.5 (neighbours' mean, user's rule), file data/Heating_Demand_2027.csv has 365 rows and header 'time'; case v3 stored with it (kW, Europe/Amsterdam). Still 4 files-alone set_case refusals (QA-200)
 ## Retest (QA-E2E-case-I, 2026-11-05 20:15-20:32 UTC, backend 1.1.127, new tool repair_series)
 
 Project QA-TEST QA-E2E-case-I 15 (369b56d4), run 3bc29e97, same flawed heating file. Still no case after 17 min
