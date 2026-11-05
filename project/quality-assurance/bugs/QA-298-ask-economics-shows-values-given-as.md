@@ -43,6 +43,12 @@ sets it (gas 34.9515 EUR/MWh with its HICP source, heat 70).
 - Also: the price-year question contradicts project 4 (run 236f17d4), where the case lead itself
   recommended deflating with the HICP from handbook-economics §4.2; option (b) would mix price
   years in one case.
+- 5th card (step 21, 18:49 UTC), after I typed that discount, period, prices and carbon must not
+  be open: the note says "Discount rate 0.05, analysis period 25 yr, electricity 105.75 ... are
+  back in", but EVERY key of the assumptions file is listed under "Open"; only 7 catalogue rows
+  remain under approve all (`card-5-all-open.txt`). The call passed each value as
+  `{"key": "discount_rate", "source": ..., "uncertainty": ...}` with NO `value`; ask_economics
+  silently moved them to Open instead of refusing the call, so the note and the list contradict.
 - Speed: 13 min so far for two changed values; 4 question cards.
 
 ## Evidence
@@ -65,9 +71,11 @@ the answer text as empty.
 geomind `tools/gemini/economics.py`:
 1. Validate every value's shape and unit (the full case check, as `precheck`) BEFORE asking;
    accept `{value, unit}` objects by unwrapping them, or refuse the call with the path.
-2. When `on_answer` fails, keep the user's "approve all" in the chat record and re-ask with the
+2. Refuse a value entry without `value` (or `row`) instead of moving it to Open; the note may
+   never claim a key is set when the list shows it open.
+3. When `on_answer` fails, keep the user's "approve all" in the chat record and re-ask with the
    SAME values fixed, never drop keys to Open.
-3. Analysis/case lead skill: the price-year rule from handbook-economics §4.2 (deflate a user
+4. Analysis/case lead skill: the price-year rule from handbook-economics §4.2 (deflate a user
    price with the euro-area HICP and show it) in both leads; never offer to mix price years.
 
 ## Fix
