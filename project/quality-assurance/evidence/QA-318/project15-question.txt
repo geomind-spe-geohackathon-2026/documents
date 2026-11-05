@@ -1,0 +1,61 @@
+Projects
+QA-TEST QA-E2E-case-I 15
+Chat
+1 run active
+Design
+Chat
+Here are the GEMINI hackathon challenge and our 2027 heating and cooling demand. Build the complete case for a geothermal heating and cooling plant from these files. Stop when the case is complete.
+
+Attached files: GEMINI_Hackathon_Challenge_Requirements.pdf, Heating_Demand_2027_flawed.csv, GEMINI_Cooling_Demand_Daily_2027.csv
+21:15
+Copy
+
+Waiting for your answer below
+
+Steps so far (55 steps)
+· 672 K tokens
+· 0.018 USD
+
+All four field groups are back and agree. Before setting anything, I must resolve the heatiAll four field groups agree, and the case's assumptions document covers the gaps. Before anything is saved, the one confirmation question — including the two flaws of the heating file
+
+The assistant asks
+
+Nothing is saved yet. Please approve the values the three files do not give, and the handling of the two flaws in Heating_Demand_2027_flawed.csv.
+
+FLAWS IN THE HEATING FILE (both values as written; nothing corrected yet)
+F1. The row for 2027-03-15 is missing (2027-03-14 = 17300 kW, then 2027-03-16 = 17245 kW); the file has 364 rows, one short of the 365 days of 2027, so its span is broken. Proposed: fill 2027-03-15 with 17300 kW (the previous day's value held) | engineering assumption, no source | a gap gemini refuses; no source gives the day.
+F2. The row 2027-07-04 reads -500 kW (negative; gemini refuses it); the neighbours are 5237 kW (2027-07-03) and 5342 kW (2027-07-05). Proposed: 500 kW (the magnitude as written, sign dropped) | engineering assumption, no source | a sign error; no source gives the day.
+(Note, not a flaw: the column is heating_demand_kWth in kW, peak 30000 kW = the brief's 30.0 MWth peak; it goes in as kW and gemini converts.)
+
+TIME ZONE
+T1. time_zone of both demand series = UTC | agent assumption | no file states an offset or a zone and the brief names no site; the case's own times are UTC.
+
+DEMAND (from knowledge/hackathon-2026-assumptions.md, "Case values")
+D1. demand.heating.return_temperature = 60 degC | design choice, the brief leaves it to the team | below the 100 degC supply.
+D2. demand.heating.return_pressure = 6 bar | knowledge/hackathon-2026-assumptions.md, Case values.
+D3. demand.cooling.return_temperature = 25 degC | design choice, the brief leaves it to the team | above the 20 degC supply.
+D4. demand.cooling.return_pressure = 4 bar | knowledge/hackathon-2026-assumptions.md, Case values.
+D5. demand.cooling.indoor_temperature = 26 degC | knowledge/hackathon-2026-assumptions.md, Case values.
+D6. demand.cooling.indoor_relative_humidity = 50 % | knowledge/hackathon-2026-assumptions.md, Case values.
+D7. demand.cooling.dew_point_margin = 1 K | knowledge/hackathon-2026-assumptions.md, Case values.
+
+SITE — BRINE, AIR, UTILITIES (from knowledge/hackathon-2026-assumptions.md)
+S1. site.fluid.sand_concentration = 20 mg/l | Case values.
+S2. site.air.temperature = 10 degC (constant) | Case values.
+S3. site.air.pressure = 101325 Pa | Case values.
+S4. utilities.electricity.co2_intensity = 300 g/kWh (constant, location-based) | Case values / Rules from the organisers.
+S5. utilities.gas.composition = CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233 (mole fractions, digit for digit) | Case values.
+
+REQUIREMENT TOLERANCES (from knowledge/hackathon-2026-assumptions.md, "Requirements: tolerances the PDF does not give")
+R1. heat_delivered: unmet_share of the yearly heat demand at most 0.01, over all 365 days | organisers (365 days), team (1 %).
+R2. cold_delivered: unmet_share of the yearly cold demand at most 0.01, over all 365 days | organisers (365 days), team (1 %).
+R3. full_reinjection: reinjection_ratio between 0.99999 and 1.00001 while running | the PDF requires equal volumes; the band is the tolerance of the assumptions document.
+
+Left open, not asked (the assumptions document marks them not needed): site.air.relative_humidity, utilities.gas.heating_value, utilities.electricity.import_limit/export_limit, produced-gas N2 and H2S, bought-gas O2 and H2S.
+
+approve all
+change some
+stop
+Or type your own answer
+Answer
+Auto-approve
