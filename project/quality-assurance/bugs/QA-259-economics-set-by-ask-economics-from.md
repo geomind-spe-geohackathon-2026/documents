@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -48,7 +48,7 @@ for a distribution; the assumptions document puts the ranges in a separate table
 ## Fix
 
 - 2026-11-05 18:30 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
-
+- 2026-11-05 18:54 UTC: retest QA-AI-analysis-I 18:52 UTC backend 1.1.117: ask_economics still offers and writes no uncertainty
 ## Retest
 
 - 2026-11-05 18:52 UTC, QA-AI-analysis-I, backend 1.1.117: fresh project `QA-TEST QA-AI-analysis-I 11`, case without
