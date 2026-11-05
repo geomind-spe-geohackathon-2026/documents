@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | blocked |
 | Severity | major |
 | Area | backend |
 | Reporter | functional-qa-I |
@@ -48,7 +48,7 @@ Guess: the run was resumed after the 00:3x deploy and stalled, or the provider c
   (the full run id from the Runs page). 429/402/403 in the errors confirms the cause.
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 04:14 UTC: hotfix-back: most likely provider refusals retried with back-off (0 tokens = no call succeeded) around the key limit (QA-068), not an idle worker or queue; visible now through the retry event (QA-021) once QA-030 shows it, and provider_refused (QA-068). Needs a person to read the run's retry/error events (query in Fix) to confirm; prod DB reads are refused to me.
 ## Retest
 
 (Who, when, result.)
