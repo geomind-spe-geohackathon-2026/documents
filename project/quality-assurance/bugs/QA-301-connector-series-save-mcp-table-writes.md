@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 18:52 UTC |
 | Versions | frontend 1.1.125+, backend 1.1.116+ (geomind 0.4.12x) |
 | Where | https://geomind.team/projects/dbe6165f-a36d-4643-9eca-027411ca9a7c; project QA-TEST QA-E2E-case-I 9; run 08d3739c |
-| Fixer | hotfix-python-lead-II |
+| Fixer | m7 |
 
 ## Steps
 
