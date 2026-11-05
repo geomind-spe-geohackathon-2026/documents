@@ -47,7 +47,7 @@ still active, 58 steps.
 | IMP-020 | idea | geomind | read_stored shows the outline of a result (keys two levels deep) when the path is wrong | 127 unknown_name |
 | IMP-021 | idea | geomind | Examples in the skills generated from gemini's own schema; evals from the real refusals | prompts that do not drift from gemini |
 | IMP-022 | idea | QA | Two measures after every deploy: first-try error rate per tool; runs that reach simulate, check and optimize | shows whether a fix helps |
-| IMP-023 | idea | geomind, frontend | Start from gemini's six hackathon plant files (125 values each) and a complete case; size then optimize; no hand-built plants | the only path that has reached a passing result |
+| IMP-023 | rejected | geomind, frontend | Start from gemini's six hackathon plant files (125 values each) and a complete case; size then optimize; no hand-built plants | the only path that has reached a passing result |
 
 ## IMP-001: ask_economics fills the recommended rows itself
 
@@ -249,6 +249,14 @@ for the agents; (b) the design lead picks a template, sizes, simulates, checks a
 engineers fill only what gemini reports missing; (c) the case starts complete: the sample's values
 offered to the user in one approval question, with gemini's README as their source (Sahand decides
 whether that counts as a source under the no-default rule).
+
+Decision (user, 2026-11-05 14:20 UTC, via Coordinator-IV): (a) to (c) REJECTED. No gemini sample
+plant as a template: the product is general. The failing design path is solved with
+`handbook-plant-design.md` in the global Knowledge (read by section; chapter 10 sizing and
+optimisation, chapter 11 designing in gemini), which the design lead's and engineers' prompts and
+skills point to. A free plant must take a doublet range: gemini 0.6.15 accepts `size.doublets`
+on a plant without a class on one doublet `d0` and the optimiser searches the count (QA-129).
+Rule: `.claude/memory/feedback-design-from-handbook-not-templates.md`.
 
 ## IMP-024: "Run again" on a study
 
