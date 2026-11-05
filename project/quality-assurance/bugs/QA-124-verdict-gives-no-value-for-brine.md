@@ -35,6 +35,9 @@ The table has values for production flow (300 m3/h), pump efficiency 0.7, double
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 14:28 UTC: geomind 0.4.86 (reading-results: requirement values from check_results), backend 1.1.89, deployed 14:27 UTC
+
+Cause: the values are in `check_results` `requirements` (value, limit, unit_path, worst_step for brine cooling, running days, reinjection), but the agent looked only in `read_result`. Fix: the reading-results skill says where each requirement's number is, and never to write that a requirement rests on the verdict when its entry has a value.
+
 ## Retest
 
 (Who, when, result.)
