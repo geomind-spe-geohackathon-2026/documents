@@ -57,3 +57,10 @@ for a distribution; the assumptions document puts the ranges in a separate table
   `ask_economics` question (request-91, 10 938 chars) offers no uncertainty for any key; after "approve all" the stored
   economics.json has no `uncertainty` anywhere (checked with GET /design/case/files/economics.json). Still open.
   Log: `../evidence/QA-259/run-d87fcde1-retest-log.json`.
+
+- 2026-11-05 19:55 UTC, QA-AI-analysis-I, backend 1.1.124: fresh project `QA-TEST QA-AI-analysis-I 15`, case without
+  economics, run 59cc8385-a5dc-420f-8aae-d65b52642481. The `ask_economics` question (request-83) now shows each range,
+  e.g. "economics.energy.electricity = 105.75 EUR/MWh (uncertainty uniform 80 to 140)"; after "approve all" the stored
+  economics.json holds uncertainty on discount_rate (normal std 0.01, 0.02-0.08), electricity (uniform 80-140), gas
+  (triangular 25-70) and carbon.price (triangular 30-110), as the reference. 2 min 10 s, 0.0079 USD. Verified.
+  Log: `../evidence/QA-259/run-59cc8385-retest-log.json`.
