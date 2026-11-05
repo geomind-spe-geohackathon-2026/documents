@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -41,4 +41,5 @@ Suggested fix: at each level, try the longest run of the remaining parts joined 
 
 ## Fix
 
+- 2026-11-05 16:43 UTC: geomind 0.4.98 (22185b7, tag v0.4.98), backend 1.1.102 (a080360), deployed 2026-11-05: stored.path_keys keeps a dotted module key whole in read_stored, calculate, run_python. Not live-retested.
 ## Retest
