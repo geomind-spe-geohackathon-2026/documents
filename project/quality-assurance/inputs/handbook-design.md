@@ -2281,8 +2281,10 @@ Invented numbers: room 24 °C at 50 % RH gives T_dp = 12.9 °C; at 26 °C and 60
 dehumidify. Psychrometric relations: ASHRAE Handbook, Fundamentals, chapter 1.
 
 In gemini the air state of a site is the case's; gemini's psychrometrics are in
-`gemini/physics/psychrometrics.py`. A dew point rule, when the case states one, is a case
-requirement; never invent one in the plant.
+`gemini/physics/psychrometrics.py`. gemini's `CoolingGrid` takes the latent load only when the
+supply is at least the case's `dew_point_margin` below the indoor dew point; otherwise the latent
+load is unmet (16.1) [gemini: `gemini/modules/grids/coolinggrid.py`]. The margin and the indoor
+air are the case's; never invent them in the plant.
 
 ## 13.10 Thermal storage: size, effectiveness and the initial state
 
@@ -2846,6 +2848,85 @@ Glycol lowers c_p and raises viscosity, so the pump and the coil need more flow 
 same duty: a 30 % propylene glycol mixture has a c_p about 10 % below water's and a viscosity
 several times higher at low temperature [ASHRAE Handbook, Fundamentals, chapter on secondary
 coolants]. Use glycol only where freezing is possible.
+
+# 16 District networks, consumers and substations
+
+The plant serves a network; what the network asks back (flow, return temperature, pressure)
+shapes the plant. This chapter covers the consumer models of gemini, substations, the
+supply-return difference and network losses.
+
+## 16.1 The consumer as gemini models it
+
+**Heating** (`HeatingGrid`): the supply flow is imposed by the plant; the consumer takes
+Q = min(demand, ṁ c_p (T_supply − T_return,min)) and returns the water at T_supply − Q / (ṁ c_p),
+never below `minimum_return_temperature`. Demand beyond that is `unmet_demand`; a supply colder
+than the minimum return delivers nothing [gemini: `gemini/modules/grids/heatinggrid.py`].
+
+**Cooling** (`CoolingGrid`): the consumer warms the chilled water by the sensible and the latent
+load, up to the lower of `maximum_return_temperature` and the indoor temperature. The latent load
+is taken only when the supply is at least `dew_point_margin` below the indoor dew point;
+otherwise it is unmet, as with chilled beams or radiant ceilings run above the dew point
+[gemini: `gemini/modules/grids/coolinggrid.py`, after ASHRAE Handbook, Fundamentals, chapter 1,
+and HVAC Systems and Equipment, chapter 23].
+
+All of these (return temperatures, return pressure, supply limits, the dew point margin) are the
+case's (`demand.heating`, `demand.cooling`); a plant does not state them [gemini: same files].
+
+What follows for design:
+
+- the plant's flow sets how much heat can reach the consumer: at a low ΔT the plant needs more
+  flow for the same heat (16.3);
+- a latent cooling load with a warm chilled-water supply stays unmet whatever the chiller size:
+  read `unmet` of the cooling supply and the dew point before adding capacity (13.9).
+
+## 16.2 Substations: indirect connection and its approach
+
+Most district heating customers are connected indirectly: a substation exchanger separates the
+network from the building circuit [textbook: Frederiksen and Werner 2013; gemini:
+`gemini/plants/heatingsubstation.py`]. Its approach adds to the network temperatures:
+
+- network supply ≥ building supply + approach;
+- network return ≥ building return + approach.
+
+Worked (invented): building circuits at 70 / 40 °C, substation approach 3 K: the network must
+supply at least 73 °C and returns at no less than 43 °C [derived]. Every kelvin on the network
+return is a kelvin less brine cooling (14.2): substation approach and building return temperature
+reach back to the doublets.
+
+The `HeatingSubstation` plant models the valve, the exchanger, the building loop and its pump; a
+`DistrictNetwork` puts several in parallel behind a pump and two pipes. Both are building blocks
+that do not run a year on their own (11.5).
+
+## 16.3 Supply-return difference, flow and pumping
+
+ṁ = Q / (c_p ΔT): the network flow is inversely proportional to its supply-return difference.
+
+Worked (invented): 20 MW at ΔT 30 K needs 159 kg/s; at ΔT 50 K, 95.5 kg/s [derived]. With the
+pressure loss scaling as ṁ² and the pump power as ṁ Δp, a network with a 5 bar loss at 30 K
+(109 kW of pumping at η 0.75) needs about 23 kW at 50 K [derived, (95.5/159)³ ≈ 0.22].
+
+The low-ΔT problem: consumers that return water too warm (poor substation control, bypasses,
+oversized emitters) raise the flow, the pumping and the return temperature together, and lower
+the heat a geothermal doublet gives [textbook: Frederiksen and Werner 2013]. In a design, the
+return temperature is either the case's or a recorded design choice (QA-094); never assume a
+lower one than the consumers can reach.
+
+## 16.4 Network heat losses
+
+Heat loss of a buried pipe pair ≈ Σ U_l L (T_pipe − T_ground), with U_l the linear loss
+coefficient (W/m/K) of the pre-insulated pipe [textbook: Frederiksen and Werner 2013; EN 13941
+for pre-insulated bonded pipe systems].
+
+Worked (invented): 10 km of route, U_l 0.3 W/m/K per pipe, supply 80 °C, return 45 °C, ground
+10 °C: loss = 0.3 × 10,000 × (70 + 35) = 315 kW, about 2.8 GWh/yr [derived]. Against a 60 GWh/yr
+load that is under 5 %; in summer, at a demand of a few MW, it is a large share. Lower network
+temperatures cut it (4th generation district heating [Lund et al. 2014]).
+
+In gemini, a pipe's loss comes from its `heat_transfer_coefficient`; row
+`pipe-heat-transfer-coefficient-insulated` is 0, a placeholder (13.14). A network that the case
+does not describe is not invented (0.6); when the case's demand is measured at the plant, the
+losses are already in it (2.5). When it is measured at the buildings and no network is modelled,
+cover the losses with a `supply_margin` or a stated share (QA-225).
 
 ---
 
