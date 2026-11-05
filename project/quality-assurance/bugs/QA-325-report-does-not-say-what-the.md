@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | backend |
 | Reporter | Sahand (reviewer notes), Manual QA-IV |
@@ -31,3 +31,4 @@ Report section 8 has the scope paragraph.
   pressure; the case sets no rule on them, so they are not checked. Every check judges the run of 365 d only: nothing
   that develops over a longer life of the plant is checked." Verified (it does not name injectivity or thermal
   breakthrough by name, but says plainly what is and is not covered).
+- 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:59 UTC: checks scope stated
