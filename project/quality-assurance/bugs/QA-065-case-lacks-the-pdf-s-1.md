@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | qa-func-1 |
@@ -36,7 +36,7 @@ Guess: the case lead did not map the PDF doublet rule to a requirement and the d
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:23 UTC: geomind 0.4.60 (273cc1f, case lead maps doublet count to {on: doublet, quantity: count, min, max}; design lead cites only read_case requirements), backend 1.1.61 (3d2aa31), deployed 00:3x UTC
 ## Retest
 
 (Who, when, result.)
