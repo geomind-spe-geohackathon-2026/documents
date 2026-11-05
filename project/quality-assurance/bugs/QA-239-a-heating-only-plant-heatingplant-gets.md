@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | gemini,backend |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 17:42 UTC |
 | Versions | backend 1.1.108 (geomind 0.4.110, gemini 0.6.17) |
 | Where | https://geomind.team/projects/4678c5c6-66fc-46dd-9d1e-358c3c5c1d24 (No-agent showcase); minimize study 0e60d87b-ec6f-4955-847c-b0cd3f79855a, result 92c67bd1-d700-44bb-b857-249c9a2c5633 |
-| Fixer | |
+| Fixer | hotfix-back-lead |
 
 ## Steps
 
