@@ -68,4 +68,4 @@ serve that method from the results table. Also: an `unknown_name` error for a uu
 - 2026-11-05 17:27 UTC: deployed in backend 1.1.106 (geomind 0.4.106)
 ## Retest
 
-(Who, when, result.)
+QA-E2E-report-I, 2026-11-05 18:10 UTC, backend 1.1.109 (geomind 0.4.110), project QA-TEST QA-E2E-report-I 2 (fa329839), run d8662b0d, chip "Write the report": STILL FAILS (better). list_studies lists project result c0661c15-...; check_results, compute_kpis, read_stored, read_result on `result/c0661c15-...` are still refused (15 calls on the project result id, was 40). The refusal now carries the hint (quote kpis/checks from list_studies or simulate design/v1); the reviewer still answers "failed: gemini's verdict could not be obtained", then the design lead simulates design/v1 twice (17:46:59, 17:48:49) and the report uses that chat result, never the page result ("the project study result c0661c15 is not verified and is not used for any number"). The report is right but the page result the user made is not readable, so every report re-simulates. Reopened: the readers should load a project result (Fix proposal above).
