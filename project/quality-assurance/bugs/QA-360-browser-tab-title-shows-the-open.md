@@ -38,3 +38,5 @@ Sahand's request (top); already sent to front-lead.
 ## Retest
 
 (Who, when, result.)
+
+Screenshot: ![tab](../evidence/QA-360/1.png) (tab shows only 'Geomind'). Expected e.g. 'Geomind · sahand test 5'.
