@@ -63,3 +63,14 @@ copy of the case, or a plain "I can only give it by changing the case; shall I?"
    sensitivity study for "LCTS at 8 %" in 19 s, run e26ff474), not the project loop.
 4. A what-if on an economics value that no stored study covers: the economist re-costs the stored result on a
    modified copy of the case (no write), or the lead asks once "change the case?".
+
+## More evidence (2026-11-05 18:50 UTC, backend 1.1.117)
+
+It happens after an APPLIED, user-instructed change too. Project `QA-TEST QA-AI-analysis-I 9`, run
+ac818659-26af-400b-a6f6-9cd41513e38d, chat "Change two economics values to my own: discount rate 6 % and carbon price 80
+EUR/t ...". The case lead's `set_case` (discount 0.06, carbon 80) was approved and applied; its `finish` ("Set the two
+economics values ... and nothing else") was refused by the guard; it then sent `ask_economics` (request-107, 21 136
+chars) whose note says "Every other economics key keeps the value the case already holds" but whose values are the
+catalogue's recommended rows, not the case's: heat_cost_share 0.76 (case 0.8), gwp.CH4 27.9 (29.8),
+capex.absorption_chiller 0.233861 EUR/W (0.3), ... "approve all" would overwrite them. I answered with text "Keep
+every other value exactly as the case already has it." Question: `../evidence/QA-268/question-request-107-run-ac818659.json`.
