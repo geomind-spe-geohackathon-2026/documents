@@ -2505,7 +2505,7 @@ or let `size_plant` do it after each change.
 
 Heat of one doublet: P = ρ Q c_p ΔT (A.5). The ΔT the plant actually reaches is
 
-ΔT = min(cap, T_b − (T_r + a))  with an exchanger only;  up to the cap with a heat pump on the
+ΔT ≤ min(cap, T_b − (T_r + a))  with an exchanger only (equal when the brine is C_min, 14.10);  up to the cap with a heat pump on the
 brine after the exchanger.
 
 gemini's `size_plant` rates each doublet at the flow cap **and the cooling cap** [gemini:
@@ -2717,6 +2717,56 @@ the first law; formulas in Appendix A]:
 A result that fails a hand check by more than a few per cent has a modelling error (a wrong
 unit, a mixed-up basis, a service counted twice) until shown otherwise; say which check failed
 and where, and fix the input before the design.
+
+## 14.10 The heat pump share, worked through the balances
+
+14.1 gives the share of the peak the brine cannot reach; this section follows the heat through
+both streams, as `simulate` does, on 12.1 at the peak with two doublets (a = 5 K) [derived]:
+
+1. Capacity rates: brine C_b = 2 × 72.9 kg/s × 4.2 = 612.5 kW/K; network C_n = 24 MW / 55 K =
+   436.4 kW/K. The network is C_min: it, not the brine, limits the exchanger.
+2. Exchanger: network 55 → 94.6 °C (T_b − a): 17.3 MW. Brine leaves at 99.6 − 17.3 / 0.6125 =
+   71.4 °C, not at T_r + a: with C_n < C_b the brine is cooled by 28 K only.
+3. Heat pump boost 94.6 → 110 °C: 6.7 MW (28 % of the peak). Source and COP solved together
+   (the COP depends on the source outlet, A.9): source outlet 63.1 °C, COP 4.08, electricity
+   1.65 MW, heat from the brine 5.1 MW [derived].
+4. Brine cooling in total 99.6 − 63.1 = 36.5 K, inside a 45 K cap; the cap would allow the
+   evaporator down to 54.6 °C (`minimum_source_outlet_temperature`).
+
+What this teaches:
+
+- 14.2's ΔT = T_b − (T_r + a) is the most an exchanger can reach, when the brine is C_min. With
+  more brine than the network needs, the brine leaves warmer and its heat is partly wasted unless
+  a heat pump or a second user (absorption cooling, a low-temperature consumer, 6.2) takes it.
+- The heat pump's duty is set by the network gap, its source by the brine left after the
+  exchanger; check both: Q_source = Q_hp (1 − 1/COP) ≤ C_b (T_after exchanger − T_min).
+- Off-peak the network flow falls, C_n shrinks further, and the same doublets have more surplus:
+  the schedule then lowers their flow (down to the minimum, 14.3).
+- `size_plant` rates the heat pump at the ideal share (0.19 here); the real share with the
+  approach is larger (0.28): raise the capacity or let a boiler downstream take the difference
+  [gemini: `gemini/study/size.py`, docstring]. Search the capacity (10.2) rather than trusting
+  either number.
+
+## 14.11 Reservoir uncertainty and the doublet count
+
+The design flow and count rest on PI and T_res, both uncertain (3.7). PI scales with k h
+(13.5); a P90 permeability (the value exceeded with 90 % probability) can be a half or a third of
+the P50 in a sandstone reservoir [textbook: Stober and Bucher 2013; treat the ratio as case
+data].
+
+Worked on 13.5's well (PI 12.3 m3/h/bar at P50) at 250 m3/h [derived]:
+
+| Case | PI, m3/h/bar | Drawdown, bar | Effect |
+|---|---|---|---|
+| P50 | 12.3 | 20 | as designed |
+| P90 = P50 / 2 | 6.2 | 41 | 21 bar less at the ESP intake: the pump must go about 200 m deeper (12.10), or the flow drop |
+| P90 = P50 / 3 | 4.1 | 61 | intake limit likely broken: fewer m3/h per doublet, so one more doublet for the same heat |
+
+Procedure: size at P50; then run the low case (sensitivity or uncertainty study, handbook-studies)
+and check intake pressure, gas fraction, pump power and delivered heat. If the low case breaks a
+hard limit, the design needs margin: a deeper pump setting, a lower design flow with one more
+doublet, or a backup policy that covers a weak doublet (14.4). State which case the design was
+sized for.
 
 ---
 
