@@ -2632,6 +2632,87 @@ needs the drive heat on every cooling step: when a doublet is off on those days,
 drives the chiller (QA-228). Compare both as families (14.8); a mix (free cooling first, then a
 chiller) is often the cheapest.
 
+## 14.7 The pressure budget around the brine loop
+
+**Decision**: pump depth, wellhead pressure and injection pump head, as one budget.
+
+Walk the loop once at the design flow; every term is in an earlier section:
+
+| Step | Term | Section |
+|---|---|---|
+| Reservoir | p_res = ρ g z (hydrostatic) unless the case gives it | 3.2, A.2 |
+| Into the producer | − Q / PI | 13.5 |
+| Up to the pump | − ρ g (z − z_pump) − friction below the pump | 4.3, 12.10 |
+| ESP | + Δp_pump, so that the intake stays above its minimum and gas below its limit | 4.4, 13.1 |
+| Up to the wellhead | − ρ g z_pump − friction above the pump | 4.2 |
+| Wellhead | p_wh: enough for the surface loop and gas (13.4) | 13.4 |
+| Surface loop | − filters, desander, degasser, exchangers, pipes | 13.6 |
+| Injection pump | + its head, so that p_wh,inj is reached | 13.3 |
+| Into the injector | p_wh,inj = p_res + Q / II + friction − ρ_inj g z | 13.3 |
+
+Worked on 12.1 (2,800 m, ρ 1,050 kg/m3, PI = II = 12.3 m3/h/bar, 250 m3/h, pump at 400 m,
+friction 2.5 bar below and 3 bar above the pump, wellhead 12 bar, surface loss 2.5 bar, cold
+brine 1,065 kg/m3, injector friction 3 bar) [derived]:
+
+- p_res = 288.4 bar; drawdown 20.3 bar; intake = 288.4 − 20.3 − 247.2 − 2.5 = 18.4 bar.
+- ESP Δp = 12 + 41.2 + 3 − 18.4 = 37.8 bar; power at η 0.6: 438 kW.
+- p_wh,inj = 288.4 + 20.3 + 3 − 292.5 = 19.2 bar; suction 12 − 2.5 = 9.5 bar; injection pump
+  9.7 bar, 112 kW.
+- Pumping is 550 kW against 12.1 MW of heat: 4.5 % [derived]. A pumping share above about 10 %
+  points to a low PI, too much flow per doublet, or too small wells.
+
+Lessons: the cold column helps injection by 4 bar here (ρ_inj − ρ), the injector's skin and
+the producer's PI dominate both pumps, and a deeper pump buys intake pressure at about 0.1 bar
+per metre (12.10). In gemini a designed `Doublet` sets the ESP depth and rating from
+`nominal_flow`, `pump_efficiency` and `nominal_wellhead_pressure`; `size_plant` rates the
+injection pump (13.3). Check the intake, gas fraction and both pump powers in the results.
+
+## 14.8 Families, sizing and optimising before a verdict
+
+A verdict on one unsized, unsearched design says nothing (QA-211, QA-251). Before saying
+"feasible", "best" or "infeasible":
+
+1. **Shortlist** two or three families from the decision tables of 14.1 and 14.6 and the
+   archetypes of 8.1 and 8.2; a family that cannot serve a demanded service is out (QA-239).
+2. **Build** each from its class (11.5: a class that runs a year), with the values of 0.7.
+3. **Size** each (`size_plant`): doublets, capacities, injection pump (8.3); set the exchanger
+   UA yourself (12.16).
+4. **Simulate** and read the worst step of every failing check (11.7); repair at most three
+   times per check (0.5, 0.1).
+5. **Search** the variables that matter (10.1, 10.2): doublet count, flow per doublet, depth,
+   capacities; ranges from the case or the user. Keep every hard limit on (4.4, 10.6).
+6. **Verify the optimum** (12.12): it moved from its start, neighbours are not better, note the
+   variables at a bound.
+7. **Compare** the families on the same objective and the same case, feasible results only
+   (10.7); give the margin between them and the top drivers of the difference.
+8. **Test robustness** of the winner: one doublet out (14.4), the low end of permeability
+   (handbook-studies), a price change if the margin is small.
+
+What the answer states: the families tried, each one's best feasible objective and why it lost,
+the winner's key sizes and checks with values and limits, and what was not tried.
+
+## 14.9 Energy-balance sanity checks
+
+Before trusting any result, check these by hand on the year and on the worst step [derived from
+the first law; formulas in Appendix A]:
+
+| Check | Holds when |
+|---|---|
+| Heat delivered vs demand | within the case's unmet tolerance; above it only by losses |
+| Geothermal heat | ≤ Σ ρ Q c_p ΔT of the doublets over their running steps |
+| Brine cooling | each doublet's ΔT ≤ its cap on every running step |
+| Heat pump | Q_sink = Q_source + W; COP within the ranges of 6.4 for its lift |
+| Chiller | heat rejected = cold + electricity (or + drive heat) (12.9) |
+| Boiler | fuel = heat / η (LHV, 13.8); full-load hours ≤ hours in the period |
+| Pumps | power ≈ Q Δp / η (14.7); pumping a few per cent of the heat |
+| Gas and CO2 | CO2 ≈ 2.75 × CH4 burned + CO2 carried + slip × GWP (14.5) |
+| Electricity | sum of heat pump, chillers, pumps, fans; heat pump electricity counted as electricity (12.8) |
+| Capacities | no unit above its rating on any step; full-load hours plausible (a base unit thousands of hours, a peak unit hundreds) |
+
+A result that fails a hand check by more than a few per cent has a modelling error (a wrong
+unit, a mixed-up basis, a service counted twice) until shown otherwise; say which check failed
+and where, and fix the input before the design.
+
 ---
 
 # Appendix A: Formulas
