@@ -39,7 +39,7 @@ QA structures view), while the study list and the Results tab read only page stu
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 09:09 UTC: hotfix-back, backend 1.1.80 (f0c0562) pushed, not deployed (deploy hold): filters_sized is a size_plant record ({sizing}, no simulation), so it has no results. Results lists only page-study result rows; new GET /design/study/{id}/agent-record serves the agent's stored record (tool, method, designs, result); done agent studies show progress whole. Frontend: show agent-record on agent study rows (hotfix-front). Full Results rows for agent runs need geomind to store the full report and series (hotfix-python-II, if wanted).
 ## Retest
 
 (Who, when, result.)
