@@ -85,3 +85,31 @@ study on it. `list_studies` lists the project's own studies (`project_study` wit
    (`plant_version=` or the adopt tool), so the agent does not guess 10 names.
 4. Analysis lead prompt: when the economist answers "no design reference", do not re-delegate the
    same task (the second economist session repeated all refused calls).
+
+## Second report (QA-E2E-study-I, chat in the browser, 2026-11-05 16:52-16:59 UTC)
+
+Same bug, reached from the web chat. Backend 1.1.102 -> 1.1.104 (a deploy happened during the run;
+the run survived). Project `QA-TEST QA-E2E-study-I 1` (8fcbf709-537a-40d9-ac1f-abadd1061775), chat
+c0cae905-a2a8-44cf-8bec-f4899f313e8b, run d6f8e79a-0056-4099-9398-81104925a418. Seeded by API with
+the reference case and the plants HackathonPlant (v1) and HeatingAbsorptionCoolingPlant (v2).
+
+- Message 1 "simulate the current plant for 2027" worked (run 61721f4c, 40 s, 15 steps).
+- Message 2: "How sensitive is the cost of thermal supply of this plant to the gas price, the
+  electricity price and the carbon price? Use the uncertainty ranges in the economics file and show
+  me which one matters most."
+- Result: no number, 7 min 29 s, 50 steps, 83 tool calls, 978 k input tokens, 0.024 USD.
+  `sensitivity` refused 6 times with `unknown_name` for design/HeatingAbsorptionCoolingPlant (3x),
+  design/11c2e401cd91606b (the simulate result hash), design/current, design/project_plant.
+  `read_stored` 23 calls, `read_skill` 11 calls (the `economics` skill re-read 6 times by the
+  economist), `read_case` 10 calls. `support_lead` again "cannot route".
+- The final answer correctly refuses to rank, and tells the user the design lead must `build_plant`
+  the same plant first: the user cannot act on that from the chat.
+- Also seen in the same answer: the energy basis is heat 111744.16 MWh/yr, cold 23758.79 MWh/yr
+  (a 365.25-day year) while the simulation delivered 111667.68 / 23742.53 MWh (QA-099 still shows).
+
+Evidence: `../evidence/QA-152/run-d6f8e79a-log-e2e.json`.
+
+Extra proposed fix from the E2E side: the `economics` skill (geomind/agents/analysis/... skills)
+tells the economist to call `sensitivity(design, ...)` "on the verified design"; until the tools
+take the project plant (no design = the project plant, as `simulate` does), the skill should say
+so, and the lead should not re-delegate the same refused call.
