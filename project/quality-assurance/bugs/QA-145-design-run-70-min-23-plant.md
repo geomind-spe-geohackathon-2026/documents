@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | Fatemeh (screenshot), Claude (run log and write-up) |
 | Found | 2026-11-05 15:14 UTC |
 | Versions | frontend 1.1.111, backend 1.1.95/1.1.96 (geomind 0.4.91) |
 | Where | https://geomind.team/projects/5b409bd3-8e69-400b-b0ad-2ee513f48564/design/plant?chat=635675fb-7b29-43cc-8bf7-1382a9374b89; project "sahand test 2"; run ed03d7ea-b97e-4f4e-9b47-5fba9ac51a70 (running since 14:40:41 UTC) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
