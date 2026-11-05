@@ -132,7 +132,7 @@ The conversions are exact products; 16 digits claim a precision no source has. S
 | `ice-storage-om-spice-2024-mid-size-10000kwh` | 0.7427277453722017 | 0.742728 |
 | `ice-storage-om-spice-2024-district-cooling-50000kwh` | 0.5129999897400002 | 0.513 |
 
-`in_case` values with 17 digits (1239.1304347826087) belong to QA-205 (the `in_case` column).
+`in_case` values with 17 digits (1239.1304347826087) belong to QA-208 (the `in_case` column).
 
 ## Fix
 
