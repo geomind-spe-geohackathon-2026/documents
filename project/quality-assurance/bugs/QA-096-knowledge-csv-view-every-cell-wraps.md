@@ -63,7 +63,7 @@ Step 1: frontend 1.1.82, commit c88543d (hotfix-front-II): shared DataTable; the
 Step 2: frontend 1.1.83, commit cd5be85: Markdown tables, agent study record, chat Alternatives on DataTable; a cell opens only when cut (checked locally: a short cell opens nothing, a cut one shows its full text).
 
 Step 3: frontend 1.1.84, commit fbd04aa: Results compare, constraints (module in its own column), sensitivity, spread, evolve structures. Checked locally on project SPE GeoHackathon 2026, result 16547b99: compact constraint rows, scrolls sideways in the narrow design panel.
-
+- 2026-11-05 10:02 UTC: steps 1-3 deployed 10:01 UTC (1.1.82 c88543d, 1.1.83 cd5be85, 1.1.84 fbd04aa); step 4 (lists with actions) next
 ## Retest
 
 (Who, when, result.)
