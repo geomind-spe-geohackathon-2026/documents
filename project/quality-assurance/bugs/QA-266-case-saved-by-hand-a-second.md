@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -50,3 +50,4 @@ geomind:
 - 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 - 2026-11-05 18:58 UTC (19:58 CET), QA-AI-case-I, project QA-TEST QA-AI-case-I 8 (8b943903-52a4-4f0d-836f-e4150a8320ff), chat 485a131e-a87d-4339-bc82-cd120c8e5005: after the 150 mD flow (QA-227 retest, run 8b7f20e7) the case was saved by hand a second time, 150 -> 175 mD (case version 5), and the same message sent; run 64913dcb-62c3-4fb6-a244-57ca88654ab2 (geomind 0.4.114, 18:47:47-18:53:38 UTC). The coordinator routed it with "The project's saved case differs from the chat's case ...: 150 mD -> 175 mD. Load it ... earlier results are of the old case"; the project lead loaded it (card "Load the project's saved case, version 5: 150 mD -> 175 mD"), the design lead re-simulated design/HackathonPlant (result/06d7a6ba5b4bdd0a), the reviewer checked it, the economist compared 175 vs 150 mD, and the answer says "LCOH ... from 44.6406444200559 to 44.13359336933912 EUR/MWh", feasible. Not reproduced: the answer is on the 175 mD case. 5 min 51 s, 0.030 USD. Evidence: `../evidence/QA-266/run-64913dcb.json`. (Deployed now: Version: 0.4.130.)
+- 2026-11-05 18:56 UTC: QA-AI-case-I run 64913dcb, geomind 0.4.114: not reproduced, answer on the 175 mD case
