@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 19:41 UTC |
 | Versions | backend 1.1.120, geomind 0.4.131 (includes a61840a "QA-269: a tool over its retry limit is refused for the rest of the run, not the run's end") |
 | Where | api.geomind.team; project QA-TEST QA-AI-case-I 13 (); chat 1b5f7994-12e5-4fd9-8847-53f0de496698; run e4e3e1f7-e5ef-4a0c-8df8-da7d3b8c4419 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -60,7 +60,7 @@ The run's work (case + economics) is stored but the run is reported failed with 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 19:44 UTC: geomind main after 137797b (0.4.132); pending deploy
 ## Retest
 
 (Who, when, result.)
