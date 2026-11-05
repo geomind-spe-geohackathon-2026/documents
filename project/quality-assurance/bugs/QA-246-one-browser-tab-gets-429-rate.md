@@ -6,33 +6,39 @@
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-design-I |
-| Found | 2026-11-05 17:45 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 17:50 UTC |
+| Versions | frontend 1.1.113 (index-TsXgd_n9.js), backend 1.1.107-1.1.108 |
+| Where | https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7/design/plant (chat pane open beside it); one agent-browser tab, one sign-in |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Sign in once; open a project chat with a run (run 76d19df6) and the Design pane (Plant, Results).
+2. Move between the Plant and Results tabs after the run, with the chat open.
 
 ## Expected
 
+A single tab stays far below the per-token limit (100 requests / 60 s, `backend/src/core/ratelimit/middleware.py`, one bucket per access token since QA-024) and every page loads.
+
 ## Actual
+
+- The Plant pane showed "The plant could not be loaded. rate_limited: Rate limit exceeded" with "Try again" (screenshot). The tab's network log had **56 responses 429** in a few minutes: design/results, chat messages, chat list, runs/{id}/agents, runs/{id}.
+- At 16:53 the chat tab's log already had **20 identical GET /assistant/runs?project=...&status=active** with the same timestamp tick (27651.338-27651.347), i.e. one burst of the same query (evidence file).
+- Only this tab used this token (my API scripts sign in separately and poll every 10-20 s with their own token).
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-246/1.png)
-- Run JSON: `../evidence/QA-246/run-<id>.json`
+- ![plant page](../evidence/QA-246/1.png)
+- `../evidence/QA-246/network-chat-tab-1653.txt`: the chat tab's request log (20 identical status=active calls in one tick).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: several components each run their own query for active runs / run state (and refetch on focus or on every stream event) without a shared query key or a minimum stale time; the burst plus the Design pane's own reads go past 100 per minute.
+
+## Proposed fix
+
+Frontend: one shared TanStack query per resource (`runs?status=active`, run state, agents) with `staleTime` of a few seconds; refetch from the SSE stream at most once per event batch; back off on 429 using `Retry-After` instead of showing an error. Backend (optional): 429 only after a higher burst for GETs of the same user.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)

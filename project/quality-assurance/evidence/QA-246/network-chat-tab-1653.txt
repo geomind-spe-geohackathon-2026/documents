@@ -1,0 +1,241 @@
+[4B41B96B0124DDA15B8787EA6E87B8F2] GET https://geomind.team/ (Document) 200
+[27651.2] GET https://geomind.team/assets/index-TsXgd_n9.js (Script) 200
+[27651.3] GET https://geomind.team/assets/rolldown-runtime-BCiCTKAo.js (Script) 200
+[27651.4] GET https://geomind.team/assets/jsx-runtime-BjLx7v8f.js (Script) 200
+[27651.5] GET https://geomind.team/assets/dist-De2NdgvL.js (Script) 200
+[27651.6] GET https://geomind.team/assets/dist-Cm5g-o0w.js (Script) 200
+[27651.7] GET https://geomind.team/assets/chunk-6KYCQHYJ-GAFbWFvV.js (Script) 200
+[27651.8] GET https://geomind.team/assets/dist-CfjVeh8b.js (Script) 200
+[27651.9] GET https://geomind.team/assets/useMutation-CUk3vcKS.js (Script) 200
+[27651.10] GET https://geomind.team/assets/useBaseQuery-DSlnB-41.js (Script) 200
+[27651.11] GET https://geomind.team/assets/createLucideIcon-D2DvvoJo.js (Script) 200
+[27651.12] GET https://geomind.team/assets/notice-DD77JqVV.js (Script) 200
+[27651.13] GET https://geomind.team/assets/dist-guDvk6F0.js (Script) 200
+[27651.14] GET https://geomind.team/assets/es2015-CCwHjCki.js (Script) 200
+[27651.15] GET https://geomind.team/assets/dist-dzAQK1rQ.js (Script) 200
+[27651.16] GET https://geomind.team/assets/dist-l2xg_dzY.js (Script) 200
+[27651.17] GET https://geomind.team/assets/useQuery-DX4qEFVn.js (Script) 200
+[27651.18] GET https://geomind.team/assets/queryOptions-Dfvzj6n2.js (Script) 200
+[27651.19] GET https://geomind.team/assets/button-3UuOpjCw.js (Script) 200
+[27651.20] GET https://geomind.team/assets/input-D6AGtvwB.js (Script) 200
+[27651.21] GET https://geomind.team/assets/field-DGVf2ELT.js (Script) 200
+[27651.22] GET https://geomind.team/assets/dialog-BJc8-Qyd.js (Script) 200
+[27651.23] GET https://geomind.team/assets/pagination-DLbUwxnr.js (Script) 200
+[27651.24] GET https://geomind.team/assets/chevron-right-KzdZ6pGc.js (Script) 200
+[27651.25] GET https://geomind.team/assets/circle-KE16M8L3.js (Script) 200
+[27651.26] GET https://geomind.team/assets/dist-Cm_J0iIO.js (Script) 200
+[27651.27] GET https://geomind.team/assets/dist-BibZhZY-.js (Script) 200
+[27651.28] GET https://geomind.team/assets/projects-BoAgZOuq.js (Script) 200
+[27651.29] GET https://geomind.team/assets/check-fFQZyyyl.js (Script) 200
+[27651.30] GET https://geomind.team/assets/checkbox-Dgyt2jSl.js (Script) 200
+[27651.31] GET https://geomind.team/assets/native-select-QMYtD4ZS.js (Script) 200
+[27651.32] GET https://geomind.team/assets/results-PJXThfww.js (Script) 200
+[27651.33] GET https://geomind.team/assets/index-CpqTXvNK.css (Stylesheet) 200
+[27651.77] GET https://geomind.team/assets/page-BPhcITCh.js (Script) 200
+[27651.78] GET https://geomind.team/favicon.svg (Other) 200
+[27651.79] GET https://geomind.team/favicon.svg (Other) 200
+[27651.80] GET https://geomind.team/favicon.ico (Other) 200
+[27651.72] GET https://geomind.team/assets/inter-latin-wght-normal-Dx4kXJAl.woff2 (Font) 200
+[35203FD70CCCCB5E78B4A70A1D1D5DF1] OPTIONS https://api.geomind.team/api/v1/identity/authn/login (Other) 200
+[27651.81] POST https://api.geomind.team/api/v1/identity/authn/login (Fetch) 200
+[27651.82] GET https://geomind.team/assets/page-BJ2i4Zek.js (Script) 200
+[27651.83] GET https://geomind.team/assets/useInfiniteQuery-B5laCEqn.js (Script) 200
+[27651.84] GET https://geomind.team/assets/api-CXXrOI3-.js (Script) 200
+[27651.85] GET https://geomind.team/favicon.svg (Other) 200
+[5516CD65D6031F41E93834DD10219F04] OPTIONS https://api.geomind.team/api/v1/workspace/projects (Other) 200
+[27651.86] GET https://api.geomind.team/api/v1/workspace/projects (Fetch) 200
+[27651.87] GET https://geomind.team/favicon.svg (Other) 200
+[91A7A36F9F914AC133ACB96E5298E4F7] GET https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Document) 200
+[27651.89] GET https://geomind.team/assets/index-TsXgd_n9.js (Script) 200
+[27651.90] GET https://geomind.team/assets/rolldown-runtime-BCiCTKAo.js (Script) 200
+[27651.91] GET https://geomind.team/assets/jsx-runtime-BjLx7v8f.js (Script) 200
+[27651.92] GET https://geomind.team/assets/dist-De2NdgvL.js (Script) 200
+[27651.93] GET https://geomind.team/assets/dist-Cm5g-o0w.js (Script) 200
+[27651.94] GET https://geomind.team/assets/chunk-6KYCQHYJ-GAFbWFvV.js (Script) 200
+[27651.95] GET https://geomind.team/assets/dist-CfjVeh8b.js (Script) 200
+[27651.96] GET https://geomind.team/assets/useMutation-CUk3vcKS.js (Script) 200
+[27651.97] GET https://geomind.team/assets/useBaseQuery-DSlnB-41.js (Script) 200
+[27651.98] GET https://geomind.team/assets/createLucideIcon-D2DvvoJo.js (Script) 200
+[27651.99] GET https://geomind.team/assets/notice-DD77JqVV.js (Script) 200
+[27651.100] GET https://geomind.team/assets/dist-guDvk6F0.js (Script) 200
+[27651.101] GET https://geomind.team/assets/es2015-CCwHjCki.js (Script) 200
+[27651.102] GET https://geomind.team/assets/dist-dzAQK1rQ.js (Script) 200
+[27651.103] GET https://geomind.team/assets/dist-l2xg_dzY.js (Script) 200
+[27651.104] GET https://geomind.team/assets/useQuery-DX4qEFVn.js (Script) 200
+[27651.105] GET https://geomind.team/assets/queryOptions-Dfvzj6n2.js (Script) 200
+[27651.106] GET https://geomind.team/assets/button-3UuOpjCw.js (Script) 200
+[27651.107] GET https://geomind.team/assets/input-D6AGtvwB.js (Script) 200
+[27651.108] GET https://geomind.team/assets/field-DGVf2ELT.js (Script) 200
+[27651.109] GET https://geomind.team/assets/dialog-BJc8-Qyd.js (Script) 200
+[27651.110] GET https://geomind.team/assets/pagination-DLbUwxnr.js (Script) 200
+[27651.111] GET https://geomind.team/assets/chevron-right-KzdZ6pGc.js (Script) 200
+[27651.112] GET https://geomind.team/assets/circle-KE16M8L3.js (Script) 200
+[27651.113] GET https://geomind.team/assets/dist-Cm_J0iIO.js (Script) 200
+[27651.114] GET https://geomind.team/assets/dist-BibZhZY-.js (Script) 200
+[27651.115] GET https://geomind.team/assets/projects-BoAgZOuq.js (Script) 200
+[27651.116] GET https://geomind.team/assets/check-fFQZyyyl.js (Script) 200
+[27651.117] GET https://geomind.team/assets/checkbox-Dgyt2jSl.js (Script) 200
+[27651.118] GET https://geomind.team/assets/native-select-QMYtD4ZS.js (Script) 200
+[27651.119] GET https://geomind.team/assets/results-PJXThfww.js (Script) 200
+[27651.120] GET https://geomind.team/assets/index-CpqTXvNK.css (Stylesheet) 200
+[27651.159] GET https://geomind.team/assets/inter-latin-wght-normal-Dx4kXJAl.woff2 (Font) 200
+[99470106066C06FC87D7B840519A2F94] OPTIONS https://api.geomind.team/api/v1/identity/me (Other) 200
+[DBAB56A97486774AD9793615101F8DB6] OPTIONS https://api.geomind.team/api/v1/workspace/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Other) 200
+[27651.164] GET https://api.geomind.team/api/v1/identity/me (Fetch) 200
+[27651.165] GET https://api.geomind.team/api/v1/workspace/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.166] GET https://geomind.team/favicon.svg (Other) 200
+[E5501E7072E9FF9130B71EE18CBCDE0E] OPTIONS https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Other) 200
+[1CFD41E37DEC9081AD4BA80B12302819] OPTIONS https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Other) 200
+[27651.167] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.168] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.169] GET https://geomind.team/assets/page-B_Lh7QxR.js (Script) 200
+[27651.170] GET https://geomind.team/assets/api-CcmyWhgw.js (Script) 200
+[27651.171] GET https://geomind.team/assets/next-steps-CCeWp2o1.js (Script) 200
+[27651.172] GET https://geomind.team/assets/textarea-CIznQ43H.js (Script) 200
+[27651.173] GET https://geomind.team/assets/status-chip-XLaXxcAB.js (Script) 200
+[27651.174] GET https://geomind.team/assets/markdown-text-DtUC2Qrn.js (Script) 200
+[27651.175] GET https://geomind.team/assets/usage-line-DtOjLrBR.js (Script) 200
+[27651.176] GET https://geomind.team/assets/quantity-B1PRbvoe.js (Script) 200
+[27651.177] GET https://geomind.team/assets/data-table-pMrh-mJ6.js (Script) 200
+[27651.178] GET https://geomind.team/assets/popover-8UBzlCF_.js (Script) 200
+[27651.179] GET https://geomind.team/favicon.svg (Other) 200
+[0A63645F520D7689F8EED24D16640144] OPTIONS https://api.geomind.team/api/v1/system/health (Other) 200
+[A40C1786786D7BC996CCB7E10143FD42] OPTIONS https://api.geomind.team/api/v1/assistant/suggestions?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Other) 200
+[27651.180] GET https://api.geomind.team/api/v1/system/health (Fetch) 200
+[27651.181] GET https://api.geomind.team/api/v1/assistant/suggestions?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.182] GET https://geomind.team/assets/page-CCU9lqJw.js (Script) 200
+[27651.183] GET https://api.geomind.team/api/v1/workspace/overview?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.184] GET https://api.geomind.team/api/v1/design/results?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.185] GET https://geomind.team/favicon.svg (Other) 200
+[481EF0A5CA36250F41BE22D7114B4249] OPTIONS https://api.geomind.team/api/v1/workspace/overview?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Other) 200
+[C418C692BBE7CD8FFDC2BDEA3BE72D7C] OPTIONS https://api.geomind.team/api/v1/design/results?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Other) 200
+[27651.186] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[83B4022EA1A1D3F6F19F766EC393EEB2] GET https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7/assistant/chat (Document) 200
+[27651.188] GET https://geomind.team/assets/index-TsXgd_n9.js (Script) 200
+[27651.189] GET https://geomind.team/assets/rolldown-runtime-BCiCTKAo.js (Script) 200
+[27651.190] GET https://geomind.team/assets/jsx-runtime-BjLx7v8f.js (Script) 200
+[27651.191] GET https://geomind.team/assets/dist-De2NdgvL.js (Script) 200
+[27651.192] GET https://geomind.team/assets/dist-Cm5g-o0w.js (Script) 200
+[27651.193] GET https://geomind.team/assets/chunk-6KYCQHYJ-GAFbWFvV.js (Script) 200
+[27651.194] GET https://geomind.team/assets/dist-CfjVeh8b.js (Script) 200
+[27651.195] GET https://geomind.team/assets/useMutation-CUk3vcKS.js (Script) 200
+[27651.196] GET https://geomind.team/assets/useBaseQuery-DSlnB-41.js (Script) 200
+[27651.197] GET https://geomind.team/assets/createLucideIcon-D2DvvoJo.js (Script) 200
+[27651.198] GET https://geomind.team/assets/notice-DD77JqVV.js (Script) 200
+[27651.199] GET https://geomind.team/assets/dist-guDvk6F0.js (Script) 200
+[27651.200] GET https://geomind.team/assets/es2015-CCwHjCki.js (Script) 200
+[27651.201] GET https://geomind.team/assets/dist-dzAQK1rQ.js (Script) 200
+[27651.202] GET https://geomind.team/assets/dist-l2xg_dzY.js (Script) 200
+[27651.203] GET https://geomind.team/assets/useQuery-DX4qEFVn.js (Script) 200
+[27651.204] GET https://geomind.team/assets/queryOptions-Dfvzj6n2.js (Script) 200
+[27651.205] GET https://geomind.team/assets/button-3UuOpjCw.js (Script) 200
+[27651.206] GET https://geomind.team/assets/input-D6AGtvwB.js (Script) 200
+[27651.207] GET https://geomind.team/assets/field-DGVf2ELT.js (Script) 200
+[27651.208] GET https://geomind.team/assets/dialog-BJc8-Qyd.js (Script) 200
+[27651.209] GET https://geomind.team/assets/pagination-DLbUwxnr.js (Script) 200
+[27651.210] GET https://geomind.team/assets/chevron-right-KzdZ6pGc.js (Script) 200
+[27651.211] GET https://geomind.team/assets/circle-KE16M8L3.js (Script) 200
+[27651.212] GET https://geomind.team/assets/dist-Cm_J0iIO.js (Script) 200
+[27651.213] GET https://geomind.team/assets/dist-BibZhZY-.js (Script) 200
+[27651.214] GET https://geomind.team/assets/projects-BoAgZOuq.js (Script) 200
+[27651.215] GET https://geomind.team/assets/check-fFQZyyyl.js (Script) 200
+[27651.216] GET https://geomind.team/assets/checkbox-Dgyt2jSl.js (Script) 200
+[27651.217] GET https://geomind.team/assets/native-select-QMYtD4ZS.js (Script) 200
+[27651.218] GET https://geomind.team/assets/results-PJXThfww.js (Script) 200
+[27651.219] GET https://geomind.team/assets/index-CpqTXvNK.css (Stylesheet) 200
+[27651.252] GET https://geomind.team/assets/page-B_Lh7QxR.js (Script) 200
+[27651.253] GET https://geomind.team/assets/api-CcmyWhgw.js (Script) 200
+[27651.254] GET https://geomind.team/assets/next-steps-CCeWp2o1.js (Script) 200
+[27651.255] GET https://geomind.team/assets/textarea-CIznQ43H.js (Script) 200
+[27651.256] GET https://geomind.team/assets/status-chip-XLaXxcAB.js (Script) 200
+[27651.257] GET https://geomind.team/assets/markdown-text-DtUC2Qrn.js (Script) 200
+[27651.258] GET https://geomind.team/assets/usage-line-DtOjLrBR.js (Script) 200
+[27651.259] GET https://geomind.team/assets/quantity-B1PRbvoe.js (Script) 200
+[27651.260] GET https://geomind.team/assets/data-table-pMrh-mJ6.js (Script) 200
+[27651.261] GET https://geomind.team/assets/popover-8UBzlCF_.js (Script) 200
+[27651.268] GET https://geomind.team/assets/inter-latin-wght-normal-Dx4kXJAl.woff2 (Font) 200
+[27651.273] GET https://api.geomind.team/api/v1/identity/me (Fetch) 200
+[27651.274] GET https://api.geomind.team/api/v1/workspace/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.275] GET https://geomind.team/favicon.svg (Other) 200
+[27651.276] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.277] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.278] GET https://api.geomind.team/api/v1/system/health (Fetch) 200
+[27651.279] GET https://api.geomind.team/api/v1/assistant/suggestions?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[7A30A9FF429E39AD4C1E5CC232C33066] OPTIONS https://api.geomind.team/api/v1/assistant/chat (Other) 200
+[27651.280] POST https://api.geomind.team/api/v1/assistant/chat (Fetch) 201
+[27651.281] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.282] GET https://api.geomind.team/api/v1/assistant/suggestions?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch)
+[27651.283] POST https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/messages (Fetch) 201
+[8F29A5C59AFF4DF95C99F7990C7868C7] OPTIONS https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/messages (Other) 200
+[27651.284] GET https://geomind.team/favicon.svg (Other) 200
+[A3986BC479639B447E71AF0FB1529D81] OPTIONS https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/messages (Other) 200
+[27651.285] GET https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/messages (Fetch) 200
+[7C77D44DE7A4BAA74ABB1151C3592BE8] OPTIONS https://api.geomind.team/api/v1/assistant/suggestions?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&chat=cd332dde-7afa-4865-8a75-d8f6d4be6354 (Other) 200
+[56C1D776342C14353816F325C2366980] OPTIONS https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&limit=100 (Other) 200
+[C4B292AD621519C4F080C2760FF41EAC] OPTIONS https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/state (Other) 200
+[522057770ED7F171A3C48F7AE4ADF4ED] OPTIONS https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/auto-approve (Other) 200
+[27651.286] GET https://api.geomind.team/api/v1/assistant/suggestions?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&chat=cd332dde-7afa-4865-8a75-d8f6d4be6354 (Fetch)
+[27651.287] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&limit=100 (Fetch)
+[27651.288] GET https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/state (Fetch)
+[27651.289] GET https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/auto-approve (Fetch)
+[27651.290] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.291] GET https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/messages (Fetch) 200
+[31A9D32A4B33DEBB1CE0748DB3D05ECF] OPTIONS https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Other) 200
+[92C9733152E878616D15686E51FCB9D1] OPTIONS https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33 (Other) 200
+[27651.292] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&limit=100 (Fetch) 200
+[27651.293] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.294] GET https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/state (Fetch) 200
+[27651.296] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33 (Fetch) 200
+[27651.297] GET https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/auto-approve (Fetch) 200
+[27651.298] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.299] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.300] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.301] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.302] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.303] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.304] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.305] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.306] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.307] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.308] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.309] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.310] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.311] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.312] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.313] GET https://geomind.team/assets/markdown-ChKpdpaD.js (Script) 200
+[27651.314] GET https://geomind.team/assets/themed-image-6j43CvaS.js (Script) 200
+[27651.315] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.316] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.317] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.318] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.319] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.320] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.321] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.322] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.323] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.324] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.325] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.326] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.327] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.328] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.329] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.330] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.331] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch)
+[27651.332] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.333] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.334] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.335] GET https://api.geomind.team/api/v1/assistant/runs/76d19df6-485f-46ee-a182-6b03ed70ab33/agents (Fetch) 200
+[27651.336] GET https://api.geomind.team/api/v1/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354/state (Fetch) 200
+[27651.337] GET https://api.geomind.team/api/v1/assistant/chat?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7 (Fetch) 200
+[27651.269] GET https://geomind.team/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2 (Font) 200
+[27651.338] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.339] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.340] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.341] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.342] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.343] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.344] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.345] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.346] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.347] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
+[27651.348] GET https://api.geomind.team/api/v1/assistant/runs?project=f1704a61-f1b8-4b63-84d3-20bd30beaed7&status=active (Fetch) 200
