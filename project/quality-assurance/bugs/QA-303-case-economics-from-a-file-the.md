@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | hotfix-front-lead (QA-185 follow-up) |
 | Found | 2026-11-05 18:55 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
 | Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
