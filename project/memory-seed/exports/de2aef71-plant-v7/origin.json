@@ -1,0 +1,7 @@
+{
+ "run": null,
+ "project_id": "de2aef71-7837-4988-ad38-250e78fbb213",
+ "result": "result/31bbd4b1-a708-4728-a272-5f7e25fb3aa9",
+ "source": "distilled from result 31bbd4b1-a708-4728-a272-5f7e25fb3aa9 ('Chosen design re-evaluated on gemini 0.6.35', study a13ca551-fd2b-4efb-a24b-c573f4791738) of project de2aef71, plant version 7, case version 2, by the team",
+ "design": "project de2aef71 plant version 7 (HackathonSuperstructure): 2 doublets at 3282 m"
+}
