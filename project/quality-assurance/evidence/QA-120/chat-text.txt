@@ -1,0 +1,418 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA3 case
+Overview
+Library
+Runs and logs
+Chats
+Please set up the case from the three files in this…
+waits for your approval · 11:31
+AD
+Administrator
+admin
+Projects
+QA3 case
+Chat
+1 run active
+Design
+Chat
+Please set up the case from the three files in this project: the hackathon requirements PDF and the heating and cooling demand CSVs. Tell me what you take from each file and what you still need from me.
+11:31
+Copy
+The case is set from your three files
+
+gemini accepts it, and the values you approved through the case lead are now the case itself. Here is what came from where.
+
+GEMINI_Hackathon_Challenge_Requirements.pdf (2 pages, 28 Oct 2026)
+Case path
+	
+Value
+	
+Where in the PDF
+
+
+time.start / time.end / time.step
+	
+2027-01-01 / 2028-01-01 / 1 d
+	
+p. 1 (365 daily values, 1 Jan–31 Dec 2027)
+
+
+demand.heating.supply_temperature
+	
+100 °C
+	
+p. 2
+
+
+demand.cooling.supply_temperature
+	
+20 °C
+	
+p. 2
+
+
+site.ground.surface_temperature
+	
+12 °C
+	
+p. 2, table 3.1
+
+
+site.ground.gradient
+	
+30 °C/km
+	
+p. 2, table 3.1
+
+
+site.reservoir.reference_depth
+	
+2500 m TVD
+	
+p. 2, table 3.1
+
+
+site.reservoir.thickness
+	
+100 m
+	
+p. 2, table 3.1
+
+
+site.reservoir.pressure
+	
+250 bar(g)
+	
+p. 2, table 3.1
+
+
+site.reservoir.permeability
+	
+200 mD
+	
+p. 2, table 3.1
+
+
+site.fluid.density
+	
+1030 kg/m³
+	
+p. 2, table 3.2
+
+
+site.fluid.viscosity
+	
+0.40 mPa·s
+	
+p. 2, table 3.2
+
+
+site.fluid.gas_liquid_ratio
+	
+0.8 Nm³/m³
+	
+p. 2, table 3.2
+
+
+site.fluid.dissolved_gas.CH4 / .CO2
+	
+80 mol% / 20 mol%
+	
+p. 2, table 3.2
+
+
+the 8 requirements
+	
+production_flow_range 50–300 m³/h each running; brine_cooling_limit max 40 K each running; running_time_limit max 330 d; pump_efficiency 0.7; full_reinjection ratio 1 each running; doublet_count 1–3; heat_delivered unmet share ≤ 0.01; cold_delivered unmet share ≤ 0.01
+	
+p. 2, constraints table
+GEMINI_Heating_Demand_Daily_2027.csv
+
+demand.heating.power — the file itself, column heating_demand_MWth, MW, 365 rows, 2027-01-01 to 2027-12-31. Its date column was renamed to time; the series is the file, never retyped.
+
+GEMINI_Cooling_Demand_Daily_2027.csv
+
+demand.cooling.power — the file itself, column cooling_demand_MWcool, MW, 365 rows, same span, same date → time rename.
+
+The two CSVs together also fix the case's time span: 2027-01-01 → 2028-01-01 (excluded), step 1 d.
+
+Not in any of the three files — from the knowledge base's assumptions document, as you approved
+
+Return temperatures and pressures (heating 60 °C / 6 bar, cooling 25 °C / 4 bar), cooling dew point margin 1 K, indoor 26 °C, outside air 10 °C, sand 20 mg/l, grid CO₂ intensity 300 g/kWh, the 1 % unmet-share tolerances and the reinjection band, plus the whole economics file (EUR, 2015 prices, 5 % discount, 25 yr, electricity 105.75 EUR/MWh, gas 39.92 EUR/MWh, CO₂ 57.03 EUR/t, heat and cold revenue 60 EUR/MWh each, and the capex/opex set).
+
+Kept flagged for your later review, as you asked: demand.cooling.indoor_relative_humidity = 0.5 and site.air.pressure = 101325 Pa. Both are recorded as confirmed assumptions carrying that note.
+
+What the case page shows as open
+utilities.gas.composition (CH4, C2H6, C3H8, CO2, N2, mole fractions) — open, as you instructed. The assumptions document's fractions sum to 1.001 and gemini requires exactly 1.0, so it cannot be set as written. You said you would ask the team for the right split.
+opex.per_energy.* (boiler, electric_boiler, chp, heat_pump, compression/absorption/adsorption chiller, EUR/MWh) — the assumptions document gives no per-energy map; a plant with chillers will need your price.
+revenue.subsidy.* — no subsidy in the brief or the assumptions document; the case carries none.
+What is still missing for a plant — design freedoms, not case values
+
+These the design team decides; the case only bounds them: well depth (the PDF allows another depth with hydrostatic pressure and the gradient), the number of doublets (1–3, bounded by doublet_count), the backup policy, the number and kind of units, and how the associated gas is handled (flare, boiler or CHP — the organisers allow several). The reservoir temperature is never set: gemini derives it from the surface temperature, the gradient and the depth.
+
+From you, when you have it: the bought-gas mole fractions for utilities.gas.composition, and the per-energy opex prices if you want chillers or a boiler costed on energy rather than on capacity.
+
+Copy
+Change only the heating supply temperature to 95 degC. Leave everything else as it is.
+11:50
+Copy
+Done: heating supply temperature is now 95 °C
+
+One value changed, nothing else. demand.heating.supply_temperature = 95 degC (was 100 degC). gemini accepted the case (version 12, reference result-9da28b50e18b0948), and case_changes lists exactly one difference from the case you gave: demand.heating, supply_temperature 100 → 95. I have accepted that change, so the case the design will be verified on now carries 95 °C.
+
+Recorded as assumption A17 (confirmed, source: your instruction): "Heating network supply temperature = 95 degC (deliberate deviation from the brief's 100 degC)". GEMINI_Hackathon_Challenge_Requirements.pdf p. 2 states 100 °C, so this is a deliberate deviation on your instruction — the record names the brief's value it departs from.
+
+What the change affects
+Heating return temperature (60 °C) — unchanged, and still colder than the supply, so the network stays physically valid. The supply-to-return drop is now smaller; gemini derives the drop, I state no number for it. For the same delivered heat the network mass flow is larger, and pipe and heat-exchanger sizing follow it.
+Heat exchangers / approach — the case sets no approach requirement; the approach is a design freedom. A 95 °C target gives slightly more margin on the brine side and slightly less on the network side. No case value is violated.
+brine_cooling_limit (max 40 K per running doublet) — unaffected. The brine's cooling is bounded by the brine production temperature and the network return temperature (60 °C) plus the exchanger approach, not by the supply temperature.
+Heat available from a given brine flow — unchanged: it is set by brine flow, brine production temperature and the 60 °C return, all untouched. Only the network flow needed to carry that heat changes.
+Heat pump lift / COP, if the design uses one — the lift to 95 °C is smaller than to 100 °C, so a heat pump would run at a better COP and draw less electricity. That is a design outcome; no economics entry is touched.
+heat_delivered (unmet share ≤ 0.01) — still satisfiable: the demand series, the brine resource and the doublet limits are unchanged.
+None of the case's 8 requirements constrains the heating supply temperature, so no requirement conflicts with 95 °C. The only conflict is with the brief's own text, which is a fixed input rather than a requirement object — hence A17.
+Unchanged, as you asked
+
+Everything else: heating return 60 °C / 6 bar, cooling 20/25 °C / 4 bar, dew point margin, indoor 26 °C, outside air 10 °C, sand 20 mg/l, grid CO₂ 300 g/kWh, the site and reservoir values, all 8 requirements, the whole economics file, and the flagged assumptions A8 (indoor relative humidity 0.5) and A10 (site air pressure 101325 Pa).
+
+Still open (unchanged)
+utilities.gas.composition — open, as you instructed; you were going to ask the team for the right mole-fraction split (the assumptions document's fractions sum to 1.001, gemini needs exactly 1.0).
+opex.per_energy.* (boiler, electric_boiler, chp, heat_pump, compression/absorption/adsorption chiller, EUR/MWh) — no per-energy map in the assumptions document; needed if a plant with chillers or a boiler is to be costed on energy.
+revenue.subsidy.* — no subsidy in the brief or the assumptions document.
+
+The case is complete enough for a plant: gemini reports nothing missing for design. Say the word and I will send the design team on it.
+
+Copy
+Please put the heating supply temperature back to the value in the PDF, and tell me which case version that is now.
+11:55
+Copy
+Reverted: heating supply temperature is back to 100 °C
+
+demand.heating.supply_temperature = 100 °C, taken digit for digit from GEMINI_Hackathon_Challenge_Requirements.pdf, page 2, constraints table: "Supply temperature to the demand (heating) | 100 °C | fixed".
+
+The case version you asked for
+Case version 16, case reference result-eab06d74028558cb (the read_case taken right after the edit returns result-c868a0bfb56bafe4).
+gemini accepted it: no case_incomplete, no converted entry, plants_need empty.
+I then accepted the change, so the case the design will be verified on is this one; the problem state is now at version 19.
+What changed — the whole list
+
+case_changes reports exactly one difference from the case you gave:
+
+demand.heating.supply_temperature:  95 degC  ->  100 degC
+
+
+That is all. The case is now identical to the case as first set from your three files (result-ea1444f083c8b3dd), where the heating supply temperature was 100 °C.
+
+Everything else, verified unchanged after the edit
+time: 2027-01-01 → 2028-01-01 (excluded), step 1 d.
+demand.heating: power from GEMINI_Heating_Demand_Daily_2027.csv, column heating_demand_MWth, MW, UTC; return 60 °C; return pressure 6 bar.
+demand.cooling: power from GEMINI_Cooling_Demand_Daily_2027.csv, column cooling_demand_MWcool, MW, UTC; supply 20 °C; return 25 °C; return pressure 4 bar; indoor 26 °C; indoor relative humidity 0.5; dew point margin 1 K.
+site: surface 12 °C, gradient 30 °C/km; reservoir 2500 m, 100 m, 200 mD, 250 bar(g); fluid 1030 kg/m³, 0.4 mPa·s, GLR 0.8 Nm³/m³, dissolved gas CH4 80 mol% / CO2 20 mol%, sand 20 mg/l; air 10 °C, 101325 Pa.
+utilities: only electricity.co2_intensity 300 g/kWh; utilities.gas.composition still open, as you instructed.
+requirements: the same 8, untouched.
+economics: untouched — EUR, 2015 prices, 5 % discount, 25 yr, electricity 105.75 EUR/MWh, gas 39.92 EUR/MWh, CO₂ 57.03 EUR/t, heat and cold revenue 60 EUR/MWh each, and the full capex/opex set.
+Assumption record
+
+A17 was updated, not added: "Heating network supply temperature = 100 degC, back to the brief's value (the earlier one-value edit to 95 degC is undone)", source: your instruction, confirmed, citing the PDF p. 2. No other assumption was touched; A8 (indoor relative humidity 0.5) and A10 (site air pressure 101325 Pa) remain flagged for your later review, as you asked.
+
+Still open (unchanged, not re-asked)
+utilities.gas.composition — open; you were going to ask the team for the right mole-fraction split (the assumptions document's fractions sum to 1.001, gemini needs exactly 1.0).
+opex.per_energy.* (boiler, electric_boiler, chp, heat_pump, compression/absorption/adsorption chiller, EUR/MWh) — no per-energy map in the assumptions document.
+revenue.subsidy.* — no subsidy in the brief or the assumptions document.
+
+The case is complete enough for a plant: gemini reports nothing missing for design. Say the word and I will send the design team on it.
+
+Copy
+Set the maximum number of doublets to 4, and set the maximum flow per doublet to 400 m3/h. Do it if the files allow it.
+11:59
+Copy
+Not set: the files do not allow it, and you chose to keep the brief's limits
+
+I checked before touching anything, and nothing in the case was changed.
+
+What the files say
+
+GEMINI_Hackathon_Challenge_Requirements.pdf, page 2, table "3 Design and operating constraints" — row wording, digit for digit:
+
+"Number of geothermal doublets | Choose 1–3 | design variable" → 1–3 doublets.
+"Maximum production flow | 300 m³/h per doublet | hard challenge cap" → 50–300 m³/h per running doublet, the upper end being a hard cap.
+
+The case's requirements section carries exactly these: doublet_count min 1 / max 3, and production_flow_range 50–300 m³/h per running doublet. So 4 doublets and 400 m³/h both go past what the brief permits — the flow figure is called a hard challenge cap, not a design variable.
+
+What I did
+
+I put the question to you rather than deciding it: deviate deliberately (as with the 95 °C episode, recorded as a named deviation) or keep the brief's limits. You answered: keep. So:
+
+requirements.doublet_count stays 1–3.
+requirements.production_flow_range stays 50–300 m³/h per running doublet.
+No set_case call was made; the case is unchanged at version 16 (result-eab06d74028558cb), the one you approved after the supply-temperature revert. Nothing else in the case, the requirements or the economics moved.
+
+Recorded as assumption A18 (confirmed, source: your answer), citing the PDF page 2 rows above, so the decision and its reason are on the record.
+
+What this means for the plant
+
+The design team will work inside 1–3 doublets and 50–300 m³/h per running doublet. If the demand cannot be met within those bounds, that is a finding the design team reports — it is not a reason to widen the limits on my own.
+
+Still open (unchanged, not re-asked)
+utilities.gas.composition — open, as you instructed; you were going to ask the team for the mole-fraction split (the assumptions document's fractions sum to 1.001, gemini needs exactly 1.0).
+opex.per_energy.* (boiler, electric_boiler, chp, heat_pump, compression/absorption/adsorption chiller, EUR/MWh) — no per-energy map in the assumptions document.
+revenue.subsidy.* — no subsidy in the brief or the assumptions document.
+
+The case is complete enough for a plant: gemini reports nothing missing for design. Say the word and I will send the design team on it.
+
+Copy
+The team has corrected the bought gas composition in the Knowledge assumptions document. Please look it up again and close the open gas composition value.
+12:02
+Copy
+Closed: utilities.gas.composition is now set from the corrected document
+
+The team's correction is in the knowledge base, and the value is now in the case. Nothing else was touched.
+
+What the document now says
+
+knowledge/hackathon-2026-assumptions.md, section "Case values", row "Bought natural gas composition (mole fraction)" — digit for digit:
+
+Component
+	
+Mole fraction
+
+
+CH4
+	
+0.8249507401227822
+
+
+C2H6
+	
+0.039549858193534584
+
+
+C3H8
+	
+0.012748086337494389
+
+
+CO2
+	
+0.011912342910726407
+
+
+N2
+	
+0.11083897243546233
+
+The row's source column is Team, and it carries the note "sum 1, exact values of gemini's sample; do not round". I took the fractions exactly as written — nothing normalised, rounded or re-split.
+
+The sum check
+
+gemini's calculate (calculation C58403e) sums the five case values to 1.0 exactly, which is what gemini requires. So the value could be set as it stands.
+
+The case
+set_case on utilities.gas.composition only: gemini accepted it, no case_incomplete, no converted entries (the document gives dimensionless mole fractions, so there was no unit to map).
+Case version 23, case reference result-981db23de586a8a0; the read_case after it returns result-122a2ccb49f920f6.
+Compared key by key with the case you gave (version 16, result-eab06d74028558cb), the only difference is the added utilities.gas.composition. Unchanged: time (2027-01-01 → 2028-01-01, 1 d), site (air, fluid, ground, reservoir), demand.heating (100 °C supply, 60 °C return, 6 bar, file/column/UTC), demand.cooling (20/25 °C, 4 bar, dew point margin 1 K, indoor 26 °C / 0.5), utilities.electricity.co2_intensity 300 g/kWh, the economics file, and all 8 requirements (doublet_count 1–3, production_flow_range 50–300 m³/h, brine_cooling_limit, running_time_limit, pump_efficiency, full_reinjection, heat_delivered, cold_delivered).
+Record
+
+A19 (confirmed, source: the corrected document, on your instruction) holds the five fractions and the sum check. A16, which recorded the old 1.001 version and left the value open, stays as history — it is no longer an open item.
+
+Still open, unchanged
+opex.per_energy.* (boiler, electric_boiler, chp, heat_pump, compression/absorption/adsorption chiller, EUR/MWh) — the assumptions document gives no per-energy map; needed only if a plant with a boiler or chillers is to be costed on energy rather than on capacity.
+revenue.subsidy.* — no subsidy in the brief or the assumptions document.
+utilities.gas.heating_value was never set and was not part of this instruction, so it remains unset.
+
+gemini reports nothing missing for design: the case is complete enough to build a plant on. Say the word and I will send the design team on it.
+
+Copy
+Change the reference depth of the reservoir to 3000 m and the heating return temperature to 55 degC. Nothing else.
+12:07
+Copy
+Both values changed — nothing else
+
+New case version: 27 (case reference result-e28a299d10408d63; the problem state is now at version 30, because I accepted the change so the design will be verified on it).
+
+The two edits
+site.reservoir.reference_depth = 3000 m (was 2500 m) — your instruction.
+demand.heating.return_temperature = 55 degC (was 60 degC) — your instruction; still colder than the 100 degC heating supply, so the network stays physically valid.
+
+gemini accepted the case: no case_incomplete, no error, and no converted entries — both values were given in the units the keys already take (m, degC), so nothing was mapped or converted.
+
+Nothing else moved
+
+case_changes against the case you gave lists only these two paths as changed. Unchanged, key by key: time (2027-01-01 → 2028-01-01, step 1 d); demand.heating power (the CSV, column heating_demand_MWth, MW, UTC), supply 100 degC, return pressure 6 bar; demand.cooling (20/25 degC, 4 bar, dew point margin 1 K, indoor 26 degC / 0.5); site.air (10 degC, 101325 Pa); site.fluid (1030 kg/m³, 0.4 mPa·s, GLR 0.8 Nm³/m³, CH4 80 / CO2 20 mol%, sand 20 mg/l); site.ground (12 degC, 30 degC/km); site.reservoir pressure 250 bar(g), thickness 100 m, permeability 200 mD; utilities.electricity.co2_intensity 300 g/kWh; utilities.gas.composition; all 8 requirements (doublet_count 1–3, production_flow_range 50–300 m³/h, brine_cooling_limit 40 K, running_time_limit 330 d, pump_efficiency 0.7, full_reinjection, heat_delivered ≤ 0.01, cold_delivered ≤ 0.01); and the whole economics file.
+
+On the record
+A20 (new, confirmed, source: your instruction) — site.reservoir.reference_depth = 3000 m, recorded as a named deviation from GEMINI_Hackathon_Challenge_Requirements.pdf p. 2, table 3.1, which gives "Reservoir midpoint depth 2,500 m TVD". The PDF's own note allows another well depth (hydrostatic pressure and the 30 degC/km gradient for another depth), so the deviation is permitted by the brief but is still a departure from its stated value — recorded the same way as the earlier 95 degC episode.
+A2 (updated in place, no duplicate) — heating return temperature 55 degC. This one is not a deviation: the brief leaves the return temperature to the team, and knowledge/hackathon-2026-assumptions.md (section "Case values", row "Heating network return temperature", Team, design choice) gives it as a design choice.
+What the two changes do to the plant (design consequences, no numbers of mine)
+Deeper reservoir (3000 m): gemini derives the reservoir temperature from the surface temperature, the 30 degC/km gradient and the depth, so a deeper reference depth means a hotter brine — more heat per m³ of flow, and a larger heat-exchanger approach margin. Drilling cost follows the depth through economics.capex.drilling (EUR/m), so capex rises with it.
+Colder heating return (55 degC): a larger supply-to-return drop across the network, so for the same delivered heat the network mass flow is smaller; on the brine side the return temperature bounds how far the brine can be cooled, so the 40 K brine_cooling_limit per running doublet is the constraint to watch. Both are for the design team to size.
+Still open (unchanged, not re-asked)
+opex.per_energy.* (boiler, electric_boiler, chp, heat_pump, compression/absorption/adsorption chiller, EUR/MWh) — no per-energy map in the assumptions document; needed only if a plant with a boiler or chillers is to be costed on energy rather than on capacity.
+revenue.subsidy.* — no subsidy in the brief or the assumptions document.
+utilities.gas.heating_value — never set, and not part of this instruction.
+
+gemini reports nothing missing for design: the case is complete enough to build a plant on. Say the word and I will send the design team on it.
+
+Copy
+I do not accept the economics you proposed from the assumptions document. Use my own numbers instead: discount rate 8 %, analysis period 30 years, electricity 90 EUR/MWh, gas 35 EUR/MWh, carbon price 70 EUR/t, heat revenue 55 EUR/MWh, cold revenue 40 EUR/MWh. Keep the rest as it is and tell me which of my values have no source.
+12:12
+Copy
+
+Waiting for your answer below
+
+Steps so far (7 steps)
+Approval needed
+
+Allow "Set case" to change the project?
+
+What the call sends:
+
+{
+  "economics": {
+    "analysis_period": {
+      "unit": "yr",
+      "value": 30
+    },
+    "carbon": {
+      "price": {
+        "unit": "EUR/t",
+        "value": 70
+      }
+    },
+    "discount_rate": {
+      "value": 8
+    },
+    "energy": {
+      "electricity": {
+        "unit": "EUR/MWh",
+        "value": 90
+      },
+      "gas": {
+        "unit": "EUR/MWh",
+        "value": 35
+      }
+    },
+    "revenue": {
+      "cold": {
+        "unit": "EUR/MWh",
+        "value": 40
+      },
+      "heat": {
+        "unit": "EUR/MWh",
+        "value": 55
+      }
+    }
+  }
+}
+Reason or change (optional)
+
+To change a value, write what to change here and press Deny: the assistant gets your words and proposes again.
+
+Approve
+Deny
+Auto-approve
