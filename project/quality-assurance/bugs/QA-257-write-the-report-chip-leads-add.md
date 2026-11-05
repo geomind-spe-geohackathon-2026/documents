@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -61,7 +61,7 @@ Proposal (geomind, hotfix-python):
    go into the finish suggestions, never into a brief.
 2. `sample_uncertainty` / `read_study` return per-metric mean, p10/p50/p90 (or p5/p95) and the
    failed-draw count in the summary, so a sampled study is readable in one call.
-
+- 2026-11-05 18:32 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
 
 (Who, when, result.)
