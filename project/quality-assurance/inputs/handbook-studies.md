@@ -44,6 +44,15 @@ the task needs. How to call each tool: chapter 12 here, and skills `simulating-a
 - 15 Break-even and switching values
 - 16 Robust design and margins
 - 17 Verifying a study: convergence, reproducibility, plausibility
+- 18 Formulating a study: objective, constraints, variables, parameters
+- 19 Design of experiments and parametric sweeps
+- 20 Metrics as objectives: levelised costs, scale, composite objectives
+- 21 Time step and computing cost: screen coarse, confirm fine
+- 22 Deciding under uncertainty: paired comparison, dominance, risk
+- 23 Value of information
+- 24 Superstructure optimisation
+- 25 Presenting study results
+- 26 Planning a study: budget, time, parallel runs
 
 ---
 
@@ -925,3 +934,52 @@ Verification asks "is the study solved right?" before anyone asks "is it the rig
 
 A study that fails a check is reported with the failed check, not silently re-run until it
 passes. Two runs that disagree are both reported, with the reason the second one was run.
+
+---
+
+## 18. Formulating a study
+
+### 18.1 The four parts of a study
+
+Every design study is an optimisation problem written down before it runs (Papalambros & Wilde
+2017, ch 1; Biegler 2010, ch 1):
+
+| Part | Meaning | Where it lives in gemini |
+|---|---|---|
+| Objective | the one number to minimise (or a few, for a front) | `objective` / `objectives` / `metrics` |
+| Constraints | what must hold: requirements, limits | the case's requirements and the plant's operating limits (the verdict) |
+| Design variables | what the designer may change | plant parameters with `range` or `options`, `size.doublets` |
+| Parameters | what is given, possibly uncertain | the case: demand, site, economics, `uncertainty` |
+
+The two errors that spoil most studies: a parameter treated as a design variable (searching the
+electricity price), and a constraint treated as an objective (minimising unmet heat instead of
+requiring it). In gemini the split is built in: the case holds parameters and constraints, the
+plant holds variables. Keep it that way: never move a requirement into the objective, never
+search a case value.
+
+### 18.2 From the user's question to a study
+
+1. **Name the decision.** What will the user do with the answer: choose a family, size a unit,
+   decide whether to invest, decide whether to drill a test well?
+2. **Name the objective** the user named; if none, the cost metric that fits the services
+   (§1.3), and say it was chosen.
+3. **List the constraints** from the case; do not add your own (a margin is a design change,
+   §16).
+4. **Choose the variables** that the decision is about, with ranges the user approves (§4.3).
+   Fewer variables, better searched, beat many poorly searched.
+5. **List the uncertain parameters** that matter for the decision (§3.1 scope rule).
+6. **Pick the study** (§0.2) and its budget (§0.4, §26).
+
+### 18.3 Worked example (invented numbers)
+
+User: "Should we add a heat pump to our boiler-backed plant?"
+- Decision: heat pump yes or no, and its size.
+- Objective: `lcoh` (heat only).
+- Constraints: the case's 98 % coverage, supply 70 °C.
+- Variables: heat pump capacity 0 to 8 MW (0 = no heat pump, if the plant allows it; else two
+  designs, with and without).
+- Parameters: electricity price uncertain (case range 70 to 150 EUR/MWh).
+- Studies: `run_study` `method="minimize"` on both designs, same budget (24 evaluations, one
+  variable); then a switching value on the electricity price (§15).
+- Answer shape: "Yes, 4.5 MW, LCOH 47.2 against 50.1 EUR/MWh without; the heat pump stays
+  better up to an electricity price of about 128 EUR/MWh."
