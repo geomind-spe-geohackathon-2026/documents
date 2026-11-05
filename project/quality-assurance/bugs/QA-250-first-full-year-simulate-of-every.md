@@ -6,33 +6,43 @@
 | Severity | major |
 | Area | gemini,geomind |
 | Reporter | QA-AI-design-I |
-| Found | 2026-11-05 17:48 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 17:55 UTC |
+| Versions | backend 1.1.102-1.1.109 (geomind 0.4.98-0.4.110, gemini 0.6.16/0.6.17) |
+| Where | api.geomind.team; run 0df89b7e-69e0-46b3-abe1-231e51d9570a (project QA-TEST QA-AI-design-I 1) simulate 17:11:53 UTC; run 5d0216a6-4acb-487b-a885-396a5e99366d (project QA-TEST QA-AI-design-I 2) simulate 17:41:05 and 17:47:36 UTC |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Reference case and economics; the design team builds HeatingHeatPumpCoolingPlant (run 1), HeatingAbsorptionCoolingPlant and HeatingHeatPumpCoolingPlant (run 2) from gemini's classes, fills them with `fill_parts`, `size_plant`, then `simulate` the year.
 
 ## Expected
 
+The first simulate of a complete, sized plant runs; at most a few steps fail and name a design fix.
+
 ## Actual
 
-## Evidence
+| Run / plant | failed steps | failures |
+|---|---|---|
+| 0df89b7e `design/sized` (B) | 365 / 365 | `d0.esp` out_of_range 157x: "flow = 0.08374 m3/s ... expected flow at most 0.08333 m3/s (maximum_flow at this speed)"; `injection_pump` 208x: "head = nan Pa; discharge pressure is below suction pressure" |
+| 5d0216a6 `design/C_direct_absorption_sized` (C) | 365 / 365 | `d0.esp` 207x (same 0.08373 > 0.08333); loop at `drive_mixer.fluid_out` no convergence 83x; a stream p = -8.09e18 Pa 75x |
+| 5d0216a6 `design/B_heatpump_compression_sized` (B) | 365 / 365 | `injection_pump` 365x: head nan, discharge below suction |
 
-- ![screenshot](../evidence/QA-250/1.png)
-- Run JSON: `../evidence/QA-250/run-<id>.json`
+The verdict then says only "no_value: the run gives no value of this field" for every requirement, and check_results gives co2 0, no coverage. In run 1 this cost a repair team round (`fill_parts` 126 s) and two more simulations.
+
+Where the values come from (`../evidence/QA-250/simulate-failures.json`):
+- Engineers set `params.d0.esp.maximum_flow` = 300 m3/h and `minimum_flow` = 50 m3/h with source "case:requirements.production_flow_range", `best_efficiency_flow` 200-300 m3/h (assumption), and the lead sets `d0.nominal_flow` = 300 m3/h (the top of the band). The doublet then delivers 301.4 m3/h, 0.5 % above the pump's maximum, on every day it runs at nominal flow. gemini's reference plant uses an open pump window (`maximum_flow` 1 m3/s, `minimum_flow` 0, best 0.04 m3/s) and lets the requirement judge the band.
+- Injection pump: engineers give `pump_type unspecified`, `efficiency` 0.7 or 0.75 and `frequency` 50 Hz (assumption), no `pressure_setpoint` and no `nominal_head`; gemini's reference has `pressure_setpoint` 60 bar, `nominal_flow` 600 m3/h, `nominal_head` 15.74 bar, `frequency` 60 Hz.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Facts above. Guesses: (1) the case's flow band (a requirement on the doublet) is copied into the ESP's operating window, so a tiny solver overshoot fails the step; (2) gemini's doublet solver does not cap the flow at the pump's `maximum_flow` (QA-130 capped at the pump's nominal flow); (3) without `pressure_setpoint` the injection pump has no discharge target.
+
+## Proposed fix
+
+- geomind `prompts/design/well.md` / `reservoir.md` and handbook-design 4.x (data): never copy a requirement band into the pump window; the ESP window is the pump's (open, as gemini's sample) and the band is judged by the requirement. Injection pump: give `pressure_setpoint` (from the reservoir pressure plus the injectivity drawdown, a gemini evaluation) and `nominal_head`, as the sample.
+- geomind `prompts/design/lead.md`: `nominal_flow` strictly inside the band (not the edge), or let `size_plant` choose it.
+- gemini (via Sahand): clip the operating flow to `maximum_flow` within a tolerance, or report "nominal_flow equals maximum_flow" at `patch_plant` time; `injection_pump` without a setpoint should be a `missing_value` at build time, not 365 nan steps.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)

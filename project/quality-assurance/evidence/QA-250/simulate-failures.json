@@ -1,0 +1,655 @@
+[
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:06:00.746364+00:00",
+  "change": {
+   "path": "params.d0.esp.minimum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 50
+   },
+   "reason": "Lower end of the case's flow window.",
+   "source": "case:requirements.production_flow_range"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:06:00.746364+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Upper end of the case's flow window.",
+   "source": "case:requirements.production_flow_range"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:06:00.746364+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 200
+   },
+   "reason": "Mid-window operating point of the unspecified pump.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:06:59.480261+00:00",
+  "change": {
+   "path": "params.d0.esp.minimum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 50
+   },
+   "reason": "Lower end of the case's flow window.",
+   "source": "case:requirements.production_flow_range"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:06:59.480261+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Upper end of the case's flow window.",
+   "source": "case:requirements.production_flow_range"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:06:59.480261+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 200
+   },
+   "reason": "Mid-window operating point of the unspecified pump.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:08:05.930006+00:00",
+  "change": {
+   "path": "params.d0.esp.minimum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 50
+   },
+   "reason": "Lower end of the case's flow window.",
+   "source": "case:requirements.production_flow_range"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:08:05.930006+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Upper end of the case's flow window.",
+   "source": "case:requirements.production_flow_range"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:08:05.930006+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 200
+   },
+   "reason": "Mid-window operating point of the unspecified pump.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:08:55.442110+00:00",
+  "change": {
+   "path": "params.d0.nominal_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Design flow at the top of the case's per-doublet band, so one doublet delivers the most heat the case allows; the ESP's min/max flow are the case's 50-300 m3/h.",
+   "source": "case:requirements.production_flow_range (max 300 m3/h)"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:08:55.442110+00:00",
+  "change": {
+   "path": "params.injection_pump.pump_type",
+   "reason": "No catalogue curve is sourced; gemini derives the injection pump from the design values.",
+   "source": "brief (gemini reference plant)"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:09:18.546486+00:00",
+  "change": {
+   "path": "params.d0.nominal_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Design flow at the top of the case's per-doublet band, so one doublet delivers the most heat the case allows; the ESP's min/max flow are the case's 50-300 m3/h.",
+   "source": "case:requirements.production_flow_range (max 300 m3/h)"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:09:18.546486+00:00",
+  "change": {
+   "path": "params.injection_pump.pump_type",
+   "value": {
+    "value": "unspecified"
+   },
+   "reason": "No catalogue curve is sourced; gemini derives the injection pump from the design values.",
+   "source": "brief (gemini reference plant)"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:11:13.630061+00:00",
+  "change": {
+   "path": "params.injection_pump.frequency",
+   "value": {
+    "unit": "Hz",
+    "value": 50
+   },
+   "reason": "Design value: the injection pump runs at the 50 Hz grid frequency of the case's European site (economics currency EUR); the pump's pressure_setpoint then sets the discharge pressure.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:11:43.856627+00:00",
+  "change": {
+   "path": "params.injection_pump.efficiency",
+   "value": {
+    "unit": "-",
+    "value": 0.75
+   },
+   "reason": "Design value: a multistage injection pump's overall efficiency; the case's 0.7 pump_efficiency requirement is on the doublet's production pump, not this surface pump.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:11:53.789695+00:00",
+  "plant": "design/sized",
+  "failed_steps": 365,
+  "failures": [
+   {
+    "code": "out_of_range",
+    "kind": "failed",
+    "last": "2027-10-27T00:00:00+00:00",
+    "path": "injection_pump",
+    "count": 208,
+    "first": "2027-03-28T00:00:00+00:00",
+    "message": "injection_pump: head = nan Pa; discharge pressure is below suction pressure"
+   },
+   {
+    "code": "out_of_range",
+    "kind": "failed",
+    "last": "2027-12-31T00:00:00+00:00",
+    "path": "d0.esp",
+    "count": 157,
+    "first": "2027-01-01T00:00:00+00:00",
+    "message": "d0.esp: flow = 0.08374441381648785 m3/s gives head = 3824522.2748500933 Pa and power = 457546.25147917384 W; expected flow at most 0.08333333333333333 m3/s (maximum_flow at this speed) and head and power at least 0, the range the curves are valid for; intake pressure = 21656545.426448446 Pa and gas volume fraction = 0.004908751096584674"
+   }
+  ]
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:14:22.779634+00:00",
+  "change": {
+   "path": "params.d0.nominal_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 250
+   },
+   "reason": "The failed step asked 301.5 m3/h, above both the ESP's maximum_flow (300 m3/h) and the case's production_flow_range cap of 300 m3/h, so a doublet designed at the top of the band has no margin. Design the doublet for 250 m3/h: mid-band, 50 m3/h below the case cap and 200 m3/h above the 50 m3/h floor.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:14:22.779634+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 250
+   },
+   "reason": "Put the pump's best-efficiency point at the doublet's design flow of 250 m3/h, so the case's fixed pump_efficiency 0.7 holds at the design point; maximum_flow stays 300 m3/h (the case cap) and minimum_flow 50 m3/h.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:14:22.779634+00:00",
+  "change": {
+   "path": "params.injection_pump.pressure_setpoint",
+   "value": {
+    "unit": "bar",
+    "value": 30
+   },
+   "reason": "The injection pump had no pressure_setpoint, so its discharge fell below suction and the head went nan. 30 bar sits above the suction (the doublet's 10 bar wellhead less surface losses) and, with the cold brine column at 2500 m, lifts the injector above the case's 250 barg reservoir pressure with margin for injectivity loss.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:14:22.779634+00:00",
+  "change": {
+   "path": "params.injection_pump.nominal_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 250
+   },
+   "reason": "The injection pump serves the one doublet, so its design flow follows the doublet's new nominal_flow of 250 m3/h; gemini re-rates its head at the new flow.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:14:56.249521+00:00",
+  "plant": "design/fixed1",
+  "failed_steps": 4,
+  "failures": [
+   {
+    "code": "out_of_range",
+    "kind": "failed",
+    "last": "2027-01-29T00:00:00+00:00",
+    "path": "heating_supply_pipe",
+    "count": 4,
+    "first": "2027-01-26T00:00:00+00:00",
+    "message": "heating_supply_pipe: outlet pressure = -16864.23744002229 Pa from fluid_in.p = 271962.178503915 Pa; expected the friction and static drops to leave a nonnegative pressure"
+   }
+  ]
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:23:55.118997+00:00",
+  "plant": "design/fixed2",
+  "failed_steps": 0,
+  "failures": []
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:29:57.690588+00:00",
+  "plant": "design/fixed3",
+  "failed_steps": 0,
+  "failures": []
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:38:26.121794+00:00",
+  "change": {
+   "path": "params.d0.esp.minimum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 50
+   },
+   "reason": "Lowest flow a running doublet may see.",
+   "source": "case requirement production_flow_range"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:38:26.121794+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Highest flow a running doublet may see.",
+   "source": "case requirement production_flow_range"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:38:26.121794+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Pump runs at the design flow, the case's 300 m3/h cap.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:38:26.121794+00:00",
+  "change": {
+   "path": "params.injection_pump.pump_type",
+   "value": "unspecified",
+   "reason": "No source names an injection pump model; gemini sizes it from the doublets' flow and head.",
+   "source": "knowledge/handbook-design.md 0.7"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:38:26.121794+00:00",
+  "change": {
+   "path": "params.injection_pump.efficiency",
+   "value": {
+    "unit": "-",
+    "value": 0.7
+   },
+   "reason": "The case's pump efficiency applies to the injection pump as well.",
+   "source": "case requirement pump_efficiency"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:39:03.905495+00:00",
+  "change": {
+   "path": "params.d0.esp.minimum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 50
+   },
+   "reason": "Lowest flow a running doublet may see.",
+   "source": "case requirement production_flow_range"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:39:03.905495+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Highest flow a running doublet may see.",
+   "source": "case requirement production_flow_range"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:39:03.905495+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Pump runs at the design flow, the case's 300 m3/h cap.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:39:03.905495+00:00",
+  "change": {
+   "path": "params.injection_pump.pump_type",
+   "value": {
+    "value": "unspecified"
+   },
+   "reason": "No source names an injection pump model; gemini sizes it from the doublets' flow and head.",
+   "source": "knowledge/handbook-design.md 0.7"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:39:03.905495+00:00",
+  "change": {
+   "path": "params.injection_pump.efficiency",
+   "value": {
+    "unit": "-",
+    "value": 0.7
+   },
+   "reason": "The case's pump efficiency applies to the injection pump as well.",
+   "source": "case requirement pump_efficiency"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:40:29.194358+00:00",
+  "change": {
+   "path": "params.d0.nominal_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   },
+   "reason": "Design flow at the case's flow cap; size_plant may lower it to the smallest count that covers the heating peak.",
+   "source": "case requirement production_flow_range (max 300 m3/h)"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:40:49.746766+00:00",
+  "change": {
+   "path": "params.injection_pump.frequency",
+   "value": {
+    "unit": "Hz",
+    "value": 50
+   },
+   "reason": "The injection pump runs at the 50 Hz grid frequency, its nominal speed; the discharge pressure setpoint is the schedule's.",
+   "source": "assumption"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:41:05.385305+00:00",
+  "plant": "design/C_direct_absorption_sized",
+  "failed_steps": 365,
+  "failures": [
+   {
+    "code": "out_of_range",
+    "kind": "failed",
+    "last": "2027-12-31T00:00:00+00:00",
+    "path": "d0.esp",
+    "count": 207,
+    "first": "2027-01-01T00:00:00+00:00",
+    "message": "d0.esp: flow = 0.08372608050350722 m3/s gives head = 3824522.2748500933 Pa and power = 457446.0855307935 W; expected flow at most 0.08333333333333333 m3/s (maximum_flow at this speed) and head and power at least 0, the range the curves are valid for; intake pressure = 22677464.88233039 Pa and gas volume fraction = 0.004690858186744379"
+   },
+   {
+    "code": "no_convergence",
+    "kind": "failed",
+    "last": "2027-10-23T00:00:00+00:00",
+    "path": "c_direct_absorption_start",
+    "count": 83,
+    "first": "2027-04-11T00:00:00+00:00",
+    "message": "c_direct_absorption_start: loop temperature at drive_mixer.fluid_out = 333.1499999999999 K after 50 passes; expected a change of at most 1e-09 K (the loop did not converge)"
+   },
+   {
+    "code": "out_of_range",
+    "kind": "failed",
+    "last": "2027-10-27T00:00:00+00:00",
+    "path": "",
+    "count": 75,
+    "first": "2027-04-01T00:00:00+00:00",
+    "message": "Stream: p = -8.09211737506621e+18 Pa; expected p >= 0 and finite"
+   }
+  ]
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:00.349427+00:00",
+  "change": {
+   "path": "params.d0.nominal_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:00.349427+00:00",
+  "change": {
+   "path": "params.d0.esp.minimum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 50
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:00.349427+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:00.349427+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:00.349427+00:00",
+  "change": {
+   "path": "params.injection_pump.pump_type",
+   "value": "unspecified"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:00.349427+00:00",
+  "change": {
+   "path": "params.injection_pump.efficiency",
+   "value": {
+    "unit": "-",
+    "value": 0.7
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:25.421747+00:00",
+  "change": {
+   "path": "params.d0.nominal_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:25.421747+00:00",
+  "change": {
+   "path": "params.d0.esp.minimum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 50
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:25.421747+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:25.421747+00:00",
+  "change": {
+   "path": "params.d0.esp.best_efficiency_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 300
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:25.421747+00:00",
+  "change": {
+   "path": "params.injection_pump.pump_type",
+   "value": {
+    "value": "unspecified"
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:46:25.421747+00:00",
+  "change": {
+   "path": "params.injection_pump.efficiency",
+   "value": {
+    "unit": "-",
+    "value": 0.7
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:47:03.716551+00:00",
+  "change": {
+   "path": "params.injection_pump.frequency",
+   "value": {
+    "unit": "Hz",
+    "value": 50
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:47:12.202470+00:00",
+  "change": {
+   "path": "params.d0.esp.maximum_flow",
+   "value": {
+    "unit": "m3/h",
+    "value": 320
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:47:36.548643+00:00",
+  "plant": "design/B_heatpump_compression_sized",
+  "failed_steps": 365,
+  "failures": [
+   {
+    "code": "out_of_range",
+    "kind": "failed",
+    "last": "2027-12-31T00:00:00+00:00",
+    "path": "injection_pump",
+    "count": 365,
+    "first": "2027-01-01T00:00:00+00:00",
+    "message": "injection_pump: head = nan Pa; discharge pressure is below suction pressure"
+   }
+  ]
+ }
+]
