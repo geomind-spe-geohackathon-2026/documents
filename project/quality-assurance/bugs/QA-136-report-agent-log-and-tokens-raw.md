@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | verified |
 | Severity | minor |
 | Area | backend |
 | Reporter | hotfix-front-III |
@@ -43,3 +43,4 @@ Fact: `backend/src/api/v1/reporting/design/services.py` line 275 writes `f"- Inp
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 14:36 UTC: hotfix-back-III: backend 1.1.91 (commit ff5a0e3, deployed 14:36 UTC). Cause as stated (raw f-strings). Fix: token_count() writes 14.8 M / 625 K, cost '0.46 USD'. Retest on prod, preview of cf0c3d9c lcts_best with run 32a12115: 'Input tokens: 14.8 M / Output tokens: 625 K / Cost: 0.46 USD'.
