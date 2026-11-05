@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-study-I |
@@ -41,7 +41,7 @@ One size study (doublets 1-3, flow 50-300 m3/h) and one short answer; at most on
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 15:14 UTC: geomind 0.4.94 (approval cards start with one sentence of what changes, JSON cut at 1500 chars; skill: a size question is one ranged search; lead-only writes of IMP-025 cut the hand-built plants further once the plant stage lands), backend 1.1.97, deployed ~15:20 UTC
 ## Retest
 
 (Who, when, result.)
