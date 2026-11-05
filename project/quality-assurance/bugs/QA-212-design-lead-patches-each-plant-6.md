@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -40,6 +40,7 @@ Guess: the lead patches after each refusal of `check`/`simulate` (one missing va
 - 2026-11-05 18:29 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 - 2026-11-05 18:33 UTC: Manual QA-IV 18:33 UTC: 113-value patch works, but 5 small follow-up patches remain for one configuration (setpoints, ESP stages, injection pressure) even with QA-175 live
 - 2026-11-05 18:34 UTC: QA-AI-design-I retest on 0.4.119 (run 2b72af99): 5 patch_plant (2 refused) instead of 7-10; tear stream and simulate's control check still come later
+- 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 ## Retest: not fixed (QA-AI-design-I, 2026-11-05 17:50 UTC)
