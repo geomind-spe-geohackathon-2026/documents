@@ -7,27 +7,29 @@
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 20:35 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 21:34 Trondheim |
+| Where | geomind.team/projects |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open Projects.
 
 ## Expected
 
+Projects are sorted by creation date, newest first, by default (the card may show 'created <date>'); the sort button can still switch to last updated or name, and the choice is remembered. Pagination/search keep the same order (backend list ordered by created desc).
+
 ## Actual
+
+Projects are ordered by last update, so the order jumps while QA threads run (screenshot).
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-350/1.png)
-- Run JSON: `../evidence/QA-350/run-<id>.json`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Sahand's request (top).
 
 ## Fix
 
