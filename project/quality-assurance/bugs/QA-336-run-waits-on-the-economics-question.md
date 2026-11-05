@@ -59,3 +59,5 @@ backend 1.1.127, frontend repo at 1.1.139 (contains 80d5d25), page bundle index-
 waited 45-50 s each (> the 15 s refetch): 0 "approve all" buttons, no card, last text "The state update was refused on
 the source field. Fixing it and recording the approved values." Screenshot `../evidence/QA-336/retest-1.png`.
 Not fixed for this run (if the deployed bundle has 80d5d25).
+
+Frontend part: frontend 1.1.139 (commit 80d5d25, bundle index-Sg-LtJuN.js), by front-m1: card drawn from run.request when no request event reached the view.

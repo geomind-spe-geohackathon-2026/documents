@@ -39,3 +39,5 @@ Guess: Auto-approve only covers write-tool approvals in the backend; question to
 ## Retest
 
 (Who, when, result.)
+
+Frontend part: frontend 1.1.140 (commit b30f5f3, bundle index-CzdSC_uX.js), by front-m1: question.auto_answered shows as a settled card 'Answered automatically'.
