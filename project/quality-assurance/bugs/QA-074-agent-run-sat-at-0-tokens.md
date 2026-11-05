@@ -67,6 +67,7 @@ Guess: the run was resumed after the 00:3x deploy and stalled, or the provider c
 - 2026-11-05 04:14 UTC: hotfix-back: most likely provider refusals retried with back-off (0 tokens = no call succeeded) around the key limit (QA-068), not an idle worker or queue; visible now through the retry event (QA-021) once QA-030 shows it, and provider_refused (QA-068). Needs a person to read the run's retry/error events (query in Fix) to confirm; prod DB reads are refused to me.
 - 2026-11-05 09:15 UTC: DB read: no provider errors; 17 calculate calls refused (no unit for g: m/s2, N/kg ...); 708k tokens recorded, the page showed 0
 - 2026-11-05 09:16 UTC: Cause found by a DB read 09:15 UTC: calculate has no unit for g (m/s2, N/kg, kg/m2 refused 17x) and the chat does not show a nested agent's live steps/tokens; routed to hotfix-python-II (units, constant g) and hotfix-front (live nested steps)
+- 2026-11-05 09:18 UTC: frontend part by hotfix-front: 1.1.79 (e131a37), pushed and build-checked, held. Nested agents' events do reach the live stream (geomind's nested runs share the root's log; the backend publishes every public event). The chat now sums finished steps for tokens and cost while the usage total lags, and 'Steps so far' shows its count (it was collapsed, not empty). The 0 tokens in Runs and logs comes from the stored run row and log, not the chat.
 ## Retest
 
 (Who, when, result.)
