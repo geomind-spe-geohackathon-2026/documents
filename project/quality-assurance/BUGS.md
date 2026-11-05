@@ -123,3 +123,4 @@ wont-fix, duplicate.
 | [QA-115](bugs/QA-115-schema-forms-case-plant-economics-every.md) | fixing | minor | frontend | Schema forms (Case, Plant, Economics ...): every collapsible group opens by default | user via coordinator | hotfix-front-III |
 | [QA-116](bugs/QA-116-agent-proposes-build-plant-three-times.md) | fixing | major | geomind | Agent proposes Build plant three times after two explicit denials of an explanation-only request | functional-qa-plant-I | hotfix-python |
 | [QA-117](bugs/QA-117-question-card-a-long-option-button.md) | open | cosmetic | frontend | Question card: a long option button runs past the card's right edge (no wrap) | Fatemeh |  |
+| [QA-118](bugs/QA-118-gas-composition-set-by-chat-approval.md) | open | minor | frontend,backend | Gas composition set by chat: approval card shows rounded values, case page shows other digits than the Knowledge row | functional-qa-case-I |  |
