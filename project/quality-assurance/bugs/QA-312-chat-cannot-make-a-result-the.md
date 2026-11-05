@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 19:05 UTC |
 | Versions | backend 1.1.115+ (after QA-237's backend part, 1.1.110) |
 | Where | project `QA-TEST QA-E2E-study-I 3` (ac687987-8bfe-452f-8013-7a4b577a3655); chat 00be49e5-9d56-4c05-8dc3-40f2a0a1d919; run 9a45c7ce-e328-403e-839e-e89d20fb4e95 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -54,4 +54,5 @@ write, approval card "Make <design> the project plant (new version N)"; the proj
 
 ## Fix
 
+- 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
