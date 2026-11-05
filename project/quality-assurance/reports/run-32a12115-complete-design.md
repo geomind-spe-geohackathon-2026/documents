@@ -13,7 +13,7 @@ Written by Manual QA-IV for the hackathon report, read-only (no new run). Source
 | Versions | geomind 0.4.87-0.4.88 era, gemini before 0.6.15 (see Caveats) |
 | Model | deepseek/deepseek-v4.1-flash-1017 for every agent |
 | Usage | 14.84 M input tokens, 0.625 M output tokens, **0.46 USD** in total |
-| Steps / tool calls | 360 steps, 640 tool calls (80 refused, 12.5 %) |
+| Steps / tool calls | 360 steps, 621 tool calls (84 refused, 13.5 %) |
 
 User prompt: "create heating and cooling system for the provided files and do optimization", with
 GEMINI_Hackathon_Challenge_Requirements.pdf, GEMINI_Heating_Demand_Daily_2027.csv and GEMINI_Cooling_Demand_Daily_2027.csv.
