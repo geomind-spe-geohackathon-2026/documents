@@ -53,6 +53,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
     inputs, worked example
 22. Worked example II: hourly heating and cooling, weather from a connector
 23. Worked example III: a project with no files
+24. Reviewing a case: what a review checks, what it must not do, findings, checklist
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -2043,6 +2044,62 @@ unknown."
 - With auto-approve or "best guesses": the same sources, no question, but still no invented
   series; the case states what is missing (§14.3).
 
+# 24. Reviewing a case
+
+How a second agent (a reviewer) or a person checks a case before the design starts or a result is
+reported. It extends §11.3. A review finds defects; it does not redo the case.
+
+## 24.1 What a review checks
+
+Engineering design reviews check a deliverable against its inputs and its requirements, with a
+record of each finding (ISO/IEC/IEEE 29148:2018 on requirement validation; ISO 9001:2015, 8.3.4
+design review). For a case:
+
+| Check | How | Defect when |
+|---|---|---|
+| traceability | pick values at random; follow `about.sources` to the page or row | no source, wrong page, other digits |
+| completeness | every binding sentence of the brief (§17.1) maps to a case value, requirement or named open rule | a sentence lost |
+| no additions | every requirement maps back to a sentence or an approved proposal | a rule nobody asked for |
+| approvals | every value not from the user's files is in an approved question or a change the user made by hand | an unapproved value |
+| units and time | zone, convention, units as printed (§17.5, §17.6) | a converted or shifted value |
+| plausibility | the checks of §13 and §15 against the values | a value outside every cited range with no note |
+| uncertainty | ranges only with a source (§21) | a range without one |
+| totals | gemini's annual energy and peaks against the brief's values for checking (§1.3) | a mismatch beyond rounding |
+
+## 24.2 What a review must not do
+
+- **Reject what the user approved.** A case that differs from the first files because the user
+  approved changes (by answer, by a deny with a change, by an edit on the Case page) is the
+  user's case. Compare against the latest approved state, not the first upload (§8.7, §10.6).
+- **Re-source values.** A reviewer may say a source looks weak; it does not replace it.
+- **Judge the design.** A plant that fails a requirement is the design team's finding, not a case
+  defect, unless the requirement itself misreads the brief.
+- **Demand typical values.** A gap the user left open on purpose ("unknown") is not a defect when
+  no module needs it (§8.6).
+
+## 24.3 Writing a finding
+
+One line each: the path, what is wrong, the evidence (source, page, tool result), and the fix the
+owner should consider. Severity: **blocking** (the design would be wrong or impossible),
+**major** (a result would be misread), **minor** (wording, a missing note).
+
+**Example (invented).**
+- blocking: `site.reservoir.pressure` 165 bar stored, memo p. 2 says 165 barg (gauge lost:
+  1.01 bar off at the reference depth).
+- major: requirement `electricity_cap` `over: sum` on `electricity_bought` (a power): sums
+  step values, not an energy (§17.2); should be `over: mean`.
+- minor: `air.temperature` source note lacks the connector's retrieval date (§8.3).
+
+## 24.4 Review checklist (short)
+
+- [ ] Three random values traced to the page, digits identical.
+- [ ] Every "shall" of the brief has a home; every requirement has a sentence.
+- [ ] No unapproved value; the latest approved state is the reference.
+- [ ] Units as printed; zone and timestamp convention stated.
+- [ ] Energy caps use `over: mean`; mass totals `over: sum`.
+- [ ] Ranges only with sources; dependent inputs not both varied (§21.3).
+- [ ] Findings written as in §24.3; nothing fixed by the reviewer.
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -2077,68 +2134,85 @@ unknown."
 
 # Appendix C. References
 
+C.1 books and papers, C.2 standards and guides, C.3 gemini and geomind.
+
+## C.1 Books and papers
+
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Studentlitteratur.
 - Huenges, E. (ed.) (2010). *Geothermal Energy Systems*. Wiley-VCH.
 - Stober, I. and Bucher, K. (2021). *Geothermal Energy*, 2nd ed. Springer.
-- ISO/IEC/IEEE 29148:2018. *Requirements engineering* (characteristics from secondary summaries
-  of section 5.2.5).
-- JCGM 100:2008. *Guide to the expression of uncertainty in measurement* (GUM).
 - Tukey, J.W. (1977). *Exploratory Data Analysis*. Addison-Wesley.
-- WRI and WBCSD (2015). *GHG Protocol Scope 2 Guidance*.
-- ISO 2533:1975 *Standard Atmosphere*; DIN 1343 *Normal conditions*; ISO 13443:1996 *Natural gas
-  standard reference conditions*.
 - Alduchov, O.A. and Eskridge, R.E. (1996). Improved Magnus form approximation of saturation
   vapor pressure. *Journal of Applied Meteorology* 35(4), 601-609.
-- API RP 14E (1991). *Design and installation of offshore production platform piping systems*.
-- ASHRAE (2017). *Handbook: Fundamentals*, ch. 1 (psychrometrics) and ch. 18 (cooling loads).
-  ASHRAE (2020). *Handbook: HVAC Systems and Equipment*, ch. 23 (cooling and dehumidifying
-  coils).
-- ASHRAE (2013). *District Cooling Guide*. ASHRAE 55: *Thermal environmental conditions for
-  human occupancy*.
 - Babiak, J., Olesen, B.W. and Petras, D. (2007). *Low temperature heating and high temperature
   cooling*. REHVA Guidebook No. 7.
-- BIPM (2019). *The International System of Units (SI)*, 9th ed.
 - Batzle, M. and Wang, Z. (1992). Seismic properties of pore fluids. *Geophysics* 57(11),
   1396-1408.
 - Bullard, E.C. (1947). The time necessary for a bore hole to attain temperature equilibrium.
   *Geophysical Supplements to the Monthly Notices of the RAS* 5(5), 127-130.
-- CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
 - de Waard, C., Lotz, U. and Milliams, D.E. (1991). *Corrosion* 47(12), 976-985; de Waard, C.,
   Lotz, U. and Dugstad, A. (1995). CORROSION/95, NACE (as cited in `gemini/physics/corrosion.py`).
-- DNV RP O501 (2015). *Managing sand production and erosion*.
 - Dake, L.P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
 - Horne, R.N. (1995). *Modern Well Test Analysis*, 2nd ed. Petroway.
 - Hyland, R.W. and Wexler, A. (1983). Formulations for the thermodynamic properties of the
   saturated phases of H2O from 173.15 K to 473.15 K. *ASHRAE Transactions* 89(2A), 500-519.
-- IANA. *Time Zone Database* (tz). ISO 8601-1:2019. *Date and time: representations*.
-- EN 12831-1:2017. *Energy performance of buildings: method for calculation of the design heat
-  load*. EN ISO 15927-6:2007. *Hygrothermal performance of buildings: accumulated temperature
-  differences (degree-days)*.
-- EN 16798-1:2019. *Energy performance of buildings: indoor environmental input parameters*.
 - Gallup, D.L. (2009). Production engineering in geothermal technology: a review.
   *Geothermics* 38(3), 326-334.
 - Gringarten, A.C. and Sauty, J.P. (1975). A theoretical study of heat extraction from aquifers
   with uniform regional flow. *Journal of Geophysical Research* 80(35), 4956-4962.
 - Hyndman, R.J. and Athanasopoulos, G. (2021). *Forecasting: Principles and Practice*, 3rd ed.
   OTexts.
+- Kestin, J., Khalifa, H.E. and Correia, R.J. (1981). Tables of the dynamic and kinematic
+  viscosity of aqueous NaCl solutions. *J. Phys. Chem. Ref. Data* 10(1), 71-87.
+- Lund, H. et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
+- Ramey, H.J. (1962). Wellbore heat transmission. *Journal of Petroleum Technology* 14(4),
+  427-435.
+
+## C.2 Standards and guides
+
+- ISO/IEC/IEEE 29148:2018. *Requirements engineering* (characteristics from secondary summaries
+  of section 5.2.5).
+- JCGM 100:2008. *Guide to the expression of uncertainty in measurement* (GUM).
+- WRI and WBCSD (2015). *GHG Protocol Scope 2 Guidance*.
+- ISO 2533:1975 *Standard Atmosphere*; DIN 1343 *Normal conditions*; ISO 13443:1996 *Natural gas
+  standard reference conditions*.
+- API RP 14E (1991). *Design and installation of offshore production platform piping systems*.
+- ASHRAE (2017). *Handbook: Fundamentals*, ch. 1 (psychrometrics) and ch. 18 (cooling loads).
+  ASHRAE (2020). *Handbook: HVAC Systems and Equipment*, ch. 23 (cooling and dehumidifying
+  coils).
+- ASHRAE (2013). *District Cooling Guide*. ASHRAE 55: *Thermal environmental conditions for
+  human occupancy*.
+- BIPM (2019). *The International System of Units (SI)*, 9th ed.
+- CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
+- DNV RP O501 (2015). *Managing sand production and erosion*.
+- IANA. *Time Zone Database* (tz). ISO 8601-1:2019. *Date and time: representations*.
+- EN 12831-1:2017. *Energy performance of buildings: method for calculation of the design heat
+  load*. EN ISO 15927-6:2007. *Hygrothermal performance of buildings: accumulated temperature
+  differences (degree-days)*.
+- EN 16798-1:2019. *Energy performance of buildings: indoor environmental input parameters*.
 - EN ISO 52016-1:2017. *Energy needs for heating and cooling, internal temperatures and
   sensible and latent heat loads*.
 - ISO 6976:2016. *Natural gas: calculation of calorific values, density, relative density and
   Wobbe indices from composition*.
+- ISO 9001:2015. *Quality management systems: requirements*, 8.3.4 design and development
+  controls.
 - JCGM 106:2012. *Evaluation of measurement data: the role of measurement uncertainty in
   conformity assessment*.
-- Kestin, J., Khalifa, H.E. and Correia, R.J. (1981). Tables of the dynamic and kinematic
-  viscosity of aqueous NaCl solutions. *J. Phys. Chem. Ref. Data* 10(1), 71-87.
-- Lund, H. et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
 - NORSOK M-506 (2017). *CO2 corrosion rate calculation model*. Standards Norway.
 - NIST SP 811 (2008). *Guide for the Use of the International System of Units*.
 - RFC 2119 (1997). *Key words for use in RFCs to indicate requirement levels*.
 - SPE, AAPG, WPC, SPEE, SEG (2018). *Petroleum Resources Management System* (PRMS), rev. 2018.
-- Ramey, H.J. (1962). Wellbore heat transmission. *Journal of Petroleum Technology* 14(4),
-  427-435.
+
+## C.3 gemini and geomind
+
 - gemini physics: `gemini/gemini/physics/ground.py` (geotherm, Gringarten-Sauty doublet, Ramey),
   `hydraulics.py` (hydrostatic, productivity and injectivity indices), `energy.py`, `fluid.py`
-  (constant property snapshots), `gas.py`.
+  (constant property snapshots), `gas.py`, `psychrometrics.py` (Hyland-Wexler dew point),
+  `chemistry.py` (Henry CO2), `corrosion.py` (NORSOK M-506, de Waard-Lotz).
+- gemini modules: `modules/grids/coolinggrid.py` (sensible, latent, dew-point margin),
+  `modules/storage/` (states of stores), `modules/treatment/` (degasser, filter, desander,
+  inhibitor dosing).
+- geomind agents: `agents/case/lead.py`, `agents/case/geoscientist.py` (tools by role, §10.7).
 - gemini 0.6.34: `gemini/gemini/case/`, `gemini/gemini/plants/roles.py`,
   `gemini/gemini/units/inputs.py`.
 - geomind: prompts `case/lead.md`, `case/geoscientist.md`; skills `setting-the-case`,
