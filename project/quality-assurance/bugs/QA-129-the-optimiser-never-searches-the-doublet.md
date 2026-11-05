@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind,gemini |
 | Reporter | Fatemeh (asked for the run review), Claude (DB read and write-up) |
@@ -40,3 +40,5 @@ Fact: a free plant has no `size.doublets`; the doublet count lives on class plan
 Cause: `size.doublets` existed only on plant classes; a free plant refused it and the design lead dropped the range in silence. Fix: gemini 0.6.15: a plant without a class on one doublet `d0` takes a range on `size.doublets`; `resized` copies d0, joins the supplies with mixers, splits the brine with splitters and repeats d0's other connections, so `optimize` searches 1 to 3 doublets. geomind 0.4.87: designing-a-plant says so, forbids dropping an approved range in silence, and points to handbook-design chapters 10 and 11 (IMP-023 rejected by the user).
 
 ## Retest
+
+- 2026-11-05 14:44 UTC: Manual QA-II 15:10 UTC: user minimize (lcts, 30 evals, seed 0) in QA-TEST abb0b35d (copy of geo mind testing case + plant v22 + size.doublets 1-3, free plant): picked 2 doublets (d0, d1), 17/17 pass, lcts 53.95 EUR/MWh (was 70.95 with 1 doublet), boiler heat 111 MWh (0.1 %, was 21.5 %), full demand met, capex 51.9 MEUR
