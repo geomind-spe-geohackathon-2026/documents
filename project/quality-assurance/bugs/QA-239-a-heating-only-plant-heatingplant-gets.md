@@ -35,6 +35,8 @@ hotfix-back-lead, backend 1.1.110, deployed ~17:50 UTC (backend part). Additive:
 Compare: frontend) leaves out the others. gemini part (a missing role on a stated demand fails)
 with the python team.
 
+Frontend part (hotfix-front-lead): frontend 1.1.123 (commit 9e72fd7, bundle index-C7R5NeXi.js) reads `feasible` (backend 1.1.110): an infeasible result is never the Compare best, never on the trade-off line, never the report default; its checks read "infeasible: does not serve every demand".
+
 ## Retest
 
 Recipe: GET /design/results?project=...: the heating-only result on a case with cooling has feasible false.
