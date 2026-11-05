@@ -66,8 +66,14 @@ connections, and every other request waits 30 s and fails.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-back-VI, backend 1.1.108 (tag v1.1.108), deployed 2026-11-05 ~17:37 UTC. Cause: every poll of
+`/assistant/runs/{id}/agents` read all events of the run (thousands of rows with LLM payloads)
+and held its pool connection meanwhile. Now `services.cached_events` keeps each run's events in
+memory (64 runs, LRU) and reads only those newer than the last read; the sessions are computed
+again only when new events came. Postgres pool 20 + 20 (was 5 + 10) in all four env files
+(max_connections 100; 45 in use before).
 
 ## Retest
 
-(Who, when, result.)
+Recipe: with 2-3 tabs on a running run, the agents view answers in well under a second, no 500
+in the fastapi log (`QueuePool limit`), and its numbers still match `/runs/{id}/log`.
