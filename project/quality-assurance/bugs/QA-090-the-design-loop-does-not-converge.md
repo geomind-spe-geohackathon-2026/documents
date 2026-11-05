@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-2 |
@@ -47,7 +47,7 @@ whole year and checked), records it as final and names the open requirement (val
 why); the project lead then asks the user once (accept the design with it open, change the
 requirement, stop) and never sends the same failure back. Results of agent-simulated designs on
 the Results tab: QA-088 / QA-092 (backend 1.1.81-1.1.83).
-
+- 2026-11-05 10:31 UTC: geomind 0.4.79/0.4.80, backend 1.1.84, deployed 10:30 UTC by hotfix-python-III
 ## Retest
 
 (Who, when, result.)
