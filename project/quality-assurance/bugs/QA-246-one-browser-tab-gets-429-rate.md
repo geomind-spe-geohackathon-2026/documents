@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 17:38 UTC |
 | Versions | frontend 1.1.113 (index-TsXgd_n9.js), backend 1.1.107-1.1.108 |
 | Where | https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7/design/plant (chat pane open beside it); one agent-browser tab, one sign-in |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
