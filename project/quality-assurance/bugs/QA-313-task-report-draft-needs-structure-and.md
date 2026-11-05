@@ -53,7 +53,7 @@ Backend 1.1.123 (numbered sections 1-9, subsections, captions and paragraphs, PD
 
 Report draft and PDF export: numbered sections, caption and text after every figure and table.
 
-(Who, when, result.)
+QA-E2E-report-I, 2026-11-05 20:05 UTC, backend 1.1.125, https://geomind.team/projects/0e44cb05-6096-434e-95ee-56b434898015/design/report, result 'simulation HeatingAbsorptionCoolingPlant' (plant v2, case v3), page and Export PDF (21 pages, `../evidence/QA-313/retest-report-v2.pdf`): numbered sections 1 Summary, 2 Case and demand, 3 Plant design (3.1 Subsurface, 3.2 Treatment and gas, 3.3 Heating, 3.4 Cooling, 3.5 Grids), 4 Performance, 5 Economics, 6 Emissions, 7 Studies, 8 Checks, 9 Assumptions and sources, Appendix A agent log, Appendix B modules; every table and figure has a numbered caption (Figure 1.1 ... Table 9.2) and a paragraph from the result numbers; in the PDF each main section starts on a new page. Verified. Leftovers (cosmetic): 'Backup runs on 365 days ... 1.137e-11 MWh of demand is not' (page 7) should read 0; '7 Studies' holds two lines on its own page; 3 Plant design opens with 'Design simulation HeatingAbsorptionCoolingPlant from a study of kind Run the design' (awkward); two results in the Design list are both named 'simulation v1'.
 
 - 2026-11-05 19:58 UTC, QA-AI-analysis-I, backend 1.1.125, API only: POST /reporting/design/export (format md, all 11 parts) for result b7af0082 (project `QA-TEST QA-AI-analysis-I 1`):
   numbered sections 1 Summary ... 9 Assumptions and sources, subsections 3.1 Subsurface ... 3.5 Grids, appendices A/B;
