@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | handbook-econ-report-I |
 | Found | 2026-11-05 17:04 UTC |
 | Versions | backend 1.1.104 (geomind 0.4.98, gemini 0.6.17) |
 | Where | gemini report output (summary `passed` vs. verdict `feasible`); found by handbook-econ-report-I while re-running the hackathon example, thread message cmsg_016VUmQoW7nUde2xdqUWA2Po6ne8Dnsj2nWxqBVDEqMu82 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
