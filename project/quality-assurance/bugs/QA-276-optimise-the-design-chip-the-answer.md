@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 18:27 UTC |
 | Versions | backend 1.1.108-1.1.11x during the run (geomind main 6724bdf at report time) |
 | Where | project `QA-TEST QA-E2E-study-I 2` (8eabf827-1f43-4cf8-86a4-39147bea32a0); chat ae934804-eca5-4b3c-99a7-dd60665b5ee9; run 83182f0e-8ee2-4230-a98f-8f0bc905caf3 |
-| Fixer | m3 |
+| Fixer | m7 |
 
 ## Steps
 
@@ -64,6 +64,7 @@ the stored plant as a candidate (or the lead compares best vs the start and keep
 - 2026-11-05 19:12 UTC: QA-E2E-study-I: speed fixed (4.7 min); optimum still worse than the stored plant and compared only with the sized start
 - 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 - 2026-11-05 19:52 UTC: QA-E2E-study-II 2026-11-05 retest in QA-TEST QA-E2E-study-II 1 (geomind 0.4.130 era, deploy 36): answer in 8 min (was 36), 60 designs, no unasked heat-pump family, optimum 31 vs start 44 EUR/MWh; BUT it started from design/v1 (heat pump) called 'the current project plant' while the Plant page showed v2 (see QA-330). Stays open until that is clear
+- 2026-11-05 19:56 UTC: geomind cb5093b (+a4897c8); pending deploy
 ## Retest
 
 ## Retest
