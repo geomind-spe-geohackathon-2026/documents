@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,geomind |
 | Reporter | QA-AI-design-I |
@@ -45,4 +45,5 @@ Facts above. Guesses: (1) the case's flow band (a requirement on the doublet) is
 
 ## Fix
 
+- 2026-11-05 18:29 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
