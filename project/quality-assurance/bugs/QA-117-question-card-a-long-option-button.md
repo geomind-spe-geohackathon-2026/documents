@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-05 11:05 UTC |
 | Versions | frontend as deployed 2026-11-05 ~12:30 UTC |
 | Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/assistant/chat/27379f2e-0103-4ddf-a020-f0cd4deb20a6, question card 'The assistant asks' |
-| Fixer | |
+| Fixer | hotfix-front-III |
 
 ## Steps
 
