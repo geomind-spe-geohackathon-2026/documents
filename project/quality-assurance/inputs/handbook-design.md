@@ -30,11 +30,10 @@ invented case. Checked against gemini 0.6.17 and the geomind design prompts.
 | Reader | Read first | Then, when the brief or a failure points there |
 |---|---|---|
 | Design lead | 0 (whole, once) | 8, 10, 11.7 |
-| Reservoir engineer: subsurface and wells | 0.3, 0.7, 0.8 | 3, 4 |
-| Well engineer: pump depth and ESP | 0.7 (wells, ESP), 0.8 | 4.3 to 4.5 |
-| Reservoir engineer: treatment and gas | 0.7 (treatment, gas) | 5 |
-| Energy systems engineer: heating | 0.7 (heating) | 6, 8.3, 9 |
-| Energy systems engineer: cooling | 0.7 (cooling) | 7 |
+| Reservoir engineer (R): reservoir, doublets, treatment and gas | 0.3, 0.7, 0.8 | 3, 5 |
+| Well engineer (W): wells and pumps | 0.3, 0.7, 0.8 | 4 |
+| Energy systems engineer I (H): heating | 0.3, 0.7 | 6, 8.3, 9 |
+| Energy systems engineer II (C): cooling | 0.3, 0.7 | 7 |
 
 Labels on values:
 
@@ -112,26 +111,27 @@ A family that needs a module gemini lacks is `blocked: gemini has no module for 
 
 ## 0.3 Module groups for up to four engineers
 
-One engineer per group; the lead owns the wiring and what the groups share. Classes are those of
-11.3 and 11.5.
+Four groups, one brief each, matching the three engineer roles of `fill_parts`
+(`reservoir_engineer`, `well_engineer`, `energy_systems_engineer`). The lead owns the wiring and
+what the groups share. Classes are those of 11.3 and 11.5. Brief names follow the instance names
+(`Reservoir engineer I`, `Well engineer I`, `Energy systems engineer I`, `II`).
 
-| Engineer (role) | Group | gemini module classes | Read |
-|---|---|---|---|
-| I (`reservoir_engineer`) | Subsurface and wells (`params.dN.*`, `depth`) | `ProductionReservoir`, `InjectionReservoir`, `ThermalDecline`, `BoreholeField`, `DownholeHeatExchanger`, `ProductionWell`, `InjectionWell`, `Formation`; plant classes `Doublet`, `NodalDoublet`, `MultiWellPlant` | 0.7, 3, 4 |
-| I' (`well_engineer`) | Pump depth and pumps (`params.dN.riser.esp_depth`, `params.dN.esp.*`, the injection pump) | `ESP`, `LineShaftPump`, `InjectionPump` | 0.7, 4.3 to 4.7 |
-| II (`reservoir_engineer`) | Treatment and gas | `Degasser`, `Desander`, `Filter`, `InhibitorDosing`, `Flare`, `Blowdown`, `GasCompressor`, `GasMakeup`, `GasGrid`, `ChemicalGrid`, `WasteGrid` | 0.7, 5 |
-| III (`energy_systems_engineer`) | Heating | `HeatExchanger`, `HeatPump` (heating), `Boiler`, `ElectricBoiler`, `CHP`, `ThermalStorage`, `HeatingGrid` | 0.7, 6, 8.3, 9 |
-| IV (`energy_systems_engineer`) | Cooling | `AbsorptionUnit`, `AdsorptionChiller`, `HeatPump` (cooling: an electric chiller), `Cooler`, `IceStorage`, `CoolingGrid`, `Atmosphere` | 0.7, 7 |
-| Lead | Shared | `Pipe`, `Mixer`, `Splitter`, `Valve`, `PressurizationTank`, `CirculationPump`, `CentrifugalPump`, `ElectricityGrid`, `PIDController`, `ORC`, `FlashTurbine`, `Separator`, `AquiferStorage`; the plant `type`, `size`, `params.backup`, `params.control`, `fluids`, every connection | 8, 9, 11.2 |
+| Key | Brief (role) | Owns | gemini module classes | Read |
+|---|---|---|---|---|
+| R | Reservoir engineer I (`reservoir_engineer`): reservoir, doublets, treatment and gas | the doublet count and spacing, the flow each doublet gives (`dN.nominal_flow`), `dN.drainage_radius`, `dN.reservoir.*`, `dN.sink.*`, the brine cooling limit, the degasser and the gas route | `ProductionReservoir`, `InjectionReservoir`, `ThermalDecline`, `BoreholeField`, `DownholeHeatExchanger`, `Formation`; `Degasser`, `Desander`, `Filter`, `InhibitorDosing`, `Flare`, `Blowdown`, `GasCompressor`, `GasMakeup`, `GasGrid`, `ChemicalGrid`, `WasteGrid` | 0.7, 0.8, 3, 5 |
+| W | Well engineer I (`well_engineer`): wells and pumps | `depth`, `dN.well_diameter`, `dN.roughness`, `dN.nominal_wellhead_pressure`, `dN.pump_efficiency`, `dN.well.*`, `dN.riser.*` (with `esp_depth`), `dN.injector.*`, `dN.esp.*`, the injection pump | `ProductionWell`, `InjectionWell`, `ESP`, `LineShaftPump`, `InjectionPump`; plant classes `Doublet`, `NodalDoublet`, `MultiWellPlant` | 0.7, 0.8, 4 |
+| H | Energy systems engineer I (`energy_systems_engineer`): heating | heat exchanger, heat pumps, boilers, CHP, storage, surface pipes of the heating network | `HeatExchanger`, `HeatPump` (heating), `Boiler`, `ElectricBoiler`, `CHP`, `ThermalStorage`, `HeatingGrid` | 0.7, 6, 8.3, 9 |
+| C | Energy systems engineer II (`energy_systems_engineer`): cooling | chillers, coolers, cold storage, surface pipes of the cooling network | `AbsorptionUnit`, `AdsorptionChiller`, `HeatPump` (cooling: an electric chiller), `Cooler`, `IceStorage`, `CoolingGrid`, `Atmosphere` | 0.7, 7 |
+| Lead | design lead | `Pipe`, `Mixer`, `Splitter`, `Valve`, `PressurizationTank`, `CirculationPump`, `CentrifugalPump`, `ElectricityGrid`, `PIDController`, `ORC`, `FlashTurbine`, `Separator`, `AquiferStorage`; the plant `type`, `size`, `params.backup`, `params.control`, `fluids`, every connection | — | 8, 9, 11.2 |
 
-At most four briefs run at once: when the well engineer has its own brief, give treatment and gas
-to engineer I or join heating and cooling, by where the open issues are.
+A plant without cooling needs three briefs (R, W, H); a group with no open issue gets no brief.
 
 Interfaces the lead settles before the engineers start, and puts in every brief that needs them:
-the brine temperature and flow at the wellhead (I to the others); the gas stream out of the
-degasser (II to III for a burner); the hot water that drives an absorption chiller (III to IV);
-the brine order of the cascade (6.2); the heat pump's minimum source outlet temperature, which
-follows from the brine cooling limit (0.8).
+the brine temperature and flow at the wellhead (R and W to the others); the flow against the
+drawdown and the pump depth (R with W); the gas stream out of the degasser (R to H for a burner);
+the hot water that drives an absorption chiller (H to C); the brine order of the cascade (6.2);
+the heat pump's minimum source outlet temperature, which follows from the brine cooling limit
+(R to H, 0.8).
 
 In a brief, name the sections to read by number only (`0.7`, `4.3`, `4.4`), with the document
 name `knowledge/handbook-design.md`: a number always resolves, a paraphrased title does not.
@@ -170,23 +170,23 @@ Read the worst step of the failing reason (11.7), then the module's results arou
 | Symptom | Engineering cause | Fix | Owner (0.3) |
 |---|---|---|---|
 | `missing_value` on a case path (`site`, `demand`, `utilities`, `time`, `economics`, `requirements`) | the case lacks a value | stop; hand over `case change needed: <path>: <why>`; never put it in the plant | lead (case lead decides) |
-| `missing_value` on a plant path | a design value not stated | a value from 0.7 or a source, recorded with its reason; for a designed doublet the design value (`depth`, `well_diameter`), not a derived child [gemini: `docs/guide.md`] | the group's engineer |
+| `missing_value` on a plant path | a design value not stated | a value from 0.7 or a source, recorded with its reason; for a designed doublet the design value (`depth`, `well_diameter`), not a derived child [gemini: `docs/guide.md`] | the group's engineer (0.3) |
 | `missing_value` on `params.backup` | backup policy not stated | `peak` or `none` with its reason (8.4) | lead |
 | `missing_value` on `params.control.dispatch` / `params.control.outages` | plant rules not stated | `least_cost` / `lowest_demand`, the only values gemini offers [gemini: `gemini/engine/schedule/schedule.py`] | lead |
-| `missing_value` on `params.dN.riser.esp_depth` | pump depth not stated | the well engineer chooses it (4.3); never the lead | I' |
+| `missing_value` on `params.dN.riser.esp_depth` | pump depth not stated | the well engineer chooses it (4.3); never the lead | W |
 | Plant file refused for a case value | a site or network value written in the plant | remove it; it belongs to the case (11.1) | lead |
 | Tear stream with no first guess (a closed loop) | a loop module lacks the values that let it offer its outlet; for a `Cooler`: `loop_pressure` and `flow` [gemini 0.6.17] | set those values on the module the message names | the module's group |
 | `inlet 'X': <error>` | the value at that inlet is invalid [gemini 0.6.17] | fix the value the message names; an inlet is `<module>.<port>` (QA-083) | lead |
 | Pipe `PhysicsError`: outlet pressure below zero | friction and static drop exceed the inlet pressure | wider pipe (2.5: 1 to 3 m/s), shorter pipe, or higher loop pressure; check the flow [gemini: `gemini/modules/piping/pipe.py`] | lead |
-| `bound` on `intake_pressure` or `intake_gas_fraction` | pump too shallow for the drawdown, too much flow per well, or a deep design | set the pump deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) | I' |
-| ESP `out_of_range` with a `curve` | the ESP curves do not cover the flows run | the well engineer gives sourced curves, or `pump_type` `"unspecified"` with no curves (the doublet derives them) | I' |
-| Doublet flow below the demand it should carry | the schedule runs a doublet at most at its `nominal_flow` [gemini 0.6.15] | raise `nominal_flow` up to the case's flow cap, or add a doublet | I |
-| Heat pump: no duty, source below the minimum | brine at or below `minimum_source_outlet_temperature`, or lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, check the limit (6.4, 0.8) | III |
-| Unit off below its minimum part load | machine too large for a low-demand step | smaller or two units, or accept and cover by backup (9.2) | III or IV |
-| Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | hotter drive water (first in the cascade), larger cooler, or another chiller (7.2) | IV |
-| `heat_delivered` / `cold_delivered` fails | too little capacity on peak or outage days | read the worst step; add boiler or chiller capacity; check the backup policy covers outage days (8.4, 8.5) | III (IV for cold) |
-| `brine_cooling_limit` fails | brine cooled beyond the cap | heat pump `minimum_source_outlet_temperature` = production temperature less the cap, or a smaller heat pump (0.8) | III |
-| `running_time_limit` fails | a doublet runs more days than allowed | `params.control.outages` `lowest_demand`, a second doublet, backup that covers the days off (8.5) | lead; III |
+| `bound` on `intake_pressure` or `intake_gas_fraction` | pump too shallow for the drawdown, too much flow per well, or a deep design | set the pump deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) | W |
+| ESP `out_of_range` with a `curve` | the ESP curves do not cover the flows run | the well engineer gives sourced curves, or `pump_type` `"unspecified"` with no curves (the doublet derives them) | W |
+| Doublet flow below the demand it should carry | the schedule runs a doublet at most at its `nominal_flow` [gemini 0.6.15] | raise `nominal_flow` up to the case's flow cap, or add a doublet | R |
+| Heat pump: no duty, source below the minimum | brine at or below `minimum_source_outlet_temperature`, or lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, check the limit (6.4, 0.8) | H |
+| Unit off below its minimum part load | machine too large for a low-demand step | smaller or two units, or accept and cover by backup (9.2) | H or C |
+| Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | hotter drive water (first in the cascade), larger cooler, or another chiller (7.2) | C |
+| `heat_delivered` / `cold_delivered` fails | too little capacity on peak or outage days | read the worst step; add boiler or chiller capacity; check the backup policy covers outage days (8.4, 8.5) | H (C for cold) |
+| `brine_cooling_limit` fails | brine cooled beyond the cap | heat pump `minimum_source_outlet_temperature` = production temperature less the cap, or a smaller heat pump (0.8) | H |
+| `running_time_limit` fails | a doublet runs more days than allowed | `params.control.outages` `lowest_demand`, a second doublet, backup that covers the days off (8.5) | lead; H |
 | `numerical` reason | a loop that does not close, or a colder return mixed into a fixed-temperature supply | plan where each stream goes (skill `designing-a-plant`, "What gemini can run") | lead |
 | Supply temperature rule fails on zero-demand days | a rule with `when: always` | a case change: the rule holds only while that supply runs (9.4); never force circulation | case lead |
 | `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call | lead |
@@ -215,7 +215,7 @@ where one exists; otherwise the value is an engineering choice: take it from the
 assumptions document in Knowledge when there is one (search it once by the path), else choose it
 with a one-line reason and record it as an assumption (0.6).
 
-**Doublet, wells and reservoir (engineer I)**
+**Doublet, wells and reservoir (R: reservoir values; W: `depth`, wells, wellhead)**
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -231,7 +231,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `dN.well/riser/injector.friction_correlation`, `two_phase_friction_correlation` | friction models | text | single phase `darcy_weisbach`; two phase `BeggsBrill` where gas comes out (4.2) | — |
 | `dN.well/riser/injector.heat_transfer_coefficient` | heat loss of the brine to the rock | W/m2/K | of the order of 10 for a cased well; a low value keeps the wellhead close to the reservoir temperature (3.1) | — |
 
-**Pumps (well engineer I')**
+**Pumps (W)**
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -243,7 +243,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `injection_pump.efficiency` | injection pump efficiency | 1 | as the production pump | — |
 | `injection_pump.nominal_flow`, `nominal_head` | injection pump rating | m3/h, bar | `size_plant` sets them (4.7) | — |
 
-**Treatment and gas (engineer II)**
+**Treatment and gas (R)**
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -255,7 +255,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `dosing.dose`, `dosing.product_concentration` | inhibitor dose, active share | ppm, 1 | geochemistry (5.3) | doses a few to tens of ppm [Gallup 2009] |
 | `flare.combustion_efficiency` | share of methane burned | 1 | flare type | 0.98 [US EPA AP-42 13.5] |
 
-**Heating (engineer III)**
+**Heating (H)**
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -272,7 +272,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `boiler.efficiency` | fuel to heat | 1 | the boiler class (6.5) | — |
 | pipes `length`, `inner_diameter`, `roughness`, `elevation_change`, `heat_transfer_coefficient` | plant pipes | m, m, m, m, W/m2/K | the layout; the diameter for 1 to 3 m/s at the design flow (2.5) | roughness 4.5e-5 m for new steel [Moody 1944] |
 
-**Cooling (engineer IV)**
+**Cooling (C)**
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
