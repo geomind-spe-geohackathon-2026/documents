@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
@@ -42,3 +42,4 @@ Fix: frontend 1.1.148 (bundle index-B5Gm_bU6.js): project-layout.tsx sets docume
 (Who, when, result.)
 
 Screenshot: ![tab](../evidence/QA-360/1.png) (tab shows only 'Geomind'). Expected e.g. 'Geomind · sahand test 5'.
+- 2026-11-05 21:41 UTC: Manual QA-IV 22:41 CET, frontend 1.1.149 (index-z19tLaSr.js): /projects/8d5d21e0.../design/results title 'Geomind · best results', also after reload; /projects 'Geomind'
