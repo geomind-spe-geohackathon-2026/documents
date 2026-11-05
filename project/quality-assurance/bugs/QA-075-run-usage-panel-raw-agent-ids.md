@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
@@ -34,3 +34,4 @@ frontend 1.1.73: 4bf6ec4 (failed = error true or non-empty text), 2267a4a (share
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 04:32 UTC: geomind.team 1.1.74 (index-Q4_8X__P.js), Playwright 04:35 UTC, chat 33c76f29 usage panel: names Coordinator, Project lead, Support lead, Curator (no underscores); no 'failed' on any agent; rings read 7 %, 11 %, 7 %, 8 %
