@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -76,4 +76,5 @@ it as a crash.
 
 ## Fix
 
+- 2026-11-05 17:27 UTC: geomind 0.4.103, commit 1f8c2c8, deployed (backend 1.1.106): an answered question with on_answer counts as a write in same_result, so read_case/case_changes run again after approve all
 ## Retest
