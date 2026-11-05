@@ -147,3 +147,4 @@ wont-fix, duplicate.
 | [QA-139](bugs/QA-139-plant-history-version-view-has-no.md) | verified | minor | frontend | Plant History version view has no Flowsheet view of that version's diagram | user via coordinator | hotfix-front-IV |
 | [QA-140](bugs/QA-140-case-stage-runs-no-parallel-instances.md) | open | major | geomind | Case stage runs no parallel instances: the case lead calls geoscientist once (instance null), no field-group split (IMP-025) | Manual QA-II (timed run approved by the user), Claude (write-up) |  |
 | [QA-141](bugs/QA-141-no-templates-anywhere-remove-start-from.md) | open | minor | frontend | No templates anywhere: remove Start from template from the empty-plant card | user via coordinator |  |
+| [QA-142](bugs/QA-142-chat-steps-open-in-a-window.md) | open | minor | frontend | Chat steps open in a window, not inline | user via coordinator |  |
