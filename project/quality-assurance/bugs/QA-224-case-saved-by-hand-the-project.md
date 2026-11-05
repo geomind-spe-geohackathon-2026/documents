@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -52,3 +52,5 @@ geomind:
 - 2026-11-05 18:23 UTC: QA-AI-project-I retest 18:23 UTC, backend 1.1.114, run a4203016: the card now names the version (good), but it still stops the run for a no-op: 'Allow set_case (write)? Load the project's saved case, version 5: the same as the chat's case.' A load that changes nothing (or the user's own saved case) should not ask. Trace evidence/QA-224/retest-a4203016.trace.txt
 - 2026-11-05 18:54 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+- 2026-11-05 19:32 UTC: QA-AI-project-I 19:33 UTC, backend 1.1.119, run 1192fc2a (project 1, new chat, case 160 -> 170 mD by hand): no card at all; the newer project case was loaded, simulate + check on 170 mD, LCOH 44.22 EUR/MWh (between 44.134 at 175 and 44.641 at 150 mD). 2 min, 0.0075 USD.
