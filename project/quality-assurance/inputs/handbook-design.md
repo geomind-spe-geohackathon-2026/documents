@@ -3,7 +3,7 @@
 *A handbook for the agents and engineers who design plants with gemini. Cite it as
 `knowledge/handbook-design.md`, section by number (for example "0.7").*
 
-Version 3, 2026-11-05. General, for any case and any site: a textbook of plant design and of how
+Version 4, 2026-11-05. General, for any case and any site: a textbook of plant design and of how
 to do it in gemini. It holds no data of a particular case; chapter 12 works its lessons on an
 invented case. Checked against gemini 0.6.17 and the geomind design prompts.
 
