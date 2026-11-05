@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-report-I |
@@ -51,6 +51,7 @@ backend serves from its tables, and geomind's `list_plants` / `list_studies` (or
 the explainer) show it read-only beside the chat's own designs. The backend side is small once
 geomind defines the method; routed to geomind (hotfix-python-III) and Coordinator-III.
 - 2026-11-05 14:33 UTC: backend part live in 1.1.90 (hotfix-back-III, commit 37dba02, deployed 14:33 UTC): Workspace.project_designs(project) -> {plants:[{version,name,note,by,created,latest}] oldest first, studies:[{id,name,kind,status,created,plant_version,case_version,settings,result:{id,name,role,plant_version,case_version,kpis,checks}|None}] newest first}; Workspace.plant_version(project, n) -> stored gemini to_dict or None. Warmed before a run. geomind part: hotfix-python-IV.
+- 2026-11-05 16:41 UTC: geomind 0.4.97 (0763b4b, tag v0.4.97), backend 1.1.101 (9611e31), deployed 2026-11-05: list_plants project_versions, list_studies lists project studies (project_study with KPIs/checks) first, read_plant(plant_version=N). Not live-retested.
 ## Retest
 
 (Who, when, result.)
