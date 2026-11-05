@@ -1,0 +1,105 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA-TEST QA-E2E-economics-I 5
+Overview
+Library
+Runs and logs
+Chats
+Set up the economics of this case.
+waits for your approval · 18:48
+AD
+Administrator
+admin
+Projects
+QA-TEST QA-E2E-economics-I 5
+Chat
+1 run active
+Design
+Chat
+Set up the economics of this case.
+18:48
+Copy
+
+The economics of the case are set up and saved. You approved all of them in one question, so every value below is now a confirmed input of the case.
+
+Where the values come from. The case has its own assumptions document, knowledge/hackathon-2026-assumptions.md §1.4 "Economics", which names this case and gives the keys one by one; it was used first. Keys it does not give were taken from the cost catalogue, each with its row id recorded in the case's about.sources. Currency EUR, price year 2015, as the document states.
+
+Financial frame
+
+discount rate 0.05 (real), analysis period 25 yr (DEA 25 yr technical lifetime for heat pump and boiler)
+energy: electricity 105.75 EUR/MWh (Eurostat nrg_pc_205, band IE, 2025), gas 39.92 EUR/MWh (Eurostat nrg_pc_203, band I4, 2025)
+carbon price 57.03 EUR/t (Instrat, EU ETS 2025 average)
+revenue: heat 60 EUR/MWh, cold 60 EUR/MWh
+accounting: heat cost share 0.8; GWP100 of fossil methane 29.8 (IPCC AR6 WG1 table 7.15)
+
+Capital costs (with their fixed O&M)
+
+drilling 1239.1304347826087 EUR/m + 1 %/yr; heat pump 0.73786 EUR/W + 0.2239 %/yr (DEA sheet 40); boiler 0.06073 EUR/W + 3.25 %/yr (DEA sheet 44); CHP 0.96155 EUR/W + 1.0263 %/yr (DEA sheet 06)
+degasser 1 000 000 EUR + 2 %/yr; flare 100 000 EUR + 2 %/yr; gas makeup 50 000 EUR + 2 %/yr
+compression, absorption and adsorption chiller 0.3 EUR/W + 2 %/yr; cooler 0.1 EUR/W + 2 %/yr
+production and injection pump 0.5 EUR/W + 2 %/yr; heat exchanger 0.5 EUR/(W/K) + 1 %/yr; pipe 500 EUR/m + 0.5 %/yr
+from the cost catalogue: circulation pump 0.09 EUR/W + 2 %/yr, electric boiler 0.07 EUR/W + 1070 EUR/MW/yr, thermal storage 168.554 EUR/m3 + 0.282326 %/yr, ice storage 23249.9 EUR/MWh + 0.876924 %/yr
+
+Variable costs: chemical 3 EUR/kg, waste disposal 0.2 EUR/kg.
+
+Two things are deliberately left open, not filled in:
+
+opex.per_energy (boiler, electric boiler, CHP, heat pump, the three chillers): the map is all-or-nothing and the catalogue has no rows for the chillers this cooling case uses, so no per-energy O&M is set.
+revenue.subsidy (amount, duration, cap, capacity): no subsidy is given for this case.
+
+Two catalogue rows are marked secondary and rest on a basis the user should be aware of: the circulation-pump capex row is EUR/W of heat set as EUR/W of shaft power (not converted), and the ice-storage capex row is EUR/MWh of cold set as EUR/MWh of energy capacity.
+
+No value of the case's time, site, demand, utilities or requirements was changed, and no requirement was dropped or loosened. The case is ready for a design.
+
+Copy
+Use the EU ETS average spot price of 2025 from ESMA in the cost catalogue as the carbon price.
+18:53
+Copy
+
+Waiting for your answer below
+
+Steps so far (11 steps)
+Approval needed
+
+Allow "Set case" to change the project?
+
+Change the case: about.sources.carbon.price.basis, about.sources.carbon.price.row, about.sources.carbon.price.source, about.sources.carbon.price.status, about.sources.carbon.price.url, about.sources.carbon.price.year and 1 more.
+
+What the call sends:
+
+{
+  "changes": {
+    "about": {
+      "sources": {
+        "carbon.price": {
+          "basis": "the row's unit is EUR/t CO2e; set as EUR/t, which the key reads per tonne of CO2-equivalent emitted; value_2015 57.4757 EUR/t (74 EUR/t of 2025 x HICP 2025->2015), price year 2015 unchanged",
+          "row": "carbon-price-eu-ets-esma-price-2025",
+          "source": "EU Carbon Markets 2026 (ESMA50-481369926-34622), European Securities and Markets Authority (ESMA)",
+          "status": "verified",
+          "url": "https://www.esma.europa.eu/sites/default/files/2026-07/ESMA50-481369926-34622_Carbon_markets_report_2026.pdf",
+          "year": 2026
+        }
+      }
+    }
+  },
+  "economics": {
+    "carbon": {
+      "price": {
+        "unit": "EUR/t",
+        "value": 57.4757
+      }
+    }
+  }
+}
+Reason or change (optional)
+
+To change a value, write what to change here and press Deny: the assistant gets your words and proposes again.
+
+Approve
+Deny
+Auto-approve
