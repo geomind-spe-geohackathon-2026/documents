@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 19:27 UTC |
 | Versions | backend 1.1.122 |
 | Where | project "QA-TEST QA-E2E-economics-I 12"; run 72d93b9f-b095-47e4-966f-2b81fb739b2e; analysis_lead steps 3-7 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -56,4 +56,5 @@ of the site's region. Or route "economics please" to the case lead like "set up 
 
 ## Fix
 
+- 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
