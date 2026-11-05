@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-plant-I |
@@ -44,3 +44,4 @@ hotfix-front-III, frontend 1.1.105 (ff351c7), deployed 14:35 UTC (bundle index-C
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 14:36 UTC: live 1.1.105 at 1280x577: composer visible under the approval card, Cancel run hit-testable, click sends POST /assistant/runs/592f3730.../cancel (intercepted in the test, run not cancelled)
