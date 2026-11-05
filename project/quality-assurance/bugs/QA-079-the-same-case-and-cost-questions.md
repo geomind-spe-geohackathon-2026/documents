@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | frontend |
 | Reporter | functional-qa-2 |
@@ -42,3 +42,4 @@ Guess: the nested leads (case_lead, design_lead) restart and re-ask because the 
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 05:32 UTC: geomind.team 1.1.76 (index-COisYh18.js), Playwright 05:35 UTC: chat of run 6921d00e, 'Show its steps': 3 'You answered' lines for the 3 questions, each once (was 7); request-2074 no longer reads 'You answered'
