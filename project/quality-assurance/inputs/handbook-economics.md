@@ -36,6 +36,11 @@ rest of the case: `knowledge/handbook-case.md`. Reporting the numbers:
 | 17 | Full worked example on invented numbers | 17.1 |
 | 18 | Lessons from practice (QA): source order, units, basis, stale results, sizing | 18.1 |
 | 19 | Finding a value the catalogue lacks (other countries, grid CO2, chillers, GCV) | 19.1 |
+| 20 | Subsurface economics: depth, flow, doublet count, exploration risk | 20.1 |
+| 21 | Matching technology to the load: load duration, screening curves, base and peak | 21.2 |
+| 22 | Heat pumps against boilers: COP, cost and CO2 break-even | 22.2 |
+| 23 | Cooling economics: compression, absorption, free cooling | 23.2 |
+| 24 | Thermal and ice storage economics | 24.3 |
 
 ---
 
@@ -2407,6 +2412,71 @@ it rejects, not from its range maximum (§18.7).
 
 ---
 
+## 24. Thermal and ice storage economics
+
+### 24.1 What storage buys
+
+Storage moves energy in time. Its value comes from three effects (Frederiksen and Werner 2013;
+ASHRAE Handbook, thermal storage):
+
+1. **Running cost**: heat or cold made in hours when the cheap unit has spare capacity replaces
+   heat or cold the dear unit would make at the peak.
+2. **Capacity**: the peak unit (boiler, chiller) can be smaller; often it stays for backup, so
+   count this only when a source or requirement allows a smaller backup.
+3. **Full-load hours**: the base unit runs more hours, which lowers its cost per MWh (§21.2).
+
+Against this stand capex, heat losses and the pumping of the charge and discharge.
+
+### 24.2 How much energy a volume holds
+
+- Sensible heat in water: `E = rho c V dT`; per m3, `4.18 MJ/(m3 K) x dT`. At `dT` 40 K:
+  0.0464 MWh/m3. The usable `dT` is the supply minus the return temperature of the network,
+  so low return temperatures make every tank larger in effect.
+- Ice: latent heat of fusion 334 kJ/kg, about 0.085 MWh per m3 of ice, about seven times a chilled-water
+  tank at `dT` 10 K (0.0116 MWh/m3). But ice must be made by a chiller running at a lower
+  evaporating temperature, with a lower COP (ASHRAE Design Guide for Cool Thermal Storage,
+  Dorgan and Elleson 1993).
+
+### 24.3 Cost per MWh stored: cycles decide
+
+Annualised capex divided by the energy delivered from the store:
+`c = I x CRF / (E_capacity x cycles per year)`.
+
+Worked example with the catalogue's DEA size points (EUR 2015; `thermal-storage-tank-dea-2025-
+3000m3` 168.6 EUR/m3, `thermal-storage-pit-dea-2025-70000m3` 64.85 EUR/m3), `dT` 40 K, CRF 0.07095:
+
+| Store | Capex | Capacity | Cycles/yr | EUR per MWh delivered |
+|---|---|---|---|---|
+| Tank 3 000 m3, daily | 0.506 MEUR | 139 MWh | 250 | 1.0 |
+| Pit 70 000 m3, seasonal | 4.54 MEUR | 3 251 MWh | 1 | 99 |
+
+A pit is far cheaper per m3, but a seasonal store cycles once a year, so each MWh it delivers
+carries a hundred times the capital. Seasonal storage pays only where summer heat is nearly free
+(idle geothermal capacity, waste heat) and the winter alternative is dear.
+
+### 24.4 Worked example: a daily store that shaves a peak
+
+Invented: on 100 cold days a 4 MW peak above the base unit lasts 3 hours (12 MWh/day); the base
+unit has spare capacity at night. Store: `12 / 0.0464 = 259 m3`, with margin 285 m3 at
+400 EUR/m3 (a small tank costs more per m3 than the 3 000 m3 point) = 0.114 MEUR, annualised
+8.1 kEUR/yr. Shifted energy 1 200 MWh/yr from the boiler (45.4 EUR/MWh) to the base unit
+(10 EUR/MWh): 42.5 kEUR/yr saved, less losses (a few per cent). The store pays back in about
+three years even if the boiler stays for backup; if the backup rules allow a 4 MW smaller
+boiler, it pays at once.
+
+Checks: the base unit really has spare capacity in the charging hours (from the simulated
+profile, not assumed); the store's `dT` matches the network temperatures; losses are counted.
+
+### 24.5 In gemini and geomind
+
+Kinds `thermal_storage` (per m3 or per MWh) and `ice_storage` (priced only when its capex is
+given) (§16.2); fixed O&M rows in §0.4.2. gemini simulates charge and discharge on the case's
+time step: a daily-mean step cannot show a store that shifts within the day (§21.1). Compare a
+design with and without the store in one study (handbook-studies 5); cost the store's effect,
+never its capex alone.
+
+---
+
 ## Appendix A. Symbols and formulas
 
 | Symbol | Meaning | Unit |
@@ -2500,6 +2570,8 @@ handbook.
   towers, thermal storage; chapters 23 and 24; latest edition).
 - Herold, K. E., Radermacher, R. and Klein, S. A. (2016), *Absorption Chillers and Heat Pumps*,
   2nd ed., CRC Press (section 23.1).
+- Dorgan, C. E. and Elleson, J. S. (1993), *Design Guide for Cool Thermal Storage*, ASHRAE
+  (ice and chilled-water storage; chapter 24).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
