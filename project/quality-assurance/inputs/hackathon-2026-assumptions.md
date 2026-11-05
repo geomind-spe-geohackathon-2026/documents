@@ -10,7 +10,7 @@ every value the case and the economics need that the three competition files
 `knowledge/hackathon-2026-assumptions.md`. The case lead puts these values in its ONE
 confirmation question (case values) and its ONE `ask_economics` call (economics), each with this
 file as the source; after the user approves them they are never asked again. How each value goes
-into the case: `knowledge/hackathon-2026-case-guide.md`.
+into the case: `knowledge/handbook-case-definition.md`, chapter 12.
 
 Each value says where it comes from:
 - **Organisers**: answers of the organisers on Discord #technical-q-and-a, 2026-11-04.
