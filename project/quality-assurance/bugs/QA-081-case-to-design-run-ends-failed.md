@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | backend |
 | Reporter | functional-qa-3 |
@@ -34,6 +34,15 @@ A stored plant and results, or a plain statement of what blocked it; a run cut b
 - ![screenshot](../evidence/QA-081/1.png)
 - Run JSON (gzip, 36 MB unpacked): `../evidence/QA-081/run-bd7aa40e.json.gz`; live view at failure: `../evidence/QA-081/live-3757-steps.png`
 
+
+## Retest / second occurrence (functional-qa-3, 2026-11-05 07:23 UTC, backend 1.1.76, geomind 0.4.72)
+
+Run 753645c0 (same chat, started 06:06:59 UTC, 'simpler plant' request) ended **failed** at 07:22:31 UTC after 212 steps, 7.77M tokens in, while energy_systems_engineer (step 6, parent design_lead) was working, with the exact chat text:
+
+> Run failed: resume: request = 'request-1124'; it is unknown or already answered
+
+(geomind's own refusal, so this is the new geomind_refused path.) No deploy was announced at that time (1.1.76 went live at ~07:00 UTC; no newer backend commit), so some worker restart resumed the run and geomind refused the resume. The run had three answered questions (ESP curves, dew point 2 K, chiller O&M) behind it; the user's answers were all given at 06:5x UTC, so 'request-1124' is probably the last, already answered question. Work kept: the design simple_sized and its studies are stored. Evidence: `../evidence/QA-081/run-753645c0.json.gz`, `../evidence/QA-081/2-resume-refused.png`. A 'go on' follows.
+
 ## Cause
 
 Guess: the worker restart of the 1.1.73 deploy (05:26 UTC) ended the run as failed instead of resuming it (QA-035 regression), or the run hit an uncaught error after the refused dew_point_margin patch. The log of the worker at 05:25:47 UTC decides.
@@ -59,6 +68,7 @@ Guess: the worker restart of the 1.1.73 deploy (05:26 UTC) ended the run as fail
 - 2026-11-05 05:33 UTC: backend part in 1.1.74 (1b10ed7): refusals named geomind_refused and logged; the run was resumed at 05:00. Counter inflation is hotfix-front's (dedupe by event id). See Fix.
 - 2026-11-05 05:34 UTC: part (b) by hotfix-front: frontend 1.1.77 (f64dc8d), pushed, build checked, deploy at 06:00 UTC. streamEvents (shared/sse/stream.ts) passes each stored event once by its id, so a reconnect that replays from the start no longer re-counts steps (3757 for 261). Events without an id (text.delta, retry) pass as before.
 - 2026-11-05 06:01 UTC: frontend part deployed: 1.1.77 (f64dc8d), 06:00 UTC
+- 2026-11-05 07:23 UTC: functional-qa-3: second occurrence 07:22 UTC on 1.1.76, geomind refused the resume: request-1124 unknown or already answered (see Retest section)
 ## Retest
 
 (Who, when, result.)
