@@ -5,7 +5,8 @@
 
 Version 4, 2026-11-05. General, for any case and any site: a textbook of plant design and of how
 to do it in gemini. It holds no data of a particular case; chapter 12 works its lessons on an
-invented case. Checked against gemini 0.6.17 and the geomind design prompts.
+invented case. Checked against gemini 0.6.17 and the geomind design prompts; 11.5 and chapter 13
+rechecked against gemini 0.6.34.
 
 **How to use this handbook** (front matter; the chapters start at 0)
 
@@ -106,7 +107,7 @@ Answer the questions in order; the first answers narrow the families, the later 
 | D. Heat pump boost + all chillers | as B, and each chiller covers a distinct part of the cold load | `HeatingCoolingPlant` | 7.7, 7.8 |
 | E. Direct use + all chillers | as A with D's cooling | `HeatingFullCoolingPlant` | 7.7, 7.8 |
 | F. Hybrid with gas use | co-produced gas substantial: burn it for heat or power, flare only the surplus | none: built from modules and connections | 5.5, 5.6 |
-| G. Boiler + CHP on the secondary side | co-produced gas substantial, no cooling | `BoilerCHPPlant` | 5.5, 6.6 |
+| G. Boiler + CHP on the secondary side | co-produced gas substantial, no cooling | `BoilerChpPlant` (does not run a year, 11.5: tell the user, compare the families that run) | 5.5, 6.6 |
 | H. Low-temperature aquifer with heat pump | low-temperature reservoir | `ATESPlant` | 6.4, 6.7 |
 | I. District energy on an aquifer store | heating and cooling networks on one store | `DistrictEnergyPlant` | 6.7, 7.7 |
 
@@ -1200,7 +1201,7 @@ how to provide redundancy.
 | D | Heat pump boost + all chillers | as B | absorption + adsorption + compression | `HeatingCoolingPlant` |
 | E | Direct use + all chillers | as A | absorption + adsorption + compression | `HeatingFullCoolingPlant` |
 | F | Hybrid with gas use | as B or C, boiler/CHP burns co-produced gas first, surplus flared, desander and inhibitor | absorption | none: a plant built from modules and connections  |
-| G | Boiler + CHP on the secondary side | doublet → exchanger → boiler + CHP | none | `BoilerCHPPlant` |
+| G | Boiler + CHP on the secondary side | doublet → exchanger → boiler + CHP | none | `BoilerChpPlant` (one operating point only, 11.5) |
 | H | Low-temperature aquifer with heat pump | well pair → exchanger → heat pump | cooling exchanger | `ATESPlant` |
 | I | District energy on an aquifer store | heating and cooling networks on one store | store | `DistrictEnergyPlant` |
 
@@ -1554,22 +1555,25 @@ one [skill `designing-a-plant`].
 ## 11.5 Plant classes: the templates
 
 `gm.plants.names()` lists the classes; `list_plants` shows them with the project's own plant files
-[skill `designing-a-plant`]. The classes in gemini 0.6.17 [gemini: `gemini/plants/*.py`]:
+[skill `designing-a-plant`]. The classes in gemini 0.6.34 [gemini: `gemini/plants/*.py`]. **Runs a year** says whether
+`gm.schedule` can run the class against a case's demand series; a class marked no is solved at
+one operating point and is not a design for a year-long case (its docstring says "Not
+schedulable"):
 
-| Class | What it is |
-|---|---|
-| `HeatingPlant` | doublet, exchanger, peak boiler and the heating consumer |
-| `HeatingHeatPumpCoolingPlant` | heat pump heating with a peak boiler, and a compression chiller |
-| `HeatingAbsorptionCoolingPlant` | heating with a peak boiler and an absorption chiller on the hot water |
-| `HeatingCoolingPlant` | integrated heating and cooling on a geothermal doublet (heat pump, three chillers) |
-| `HeatingFullCoolingPlant` | heating with all three chillers: every unit but the heat pump |
-| `DoubletHeatPlant` | the measured doublet and its surface equipment: filters, degasser, exchanger, pump |
-| `BoilerCHPPlant` | nodal doublet with an exchanger, a boiler and a CHP on the secondary network |
-| `ParallelExchangerPlant` | nodal doublet with three parallel exchangers on one secondary network |
-| `ATESPlant` | low-temperature ATES: well pair, well pump, cooling exchanger and heat pump |
-| `DistrictEnergyPlant` | a district heating and a district cooling network on an aquifer store |
-| `DistrictNetwork`, `HeatingSubstation`, `CoolingSubstation` | networks and building substations |
-| `Doublet`, `NodalDoublet`, `MultiWellPlant` | building blocks for the subsurface side |
+| Class | What it is | Runs a year |
+|---|---|---|
+| `HeatingPlant` | doublet, exchanger, peak boiler and the heating consumer | yes |
+| `HeatingHeatPumpCoolingPlant` | heat pump heating with a peak boiler, and a compression chiller | yes |
+| `HeatingAbsorptionCoolingPlant` | heating with a peak boiler and an absorption chiller on the hot water | yes |
+| `HeatingCoolingPlant` | integrated heating and cooling on a geothermal doublet (heat pump, three chillers) | yes |
+| `HeatingFullCoolingPlant` | heating with all three chillers: every unit but the heat pump | yes |
+| `DoubletHeatPlant` | the measured doublet and its surface equipment: filters, degasser, exchanger, pump | yes |
+| `BoilerChpPlant` | nodal doublet with an exchanger, a boiler and a CHP on the secondary network | no |
+| `ParallelExchangerPlant` | nodal doublet with three parallel exchangers on one secondary network | no |
+| `ATESPlant` | low-temperature ATES: well pair, well pump, cooling exchanger and heat pump | no |
+| `DistrictEnergyPlant` | a district heating and a district cooling network on an aquifer store | no |
+| `DistrictNetwork`, `HeatingSubstation`, `CoolingSubstation` | networks and building substations | no |
+| `Doublet`, `NodalDoublet`, `MultiWellPlant` | building blocks for the subsurface side | no |
 
 A class is read without values: every parameter it needs is an `issue` until filled. Fill them
 from 0.7 and the engineers' proposals (0.1, steps 3 to 5); a project's own plant file, when one
