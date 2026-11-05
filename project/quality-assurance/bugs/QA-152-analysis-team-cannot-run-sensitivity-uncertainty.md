@@ -130,3 +130,12 @@ so, and the lead should not re-delegate the same refused call.
 ## Retest
 
 - 2026-11-05 17:22 UTC: retest QA-AI-analysis-I 17:22 UTC backend 1.1.105: sensitivity and sample on project plant at first try, numbers equal page studies
+
+### Retest (QA-E2E-study-I, 2026-11-05 18:28 UTC, web chat)
+
+Passes. Project `QA-TEST QA-E2E-study-I 2` (8eabf827-1f43-4cf8-86a4-39147bea32a0), run
+82efd097-010c-451a-a01b-eeb6eea18f5a: "How sensitive is the cost of thermal supply of the stored
+plant version 2 to the discount rate and the electricity price? Rank them." -> 1 min 24 s, 15
+steps, 23 calls, 0 refused, 0.007 USD; `sensitivity` on `design/v2` with both values; discount rate
+7.51 > electricity 4.05 EUR/MWh (the electricity effect equals round 1's on the same plant, 4.047).
+A page reload during the run kept the live step list. Figures still 15 digits (QA-099).
