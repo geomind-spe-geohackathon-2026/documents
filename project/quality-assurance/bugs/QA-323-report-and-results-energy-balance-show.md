@@ -31,3 +31,5 @@ Report energy table of a plant with produced gas: boiler no longer above 100%.
   less gas bought) 18.77 GWh" beside "Gas bought 11.72 GWh"; the text says "The plant burns 30.49 GWh of fuel on site:
   11.72 GWh of gas bought and 18.77 GWh of gas produced with the brine." Verified.
 - 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:59 UTC: produced gas burned in table and text
+
+QA-E2E-report-I, 2026-11-05 20:05 UTC, backend 1.1.125, https://geomind.team/projects/0e44cb05-6096-434e-95ee-56b434898015/design/report, result 'simulation HeatingAbsorptionCoolingPlant' (plant v2, case v3), page and Export PDF (21 pages, `../evidence/QA-313/retest-report-v2.pdf`): Table 4.1 Energy balance now lists 'Fuel burned on site 85.37 GWh' and 'Produced gas burned (fuel burned less gas bought) 20.18 GWh' beside gas bought 65.19 GWh and boiler heat 76.83 GWh; text: 'The plant burns 85.37 GWh of fuel on site: 65.19 GWh of gas bought and 20.18 GWh of gas produced with the brine.' Boiler heat / fuel = 76.83 / 85.37 = 0.90, the boiler's efficiency 0.9. Same in the PDF. Verified (flared gas is not listed; small).
