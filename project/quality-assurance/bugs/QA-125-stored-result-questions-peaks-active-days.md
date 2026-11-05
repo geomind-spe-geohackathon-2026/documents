@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-simulation-I |
@@ -37,7 +37,7 @@ Guess: no tool returns a series summary (count of non-zero steps, peak with its 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:28 UTC: geomind 0.4.86 (read_result series summary + module operation), backend 1.1.89, deployed 14:27 UTC
 ## Retest
 
 (Who, when, result.)
