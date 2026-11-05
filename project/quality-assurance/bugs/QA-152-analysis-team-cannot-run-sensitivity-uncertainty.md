@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -126,3 +126,7 @@ so, and the lead should not re-delegate the same refused call.
   3.40 EUR/MWh) and p5/p50/p95 37.97/46.10/54.31 EUR/MWh equal the page `sample` study with seed 42.
   Whole run 1 min 56 s, 0.0066 USD, 0 refused study calls. Verified. Log:
   `../evidence/QA-152/run-7a70bf41-retest-log.json`.
+
+## Retest
+
+- 2026-11-05 17:22 UTC: retest QA-AI-analysis-I 17:22 UTC backend 1.1.105: sensitivity and sample on project plant at first try, numbers equal page studies
