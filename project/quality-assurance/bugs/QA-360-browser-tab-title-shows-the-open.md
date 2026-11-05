@@ -17,7 +17,7 @@
 
 ## Expected
 
-Tab title '<project name> · GeoMind' inside a project (optionally with the page first); 'GeoMind' on pages outside a project.
+Tab title 'Geomind · <project name>' inside a project (Sahand's order, screenshots 1 and 2); 'Geomind' outside a project.
 
 ## Actual
 
