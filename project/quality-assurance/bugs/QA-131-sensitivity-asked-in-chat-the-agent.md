@@ -34,4 +34,7 @@ Guess: the analysis lead does not use (or does not have) the sensitivity study, 
 ## Fix
 
 - 2026-11-05 14:38 UTC: geomind 0.4.88 (sensitivity values=; ranges into the case with set_case then sensitivity, never run_python), backend 1.1.92, deployed
+
+Cause: gemini's sensitivity moves the values the case declares an `uncertainty` for; the case declared none for the four drivers, the economist has no `set_case`, and nothing told the lead to write the user's ranges into the case, so it hand-coded run_python, which cannot load a stored design, case or result. Fix: `sensitivity` takes `values` (only the named case paths move; an undeclared one is an error listing the declared ones and the set_case form); the economics skill and the analysis lead's rules give the path: `set_case(economics={key: {uncertainty: {kind: uniform, min, max}}})` with the user's ranges (merge patch, values and sources stay), then the economist's `sensitivity(values=[...])`; never run_python.
+
 ## Retest
