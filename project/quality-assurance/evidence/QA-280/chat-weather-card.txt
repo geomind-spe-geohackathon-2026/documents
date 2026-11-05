@@ -1,0 +1,51 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA-TEST QA-E2E-economics-I 7
+Overview
+Library
+Runs and logs
+Chats
+Our plant will be built in Trondheim, Norway, and will be…
+needs your input · 19:10
+AD
+Administrator
+admin
+Projects
+QA-TEST QA-E2E-economics-I 7
+Chat
+1 run active
+Design
+Chat
+Our plant will be built in Trondheim, Norway, and will be financed by the municipality. Set up the economics with Norwegian prices where they differ.
+19:10
+Copy
+
+Waiting for your answer below
+
+Steps so far (117 steps)
+
+The historical archive call keeps crashing. Let me try a shorter window.
+
+Approval needed
+
+Allow "Saved a connector table to the case" to change the project?
+
+What the call sends:
+
+{
+  "answer": "mcp-b1c5e0a552b762cc",
+  "table": "structured.daily",
+  "file": "data/open-meteo_trondheim_2027_projection.csv"
+}
+Reason or change (optional)
+
+To change a value, write what to change here and press Deny: the assistant gets your words and proposes again.
+
+Approve
+Deny
+Auto-approve
