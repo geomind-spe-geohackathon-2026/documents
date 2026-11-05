@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 10:18 UTC |
 | Versions | frontend 1.1.84 |
 | Where | https://geomind.team, any page, the browser tab |
-| Fixer | |
+| Fixer | hotfix-front-II |
 
 ## Steps
 
