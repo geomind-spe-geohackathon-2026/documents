@@ -6,32 +6,62 @@
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
-| Found | 2026-11-05 17:41 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 17:42 UTC |
+| Versions | backend 1.1.104-1.1.106 during the run (geomind 0.4.98-0.4.106; the run resumed over deploys), frontend bundle index-TsXgd_n9.js |
+| Where | https://geomind.team/projects/0e44cb05-6096-434e-95ee-56b434898015/assistant/chat/b31664b0-44c2-4d20-9ee7-987f592b5aff; run 3f8270d5-b11e-4c86-b3ca-b0b4d4feb61c; project_lead finish calls 17:22-17:39 UTC |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. QA-165 steps (report request on a project with plant v1/v2 and a page simulation of v1).
+2. The design lead builds `design/v1` from `read_plant(plant_version=1)` and simulates it
+   (`result/9b0db55da13a4a5b`, later `result/9d5039b3a5919695`); the reviewer records
+   `verification.result` and gemini's verdict: feasible, 15/15 passed.
+3. The project lead calls `finish` with the report.
 
 ## Expected
 
+`finish` accepts: the result was simulated from `design/v1` itself, in this run, on the current case.
+
 ## Actual
+
+`finish` refuses 3 times (lines 661, 745, 792 of the steps file):
+`verification: result/9b0db55da13a4a5b is stale: it ran another plant than design/v1; simulate
+the current design and check it` and then the same for the second fresh simulation
+`result/9d5039b3a5919695`. The leads re-simulate and re-review again (design_lead, reviewer
+called 3-4 times each), then the project lead hits its 30-step limit and asks the user
+"the run took its 30 steps; continue with 30 more, or stop?" (QA-086 was fixed for the design
+lead; here it is the project lead). The final answer opens with a caveat that "the app's own
+finish check keeps rejecting the stored result".
+
+Speed and cost of the whole report request: 16:51:19 to 17:39:57 UTC = 48.6 min, 349 steps,
+5.44 M input tokens, ~0.15 USD (run.usage). Of this ~17 min (17:22-17:39) are this loop.
+Accuracy: the final numbers are right (equal to the page study of v1 to every digit:
+CAPEX 34.636 MEUR, LCOH 43.753, LCOC 51.445, LCTS 45.102 EUR/MWh, CO2 13.774 kt).
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-233/1.png)
-- Run JSON: `../evidence/QA-233/run-<id>.json`
+- ![question card after the loop](../evidence/QA-233/1.png)
+- Run steps: `../evidence/QA-233/run-3f8270d5-steps.txt` (search "stale")
+- Final chat answer text: `../evidence/QA-233/chat-answer.txt`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact: the message comes from `geomind/verify/design.py` `verify_design`:
+`plant.to_dict(structure=True) != context.session.load_artifact(design)`.
+Guess: for a design built from a project plant version (`read_plant(plant_version=1)` with
+`null` fluid fields, QA-167), the stored `design/v1` artifact and the plant gemini rebuilds from
+the run differ in form (nulls, defaults filled, key order of fluids/params), so the equality
+never holds even for the same plant.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+Proposal (geomind, hotfix-python): compare a canonical form (both sides through
+`gm.Plant.from_dict(...).to_dict(structure=True)`) or a digest stored with the result at
+simulate time (`{result}.design` = the design reference and its digest), and test it with a
+design built from a project plant version. Also: the project lead should not hit a 30-step
+ask on a report (raise its budget or drop the ask with Auto-approve, as QA-086 did for the
+design lead).
 
 ## Retest
 
