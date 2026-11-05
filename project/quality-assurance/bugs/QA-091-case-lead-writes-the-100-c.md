@@ -42,6 +42,7 @@ overcools to 10 °C), dispatch 'always_on' (refused). The run is in its fourth r
 - Postgres read-only: case_versions of project 61134432 (number 10, requirements); run_events of
   run 3bdd7ebb (simulate at sequence 4351, design lead's summary at 4528, project lead's new task at 4542).
 - gemini/examples/hackathon_2026/README.md lines 59-60 and the requirements table.
+- Organisers' answer (Discord #technical-q-and-a, pejman.shoeibi, 2026-11-04 15:08, to Amaechi): "330 days availability of the geothermal source not of the full system. Full system should be able to supply the demand in 365 days." So heat/cold delivered over all 365 days is a requirement of the brief; the 330 days limit only the doublet. ![organisers](../evidence/QA-091/organisers-365-days.png)
 
 ## Cause
 
