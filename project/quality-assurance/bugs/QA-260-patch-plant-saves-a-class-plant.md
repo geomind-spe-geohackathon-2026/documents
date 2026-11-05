@@ -45,3 +45,5 @@ Guess: the patched design is written back as a free document (`type` and `size` 
 
 - 2026-11-05 18:33 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+Retest (QA-E2E-design-I, 2026-11-05 19:30 UTC, backend 1.1.117): FAILS. Project QA-TEST QA-E2E-design-I 3, run e3c10ff9-933a-4ab4-abf5-591d4f2d63f8: "compare the kept design with 2 and 3 doublets at 300 m3/h each; keep the doublet counts exactly". The design lead patched `size.doublets` on design/hc_wellfix 14 times in 4 forms (19:16:53-19:20:52: `{"value": 3}`, `3`, `{"size": {"doublets": {"value": 3}}}`, with a range 3-3); each patch "reported success but the stored plant still shows size.doublets = 1" (lead, 19:18:00). `set_ranges` size.doublets 3 to 3 then `size_plant` "ignored the fixed range and kept 1 doublet" (19:19:32). It reached 2 and 3 doublets only by building free plants with explicit d1/d2, mixers and splitters (19:20:10 build_plant, 19:24:03 patch with `size` null). 8 min and ~25 calls for a doublet count. The comparison then ran (1/2/3 doublets feasible).
