@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -51,3 +51,5 @@ geomind `tools/mcp.py` (`save_mcp_table`): compare zones by their offset or IANA
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 20:55 UTC, QA-AI-case-I, run ef324318 (project QA-TEST QA-AI-case-I 17): `save_mcp_table(..., time_zone='UTC')` on an open-meteo answer is accepted at the first call. Verified.
+- 2026-11-05 20:48 UTC: QA-AI-case-I, geomind 0.4.132
