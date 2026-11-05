@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 20:09 UTC |
 | Versions | live 2026-11-05 21:09 Trondheim |
 | Where | geomind.team sidebar, Chats list, the dot before a chat's name |
-| Fixer | |
+| Fixer | front-m2 |
 
 ## Steps
 
