@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -64,3 +64,4 @@ for a distribution; the assumptions document puts the ranges in a separate table
   economics.json holds uncertainty on discount_rate (normal std 0.01, 0.02-0.08), electricity (uniform 80-140), gas
   (triangular 25-70) and carbon.price (triangular 30-110), as the reference. 2 min 10 s, 0.0079 USD. Verified.
   Log: `../evidence/QA-259/run-59cc8385-retest-log.json`.
+- 2026-11-05 19:56 UTC: retest QA-AI-analysis-I 19:55 UTC backend 1.1.124: ranges offered and written
