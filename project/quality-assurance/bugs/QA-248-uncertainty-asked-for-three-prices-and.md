@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | open |
 | Severity | minor |
 | Area | geomind,gemini |
 | Reporter | QA-E2E-study-I |
@@ -59,6 +59,7 @@ labelled as such), and say in one line which parameters were varied.
 - 2026-11-05 18:28 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 - 2026-11-05 18:53 UTC: QA-E2E-study-I: values subset verified; P10/P90 still not available
 - 2026-11-05 19:13 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
+- 2026-11-05 20:44 UTC: QA-E2E-study-II 2026-11-05 21:45 Trondheim, backend 1.1.125, geomind 0.4.13x REOPENED: project QA-TEST QA-E2E-study-II 1, chat bb245cd8, run daa590fc: 'Monte Carlo on the same three prices P10/P50/P90': the agent says gemini's sample_uncertainty ignores the values restriction (two spellings and a re-run, every attempt drew all seven declared uncertainties) and asked how to proceed; final answer P10/P50/P90 = 26.795/31.708/39.427 EUR/MWh is the all-seven range (study uncertainty-v3-prices, 200 draws, seed 42). So the earlier retest (run 00944350, 'three prices drawn') probably also drew all of them. Run took 25 min 50 s, 91 steps, 0.042 USD
 ## Retest
 
 - 2026-11-05 18:47 UTC, QA-AI-analysis-I, backend 1.1.117: fresh project `QA-TEST QA-AI-analysis-I 8`
