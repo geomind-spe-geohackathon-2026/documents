@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind,gemini |
 | Reporter | Fatemeh (asked for the run review), Claude (DB read and write-up) |
@@ -35,4 +35,5 @@ Fact: a free plant has no `size.doublets`; the doublet count lives on class plan
 
 ## Fix
 
+- 2026-11-05 14:28 UTC: gemini 0.6.15 (free plant takes size.doublets, resize joins copies) + geomind 0.4.87 skill (no silent drop, handbook ch 10/11), backend 1.1.89, deployed 14:27 UTC
 ## Retest
