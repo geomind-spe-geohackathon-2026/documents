@@ -1467,6 +1467,10 @@ When cost and CO2 pull in different directions:
 24. **Costing an old result after a price change** and expecting new numbers (§18.5).
 25. **An unsized capacity paid at its range maximum** (§18.7).
 26. **A riser and a well drilled as two short holes** instead of one path (§2.2).
+27. **A user price of today written into a case in older prices unconverted** (§18.11).
+28. **8 for 8 %** in a rate or share (§18.11).
+29. **A national row for a case of another country, or of none** (§18.12).
+30. **Costing the latest plant instead of the one discussed** (§18.13).
 
 ---
 
@@ -1857,6 +1861,52 @@ answer says so (`handbook-studies` 3.1).
 An economics request that names a place asks for prices of that place, not for new site physics
 (ground, air). If site values would also change, ask once and wait; do not start a site survey
 (QA-280). Stop searching when Knowledge has no source for the region and say so.
+
+### 18.11 Fractions, percents and price years in a value
+
+- A rate, share or fraction is a number without unit: 8 % is `0.08`, never `8` (QA-120). The same
+  holds for `heat_cost_share` (0.87) and for gas composition given as fractions; a composition in
+  mol % must add up to 100, as fractions to 1 (QA-063).
+- A price the user gives is in the year the user means (usually today's money). Before it enters
+  a case in 2015 prices, convert it with the HICP (§4.2) and write both numbers in the source
+  ("user: 120 EUR/MWh in 2026 money, x 100/HICP(2026) = ..."); never write a 2026 number into a
+  2015 case unchanged (QA-041). If the HICP of the year is not yet published, ask or use the last
+  published year and say so.
+
+### 18.12 What the user said wins over the catalogue
+
+- A user who says "no subsidy" gets no `revenue.subsidy` keys, not a catalogue scheme (QA-084).
+- Country-specific rows (a national tariff, a national subsidy) fit only a case in that country.
+  A case with no site country gets general (EU) rows or the question "which country?", and every
+  national row is labelled with its country (QA-085, QA-041).
+- What the user approved is what is written: the values of the approved card, not a re-pick
+  (QA-168). A value the user changes takes the user as its source and drops the old source
+  (QA-186, QA-305).
+- Case changes the user approved are the user's case; a reviewer does not reject a design because
+  the case differs from the first version (QA-317).
+- With auto-approve on, nothing is asked: the proposed answer is taken and said (QA-339).
+
+### 18.13 Cost the right result
+
+- Name the plant version and result you cost. A `simulate` without a design runs the latest
+  plant, which may not be the one discussed (QA-166). A what-if run is not the chosen design
+  (QA-223).
+- A report on "the design" compares every plant version of the project, not only the latest
+  (QA-337); the feasible one with the lowest LCTS or highest NPV is recommended (§14.2).
+- A plant that leaves a demanded service unmet is infeasible, however low its LCTS (QA-239,
+  §0.1 rule 4).
+- Cost once and quote: one `estimate_costs` per result answers capex, opex, LCOH, LCOC, LCTS, NPV,
+  payback and CO2 together; re-reading the case and the same output again adds nothing (QA-159).
+
+### 18.14 When a tool fails or a memory disagrees
+
+- A tool error is reported as it is ("estimate_costs failed: ..."), with the numbers that did come
+  back; a missing NPV is never filled by hand (QA-275).
+- The tool's answer of today beats a claim in the conversation or the project state written
+  earlier (QA-346: an old "gemini returns no P10/P90" outlived the fix). When the two disagree,
+  call the tool and believe it.
+- A question the user already answered is not asked again in the same run (QA-079); read the
+  answer from the case.
 
 ---
 
