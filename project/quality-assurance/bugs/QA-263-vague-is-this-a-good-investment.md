@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -65,7 +65,7 @@ and the gradient is a physical parameter. The Monte Carlo in the same answer did
   EUR/MWh: equal to the page study 957c9714 row for row; the answer says "the ground temperature gradient drives the
   LCTS most" and that six values were moved. Verified.
   Logs: `../evidence/QA-263/run-0e4bfd2f-retest-log.json`, `run-486f038f-retest-log.json`.
-
+- 2026-11-05 19:00 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 - 2026-11-05 18:49 UTC: retest QA-AI-analysis-I 18:48 UTC backend 1.1.117: all six drivers, ranking equals page study
