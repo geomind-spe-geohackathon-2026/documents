@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
 | Found | 2026-11-05 09:18 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
 | Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 1. Open Runs and logs for a run with nested agents (project 61134432, run 3bdd7ebb).
