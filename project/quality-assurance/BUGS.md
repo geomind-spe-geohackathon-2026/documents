@@ -142,3 +142,4 @@ wont-fix, duplicate.
 | [QA-134](bugs/QA-134-cancel-run-does-nothing-while-the.md) | fixed | minor | frontend | Cancel run does nothing while the run waits for an approval; Deny first is needed | functional-qa-plant-I | hotfix-front-III |
 | [QA-135](bugs/QA-135-overview-and-design-show-study-and.md) | fixing | minor | frontend | Overview and Design show Study and Results 'Out of date' on a freshly seeded project, and still after a fresh full-year run of the stored plant | functional-qa-study-I | hotfix-back-III |
 | [QA-136](bugs/QA-136-report-agent-log-and-tokens-raw.md) | verified | minor | backend | Report, Agent log and tokens: raw figures (Input tokens 14837406, Cost 0.45972432399999985) | hotfix-front-III | hotfix-back-III |
+| [QA-137](bugs/QA-137-plant-and-case-history-dialog-leaves.md) | open | minor | frontend | Plant and Case History dialog leaves a large empty area under the version table and under a version's changes | user via coordinator |  |
