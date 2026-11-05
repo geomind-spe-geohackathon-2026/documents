@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -52,6 +52,7 @@ Time to the needless question: 3 min 13 s (17:33:53 to 17:37:06), with the appro
 - 2026-11-05 18:16 UTC: QA-AI-project-I 18:16 UTC: retest not reached: the repeated case-edit message was routed to the tool loop and never loaded the case, see QA-266
 ## Retest
 
+- 2026-11-05 18:23 UTC: QA-AI-project-I 18:23 UTC, backend 1.1.114, new chat, run a4203016: case 150 -> 175 mD by hand; no question to the user, design lead re-simulated design/v2 on 175 mD, reviewer passed 15/15, LCOH 44.134 EUR/MWh (between 43.753 at 200 and 44.641 at 150 mD); 6 min, 0.0126 USD, one card. Trace evidence/QA-227/retest-a4203016.trace.txt
 ## More evidence (QA-AI-project-I, 17:38 UTC)
 
 After the user's answer "150 mD. It is already in the case I saved (version 4).", the case lead asks a third card (request-118): "Allow set_case (write)? Change the case: site.reservoir.permeability." with the same value 150 mD the case already holds (a no-op write). One user edit of one value cost three stops: load card, question, no-op change card.
