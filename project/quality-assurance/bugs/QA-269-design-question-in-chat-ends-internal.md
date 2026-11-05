@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -62,3 +62,4 @@ has; (3) project lead prompt: "explain/why" questions on a stored result go to t
 ## Retest
 
 QA-E2E-report-I, 2026-11-05 19:52 UTC, backend 1.1.122+, project QA-TEST QA-E2E-report-I 3 (a9ff33c4), run fd996d09 (19:40:45-19:49:34 UTC), the same question: answered in 8 min 49 s, 48 steps (4 retried), 0.88 M input tokens, 0.023 USD, 0 evaluate_module calls. Numbers at the 2027-01-28 peak: brine 23.769 MW (hx 12.364 + heat pump source 11.405), heat pump electricity 3.595 MW (COP 4.173), boiler 2.636 MW = 30.0 MW; brine 599.9955 m3/h, 171.665 kg/s, cooled 85.03 -> 52.20 degC = 32.83 K; year worst 35.52 K (d0) / 34.77 K (d1) <= 40 K. Hand check: 171.665 kg/s x ~4.2 kJ/(kg K) x 32.83 K ~ 23.7 MW, matches. Verified. One wrong claim in the answer filed separately (no compression chiller in gemini: QA-E2E-report-I next bug). Evidence: `../evidence/QA-269/retest.png`, `retest-answer.txt`.
+- 2026-11-05 19:51 UTC: retest QA-E2E-report-I run fd996d09: answered in 9 min, numbers check out
