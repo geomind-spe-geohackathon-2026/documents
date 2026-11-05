@@ -35,4 +35,14 @@ Fact (code): the case history renders a plain table. Guess: the backend stores e
 
 ## Fix
 
+hotfix-back-II, 2026-11-05 11:05 UTC, backend part (split agreed with hotfix-front-II; frontend
+part for hotfix-front-III, `.claude/notes/sessions/hotfix-front-2.md`). The note text came from
+the backend (`VersionRecorder`, a fixed "Case set by the assistant"), not geomind; Saved by is the
+run's user because the assistant saves as that user. Backend 1.1.87 (49d587b): `GET
+/design/case/versions/{number}`; `POST /design/case/versions/{number}/restore` `{project, base}`
+(content and files of that version as the next version, note "Restored version N", 409 on a stale
+base); assistant case notes name up to six changed paths and files; `Version.by` = `assistant` or
+`user` on case and plant versions. Deploy 11:30 UTC. Still owed (frontend): open a version
+read-only, diff with the previous one, Restore, Saved by from `by`.
+
 ## Retest
