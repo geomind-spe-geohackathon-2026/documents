@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend,backend |
 | Reporter | functional-qa-case-I |
 | Found | 2026-11-05 14:20 UTC |
 | Versions | backend 1.1.88 |
 | Where | https://geomind.team/projects/15b2f15f-46d0-4b09-a44b-0f849127c1f0 (QA3 case); chat 37fb7886-a3b0-46b3-b36f-6afb72971d14; run 11597465 (Runs and logs) |
-| Fixer | |
+| Fixer | hotfix-back-III |
 
 ## Steps
 
