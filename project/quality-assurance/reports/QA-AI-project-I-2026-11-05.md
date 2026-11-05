@@ -60,3 +60,25 @@ user stops.
 
 Not exercised this round: `support_lead` and `curator` (the memory is off in these projects, so
 the lead did not offer the support team; the handover went to the explainer).
+
+## Round 2 (18:00 to 18:40 UTC, backend 1.1.107 to 1.1.114)
+
+Projects added (kept): `QA-TEST QA-AI-project-I 3` (3ecb4493-3368-4bc2-b2f0-ca0b06670a86, memory on,
+case + plant, chat 5db7a37c-b2ea-43d6-982f-5ebf2b8ad6a7) and `QA-TEST QA-AI-project-I 4`
+(588c282d-fd39-4ea1-b495-d167817739c3, empty, chat 2083a333-28d2-4b82-9922-3d3073087b0d).
+
+| # | Request | Route | Wall time | Input tokens | Cost USD | Outcome | Bugs |
+|---|---|---|---|---|---|---|---|
+| 8 | "is the plant ok?" (project 3) | tool, analysis lead | 1:56 | ~0.35 M | ~0.007 | right: simulate(plant_version 1), feasible, LCOH 43.75 | IMP-032 |
+| 9 | Independent review + explain, MEUR, short answers (memory on) | project | 9:43 (6 min of it 9 memory cards) | 593 305 | 0.0145 | passed, short answer (959 chars) | QA-265 |
+| 10 | Same case-edit message again after 150 -> 175 mD | tool (wrong: "nothing has changed") | 0:30 | 46 k | 0.0022 | wrong: answer on 150 mD | QA-266 |
+| 11 | Retest QA-224/227 in a new chat (175 mD) | project | 6:16, one card | 535 047 | 0.0126 | right: LCOH 44.134 EUR/MWh, 15/15 | QA-227 verified, QA-224 open again |
+| 12 | "design me a geothermal plant" (empty project) | project | 5:33 to the first question, stop 0:15 | 517 k | 0.017 | hackathon case assumed | QA-283 |
+| 13 | "Make the heat pump smaller to lower LCOH", deny set_ranges with a reason | project | cancelled at 4:40 after 3 cards | ~0.2 M | ~0.006 | lead overrode the denial | QA-288 |
+
+Accuracy, round 2: LCOH 43.753 (200 mD) -> 44.134 (175 mD) -> 44.641 EUR/MWh (150 mD): monotonic,
+same flow, more pump head; numbers match `compute_kpis`. Wrong current-case statement in run 10
+(QA-266).
+
+Speed, retest: the case-edit flow went from 22:47 / 3.95 M tokens / 3 stops (run 194c3879) to
+6:16 / 0.54 M tokens / 1 stop (run a4203016) after the QA-224/QA-227 fixes.
