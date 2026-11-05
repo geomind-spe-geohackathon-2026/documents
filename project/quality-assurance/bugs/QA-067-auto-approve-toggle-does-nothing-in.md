@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-func-2-II |
 | Found | 2026-11-05 00:21 UTC |
 | Versions | frontend 1.1.50 (per STATUS.md), backend 1.1.60 |
 | Where | https://geomind.team/projects/4b318ee0-b410-4e37-8cf6-c835bc76d8c2/assistant/chat (new chat, no message yet); project QA2 qa-func-2 base |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
