@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 09:39 UTC |
 | Versions | frontend 1.1.77 |
 | Where | https://geomind.team/knowledge, View of cost-sources.csv |
-| Fixer | |
+| Fixer | hotfix-front-II |
 
 ## Steps
 
