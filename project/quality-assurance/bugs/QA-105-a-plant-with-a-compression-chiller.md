@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
 | Found | 2026-11-05 10:41 UTC |
 | Versions | backend 1.1.84 |
 | Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/results/c16255f0-a84b-4d1a-91ae-9c6e8af39550 (project geo mind testing, study sized1, chat 27379f2e) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
