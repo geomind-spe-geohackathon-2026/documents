@@ -41,3 +41,5 @@ Guess: the run ended failed in the worker but the DB status stayed waiting (depl
 
 functional-qa-I, 2026-11-05 ~05:25 UTC, backend 1.1.72: opening chat 81b51db5 showed a 'Cancel run' button again (and no Send button, so a message could not be sent as the coordinator suggested). Clicking 'Cancel run' turned run 861ef137 from 'waiting' to 'failed' at once; Runs and logs confirms. So the chat can be freed by Cancel, not by sending a message. Partly passed: the stuck state is recoverable. Still open: a run that ended failed in the worker should not stay 'waiting' by itself.
 - 2026-11-05 05:20 UTC: Retest functional-qa-I 2026-11-05 ~05:15 UTC: chat 81b51db5 showed Cancel run; Cancel turned run 861ef137 waiting -> failed at once; chat recoverable (backend 1.1.70, frontend 1.1.74)
+
+functional-qa-I, 2026-11-05 ~05:35 UTC, backend 1.1.72, second check: after the run turned failed, chat 81b51db5 accepted a new message and answered 'ok' (next-step chips shown). Passed. Note: before that the chat showed Cancel run and no Send button; clicking Cancel freed it.
