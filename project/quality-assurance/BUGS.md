@@ -120,3 +120,4 @@ wont-fix, duplicate.
 | [QA-112](bugs/QA-112-knowledge-assumptions-bought-gas-composition-sums.md) | open | major | data | Knowledge assumptions: bought gas composition sums to 1.001, case cannot be set | functional-qa-case-I |  |
 | [QA-113](bugs/QA-113-drop-zone-drag-and-drop-files.md) | fixing | minor | frontend | Drop zone 'Drag and drop files here, or browse' is too thin; no clear highlight while dragging | user via coordinator | hotfix-front-II |
 | [QA-114](bugs/QA-114-agent-states-case-version-16-and.md) | open | minor | geomind | Agent states case version 16 (and problem state 19) while the app shows case Version 6 | functional-qa-case-I |  |
+| [QA-115](bugs/QA-115-schema-forms-case-plant-economics-every.md) | open | minor | frontend | Schema forms (Case, Plant, Economics ...): every collapsible group opens by default | user via coordinator |  |
