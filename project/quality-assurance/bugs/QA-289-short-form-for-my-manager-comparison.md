@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -49,3 +49,4 @@ asks for ("short form", "for my manager") limits the length; never repeat an ear
 ## Retest
 
 QA-E2E-report-I, 2026-11-05 19:36 UTC, backend 1.1.122+, project QA-TEST QA-E2E-report-I 3 (a9ff33c4), run f1108405 (19:31:04-19:34:21 UTC), same question after a full report in the same chat: the answer is one table v1 vs v2 (11 rows), a recommendation (build v1), two improvements and caveats, about 100 lines, no repeated report; 3 min 17 s, 30 steps, 0.69 M input tokens, 0.012 USD. Figures equal both page studies (LCTS 45.10 / 49.28 EUR/MWh, CO2 13.77 / 20.96 kt, CAPEX 34.636 / 23.956 MEUR). Small leftover: it opens with "First, a correction to the brief: the project does hold two plant versions, not one", an internal note the user did not need. Verified. Text: `../evidence/QA-289/retest-answer.txt`.
+- 2026-11-05 19:35 UTC: retest QA-E2E-report-I run f1108405: short table answer, 3 min
