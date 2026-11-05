@@ -1,0 +1,116 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA3 case
+Overview
+Library
+Runs and logs
+Chats
+Please set up the case from the three files in this…
+needs your input · 11:31
+AD
+Administrator
+admin
+Projects
+QA3 case
+Chat
+1 run active
+Design
+Chat
+Please set up the case from the three files in this project: the hackathon requirements PDF and the heating and cooling demand CSVs. Tell me what you take from each file and what you still need from me.
+11:31
+Copy
+
+Waiting for your answer below
+
+Steps so far (27 steps)
+You approved "Set case"
+You approved "Set case"
+You answered: The user typed this answer instead of choosing an option: I do not know the site air pressure or the indoor humidity myself. Approve all 16 as you list them, but keep items 7 and 9 marked as assumptions so I can review them later.
+You approved "Set case"
+You answered: I do not know the right split. Leave utilities.gas.composition open for now; I will ask the team. Then tell me what the case page should show and what is still missing for a plant.
+
+The case values are set and recorded. Now the one economics question — the assumptions document covers this case and gives the economics key by key, so I name those values with it as source
+
+The assistant asks
+
+Economics of the case, from the cost catalogue.
+All values are from the knowledge base's assumptions document for this GEMINI hackathon 2026 case (knowledge/hackathon-2026-assumptions.md), which gives the economics key by key; the electricity, gas and CO2 prices are cited there from Eurostat/Instrat 2025 and converted to EUR of 2015 with the euro-area HICP. The per-energy O&M map is left open: the document gives no per-energy price, and the plant's chillers have no price in any source, so a partial map could not price a plant that uses one. No subsidy is given anywhere, so every revenue.subsidy key stays open.
+
+Values (approve all sets each, with its row):
+economics.discount_rate = 0.05 | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.currency = EUR | no row | the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/cost-sources.md)
+economics.price_year = 2015 | no row | the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/cost-sources.md)
+economics.analysis_period = 25 yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.energy.electricity = 105.75 EUR/MWh | no row | 2025 | knowledge/hackathon-2026-assumptions.md
+economics.energy.gas = 39.92 EUR/MWh | no row | 2025 | knowledge/hackathon-2026-assumptions.md
+economics.carbon.price = 57.03 EUR/t | no row | 2025 | knowledge/hackathon-2026-assumptions.md
+economics.revenue.heat = 60 EUR/MWh | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.revenue.cold = 60 EUR/MWh | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.accounting.allocation.heat_cost_share = 0.8 | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.accounting.gwp.CH4 = 29.8 | no row | 2021 | knowledge/hackathon-2026-assumptions.md
+economics.opex.variable.chemical = 3 EUR/kg | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.variable.waste_disposal = 0.2 EUR/kg | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.drilling = 1239.13 EUR/m | no row | 2013 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.drilling = 1 %/yr | no row | 2013 | knowledge/hackathon-2026-assumptions.md
+economics.capex.heat_pump = 0.738 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.heat_pump = 0.224 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.boiler = 0.0607 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.boiler = 3.25 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.chp = 0.962 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.chp = 1.026 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.degasser = 1000000 EUR | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.degasser = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.compression_chiller = 0.3 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.compression_chiller = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.absorption_chiller = 0.3 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.absorption_chiller = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.adsorption_chiller = 0.3 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.adsorption_chiller = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.production_pump = 0.5 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.production_pump = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.injection_pump = 0.5 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.injection_pump = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.heat_exchanger = 0.5 EUR/(W/K) | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.heat_exchanger = 1 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.flare = 100000 EUR | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.flare = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.gas_makeup = 50000 EUR | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.gas_makeup = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.cooler = 0.1 EUR/W | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.cooler = 2 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.capex.pipe = 500 EUR/m | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.opex.fixed.pipe = 0.5 %/yr | no row | 2026 | knowledge/hackathon-2026-assumptions.md
+economics.accounting.gwp.standard = IPCC AR6 GWP100 | row gwp-standard-ipcc-ar6-gwp100 | verified | 2024 | IPCC Global Warming Potential Values (August 2024) | https://ghgprotocol.org/sites/default/files/2024-08/Global-Warming-Potential-Values%20%28August%202024%29.pdf (recommended; other rows: IPCC AR5 GWP100 [gwp-standard-eu-2020-1044-ar5, verified])
+economics.capex.circulation_pump = 0.09 EUR/W | row circulation-pump-proxy-dea-2017-over-1mw | secondary | 2017 | Technology Data for Energy Transport, data sheet workbook (catalogue v0002, mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/energy_transport_datasheet.xlsx | the row's unit is EUR/W heat; set as EUR/W, which the key reads per W of shaft power at the nominal flow; the row is heat, not shaft power: not converted, the user decides (recommended; other rows: 0.24 EUR/W heat [circulation-pump-proxy-dea-2017-under-1mw, secondary])
+economics.capex.electric_boiler = 0.07 EUR/W | row boiler-electric-dea-2017-over-10mw | verified | 2017 | Technology Data for Generation of Electricity and District Heating (DEA data sheet workbook, mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_for_el_and_dh.xlsx (recommended; other rows: 0.15 EUR/W [boiler-electric-dea-2017-1-5mw, verified])
+economics.capex.ice_storage = 23250 EUR/MWh | row ice-storage-mlakar-2022-low | secondary | 2022 | Upgrade of ice storage system in congress centre (Mlakar and Stritih, CLIMA 2022) | https://proceedings.open.tudelft.nl/clima2022/article/download/235/218/227 | the row's unit is EUR/MWh cold; set as EUR/MWh, which the key reads per J of energy capacity (recommended; other rows: 31700 EUR/MWh cold [ice-storage-mlakar-2022-high, secondary]; 10062.0 EUR/MWh cold [ice-storage-proxy-irena-2013-pcm-low, secondary]; 50310.0 EUR/MWh cold [ice-storage-proxy-irena-2013-pcm-high, secondary])
+economics.capex.thermal_storage = 168.6 EUR/m3 | row thermal-storage-tank-dea-2025-3000m3 | verified | 2025 | Technology Data for Energy Storage, data sheet workbook Version 9 (mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_catalogue_for_energy_storage.xlsx (recommended; other rows: 64.85 EUR/m3 [thermal-storage-pit-dea-2025-70000m3, verified])
+economics.opex.fixed.circulation_pump = 2.0 %/yr | row circulation-pump-om-vdi2067-vicus-2026-low | secondary | 2026 | VDI 2067: Economic Analysis and Service Life (section 3, Operation-related costs: maintenance and servicing) | https://vicus-software.com/en/knowledge/economics/vdi2067/ (recommended; other rows: 3.0 %/yr [circulation-pump-om-vdi2067-vicus-2026-high, secondary])
+economics.opex.fixed.electric_boiler = 1070 EUR/MW/yr | row opex-boiler-electric-dea-2017 | verified | 2017 | Technology Data for Generation of Electricity and District Heating (DEA data sheet workbook, mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_for_el_and_dh.xlsx
+economics.opex.fixed.ice_storage = 0.8769 %/yr | row ice-storage-om-spice-2024-single-building-2000kwh | secondary | 2024 | Ice Storage vs. Battery Storage for Cooling Systems - A Cost and Performance Comparison | https://sp-icestorage.com/vblog/ice-storage-vs-battery-storage/ (recommended; other rows: 0.7427 %/yr [ice-storage-om-spice-2024-mid-size-10000kwh, secondary]; 0.513 %/yr [ice-storage-om-spice-2024-district-cooling-50000kwh, secondary]; 2 %/yr [ice-storage-om-proxy-hao-2022-cooling-plant, secondary]; 1.667 %/yr [ice-storage-om-proxy-irena-2013-pcm-low, secondary]; 4.167 %/yr [ice-storage-om-proxy-irena-2013-pcm-high, secondary])
+economics.opex.fixed.thermal_storage = 0.2823 %/yr | row opex-thermal-storage-tank-dea-2025 | verified | 2025 | Technology Data for Energy Storage, data sheet workbook Version 9 (mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_catalogue_for_energy_storage.xlsx
+
+Open (no usable row; give a value with change some, or leave it open):
+economics.opex.per_energy.boiler
+economics.opex.per_energy.electric_boiler
+economics.opex.per_energy.chp
+economics.opex.per_energy.heat_pump
+economics.opex.per_energy.compression_chiller
+economics.opex.per_energy.absorption_chiller
+economics.opex.per_energy.adsorption_chiller
+economics.revenue.subsidy.amount
+economics.revenue.subsidy.duration
+economics.revenue.subsidy.cap
+economics.revenue.subsidy.capacity
+
+approve all
+change some
+stop
+Or type your own answer
+Answer
+Auto-approve
