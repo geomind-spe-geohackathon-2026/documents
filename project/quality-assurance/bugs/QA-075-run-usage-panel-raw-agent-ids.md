@@ -12,26 +12,23 @@
 | Fixer | |
 
 ## Steps
-
-1. 
-2. 
+1. Open a chat after a run and its usage panel ("Last run: 0.235 USD · 183 model calls · 307 tool calls").
 
 ## Expected
+Agents by display name (Project lead, Case lead, ...); "N failed" only for calls that failed; no spinner on agents that are not working.
 
 ## Actual
+Raw ids (project_lead, case_lead); every agent reads "N tool calls (N failed)" in red with N of N (case_lead 40 of 40, geoscientist 7 of 7, project_lead 6 of 6); what looks like a spinner on every agent.
 
 ## Evidence
-
-- ![screenshot](../evidence/QA-075/1.png)
-- Run JSON: `../evidence/QA-075/run-<id>.json`
+- Sahand's screenshot (in the chat with the coordinator, 2026-11-05 ~01:45 UTC).
+- `GET /assistant/runs/6c5b17e1.../agents`: every tool call has `"error": false`.
 
 ## Cause
-
-(Facts, or a guess marked as one.)
+Fact: `agent-usage.tsx` counted a call as failed when `error !== null`; the API sends `false` for a success. The raw ids came from `toLabel` (the id's last part). The "spinners" are the context rings: a near-empty ring looks like one.
 
 ## Fix
-
-(Hotfix session: cause, commit, version, deployed at.)
+frontend 1.1.73: 4bf6ec4 (failed = error true or non-empty text), 2267a4a (shared display-name map `shared/sse/agent-names.ts`, also in the run panel, the chat's busy lines and the run log), af889da (each ring shows its percent with a tooltip), 0269379 (version).
 
 ## Retest
 
