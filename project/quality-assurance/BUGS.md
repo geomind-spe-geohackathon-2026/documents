@@ -115,3 +115,4 @@ wont-fix, duplicate.
 | [QA-107](bugs/QA-107-results-days-covered-heating-shows-geothermal.md) | open | minor | frontend,backend | Results, Days covered: heating shows Geothermal 0 days and Short 365 days although the doublet ran 230 days | Fatemeh |  |
 | [QA-108](bugs/QA-108-shared-data-table-header-and-rows.md) | fixing | minor | frontend | Shared data table: header and rows share one background; no zebra striping | user via coordinator | hotfix-front-II |
 | [QA-109](bugs/QA-109-report-the-agent-log-section-is.md) | open | minor | frontend | Report: the Agent log section is empty by default ('No assistant run was chosen'); the run that made the result is not picked | Fatemeh |  |
+| [QA-110](bugs/QA-110-case-history-a-version-cannot-be.md) | open | major | frontend,backend,geomind | Case History: a version cannot be opened, compared or restored; the note is always 'Case set by the assistant' and Saved by says Administrator | Fatemeh |  |
