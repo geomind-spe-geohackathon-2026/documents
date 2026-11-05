@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -34,5 +34,5 @@ Fact: `frontend/src/components/ui/button.tsx` has `whitespace-nowrap shrink-0` i
 ## Fix
 
 hotfix-front-III, frontend 1.1.94 (44464f2): option buttons get `h-auto max-w-full py-1.5 text-left whitespace-normal`. Deploy 11:30 UTC.
-
+- 2026-11-05 14:11 UTC: frontend 1.1.99 (e9435c4) deployed 14:10 UTC, bundle index-BlepNtQt.js
 ## Retest
