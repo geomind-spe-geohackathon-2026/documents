@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend,backend,geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-05 10:45 UTC |
 | Versions | backend 1.1.84 |
 | Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/case?chat=27379f2e-0103-4ddf-a020-f0cd4deb20a6, Case > History |
-| Fixer | |
+| Fixer | hotfix-back-II |
 
 ## Steps
 
