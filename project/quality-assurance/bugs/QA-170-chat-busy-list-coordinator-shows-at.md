@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
 | Found | 2026-11-05 17:10 UTC |
 | Versions | backend 1.1.104 (geomind 0.4.98, gemini 0.6.17), frontend live 2026-11-05 17:10 UTC |
 | Where | https://geomind.team/projects/fcc641c0-0119-4182-9a72-adce5a17b3ed chat e53fccc1; run d4ab496f-4a1f-43fa-b760-0f550fda0714 (the hackathon report run) |
-| Fixer | |
+| Fixer | hotfix-front-VII |
 
 ## Steps
 
