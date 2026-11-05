@@ -983,3 +983,54 @@ User: "Should we add a heat pump to our boiler-backed plant?"
   variable); then a switching value on the electricity price (§15).
 - Answer shape: "Yes, 4.5 MW, LCOH 47.2 against 50.1 EUR/MWh without; the heat pump stays
   better up to an electricity price of about 128 EUR/MWh."
+
+---
+
+## 19. Design of experiments and parametric sweeps
+
+### 19.1 When a sweep beats an optimiser
+
+An optimiser answers "which value is best"; a sweep answers "how does the answer change with this
+value" and shows the shape: a flat region, a cliff where a requirement fails, two optima. With one
+or two variables a sweep is often clearer and as cheap (Montgomery 2017, ch 1-2; Box, Hunter &
+Hunter 2005, ch 5). Use a sweep when the user asks "what if" over a range, or before an
+optimisation to choose its ranges (§4.3).
+
+### 19.2 Sweeps with gemini's tools
+
+gemini has no grid method; a sweep is a set of designs, each with one value set, ranked by ONE
+`run_study` (`method="run"`) so they share the case and the report (§5.2). The design team makes
+the variants (one stored design per level, named by the level: `hp_4mw`, `hp_6mw`); never a loop
+in `run_python`.
+
+| Design | Runs (k variables, L levels) | Use |
+|---|---|---|
+| One-factor sweep | L | shape of one variable; 5 to 7 levels |
+| Full factorial | L^k | two variables and their interaction; 3 to 5 levels each |
+| Two-level factorial | 2^k | screening which variables matter, with interactions |
+| Centre plus axes | 2k + 1 | the OAT view of design variables around a base design |
+
+A full factorial grows fast: 5 levels of 3 variables are 125 designs; use the optimiser beyond two
+variables.
+
+### 19.3 Choosing levels
+
+Equal steps across the approved range, the base design among them; add a level near a suspected
+cliff (where a requirement starts to fail). Integer variables (doublet count) take every value in
+range. Report the step: a cliff between two levels is located only to within the step.
+
+### 19.4 Reading a sweep
+
+- Plot or tabulate the objective and feasibility against the level.
+- The feasible minimum is the answer to "which level"; the slope near it is how much a wrong size
+  costs.
+- A sweep with a cliff tells the margin to keep (§16).
+- Interaction in a two-variable sweep: the best level of one depends on the other. Then optimise
+  them together, never one after the other.
+
+### 19.5 Worked example (invented numbers)
+
+Peak boiler swept 0, 2, 4, 6, 8 MW on a fixed geothermal base: LCOH 44.1 (infeasible, coverage
+96.8 %), 44.6 (feasible, 99.1 %), 45.4, 46.3, 47.2 EUR/MWh. The cheapest feasible level is
+2 MW; each further 2 MW costs about 0.85 EUR/MWh; the cliff lies between 0 and 2 MW. A 3 MW boiler
+buys margin for about 0.4 EUR/MWh: offered as a robust option (§16).
