@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | data |
 | Reporter | QA-AI-case-I |
@@ -71,7 +71,7 @@ matches the reference; with typed values it does not.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 17:06 UTC: data: assumptions + handbook-case, documents 432089b, Knowledge efc6f7e1 / 5f31745a
 ## Retest
 
 (Who, when, result.)
