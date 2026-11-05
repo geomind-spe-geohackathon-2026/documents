@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (organisers' answers), Claude (write-up) |
 | Found | 2026-11-05 09:27 UTC |
 | Versions | backend 1.1.78 (geomind 0.4.73), or later |
 | Where | every challenge case; seen in chats 33c76f29 and cb8b9b2d |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
