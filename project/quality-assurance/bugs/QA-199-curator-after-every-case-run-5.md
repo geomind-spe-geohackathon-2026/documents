@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 17:21 UTC |
 | Versions | frontend 1.1.113, backend 1.1.102-1.1.104 (geomind 0.4.97-0.4.99) |
 | Where | geomind.team; projects QA-TEST QA-E2E-case-I 1/2/3 (shared memory On); runs cf319cd4, a5118d9e, 6a2d6017; agent support_lead -> curator |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
