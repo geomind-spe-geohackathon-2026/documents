@@ -14,7 +14,7 @@ summary · 5 Design basis · 6 Alternatives · 7 Decisions · 8 Results (8.6 num
 source, 8.8 COP and SPF, 8.9 energy balance) · 9 Compliance (9.5 scope, 9.6 values) · 10
 Uncertainty · 11 Limitations · 12 Figures and tables · 13 Agent log · 14 Style · 15 Checklist ·
 16 Worked example · 17 Lessons from reviewed reports · 18 Explaining a result · 19
-Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · 22 Method and V&V · 23 Energy flows and time series · 24 Presenting the economics · 25 Emissions · A Templates · B References.
+Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · 22 Method and V&V · 23 Energy flows and time series · 24 Presenting the economics · 25 Emissions · 26 Checking before release · A Templates · B References.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -132,6 +132,7 @@ extra steps cost about four times the tokens of the whole review.
 | Sankey diagram, demand over the year, load duration curve, monthly table | §23 |
 | How to present the economic basis, capex, cash flow, NPV | §24 |
 | How to present emissions: scopes, GWP, intensity | §25 |
+| How to check a report before release: trace, plausibility, consistency | §26 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -1378,6 +1379,56 @@ grid 3.8 kt at 210 kg/MWh. Heat and cold delivered 120 GWh: intensity `calculate
 
 ---
 
+# 26. Checking a report before release
+
+## 26.1 Levels of checking
+
+Engineering practice separates self-check by the author, a check by a second engineer of the
+same discipline, and an independent review for consequential designs; each check is recorded
+with who checked what (ISO 9001:2015 §8.3.4, design and development controls: reviews,
+verification and validation of the design). In geomind, the explainer writes, the reviewer
+checks the verdict, the case changes and stale results (§0.5), and the person who sends the
+report is the last check. Say in the report which checks were made.
+
+## 26.2 The number trace
+
+Pick the headline numbers (LCTS, capex, heat delivered, CO2, the verdict) and trace each to its
+tool call and result: the same result, the same case, the same design (§17.5, §17.7). A number
+that traces to another result, or to no call, is removed or corrected before release.
+
+## 26.3 Plausibility checks
+
+Before a figure is released, compare it with a quick estimate or a known range; a large
+deviation is a question, not an error by itself (Ullman, 2010, ch. 9, on evaluating designs):
+
+| Figure | Quick check |
+|---|---|
+| Brine heat | ρ·c_p·V̇·ΔT (§8.9) |
+| Heat-pump COP | below the Carnot COP of its temperatures (§8.8) |
+| Boiler efficiency | heat out over fuel in ≤ about 1.0 on LHV (§8.9) |
+| Full-load hours | at most 8760 h per year (§20.1) |
+| Delivered vs demand | delivered ≥ useful; surplus named (§21.1) |
+| Coverage share | 0 to 100 % |
+| LCTS | between the levelised cost of its cheapest and dearest parts; beside a reference (§24.4) |
+| CO2 intensity | below the all-gas reference on the same boundary (§25.2) unless backup dominates |
+
+Each check is a `calculate` with its id or a tool's figure.
+
+## 26.4 Consistency checks
+
+- Every section uses the same result; totals in tables equal the period figures.
+- The same quantity has the same value and unit everywhere (§17.8).
+- Every reference in the text (`study/<name>`, `design/...`) exists in `list_studies` or the
+  state.
+- Every limitation in §11 appears where its number is quoted.
+- The summary says nothing the body does not show (§4).
+
+Invented example: the summary says "LCTS 47.2 EUR/MWh", the cost table 48.1. The trace shows
+the summary came from a study's best trial on an older case and the table from the verified
+result: the summary is corrected to 48.1 and the study is named as older (§17.5).
+
+---
+
 ---
 
 # Appendix A. Templates
@@ -1480,6 +1531,8 @@ grid 3.8 kt at 210 kg/MWh. Heat and cold delivered 120 GWh: intensity `calculate
   ch. 2, table 2.2 (default CO2 emission factors for stationary combustion).
 - IPCC (2021). *Climate Change 2021: The Physical Science Basis* (AR6 WG I), ch. 7, table 7.15
   (GWP values).
+- ISO 9001:2015. *Quality management systems — Requirements*, §8.3 Design and development.
+- Ullman, D. G. (2010). *The Mechanical Design Process*, 4th ed. New York: McGraw-Hill.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
 - gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `coverage.py`,
