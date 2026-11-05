@@ -68,5 +68,6 @@ Project 61134432, case version 10: the next `set_case` of any kind on that proje
 the user asking "fix the supply temperature rules", or "add heat and cold delivered requirements")
 rewrites both rules to `running` and the case lead adds the delivered-energy rules; no manual DB
 edit. QA-090 is the same failure seen from the design loop; its stop rule is in QA-090.
+- Seen 2026-11-05 ~10:00 UTC (backend 1.1.83), project cf0c3d9c (geo mind testing), chat 27379f2e: the case lead now writes the new heat/cold delivered rules, but the first set_case is refused at 4 paths: `requirements[8].over` and `.when`, `requirements[9].over` and `.when` ("unmet_share is read over the whole period; expected no over / no when"). The next set_case passes. The prompt or skill should show the unmet_share rule without over/when. ![set_case refusal](../evidence/QA-091/retest-unmet-share.webp)
 
 ## Retest
