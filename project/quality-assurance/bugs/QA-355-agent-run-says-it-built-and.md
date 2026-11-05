@@ -36,4 +36,5 @@ Workaround now: Results > the result > 'Use this design as the plant'.
 
 ## Fix
 
+- 2026-11-05 20:58 UTC: geomind 0.4.137 (cf9536b / 67d1ac9); backend part with back-lead
 ## Retest
