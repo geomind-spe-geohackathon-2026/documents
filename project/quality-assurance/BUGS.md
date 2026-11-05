@@ -119,7 +119,7 @@ wont-fix, duplicate.
 | [QA-111](bugs/QA-111-projects-page-a-project-card-s.md) | verified | minor | frontend | Projects page: a project card's ... menu has only Pin (no Settings, Rename, Delete) | user via coordinator | hotfix-front-II |
 | [QA-112](bugs/QA-112-knowledge-assumptions-bought-gas-composition-sums.md) | verified | major | data | Knowledge assumptions: bought gas composition sums to 1.001, case cannot be set | functional-qa-case-I |  |
 | [QA-113](bugs/QA-113-drop-zone-drag-and-drop-files.md) | verified | minor | frontend | Drop zone 'Drag and drop files here, or browse' is too thin; no clear highlight while dragging | user via coordinator | hotfix-front-II |
-| [QA-114](bugs/QA-114-agent-states-case-version-16-and.md) | open | minor | geomind | Agent states case version 16 (and problem state 19) while the app shows case Version 6 | functional-qa-case-I |  |
+| [QA-114](bugs/QA-114-agent-states-case-version-16-and.md) | fixing | minor | geomind | Agent states case version 16 (and problem state 19) while the app shows case Version 6 | functional-qa-case-I | hotfix-python |
 | [QA-115](bugs/QA-115-schema-forms-case-plant-economics-every.md) | fixing | minor | frontend | Schema forms (Case, Plant, Economics ...): every collapsible group opens by default | user via coordinator | hotfix-front-III |
 | [QA-116](bugs/QA-116-agent-proposes-build-plant-three-times.md) | fixing | major | geomind | Agent proposes Build plant three times after two explicit denials of an explanation-only request | functional-qa-plant-I | hotfix-python |
 | [QA-117](bugs/QA-117-question-card-a-long-option-button.md) | fixing | cosmetic | frontend | Question card: a long option button runs past the card's right edge (no wrap) | Fatemeh | hotfix-front-III |
