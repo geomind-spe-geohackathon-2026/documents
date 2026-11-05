@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
@@ -40,7 +40,7 @@ Sahand's request (top). text.delta events carry the agent and instance since IMP
 ## Retest
 
 (Who, when, result.)
-
+- 2026-11-05 20:43 UTC: Manual QA-IV 21:44 CET, frontend 1.1.145: clean run chat shows 'Case lead: The source field only accepts ...' inline
 ## Reopened (Sahand, 2026-11-05 21:34 Trondheim)
 
 The label is now on its own line above the text (![now](../evidence/QA-345/2.png)). Sahand wants it
