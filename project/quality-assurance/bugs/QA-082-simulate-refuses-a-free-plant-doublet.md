@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 06:05 UTC |
 | Versions | backend 1.1.73, gemini 0.6.8, geomind 0.4.67+ (health 2026-11-05 06:05 UTC) |
 | Where | project 61134432, chat cb8b9b2d-edce-4f69-9dfb-6b015a821601, run c4f00b5c-167e-4458-a8ab-bfe8aaed13fe, run JSON steps 11, 20, 34, 45, 49, 54, 64, 76, 81, 95 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
