@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -35,4 +35,21 @@ Guess: the lead patches after each refusal of `check`/`simulate` (one missing va
 
 - 2026-11-05 17:32 UTC: raised to blocker by Sahand 17:32 UTC: report run has 15 plants and no study after 30 min; lead also started a hand-sized build (hp_2500_v4)
 - 2026-11-05 17:39 UTC: geomind 0.4.109, commit 03046e7, deployed (backend 1.1.107): design lead prompt goes from first filled build to one set_ranges, size_plant, one optimize per configuration; one patch per round
+- 2026-11-05 17:44 UTC: QA-AI-design-I retest 17:50 UTC: 7 patch_plant per plant on the new prompt (run 5d0216a6); needs QA-175 (gemini all-stage check)
 ## Retest
+
+## Retest: not fixed (QA-AI-design-I, 2026-11-05 17:50 UTC)
+
+Run 5d0216a6-4acb-487b-a885-396a5e99366d (project QA-TEST QA-AI-design-I 2, compare loop, chat auto-approve on). The run started 17:30 UTC on the old code, was resumed after the 17:33-17:39 UTC deploys, and from 17:38:17 UTC the design lead's system prompt is the new one (it has "Write ONCE ... ONE patch_plant", "ONE set_ranges", "all in ONE patch_plant per round": geomind 0.4.109 or later). With that prompt, family C (HeatingHeatPumpCoolingPlant -> HeatingAbsorptionCoolingPlant) still took 7 patch_plant in 2.5 min, 1 refused:
+
+| UTC | Name | Result |
+|---|---|---|
+| 17:38:26 | C_direct_absorption_filled | refused: choice values as bare strings |
+| 17:39:03 | C_direct_absorption_filled | saved; new missing `params.d0.well_diameter` and the doublet design values |
+| 17:40:29 | C_direct_absorption_complete | new: `peak_boiler.temperature_setpoint` |
+| 17:40:38 | C_direct_absorption_ready | new: `absorption_chiller.temperature_setpoint` |
+| 17:40:41 | C_direct_absorption_built | new: invalid_binding (simulation input) |
+| 17:40:49 | C_direct_absorption_ready2 | new: `absorption_cooler.fluid_out` tear stream |
+| 17:40:56 | C_direct_absorption_ready3 | missing 0 |
+
+The prompt cannot fix this alone: each patch is a correct "one patch per round", because gemini names the next stage's missing values only after the current stage passes (QA-175, with the table of run 0df89b7e). The fix needs gemini's check to report all stages at once, or geomind's patch_plant to run the later stages (schedule, bindings, tear streams) on the patched plant and return all their issues together. Evidence: `../evidence/QA-236/run-5d0216a6-tool-calls-partial.txt`.
