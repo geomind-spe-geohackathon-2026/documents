@@ -1,0 +1,160 @@
+{
+ "id": "a6a3aec3-0ac8-48a0-b0f1-c5bc00d1b208",
+ "name": "simulation best_v1",
+ "study": null,
+ "case_version": 3,
+ "plant_version": null,
+ "kpis": [
+  {
+   "name": "co2",
+   "title": "CO2 emissions",
+   "value": 25.80587596450544,
+   "unit": "kt",
+   "reason": null
+  },
+  {
+   "name": "lcoc",
+   "title": "Cost of cold",
+   "value": 72.90534204630303,
+   "unit": "EUR/MWh",
+   "reason": null
+  },
+  {
+   "name": "lcoh",
+   "title": "Cost of heat",
+   "value": 62.5691786995315,
+   "unit": "EUR/MWh",
+   "reason": null
+  },
+  {
+   "name": "lcts",
+   "title": "Cost of thermal supply",
+   "value": 64.39510335280053,
+   "unit": "EUR/MWh",
+   "reason": null
+  },
+  {
+   "name": "opex",
+   "title": "Operating cost",
+   "value": 6.92798420087558,
+   "unit": "MEUR/yr",
+   "reason": null
+  },
+  {
+   "name": "capex",
+   "title": "Investment",
+   "value": 24.420991532340494,
+   "unit": "MEUR",
+   "reason": null
+  },
+  {
+   "name": "gas_bought",
+   "title": "Gas bought",
+   "value": 112911.26044802407,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "boiler_heat",
+   "title": "Heat from the boilers",
+   "value": 103842.72390665031,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "cold_delivered",
+   "title": "Cold delivered",
+   "value": 23840.928123530513,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "heat_delivered",
+   "title": "Heat delivered",
+   "value": 110658.77231320513,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "electricity_bought",
+   "title": "Electricity bought",
+   "value": 7551.15358426985,
+   "unit": "MWh",
+   "reason": null
+  }
+ ],
+ "checks": {
+  "passed": 10,
+  "failed": 0,
+  "not_assessed": 0
+ },
+ "capacities": [
+  {
+   "name": "d0",
+   "title": "d0",
+   "kind": "Production pump",
+   "value": 50.0,
+   "unit": "m3/h",
+   "peak": 50.0,
+   "peak_unit": "m3/h",
+   "share": 1.0,
+   "reason": null
+  },
+  {
+   "name": "heat_pump",
+   "title": "heat_pump",
+   "kind": "Heat pump",
+   "value": 9.75,
+   "unit": "MW",
+   "peak": 0.8286552539874316,
+   "peak_unit": "MW",
+   "share": 0.08499028246024938,
+   "reason": null
+  },
+  {
+   "name": "peak_boiler",
+   "title": "peak_boiler",
+   "kind": "Boiler",
+   "value": 30.0,
+   "unit": "MW",
+   "peak": 29.01042043914971,
+   "peak_unit": "MW",
+   "share": 0.9670140146383236,
+   "reason": null
+  },
+  {
+   "name": "heat_exchanger",
+   "title": "heat_exchanger",
+   "kind": "Heat exchanger",
+   "value": 3.3,
+   "unit": "MW/K",
+   "peak": null,
+   "peak_unit": "W/K",
+   "share": null,
+   "reason": null
+  },
+  {
+   "name": "compression_cooler",
+   "title": "compression_cooler",
+   "kind": "Cooler, heat rejected",
+   "value": 13.0,
+   "unit": "MW",
+   "peak": 11.257371175939321,
+   "peak_unit": "MW",
+   "share": 0.8659516289184094,
+   "reason": null
+  },
+  {
+   "name": "compression_chiller",
+   "title": "compression_chiller",
+   "kind": "Compression chiller",
+   "value": 10.0,
+   "unit": "MW",
+   "peak": 9.971738985898853,
+   "peak_unit": "MW",
+   "share": 0.9971738985898853,
+   "reason": null
+  }
+ ],
+ "created": "2026-11-05T17:31:10.724864Z"
+}

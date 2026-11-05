@@ -6,33 +6,50 @@
 | Severity | major |
 | Area | backend |
 | Reporter | QA-E2E-design-I |
-| Found | 2026-11-05 17:36 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 17:40 UTC |
+| Versions | frontend 1.1.113, backend 1.1.104 when the run ended (1.1.107 at 17:40), geomind 0.4.97, gemini 0.6.16 |
+| Where | project QA-TEST QA-E2E-design-I 1 (f1704a61-f1b8-4b63-84d3-20bd30beaed7); run 76d19df6-485f-46ee-a182-6b03ed70ab33 (ended 17:31:10 UTC); result a6a3aec3-0ac8-48a0-b0f1-c5bc00d1b208 'simulation best_v1' |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Chat asks for a plant design; the design lead optimises to `design/best_v1` (1 doublet, 300 m3/h) and simulates it (`result/b8bc0df839230959`, LCTS 49.695 EUR/MWh).
+2. After the design, the analysis lead runs two what-if simulates: `simulate {"design": "design/best_v1", "changes": {"d0": {"nominal_flow": 150 m3/h}}}` (17:21:38) and the same with 50 m3/h (17:21:57).
+3. The run ends; open Results.
 
 ## Expected
 
+The Results row added at the end of the run is the design the answer recommends (`design/best_v1` as stored: 300 m3/h, LCTS 49.695, capex 24.633 MEUR, gas 30,199 MWh).
+
 ## Actual
+
+The row `simulation best_v1` (created 17:31:10) holds the 50 m3/h what-if:
+
+| KPI | Row 'simulation best_v1' | Chosen design (the chat answer) |
+|---|---|---|
+| LCTS | 64.395 EUR/MWh | 49.695 |
+| LCOH | 62.569 EUR/MWh | 48.286 |
+| CO2 | 25.81 kt | 17.18 |
+| Gas bought | 112,911 MWh | 30,199 |
+| Boiler heat | 103,843 MWh | 35,214 |
+| Capex | 24.421 MEUR | 24.633 |
+| d0 capacity | 50 m3/h | 300 m3/h |
+
+The name says best_v1, so the user reads the worst trial as the chosen design. The row has `plant_version` null and `doublets` null. The Report and the Results page read this row; a user who adopts it gets the 50 m3/h plant.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-223/1.png)
-- Run JSON: `../evidence/QA-223/run-<id>.json`
+- `../evidence/QA-223/result-a6a3aec3.json`: the stored row (kpis, capacities, plant_version null).
+- The two what-if calls in the run log (`../evidence/QA-169/run-76d19df6-log-1710.json.gz` is earlier; the calls are at 17:21:38 and 17:21:57 in GET /api/v1/assistant/runs/76d19df6-.../log).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+`backend/src/api/v1/assistant/runs/adapters/simulated.py:53` `last_simulation` takes the newest successful `simulate` and does not look at the input: a `simulate` with `changes` (a what-if that saves no design) qualifies. `name_of` then names it after the `design` argument, `simulation best_v1` (fact from the code and the stored row).
+
+## Proposed fix
+
+In `last_simulation`, skip a `simulate` whose input has non-empty `changes` (or any override that is not stored as a design); take the newest plain one. Optionally record the run's final design reference (`update_state` final_design / the lead's hand-over) and prefer the simulate of that design. Unit test: events [plain simulate of best_v1, simulate with changes] -> the plain one.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
