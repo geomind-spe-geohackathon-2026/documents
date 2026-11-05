@@ -38,6 +38,8 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
     doublet power, brine and gas, emission factors, outside air (each with a worked example)
 14. Lessons from case reviews: stored = approved, nothing to start from, how the user answers,
     scope
+15. Reference ranges for the values agents search most: network temperatures, cooling and
+    dew point, produced gas, sand, grid limits, initial state, salinity and net-to-gross
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1173,6 +1175,166 @@ holds the rule. They apply to any case.
 - **Read by section.** Knowledge is read by section after its outline, never whole; a search
   result is a pointer to a section, not a value to paste (front matter of this handbook).
 
+# 15. Reference ranges for the values agents search most
+
+Answers to the questions case agents ask Knowledge most often. Each section says what the key
+is, where its value comes from, the typical range in the literature (to check a source, never to
+fill a gap) and common mistakes. A typical range is never a case value: a gap is filled only by
+a source the user approves (§8.1, §8.4). Examples use invented numbers.
+
+## 15.1 Supply and return temperatures of heating networks
+
+**What.** `demand.heating.supply_temperature` is what the consumers ask for; `return_temperature`
+what they give back; `minimum_return_temperature` and `maximum_return_temperature` the limits
+the network operator states. They are the consumer's, not the plant's: the plant must meet them.
+
+**Typical ranges.** Lund et al. (2014) describe the generations of district heating:
+third-generation networks run supply temperatures mostly below 100 °C with returns of about
+40 to 50 °C; fourth-generation (low-temperature) networks aim at supply 50 to 60 °C and return
+about 25 °C. Frederiksen and Werner (2013, ch. 6) show that return temperature is set by the
+consumers' substations: a poor substation raises it. Building heating systems designed to
+EN 12831-1 with radiators often run 70/50 °C or 55/35 °C; floor heating lower.
+
+**Why it matters.** The heat taken from geothermal brine is limited by how cold the injection can
+be, which is bounded below by the network return (§13.5, §7.3). A return temperature 10 K too
+high can cut the usable temperature drop by a fifth or more.
+
+**Mistakes.** Taking a supply temperature from a design table and writing it as the case value;
+mixing a network's design temperature with its yearly mean; writing a return temperature that a
+source gives only as a target as if it were a limit (§6.10).
+
+**Example (invented).** A brief gives supply 85 °C and "return about 45 °C". Case: supply 85,
+return 45, both cited to the brief. No minimum or maximum return: the brief gives none (§8.6).
+
+## 15.2 Cooling networks, indoor air and the dew point margin
+
+**What.** `demand.cooling.supply_temperature` and `return_temperature` are the chilled water;
+`indoor_temperature` and `indoor_relative_humidity` the room; `dew_point_margin` [K] how far the
+chilled water must stay above the room's dew point so that no condensation (latent load) occurs.
+
+**Typical ranges.** The ASHRAE District Cooling Guide (2013) describes conventional chilled-water
+networks with supply about 4 to 7 °C and a design temperature difference of about 8 to 10 K.
+High-temperature cooling (chilled ceilings, active beams) uses supply 14 to 18 °C and needs a
+dew-point margin of about 1 to 2 K (REHVA Guidebook No. 7, Babiak et al. 2007). Indoor design
+conditions for comfort are in EN 16798-1 (operative temperature about 23 to 26 °C in summer
+for category II) and ASHRAE 55.
+
+**Dew point.** Magnus formula (Alduchov and Eskridge 1996):
+`γ = ln(RH) + 17.625·T/(243.04 + T)`, `T_dew = 243.04·γ/(17.625 − γ)`, T in °C.
+
+**Example (invented).** Room 24 °C at 50 % RH: `γ = −0.693 + 1.584 = 0.891`,
+`T_dew = 243.04 × 0.891 / 16.734 = 12.9 °C`. With a margin of 2 K the chilled water must stay
+at or above 14.9 °C to take no latent load. This is a check on the source's numbers; gemini
+computes it itself from the case (`gemini.physics.psychrometrics`), so store the three inputs,
+never the dew point (§8.5).
+
+**Mistakes.** Asking the user for `dew_point_margin` on a case with no cooling; writing the
+indoor humidity in % without `"unit": "%"`; confusing the site's outside humidity
+(`site.air.relative_humidity`) with the room's.
+
+## 15.3 Produced gas: composition, heating value, bubble point
+
+**What.** `site.fluid.gas_liquid_ratio` (GLR, `Nm3/m3`) and `site.fluid.dissolved_gas` (mole
+fractions per species) describe the gas that leaves the brine at surface pressure.
+
+**Typical ranges.** Sedimentary-basin brines often carry CO₂ and CH₄ with some N₂; H₂S occurs
+in some basins (Huenges 2010, ch. 5; Stober and Bucher 2021, ch. 7). GLR varies by orders of
+magnitude between basins, so only a fluid analysis of the site or its basin is a source.
+
+**Heating value.** Only combustible species (CH₄, C₂H₆, H₂S, H₂) add heat; CO₂ and N₂ are inert.
+ISO 6976:2016 gives the values; methane's LHV is about 50.0 MJ/kg (35.8 MJ/Nm³), HHV about
+55.5 MJ/kg. gemini computes the mixture's value (`gemini.physics.gas.lower_heating_value`,
+`combustion_co2`): store the composition, never a computed heating value.
+
+**Bubble point.** Gas stays dissolved while the pressure stays above the bubble point
+(Henry's law). Below it, gas comes out in the well or the plant; operators often keep surface
+pressure above it to avoid degassing and scaling (Huenges 2010). A bubble point the fluid
+report gives is a value for checking or a rule (§6.10), not a case key unless gemini lists one
+(`describe_case`).
+
+**Example (invented).** Report: GLR 1.1 Nm³/m³; gas 80 mol% CO₂, 15 mol% CH₄, 5 mol% N₂.
+Check: sums to 100 %. Case: both keys as printed. No H₂S given: leave it out; do not ask for a
+species the report does not name (§8.6). A search for "nitrogen fraction" across Knowledge
+finds no site value: say so in the confirmation question.
+
+## 15.4 Sand and solids in produced brine
+
+**What.** `site.fluid.sand_concentration` (`mg/l` or `kg/m3`) is the mass of solids per volume
+of produced brine; it feeds erosion and filtration in gemini (`gemini.physics.erosion`,
+`separation`).
+
+**Typical ranges.** Well-completed geothermal wells produce low solids; a sand screen or gravel
+pack keeps it down; higher values point to a completion problem. Erosion limits for pipe flow
+are set from the solids load and velocity (API RP 14E, 1991; DNV RP O501, 2015).
+
+**Mistakes.** Writing `mg/l` as `kg/m3` (factor 1 000); taking a filter's rating (µm) for a
+concentration; filling the key with a guess when the case's modules do not need it: leave it
+unset unless a source gives it (§8.6).
+
+## 15.5 Grid connection limits
+
+**What.** `utilities.electricity.import_limit` and `export_limit` [power] are the largest power
+the grid connection can take in or give out. They are the grid operator's contract or the
+connection's rating, not the plant's choice.
+
+**How to choose.** Only a source sets them: the connection agreement, the operator's offer, or
+the brief. Without one, leave both unset: gemini then puts no limit on the exchange
+(`gemini.physics.energy.net_exchange`). Never take a transformer size or a typical connection
+class as a limit. When a brief says "the grid can supply at most X", that is the import limit;
+"no export allowed" is an export limit of zero only if gemini accepts zero (`describe_case`
+states the bound), else a requirement on the exported power (§6.10).
+
+**Check.** The plant's peak electricity (heat pumps, pumps, chillers) must stay under the import
+limit; the design team checks it, the case lead only records the limit.
+
+**Example (invented).** The operator's offer: 4 MW firm import, export not permitted. Case:
+`import_limit = 4 MW` (source: the offer, page). Export: `export_limit = 0 MW` when
+`describe_case` shows the bound admits zero (gemini 0.6.34: `min=0`); otherwise a requirement
+"exported electricity = 0" proposed in the confirmation question.
+
+## 15.6 Initial state of stores
+
+**What.** `initial_state` gives the starting state of each stateful module, as
+`{module path: {state: {value, unit}}}`. In gemini 0.6.34 the stateful modules are the stores
+(`gemini/modules/storage/`): a tank (`temperature`), an ice store (`ice_fraction`,
+`temperature`) and an aquifer store (`warm_volume`, `cold_volume`, their temperature changes,
+`charged_heat`, `recovered_heat`). There is no default.
+
+**How to choose.** A plant without a store needs no `initial_state`: leave it out and never ask
+for it. A plant with a store needs one per state. The start state is a modelling choice of the
+design team, not a site value: a new store starts empty or at the surrounding temperature
+(a cold start); a long simulation should start from the state the store reaches after a year of
+operation (a periodic start), which the design team finds by running one year and taking its
+end state. Record which one was used.
+
+**Mistakes.** Asking the user for the initial state before the plant is known; giving a store's
+state when the plant has no store; leaving it unset on a plant with a store (there is no default; gemini reports it
+missing).
+
+**Example (invented).** The design team adds a 2 000 m³ hot-water tank. The case gets
+`initial_state: {"plant.storage.tank": {"temperature": {"value": 60, "unit": "degC"}}}`, the
+supply temperature at start, named as the design team's choice, not the user's.
+
+## 15.7 Brine salinity, net-to-gross and transmissivity
+
+**Salinity.** Total dissolved solids (TDS), mostly NaCl, in g/l or mg/kg. It is not a gemini
+case key; it is the reason a brine's density, viscosity and heat capacity differ from water's
+(§13.6). Use it to check the fluid values a report gives: a TDS of a few tens of g/l raises
+density a few percent above water's at the same temperature (Batzle and Wang 1992).
+
+**Net-to-gross (N/G).** The share of the gross reservoir thickness that is permeable sand.
+`net thickness = N/G × gross thickness`. A source that gives a permeability for the net sand
+must be paired with the net thickness; for the gross, with the gross (§13.4). Mixing them is
+the most common transmissivity error.
+
+**Transmissivity.** `kh` in D·m or mD·m. Some reports give only kh: then record kh's source and
+split it into the permeability and thickness the same report gives; never invent one of the
+two to recover the other.
+
+**Example (invented).** Gross 90 m, N/G 0.6, net-sand permeability 350 mD: net 54 m,
+`kh = 18.9 D·m`. Case: thickness 54 m, permeability 350 mD, both cited, with "net" in the source
+note.
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -1216,17 +1378,29 @@ holds the rule. They apply to any case.
 - WRI and WBCSD (2015). *GHG Protocol Scope 2 Guidance*.
 - ISO 2533:1975 *Standard Atmosphere*; DIN 1343 *Normal conditions*; ISO 13443:1996 *Natural gas
   standard reference conditions*.
+- Alduchov, O.A. and Eskridge, R.E. (1996). Improved Magnus form approximation of saturation
+  vapor pressure. *Journal of Applied Meteorology* 35(4), 601-609.
+- API RP 14E (1991). *Design and installation of offshore production platform piping systems*.
+- ASHRAE (2013). *District Cooling Guide*. ASHRAE 55: *Thermal environmental conditions for
+  human occupancy*.
+- Babiak, J., Olesen, B.W. and Petras, D. (2007). *Low temperature heating and high temperature
+  cooling*. REHVA Guidebook No. 7.
 - Batzle, M. and Wang, Z. (1992). Seismic properties of pore fluids. *Geophysics* 57(11),
   1396-1408.
 - CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
+- DNV RP O501 (2015). *Managing sand production and erosion*.
 - Dake, L.P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
 - EN 12831-1:2017. *Energy performance of buildings: method for calculation of the design heat
   load*. EN ISO 15927-6:2007. *Hygrothermal performance of buildings: accumulated temperature
   differences (degree-days)*.
+- EN 16798-1:2019. *Energy performance of buildings: indoor environmental input parameters*.
 - Gringarten, A.C. and Sauty, J.P. (1975). A theoretical study of heat extraction from aquifers
   with uniform regional flow. *Journal of Geophysical Research* 80(35), 4956-4962.
+- ISO 6976:2016. *Natural gas: calculation of calorific values, density, relative density and
+  Wobbe indices from composition*.
 - Kestin, J., Khalifa, H.E. and Correia, R.J. (1981). Tables of the dynamic and kinematic
   viscosity of aqueous NaCl solutions. *J. Phys. Chem. Ref. Data* 10(1), 71-87.
+- Lund, H. et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
 - Ramey, H.J. (1962). Wellbore heat transmission. *Journal of Petroleum Technology* 14(4),
   427-435.
 - gemini physics: `gemini/gemini/physics/ground.py` (geotherm, Gringarten-Sauty doublet, Ramey),
