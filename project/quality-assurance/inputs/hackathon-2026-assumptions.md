@@ -9,7 +9,8 @@ every value the case and the economics need that the three competition files
 `GEMINI_Hackathon_Challenge_Requirements.pdf`) do not give. Cite it as
 `knowledge/hackathon-2026-assumptions.md`. The case lead puts these values in its ONE
 confirmation question (case values) and its ONE `ask_economics` call (economics), each with this
-file as the source; after the user approves them they are never asked again. How each value goes
+file as the source; after the user approves them they are never asked again. A key this file marks "Not set, not
+needed" stays open: never search for it and never ask the user for it. How each value goes
 into the case: `knowledge/handbook-case.md`, chapter 12.
 
 Each value says where it comes from:
@@ -41,9 +42,11 @@ Each value says where it comes from:
 | Cooling dew point margin | 1 K | Team |
 | Indoor temperature / relative humidity (cooling) | 26 degC / 50 % | Team |
 | Ambient air | 10 degC, 101325 Pa | Team |
+| Outside air relative humidity (`site.air.relative_humidity`) | Not set, not needed: no module of this case reads it (gemini 0.6.17; a wet cooler uses the wet-bulb temperature instead). Do not ask for it | Team (the reference `case.json` leaves it open) |
 | Sand in the brine | 20 mg/l | Team |
 | Grid electricity CO2 intensity (`utilities.electricity.co2_intensity`) | 300 g/kWh | Organisers |
 | Bought natural gas composition (mole fraction) | CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233 (sum 1, exact values of gemini's sample; do not round) | Team |
+| Bought gas heating value (`utilities.gas.heating_value`) | Not set, not needed: gemini computes the heating value from the composition above. Do not ask for it | Team (the reference `case.json` leaves it open) |
 | Heat pump / compression chiller efficiency | 50 % of the Carnot COP | Team (Frutschi, ABB Review 5/1996, pp. 33-34) |
 
 ## Requirements: tolerances the PDF does not give

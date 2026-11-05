@@ -228,7 +228,7 @@ accepted units of each key.
 | `fluid.dissolved_gas` | per species, a mole fraction or `mol%` | fluid analysis, brief | the produced gas; sums to one as written |
 | `fluid.sand_concentration` | `mg/l` | fluid analysis, assumptions document | |
 | `air.temperature` | `degC`, constant or series | file, weather connector, Knowledge | say "constant" when it is |
-| `air.relative_humidity` | fraction 0 to 1, or `%` with `"unit": "%"` | file, weather connector | never convert it yourself |
+| `air.relative_humidity` | fraction 0 to 1, or `%` with `"unit": "%"` | file, weather connector | optional: no module reads it in gemini 0.6.17; leave it open unless a source gives it, never ask for it; never convert it yourself |
 | `air.pressure` | `Pa`, `bar`; or `{"elevation": {value, unit}}` | file, connector, or the site's elevation | from an elevation `set_case` sets the ISA pressure and lists it in `converted` |
 
 ## 2.5 `utilities`
@@ -238,7 +238,7 @@ accepted units of each key.
 | `electricity.co2_intensity` | `g/kWh` as printed; constant or series | brief, organiser, Knowledge, connector | location- or market-based named (§5.2) |
 | `electricity.import_limit`, `export_limit` | `MW` | grid operator | unset unless a source gives one |
 | `gas.composition` | per species, a mole fraction or `mol%` | supplier, assumptions document | the bought gas; digits as written; sums to one |
-| `gas.heating_value` | per mass, as printed | supplier, Knowledge | lower or higher as the source says |
+| `gas.heating_value` | per mass, as printed | supplier, Knowledge | optional: gemini computes it from `gas.composition`; leave it open unless a source gives it, never ask for it |
 
 ## 2.6 Other sections
 
@@ -756,6 +756,7 @@ All in the ONE confirmation question, source `knowledge/hackathon-2026-assumptio
 | `site.fluid.sand_concentration` | 20 mg/l | team |
 | `utilities.electricity.co2_intensity` | 300 g/kWh | organisers (QA-095) |
 | `utilities.gas.composition` | CH4, C2H6, C3H8, CO2, N2 with every digit of the document | team (bought gas) |
+| `site.air.relative_humidity`, `utilities.gas.heating_value` | not set, not needed: leave open, never search or ask (QA-161) | team |
 
 ## 12.5 Requirements (8)
 
