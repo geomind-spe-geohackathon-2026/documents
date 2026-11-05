@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -39,3 +39,4 @@ frontend 1.1.89 (hotfix-front-II): `domains/workspace/settings/project-menu.tsx`
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 11:04 UTC: live 1.1.92: project card menu Pin, Rename, Settings, Delete; dialogs open, nothing written
