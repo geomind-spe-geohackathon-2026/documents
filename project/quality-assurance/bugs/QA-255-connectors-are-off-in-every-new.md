@@ -54,6 +54,14 @@ frontend: New project dialog lists the connectors that are On (checked by defaul
 gets every connector that is On globally. geomind: when the project has no connector but the account has
 some, the case lead says which one and that it can be turned on in Project settings.
 
+## Fix (backend part)
+
+hotfix-back-lead, backend 1.1.113, deployed 2026-11-05 ~18:06 UTC: `POST /workspace/projects`
+without `mcp` gives the project every enabled MCP server (`create_project`); `mcp: []` keeps
+none. Existing projects keep their list (Settings). UI part with hotfix-front-lead.
+Retest: create a project; GET /workspace/projects/{id} has the open-meteo id in `mcp`; a case run
+calls list_mcp.
+
 ## Fix
 
 ## Retest
