@@ -1554,6 +1554,11 @@ A requirement states `name`, `on` (role), `quantity`, `min` and/or `max` with `u
 per-step quantity `over` (`each`, `duration`, ...) and `when` (`running`, ...) [gemini: `docs/guide.md`]. A limit the case does not state is not checked; do not invent
 one [skill `designing-a-plant`].
 
+An energy limit on a power quantity ("electricity bought at most E per year") is not `over:
+sum`: `sum` of a power adds the step values, not energy [gemini: `gemini/plants/roles.py`]. Write
+it as `over: mean` with the bound E divided by the period (E / 8,760 h for a year of steps). Such a
+requirement is the case's; on a wrong form hand over `case change needed`.
+
 ## 11.5 Plant classes: the templates
 
 `gm.plants.names()` lists the classes; `list_plants` shows them with the project's own plant files
