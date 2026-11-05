@@ -1929,6 +1929,54 @@ What the lesson teaches:
 - QA-245: after a case change, re-run the checks of the stored design (`check_results`) and read
   its verdict; do not diff old and new results step by step.
 
+## 12.14 Lessons from agent runs: reading results right
+
+Each a general rule from GeoMind's QA (`documents/project/quality-assurance/BUGS.md`):
+
+- QA-123, QA-213: a heat exchanger is rated by its UA in W/K, which has no "peak MW". Read its
+  duty from the results (`read_result`, its heat flow per step) before saying it is unused.
+- QA-124, QA-162: a verdict is `feasible` only when no check failed and none is not assessed.
+  Give each requirement's value and limit in an answer; "gemini says feasible" is not a value.
+- QA-132: a doublet ran at 341 m3/h above a hard cap of 300 m3/h on one step while the verdict
+  said feasible. Check every hard limit of the case (0.8) against the worst step of the results
+  yourself; a missing rule is a case gap (`case change needed`), not a pass.
+- QA-214: "days with geothermal heat" and "running days of a doublet" are different counts. A
+  doublet that serves only cooling in summer runs on days when geothermal gives no heat. Name
+  which count you quote.
+- QA-225: heating fell short by the same small amount every day while the boiler had spare
+  capacity: the units met the demand at the plant outlet and the pipe lost the rest. Heat lost
+  in the network must be produced too: a `supply_margin` (9.4) or a network with its losses in
+  the model (2.5).
+- QA-226: cold delivered exceeded the demand and the supply fell below its setpoint: an
+  overcooled supply is not extra service. Compare delivered energy with the demand series and
+  read the supply temperature on the worst steps.
+- QA-228: "geothermal heat" is not heat delivered less boiler heat when the boiler also drives a
+  chiller; take heat by source from the results (handbook-economics 1.4), and count heat pump
+  electricity as electricity (12.8).
+
+## 12.15 Lessons from agent runs: working the design
+
+- QA-015: gemini reported a case value as missing and the design went on. A missing case value
+  stops the design: hand over `case change needed: <path>` (0.5.1).
+- QA-055: an agent asked the user for an ESP curve no source had and blocked the design. Never
+  ask for a curve, datasheet or stage coefficients; a designed doublet derives the pump (13.1).
+- QA-065: an agent told the user a rule the case did not hold. Quote limits only from the case
+  (`read_case`, `requirements`); a rule in a brief but not in the case is a case change.
+- QA-094: a value the brief leaves to the designer (a return temperature inside a stated band,
+  for example) is a **design choice**: choose it with a reason and record it as an assumption;
+  it needs no external source, and it is shown in the report.
+- QA-121, QA-179, QA-221, QA-278: sizing or ranking by hand-built plants cost twenty approval
+  cards and changed the plants on the way. Size with one size step; refer to a stored plant by
+  its design reference (`design/v<N>`); never re-type a stored plant.
+- QA-129: a design stayed at one doublet because the doublet count was never searched. On a
+  class plant search `size.doublets` over the range the user or the case gives (10.2, 11.10).
+- QA-143, QA-149, QA-269: `evaluate_module` needs every inlet with its fluid, from a stored
+  result or stated; controls and parameters are different keys. Read the skill before the call
+  (11.9); after one refusal change the input, never resend it.
+- QA-251: after one failed simulation per family the run said "neither is feasible". Run a
+  repair round from 0.5 (at most three changes aimed at the failing check, 0.1) before giving a
+  family up, and say what was tried.
+
 # 13 Answers to the design questions agents ask
 
 Each section answers one question that design agents searched Knowledge for again and again in
