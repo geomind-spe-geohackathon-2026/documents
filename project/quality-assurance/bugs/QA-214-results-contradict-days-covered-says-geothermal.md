@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | gemini,frontend |
 | Reporter | QA-E2E-study-I |
@@ -54,4 +54,8 @@ days per doublet.
 
 ## Fix
 
+frontend 1.1.118 (commit 246ad1a): Days covered no longer claims geothermal was "off"; it says geothermal gave none of this demand on N days and may run for another service. Fact from the evidence JSON: the 125 days with geothermal 0 for heating are May-September (15+30+31+31+18), when geothermal serves cooling (219 cooling days with geothermal > 0), so the doublets did run. Open, gemini part (hotfix-python): running_time_limit reports exactly the cap 330 d for both doublets; check whether its value is the real active-day count.
+- 2026-11-05 17:34 UTC: frontend 1.1.118; gemini running_time_limit value open
 ## Retest
+
+Not run (no tests now).
