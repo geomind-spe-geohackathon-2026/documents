@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -35,7 +35,7 @@ The slim variant of the shared DropZone was a single row (py-3); the over state 
 ## Fix
 
 frontend 1.1.91, commit 7169bbe (hotfix-front-II): `shared/attach/drop-zone.tsx` min-height 128 px slim / 192 px full, column layout; while dragging: solid accent border, accent-soft fill, ring, text 'Drop to add the files', no dragleave flicker. Already the one component for Knowledge, Library and New project. The chat composer takes drops on the whole box (no zone) and the case form's per-field file input stays inline. Checked locally on Knowledge: 128 px, drag over shows the highlight. Deploy: 11:00 UTC window.
-
+- 2026-11-05 11:03 UTC: deployed 11:01 UTC, live 1.1.92 bundle index-BnoB2Kcd.js; live verification left to hotfix-front-III (handover at the context limit)
 ## Retest
 
 (Who, when, result.)
