@@ -108,3 +108,4 @@ wont-fix, duplicate.
 | [QA-100](bugs/QA-100-runs-and-logs-the-section-titles.md) | open | cosmetic | frontend | Runs and logs: the section titles Per agent and Per model are the size and weight of the column headers; they do not read as titles | Fatemeh |  |
 | [QA-101](bugs/QA-101-overview-recent-chats-rows-do-not.md) | open | cosmetic | frontend | Overview, Recent chats: rows do not line up with the card, a wide empty time column, the running badge touches the card edge, a tall empty card | Fatemeh |  |
 | [QA-102](bugs/QA-102-overview-activity-every-row-opens-the.md) | open | minor | frontend,backend | Overview Activity: every row opens the current Plant page; a plant or case version links to no version, a study link has no route | Fatemeh |  |
+| [QA-103](bugs/QA-103-runs-and-logs-durations-in-raw.md) | open | minor | frontend | Runs and logs: durations in raw seconds and token counts in full digits (27,838 s · 2,906,166 tokens in) | user via coordinator |  |
