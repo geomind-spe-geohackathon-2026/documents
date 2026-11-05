@@ -68,7 +68,7 @@ Do the steps in order; do not start a step before its gate holds.
 | 8 | Fix from the failures by 0.5: the failure, gemini's message and the module's plant text to its owner, all owners in one `fill_parts`, one `patch_plant` | the change is applied |
 | 9 | `simulate` the whole period (no `start`, `end`), `check_results` | `feasible` true |
 | 10 | `optimize` few leaves with ranges from the user or the case (10.1, 10.2), always the doublets (`size.doublets`, `dN.nominal_flow`) besides the capacities; `simulate` the best for the whole period, check it | a feasible, better design; no verdict on a design whose doublets were neither sized nor searched |
-| 11 | Compare the families in one `run_study` (each sized first, same objective, evaluations and seed), keep the best feasible, simulate it for the whole period | ranked; a family that cannot be built is reported `blocked` with its reason |
+| 11 | Compare the families in one `run_study`, keep the best feasible, simulate it for the whole period (how: `knowledge/handbook-studies.md` section 5.1) | ranked; a family that cannot be built is reported `blocked` with its reason |
 | 12 | Record `design.reference`, `design.result`, `design.family`, `design.schematic`, the study key (`update_state`), then `finish` | recorded |
 
 Stop rule: at most three changes aimed at one failing requirement. After the third, keep the
@@ -1054,6 +1054,9 @@ An absorption chiller (water/lithium bromide for chilled water) is driven by hea
 - **Heat rejection** = cold + drive heat (+ small pump power), about 2.4 times the cold at COP 0.7
   [derived]: the cooler or tower must be sized for that.
 
+The drive heat is heat used inside the plant, not heat delivered: account it by source as
+`knowledge/handbook-economics.md` section 1.4 says.
+
 Why it fits geothermal: the drive heat comes from brine that is otherwise idle in summer, so the
 geothermal source runs more hours (2.3). Why it may not: the brine at the chiller must be above the
 drive minimum, and its heat is then not available for heating that day; the brine leaving the
@@ -1323,9 +1326,9 @@ finds better designs faster.
 - Ranges come from the user, the case or the plant file; never fill a missing range with a typical
   value (skill `designing-a-plant`, `set_ranges`). Propose a range with its reason and get it
   approved.
-- Keep ranges no wider than needed: each continuous leaf needs about five evaluations [skill
-  `designing-a-plant`, `optimize`], so a search over six leaves needs about thirty evaluations just
-  to start.
+- Keep ranges and leaves few: gemini refuses fewer than 5 evaluations per search variable, and a
+  usable optimum needs about 10 to 20 per variable (`knowledge/handbook-studies.md` section 0.4);
+  a search over six leaves therefore needs 60 to 120 evaluations per doublet count.
 - A capacity range should reach from the share the geothermal side cannot cover (lower bound) to
   the full peak (upper bound).
 
@@ -1360,15 +1363,8 @@ window (11.7). Distinguish:
 
 ## 10.5 Sensitivity and uncertainty
 
-- **One-at-a-time sensitivity**: run the chosen design at the low and high end of each uncertain
-  value (prices, gradient, permeability, discount rate) and rank the effects (a tornado). It tells
-  which values to investigate further.
-- **Monte Carlo sampling**: draw the uncertain values from their distributions and report the mean
-  and the 5 % and 95 % values of cost and CO2; note draws that fail.
-- Sensitivity is of the **chosen** design. Whether the choice itself is robust (would another family
-  win at other prices?) needs the comparison run again at those prices.
-
-Skill `economics` runs both; uncertainty runs only when the task asks for it.
+Run them on the chosen design, sensitivity first, uncertainty only when the task asks: how, and how
+many runs, in `knowledge/handbook-studies.md` section 3 (skill `economics`).
 
 ## 10.6 Staying out of infeasible regions
 
@@ -1385,12 +1381,10 @@ Most wasted searches come from ranges that include designs that cannot run. Befo
 
 ## 10.7 Comparing families
 
-Compare two to six materially different families (8.1) on the same case, objective, number of
-evaluations and seed, each sized first. Report for each: objective value, CO2, feasibility and its
-reason, rank, Pareto membership. A family that fails by structure (no cooling unit for a cooling
-demand) is reported as infeasible with that reason, not dropped silently. Skill
-`comparing-designs` (and `run_study` in `designing-a-plant`) describe the tools; a superstructure
-search (`evolve_structure`) explores structures beyond the hand-picked families.
+Compare at least two materially different families (8.1), each sized first, on the same case,
+objective, evaluations and seed; report a family that fails by structure with its reason, never
+drop it. How to run and read the comparison: `knowledge/handbook-studies.md` sections 5.1 to 5.3
+(skill `comparing-designs`).
 
 ---
 
@@ -1566,7 +1560,8 @@ Engineering checks beyond the verdict (read them in every full-period result):
 - heat pump COP and lift over the year (6.4); a heat pump at its minimum lift most of the year is
   oversized or misplaced;
 - boiler share of the heat: high means the geothermal side is undersized or the gap is too large
-  (6.3);
+  (6.3); count the heat by source as `knowledge/handbook-economics.md` section 1.4 says, so heat
+  that drives a chiller or a heat pump is not counted twice;
 - doublet running days against the cap, and where the days off fall (8.5);
 - flared gas and methane emissions (5.5, 5.6).
 
