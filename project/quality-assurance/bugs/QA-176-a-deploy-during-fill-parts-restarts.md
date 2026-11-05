@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend,geomind |
 | Reporter | QA-AI-design-I |
@@ -49,7 +49,7 @@ started fresh nested runs from step 1. Now `end_orphans` keeps the nested runs o
 crash stopped in (by task and instance); the rerun call takes its own back: an open one goes on
 from its last step (`engine.proceed`), a finished team mate gives its stored outcome. Kept runs
 nobody takes are ended when the parent ends (`end_left_orphans`).
-
+- 2026-11-05 17:29 UTC: geomind 0.4.106 2aabaa5, backend 1.1.106
 ## Retest
 
 Recipe: A design run inside fill_parts; deploy the backend; the finished engineers are not run again and the open one goes on from its step (log: no `index: 1` again for the same instance).
