@@ -33,4 +33,5 @@ Guess: the lead patches after each refusal of `check`/`simulate` (one missing va
 
 ## Fix
 
+- 2026-11-05 17:32 UTC: raised to blocker by Sahand 17:32 UTC: report run has 15 plants and no study after 30 min; lead also started a hand-sized build (hp_2500_v4)
 ## Retest
