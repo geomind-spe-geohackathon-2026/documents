@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 17:43 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
 | Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
