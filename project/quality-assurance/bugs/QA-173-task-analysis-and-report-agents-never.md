@@ -75,6 +75,38 @@ have it). Then one bullet under `## Rules` of each prompt:
 - For a report to a scored brief (a competition or tender), read `read_knowledge(name="knowledge/handbook-report.md", section="16.1")`; for the GEMINI hackathon its criteria and limits are `read_knowledge(name="knowledge/hackathon-2026-brief.md", section="Judging criteria")` and `section="2"`.
 ```
 
+### Read tool each agent needs
+
+| Agent | File | Tool to add | Scope |
+|---|---|---|---|
+| economist | `agents/analysis/economist.py` | `read_knowledge` (the Knowledge-only read tool the design engineers have) | global Knowledge only |
+| analysis lead | `agents/analysis/lead.py` | `read_knowledge` | global Knowledge only (it already has `read_rag` for project files) |
+| explainer | `agents/project/explainer.py` | `read_knowledge` | global Knowledge only |
+| reviewer | `agents/project/reviewer.py` | `read_knowledge` | global Knowledge only |
+
+Keep `search_rag` as it is. Every citation below is a `section` number checked with
+`section_span`; a bare file name without `knowledge/` is refused (QA-169).
+
+### Skills: one line each
+
+**skills/economics/SKILL.md** (after the first paragraph)
+
+```
+The method behind these tools (what each metric means, how gemini computes it, how to read a sensitivity or an uncertainty) is `read_knowledge(name="knowledge/handbook-economics.md", section="16")`, `section="12"` and `section="13"`; this skill holds only the calls.
+```
+
+**skills/report/SKILL.md** (end)
+
+```
+How a study's table enters the report's `Decisions` (decision record, comparison table): `read_knowledge(name="knowledge/handbook-report.md", section="7")` and `section="6.3"`.
+```
+
+**skills/reading-results/SKILL.md** (next to `check_results`)
+
+```
+Feasible is `check_results`' `feasible` (gemini's verdict), never the report's `passed`, which tallies only the checks that ran: `read_knowledge(name="knowledge/handbook-report.md", section="9.1")`.
+```
+
 Notes: cite numbers, not titles (QA-169), except the brief's first section: its number `1`
 resolves to the file's own `#` title, so it is cited by the title "Judging criteria" (checked).
 
