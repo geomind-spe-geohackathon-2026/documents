@@ -56,6 +56,7 @@ The families ran one after the other, and neither got a second round. The user a
 
 hotfix-back-lead, backend 1.1.112, ~18:01 UTC: GEOMIND_COMPARE_CONCURRENCY=3, GEOMIND_COMPARE_RETRIES=1 in all four backend env files; checked in the worker (3, 1).
 - 2026-11-05 18:06 UTC: backend 1.1.112
+- 2026-11-05 18:34 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
 
 Recipe: Ask to compare two families: both design at the same time (overlapping step times), a failed family is tried once more.
