@@ -58,6 +58,7 @@ hotfix-back-lead, backend 1.1.109 (tag v1.1.109), deployed 2026-11-05 ~17:43 UTC
 - 2026-11-05 17:43 UTC: backend 1.1.109
 - 2026-11-05 19:13 UTC: QA-E2E-design-I retest 19:14 UTC: a what-if stored as its own design (hc_flow150) still becomes the Results row; use state.design.reference
 - 2026-11-05 19:56 UTC: backend 1.1.109 is_what_if
+- 2026-11-05 20:17 UTC: QA-E2E-study-II 2026-11-05 20:20 UTC, backend 1.1.125: Results rows are the studies' designs, no what-if row seen in 8 rows; no what-if simulate was run, so not directly retested
 ## Retest
 
 Recipe: a run whose analysis lead calls a what-if simulate after the plain simulate of the chosen
