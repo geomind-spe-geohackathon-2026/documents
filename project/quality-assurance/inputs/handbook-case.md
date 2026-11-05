@@ -41,6 +41,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
     question once
 15. Reference ranges for the values agents search most: network temperatures, cooling and
     dew point, produced gas, sand, grid limits, initial state, salinity and net-to-gross
+16. Checking a data file step by step: procedure, outliers, weather and price series
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1417,6 +1418,61 @@ two to recover the other.
 `kh = 18.9 D·m`. Case: thickness 54 m, permeability 350 mD, both cited, with "net" in the source
 note.
 
+# 16. Checking a data file step by step
+
+A procedure for any time-series file (demand, weather, prices), with the statistics behind each
+step. It extends the table of §3.3. Every finding is a flaw to report (§1.4), never a fix.
+
+## 16.1 Procedure
+
+1. **Shape.** Columns, header, delimiter, decimal mark (`,` vs `.`), units in the header or a
+   separate row. A decimal comma read as a thousands separator turns 4,2 MW into 42 MW.
+2. **Time axis.** First and last stamp, step, count. Expected count = span / step: 365 or 366
+   daily rows a year, 8 760 or 8 784 hourly; an hourly local-time year has 8 759 or 8 761 rows
+   in the spring and autumn DST weeks unless it is in UTC or has offsets (§3.2).
+3. **Gaps and duplicates.** Every expected stamp once. A repeated hour in autumn is DST, not
+   an error, when the file is local time without offsets: name the zone (§3.2).
+4. **Values.** Finite, non-negative for a demand; no text in a number column; no sentinel
+   values (`-999`, `9999`, `0` in a column that is never zero).
+5. **Units and totals.** Sum the energy (`Σ P·Δt`, §13.1) and compare it with the brief's
+   values for checking (§1.3). A factor of 24, 1 000 or 3.6 points to a unit slip
+   (MWh/d vs MW, kW vs MW, GJ vs MWh; Appendix A).
+6. **Pattern.** Season, weekday and holiday pattern as the stated use implies (§13.1, §13.2).
+7. **Outliers.** §16.2.
+8. **Report.** One line per flaw: what, where (rows), how large, and what the user must decide.
+
+Use `read_profile` and `list_profiles` to look at a saved series; never paste a whole series
+into the context (§14.1).
+
+## 16.2 Outliers and suspicious values
+
+**Lesson.** A value far from its neighbours is either a real event (a cold snap, a plant trip)
+or a data error. Tukey's fences (Tukey 1977) flag values outside
+`[Q1 − 1.5·IQR, Q3 + 1.5·IQR]`, with `IQR = Q3 − Q1`, as candidates; on a seasonal series apply
+them to the deviation from a smooth seasonal curve, not to the raw values, else every winter
+day is an "outlier" (Hyndman and Athanasopoulos 2021, ch. 3 and 13). A run of identical values
+(a flat line) usually means a frozen meter or a gap filled by copying.
+
+**Rule.** Flag, describe and ask; never remove, smooth or replace a value yourself (§8.5). When
+the user asks for a repair, use `repair_series` on the named steps only (§14.1).
+
+**Example (invented).** A daily heating series has a typical January value of 9 to 11 MW and one
+day of 0.0 MW between two 10 MW days, and one of 104 MW. The 104 MW day is ten times its
+neighbours: a likely decimal or unit slip. The 0.0 MW day in mid-winter is a likely gap. Both go
+into the one question: "rows 15 and 22: 104 MW and 0.0 MW against neighbours of about 10 MW;
+please confirm or give the right values".
+
+## 16.3 Weather and price series
+
+- **Weather.** Air temperature by hour has a daily cycle; a daily file gives the daily mean.
+  Check the span and the zone; a reanalysis or typical-year file is named as such (§13.8).
+  Physical bounds (ISO 2533, local records) catch unit slips: °F written as °C, K as °C.
+- **Prices and emission factors as series.** Check the unit and its reference year; a series
+  with a step finer than the demand is accepted when gemini resamples it (`describe_case`), else
+  it is a flaw to name. The economics side is in `knowledge/handbook-economics.md`.
+- **Consistency between files.** Demand and weather of the same site must cover the same span
+  in the same zone; a one-day shift between them is a time-zone error (§3.2).
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -1457,6 +1513,7 @@ note.
 - ISO/IEC/IEEE 29148:2018. *Requirements engineering* (characteristics from secondary summaries
   of section 5.2.5).
 - JCGM 100:2008. *Guide to the expression of uncertainty in measurement* (GUM).
+- Tukey, J.W. (1977). *Exploratory Data Analysis*. Addison-Wesley.
 - WRI and WBCSD (2015). *GHG Protocol Scope 2 Guidance*.
 - ISO 2533:1975 *Standard Atmosphere*; DIN 1343 *Normal conditions*; ISO 13443:1996 *Natural gas
   standard reference conditions*.
@@ -1478,6 +1535,8 @@ note.
 - EN 16798-1:2019. *Energy performance of buildings: indoor environmental input parameters*.
 - Gringarten, A.C. and Sauty, J.P. (1975). A theoretical study of heat extraction from aquifers
   with uniform regional flow. *Journal of Geophysical Research* 80(35), 4956-4962.
+- Hyndman, R.J. and Athanasopoulos, G. (2021). *Forecasting: Principles and Practice*, 3rd ed.
+  OTexts.
 - ISO 6976:2016. *Natural gas: calculation of calorific values, density, relative density and
   Wobbe indices from composition*.
 - Kestin, J., Khalifa, H.E. and Correia, R.J. (1981). Tables of the dynamic and kinematic
