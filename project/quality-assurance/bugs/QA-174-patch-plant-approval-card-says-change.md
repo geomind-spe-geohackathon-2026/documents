@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | duplicate |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-design-I |
@@ -40,4 +40,5 @@ geomind `engine/session.py` `call_summary`, patch_plant branch: when `changes` i
 
 ## Fix
 
+- 2026-11-05 17:23 UTC: duplicate of QA-172; fixed with it in geomind 0.4.105
 ## Retest
