@@ -4,7 +4,7 @@
 |---|---|
 | Status | open |
 | Severity | minor |
-| Area | backend |
+| Area | geomind |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 17:16 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
@@ -32,7 +32,7 @@
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 17:17 UTC: suggestions.py stage 'case' ignores economics
 ## Retest
 
 (Who, when, result.)
