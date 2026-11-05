@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | data,geomind |
 | Reporter | Sahand (Coordinator-V write-up) |
 | Found | 2026-11-05 20:02 UTC |
 | Versions | Knowledge on geomind.team, 2026-11-05 21:01 Trondheim |
 | Where | Global Knowledge: knowledge/hackathon-2026-brief.md, knowledge/hackathon-2026-assumptions.md (sources in documents/project/quality-assurance/inputs/) |
-| Fixer | |
+| Fixer | m4 |
 
 ## Steps
 
