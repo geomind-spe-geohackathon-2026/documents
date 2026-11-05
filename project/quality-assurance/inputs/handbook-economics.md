@@ -2339,6 +2339,74 @@ In gemini: kinds `heat_pump`, `boiler`, `electric_boiler` (§16.2); prices `ener
 
 ---
 
+## 23. Cooling economics: compression, absorption, free cooling
+
+### 23.1 The options and their efficiencies
+
+| Option | Driven by | Typical COP (cold / drive) | Heat rejected per unit of cold |
+|---|---|---|---|
+| Compression chiller, water-cooled | electricity | about 4 to 7 at district-cooling conditions | `1 + 1/COP`, about 1.2 |
+| Single-effect absorption (LiBr-water) | heat, roughly 80 to 120 °C | about 0.7 | `1 + 1/COP`, about 2.4 |
+| Adsorption (silica gel-water) | heat, roughly 60 to 90 °C | about 0.5 to 0.6 | about 2.7 to 3 |
+| Free cooling (cold ground water, lake, cold air) | pumps and fans only | very high, limited by the source temperature | none beyond the source |
+
+Sources: Herold, Radermacher and Klein (2016) for absorption; ASHRAE Handbook, HVAC Systems and
+Equipment, for chillers and cooling towers. COPs depend strongly on the chilled-water and
+heat-rejection temperatures; take the value gemini computes for the design's temperatures.
+
+A thermally driven chiller rejects about twice as much heat as a compression chiller per unit of
+cold, so its cooler (dry cooler or tower) is about twice as large: count it in its capex.
+
+### 23.2 Running cost per MWh of cold
+
+- Compression: `p_el / COP` plus the cooler's fan electricity.
+- Absorption: `cost of the driving heat / COP` plus pump electricity and the larger cooler's fans.
+
+The cost of the driving heat is its **opportunity cost**. Geothermal heat in summer, when the
+heating demand is low and the doublet would otherwise idle, costs only its pumping electricity.
+Heat taken from a gas boiler costs `p_gas / eta`: then absorption is almost never economic.
+
+Worked example (invented; electricity 100 EUR/MWh; fans 0.02 MWh of electricity per MWh
+rejected; absorption auxiliaries 0.02 MWh/MWh cold):
+
+| | Compression, COP 5 | Absorption, COP 0.7, geothermal heat at 5 EUR/MWh |
+|---|---|---|
+| Drive | 100 / 5 = 20.0 | 5 / 0.7 = 7.1 |
+| Auxiliaries | - | 2.0 |
+| Heat rejection fans | 1.2 x 2 = 2.4 | 2.43 x 2 = 4.9 |
+| **Running cost, EUR/MWh cold** | **22.4** | **14.0** |
+| Same, heat from a gas boiler (40 / 0.9) | | 63.5 + 6.9 = 70.4 |
+
+### 23.3 Including capital
+
+Invented capex: compression 0.16, absorption 0.33 EUR/W of cold, coolers 0.07 EUR/W rejected;
+fixed O&M 4 500 and 6 800 EUR/MW/yr; CRF 0.07095. Per MW of cold:
+
+- compression `F = 11 352 + 4 500 + 1.2 x 4 967 = 21 812 EUR/MW/yr`, `v = 22.4`;
+- absorption `F = 23 414 + 6 800 + 2.43 x 4 967 = 42 282 EUR/MW/yr`, `v = 14.0`.
+
+Equal yearly cost at `(42 282 - 21 812) / (22.4 - 14.0) = 2 438` full-load hours (§21.2).
+Cooling plants in temperate climates often run fewer full-load hours than that, so compression
+tends to win unless the driving heat is nearly free, the cooling season is long, or a CO2
+requirement favours heat over electricity. The answer is case-specific: let the study compare
+both families (handbook-studies 5) and use this to explain the result.
+
+### 23.4 CO2 and the heat source
+
+A compression chiller emits `EF_el / COP` per MWh of cold (0.06 t/MWh at 0.3 t/MWh and COP 5);
+absorption on geothermal heat emits only its pump and fan electricity; absorption on boiler heat
+emits `EF_gas / (eta x COP)` (0.32 t/MWh at 0.202, 0.9, 0.7), five times the compression chiller.
+"Thermally driven" is green only when the heat is.
+
+### 23.5 In gemini and geomind
+
+Kinds `compression_chiller`, `absorption_chiller`, `adsorption_chiller`, `cooler`, `ice_storage`
+(§16.2); fixed O&M rows in §0.4.2; no chiller per-energy row (§19.3). The cost of cold is LCOC
+with a stated heat-cost share, or the plant's LCTS (§6.3, §6.4). Size the cooler from the heat
+it rejects, not from its range maximum (§18.7).
+
+---
+
 ## Appendix A. Symbols and formulas
 
 | Symbol | Meaning | Unit |
@@ -2428,6 +2496,10 @@ handbook.
 - Lund, H., Werner, S., Wiltshire, R. et al. (2014), "4th Generation District Heating (4GDH):
   integrating smart thermal grids into future sustainable energy systems", *Energy* 68, 1-11,
   https://doi.org/10.1016/j.energy.2014.02.089 (section 22.1).
+- ASHRAE, *ASHRAE Handbook: HVAC Systems and Equipment*, ASHRAE, Atlanta (chillers, cooling
+  towers, thermal storage; chapters 23 and 24; latest edition).
+- Herold, K. E., Radermacher, R. and Klein, S. A. (2016), *Absorption Chillers and Heat Pumps*,
+  2nd ed., CRC Press (section 23.1).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
