@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -49,4 +49,5 @@ Run 17:22:45 to 17:31:11 UTC, 8 min 26 s; explainer 20 LLM calls, 1 451 815 inpu
 
 ## Fix
 
+- 2026-11-05 18:54 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
