@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
-| Area | geomind |
+| Area | backend |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 16:50 UTC |
 | Versions | frontend 1.1.114, backend 1.1.102 / 1.1.104 |
@@ -48,4 +48,16 @@ case's plants need), put an economics step first in the "case" stage ("Set the e
 ## Fix
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+- 2026-11-05 18:59 UTC: retest 19:00 UTC fails: empty chat has no problem state and the project progress has no economics item; backend should add it (see Retest)
 ## Retest
+
+- 2026-11-05 19:00 UTC, QA-E2E-economics-I: **FAILS** on backend 1.1.118 (geomind 0.4.130). New
+  project "QA-TEST QA-E2E-economics-I 9" (a2d1d833-beb5-4216-b2f7-4bb4d40f50fb), case complete, no
+  economics; the empty chat still shows "Design a plant", "Check the case and its sources",
+  "Compare plant options" after a reload (`../evidence/QA-194/retest-1.png`).
+  Cause (fact): `project_steps` adds `set_economics` only when `economics_unset(problem, project)`
+  is true; an empty chat has no problem state, and the project's progress from the API
+  (`GET /workspace/projects/{id}` -> `progress`) has only case, plant, study, results, report: no
+  `economics` item, so "unknown is not unset" and no chip. Fix: backend adds an `economics` item
+  to the project progress (unset / ready from the latest case version), or `economics_unset`
+  reads the project's latest case when the chat has no state.
