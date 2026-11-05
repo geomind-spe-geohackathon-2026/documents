@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -96,3 +96,9 @@ it as a crash.
   check the same for the project lead, whose `read_case`/`case_changes` after the case lead's
   nested run also stay stale. Evidence: `../evidence/QA-181/retest-1.png`,
   `../evidence/QA-181/run-92e9d156.json.gz`.
+- 2026-11-05 17:51 UTC, QA-E2E-economics-I: **PASSES** on backend 1.1.109/1.1.110 (geomind
+  0.4.110). Project "QA-TEST QA-E2E-economics-I 5" (8ed137a6-e07a-4a05-ae98-2ddd9a86f498), run
+  4aa5be35-9dc4-4f64-8dd2-581029b5cc34: request 17:48:27 -> card 17:50:35 (2 min 8 s) -> approve
+  all 17:50:38 -> done 17:51:34, no repeat-guard stop, summary lists every value with its source.
+  Evidence `../evidence/QA-181/run-4aa5be35.json.gz`.
+- 2026-11-05 17:53 UTC: QA-E2E-economics-I 17:51 UTC, geomind 0.4.110: approve all ends with a summary (run 4aa5be35, project QA-TEST QA-E2E-economics-I 5)
