@@ -7,27 +7,29 @@
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 18:57 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 19:54 Trondheim (after QA-291) |
+| Where | geomind.team chat, busy list under a running run |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Run any agent request in chat and look at the busy list.
 
 ## Expected
 
+The last line, below all agent lines, reads 'Total · 77 steps · 2.2 M tokens · 0.05 USD · 7 min 23 s': label 'Total' in the same bold style as the agent names, then the same fields in the same order and separators as the agent lines (steps · tokens · cost · time).
+
 ## Actual
+
+'Steps so far (77 steps) · 2.2 M tokens · 0.05 USD · 7 min 23 s' in a different style.
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-307/1.png)
-- Run JSON: `../evidence/QA-307/run-<id>.json`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Follow-up of QA-291, Sahand's request (top priority).
 
 ## Fix
 
