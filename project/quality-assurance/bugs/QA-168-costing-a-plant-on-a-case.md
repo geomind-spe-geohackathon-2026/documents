@@ -91,3 +91,12 @@ economics. Also: `simulate(changes={"plant": {"project_plant": ...}})` was tried
 ## Fix
 
 - 2026-11-05 17:40 UTC: geomind 0.4.107, deployed: analysis lead has ask_economics and the rule to use it (parts 2-4 of the proposed fix not done)
+
+- 2026-11-05 17:46 UTC, QA-AI-analysis-I, backend 1.1.108 (geomind 0.4.107+): fresh project `QA-TEST QA-AI-analysis-I 5`
+  (ed21ea3b-4489-498e-9f76-8f56eb15a39c), same steps, run da297015-fa41-4885-9cca-a178f7548bc1. The analysis lead
+  read the assumptions document (section 1.4) and asked ONE `ask_economics` question (request-95) with every value,
+  its row/document; "approve all" -> the case got exactly those values (= reference economics.json). Costs:
+  capex 34.636 MEUR, LCOH 43.753, LCOC 51.445, LCTS 45.102 EUR/MWh, NPV 28.453 MEUR: equal to the reference
+  page study. 4 min 0 s wall (incl. ~20 s for my answer), 613 k input tokens, 0.0120 USD, 0 refused calls.
+  Verified. Left over (not this bug): the economist still re-reads the economics 3 times and searches the
+  sources twice (QA-159). Log: `../evidence/QA-168/run-da297015-retest-log.json`.
