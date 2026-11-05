@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
 | Found | 2026-11-05 21:29 UTC |
 | Versions | live 2026-11-05 22:28 Trondheim |
 | Where | geomind.team, browser tab title |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
