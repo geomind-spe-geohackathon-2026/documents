@@ -58,7 +58,7 @@ the request tree). Final summary must name the user's stop as the reason.
 - 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
 - 2026-11-05 17:55 UTC (18:55 CET), QA-AI-case-I, run dd6b4700-3db4-43a7-8c48-4bf018600e1c
-  (project QA-TEST QA-AI-case-I 4, f6... chat 6f58a19d-8c9e-429d-a387-8fe67c3c7492), run
+  (project QA-TEST QA-AI-case-I 4, d58f680b-da23-4344-8c05-9628ead1149e, chat 6f58a19d-8c9e-429d-a387-8fe67c3c7492), run
   17:28:45-17:34:47 UTC on geomind 0.4.100 (BEFORE the 0.4.111-0.4.114 fix): reproduced. The
   case lead answered `stop` correctly (17:32:31, `finish`: "no case was set and nothing of the
   unconfirmed values was saved"). Then the project lead delegated `case_lead` again (17:32:46,
