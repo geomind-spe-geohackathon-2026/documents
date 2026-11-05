@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | handbook-econ-report-I |
 | Found | 2026-11-05 17:30 UTC |
 | Versions | geomind main 802aa38 |
 | Where | geomind/geomind/tools/gemini/economics.py (`ask_economics` values) |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
