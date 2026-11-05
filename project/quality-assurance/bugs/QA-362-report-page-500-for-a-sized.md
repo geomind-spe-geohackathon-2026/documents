@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | backend |
 | Reporter | Sahand (screenshot), Coordinator-V (log) |
 | Found | 2026-11-05 21:49 UTC |
 | Versions | live 2026-11-05 22:49 Trondheim |
 | Where | Design > Report, 'Draft from b_sized'; POST /api/v1/reporting/design/preview 500 (21:48:57 and 21:49:00 UTC) |
-| Fixer | |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
