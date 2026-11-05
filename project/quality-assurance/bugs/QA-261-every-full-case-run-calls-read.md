@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | speed-analysis-II |
 | Found | 2026-11-05 18:07 UTC |
 | Versions | backend 1.1.105+ (geomind 0.4.102-0.4.118) |
 | Where | api.geomind.team run logs: QA-TEST QA-AI-case-I 4 dd6b4700 (case_lead 4, project_lead 1), QA-E2E-case-I 4 679f3555 (3+1), QA-AI-case-I 6 6a8dba9a (2+1), QA-E2E-case-I 5 c17ca5fb (1+1), QA-E2E-case-I 4 ff712a26 (1+1), 6b77648d (project_lead 1) |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
