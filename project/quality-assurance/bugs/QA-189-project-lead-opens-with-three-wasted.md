@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -50,3 +50,7 @@ Three of five calls are wasted. Small per run, but it is every project run, and 
 ## Fix
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:15 UTC: QA-AI-project-I 19:08 UTC, backend 1.1.119, run a5cd1779: the project lead opens with list_studies + list_plants, then one read_knowledge outline; no refused read_stored, no whole read_case, no re-read.
