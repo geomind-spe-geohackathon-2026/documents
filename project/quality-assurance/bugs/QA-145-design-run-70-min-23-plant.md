@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | Fatemeh (screenshot), Claude (run log and write-up) |
@@ -44,6 +44,7 @@ Facts: no tool call to simulate in 70 min; the plant is built by hand edits (IMP
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 15:21 UTC: hotfix-python-V: WIP on geomind branch wip/hotfix-python-V (d168ea9), not released; handover note .claude/notes/sessions/hotfix-python-5.md
+- 2026-11-05 16:37 UTC: geomind 0.4.96 (c323454, tag v0.4.96), backend 1.1.100 (0d8e12f), deployed 2026-11-05; engineers propose from the brief, lead builds once, one fill_parts, one patch_plant (list form, no_change). Not live-retested (no QA runs).
 ## Retest
 
 (Who, when, result.)
