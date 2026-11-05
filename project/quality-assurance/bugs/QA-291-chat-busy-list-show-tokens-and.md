@@ -7,27 +7,30 @@
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 18:38 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 19:37 Trondheim |
+| Where | geomind.team chat, busy list (one line per agent while a run is live) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Start any agent run in chat.
+2. Look at the busy list under the chat.
 
 ## Expected
 
+Each agent line shows, in this order: steps, tokens (input+output, e.g. '12.4k tokens'), cost (e.g. '0.004 USD'), then time: 'Case lead · Asking the geoscientists · 3 steps · 12.4k tokens · 0.004 USD · 37 s'. The totals line ('Steps so far') shows the same for the whole run. Values update live.
+
 ## Actual
+
+Only steps and time: 'Case lead · Asking the geoscientists · 3 steps · 37 s'.
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-291/1.png)
-- Run JSON: `../evidence/QA-291/run-<id>.json`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Feature request from Sahand (top priority, his bug). Per-agent usage exists per instance in the run (Runs and logs shows per-agent tokens and cost; QA-144). Backend: stream usage per agent instance with step events (or a usage event) so the busy list can show it live; frontend: render tokens and cost between steps and time.
 
 ## Fix
 
