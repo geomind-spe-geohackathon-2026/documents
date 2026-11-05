@@ -52,6 +52,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 21. Case inputs as uncertain values: kinds, from a source's statement to a leaf, dependent
     inputs, worked example
 22. Worked example II: hourly heating and cooling, weather from a connector
+23. Worked example III: a project with no files
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1982,6 +1983,65 @@ question: binding or not?
 **Traps of this pattern.** Treating "should" as "shall"; dividing kW by 1 000 by hand; shifting
 the hours by reading interval-ending as interval-beginning; filling the duplicated autumn hour
 by averaging; asking the user for the air temperature when a connector has it.
+
+# 23. Worked example III: a project with no files
+
+The user writes only "design a geothermal heating plant for a town of about 20 000 people near
+<city>". No files, no case. Everything is invented. This pattern tests the source rules hardest:
+nothing may come from a default (§0.2), and nothing may be invented to look complete.
+
+## 23.1 What can and cannot be done
+
+- **Can:** find site values from Knowledge and connectors (weather series, regional ground data
+  in a cited survey, grid factor, maybe a regional reservoir study), and propose them with
+  sources in the one question.
+- **Cannot:** produce a demand series. "About 20 000 people" is not a series (§14.5): a series
+  needs metered data, a cited typical profile, or a model the user approves. The case lead asks
+  for it in the same one question, offering the options: (a) the user gives a file; (b) a cited
+  profile from a source the user approves, scaled to a yearly energy the user gives; (c) leave
+  the case without demand, so no design is possible yet.
+- **Never:** claim an example case or files exist (§14.2); store a guessed value (§8.5).
+
+## 23.2 The one question (shape)
+
+Grouped by section, each item with value, unit, source and date, or "unknown":
+
+1. **Time:** the year to model; the zone `Europe/<city>` (agent's choice from the location).
+2. **Demand:** the three options of §23.1; supply and return temperatures of the network (no
+   source: "unknown, typical ranges in §15.1 are for checking only").
+3. **Ground and reservoir:** surface temperature and gradient from a cited regional survey (name
+   it, its scale: regional, §19.1); reservoir depth, thickness, permeability, pressure only if a
+   regional study gives them, each with quality `interpreted` (§4.3); else "unknown".
+4. **Fluid:** "unknown: no sample" unless a regional study gives it.
+5. **Air:** the connector's series for the coordinates and year (saved file).
+6. **Utilities:** the grid CO₂ factor (catalogue row, year, method, §13.7); the import limit
+   "unknown" (§15.5).
+7. **Requirements:** "demand met" with a proposed tolerance (§17.3); any rule the user wants.
+
+## 23.3 After the answer
+
+- Everything the user approved goes into ONE `set_case`, digit for digit (§14.1); every
+  "unknown" stays unset.
+- `describe_case` then lists what the plant still needs; that is the follow-up, once (§0.1
+  step 8).
+- If the user chose (c), the handover says plainly: "no demand series: no plant can be sized;
+  site values stored with sources". The design team does not start.
+
+**Example (invented) of a good item.** "3. Gradient 30 K/km (regional heat-flow survey, map
+sheet N, 2019; regional scale: a well may differ by several K/km). Approve, change or say
+unknown."
+
+**Example of a bad item.** "Gradient 30 K/km (typical)." No source, no scale, no year: never.
+
+## 23.4 Traps of this pattern
+
+- Several question rounds (site, then demand, then air): one question (§14.8).
+- A demand series built from the population and a per-capita figure without the user's approval
+  of the method and its source (§14.5).
+- Calling a regional value "the site's" (§19.4).
+- Ending with "the case is complete" when demand is missing (§14.7).
+- With auto-approve or "best guesses": the same sources, no question, but still no invented
+  series; the case states what is missing (§14.3).
 
 # Appendix A. Unit pitfalls
 
