@@ -1,0 +1,86 @@
+{
+ "id": "de19a6c9-44ba-4fa7-bf71-3945951fd44f",
+ "chat": "134dae07-2e37-4a3a-ae0b-83b5e812017e",
+ "project": "35a70dbe-5e24-4f51-9c6f-50e06d47fe82",
+ "status": "done",
+ "loop": "tool",
+ "started": "2026-11-05T16:52:10.875096Z",
+ "ended": "2026-11-05T16:52:14.766772Z",
+ "usage": {
+  "input_tokens": 2250,
+  "output_tokens": 111,
+  "cost": 5.7036e-05
+ },
+ "request": null,
+ "error": null,
+ "sessions": [
+  {
+   "session": "de19a6c944ba4fa7bf713945951fd44f-route",
+   "agent": "coordinator",
+   "parent": "de19a6c944ba4fa7bf713945951fd44f",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 1,
+   "tool_calls": 0,
+   "usage": {
+    "input_tokens": 2250,
+    "output_tokens": 111,
+    "cached_tokens": 2048,
+    "cost": 5.7036e-05
+   },
+   "context": {
+    "peak_used": 2250,
+    "last_used": 2250,
+    "window": 200000
+   }
+  },
+  {
+   "session": "de19a6c944ba4fa7bf713945951fd44f",
+   "agent": "answer",
+   "parent": null,
+   "model": "rule",
+   "steps": 1,
+   "tool_calls": 0,
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost": 0.0
+   },
+   "context": null
+  }
+ ],
+ "agents": [
+  {
+   "agent": "coordinator",
+   "sessions": 1,
+   "steps": 1,
+   "tool_calls": 0,
+   "usage": {
+    "input_tokens": 2250,
+    "output_tokens": 111,
+    "cached_tokens": 2048,
+    "cost": 5.7036e-05
+   }
+  },
+  {
+   "agent": "answer",
+   "sessions": 1,
+   "steps": 1,
+   "tool_calls": 0,
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost": 0.0
+   }
+  }
+ ],
+ "total": {
+  "input_tokens": 2250,
+  "output_tokens": 111,
+  "cached_tokens": 2048,
+  "cost": 5.7036e-05,
+  "steps": 2,
+  "tool_calls": 0
+ }
+}
