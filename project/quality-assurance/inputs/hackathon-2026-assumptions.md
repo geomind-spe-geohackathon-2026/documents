@@ -43,7 +43,7 @@ Each value says where it comes from:
 | Ambient air | 10 degC, 101325 Pa | Team |
 | Sand in the brine | 20 mg/l | Team |
 | Grid electricity CO2 intensity (`utilities.electricity.co2_intensity`) | 300 g/kWh | Organisers |
-| Bought natural gas composition (mole fraction) | CH4 0.825, C2H6 0.040, C3H8 0.013, CO2 0.012, N2 0.111 | Team |
+| Bought natural gas composition (mole fraction) | CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233 (sum 1, exact values of gemini's sample; do not round) | Team |
 | Heat pump / compression chiller efficiency | 50 % of the Carnot COP | Team (Frutschi, ABB Review 5/1996, pp. 33-34) |
 
 ## Requirements: tolerances the PDF does not give
