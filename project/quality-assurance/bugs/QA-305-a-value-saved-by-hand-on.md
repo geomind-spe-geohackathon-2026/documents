@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
@@ -43,4 +43,6 @@ for each changed key write `about.sources.<key> = {"source": "edited by hand", "
 
 ## Fix
 
+Fix: frontend 1.1.131 (commit 9f40897, bundle index-PVHgYO42.js), by front-m2: withHandSources in use-case-editor.ts sets 'user: set by hand on the Case page' on changed keys.
+- 2026-11-05 19:14 UTC: frontend 1.1.131
 ## Retest
