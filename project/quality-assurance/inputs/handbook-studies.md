@@ -1210,3 +1210,55 @@ EUR/MWh. On 60,000 MWh/y over 25 years at 6 % (annuity factor 12.78): 0.4 × 60,
 0.31 MEUR present value. Binned by electricity price, almost all of it comes from that input; a
 fixed-price power contract quote that costs 20 kEUR to obtain is worth asking for, a 2 MEUR test
 well to narrow permeability is not (its EVPPI is near zero here).
+
+---
+
+## 24. Superstructure optimisation
+
+### 24.1 The idea
+
+A superstructure holds every candidate unit and connection at once; a design is a choice of which
+are on, plus their sizes. Choosing structure and sizes together is a mixed-integer non-linear
+program (MINLP): binary "on/off" variables, integer counts, continuous sizes (Grossmann 1985;
+Biegler, Grossmann & Westerberg 1997, ch 8 and 15). Process synthesis and heat-integration
+studies have used it for decades because structure and size interact: the best size of a heat
+pump depends on whether a boiler is there.
+
+### 24.2 How gemini states and searches it
+
+- A plant marks optional modules (`set_optional`) and choices between groups (`set_choice`);
+  `size.doublets` may have a range; parameters have `range` or `options` (gemini
+  `study/evolve.py`).
+- `gm.study.evolve` (`evolve_structure`) encodes all of them in one genome and searches with a
+  genetic algorithm (one objective) or NSGA-II (two or more), plus local compass steps from the
+  best candidates of the best structures (§14.5, §14.6). A gene of a module that is off is
+  ignored.
+- `gm.study.structure_plant` rebuilds the ordinary plant of one found design (its structure and
+  parameters), to simulate, check or store it.
+
+### 24.3 When to use it, and when not
+
+| Situation | Use |
+|---|---|
+| 2 to 4 known families | size and compare them (§5.1), then optimise the best: clearer and cheaper |
+| Many optional units whose combinations multiply (2^k structures) | `evolve_structure` |
+| Two objectives (cost and CO2) over structures | `evolve_structure`, a front (§5.3) |
+| One structure, sizes only | `optimize` (§4) |
+
+### 24.4 Reading the result
+
+- Count the structures the search tried and how many were invalid; a structure tried by only a
+  few candidates is not judged, only seen (QA-335 showed how a change of version moved the best
+  and the invalid count: compare like with like).
+- Check the best structure with an ordinary `optimize` of its own sizes: an evolutionary search
+  over structures spends few trials per structure (§4.6).
+- Report the stop reason (budget, generations, time) and the seed.
+
+### 24.5 Worked example (invented numbers)
+
+Superstructure: optional heat pump, optional peak boiler, a choice of absorption or compression
+chiller, doublets 1 to 3: 2·2·2·3 = 24 structures. `evolve_structure` with objective `lcts`,
+stopped at its budget: 41 structures-and-size candidates feasible out of 160; best: heat pump on,
+boiler on, compression chiller, 2 doublets, 40.8 EUR/MWh; next structure (absorption) 41.6. An
+`optimize` of the best structure's sizes alone, 60 evaluations, finds 40.3; the same for the
+runner-up 41.4. The ranking holds; the gap (1.1) exceeds a second seed's spread (0.3).
