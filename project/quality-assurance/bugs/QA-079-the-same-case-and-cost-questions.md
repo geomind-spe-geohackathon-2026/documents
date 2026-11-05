@@ -29,6 +29,14 @@ The chat lists "You answered" three times each for the same three questions in t
 - ![screenshot](../evidence/QA-079/1.png)
 - Run JSON: `../evidence/QA-079/run-6921d00e.json`
 
+### Update 2026-11-05 07:15 UTC (run cef908d9, project QA2 functional-qa-2 economics B, backend 1.1.75-1.1.79)
+
+Checked in the run events (`evidence/QA-079/run-cef908d9-requests.json`): the question is really asked again in geomind, not only drawn again.
+- request-426 and request-461: the same economics list ("approve all sets each, with its row") asked twice, 35 events apart; the second says "This is the same list you approved" and recommends a different heat revenue (114.555 EUR/MWh, the NL 2026 household ceiling) than the first (93.5115, NL 2021 district heating tariff, with the reason that the ceiling is an upper bound). I asked why; no answer was given.
+- time_zone = UTC is confirmed in request-352 ("approve A and B") and asked again in request-398 ("is UTC the right time zone?").
+- Case values come one at a time later (request-1951 indoor temperature/humidity, request-2103 dew point margin, request-2628 return pressures), although the first question (request-352) listed 6 values: the case lead reported the case complete with these unset (same class as QA-069).
+Run 1 (6921d00e, before the fixes) asked the same three questions three times each.
+
 ## Cause
 
 Guess: the nested leads (case_lead, design_lead) restart and re-ask because the answer is not carried into their own context, or the restart after the 30-step continue replays the questions.
