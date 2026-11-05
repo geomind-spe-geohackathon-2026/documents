@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-2 |
 | Found | 2026-11-05 06:41 UTC |
 | Versions | frontend 1.1.71, backend 1.1.71 (values set), read on backend 1.1.75; geomind 0.4.65 |
 | Where | https://geomind.team/projects/aa8023ca-33b3-4e5a-a7ea-5afad6ed4c1e/design/case (Economics tab); project QA2 functional-qa-2 economics; chat f349646d-953b-41c5-a349-09903a5e29c5; runs 6921d00e (set at 04:3x UTC) and f59e5d2c |
-| Fixer | hotfix-python |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -38,6 +38,7 @@ Fact: source ids in about.sources. Guess: the catalogue's 'recommended' row per 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 10:01 UTC: geomind 0.4.78 + gemini 0.6.12 in backend 1.1.83 (5b2691e), deployed 2026-11-05 10:00 UTC by hotfix-python-II
 - 2026-11-05 18:41 UTC: reopened by QA-E2E-case-I: site Trondheim, Norway in the case, economics question still recommends 9 NL rows (see file)
+- 2026-11-05 19:13 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
 
 (Who, when, result.)
