@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-study-I |
@@ -40,6 +40,7 @@ Study and Results 'Out of date' before and after the run; Activity shows 'Study 
 
 hotfix-front-III, frontend part, 1.1.106 (b2720e5), deployed 14:43 UTC (bundle index-C139P2pV.js). Cause (fact): Overview (`overview/page.tsx`) and the sidebar (`app/layouts/progress.tsx`) passed `results[0]` to `toStaleSteps`, but GET /design/results lists oldest first, so the stepper compared the project's case/plant versions with its OLDEST result. QA3 study: oldest result (simulation, 10:01, older plant) vs newest sized2 (11:10, current). Fix: judge by the newest result by `created`. Live after deploy: QA3 study and geo mind testing no longer 'Out of date'; SPE GeoHackathon 2026 still is (its newest result is older than its plant). Backend part (a plain simulate writes no Results row, QA-092) stays with hotfix-back-III.
 - 2026-11-05 14:43 UTC: frontend part live in 1.1.106 (hotfix-front-III): Out of date now judged by the newest result; QA3 study and geo mind testing read current. Backend part (plain simulate, no Results row) still with hotfix-back-III
+- 2026-11-05 15:12 UTC: hotfix-back-III: backend part (user's option C) live in 1.1.96 (commit 5653973, 15:12 UTC): on the root run.finished the run's LAST successful plain simulate becomes one result (no study, 'simulation <design>', case/plant version matched by digest else null, report+coverage from geomind's kept run files), deduplicated by reference. Not live-checked (QA checks stopped by the user); retest: a chat full-year simulate, then Overview Study/Results current and one new 'simulation <design>' result.
 ## Retest
 
 (Who, when, result.)
