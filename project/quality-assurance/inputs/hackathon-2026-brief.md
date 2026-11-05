@@ -1,10 +1,17 @@
 # GEMINI hackathon 2026: judging, deliverables and reference results
 
-What the SPE Europe Energy GeoHackathon 2026 (GEMINI digital twin challenge) asks of the report
-and the economics, kept out of the general handbooks. Cite as `knowledge/hackathon-2026-brief.md`.
-The case values, requirements and economics of the competition are in
-`knowledge/hackathon-2026-assumptions.md`; how to write a report in general is
-`knowledge/handbook-report.md`, how to cost a plant `knowledge/handbook-economics.md`.
+What the SPE Europe Energy GeoHackathon 2026 (GEMINI digital twin challenge) asks of the report,
+and reference results to check against. Cite as `knowledge/hackathon-2026-brief.md`.
+
+The competition has two files in Knowledge, with no overlap:
+
+| File | Holds | Read by |
+|---|---|---|
+| `knowledge/hackathon-2026-assumptions.md` | everything the case and the design need: the organisers' rules, the PDF's limits and requirements, the team's assumed values, the economics, how the competition files map to the case | case lead, design team, economist |
+| `knowledge/hackathon-2026-brief.md` (this file) | everything the report and its review need: judging criteria, deliverables, how the report answers them, reference results of gemini's sample | explainer, reviewer, project lead, analysis lead |
+
+How to write a report in general is `knowledge/handbook-report.md`; how to cost a plant,
+`knowledge/handbook-economics.md`.
 
 Sources: the organisers' kick-off slides (shared by the team on 2026-11-05); the requirements PDF
 (`GEMINI_Hackathon_Challenge_Requirements.pdf`, 2026-10-28); the organisers' answers on Discord
@@ -36,19 +43,9 @@ capacities, and documents the agent architecture, models and libraries.
 
 ## 3. Hard limits of the case
 
-From the requirements PDF and the organisers; the requirement names and tolerances are in
-`knowledge/hackathon-2026-assumptions.md`.
-
-| Limit | Value | Source |
-|---|---|---|
-| Doublets | 1 to 3 | PDF |
-| Production flow per doublet | 50 to 300 m3/h in every step it runs | PDF |
-| Brine cooling | at most 40 K | PDF |
-| Doublet running time | at most 330 days a year; the whole system meets the demand on all 365 days | PDF, organisers |
-| Pump efficiency | 0.70 | PDF |
-| Production and injection volume | equal | PDF |
-| Supply temperatures | 100 °C heating, 20 °C cooling | PDF |
-| Grid electricity CO2 intensity | 300 g/kWh | organisers |
+Not repeated here. Every limit of the PDF and every organisers' rule that the case needs, with
+its requirement `name`, is in `knowledge/hackathon-2026-assumptions.md` ("Rules from the
+organisers", "Competition: Requirements (8)").
 
 ## 4. How the report handbook applies
 
@@ -61,7 +58,7 @@ Map each criterion of §1 to a report section (`knowledge/handbook-report.md` §
 | Alternatives compared | at least two families simulated over the year and checked, the ranking table with its study key |
 | Final configuration explained | decisions: family, depth and number of doublets, return temperatures (a team design choice), backup, cooling technology, gas handling, what the optimisation changed |
 | Capacities | each unit against the 30.0 MW heat and 10.0 MW cold peaks (PDF p. 1) |
-| Verification | gemini's verdict and each of the 8 requirements by name (`production_flow_range`, `brine_cooling_limit`, `running_time_limit`, `pump_efficiency`, `full_reinjection`, `doublet_count`, `heat_delivered`, `cold_delivered`) and the two supply temperatures |
+| Verification | gemini's verdict and each of the 8 requirements by `name` (listed in `knowledge/hackathon-2026-assumptions.md`) |
 | Techno-economics, uncertainty | costs on the economics of `knowledge/hackathon-2026-assumptions.md` (EUR at 2015 prices); team placeholders (revenue 60 EUR/MWh each, most capex factors) named, so NPV and payback read as indicative |
 | Agent interaction | prompts, answers, questions to the user, tokens and cost per agent |
 
