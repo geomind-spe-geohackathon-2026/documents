@@ -7,32 +7,34 @@
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 14:53 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.106, backend 1.1.95 (geomind 0.4.91) |
+| Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/plant; project geo mind testing |
 | Fixer | hotfix-front-IV |
 
 ## Steps
 
-1. 
-2. 
+1. Open the Plant page of a project with a plant.
 
 ## Expected
 
+No "Start from template" button (user decision: no templates, IMP-023 rejected).
+
 ## Actual
+
+The Plant toolbar showed "Start from template" beside History.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-138/1.png)
-- Run JSON: `../evidence/QA-138/run-<id>.json`
+- Reported by the user via Coordinator-IV (no screenshot copied).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+The toolbar button and its replace-plant dialog were still wired in `domains/design/plant/page.tsx`.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-front-IV: toolbar button, its dialog and state removed (`page.tsx`). The empty-plant card ("This project has no plant yet") still offers a template start; remove it too if the user wants. Frontend 1.1.108, commit 97dd942, live in 1.1.109 (bundle index-DwO4tlF4.js).
 
 ## Retest
 
-(Who, when, result.)
+hotfix-front-IV, live: 0 "Start from template" buttons on the Plant page of geo mind testing.
