@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-report-I |
@@ -45,6 +45,8 @@ Proposal (frontend): when result.case_version or plant_version differs from the 
 versions, show an "Out of date" banner on the Report page and add the same line to the
 exported header (backend export, if the text is built there).
 
+Fix: frontend 1.1.129 (commit da9da17, bundle index-DjK0zKa6.js), by front-m2: report-editor.tsx shows an 'Out of date' alert with the run's and the project's case/plant versions. PDF/Markdown note open for backend.
+- 2026-11-05 18:54 UTC: frontend 1.1.129
 ## Retest
 
 (Who, when, result.)
