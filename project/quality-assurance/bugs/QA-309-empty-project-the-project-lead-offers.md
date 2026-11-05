@@ -75,3 +75,4 @@ Accuracy: annual heat x2.35, cold x3.69 vs the competition data. Speed: the ques
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 20:55 UTC, QA-AI-case-I, run 291ea3b4-0034-429b-a217-722e1cdcaac6 (project QA-TEST QA-AI-case-I 19, 8ff784b0-1610-4fad-9658-3e50ddcd9222, empty; geomind 0.4.132): the project lead no longer offers the hackathon example case; options are 'I'll upload the files', 'I'll describe it in text', 'Use a case from the Knowledge base'. The driver chose upload; the lead finished asking for the files (22 s, 0.001 USD). The 'Use a case from the Knowledge base' path was not tested (QA-AI threads stopped by Sahand): left as fixed, not verified. Evidence `../evidence/QA-309/run-291ea3b4.json`.
