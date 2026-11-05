@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
