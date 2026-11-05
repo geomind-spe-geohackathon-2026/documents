@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | functional-qa-I |
@@ -35,7 +35,7 @@ Guess: the case fallback ('empty takes it from the case') works only when the do
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 06:31 UTC: gemini 0.6.9 (2b771f5f: check names a doublet's missing depth first) + geomind 0.4.70 (simulate changes set control.dispatch/outages/backup), backend 1.1.75 (6dfb1c7), deployed 06:30 UTC; the d0.gradient failure on design/A_sized did not reproduce (same plant and chat case simulate in prod now)
 ## Retest
 
 (Who, when, result.)
