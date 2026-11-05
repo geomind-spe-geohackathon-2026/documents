@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | gemini |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 19:21 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130, gemini 0.6.26) |
 | Where | project 0b986dd6-8f95-4383-9d15-5e589ff122c9, result 54b2e4f4-a6a5-4475-9fad-57d93112d504 (B_r1_best); report export of that result |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
