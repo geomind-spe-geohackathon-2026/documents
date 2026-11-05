@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -71,3 +71,4 @@ Step 4: frontend 1.1.85, commit 2f27a3d: studies, runs, run totals, Library, use
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 10:33 UTC: hotfix-front-II 10:33 UTC on geomind.team 1.1.86: cost-sources.csv rows 30 px, header stays on top after scrolling 800 px down and 600 px right, a cut cell opens its full text in a popover; runs list in the shared table with a sticky header. Markdown tables not seen live (none at hand)
