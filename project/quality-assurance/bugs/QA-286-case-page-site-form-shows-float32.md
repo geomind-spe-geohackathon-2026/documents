@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | verified |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | QA-E2E-case-I |
@@ -45,3 +45,5 @@ Fix: frontend 1.1.128 (commit 1322f2d, bundle index-bxsE_Wl4.js), by front-m2: d
 - 2026-11-05 18:46 UTC: frontend 1.1.128
 - 2026-11-05 19:22 UTC: QA-E2E-case-I retest 19:25 UTC, bundle index-PVHgYO42.js (current on geomind.team): Case > Site still shows Viscosity 0.4000000059604645 and Gas liquid ratio 0.800000011920929 (spinbutton values), project QA-TEST QA-E2E-case-I 7; screenshot evidence/QA-286/retest-1.png
 ## Retest
+
+- 2026-11-05 19:22 UTC: QA-E2E-case-I correction 19:27 UTC: my reopen was wrong (I read the accessibility value of the input, which keeps the raw number). On screen the fields show 0.4 and 0.8 and the hint 'at least 0 kg/m3' (evidence/QA-286/retest-2.png). Verified.
