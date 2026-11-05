@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | backend |
 | Reporter | QA-E2E-report-I |
@@ -63,3 +63,4 @@ split may need a gemini coverage field (list it for Sahand if so).
 A new simulation of a heat-pump plant: Report Summary and tiles give the heat-pump electricity share apart from geothermal.
 
 QA-E2E-report-I, 2026-11-05 19:45 UTC, backend 1.1.122+, project QA-TEST QA-E2E-report-I 3, Report page of 'simulation HackathonPlant' (plant v1): Summary now says "Of the heating demand, geothermal brine heat 82 %, heat-pump electricity 18 %, backup 0.23 %." Check: heat-pump electricity 20,015 MWh / 111,668 MWh = 17.9 %, boiler 253.9 MWh = 0.23 %, brine the rest 81.9 %. Verified (`../evidence/QA-270/retest.png`).
+- 2026-11-05 19:39 UTC: retest QA-E2E-report-I: brine 82 %, HP electricity 18 %, backup 0.23 %
