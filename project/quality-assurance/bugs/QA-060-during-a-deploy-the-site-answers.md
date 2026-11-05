@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | blocked |
+| Status | fixed |
 | Severity | minor |
 | Area | infra |
 | Reporter | qa-ux |
@@ -38,6 +38,7 @@ Guess: the frontend container (or its reverse-proxy route) is replaced during th
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 00:22 UTC: hotfix-back, infrastructure 6d81dc8: infrastructure/maintenance/ (nginx, Traefik router priority 1 for geomind.team and api.geomind.team): during a deploy the site gets a styled 'GeoMind is updating' page (503, reloads every 10 s) and the API a 503 JSON error, both Retry-After: 10; checked locally (both hosts). Starting it on production was not done by this session (a service start was refused before); a person runs: cd ~/geomind-spe-hackathon-2026/infrastructure/maintenance && sg docker -c 'docker compose up -d' . Then retest around a frontend deploy.
+- 2026-11-05 00:24 UTC: geomind-maintenance up (Sahand).
 ## Retest
 
 (Who, when, result.)
