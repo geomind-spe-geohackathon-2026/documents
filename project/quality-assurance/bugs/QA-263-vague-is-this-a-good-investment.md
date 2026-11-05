@@ -56,3 +56,12 @@ and the gradient is a physical parameter. The Monte Carlo in the same answer did
 ## Fix
 
 - 2026-11-05 18:34 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
+
+- 2026-11-05 18:48 UTC, QA-AI-analysis-I, backend 1.1.117: fresh project `QA-TEST QA-AI-analysis-I 9`
+  (6e8d019d-6524-4464-a8bb-cb0a022afa69). "Is this plant a good investment?" (run 0e4bfd2f, 59 s, 0.0070 USD): costs and
+  NPV right, no sensitivity run this time ("you did not ask for one"). Follow-up "Yes, run the sensitivity: what drives
+  the LCTS most?" (run 486f038f, 48 s, 0.0049 USD): `sensitivity` without `values` (all six declared uncertainties);
+  ranking gradient 13.594, electricity 11.843, discount rate 10.853, permeability 4.118, carbon 3.400, gas 0.000
+  EUR/MWh: equal to the page study 957c9714 row for row; the answer says "the ground temperature gradient drives the
+  LCTS most" and that six values were moved. Verified.
+  Logs: `../evidence/QA-263/run-0e4bfd2f-retest-log.json`, `run-486f038f-retest-log.json`.
