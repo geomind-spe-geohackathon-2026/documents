@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | geomind,backend |
 | Reporter | Sahand |
 | Found | 2026-11-05 20:41 UTC |
 | Versions | live 2026-11-05 21:40 Trondheim |
 | Where | geomind Knowledge tools (read_knowledge, search_rag/search_knowledge), backend Knowledge API, all agent prompts |
-| Fixer | |
+| Fixer | m2 |
 
 ## Steps
 
