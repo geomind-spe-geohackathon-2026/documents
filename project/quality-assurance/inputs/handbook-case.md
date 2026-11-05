@@ -82,6 +82,8 @@ Do these in order; skip none.
 | the produced gas in `utilities.gas` or the bought gas in `site.fluid` | `site.fluid.dissolved_gas` vs `utilities.gas.composition` | §4.4 |
 | a demand series without an offset and without `time_zone` | give `time_zone` (from a source, or confirmed as an assumption) | §3.2 |
 | ask the same value twice | the user's answer is final; an open value stays open | §8.4 |
+| write, ask or re-delegate after the user's `stop` | finish and report the stop | §8.7 |
+| quote a value read before the last `set_case` | read the case again | §10.6 |
 | ask for, or search, an optional key the case does not need | leave it unset; ask only what `set_case` reports as needed | §8.6 |
 
 ## 0.3 Ask the user or use Knowledge
@@ -663,6 +665,39 @@ what the brief meant.
   not need. When unsure whether a key is needed, `describe_case(path)` and the `set_case` result
   decide, not a habit.
 
+## 8.7 What each answer means
+
+The user answers a question (`ask_user`) or an approval card for a write (`set_case`). Each answer
+has one meaning, and it holds for the rest of the request.
+
+| Answer | Means | Do | Never |
+|---|---|---|---|
+| `approve all` | every listed value is approved | set them all in the one `set_case`; record each with its source (§8.3) | ask any of them again |
+| `change some` | some values change | ask which and to what, without options; set them; confirm the changed lines once | treat the unchanged lines as open |
+| values typed instead of an option | the typed values are the answer | set them as the user's (`source: user`) | ask to confirm what the user typed |
+| `stop` | the user ends the case work for this request | finish at once: report what is set, what is open, and that the user stopped; the whole team stops (the project lead does not send the case lead again) | another `set_case`, another question, or a final answer that blames anything but the stop |
+| card approved | the call may run | nothing more to confirm | a question that repeats the card |
+| card denied **with a change** (text in the reason box) | "change this and propose again" | apply the change, and propose the same call once more with it | read it as a plain no; ask "shall I write it with the change?" |
+| card denied **without a reason** | "no" to this call | do not send that call again in this request; report what is not saved and why | retry the same call, or route it through another agent |
+
+When a tool refuses a call because the user denied it earlier, do not loop: one refusal is the
+answer. Report it, with what the user asked to change, and stop that path.
+
+## 8.8 What an approval card must say
+
+A card is the user's only view of a write. It must let the user approve without opening JSON:
+
+- **One sentence of what is saved:** "Set the case: time, demand, site, 8 requirements from
+  brief.pdf and demand.csv, 11 approved values" or "Load the project's case, version 4".
+- **What changes:** each path that differs from the case before, `before -> after`, with its
+  source (file and page, `user`, Knowledge document). A load of the user's saved case names the
+  values the user changed.
+- **Nothing the user already decided.** A value the user typed or saved needs no second approval.
+
+The card's text is built from the call's arguments, so a call that carries the values it changes
+(not only `{"source": "project"}`) shows them. The handover after the write repeats the same
+sentence and changes.
+
 ---
 
 # 9. Uncertainty
@@ -731,6 +766,25 @@ units the key accepts is gemini's and is not asked.
 The project's case, or a chat's first case, is the case the user gave. Every later change,
 economics included, waits for the user's approval (`case_changes`, `accept_case`).
 
+
+## 10.6 A case changed by hand
+
+The user may save the case in the app (a form, an upload) while a chat runs. Then:
+
+- **The saved case is the user's.** Its values are `source: user`: never ask the user for a value
+  they saved, and never ask them to approve it again (§8.7).
+- **Every earlier read is stale.** After a load (`set_case(source="project")`) or any `set_case`,
+  results of `read_case`, `case_changes` and briefs written before it no longer hold. Read the case
+  again (`read_case`) before a brief, a question or a claim, and quote values only from that read.
+- **The case beats the brief.** When a brief says one value and `read_case` shows another, the case
+  is right: report the difference to whoever wrote the brief; do not ask the user.
+- **What changed** is the difference between the case before the load and the case after it
+  (path, `before -> after`), named in the handover and on the card (§8.8). `case_changes` compares
+  with the case the user gave, so after a load of the user's own case it may be empty: that means
+  "nothing to approve", not "nothing changed".
+- The next step is the design team's: simulate and check the current design on the new case. A
+  case lead step is needed only when gemini names a missing value.
+
 ---
 
 # 11. Checklists
@@ -756,6 +810,8 @@ economics included, waits for the user's approval (`case_changes`, `accept_case`
 - [ ] Tolerances proposed and confirmed (§6.8).
 - [ ] Requirements written by §6.12: proposals merged on `on` + `quantity`, names by pattern, count equals the brief's rules.
 - [ ] No optional key asked for or listed as missing (§8.6).
+- [ ] Every claim and question quotes the case as read after the last `set_case` (§10.6).
+- [ ] Each answer handled as §8.7 says; after `stop`, no further write.
 - [ ] Every value not from the files confirmed and recorded with its source (§8.3).
 - [ ] Economics set in the one `ask_economics` question.
 
