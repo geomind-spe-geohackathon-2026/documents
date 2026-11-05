@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 18:05 UTC |
 | Versions | backend 1.1.108 (geomind 0.4.107+), API only |
 | Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 5` (ed21ea3b-4489-498e-9f76-8f56eb15a39c); run da297015-fa41-4885-9cca-a178f7548bc1 (economics set), run ce5d9ffc (change) |
-| Fixer | hotfix-python-lead |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -49,6 +49,7 @@ for a distribution; the assumptions document puts the ranges in a separate table
 
 - 2026-11-05 18:30 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 - 2026-11-05 18:54 UTC: retest QA-AI-analysis-I 18:52 UTC backend 1.1.117: ask_economics still offers and writes no uncertainty
+- 2026-11-05 19:13 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
 
 - 2026-11-05 18:52 UTC, QA-AI-analysis-I, backend 1.1.117: fresh project `QA-TEST QA-AI-analysis-I 11`, case without
