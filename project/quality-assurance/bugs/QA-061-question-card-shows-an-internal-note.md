@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | qa-ux |
@@ -38,7 +38,7 @@ Guess: the ask_user tool appends the 'already answered' guard text to the questi
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:23 UTC: geomind 0.4.60 (c9fdb22, no internal already-answered note in the question; only-path questions get one plain line), backend 1.1.61 (3d2aa31), deployed
 ## Retest
 
 (Who, when, result.)
