@@ -52,15 +52,18 @@ Do these in order; skip none.
    reading instruction or a value for checking (§1.2).
 3. **Split.** Give 2 to 4 geoscientists one field group each (§0.4), with the text of the pages
    it needs, the case keys it owns and what the case already holds.
-4. **Merge and set.** Merge the findings; write the case once with everything the files and the
-   user state (§2, §10).
+4. **Merge.** Merge the findings into one list of values with their sources. Save nothing yet.
 5. **Search the gaps.** For each missing value: Knowledge (assumptions document first), then a
    connector (§0.3, §8.1).
 6. **Ask once.** ONE confirmation question with every value that did not come from the user's
-   files, every flaw, and every agent choice (§8.4).
-7. **Economics once.** ONE `ask_economics` question (skill `setting-the-case`;
+   files, every flaw, and every agent choice (§8.4). Nothing that needs approval is saved before
+   `approve all`.
+7. **Set once.** ONE `set_case` with the file and user values and the approved values (§10).
+8. **Follow-up, only if needed.** When that `set_case` returns `plants_need` paths or unit names it
+   mapped (`converted`), ONE more `ask_user` with only those (§8.4, §10.4).
+9. **Economics once.** ONE `ask_economics` question (skill `setting-the-case`;
    `knowledge/handbook-economics.md`).
-8. **Check and hand over.** `read_case` again, then the checklist §11.2.
+10. **Check and hand over.** `read_case` again, then the checklist §11.2.
 
 ## 0.2 Hard rules
 
@@ -229,7 +232,7 @@ accepted units of each key.
 | `fluid.sand_concentration` | `mg/l` | fluid analysis, assumptions document | |
 | `air.temperature` | `degC`, constant or series | file, weather connector, Knowledge | say "constant" when it is |
 | `air.relative_humidity` | fraction 0 to 1, or `%` with `"unit": "%"` | file, weather connector | optional: no module reads it in gemini 0.6.17; leave it open unless a source gives it, never ask for it; never convert it yourself |
-| `air.pressure` | `Pa`, `bar`; or `{"elevation": {value, unit}}` | file, connector, or the site's elevation | from an elevation `set_case` sets the ISA pressure and lists it in `converted` |
+| `air.pressure` | `Pa`, `bar`; or `{"elevation": {value, unit}}` | file, connector, or the site's elevation | the elevation is the value confirmed; the ISA pressure gemini derives from it is not asked again |
 
 ## 2.5 `utilities`
 
@@ -554,8 +557,8 @@ case lead changes it and the user approves (`case_changes`, skill `setting-the-c
 ## 8.1 Order of sources
 
 The table in §0.3. Before the one question, ALWAYS, also when the files look complete: search
-Knowledge for every missing value (`search_knowledge`, then `read_knowledge` of the document or
-section) and read the cost catalogue's rows of the missing keys only. Never a typical value at
+Knowledge for every missing value (the case lead: `search_rag`, then `read_rag("knowledge/<name>")`;
+a geoscientist: `search_knowledge`, then `read_knowledge` of the document or section) and read the cost catalogue's rows of the missing keys only. Never a typical value at
 any step.
 
 ## 8.2 Assumptions documents
@@ -584,8 +587,14 @@ the conversion.
 
 - ONE `ask_user` question, one line per value: path, value with unit, source (or reason for a
   choice), short note. Options exactly `approve all`, `change some`, `stop`.
-- It holds every value not from the user's files, every flaw (§1.4), every unit `set_case` listed
-  in `converted`, every path in `plants_need`, and the time zone if assumed.
+- It comes before the first `set_case` and holds every value not from the user's files
+  (Knowledge, connector, design choice, tolerance, delegated assumption), every flaw (§1.4), and
+  the time zone if assumed. Values from the files and the user are set without it.
+- What only `set_case` reports cannot be in it. After the one `set_case`, ask ONE follow-up
+  `ask_user` only when it returns `plants_need` paths (values the plants still lack: asked by
+  path and unit, no number of yours) or a unit name it mapped in `converted`. Unit conversions
+  gemini makes between units a key accepts, and derived keys (the ISA pressure from a confirmed
+  elevation), are not asked.
 - `change some`: ask which values and to what, without options; set them; ask again.
 - `stop`: finish without a final case and say so.
 - The answer is final: a value left open, `unknown` or `leave open` stays unset, is listed as
@@ -598,8 +607,8 @@ the conversion.
 Every number in the case, a question, a note or an answer is one a file, the user, a tool or
 Knowledge gave, digit for digit, in its unit. Never a sum, product, conversion, count, date or a
 value from a formula; never a constant from memory. A derived number that matters is named by
-the values it comes from and left to gemini, or computed with `calculate` (skill `calculator`)
-and cited by its id.
+the values it comes from and left to gemini; it never goes into the case. (`calculate` serves
+the design and the report, not the case.)
 
 ---
 
@@ -652,7 +661,8 @@ module (a store) has no default `initial_state`.
 
 gemini stores SI and writes each value back as given. Write the unit the source prints, in
 gemini's names (Appendix A); gemini converts. Every value `set_case` maps or converts is listed
-in `converted` and goes into the one question.
+in `converted`: a mapped unit name goes into the follow-up question (§8.4); a conversion between
+units the key accepts is gemini's and is not asked.
 
 ## 10.4 Validation
 
@@ -660,8 +670,8 @@ in `converted` and goes into the one question.
   call, never a files-only call.
 - `case_incomplete` lists every missing path at once.
 - `missing_value` (or `missing_assumption` under `economics`) names the path a run needs.
-- `plants_need` lists case values the project's plants still lack: each goes into the one
-  question before the case is called complete.
+- `plants_need` lists case values the project's plants still lack: each goes into the follow-up
+  question (§8.4) before the case is called complete.
 
 ## 10.5 The user's case and later changes
 
@@ -682,7 +692,7 @@ economics included, waits for the user's approval (`case_changes`, `accept_case`
 
 ## 11.2 Before handing over
 
-- [ ] gemini accepts the case; `plants_need` empty or each path asked.
+- [ ] gemini accepts the case; `plants_need` empty or each path asked in the follow-up (§8.4).
 - [ ] Every value a file states is in, with file and page; none computed.
 - [ ] No derived key set (§10.2).
 - [ ] Units as printed; heating return below supply, cooling return above.
