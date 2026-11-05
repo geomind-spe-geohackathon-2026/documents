@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | infra |
 | Reporter | qa-ux |
 | Found | 2026-11-05 00:04 UTC |
 | Versions | backend 1.1.55 (health at 00:04 UTC; 1.1.53 before), frontend 1.1.5x |
 | Where | https://geomind.team/projects/4cfeab2d-73e3-4299-a1f8-afec3d7e4bae/assistant/chat, /design, /runs, /nope; about 00:01-00:03 UTC 2026-11-05 (deploy window) |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 
