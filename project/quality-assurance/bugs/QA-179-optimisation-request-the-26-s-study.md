@@ -74,3 +74,23 @@ gemini's found reports 80 evaluations per design ... not reconciled here".
 ## Fix
 
 - 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:21 UTC, QA-AI-analysis-I, backend 1.1.118-1.1.120 (geomind 0.4.130, gemini 0.6.26): fresh project
+  `QA-TEST QA-AI-analysis-I 12` (90620254-c3de-449b-bf4f-6687b33b30b8), "Optimise this plant on LCTS (30 evaluations,
+  seed 0), then run a one-at-a-time sensitivity of the optimum's LCTS to every uncertainty the case declares.", run
+  1fba1e30-35f0-42fa-bf4d-fd2eeb7cff6c. The design part is fixed: no re-typed plant, `optimize` 7.3 s, optimum
+  32.535 EUR/MWh (= page study), design lead done in 1.6 min, reviewer 14 s. The answer is right and complete (six
+  drivers: gradient 20.46, discount 8.61, electricity 4.59, carbon 4.22, gas 3.89, permeability 3.07 EUR/MWh).
+  But the analysis part is still the slow part: analysis lead 19:12:39-19:19:33 (7 min, 28 steps, 9 refused calls) for
+  two `sensitivity` calls of 1.3 s and 2.5 s:
+  - it read only `read_case(section="site")`, recorded the goal as "the two uncertainties the case declares in site" and
+    briefed the economist with `values=[site.ground.gradient, site.reservoir.permeability]`; 5 min later a second economist
+    run did the four economics values (`study/oat_lcts_opt_econ`);
+  - 8 refused `calculate` calls (19:14:43-19:15:27) computing "LCTS change per K/km" and "per mD", which nobody asked for
+    (units EUR/MWh/(K/km) unknown, then dimension errors), 2 refused `simulate` with a `site` change;
+  - whole run 11 min, 2.05 M input tokens, 0.042 USD for 9 s of gemini.
+  Reopened: the analysis-lead overhead (proposed fix 2 and 3 of this bug) is still there; plus a new point: when the user
+  says "every uncertainty the case declares", the lead must call `sensitivity` without `values`, not read one case
+  section and pick. Log: `../evidence/QA-179/run-1fba1e30-retest-log.json`.

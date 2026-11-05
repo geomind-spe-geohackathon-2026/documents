@@ -1,0 +1,270 @@
+{
+ "id": "e4e3e1f7-e5ef-4a0c-8df8-da7d3b8c4419",
+ "chat": "1b5f7994-12e5-4fd9-8847-53f0de496698",
+ "project": "0ceb8c7a-8562-4ce6-b822-cffb6c226545",
+ "status": "failed",
+ "loop": "project",
+ "started": "2026-11-05T19:25:34.458425Z",
+ "ended": "2026-11-05T19:40:58.527489Z",
+ "usage": {
+  "input_tokens": 3059961,
+  "output_tokens": 93744,
+  "cost": 0.06809098200000001
+ },
+ "request": null,
+ "error": {
+  "code": "error",
+  "message": "read_case: called again after it was refused for the rest of the run"
+ },
+ "prompt": null,
+ "sessions": [
+  {
+   "session": "e4e3e1f7e5ef4a0c8df8da7d3b8c4419-route",
+   "agent": "coordinator",
+   "parent": "e4e3e1f7e5ef4a0c8df8da7d3b8c4419",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 1,
+   "tool_calls": 0,
+   "usage": {
+    "input_tokens": 2298,
+    "output_tokens": 68,
+    "cached_tokens": 2048,
+    "cost": 4.0892e-05
+   },
+   "context": {
+    "peak_used": 2298,
+    "last_used": 2298,
+    "window": 200000
+   }
+  },
+  {
+   "session": "e4e3e1f7e5ef4a0c8df8da7d3b8c4419",
+   "agent": "project_lead",
+   "parent": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 31,
+   "tool_calls": 44,
+   "usage": {
+    "input_tokens": 1335193,
+    "output_tokens": 33066,
+    "cached_tokens": 808960,
+    "cost": 0.028039366000000007
+   },
+   "context": {
+    "peak_used": 77107,
+    "last_used": 41502,
+    "window": 200000
+   }
+  },
+  {
+   "session": "c6e8976b07c54a8681fccc0fd568e45b",
+   "agent": "case_lead",
+   "parent": "e4e3e1f7e5ef4a0c8df8da7d3b8c4419",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 12,
+   "tool_calls": 22,
+   "usage": {
+    "input_tokens": 515048,
+    "output_tokens": 12339,
+    "cached_tokens": 387072,
+    "cost": 0.00929936
+   },
+   "context": {
+    "peak_used": 66078,
+    "last_used": 54198,
+    "window": 200000
+   }
+  },
+  {
+   "session": "57a71c6a901a49ba8c58c6d9e13b254b",
+   "agent": "geoscientist",
+   "parent": "c6e8976b07c54a8681fccc0fd568e45b",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 4,
+   "tool_calls": 7,
+   "usage": {
+    "input_tokens": 48190,
+    "output_tokens": 7721,
+    "cached_tokens": 30720,
+    "cost": 0.00359562
+   },
+   "context": {
+    "peak_used": 15736,
+    "last_used": 15736,
+    "window": 200000
+   }
+  },
+  {
+   "session": "331eeed8ff6a426c9742998968f72db1",
+   "agent": "geoscientist",
+   "parent": "c6e8976b07c54a8681fccc0fd568e45b",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 3,
+   "tool_calls": 6,
+   "usage": {
+    "input_tokens": 27675,
+    "output_tokens": 2335,
+    "cached_tokens": 19968,
+    "cost": 0.001183426
+   },
+   "context": {
+    "peak_used": 10207,
+    "last_used": 10207,
+    "window": 200000
+   }
+  },
+  {
+   "session": "5c2cfc1b9f33437aa2f362cbb85b2561",
+   "agent": "geoscientist",
+   "parent": "c6e8976b07c54a8681fccc0fd568e45b",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 4,
+   "tool_calls": 6,
+   "usage": {
+    "input_tokens": 39163,
+    "output_tokens": 5717,
+    "cached_tokens": 27136,
+    "cost": 0.0026599379999999997
+   },
+   "context": {
+    "peak_used": 10702,
+    "last_used": 10702,
+    "window": 200000
+   }
+  },
+  {
+   "session": "689fea899e0d4904a8c788c1bc06a3cd",
+   "agent": "geoscientist",
+   "parent": "c6e8976b07c54a8681fccc0fd568e45b",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 2,
+   "tool_calls": 3,
+   "usage": {
+    "input_tokens": 21082,
+    "output_tokens": 4651,
+    "cached_tokens": 13312,
+    "cost": 0.002084588
+   },
+   "context": {
+    "peak_used": 12384,
+    "last_used": 12384,
+    "window": 200000
+   }
+  },
+  {
+   "session": "38ddcb1ad1e9486a9a4f491ab18995cb",
+   "agent": "case_lead",
+   "parent": "e4e3e1f7e5ef4a0c8df8da7d3b8c4419",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 15,
+   "tool_calls": 27,
+   "usage": {
+    "input_tokens": 635372,
+    "output_tokens": 15221,
+    "cached_tokens": 508928,
+    "cost": 0.01090588
+   },
+   "context": {
+    "peak_used": 56614,
+    "last_used": 38343,
+    "window": 200000
+   }
+  },
+  {
+   "session": "884137590585437e90851299f474fda8",
+   "agent": "case_lead",
+   "parent": "e4e3e1f7e5ef4a0c8df8da7d3b8c4419",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 6,
+   "tool_calls": 12,
+   "usage": {
+    "input_tokens": 269395,
+    "output_tokens": 5208,
+    "cached_tokens": 123904,
+    "cost": 0.005779617999999999
+   },
+   "context": {
+    "peak_used": 55662,
+    "last_used": 55662,
+    "window": 200000
+   }
+  },
+  {
+   "session": "bbbed585e8f74883839a34f78b9dd6ea",
+   "agent": "case_lead",
+   "parent": "e4e3e1f7e5ef4a0c8df8da7d3b8c4419",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "steps": 6,
+   "tool_calls": 8,
+   "usage": {
+    "input_tokens": 166545,
+    "output_tokens": 7418,
+    "cached_tokens": 118272,
+    "cost": 0.0045022940000000004
+   },
+   "context": {
+    "peak_used": 37330,
+    "last_used": 37330,
+    "window": 200000
+   }
+  }
+ ],
+ "agents": [
+  {
+   "agent": "coordinator",
+   "sessions": 1,
+   "steps": 1,
+   "tool_calls": 0,
+   "usage": {
+    "input_tokens": 2298,
+    "output_tokens": 68,
+    "cached_tokens": 2048,
+    "cost": 4.0892e-05
+   }
+  },
+  {
+   "agent": "project_lead",
+   "sessions": 1,
+   "steps": 31,
+   "tool_calls": 44,
+   "usage": {
+    "input_tokens": 1335193,
+    "output_tokens": 33066,
+    "cached_tokens": 808960,
+    "cost": 0.028039366000000007
+   }
+  },
+  {
+   "agent": "case_lead",
+   "sessions": 4,
+   "steps": 39,
+   "tool_calls": 69,
+   "usage": {
+    "input_tokens": 1586360,
+    "output_tokens": 40186,
+    "cached_tokens": 1138176,
+    "cost": 0.030487152
+   }
+  },
+  {
+   "agent": "geoscientist",
+   "sessions": 4,
+   "steps": 13,
+   "tool_calls": 22,
+   "usage": {
+    "input_tokens": 136110,
+    "output_tokens": 20424,
+    "cached_tokens": 91136,
+    "cost": 0.009523572000000001
+   }
+  }
+ ],
+ "total": {
+  "input_tokens": 3059961,
+  "output_tokens": 93744,
+  "cached_tokens": 2040320,
+  "cost": 0.06809098200000001,
+  "steps": 84,
+  "tool_calls": 135
+ }
+}
