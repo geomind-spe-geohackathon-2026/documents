@@ -39,12 +39,13 @@ MEUR/yr, all equal to the page study on case version 4). But run ce5d9ffc took 1
 
 Project 3 (run 10fe31e7, electricity 120, heat revenue 75): routed case_lead -> design_lead -> analysis_lead -> economist;
 the design lead (no estimate_costs) spent 7 min (17:30:21-17:37:43) trying to get NPV by hand: 5 refused `calculate`, 5
-refused `run_python`, 2 refused `run_study`, 6 refused read_result/read_stored of `npv`; the run was still running
-after 35 min (0.039 USD at 18:04).
+refused `run_python`, 2 refused `run_study`, 6 refused read_result/read_stored of `npv`; the run ended after 37 min 8 s
+(17:28:46-18:05:54), 3.98 M input tokens, 0.1143 USD. Its numbers are right too (LCOH 46.481, LCTS 47.914 EUR/MWh,
+opex 4.035 MEUR/yr, equal to a page `run` study on that case version 4).
 
 ## Evidence
 
-- `../evidence/QA-258/run-ce5d9ffc-log.json`, `../evidence/QA-258/run-10fe31e7-log-partial.json`.
+- `../evidence/QA-258/run-ce5d9ffc-log.json`, `../evidence/QA-258/run-10fe31e7-log.json`.
 
 ## Cause
 
