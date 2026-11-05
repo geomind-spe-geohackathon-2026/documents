@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | duplicate |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -49,4 +49,5 @@ Review, design record and explanation took 3 min 32 s (18:03:07 to 18:06:32 UTC)
 
 ## Fix
 
+- 2026-11-05 18:35 UTC: duplicate of QA-199 (curator prompt fixed in 0.4.121; memory cleanup needs a production DB delete, asked of Sahand)
 ## Retest
