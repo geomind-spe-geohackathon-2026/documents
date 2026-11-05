@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 18:25 UTC |
 | Versions | backend 1.1.105 -> 1.1.112 during the run (geomind 0.4.10x -> 0.4.119, gemini 0.6.17 -> 0.6.19), API only |
 | Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 4` (71a75f1c-d83f-41b1-b28e-539cb0340bdf); chat 0893ab3d-3bb9-4fe8-9a8b-0b72378b5623; run f548029f-572c-48cc-8773-de9d1f05bac3 (17:25:32-18:22:21 UTC) |
-| Fixer | hotfix-python-lead-II (m6) |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -83,7 +83,7 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
 ## Fix
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
-
+- 2026-11-05 19:33 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
 
 - 2026-11-05 19:04 UTC, QA-AI-analysis-I, backend 1.1.118 (geomind 0.4.130, gemini 0.6.26): project `QA-TEST
