@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend |
 | Reporter | Sahand |
 | Found | 2026-11-05 09:07 UTC |
 | Versions | frontend 1.1.77, backend 1.1.79 (geomind 0.4.73) |
 | Where | geomind.team/projects/df514ce2-1d5b-4681-a7e6-5592cc5eac30/design/study?chat=138c18fa-3751-4f74-a76e-b52cbd1105ef; project QA2 functional-qa-2 economics B; study filters_sized |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 
