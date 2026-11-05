@@ -50,4 +50,10 @@ Guess, from the log: the resume (`engine.resume`, geomind; `adapters.resume`, ba
 
 ## Fix
 
-- 2026-11-05 17:21 UTC: duplicate of QA-176 (deploy restarts in-flight delegates); evidence added there
+Same fix as QA-176: geomind 0.4.106 (2aabaa5), backend 1.1.106, ~17:27 UTC. A delegate
+interrupted by a restart resumes its nested run from its last finished step instead of a new
+run from step 1.
+
+## Retest
+
+Recipe: Deploy while a delegate (reviewer, analysis lead) works; its steps continue from its last index, not from 1.

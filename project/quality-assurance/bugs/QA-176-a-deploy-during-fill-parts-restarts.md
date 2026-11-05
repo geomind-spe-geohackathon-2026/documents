@@ -43,17 +43,13 @@ Guess: the run resumes from the lead's last checkpoint, which is before the `fil
 
 ## Fix
 
+hotfix-back-VI, geomind 0.4.106 (2aabaa5) in backend 1.1.106 (deployed 2026-11-05 ~17:27 UTC).
+Cause: on resume `end_orphans` failed every open nested run and the open `Delegate`/`Team` call
+started fresh nested runs from step 1. Now `end_orphans` keeps the nested runs of the step the
+crash stopped in (by task and instance); the rerun call takes its own back: an open one goes on
+from its last step (`engine.proceed`), a finished team mate gives its stored outcome. Kept runs
+nobody takes are ended when the parent ends (`end_left_orphans`).
+
 ## Retest
 
-## More evidence (QA-AI-analysis-I, 2026-11-05 17:17 UTC)
-
-Run 57c42f61-2a89-48ba-933c-e87fc348084f (project `QA-TEST QA-AI-analysis-I 1`): the deploy of backend
-1.1.105 (~17:16 UTC) hit an economist delegate mid-way. The first economist session (17:15:37-17:17:11,
-17 steps, 330 k input tokens, 0.007 USD) ends `failed` with no error in the run log (`/agents` status
-failed); after the restart a second economist session (17:17:32-17:17:48) re-reads the two stored
-studies and answers. The sensitivity and sample studies themselves had finished (stored), so only
-1.6 min and the tokens were lost. Log: `../evidence/QA-176/run-57c42f61-log.json`.
-
-## More evidence (QA-AI-project-I, 2026-11-05 17:30 UTC; first filed as QA-188, now its duplicate)
-
-Same restart in a project-lead run: project QA-TEST QA-AI-project-I 1, run b57abc5b-0497-46b3-a238-ddf87edaae02. A plain `Delegate` (not only `fill_parts`) restarts from step 1: the reviewer (16:57:49, 13 steps, then again from step 1 at 16:59:57, 2 min 08 s lost) and the analysis lead (17:04:52, 7 steps, again from step 1 at 17:07:37, 2 min 45 s lost; its finished economist finding was reused). About 5 min and 540 k input tokens lost. Details and trace: `QA-188-*.md`, `../evidence/QA-188/`, run log `../evidence/QA-187/b57abc5b-0497-46b3-a238-ddf87edaae02.log.json.gz`.
+Recipe: A design run inside fill_parts; deploy the backend; the finished engineers are not run again and the open one goes on from its step (log: no `index: 1` again for the same instance).
