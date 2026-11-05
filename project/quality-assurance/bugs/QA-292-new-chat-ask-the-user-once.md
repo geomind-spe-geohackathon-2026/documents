@@ -47,3 +47,5 @@ Fix: frontend 1.1.129 (commit af01430, bundle index-DjK0zKa6.js), by front-m1: a
 ## Retest
 
 (Who, when, result.)
+
+Frontend part (reopen): frontend 1.1.142 (commit addd0be, bundle index-BUkidFKs.js), by front-m1: asks only when the user never chose; choice read/written via GET/PUT /assistant/preferences; hidden until back-m2's route is live.
