@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,gemini |
 | Reporter | Fatemeh (asked for the run review), Claude (DB read and write-up) |
 | Found | 2026-11-05 14:14 UTC |
 | Versions | backend 1.1.86 and later during the runs (2026-11-05 10:10 to 14:07 UTC) |
 | Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3 (project geo mind testing), chat 27379f2e-0103-4ddf-a020-f0cd4deb20a6; run 32a12115-1a7d-4e89-8582-05466fad0db0 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
