@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -49,4 +49,5 @@ geomind:
 
 - 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 - 2026-11-05 18:16 UTC: QA-AI-project-I 18:16 UTC: retest not reached: the repeated case-edit message was routed to the tool loop and never loaded the case, see QA-266
+- 2026-11-05 18:23 UTC: QA-AI-project-I retest 18:23 UTC, backend 1.1.114, run a4203016: the card now names the version (good), but it still stops the run for a no-op: 'Allow set_case (write)? Load the project's saved case, version 5: the same as the chat's case.' A load that changes nothing (or the user's own saved case) should not ask. Trace evidence/QA-224/retest-a4203016.trace.txt
 ## Retest
