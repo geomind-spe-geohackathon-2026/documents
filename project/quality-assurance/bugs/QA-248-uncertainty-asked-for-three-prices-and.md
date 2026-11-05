@@ -76,3 +76,18 @@ labelled as such), and say in one line which parameters were varied.
 ## Retest
 
 QA-E2E-study-I, 2026-11-05 18:53 UTC, project QA-TEST QA-E2E-study-I 3, run ce4be675-134b-439a-a1cc-7e879acd7112 ("sample only the gas, electricity and carbon prices ... P10, P50 and P90"): half passes. The subset works: `varied` lists exactly the three prices, the discount rate stays 0.05 (2 min 36 s, 25 calls, 0 cards). Still fails: "P10 and P90 are not available: gemini sample_uncertainty reports only P5, P50 and P95"; and the figures are 15 digits (53.976480849763796; QA-099). Reopened for the percentiles.
+
+## Evidence 2026-11-05 21:50 Trondheim (QA-E2E-study-II, for m7)
+
+Run daa590fc (chat bb245cd8, project QA-TEST QA-E2E-study-II 1). Full log: `../evidence/QA-248/run-daa590fc-log.json.gz`
+(GET /assistant/runs/{id}/log, 77 steps). It is the agent tool `sample_uncertainty`, not run_study(method="sample"):
+
+- 50 `sample_uncertainty` calls (economist), all with exactly these logged input keys:
+  `name, seed, design, metrics, samples, percentiles` (design/v3, metrics ["lcoh"], 200 draws, seed 42, percentiles [10, 90]).
+  **None of the 50 logged inputs has a `values` key.** Only the single `sensitivity` call in the same run
+  logs `"values": ["economics.revenue.heat", "economics.energy.electricity", "economics.carbon.price"]` and gemini honoured it.
+- The agent's final text says it tried several spellings of the value paths ("3only", "caseprefix 1-4", a-t names); the log
+  shows only different study `name`s, so either the tool wrapper drops `values` before logging/calling gemini, or the agent
+  never sent it. The skill (economics) tells it to call `sample_uncertainty(..., values=[...])`.
+- Every call returned the same draw: P10 26.795 / P50 31.708 / P90 39.427 EUR/MWh (all seven declared uncertainties).
+- Cost of the failure: 26 min, 91 steps, 0.042 USD, ~50 identical 200-draw studies.
