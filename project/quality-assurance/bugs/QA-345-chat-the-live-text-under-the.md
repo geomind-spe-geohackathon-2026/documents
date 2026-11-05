@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
@@ -34,7 +34,7 @@ Sahand's request (top). text.delta events carry the agent and instance since IMP
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 20:16 UTC: frontend 1.1.140 (bundle index-CzdSC_uX.js)
 ## Retest
 
 (Who, when, result.)
