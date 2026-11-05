@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,gemini |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 16:41 UTC |
 | Versions | Seen on geomind 0.4.87-0.4.91 (runs of 2026-11-05); the code is unchanged in geomind 0.4.96 / gemini 0.6.16 (live, backend 1.1.99) |
 | Where | 42 runs of 2026-11-05; energy_systems_engineer, process and integration engineers, design_lead |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
