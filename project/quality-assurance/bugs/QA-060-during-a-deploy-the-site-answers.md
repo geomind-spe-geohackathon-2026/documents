@@ -42,3 +42,4 @@ Guess: the frontend container (or its reverse-proxy route) is replaced during th
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 00:24 UTC: hotfix-back 00:23 UTC, backend deploy 1.1.61 with api.geomind.team/api/v1/system/health polled every 0.5 s: 200 x25, then 502 text/plain x2 (old container stopping, its router still present), then 503 maintenance JSON {"error":{"code":"unavailable"}} x8, then 200; no bare 404. The geomind.team page (styled, self-reloading) is the same router; to be seen at the next frontend deploy. Left over: the two 502s at the start of a restart (would need a Traefik errors middleware or a stop delay).
