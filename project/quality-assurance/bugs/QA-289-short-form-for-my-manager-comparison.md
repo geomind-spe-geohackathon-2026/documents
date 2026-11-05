@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -45,7 +45,7 @@ problem state as the last answer) with the new comparison, or the explainer is b
 
 Proposal: prompt `project/lead` / explainer: answer only the new question; a format the user
 asks for ("short form", "for my manager") limits the length; never repeat an earlier answer.
-
+- 2026-11-05 18:54 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 (Who, when, result.)
