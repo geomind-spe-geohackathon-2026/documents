@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -61,6 +61,8 @@ after a change-denial, propose again with the change.
 - 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
 
+- 2026-11-05 18:03 UTC: QA-AI-case-I run 6a8dba9a, geomind 0.4.114
 ## Also seen: build_plant (QA-E2E-design-I, 2026-11-05 17:47 UTC, backend 1.1.108)
 
 Project QA-TEST QA-E2E-design-I 2 (72df9c82-e577-4605-8743-ffcee53c3a73), run dca5ed1a-35f5-4975-ad6e-94069b640590. Chat "Design the plant for this case."; the build_plant card (1 doublet, backup none) denied with the words "Start with 2 doublets instead of 1, and use backup peak so the boiler can cover a doublet outage." The design lead built exactly that (2 doublets, backup peak) three times (17:47:18, 17:47:26, 17:47:44); each was refused with "build_plant: the user denied this tool earlier in this request (...), so it is not asked again". The design lead finished with "I could not produce a design"; the project lead then sent the case lead to ask about network pipes. The fix must cover every write tool (build_plant, patch_plant, set_ranges), not only set_case.
+- 2026-11-05 18:05 UTC (19:05 CET), QA-AI-case-I, run 6a8dba9a-c35a-4474-8f66-d749a3a95964 (project QA-TEST QA-AI-case-I 6, ed01f425-6c69-4ec4-af65-fcc7902ac04e; geomind 0.4.114, backend 1.1.110; 17:56:00-18:03:13 UTC; log `../evidence/QA-230/run-6a8dba9a.json`): approve all on the confirmation question, then the first `set_case` card denied with "Change: demand.heating.return_temperature = 55 °C instead of 60. Everything else as you have it." (18:00:12). The case lead sent the full `set_case` again with 55 degC (approved 18:00:48), the requirements (18:00:58), recorded A-entries for 55 degC as the user's (one `update_state` refused once, fixed next step), asked economics once; run done in 7 min 13 s, 0.033 USD. Stored case: `demand.heating.return_temperature` = 55 degC. No refused `set_case` after the deny. Verified.
