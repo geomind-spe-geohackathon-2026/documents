@@ -4,7 +4,7 @@
 |---|---|
 | Status | open |
 | Severity | minor |
-| Area | frontend,backend |
+| Area | gemini,frontend |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
 | Found | 2026-11-05 10:41 UTC |
 | Versions | backend 1.1.84 |
@@ -37,4 +37,5 @@ Guess: a day counts as Short when the supply temperature misses 100 °C (93 °C 
 
 ## Fix
 
+- 2026-11-05 10:47 UTC: for hotfix-python-III and hotfix-front: not backend (backend passes gemini daily_coverage as is); analysis in Fix
 ## Retest
