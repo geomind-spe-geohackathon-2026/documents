@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -56,3 +56,7 @@ The verdict did not change: the final report is `passed: result/305d0f094cf4abfb
 - `geomind/prompts/project/reviewer.md`, Rules: "Your calls are `check_results`, `case_changes`, `compute_kpis` (in one step), then `update_state` and `finish`. Call `read_result` only for a failure of kind `requirement` or `failed_step`, on its module and days. A passed verdict needs no `read_result`." Add the counter-example of this run.
 - Code guard (geomind, `agents/project/reviewer.py` or the tool layer): a step budget for the reviewer (e.g. 6 steps), and `read_case` with `section` after a whole `read_case` in the same session returns a short note pointing at the earlier result instead of the data.
 - Expected gain on this run: about 6 min and 700 k tokens of 19 min and 2.48 M.
+
+## Fix
+
+- 2026-11-05 18:32 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
