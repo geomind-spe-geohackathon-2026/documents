@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -78,6 +78,7 @@ it as a crash.
 
 - 2026-11-05 17:27 UTC: geomind 0.4.103, commit 1f8c2c8, deployed (backend 1.1.106): an answered question with on_answer counts as a write in same_result, so read_case/case_changes run again after approve all
 - 2026-11-05 17:33 UTC: retest 17:32 UTC on backend 1.1.106 / geomind 0.4.106 still fails (run 92e9d156): answered ask_economics has source 'answer', recovery.py skips it in succeeded, so _may_write never sees it; see Retest
+- 2026-11-05 17:39 UTC: reopened fix: geomind 0.4.110, commit 0477242, deployed (backend 1.1.107): answered questions (source answer) now enter state.succeeded, so _may_write sees ask_economics
 ## Retest
 
 - 2026-11-05 17:32 UTC, QA-E2E-economics-I: **FAILS** on backend 1.1.106 (celery has geomind
