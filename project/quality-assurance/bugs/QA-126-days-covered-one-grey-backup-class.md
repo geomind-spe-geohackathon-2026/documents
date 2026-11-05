@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | frontend |
 | Reporter | Fatemeh (question and screenshot), Claude (data and write-up) |
@@ -50,3 +50,5 @@ hotfix-front-III, frontend 1.1.101 (af9f9e9), proposal 2+3+4: `shared/charts/day
 Addition 1.1.103: the year line is on the report's basis (shares of the demand), so it matches 'Geothermal share of heat': lcts_best 'Geothermal gave 78.5% of the year's demand (87692 of 111668 MWh), backup 21.5%'.
 - 2026-11-05 14:27 UTC: frontend 1.1.104 deployed 14:27 UTC, bundle index-DjTPYa7Q.js
 ## Retest
+
+- 2026-11-05 14:29 UTC: live 1.1.104: lcts_best 116/214/35 days, 'Geothermal gave 78.5% ... backup 21.5%', topped-up day hover gives backup share
