@@ -2928,6 +2928,82 @@ does not describe is not invented (0.6); when the case's demand is measured at t
 losses are already in it (2.5). When it is measured at the buildings and no network is modelled,
 cover the losses with a `supply_margin` or a stated share (QA-225).
 
+# 17 Monitoring, degradation and well integrity
+
+A plant is designed for its life, not its first day: reservoirs decline, exchangers foul, pumps
+wear, steel corrodes. This chapter covers what gemini watches, what the designer sets, and the
+hand checks of integrity.
+
+## 17.1 Health, alarms and the thresholds a design states
+
+gemini compares a module's predicted performance with measurements when it replays data: a
+`Health` with a `score` from 0 to 1 (1 is nominal), an `alarm` when a monitoring limit is
+exceeded and the metrics behind it [gemini: `gemini/modules/results.py`]. The limits are design
+values (0.7.1, 0.7.4):
+
+| Parameter | Module | Alarm when | Row |
+|---|---|---|---|
+| `decline_threshold` | `ProductionReservoir`, `InjectionReservoir` | the productivity (injectivity) index has fallen by this share | `reservoir-decline-threshold-*` |
+| `fouling_threshold` | `HeatExchanger` | UA has fallen by this share | `heat-exchanger-fouling-threshold` |
+| `drift_threshold` | `ESP` | power, head or discharge pressure drift this far from the prediction | `esp-drift-threshold` |
+| `clogging_pressure_drop` | `Filter` | the loss reaches it | `filter-clogging-pressure-drop` |
+
+[gemini: the module files; rows of `knowledge/data-equipment.csv`, placeholders]. How to choose
+one: the loss at which an operator would act (clean, stimulate, pull the pump), which is also the
+state the design must still meet its duty in. A threshold of 0.15 on UA says "clean at 15 % loss";
+then size the exchanger so that 85 % of its UA still covers the design duty (17.2). An empty
+threshold switches the alarm off.
+
+Fitting a plant to measurements (`gm.replay`, `gm.study.calibrate` with bounded least squares)
+is a gemini function, not a design step and not a geomind tool [gemini: `docs/guide.md`,
+`gemini/study/calibrate.py`]; `correction_factors` of wells and pumps hold its result (rows
+`well-correction-factors`, `esp-correction-factors`: [1, 0], no correction). Never claim a design
+was calibrated unless measured data were fitted.
+
+## 17.2 Designing for degradation
+
+| Degradation | Typical cause | Design answer |
+|---|---|---|
+| Injectivity loss | fines, scale, gas, bacteria near the injector (5.3, 5.4) | margin on injection pump head (13.3); filters; inhibitor |
+| Productivity loss | scale, sand, skin growth | margin on pump depth and intake (12.10) |
+| Exchanger fouling | scale, biofilm, corrosion products | design UA for the fouled state (6.1); a fouling factor or a UA margin |
+| Pump wear | sand, gas, running off the window | operate near BEP (13.1); plan pump changes in the days off (8.5) |
+| Thermal decline | cold front breakthrough (3.5, 12.17) | spacing; lower flow; plan the temperature after breakthrough |
+
+Worked (invented): an exchanger needs 2.0 MW/K clean for its duty (12.16); with a 15 % fouling
+allowance, specify 2.0 / 0.85 = 2.35 MW/K [derived]. Fouling factors for water services are
+tabulated by TEMA and in Kakaç et al. 2012; plate exchangers foul less than shell and tube ones,
+so their allowance is usually smaller [Kakaç et al. 2012].
+
+## 17.3 Erosion: the velocity limit in wells and pipes
+
+The API erosional velocity is u_e = C / √ρ_m in the imperial basis (ft/s, lb/ft3), C = 100 for
+continuous and 125 for intermittent service in API's original guidance [standard: API RP 14E];
+in SI, u_e ≈ 1.22 C / √ρ (m/s, kg/m3). gemini's `erosion_check` of a well compares section
+velocities with this limit at C = 125 [gemini: `gemini/physics/erosion.py`,
+`gemini/modules/wells/well.py`]. With sand, the limit is not protective: use a sand erosion
+model (DNV RP O501, also in `gemini/physics/erosion.py`).
+
+Worked (invented): brine 1,050 kg/m3, C 125: u_e = 4.7 m/s; tubing of 0.15 m inner diameter
+carries 250 m3/h at 3.9 m/s and 300 m3/h at 4.7 m/s, at the limit [derived]. So the flow per
+doublet is capped not only by the reservoir and the pump but by the tubing; a wider tubing or
+casing (4.1) lifts the cap and cuts friction (D⁻⁵).
+
+## 17.4 CO2 corrosion of carbon steel
+
+Dissolved CO2 makes carbonic acid; the classic estimate for bare carbon steel is
+log10 V_cor = 5.8 − 1710 / T + 0.67 log10 p_CO2 (mm/yr, T in K, p_CO2 in bar) [paper: de Waard and
+Lotz 1991; standard: NORSOK M-506 for the fuller model]. gemini implements both
+(`gemini/physics/corrosion.py`) and a well corrosion forecast (`gemini/analysis/integrity.py`);
+the brine's dissolved CO2 is `co2_mass_fraction` of the fluid (15.1).
+
+Worked (invented): 90 °C, p_CO2 0.5 bar: V_cor = 7.8 mm/yr [derived]. That is an upper bound:
+above about 60 °C a protective iron carbonate film usually forms and slows it [paper: de Waard
+and Lotz 1991, scaling correction], but no casing survives decades at that rate unprotected. The
+design answers: keep CO2 in solution and the pH up (13.4), inhibitor dosing (5.3), corrosion
+allowance on wall thickness, or corrosion-resistant alloys or lined tubulars in the worst
+sections. Costs of these belong to the economics (handbook-economics).
+
 ---
 
 # Appendix A: Formulas
@@ -3063,6 +3139,8 @@ always in the original):
 - ANSI/HI 9.6.3. *Rotodynamic Pumps: Guideline for Operating Regions*. Hydraulic Institute.
 - Arnold, K., Stewart, M. (2008). *Surface Production Operations, Vol. 1: Design of Oil Handling
   Systems and Facilities*, 3rd ed. Gulf Professional.
+- API RP 14E. *Recommended Practice for Design and Installation of Offshore Production Platform
+  Piping Systems*. American Petroleum Institute.
 - ASHRAE Standard 90.1. *Energy Standard for Sites and Buildings Except Low-Rise Residential
   Buildings* (tables of minimum chiller efficiencies).
 - Arpagaus, C., Bless, F., Uhlmann, M., Schiffmann, J., Bertsch, S. S. (2018). High temperature heat
@@ -3074,6 +3152,9 @@ always in the original):
 - Carslaw, H. S., Jaeger, J. C. (1959). *Conduction of Heat in Solids*, 2nd ed. Oxford.
 - Cengel, Y. A., Boles, M. A. (2015). *Thermodynamics: An Engineering Approach*, 8th ed.
   McGraw-Hill.
+- de Waard, C., Lotz, U. (1991). Prediction of CO2 corrosion of carbon steel. NACE Corrosion/91,
+  paper 577.
+- DNV RP O501. *Managing Sand Production and Erosion*. DNV.
 - Dincer, I., Rosen, M. A. (2011). *Thermal Energy Storage: Systems and Applications*, 2nd ed.
   Wiley.
 - Dake, L. P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
@@ -3111,6 +3192,7 @@ always in the original):
 - Lund, H., et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
 - Mijnlieff, H., et al. (2013). SDE+ reference case, European Geothermal Congress (as cited in gemini).
 - Moody, L. F. (1944). Friction factors for pipe flow. *Trans. ASME* 66.
+- NORSOK M-506. *CO2 Corrosion Rate Calculation Model*. Standards Norway.
 - Nocedal, J., Wright, S. J. (2006). *Numerical Optimization*, 2nd ed. Springer.
 - Sharqawy, M. H., Lienhard, J. H., Zubair, S. M. (2010). Thermophysical properties of seawater: a
   review of existing correlations and data. *Desalination and Water Treatment* 16, 354-380.
@@ -3118,6 +3200,7 @@ always in the original):
   Development*. Springer.
 - Svarovsky, L. (2000). *Solid-Liquid Separation*, 4th ed. Butterworth-Heinemann.
 - Takacs, G. (2009). *Electrical Submersible Pumps Manual*. Gulf Professional (quoted, not verified).
+- TEMA. *Standards of the Tubular Exchanger Manufacturers Association* (fouling resistances).
 - Turpin, J. L., Lea, J. F., Bearden, J. L. (1986). Gas-liquid flow through centrifugal pumps:
   correlation of data. Proc. 3rd International Pump Symposium, Texas A&M (quoted in Takacs 2009,
   not verified).
