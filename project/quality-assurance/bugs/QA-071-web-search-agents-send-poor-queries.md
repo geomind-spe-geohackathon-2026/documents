@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Sahand |
 | Found | 2026-11-05 01:42 UTC |
 | Versions | frontend 1.1.69, backend 1.1.65 (geomind 0.4.64) |
 | Where | geomind.team chat, web_search calls of the agents (reported by Sahand; project not given) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
