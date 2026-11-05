@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -35,6 +35,8 @@ Feature request from Sahand (top priority, his bug). Frontend only, using the ex
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.129 (commit af01430, bundle index-DjK0zKa6.js), by front-m1: a new draft chat shows a dialog 'Turn on auto-approve for this chat?' (No/Yes, Esc = No); the answer goes to the chat's auto-approve, saved on the first message.
+- 2026-11-05 18:54 UTC: frontend 1.1.129
 ## Retest
 
 (Who, when, result.)
