@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-plant-I |
 | Found | 2026-11-05 11:01 UTC |
 | Versions | backend 1.1.86 (health at 11:01 UTC; run started on 1.1.84) |
 | Where | https://geomind.team/projects/c45a5382-af55-43fc-9340-dd1ab1245533/assistant/chat/6732957b-7035-481a-bc31-7f4abcda2a76; project QA3 plant (case set); scenario plant-I-S1 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
