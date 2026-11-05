@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -52,7 +52,7 @@ cooling too, with "mode chiller = electric compression chiller"; (2) a line in
 `knowledge/handbook-design.md` and the explainer prompt: compare a choice with the reference plant
 families (`list_plants`), e.g. HeatingHeatPumpCoolingPlant for compression cooling, before
 saying an option cannot be modelled.
-
+- 2026-11-05 19:57 UTC: geomind main 737a7cf / 0bdafe8; pending deploy
 ## Retest
 
 (Who, when, result.)
