@@ -124,6 +124,6 @@ New: QA-305 (minor, verified), QA-319, QA-320, QA-327 (major, verified), QA-349 
 
 ## Closed (2026-11-05 ~20:50 UTC, Sahand's order)
 
-18 bugs filed (1 blocker, 12 major, 5 minor). 16 verified; QA-349 fixed but not retested (deploy
+18 bugs filed (1 blocker, 11 major, 6 minor). 16 verified; QA-349 fixed but not retested (deploy
 pending at close); QA-194 verified 19:29 UTC but shown "fixed" again after a later backend change.
 Handover: .claude/notes/sessions/qa-e2e-economics-1.md. Projects QA-TEST QA-E2E-economics-I 1-16 kept.
