@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -41,3 +41,4 @@ and still there after a page reload.
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 20:41 UTC: Manual QA-IV 21:42 CET: GET /assistant/runs/7fb2db3c... (ended) returns instances with agent, steps, tokens, cost, started, ended
