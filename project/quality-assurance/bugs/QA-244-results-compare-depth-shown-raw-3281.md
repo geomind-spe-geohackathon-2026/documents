@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -35,6 +35,12 @@ Depth rounded (3,282 m); Doublets 2 for the superstructure result; readable poin
 
 hotfix-back-lead, backend 1.1.111: `design_facts` counts the `Doublet` modules when the plant has no class size (`counted_doublets`).
 - 2026-11-05 18:05 UTC: backend 1.1.111
+- 2026-11-05 18:29 UTC: Sahand 18:28 UTC: labels still overlap and are cut at the right edge; top priority
 ## Retest
 
 Recipe: Compare a superstructure result with d0, d1: doublets shows 2.
+
+## Retest 2026-11-05 18:28 UTC (Sahand, screenshot 2)
+
+Still broken: labels overlap ("HeatingHeatPumpCoolingPlant ..." and "HeatingCoolingPlant ..." on top of each other, "Superstructure ... (+1)" and "HeatingPlant ..." crossing the error bars) and run past the right edge of the chart ("HeatingAbsorptionCoolingPl", "searched c"). Suggested fix: number the points (1, 2, 3 ... as in the table below) or show a short name (the plant name without the study suffix) and put the full names in the table; place labels to avoid collisions or show them on hover only.
+![screenshot 2](../evidence/QA-244/2.png)
