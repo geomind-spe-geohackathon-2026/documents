@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,gemini |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 17:13 UTC |
 | Versions | frontend 1.1.113, backend 1.1.104, geomind 0.4.97, gemini 0.6.16 |
 | Where | https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354; project QA-TEST QA-E2E-design-I 1; run 76d19df6-485f-46ee-a182-6b03ed70ab33; design_lead 17:04-17:13 UTC |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
