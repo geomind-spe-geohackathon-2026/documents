@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 17:30 UTC |
 | Versions | backend 1.1.102 -> 1.1.107 during the run (deploys at 16:56 and ~17:30), geomind 0.4.97 |
 | Where | run 76d19df6-485f-46ee-a182-6b03ed70ab33 (project QA-TEST QA-E2E-design-I 1) |
-| Fixer | |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
@@ -48,7 +48,7 @@ Compute `run.usage` as the sum over all sessions of the run (the same query as /
 ## Fix
 
 Backend 1.1.117 (3113417, back-m2, lead hotfix-back-lead-II): UsageTree returns the tree totals for root usage events too and keeps each key's peak; set_values never writes a usage column below the row; on the root run.finished the recorder writes usage summed from every stored event (sessions.stored_totals, as /agents). Covers QA-144 and QA-277.
-
+- 2026-11-05 18:46 UTC: backend 1.1.117, 3113417
 ## Retest
 
 Poll GET /assistant/runs/{id} during a run with nested agents: input_tokens only rises; at the end it equals the sum of GET /assistant/runs/{id}/agents.
