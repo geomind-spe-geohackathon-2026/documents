@@ -4,7 +4,7 @@
 |---|---|
 | Status | fixed |
 | Severity | major |
-| Area | frontend |
+| Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 18:41 UTC |
 | Versions | live 2026-11-05 19:40 Trondheim |
@@ -18,6 +18,12 @@
 ## Expected
 
 When a new chat opens, a small dialog asks once: turn Auto-approve on for this chat? (Yes / No, with one line on what it does: agents' write steps run without approval cards). The answer sets the existing Auto-approve toggle; the user can still change it later with the toggle. Not asked again for that chat.
+
+Clarified by Sahand (2026-11-05 20:56 Trondheim): ask only when the chat page opens AND the user has
+not turned Auto-approve on before. If the user already turned it on, never ask again. The choice is
+saved in the backend (per user, persisted, e.g. a user setting `auto_approve_default` or the chat's
+saved flag), so the frontend reads it on page load and does not ask; the dialog's answer is written
+to the backend. Area now frontend + backend.
 
 ## Actual
 
