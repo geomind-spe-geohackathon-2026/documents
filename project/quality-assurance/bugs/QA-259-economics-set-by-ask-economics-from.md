@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -44,3 +44,7 @@ for a distribution; the assumptions document puts the ranges in a separate table
 
 `ask_economics`: when the source document or the catalogue gives a range for a key, propose it as the key's
 `uncertainty` in the same question (one line per key: value, unit, source, range), and write it with the value.
+
+## Fix
+
+- 2026-11-05 18:30 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
