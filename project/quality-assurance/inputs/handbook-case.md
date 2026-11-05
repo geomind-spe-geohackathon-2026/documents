@@ -44,6 +44,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 16. Checking a data file step by step: procedure, outliers, weather and price series
 17. Requirements documents, limits, units and time in depth: modal verbs and traceability, the
     four questions from limit to requirement, tolerances, ask or take from Knowledge, units, time
+18. Cooling demand: sources of load, sensible and latent, free cooling and heat recovery
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1295,28 +1296,34 @@ return 45, both cited to the brief. No minimum or maximum return: the brief give
 ## 15.2 Cooling networks, indoor air and the dew point margin
 
 **What.** `demand.cooling.supply_temperature` and `return_temperature` are the chilled water;
-`indoor_temperature` and `indoor_relative_humidity` the room; `dew_point_margin` [K] how far the
-chilled water must stay above the room's dew point so that no condensation (latent load) occurs.
+`indoor_temperature` and `indoor_relative_humidity` the room; `dew_point_margin` [K] how far
+below the room's dew point the chilled water must be for a coil to dehumidify (take the latent
+load). In gemini's `CoolingGrid` the latent load is served only when
+`T_supply <= T_dew - dew_point_margin`; otherwise it is reported unmet, as for chilled beams or
+radiant ceilings run above the dew point (module docstring, citing the ASHRAE Handbook, HVAC
+Systems and Equipment 2020, ch. 23). The return water can never be warmer than the room.
 
 **Typical ranges.** The ASHRAE District Cooling Guide (2013) describes conventional chilled-water
-networks with supply about 4 to 7 °C and a design temperature difference of about 8 to 10 K.
-High-temperature cooling (chilled ceilings, active beams) uses supply 14 to 18 °C and needs a
-dew-point margin of about 1 to 2 K (REHVA Guidebook No. 7, Babiak et al. 2007). Indoor design
-conditions for comfort are in EN 16798-1 (operative temperature about 23 to 26 °C in summer
-for category II) and ASHRAE 55.
+networks with supply about 4 to 7 °C and a design temperature difference of about 8 to 10 K:
+cold enough to dehumidify. High-temperature cooling (chilled ceilings, active beams) uses supply
+about 14 to 18 °C, above the dew point, and leaves dehumidification to the ventilation air
+(REHVA Guidebook No. 7, Babiak et al. 2007). Indoor design conditions: EN 16798-1 (operative
+temperature about 23 to 26 °C in summer, category II) and ASHRAE 55.
 
 **Dew point.** Magnus formula (Alduchov and Eskridge 1996):
-`γ = ln(RH) + 17.625·T/(243.04 + T)`, `T_dew = 243.04·γ/(17.625 − γ)`, T in °C.
+`γ = ln(RH) + 17.625·T/(243.04 + T)`, `T_dew = 243.04·γ/(17.625 − γ)`, T in °C. gemini uses
+Hyland and Wexler (1983) in `gemini.physics.psychrometrics`; the two agree within a few tenths
+of a kelvin in the comfort range.
 
 **Example (invented).** Room 24 °C at 50 % RH: `γ = −0.693 + 1.584 = 0.891`,
-`T_dew = 243.04 × 0.891 / 16.734 = 12.9 °C`. With a margin of 2 K the chilled water must stay
-at or above 14.9 °C to take no latent load. This is a check on the source's numbers; gemini
-computes it itself from the case (`gemini.physics.psychrometrics`), so store the three inputs,
+`T_dew = 243.04 × 0.891 / 16.734 = 12.9 °C`. With a margin of 3 K the chilled water must be at or
+below 9.9 °C for the latent load to be taken; a 6 °C supply takes it, a 16 °C supply does not.
+This is a check on the source's numbers; gemini computes it from the case, so store the inputs,
 never the dew point (§8.5).
 
-**Mistakes.** Asking the user for `dew_point_margin` on a case with no cooling; writing the
-indoor humidity in % without `"unit": "%"`; confusing the site's outside humidity
-(`site.air.relative_humidity`) with the room's.
+**Mistakes.** Asking for `dew_point_margin` on a case with no cooling; reading the margin as a
+distance above the dew point; writing the indoor humidity in % without `"unit": "%"`;
+confusing the site's outside humidity (`site.air.relative_humidity`) with the room's.
 
 ## 15.3 Produced gas: composition, heating value, bubble point
 
@@ -1643,6 +1650,68 @@ day), local time. Ask once: "the file's hours look interval-ending in local time
 (Europe/<city>); confirm, or give the convention". The zone name comes from the site's
 location, as the agent's choice with its reason (§3.2).
 
+# 18. Cooling demand
+
+How a cooling demand arises, how to check a cooling series, and how gemini's cooling consumer
+reads the case. Examples use invented numbers.
+
+## 18.1 Where cooling load comes from
+
+**Lesson.** A building's cooling load is the heat to remove to hold the room at its set point:
+**sensible** (raises air temperature: solar gains through glazing, transmission, people,
+lighting, equipment, ventilation air warmer than the room) and **latent** (moisture: people,
+ventilation air more humid than the room). The ASHRAE Handbook, Fundamentals (2017, ch. 18,
+radiant time series method) and EN ISO 52016-1:2017 give the methods. Internal gains make
+offices, hospitals and data centres need cooling even in mild weather; process cooling (data
+centres, industry) is nearly constant over the year.
+
+**Degree-day check.** Like heating (§13.1), weather-driven cooling scales with cooling degree
+days `CDD = Σ max(0, T_out,day − T_base)` above a base temperature that internal gains lower
+(CIBSE TM41). A load that does not rise with outside temperature is internal or process load.
+
+**How to use it.** The case takes the cooling series as given; this lesson only checks it:
+summer peak, a base load in winter only where internal or process loads exist, and zero days
+where the use has none (§3.3).
+
+**Example (invented).** Daily cooling series: winter days 0.6 to 0.8 MW, July peak 6.5 MW. The
+winter base of about 0.7 MW points to a process or server load: name it in the handover, since
+it runs every day and suits a source that runs all year.
+
+## 18.2 Sensible and latent, and what the case holds
+
+**In gemini.** `CoolingGrid` (`gemini/modules/grids/coolinggrid.py`) takes a sensible and a
+latent load, serves the sensible first, and takes the latent only when the chilled water is
+cold enough (§15.2). The room state comes from the case: `demand.cooling.indoor_temperature`,
+`indoor_relative_humidity`, `dew_point_margin`, with `supply_temperature`,
+`return_temperature`, `maximum_return_temperature` and `return_pressure`. The case lead reads
+from `describe_case` which of them the plant needs.
+
+**Latent share.** Comfort cooling in humid climates has a latent share that can reach a third
+of the total load; dry climates and process cooling have little (ASHRAE Fundamentals 2017,
+ch. 18). A brief's "cooling demand" is usually the total; when a source splits it, keep both;
+when not, say so in the handover rather than inventing a split.
+
+**Example (invented).** A brief gives total cooling 4 MW peak and an indoor state of 25 °C,
+55 % RH; dew point ≈ 15.3 °C. With a 7 °C supply the coil dehumidifies; with 16 °C (a radiant
+system) the latent part would be unmet. The supply temperature is the consumer's (case value);
+the plant cannot change it.
+
+## 18.3 Free cooling and heat recovery
+
+**Lesson.** When the outside air or the ground is colder than the chilled-water return, cooling
+can be rejected without a chiller (free cooling via dry coolers or a cold aquifer store). When
+heating and cooling occur at the same time, a heat pump can serve both: the cooling side is its
+source (Frederiksen and Werner 2013, ch. 9 on district cooling).
+
+**How to use it.** These are design freedoms (§7.2). The case's part is to make them possible:
+an air temperature series that covers the cooling season (§13.8), and both demand series on one
+time axis so the overlap is visible (§13.2). State in the handover how many days have both
+heating and cooling above a small share of their peaks.
+
+**Example (invented).** 120 days have heating above 1 MW and cooling above 0.5 MW. Handover:
+"simultaneous heating and cooling on 120 days: heat recovery is worth a look". No requirement
+follows from it.
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -1690,6 +1759,9 @@ location, as the agent's choice with its reason (§3.2).
 - Alduchov, O.A. and Eskridge, R.E. (1996). Improved Magnus form approximation of saturation
   vapor pressure. *Journal of Applied Meteorology* 35(4), 601-609.
 - API RP 14E (1991). *Design and installation of offshore production platform piping systems*.
+- ASHRAE (2017). *Handbook: Fundamentals*, ch. 1 (psychrometrics) and ch. 18 (cooling loads).
+  ASHRAE (2020). *Handbook: HVAC Systems and Equipment*, ch. 23 (cooling and dehumidifying
+  coils).
 - ASHRAE (2013). *District Cooling Guide*. ASHRAE 55: *Thermal environmental conditions for
   human occupancy*.
 - Babiak, J., Olesen, B.W. and Petras, D. (2007). *Low temperature heating and high temperature
@@ -1700,6 +1772,8 @@ location, as the agent's choice with its reason (§3.2).
 - CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
 - DNV RP O501 (2015). *Managing sand production and erosion*.
 - Dake, L.P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
+- Hyland, R.W. and Wexler, A. (1983). Formulations for the thermodynamic properties of the
+  saturated phases of H2O from 173.15 K to 473.15 K. *ASHRAE Transactions* 89(2A), 500-519.
 - IANA. *Time Zone Database* (tz). ISO 8601-1:2019. *Date and time: representations*.
 - EN 12831-1:2017. *Energy performance of buildings: method for calculation of the design heat
   load*. EN ISO 15927-6:2007. *Hygrothermal performance of buildings: accumulated temperature
@@ -1709,6 +1783,8 @@ location, as the agent's choice with its reason (§3.2).
   with uniform regional flow. *Journal of Geophysical Research* 80(35), 4956-4962.
 - Hyndman, R.J. and Athanasopoulos, G. (2021). *Forecasting: Principles and Practice*, 3rd ed.
   OTexts.
+- EN ISO 52016-1:2017. *Energy needs for heating and cooling, internal temperatures and
+  sensible and latent heat loads*.
 - ISO 6976:2016. *Natural gas: calculation of calorific values, density, relative density and
   Wobbe indices from composition*.
 - JCGM 106:2012. *Evaluation of measurement data: the role of measurement uncertainty in
