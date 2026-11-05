@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 17:40 UTC |
 | Versions | backend 1.1.106 -> 1.1.108 (deploys at 17:24, 17:28, 17:39 UTC) |
 | Where | https://geomind.team/projects/8fcbf709-537a-40d9-ac1f-abadd1061775/design/results |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
