@@ -57,3 +57,15 @@ the request tree). Final summary must name the user's stop as the reason.
 
 - 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
+- 2026-11-05 17:55 UTC (18:55 CET), QA-AI-case-I, run dd6b4700-3db4-43a7-8c48-4bf018600e1c
+  (project QA-TEST QA-AI-case-I 4, f6... chat 6f58a19d-8c9e-429d-a387-8fe67c3c7492), run
+  17:28:45-17:34:47 UTC on geomind 0.4.100 (BEFORE the 0.4.111-0.4.114 fix): reproduced. The
+  case lead answered `stop` correctly (17:32:31, `finish`: "no case was set and nothing of the
+  unconfirmed values was saved"). Then the project lead delegated `case_lead` again (17:32:46,
+  47 s) with "set the case from the project's files only, with NO question": the second case lead
+  re-read the 5 findings, made 3 `set_case` calls (all refused: missing `time_zone`, files-only,
+  missing `time_zone`) and 3 refused `read_case`, and finished "No case is stored". Final answer
+  of the project lead: "The case is not stored yet - one value blocks it, and you told us to stop".
+  Nothing stored (`GET /design/case` 404), so no unconfirmed value leaked, but 2 min and
+  ~300 k input tokens after `stop`. Evidence: `../evidence/QA-197/run-dd6b4700.json`,
+  `steps-run-dd6b4700.txt`. Not a retest of the fix: a `stop` run on 0.4.114 follows (QA-AI-case-I run 7).
