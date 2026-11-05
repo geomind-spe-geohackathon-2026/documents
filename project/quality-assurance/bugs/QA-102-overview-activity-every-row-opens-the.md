@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
 | Found | 2026-11-05 10:39 UTC |
 | Versions | frontend and backend as deployed 2026-11-05 ~10:45 UTC |
 | Where | Overview of project cf0c3d9c-d925-4ffa-bd29-3ac8205090d3 (geo mind testing), card Activity |
-| Fixer | hotfix-back-II |
+| Fixer | hotfix-front-III |
 
 ## Steps
 
