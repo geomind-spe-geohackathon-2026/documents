@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -51,3 +51,5 @@ Run 17:22:45 to 17:31:11 UTC, 8 min 26 s; explainer 20 LLM calls, 1 451 815 inpu
 
 - 2026-11-05 18:54 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+- 2026-11-05 19:15 UTC: QA-AI-project-I 19:08 UTC, backend 1.1.119, run a5cd1779 (project 1, new chat, same question): 3 min 44 s, 15 LLM calls, 268 k input tokens, 0.0099 USD (was 8:26, 1.49 M, 0.034); explainer 10 calls, 16 read_knowledge by section, 0 search_rag. Left: 4 read_result refused (the stored result is of another chat, QA-294) and one list_studies repeat. evidence/QA-218/retest-a5cd1779.trace.txt
