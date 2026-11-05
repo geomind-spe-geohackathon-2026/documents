@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
@@ -48,6 +48,7 @@ Same for typed answers: after I answered the question card with 'leave open' (En
   `decision` allow / deny / answer; its `id` is the sequence of the internal event, so a reload
   shows the same record. No geomind change needed. Frontend (hotfix-front) shows it.
 - 2026-11-05 00:20 UTC: lasting record: frontend 1.1.66 (b2c1006) reads the public answer event (backend 1.1.59); pushed, build checked, deploy at 00:30 UTC
+- 2026-11-05 00:31 UTC: frontend 1.1.59+1.1.66, commit 55ef789,b2c1006, deployed (1.1.67)
 ## Retest
 
 (Who, when, result.)
