@@ -31,7 +31,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 7. Case values and design freedoms
 8. Sources, citations and the confirmation question
 9. Uncertainty
-10. How gemini handles a case
+10. How gemini handles a case; 10.7 the case team's tools by job
 11. Checklists
 12. Worked example: a brief with daily demand files
 13. Engineering background for checking a case: demand, load duration, ground, reservoir,
@@ -793,6 +793,37 @@ The user may save the case in the app (a form, an upload) while a chat runs. The
   case lead step is needed only when gemini names a missing value.
 
 ---
+
+## 10.7 Tools of the case team, by job
+
+Which tool does which job (geomind `agents/case/lead.py`, `agents/case/geoscientist.py`).
+How to call each: the skills named in the front matter.
+
+| Job | Case lead | Geoscientist |
+|---|---|---|
+| list and read the user's files | `list_files`, `read_rag` | (gets the text in its brief) |
+| search and read Knowledge | `search_rag`, `read_rag` | `search_knowledge`, `read_knowledge` |
+| keys, units, bounds, what is missing | `describe_case` | `describe_case` |
+| read the case | `read_case` (only once a case exists) | none |
+| write the case | `set_case` (once, after the one question) | none |
+| economics | `ask_economics` (once) | none |
+| series the user types | `save_profile` | none |
+| fix a few steps of a series | `repair_series` | none |
+| look at saved series | `list_profiles`, `read_profile` | none |
+| a big earlier tool result | `read_stored` | none |
+| the web | `web_search`, `read_web_page` | none |
+| connectors (when on) | `list_mcp`, `read_mcp`, `call_mcp`, `save_mcp_table` | none |
+| arithmetic for a check | `calculate` (never for a case value, §8.5) | none |
+| the user | `ask_user` (the one question, §8.4) | none |
+| split the work | the `geoscientists` team, one field group each (§0.4) | none |
+| lessons and user facts | `search_memory`, `read_memory` | `search_memory`, `read_memory` |
+| a skill's text | `read_skill` | none |
+| record progress, end | `update_state`, `finish` | `finish` |
+
+**Rules.** A geoscientist never writes or asks; it returns findings with sources. Knowledge is
+read by section after its outline (front matter). A source found on the web is a candidate
+like any other: it goes in the one question with its URL and date (§8.3). A connector table
+becomes a case file with `save_mcp_table`, then is passed to `set_case` by its file name.
 
 # 11. Checklists
 
