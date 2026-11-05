@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | verified |
 | Severity | major |
 | Area | gemini |
 | Reporter | QA-AI-analysis-I |
@@ -65,3 +65,4 @@ on the hackathon case must find LCTS <= 39.3 EUR/MWh.
   (study "QA-285 retest minimize lcts", result bcf4fef1-04ca-4995-b487-7054f96b4ce1), 13 s: LCTS 32.535 EUR/MWh
   (was 41.300), capex 27.492 MEUR, CO2 10.259 kt, 15 of 15 checks passed; 2 doublets x 237.5 m3/h, depth 2875 m, heat
   pump 3.0 MW (moved from the 9.75 MW start), chiller 10 MW. Below the 39.21 the agent found by hand. Verified.
+- 2026-11-05 18:54 UTC: retest QA-AI-analysis-I 18:53 UTC gemini 0.6.26: minimize gives 32.535 EUR/MWh, HP moves to 3 MW
