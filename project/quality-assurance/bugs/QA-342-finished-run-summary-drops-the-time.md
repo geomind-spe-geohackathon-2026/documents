@@ -7,27 +7,29 @@
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 20:06 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 21:05 Trondheim |
+| Where | geomind.team chat, the summary line under a finished run |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Let a chat run finish.
 
 ## Expected
 
+The finished-run line keeps the run's total time, same field order as the busy list (QA-291/307): 'Worked through 62 steps, 2 needed another try · 1.26 M tokens · 0.029 USD · 14 min 05 s'.
+
 ## Actual
+
+The time disappears once the run ends (screenshot).
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-342/1.png)
-- Run JSON: `../evidence/QA-342/run-<id>.json`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Sahand's bug (top). Use the run's started/ended timestamps.
 
 ## Fix
 
