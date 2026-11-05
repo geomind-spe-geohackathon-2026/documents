@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-plant-I |
@@ -40,7 +40,7 @@ With the approval card open, Cancel run did nothing (run stayed active, 4 clicks
 - 2026-11-05 14:29 UTC: same cause as QA-133 (hotfix-back-III): the Cancel click sends no request while the approval card is open; after Deny the run resumes and the cancel flag/new state ends it. Frontend.
 
 hotfix-front-III, frontend 1.1.105 (ff351c7), deployed 14:35 UTC (bundle index-CJFPBgLt.js). Cause (fact, reproduced at 1280x577 on QA qa-2 run 592f3730 with the cancel request intercepted): the request card in `chat/workspace.tsx` had no height limit, so a tall card filled the chat column and pushed the composer, with its Cancel run button, below the window where it could not be clicked (elementFromPoint at the button: nothing); at 1280x700 the same click sends POST /assistant/runs/{id}/cancel. Fix: the card is at most 45svh high and scrolls inside; Cancel run stays visible and sends the POST (checked intercepted on two waiting runs; no real run cancelled).
-
+- 2026-11-05 14:35 UTC: frontend 1.1.105 deployed 14:35 UTC, bundle index-CJFPBgLt.js: card bounded, Cancel run reachable
 ## Retest
 
 (Who, when, result.)
