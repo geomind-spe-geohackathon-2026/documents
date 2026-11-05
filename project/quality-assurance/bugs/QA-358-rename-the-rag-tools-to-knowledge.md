@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
-| Area | geomind,backend,frontend |
+| Area | frontend |
 | Reporter | Sahand |
 | Found | 2026-11-05 21:20 UTC |
 | Versions | geomind HEAD 2026-11-05 22:20 Trondheim |
 | Where | geomind tools, prompts, skills; Knowledge handbooks; backend events; frontend tool labels |
-| Fixer | m1 |
+| Fixer |  |
 
 ## Steps
 
@@ -34,7 +34,7 @@ Old RAG names kept beside the new Knowledge names (the read_rag -> read_file/rea
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 21:23 UTC: Sahand: the frontend label only (read rag -> read knowledge); geomind rename stopped, nothing pushed
 ## Retest
 
 (Who, when, result.)
