@@ -25,6 +25,8 @@ A line in the transcript for each decision, for example "You approved set_case" 
 
 The card disappears at once. No line shows approved or denied, and the reason text I typed appears nowhere in the chat. Page text has no "approved"/"denied" entry. (The agent did act on the reason: it replied with a table.) Compare QA-005, where the economics answer was labelled "You answered".
 
+Same for typed answers: after I answered the question card with 'leave open' (Enter), the page text no longer contains my answer (checked with `get text main`); only the agent's reply follows.
+
 ## Evidence
 
 - ![screenshot](../evidence/QA-058/1.png)
