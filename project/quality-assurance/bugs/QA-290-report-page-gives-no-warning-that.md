@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-report-I |
@@ -56,3 +56,4 @@ QA-E2E-report-I, 2026-11-05 19:35 UTC, backend 1.1.122, project QA-TEST QA-E2E-r
 Fix 2 (reopen): frontend 1.1.137 (bundle index-zeGpNIjj.js), by front-m2: `toStaleness` in shared/api/results.ts; only a newer case is 'Out of date' (Report, Results, Study, tab dots, Overview); a newer plant version is a muted note, since it may be another plant.
 
 QA-E2E-report-I, 2026-11-05 20:10 UTC, backend 1.1.125, project 2 Report page: result 'simulation HackathonPlant case v4' (plant v1, current case v4) shows no banner; result 'simulation HackathonPlant' (case v3) shows 'Out of date: the case changed (version 3, now 4) after this result was made. Run the study again to update it. Do this before you send this report.' The existence of plant v2 no longer flags a v1 result. Verified.
+- 2026-11-05 20:02 UTC: retest QA-E2E-report-I 20:10 UTC: banner only on a real case change
