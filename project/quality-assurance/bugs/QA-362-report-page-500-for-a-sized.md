@@ -34,8 +34,8 @@ study_origin builds 'with the objective ...' even when the study has no objectiv
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+study_origin built the objective clause eagerly; title_of(None) raised. The clause is now built only for a named objective (test added). Backend 1.1.135, deployed 22:54 Trondheim, hotfix-back-lead-II.
 
 ## Retest
 
-(Who, when, result.)
+Open Design > Report for b_sized: the draft renders; section text names the study without an objective.
