@@ -48,7 +48,7 @@ DataCell). Places, in the order they are switched (small steps, one deploy windo
 | 2 | Chat design alternatives | `domains/assistant/chat/alternatives-table.tsx` | 1.1.83 |
 | 3 | Results: compare, constraints, findings | `domains/design/results/{compare-table,constraints-card,findings-cards}.tsx` | 1.1.84 |
 | 3 | Evolve structures | `domains/design/study/structures-page.tsx` | 1.1.84 |
-| 4 | Lists with actions: studies, runs, run totals, chat usage, Library, users, case and plant history | `study/{study-table,study-row}.tsx`, `runs/{page,totals-table}.tsx`, `chat/chat-status.tsx`, `documents/page.tsx`, `users/page.tsx`, `{case,plant}/history-panel.tsx` | todo |
+| 4 | Lists with actions: studies, runs, run totals, chat usage, Library, users, case and plant history | `study/{study-table,study-row}.tsx`, `runs/{page,totals-table}.tsx`, `chat/chat-status.tsx`, `documents/page.tsx`, `users/page.tsx`, `{case,plant}/history-panel.tsx` | 1.1.85 (chat usage popover `chat/chat-status.tsx` keeps its small table) |
 
 ## Cause
 
@@ -63,6 +63,8 @@ Step 1: frontend 1.1.82, commit c88543d (hotfix-front-II): shared DataTable; the
 Step 2: frontend 1.1.83, commit cd5be85: Markdown tables, agent study record, chat Alternatives on DataTable; a cell opens only when cut (checked locally: a short cell opens nothing, a cut one shows its full text).
 
 Step 3: frontend 1.1.84, commit fbd04aa: Results compare, constraints (module in its own column), sensitivity, spread, evolve structures. Checked locally on project SPE GeoHackathon 2026, result 16547b99: compact constraint rows, scrolls sideways in the narrow design panel.
+
+Step 4: frontend 1.1.85, commit 2f27a3d: studies, runs, run totals, Library, users, case and plant history. Checked locally: runs list and study list render in the shared table with the sticky header.
 - 2026-11-05 10:02 UTC: steps 1-3 deployed 10:01 UTC (1.1.82 c88543d, 1.1.83 cd5be85, 1.1.84 fbd04aa); step 4 (lists with actions) next
 ## Retest
 
