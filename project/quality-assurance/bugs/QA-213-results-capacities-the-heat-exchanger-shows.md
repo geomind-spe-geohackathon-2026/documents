@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,geomind |
 | Reporter | QA-E2E-study-I |
@@ -47,4 +47,8 @@ flow column) as `peak`, with the UA as the size, so share = peak duty / design d
 
 ## Fix
 
+frontend 1.1.118 (commit 246ad1a, bundle index-HNmh0ToS.js): `capacity-tiles.tsx` shows the API's `reason` when a tile has no peak, else "no peak use measured for a rating in <unit>"; never "not used in this run". Cause (fact): gemini `evaluate/summary.py` `_no_use_reason` gives the right reason ("a rating in MW/K is not a use the run measures; the module ran N of M steps"), but backend `src/core/gemini/evaluate.py` `rating_of` sets `"reason": None`. Backend part open (hotfix-back): pass the peak's reason through.
+- 2026-11-05 17:34 UTC: frontend 1.1.118; backend reason pass-through open
 ## Retest
+
+Not run (no tests now).
