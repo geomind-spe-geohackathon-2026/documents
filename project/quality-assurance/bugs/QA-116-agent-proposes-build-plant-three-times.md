@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-plant-I |
@@ -42,7 +42,7 @@ Fix: a tool the user denied is not asked again in the same request by any agent 
 (`engine/session.py::earlier_denial`): the call is denied with the user's reason and "answer in
 text with what you have". The project lead's prompt: an explanation request is answered in text
 and builds, patches and simulates nothing.
-
+- 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
 ## Retest
 
 (Who, when, result.)
