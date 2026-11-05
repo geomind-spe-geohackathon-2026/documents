@@ -54,16 +54,16 @@ fluid fields).
 
 ## Fix
 
-Proposal (geomind, hotfix-python):
-1. `render()` adds one line per project plant version and per project study with its result id
-   and KPIs (`project_designs`), so every lead sees them; or give the project lead
-   `list_studies` (read only).
-2. Prompt `project/lead`: a report, explanation or comparison request on a project with a done
-   current result goes to analysis_lead/explainer with that result; design_lead only when no
-   current result exists.
-3. `read_plant` drops `null` fields (or `build_plant` accepts them), so a stored version can be
-   rebuilt unchanged; better, `simulate(plant_version=N)` (QA-166) makes the rebuild needless.
+hotfix-back-VI, geomind 0.4.108 (242177e) in backend 1.1.107, deployed 2026-11-05 ~17:31 UTC.
+The project lead gets `list_plants` and `list_studies` (the project's plant versions and studies
+with results, `project_designs` of the backend Workspace since 1.1.90), and its prompt's first rule:
+for a request about a design, result or report, read both first; a project with a plant version and
+a study with results gets a brief to `analysis_lead` / `explainer`, never `design_lead`. The backend
+part was already live (QA-122). Not done: `read_plant` output with null fluid fields is no valid
+`build_plant` input (for hotfix-python).
 
 ## Retest
 
-(Who, when, result.)
+Recipe: on a project with a plant version and a finished study, ask in a new chat for the report;
+the project lead calls list_plants and list_studies, then briefs analysis_lead/explainer; no
+design_lead, no build_plant approval card.
