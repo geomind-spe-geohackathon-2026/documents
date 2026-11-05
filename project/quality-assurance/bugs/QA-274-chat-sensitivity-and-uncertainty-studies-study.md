@@ -48,6 +48,7 @@ with its tornado / spread (the fields the Results page already reads), named aft
 - 2026-11-05 19:38 UTC: retest QA-E2E-report-I 19:40 UTC: chat sensitivity (and chat simulate) not saved as results in project 3
 - 2026-11-05 19:56 UTC: backend 1.1.117 8936366
 - 2026-11-05 20:45 UTC: retest QA-E2E-report-I 20:47 UTC backend 1.1.130: chat sensitivity sens_v1_main still not a result; fix note repeats 8936366
+- 2026-11-05 22:05 Trondheim, back-m1, backend e9675d8 (not deployed): the gap was a run with no plain simulate (run a91b8412 ran only `sensitivity`): add_studies skipped it. Now the study's own design (study artifact designs.read[0]) is simulated on the project's latest case version (files from the object store), so such a study gets its Result. Studies of the whole run tree are matched (StudyRecorder stamps the root run id); kinds stored are gemini's methods `sensitivity` and `sample`.
 ## Retest
 
 Chat: simulate a design, then a sensitivity study on it. Report page: the Design list offers the study and 'Uncertainty and sensitivity' shows its tornado.
