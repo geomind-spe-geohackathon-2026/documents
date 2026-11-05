@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
 | Found | 2026-11-05 18:22 UTC |
 | Versions | backend 1.1.109 (geomind 0.4.110), frontend bundle index-TsXgd_n9.js |
 | Where | https://geomind.team/projects/fa329839-43df-48c3-81c3-89af503b92c0/assistant/chat; project QA-TEST QA-E2E-report-I 2; run 7bcc2a22-4ae0-4fb1-ab99-c53dfd54833e (18:05:14-18:19:55 UTC) |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -58,7 +58,7 @@ gets "stop calling evaluate_module, answer from read_result" and the lead finish
 has; (3) project lead prompt: "explain/why" questions on a stored result go to the explainer.
 
 - Note (QA-E2E-report-I, 2026-11-05 19:00 UTC): the next run in the same chat (8efe3722, a different question after a case change) answered the three questions of this bug without evaluate_module: brine 15.92 MW (hx duty) + 10.23 MW (heat pump source) + heat pump power_in 3.856 MW = 30.0 MW at the 2027-01-28 peak, from read_result series. So read_result alone suffices; the failure is the evaluate_module path plus the guard.
-
+- 2026-11-05 19:11 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
 
 (Who, when, result.)
