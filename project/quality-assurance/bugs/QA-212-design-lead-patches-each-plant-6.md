@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -36,6 +36,7 @@ Guess: the lead patches after each refusal of `check`/`simulate` (one missing va
 - 2026-11-05 17:32 UTC: raised to blocker by Sahand 17:32 UTC: report run has 15 plants and no study after 30 min; lead also started a hand-sized build (hp_2500_v4)
 - 2026-11-05 17:39 UTC: geomind 0.4.109, commit 03046e7, deployed (backend 1.1.107): design lead prompt goes from first filled build to one set_ranges, size_plant, one optimize per configuration; one patch per round
 - 2026-11-05 17:44 UTC: QA-AI-design-I retest 17:50 UTC: 7 patch_plant per plant on the new prompt (run 5d0216a6); needs QA-175 (gemini all-stage check)
+- 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 ## Retest
 
 ## Retest: not fixed (QA-AI-design-I, 2026-11-05 17:50 UTC)
