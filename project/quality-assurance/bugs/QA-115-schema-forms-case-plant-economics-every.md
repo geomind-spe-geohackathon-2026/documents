@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 11:00 UTC |
 | Versions | frontend 1.1.86 |
 | Where | Design > Case form (and Plant, Economics: every schema form, `src/shared/forms`) |
-| Fixer | |
+| Fixer | hotfix-front-III |
 
 ## Steps
 
