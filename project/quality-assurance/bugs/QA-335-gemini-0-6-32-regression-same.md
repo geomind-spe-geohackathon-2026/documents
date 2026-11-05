@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -38,3 +38,5 @@ The failing check in both: `cooling_consumer.cooling_supply_temperature` 20.0032
 
 - 2026-11-05 19:56 UTC: gemini cb3160ba 0.6.33 reverts a5f3b5f1; pending deploy
 ## Retest
+
+- 2026-11-05 20:03 UTC: Manual QA-IV 21:05 CET on gemini 0.6.33 (project de2aef71-7837-4988-ad38-250e78fbb213): same scripts give exactly the 0.6.26 numbers: evolve 29.55 / 8.54 kt 15/15, absorption 28.61, full cooling 30.67 15/15, cooling 38.68 20/20, hackathon 32.53, heat pump 33.23
