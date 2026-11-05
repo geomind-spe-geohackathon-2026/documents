@@ -57,3 +57,11 @@ heat pump capacity and the search keeps it; (c) a 1-D local polish is missing at
 gemini `gm.study` minimize (prepare size): check which variables the search moves (history of heat_pump.capacity);
 add a final coordinate polish of each continuous variable, or start points spread over each range. A test: HackathonPlant
 on the hackathon case must find LCTS <= 39.3 EUR/MWh.
+
+## Retest
+
+- 2026-11-05 18:53 UTC, QA-AI-analysis-I, backend 1.1.118 (gemini 0.6.26, geomind 0.4.130): page study `minimize`
+  (lcts, 30 evaluations, seed 0, size first) on plant version 1 HackathonPlant in project `QA-TEST QA-AI-analysis-I 1`
+  (study "QA-285 retest minimize lcts", result bcf4fef1-04ca-4995-b487-7054f96b4ce1), 13 s: LCTS 32.535 EUR/MWh
+  (was 41.300), capex 27.492 MEUR, CO2 10.259 kt, 15 of 15 checks passed; 2 doublets x 237.5 m3/h, depth 2875 m, heat
+  pump 3.0 MW (moved from the 9.75 MW start), chiller 10 MW. Below the 39.21 the agent found by hand. Verified.
