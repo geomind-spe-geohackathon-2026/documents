@@ -1,0 +1,89 @@
+{
+ "id": "31f5f0c8-95d1-4c8d-a4b2-85aaa1299e4a",
+ "plant_version": 2,
+ "case_version": 3,
+ "kpis": [
+  {
+   "name": "co2",
+   "title": "CO2 emissions",
+   "value": 20.960160002433348,
+   "unit": "kt",
+   "reason": null
+  },
+  {
+   "name": "lcoc",
+   "title": "Cost of cold",
+   "value": 56.212984942049346,
+   "unit": "EUR/MWh",
+   "reason": null
+  },
+  {
+   "name": "lcoh",
+   "title": "Cost of heat",
+   "value": 47.80750773904089,
+   "unit": "EUR/MWh",
+   "reason": null
+  },
+  {
+   "name": "lcts",
+   "title": "Cost of thermal supply",
+   "value": 49.28130562173663,
+   "unit": "EUR/MWh",
+   "reason": null
+  },
+  {
+   "name": "opex",
+   "title": "Operating cost",
+   "value": 4.97803357605344,
+   "unit": "MEUR/yr",
+   "reason": null
+  },
+  {
+   "name": "capex",
+   "title": "Investment",
+   "value": 23.955885571022524,
+   "unit": "MEUR",
+   "reason": null
+  },
+  {
+   "name": "gas_bought",
+   "title": "Gas bought",
+   "value": 65189.528949888336,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "boiler_heat",
+   "title": "Heat from the boilers",
+   "value": 76829.96207840637,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "cold_delivered",
+   "title": "Cold delivered",
+   "value": 23742.528,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "heat_delivered",
+   "title": "Heat delivered",
+   "value": 111667.68,
+   "unit": "MWh",
+   "reason": null
+  },
+  {
+   "name": "electricity_bought",
+   "title": "Electricity bought",
+   "value": 9134.32254234211,
+   "unit": "MWh",
+   "reason": null
+  }
+ ],
+ "checks": {
+  "passed": 15,
+  "failed": 0,
+  "not_assessed": 0
+ }
+}
