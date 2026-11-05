@@ -122,3 +122,4 @@ wont-fix, duplicate.
 | [QA-114](bugs/QA-114-agent-states-case-version-16-and.md) | open | minor | geomind | Agent states case version 16 (and problem state 19) while the app shows case Version 6 | functional-qa-case-I |  |
 | [QA-115](bugs/QA-115-schema-forms-case-plant-economics-every.md) | fixing | minor | frontend | Schema forms (Case, Plant, Economics ...): every collapsible group opens by default | user via coordinator | hotfix-front-III |
 | [QA-116](bugs/QA-116-agent-proposes-build-plant-three-times.md) | fixing | major | geomind | Agent proposes Build plant three times after two explicit denials of an explanation-only request | functional-qa-plant-I | hotfix-python |
+| [QA-117](bugs/QA-117-question-card-a-long-option-button.md) | open | cosmetic | frontend | Question card: a long option button runs past the card's right edge (no wrap) | Fatemeh |  |
