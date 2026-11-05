@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -46,3 +46,7 @@ Three of five calls are wasted. Small per run, but it is every project run, and 
 
 - `geomind/prompts/project/lead.md`, Inputs or Rules: "The problem state is the `Problem state` message at the end of the conversation; no tool reads it. `read_stored` reads only a `result-...` or `finding-...` reference a tool gave you. Plan from the state and `case_changes`; read the case only when a brief needs a value the state does not show, and one section at a time."
 - Or drop `read_case` and `read_stored` from the project lead's tools (`agents/project/lead.py`): it writes references, and its teams read.
+
+## Fix
+
+- 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
