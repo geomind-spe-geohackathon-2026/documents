@@ -1,0 +1,52 @@
+Allow set_case (write)?
+
+Change the case: format, kind, name, about.brief, about.services, about.open_rules and 40 more; files GEMINI_Heating_Demand_Daily_2027.csv, GEMINI_Cooling_Demand_Daily_2027.csv.
+
+What the call sends:
+{
+  "changes": {
+    "format": 1,
+    "kind": "case",
+    "name": "GEMINI hackathon 2026 - geothermal heating and cooling, 2027",
+    "about": {
+      "brief": "GEMINI_Hackathon_Challenge_Requirements.pdf (28 October 2026), 2 pages",
+      "services": "annual heating and cooling load, deep geothermal",
+      "open_rules": [
+        "'same reservoir' for production and injection: no case key; the reinjection_ratio requirement covers the equal-liquid-volumes part only",
+        "the brief's '330 daily steps' is read as the availability of each doublet (organisers' rule, knowledge/hackathon-2026-assumptions.md); the whole system meets the demand on all 365 days",
+        "design freedoms left to the design team: well depth (2000-3500 m), number of doublets (1-3), return temperatures, backup policy, how the associated gas is handled (flare, boiler, CHP)"
+      ]
+    },
+    "time": {
+      "start": "2027-01-01",
+      "end": "2028-01-01",
+      "step": {
+        "value": 1,
+        "unit": "d"
+      }
+    },
+    "site": {
+      "ground": {
+        "surface_temperature": {
+          "value": 12,
+          "unit": "°C"
+        },
+        "gradient": {
+          "value": 30,
+          "unit": "°C/km"
+        }
+      },
+      "reservoir": {
+        "reference_depth": {
+          "value": 2500,
+          "unit": "m"
+        },
+        "thickness": {
+          "value": 100,
+          "unit": "m"
+        },
+        "permeability": {
+          "value": 200,
+          "unit": "mD"
+        
+... (cut; the whole input is in the run log)
