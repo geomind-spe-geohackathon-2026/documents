@@ -43,15 +43,15 @@ still active, 58 steps.
 | IMP-016 | done (geomind 0.4.79 (prompt), 0.4.83 (loop stops after 3 rounds)) | geomind | A round budget per failing requirement: hand back to the project lead instead of hours of attempts | QA-090: 2h40, 17.7M tokens |
 | IMP-017 | done (geomind 0.4.83 (part 1: optimise a passed design once)) | geomind | Make the design reach optimisation: optimize once all requirements pass; a targeted test of optimize and evolve_structure | 0 of 45 runs reached optimize; evolve_structure never called |
 | IMP-018 | done (geomind 0.4.82) | geomind | Check build_plant and patch_plant before the approval, as set_case does | no approval of a refused write |
-| IMP-019 | idea | geomind, gemini | A choice gemini allows only one value for (dispatch least_cost) is filled by the tool with a note | 14 refused simulates; Sahand decides |
+| IMP-019 | done (geomind 0.4.95) | geomind, gemini | A choice gemini allows only one value for (dispatch least_cost) is filled by the tool with a note | 14 refused simulates; Sahand decides |
 | IMP-020 | idea | geomind | read_stored shows the outline of a result (keys two levels deep) when the path is wrong | 127 unknown_name |
 | IMP-021 | idea | geomind | Examples in the skills generated from gemini's own schema; evals from the real refusals | prompts that do not drift from gemini |
 | IMP-022 | idea | QA | Two measures after every deploy: first-try error rate per tool; runs that reach simulate, check and optimize | shows whether a fix helps |
 | IMP-023 | rejected | geomind, frontend | Start from gemini's six hackathon plant files (125 values each) and a complete case; size then optimize; no hand-built plants | the only path that has reached a passing result |
-| IMP-025 | approved, TOP | geomind, frontend | Parallel agents: a lead runs several instances of one role (Geoscientist I, II, III) or of different roles at once, each on a task the lead assigns; each reports back to the lead | a complete case in about 5 minutes |
-| IMP-026 | idea | gemini, QA | Cooling tested with real network heat loss and a valid minimum part load of the chiller | cooling results that hold on a real network |
-| IMP-027 | idea | geomind, backend | A time and round budget per agent: a nested agent hands back after N minutes or N rounds with what it has | no 60-min runs that end with nothing |
-| IMP-028 | idea | gemini, geomind, QA | Margin tests and failure scenarios: designs a little above and below each requirement, and outages (doublet off, pump at its limit, peak day) | the checks are proven at their edges |
+| IMP-025 | case stage done (geomind 0.4.90-0.4.92); plant stage next | geomind, frontend | Parallel agents: a lead runs several instances of one role (Geoscientist I, II, III) or of different roles at once, each on a task the lead assigns; each reports back to the lead | a complete case in about 5 minutes |
+| IMP-026 | approved (after IMP-028) | gemini, QA | Cooling tested with real network heat loss and a valid minimum part load of the chiller | cooling results that hold on a real network |
+| IMP-027 | approved (with IMP-025 plant stage) | geomind, backend | A time and round budget per agent: a nested agent hands back after N minutes or N rounds with what it has | no 60-min runs that end with nothing |
+| IMP-028 | approved (after IMP-025) | gemini, geomind, QA | Margin tests and failure scenarios: designs a little above and below each requirement, and outages (doublet off, pump at its limit, peak day) | the checks are proven at their edges |
 
 ## IMP-001: ask_economics fills the recommended rows itself
 
@@ -218,6 +218,8 @@ passes.
 absence. The tool fills a choice that gemini allows only one value for, with a note. It is no
 physical value, but it touches the no-default rule: Sahand decides.
 
+Decision (user, 2026-11-05 ~15:00 UTC, via Coordinator-IV): approved. Done in geomind 0.4.95 (hotfix-python-IV): `simulate` and every study tool fill an unset plant-level choice only when gemini allows exactly one value (`params.control.dispatch` least_cost, `params.control.outages` lowest_demand), with a note (`filled` in simulate's summary). If gemini ever allows more, nothing is filled and the agent chooses.
+
 ## IMP-020: read_stored shows the outline
 
 127 refusals from guessed paths. On a wrong path, read_stored returns the result's outline (keys two
@@ -305,6 +307,8 @@ and `instance` (the public events carry no run id). Run panel agents and per-age
 instance name. Checked live with a mocked event stream (three instances, /tmp/hf-check/imp025.js);
 a real parallel run is still to be seen once geomind 0.4.91 is live.
 
+Status (hotfix-python-IV, 2026-11-05 ~15:10 UTC): case stage live. geomind 0.4.90: `Team` takes `briefs` as a list of `{role, task}`, one instance each at once, named `<Role> <Roman>`, `instance` on every event of its run (backend 1.1.94, frontend 1.1.107 show it). 0.4.91 (user rule, `.claude/memory/feedback-team-lead-only-writes.md`): at most 4 briefs per call; only the lead reads and writes project files; the geoscientist works from the text in its brief. 0.4.92: the case lead always splits into 2 to 4 geoscientists (QA-140); sub-agents may read the global Knowledge with `search_knowledge` / `read_knowledge` (user decision). Next: the plant stage (design lead with engineer instances), with IMP-027's budget.
+
 ## IMP-026: cooling with real heat loss and part load
 
 Status: idea (Fatemeh, 2026-11-05 15:00 UTC). Today the cooling side is tested only with lossless
@@ -314,6 +318,8 @@ ground temperature) and the chiller's minimum part load from a sourced datasheet
 below the minimum load are handled (cycling or unmet, stated) and that the cold delivered and the
 chiller energy include the network loss.
 
+Decision (user, 2026-11-05 ~15:00 UTC): approved, after IMP-028.
+
 ## IMP-027: a time and round budget per agent
 
 Status: idea (Fatemeh, 2026-11-05 15:00 UTC). IMP-015 stops an identical failing call and IMP-016
@@ -322,6 +328,8 @@ an hour (QA-076: 66 min, 317 steps, nothing stored). Give every nested agent a w
 round budget set by its lead; at the limit it hands back what it has (stored ids, open points) and
 the lead decides. Show the budget and its use in Runs and logs.
 
+Decision (user, 2026-11-05 ~15:00 UTC): approved; built into IMP-025: the lead sets a wall-clock and round budget per sub-agent, and at the limit the sub-agent hands back what it has.
+
 ## IMP-028: margin tests and failure scenarios
 
 Status: idea (Fatemeh, 2026-11-05 15:00 UTC). Add tests (gemini and geomind evals) and QA
@@ -329,3 +337,5 @@ scenarios at the edges: designs just inside and just outside each requirement (t
 a doublet off for its outage days, the production pump at its nominal flow (QA-130), the peak
 demand day, a missing price or value (must be an error, never a default). Each must give the
 right verdict and a readable reason.
+
+Decision (user, 2026-11-05 ~15:00 UTC): approved, after IMP-025; tests with no LLM.
