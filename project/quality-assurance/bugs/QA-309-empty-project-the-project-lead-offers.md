@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 19:00 UTC |
 | Versions | geomind 0.4.114 or later (backend 1.1.110+; deploys ran during the run) |
 | Where | api.geomind.team; project QA-TEST QA-AI-case-I 10 (40d0f25a-2b9e-4785-b41a-5f3ca414adf4), empty (no files); chat run 55a9cd7b-18ce-43a9-b260-a4982eb07a1c |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -71,7 +71,7 @@ Accuracy: annual heat x2.35, cold x3.69 vs the competition data. Speed: the ques
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
 
 (Who, when, result.)
