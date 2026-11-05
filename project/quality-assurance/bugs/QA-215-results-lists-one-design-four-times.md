@@ -63,6 +63,7 @@ frontend 1.1.119 (commit f176515, bundle index-BdK4BvuF.js): each Results tab sh
 - 2026-11-05 17:40 UTC: frontend 1.1.119 part; backend dedup/plant_version open
 - 2026-11-05 18:31 UTC: QA-E2E-study-I: tab labels verified; plant_version/dedup/sensitivity view still open
 - 2026-11-05 18:46 UTC: backend part 1.1.117 bf766bb; frontend part open
+- 2026-11-05 20:17 UTC: QA-E2E-study-II 2026-11-05 20:20 UTC, backend 1.1.125 retest of the Results rows (project QA-E2E-study-II 1, 8 rows via GET /design/results): no duplicate rows now, every row has its study; BUT plant_version is still empty (None) on 6 of 8 rows (chat simulation v2, uncertainty, compare v2, opt-v1-lcoh, opt-v3-lcoh-r2); filled only on the page-made studies (QA-332/285 retest) and compare v1
 ## Retest
 
 New chat run with simulate + study of an adopted design: Results shows one row per design, each with a plant version.
