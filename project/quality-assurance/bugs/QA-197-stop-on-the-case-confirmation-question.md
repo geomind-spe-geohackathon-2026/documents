@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -55,4 +55,5 @@ the request tree). Final summary must name the user's stop as the reason.
 
 ## Fix
 
+- 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
