@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-design-I |
@@ -43,3 +43,4 @@ In `call_summary` for patch_plant: when `changes` is a list, `paths = [c.get("pa
 ## Retest
 
 Retest (QA-E2E-design-I, 2026-11-05 17:57 UTC, backend 1.1.109): run dca5ed1a, project QA-TEST QA-E2E-design-I 2: the patch_plant cards read "Change 115 value(s) of design/B_start and save it as 'B_filled': params.d0.depth, params.d0.drai..." and "Change 1 value(s) of design/B_filled and save it as 'B_ready': params.d0.nominal_flow." Works.
+- 2026-11-05 18:04 UTC: QA-E2E-design-I: cards count and list the changes (run dca5ed1a, 17:57 UTC)
