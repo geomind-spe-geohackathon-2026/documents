@@ -59,3 +59,23 @@ geomind engine:
 ## Fix
 
 ## Retest
+
+## The nested error (QA-E2E-economics-I, 2026-11-05 19:32 UTC, for the fixer)
+
+Correction to "Actual": the case lead's step 13 did NOT end with an empty answer; it called
+`finish` (19:20:13 UTC, call `call-7b0bbdb9-9fbb-44bd-ad30-5a51631eb371`, a full summary of the
+economics). The nested run then ended with, from `GET /assistant/runs/6bb98a04-.../events`
+(`../evidence/QA-319/events-6bb98a04.txt.gz`, event id 251):
+
+    event: run.finished
+    {"status": "failed", "stop_reason": "error", "message": "'str' object has no attribute 'get'",
+     "agent": "case_lead", "parent": "6bb98a041d744207a96c89aa9058909e"}
+
+No `error_class` or `where` (file:line) is in the events, the run log or `/agents` for this
+nested failure (only the message). It is an AttributeError while finishing. Guess: the step-9
+`set_case` stored `economics.about.sources` as a STRING ("All values are cost-catalogue rows
+...", see QA-320), and code that runs at `finish` (a summary of sources / assumptions, or the
+case-change record) calls `.get` on each source entry. The previous `set_case` succeeded, so the
+string reached the stored case (v3).
+Also: the nested failure event lacks error_class/where although QA-083 promised class, message,
+file:line for internal errors.
