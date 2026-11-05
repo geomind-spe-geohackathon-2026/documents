@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
 | Found | 2026-11-05 20:54 UTC |
 | Versions | backend 1.1.130 (geomind 0.4.135) |
 | Where | https://geomind.team/projects/32236adb-aa7a-4be9-83fd-40fcedc1238c (sahand test 5), chat df82b28e, run d935c2b1-7e4b-4235-b9b3-67fdcdd988e8 |
-| Fixer | |
+| Fixer | m3 |
 
 ## Steps
 
