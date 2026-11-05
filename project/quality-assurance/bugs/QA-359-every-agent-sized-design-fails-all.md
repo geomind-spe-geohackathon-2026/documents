@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 21:21 UTC |
 | Versions | backend 1.1.133 (geomind 0.4.137, gemini 0.6.34) |
 | Where | projects 4138a399-c1c2-4c2f-a1ee-2f7e6f70c568 (run edb42b40) and bf1bccef-f12e-43e5-b273-9040337062cc (run b3a69d7c): studies hp_comp_sized, abs_direct_sized, full_direct_sized, hp_comp_sized, abs_chill_sized, deep_full_sized |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -29,4 +29,5 @@ Guess: the ESP solve diverges after sizing (unset ESP curves derived from the de
 
 ## Fix
 
+- 2026-11-05 21:35 UTC: gemini 0.6.35 (55f2ddff) + geomind 0.4.138; pending deploy
 ## Retest
