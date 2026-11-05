@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend |
 | Reporter | QA-AI-case-I |
@@ -72,7 +72,7 @@ and held its pool connection meanwhile. Now `services.cached_events` keeps each 
 memory (64 runs, LRU) and reads only those newer than the last read; the sessions are computed
 again only when new events came. Postgres pool 20 + 20 (was 5 + 10) in all four env files
 (max_connections 100; 45 in use before).
-
+- 2026-11-05 17:39 UTC: backend 1.1.108
 ## Retest
 
 Recipe: with 2-3 tabs on a running run, the agents view answers in well under a second, no 500
