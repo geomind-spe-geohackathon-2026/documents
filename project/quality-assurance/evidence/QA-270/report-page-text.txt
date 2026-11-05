@@ -1,0 +1,1205 @@
+QA-TEST QA-E2E-report-I 2
+Chat
+Chat
+Write the report of the design and its results.
+18:45
+Copy
+Geothermal heating and cooling plant — design and verified results
+
+Design design/v1 (project plant version 1, HackathonPlant), verified result result/9b0db55da13a4a5b: whole year 2027 on case hackathon_2026, 365 steps, 0 failed steps, gemini's verdict feasible, 15/15 requirement checks passed. Only this result carries a verdict; the project study result c0661c15-300e-4639-95c3-b05f4017a476 is not verified and is not used for any number below.
+
+Design
+
+design/v1, family HeatingAbsorptionCoolingPlant (project plant HackathonPlant, version 1):
+
+Two doublets, d0 and d1, each 2500 m deep with a 300 m3/h nominal flow (the case's site.reservoir.reference_depth is 2500 m; the plant's search range for depth is 2000–3500 m and for flow 50–300 m3/h). Brine leaves both doublets at 87.0 degC at the sandface.
+Brine train: production mixer → degasser → desander → inhibitor dosing (10 ppm, product concentration 0.3) → counterflow heat exchanger (1500000.0 W/K) → heat pump source → injection splitter back to both doublets (full reinjection).
+Heating: the heat exchanger cools the brine to the heat pump source (source_in 63.12472836477747–68.13080649070497 degC); the heat pump (15 MW, heating mode, Carnot model, carnot_fraction 0.5, minimum source outlet 47.0 degC) lifts it to the heating grid. A 30 MW gas boiler (efficiency 0.9) sits in series after the heat pump as peak backup and brings the water to the case's 100 degC heating supply. The heating supply is then split by loads: one branch to the heating grid, one to the chiller's generator.
+Cooling: a 10 MW absorption chiller (thermal COP 0.7, minimum driving temperature 80.0 degC, minimum driving difference 10.0 K) makes the 20 degC chilled water from the case's cooling grid (return 25 degC). Its generator is fed from the heating supply after the heat pump — the chiller is driven by heat-pump heat, not by the boiler: boiler_heat is 253.9 MWh over the year against cold_delivered 23743 MWh, and the chiller's generator_in enthalpy flow peaks at 133.26785714285714 MW. Rejection is by a 40 MW dry cooler (cooler_type dry, approach 5.0 K, setpoint 15 degC, specific fan power 0.02).
+Gas and electricity: gas co-produced by the reservoir goes to gas makeup, then to the boiler; the excess goes to the flare (combustion efficiency 0.98). Electricity from the grid drives the doublets, the heat pump, the chiller and the dry cooler. Backup policy is peak; dispatch is least_cost; outages are placed at the lowest demand.
+Schematic
+
+Two doublets (d0, d1) at 2500 m and 300 m3/h each → production mixer → degasser → desander → inhibitor dosing → counterflow heat exchanger (1500000.0 W/K) → heat pump (15 MW) → injection splitter → back to d0 and d1.
+
+Heating water: heating-grid return (60 degC) → heat exchanger cold side → heat pump sink → boiler (30 MW) → loads splitter → (a) heating grid supply (100 degC), (b) absorption chiller generator (10 MW, thermal COP 0.7) → back to the heating return.
+
+Chilled water: cooling-grid return (25 degC) → chiller chilled side → cooling grid supply (20 degC). Chiller cooling water (800 kg/s, 15 degC) → dry cooler (40 MW) → back to the chiller.
+
+Gas: degasser gas → gas makeup ← gas grid; makeup fuel → boiler; makeup excess → flare. Flue gas of boiler and flare and their losses → atmosphere. Electricity grid → d0, d1, heat pump, chiller, dry cooler. Atmosphere → dry cooler air.
+
+Capacities
+Unit
+	
+Capacity
+	
+Peak use
+	
+Share
+
+
+d0 (production pump)
+	
+300.0 m3/h
+	
+300.0 m3/h
+	
+1.0
+
+
+d1 (production pump)
+	
+300.0 m3/h
+	
+300.0 m3/h
+	
+1.0
+
+
+hx (heat exchanger)
+	
+1500000.0 W/K
+	
+not measured (a rating in W/K is not a use the run measures; the module ran 365 of 365 steps)
+	
+—
+
+
+heat_pump
+	
+15.0 MW
+	
+15.0 MW
+	
+1.0
+
+
+boiler
+	
+30.0 MW
+	
+2.636 MW
+	
+0.087865
+
+
+chiller (absorption)
+	
+10.0 MW
+	
+10.0 MW
+	
+1.0
+
+
+chiller_cooler (dry cooler)
+	
+40.0 MW
+	
+24.386 MW
+	
+0.60964
+
+Against peak_heat 30.0 MW and peak_cold 10.0 MW: the heat pump, the chiller and both production pumps run at their limits (share 1.0), the boiler and the dry cooler keep spare capacity. The doublets each ran 330 of 365 days; the heat pump ran 365 days; the chiller and the dry cooler were active 219 days (2027-03-22 to 2027-11-15); the boiler ran 14 days (2027-01-06 to 2027-02-01).
+
+Delivered
+Heat delivered 111670 MWh against the case's heating demand, with heat_surplus 1.8217e-12 MWh and heating_coverage 1.0 — the demand is met in full, with no surplus worth naming.
+Cold delivered 23743 MWh against the case's cooling demand, with cold_surplus 0.0 MWh and cooling_coverage 1.0 — met in full.
+Heat by source: boiler_heat 253.9 MWh; heat not from the boiler 111416.1 MWh (calculation Ced3bcb: heat_delivered 111670 MWh − boiler_heat 253.9 MWh). So the geothermal/heat-pump path carries essentially the whole heating load and the boiler is a peak trim only.
+Electricity bought 26728 MWh, electricity sold 0.0 MWh; gas bought 0.0 MWh (the boiler runs on co-produced reservoir gas). Plant COP 4.1779. Losses 31339.0 MWh; chemicals 0.032658 kt; waste 0.057074 kt.
+Peaks: peak_heat 30.0 MW (2027-01-28), peak_cold 10.0 MW (2027-07-19), peak grid import 4.8735 MW (2027-01-21).
+Costs
+
+Currency EUR, price year 2015; discount rate 0.05, analysis period 25 yr (case economics.json).
+
+Investment (capex) 34.636 MEUR. Main modules: heat_pump 11.068 MEUR, chiller_cooler 4.0 MEUR, chiller 3.0 MEUR, d0.injector 3.0978 MEUR and d1.injector 3.0978 MEUR, d0.well 2.6586 MEUR and d1.well 2.6586 MEUR, boiler 1.8219 MEUR, degasser 1.0 MEUR, hx 0.75 MEUR, d0.riser 0.43921 MEUR and d1.riser 0.43921 MEUR, d0 0.22765 MEUR and d1 0.22765 MEUR, flare 0.1 MEUR, makeup 0.05 MEUR.
+Operating cost (opex) 3.6539 MEUR/yr. Components: electricity 2.8284 MEUR/yr, fixed 0.38751 MEUR/yr, co2 0.32847 MEUR/yr, chemical 0.098042 MEUR/yr, waste 0.011423 MEUR/yr, fuel 0.0 MEUR/yr. Fixed by kind: drilling 0.12391, cooler 0.08, absorption_chiller 0.06, boiler 0.059212, heat_pump 0.024781, degasser 0.02, production_pump 0.009106, heat_exchanger 0.0075, flare 0.002, gas_makeup 0.001 (all MEUR/yr).
+Annualised cost 6.1114 MEUR/yr (annuity factor 5147.8 d).
+LCOH 43.753 EUR/MWh over 111740 MWh/yr; LCOC 51.445 EUR/MWh over 23759 MWh/yr; LCTS 45.102 EUR/MWh over 111740 MWh/yr heat plus 23759 MWh/yr cold (the ranking metric, no allocation).
+NPV 28.453 MEUR (net cash flow 4.4763 MEUR/yr); payback 7.7377 yr (simple, undiscounted).
+CO2 13.774 kt over the run: direct 4.9021 kt, methane 0.028643 kt (GWP 29.8, IPCC AR6 WG1 table 7.15), grid electricity 8.0184 kt (grid_energy 26728.0 MWh at 300 g/kWh); co2_emitted 4.9021 kt; fuel_energy 19779.0 MWh.
+
+Drivers: electricity is the dominant operating cost (2.8284 of 3.6539 MEUR/yr) and grid electricity the dominant CO2 term (8.0184 of 13.774 kt); the heat pump (11.068 MEUR) and the two injection wells (3.0978 MEUR each) dominate capex.
+
+Economic basis and what it rests on: LCOH and LCOC are split by the case's accounting.allocation.heat_cost_share of 0.8; NPV and payback rest on the case's revenue of 60 EUR/MWh for heat and 60 EUR/MWh for cold, which are placeholder revenues in economics.json and are not confirmed by the user. The carbon price (57.03 EUR/t) and the energy prices (electricity 105.75 EUR/MWh, gas 39.92 EUR/MWh) are the case's, each with a declared uncertainty.
+
+Checks
+
+Verdict: feasible — gemini's feasible is true, reasons none, failures 0, 0 failed steps, 15/15 requirement checks passed (result result/9b0db55da13a4a5b, whole year 2027, 365 steps; re-verified in finding F09c5b82c).
+
+Requirement
+	
+Worst value
+	
+Limit
+	
+Result
+
+
+production_flow_range, d0
+	
+300.0 m3/h (worst step 2027-01-01)
+	
+50–300 m3/h
+	
+passed
+
+
+production_flow_range, d1
+	
+300.0 m3/h (worst step 2027-01-27)
+	
+50–300 m3/h
+	
+passed
+
+
+brine_cooling_limit, d0
+	
+35.515755069967724 K
+	
+40.0 K
+	
+passed
+
+
+brine_cooling_limit, d1
+	
+34.77110870762044 K
+	
+40.0 K
+	
+passed
+
+
+running_time_limit, d0
+	
+330 d
+	
+330 d
+	
+passed
+
+
+running_time_limit, d1
+	
+330 d
+	
+330 d
+	
+passed
+
+
+pump_efficiency, d0
+	
+0.7
+	
+0.7–0.7
+	
+passed
+
+
+pump_efficiency, d1
+	
+0.7
+	
+0.7–0.7
+	
+passed
+
+
+full_reinjection, d0
+	
+0.9999925240970869
+	
+0.99999–1.00001
+	
+passed
+
+
+full_reinjection, d1
+	
+0.999992524097087
+	
+0.99999–1.00001
+	
+passed
+
+
+doublet_count
+	
+2
+	
+1–3
+	
+passed
+
+
+heat_delivered (unmet share)
+	
+heating_coverage 1.0; unmet_demand max 5.587935447692871e-15 MW
+	
+0.01 unmet share
+	
+passed
+
+
+cold_delivered (unmet share)
+	
+cooling_coverage 1.0; unmet_sensible max 1.862645149230957e-15 MW
+	
+0.01 unmet share
+	
+passed
+
+
+heating_supply_temperature
+	
+100.0 degC
+	
+100.0 degC
+	
+passed
+
+
+cooling_supply_temperature
+	
+20.0 degC
+	
+20.0 degC
+	
+passed
+
+The two doublets sit exactly at the flow limit (300.0 m3/h of 300.0 m3/h) and at the running-time limit (330 d of 330 d), and the brine cooling stays below the 40.0 K limit on both.
+
+Sensitivity (study/v1_sens_permeability_gradient, current — it ran on the state's case; design design/v1; both drivers feasible at both ends):
+
+Driver
+	
+Low → high
+	
+LCOH, EUR/MWh
+	
+LCTS, EUR/MWh
+	
+LCOC, EUR/MWh
+	
+Annualised cost, MEUR/yr
+	
+CO2, kt
+	
+COP
+
+
+ground gradient
+	
+25.0 → 35.0 K/km
+	
+48.67327426277821 → 35.48554430735134 (effect 13.187729955426871)
+	
+50.173761779172445 → 36.57948378547586 (effect 13.594277993696586)
+	
+57.23096983320555 → 41.7245839021347 (effect 15.506385931070847)
+	
+6.798692970385301 → 4.956628134984135 (effect 1.8420648354011653)
+	
+15.913329381863951 → 10.509534470584814 (effect 5.403794911279138)
+	
+4.1709884206207395 → 7.06325266736027 (effect 2.89226424673953)
+
+
+reservoir permeability
+	
+100.0 → 400.0 mD
+	
+46.410254254260245 → 42.415446884034395 (effect 3.994807370225851)
+	
+47.8409779562499 → 43.72301966428696 (effect 4.117958291962944)
+	
+54.5700674837929 → 49.87289632451258 (effect 4.697171159280318)
+	
+6.482593869661391 → 5.924598353695714 (effect 0.5579955159656778)
+	
+14.752034787905663 → 13.281606623996637 (effect 1.4704281639090255)
+	
+3.723769594958906 → 4.451281021085028 (effect 0.7275114261261217)
+
+Heating coverage, cooling coverage, peak_heat (30.00000000000003 MW) and peak_cold (10.0 MW) do not move with either driver (effect 0.0). The ground gradient is the dominant driver on every cost metric and on CO2; permeability is second.
+
+Uncertainty (study/v1_unc_permeability_gradient, current — it ran on the state's case; design design/v1; 200 draws, seed 42, metrics lcoh, lcts, lcoc, annualised_cost, co2, cop, heating_coverage, cooling_coverage, peak_heat, peak_cold): the study ran and is stored, but its per-metric summary (mean, p5, p50, p95 and the failed-draw count) could not be read — the stored study returns only an outline of its 200 samples and 10 summary keys, and the result tools refuse its reference. No number from it is quoted here. The 200 draws and seed 42 are the economist's choices, not the user's (assumptions A_unc_samples and A_unc_seed, both unconfirmed).
+
+Open points
+NPV and payback are not firm. They rest on the placeholder revenues in economics.json (heat 60 EUR/MWh, cold 60 EUR/MWh), which the user has not confirmed, and LCOH/LCOC rest on the heat_cost_share of 0.8, which is also the case's placeholder allocation. LCTS (45.102 EUR/MWh) is the metric to compare on, since it needs no allocation.
+The uncertainty study's per-metric summary could not be read, so no p5/p50/p95 range is available; the 200 draws and seed 42 are unconfirmed agent choices.
+No family comparison exists. No study compares this family against alternatives (deeper wells, direct geothermal heat without a heat pump, a compression chiller, storage), so "this family is the best" is not established by any study.
+No optimisation study exists. The design was not searched over its ranges; the sizing (2 doublets, 2500 m, 300 m3/h, 15 MW heat pump, 10 MW chiller) is the project plant's, not the outcome of an optimisation.
+The boiler (30.0 MW) and the dry cooler (40.0 MW) are not constrained by any requirement. They run at 0.087865 and 0.60964 of capacity; no requirement of the case limits their size, so their sizing is a design choice, not a checked one.
+The doublets sit exactly at two limits (300.0 m3/h of 300.0 m3/h flow, 330 d of 330 d running time). Any degradation of the wells or a colder year has no headroom there.
+The project study result c0661c15-300e-4639-95c3-b05f4017a476 is not verified and was not used; only result/9b0db55da13a4a5b carries gemini's verdict.
+The case is the one the user gave: case_changes is empty, so no case change needs approval.
+Decisions
+Family HeatingAbsorptionCoolingPlant. Two doublets supply brine; a heat exchanger plus a 15 MW heat pump reach the 100 degC heating supply, with a 30 MW gas boiler in series as peak backup; cooling is made by a 10 MW absorption chiller driven by heat-pump heat and rejected by a 40 MW dry cooler. Reason: the case asks for 100 degC heating and 20 degC cooling from one geothermal source, and an absorption chiller lets the same heat-pump heat serve both services. No study ranks this family against others (see Open points).
+Two doublets at 2500 m and 300 m3/h each. 2500 m is the case's site.reservoir.reference_depth; 300 m3/h is the top of the plant's flow range and the case's production_flow_range maximum. Two doublets are within the case's doublet_count limit of 1–3 and are what carries the 30.0 MW heat peak.
+How the 100 degC supply is reached: the heat exchanger takes the brine down to the heat pump source (63.12472836477747–68.13080649070497 degC), the heat pump lifts it (temperature lift 44.28914680382667–50.88935352923272 degC, COP 3.666287485708075–4.172979254866524), and the boiler trims the last few K on 14 days (2027-01-06 to 2027-02-01), contributing 253.9 MWh of the 111670 MWh delivered.
+How cooling is made: the 10 MW absorption chiller (thermal COP 0.7) is fed from the heating supply after the heat pump, not from the boiler — its generator_in temperature is 100.0 degC and its driving temperature difference 66.0495193382518–97.0 degC, and it is active 219 days. The boiler's 253.9 MWh cannot account for 23743 MWh of cold; the chiller is driven by heat-pump heat.
+Backup policy peak (the boiler covers the whole heating peak with the doublets off) and dispatch least_cost are the plant file's settings; they are what the verified run used.
+Agent assumptions to overrule if you wish: A_unc_samples = 200 draws for the uncertainty study (chosen by the economist; enough draws for stable p5/p50/p95 on the case's declared uncertainties) and A_unc_seed = 42 (chosen for a reproducible draw set). Both are unconfirmed.
+Approved case changes: none — case_changes is empty, the case is the one the user gave.
+Studies cited: study/v1_sens_permeability_gradient (sensitivity, current) and study/v1_unc_permeability_gradient (uncertainty, current, summary unreadable). Both ran on the state's case with design/v1; neither is stale.
+Copy
+Explain the design to me: how many MW of heat come from the reservoir brine and how many from the heat pump's electricity at the January peak? Is a brine cooling of about 35 K consistent with 2 x 300 m3/h? And why an absorption chiller instead of a compression chiller here?
+19:05
+Copy
+Worked through 62 steps, 15 needed another try
+
+The assistant stopped with an internal error in geomind
+
+Auto-approve
+Design
+Case
+Version 3
+Plant
+Version 2
+Study
+Out of date
+Results
+Out of date
+Report
+Draft
+Report
+
+Draft from simulation v1.
+
+Options
+Export PDF
+Export Markdown
+QA-TEST QA-E2E-report-I 2: simulation v1
+Summary
+
+The design delivers 111.7 GWh of heat and 23.74 GWh of cold a year. The levelised cost is 45.1 EUR/MWh. Geothermal covers 100% of the heating demand. The largest rated units are Chiller cooler 40 MW, Boiler 30 MW, Heat pump 15 MW. All 15 assessed checks pass.
+
+Plant
+
+Design simulation v1, plant type Hackathon plant.
+
+Capacities
+Module
+	
+Kind
+	
+Rated
+	
+Peak
+	
+Used
+
+
+d0
+	
+Production pump
+	
+300 m3/h
+	
+300 m3/h
+	
+100%
+
+
+d1
+	
+Production pump
+	
+300 m3/h
+	
+300 m3/h
+	
+100%
+
+
+hx
+	
+Heat exchanger
+	
+1.5 MW/K
+	
+-
+	
+-
+
+
+Boiler
+	
+Boiler
+	
+30 MW
+	
+2.636 MW
+	
+9%
+
+
+Chiller
+	
+Absorption chiller
+	
+10 MW
+	
+10 MW
+	
+100%
+
+
+Heat pump
+	
+Heat pump
+	
+15 MW
+	
+15 MW
+	
+100%
+
+
+Chiller cooler
+	
+Cooler, heat rejected
+	
+40 MW
+	
+24.39 MW
+	
+61%
+Days covered
+
+Service
+	
+Geothermal or plant
+	
+Backup
+	
+Short
+
+
+Cooling
+	
+365
+	
+0
+	
+0
+
+
+Heating
+	
+351
+	
+14
+	
+0
+
+On cooling days the whole supply is the plant: gemini has no cooling backup.
+
+Constraint checks
+
+15 passed, 0 failed, 0 not assessed.
+
+Check
+	
+Status
+	
+Value
+	
+Limit
+	
+Margin
+	
+Worst day
+
+
+Production flow range (d0)
+	
+pass
+	
+300 m3/h
+	
+50 to 300 m3/h
+	
+0 m3/h
+	
+2027-01-01
+
+
+Production flow range (d1)
+	
+pass
+	
+300 m3/h
+	
+50 to 300 m3/h
+	
+0 m3/h
+	
+2027-01-27
+
+
+Brine cooling limit (d0)
+	
+pass
+	
+35.52 K
+	
+≤ 40 K
+	
+4.484 K
+	
+2027-07-19
+
+
+Brine cooling limit (d1)
+	
+pass
+	
+34.77 K
+	
+≤ 40 K
+	
+5.229 K
+	
+2027-05-25
+
+
+Running time limit (d0)
+	
+pass
+	
+330 d
+	
+≤ 330 d
+	
+0 d
+	
+-
+
+
+Running time limit (d1)
+	
+pass
+	
+330 d
+	
+≤ 330 d
+	
+0 d
+	
+-
+
+
+Pump efficiency (d0)
+	
+pass
+	
+70 %
+	
+= 70 %
+	
+-
+	
+-
+
+
+Pump efficiency (d1)
+	
+pass
+	
+70 %
+	
+= 70 %
+	
+-
+	
+-
+
+
+Full reinjection (d0)
+	
+pass
+	
+1
+	
+1 to 1
+	
+0
+	
+2027-05-05
+
+
+Full reinjection (d1)
+	
+pass
+	
+1
+	
+1 to 1
+	
+0
+	
+2027-01-09
+
+
+Doublet count
+	
+pass
+	
+2
+	
+1 to 3
+	
+1
+	
+-
+
+
+Heat delivered (Heat users)
+	
+pass
+	
+0 %
+	
+≤ 1 %
+	
+1 %
+	
+-
+
+
+Cold delivered (Cool users)
+	
+pass
+	
+0 %
+	
+≤ 1 %
+	
+1 %
+	
+-
+
+
+Heating supply temperature (Heat users)
+	
+pass
+	
+100 degC
+	
+≥ 100 degC
+	
+0 degC
+	
+2027-01-01
+
+
+Cooling supply temperature (Cool users)
+	
+pass
+	
+20 degC
+	
+≤ 20 degC
+	
+0 degC
+	
+2027-03-22
+Costs
+
+From case version 3, plant version 1.
+
+Economics
+Figure
+	
+Value
+
+
+Cost of cold
+	
+51.45 EUR/MWh
+
+
+Cost of heat
+	
+43.75 EUR/MWh
+
+
+Cost of thermal supply
+	
+45.1 EUR/MWh
+
+
+Operating cost
+	
+3.654 MEUR/yr
+
+
+Investment
+	
+34.64 MEUR
+
+
+Annualised cost
+	
+6.111 MEUR/yr
+Energy balance
+Figure
+	
+Value
+
+
+Gas bought
+	
+0 MWh
+
+
+Heat from the boilers
+	
+253.9 MWh
+
+
+Cold delivered
+	
+23.74 GWh
+
+
+Heat delivered
+	
+111.7 GWh
+
+
+Electricity bought
+	
+26.73 GWh
+Emissions
+Figure
+	
+Value
+
+
+CO2 emissions
+	
+13.77 kt
+Other figures
+Figure
+	
+Value
+
+
+Cop
+	
+4.178
+
+
+Peak cold demand
+	
+10 MW
+
+
+Peak heat demand
+	
+30 MW
+
+
+Cooling coverage
+	
+1
+
+
+Heating coverage
+	
+1
+Capital cost
+	
+Amount
+
+
+Wells
+	
+12.85 MEUR
+
+
+Surface plant
+	
+21.64 MEUR
+
+
+Other
+	
+0.15 MEUR
+Capital cost by kind
+Item
+	
+Amount
+	
+Unit cost
+	
+Source
+
+
+Drilling
+	
+12.39 MEUR
+	
+1,239 EUR/m
+	
+economics.json, capex.drilling
+
+
+Heat pump
+	
+11.07 MEUR
+	
+0.7379 EUR/W
+	
+economics.json, capex.heat_pump
+
+
+Cooler
+	
+4 MEUR
+	
+0.1 EUR/W
+	
+economics.json, capex.cooler
+
+
+Absorption chiller
+	
+3 MEUR
+	
+0.3 EUR/W
+	
+economics.json, capex.absorption_chiller
+
+
+Boiler
+	
+1.822 MEUR
+	
+0.06073 EUR/W
+	
+economics.json, capex.boiler
+
+
+Degasser
+	
+1 MEUR
+	
+1,000,000 EUR
+	
+economics.json, capex.degasser
+
+
+Heat exchanger
+	
+0.75 MEUR
+	
+0.5 EUR/(W/K)
+	
+economics.json, capex.heat_exchanger
+
+
+Production pump
+	
+0.4553 MEUR
+	
+0.5 EUR/W
+	
+economics.json, capex.production_pump
+
+
+Flare
+	
+0.1 MEUR
+	
+100,000 EUR
+	
+economics.json, capex.flare
+
+
+Gas makeup
+	
+0.05 MEUR
+	
+50,000 EUR
+	
+economics.json, capex.gas_makeup
+Uncertainty and sensitivity
+
+This result is not a sensitivity or uncertainty study.
+
+Agent log and tokens
+Status: done
+Input tokens: 3.11 M
+Output tokens: 90.1 K
+Cost: 0.07 USD
+Appendix: modules and connections
+
+Plant: HackathonPlant
+
+Module
+	
+Type
+	
+Category
+	
+Connected to
+	
+Parameters
+
+
+d0
+	
+Doublet
+	
+plants
+	
+return_in <- injection.branch1_out, power_in <- grid.power_out
+	
+85
+
+
+d1
+	
+Doublet
+	
+plants
+	
+return_in <- injection.branch2_out, power_in <- grid.power_out
+	
+85
+
+
+hx
+	
+HeatExchanger
+	
+exchangers
+	
+hot_in <- dosing.fluid_out, cold_in <- heat_return.fluid_out
+	
+8
+
+
+air
+	
+Atmosphere
+	
+environment
+	
+gas_in <- boiler.flue_out, gas_in <- flare.flue_out, heat_in <- flare.loss_out, heat_in <- boiler.loss_out, air_in <- chiller_cooler.air_out
+	
+1
+
+
+grid
+	
+ElectricityGrid
+	
+grids
+	
+	
+2
+
+
+flare
+	
+Flare
+	
+treatment
+	
+gas_in <- makeup.excess_out
+	
+1
+
+
+loads
+	
+Splitter
+	
+piping
+	
+fluid_in <- boiler.fluid_out
+	
+0
+
+
+waste
+	
+WasteGrid
+	
+grids
+	
+waste_in <- desander.waste_out
+	
+0
+
+
+boiler
+	
+Boiler
+	
+heating
+	
+fuel_in <- makeup.fuel_out, fluid_in <- heat_pump.sink_out
+	
+3
+
+
+dosing
+	
+InhibitorDosing
+	
+treatment
+	
+fluid_in <- desander.fluid_out, chemical_in <- chemicals.chemical_out
+	
+1
+
+
+makeup
+	
+GasMakeup
+	
+piping
+	
+gas_in <- degasser.gas_out, grid_in <- gas_grid.gas_out
+	
+0
+
+
+chiller
+	
+AbsorptionUnit
+	
+cooling
+	
+power_in <- grid.power_out, generator_in <- loads.branch2_out, chilled_in <- cool_users.return_out, cooling_in <- chiller_cooler.fluid_out
+	
+10
+
+
+degasser
+	
+Degasser
+	
+treatment
+	
+fluid_in <- production.fluid_out
+	
+4
+
+
+desander
+	
+Desander
+	
+treatment
+	
+fluid_in <- degasser.liquid_out
+	
+3
+
+
+gas_grid
+	
+GasGrid
+	
+grids
+	
+	
+1
+
+
+chemicals
+	
+ChemicalGrid
+	
+grids
+	
+	
+0
+
+
+heat_pump
+	
+HeatPump
+	
+heating
+	
+source_in <- hx.hot_out, power_in <- grid.power_out, sink_in <- hx.cold_out
+	
+9
+
+
+injection
+	
+Splitter
+	
+piping
+	
+fluid_in <- heat_pump.source_out
+	
+0
+
+
+cool_users
+	
+CoolingGrid
+	
+grids
+	
+supply_in <- chiller.chilled_out
+	
+5
+
+
+heat_users
+	
+HeatingGrid
+	
+grids
+	
+supply_in <- loads.branch1_out
+	
+4
+
+
+production
+	
+Mixer
+	
+piping
+	
+branch1_in <- d0.supply_out, branch2_in <- d1.supply_out
+	
+0
+
+
+heat_return
+	
+Mixer
+	
+piping
+	
+branch1_in <- heat_users.return_out, branch2_in <- chiller.generator_out
+	
+0
+
+
+chiller_cooler
+	
+Cooler
+	
+exchangers
+	
+power_in <- grid.power_out, fluid_in <- chiller.cooling_out, air_in <- air.air_out
+	
+6
+
+Total parameters: 231
