@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -35,6 +35,8 @@ Guess: the toggle container has overflow:auto and a fixed height a few px smalle
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.131 (bundle index-PVHgYO42.js), by front-m2: TabsList overflow-y-hidden and h-auto; no scrollbar when tabs fit.
+- 2026-11-05 19:14 UTC: frontend 1.1.131
 ## Retest
 
 (Who, when, result.)
