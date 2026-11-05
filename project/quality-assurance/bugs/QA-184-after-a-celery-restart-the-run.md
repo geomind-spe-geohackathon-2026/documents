@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | backend |
 | Reporter | Manual QA-IV |
@@ -33,7 +33,7 @@ geomind 0.4.106 (2aabaa5), backend 1.1.106, ~17:27 UTC. Cause: `end_orphans` end
 direct children of the resumed run, so the grandchildren (Geoscientist I-IV of the failed
 case_lead) never got `run.finished`. Now an ended nested run first ends every open run below it,
 and with QA-176 the case lead itself resumes instead of failing. Old runs keep their stale rows.
-
+- 2026-11-05 17:29 UTC: geomind 0.4.106 2aabaa5, backend 1.1.106
 ## Retest
 
 Recipe: Deploy while the case lead and its geoscientists work; afterwards GET /assistant/runs/{id}/agents shows no session `running` once the run ends.
