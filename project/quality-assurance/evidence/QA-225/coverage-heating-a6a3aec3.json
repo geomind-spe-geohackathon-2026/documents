@@ -1,0 +1,8762 @@
+[
+{
+"date": "2027-01-01",
+"source": "short",
+"demand": {
+"value": 583.5119999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975963717362404,
+"unit": "MWh"
+},
+"backup": {
+"value": 559.764391088585,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716451940523386,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-02",
+"source": "short",
+"demand": {
+"value": 551.6160000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975436376115084,
+"unit": "MWh"
+},
+"backup": {
+"value": 527.8690923108959,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771471312989086,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-03",
+"source": "short",
+"demand": {
+"value": 557.2320000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97553358854437,
+"unit": "MWh"
+},
+"backup": {
+"value": 533.4849630400486,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7715033714073,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-04",
+"source": "short",
+"demand": {
+"value": 629.6160000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97663184942031,
+"unit": "MWh"
+},
+"backup": {
+"value": 605.867502736433,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771865414146751,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-05",
+"source": "short",
+"demand": {
+"value": 629.4239999999996,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976629269260407,
+"unit": "MWh"
+},
+"backup": {
+"value": 605.6755061668474,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771864563891679,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-06",
+"source": "short",
+"demand": {
+"value": 635.0159999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97670377952051,
+"unit": "MWh"
+},
+"backup": {
+"value": 611.2674071033656,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718891171136497,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-07",
+"source": "short",
+"demand": {
+"value": 635.4720000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976709797831056,
+"unit": "MWh"
+},
+"backup": {
+"value": 611.7233991019042,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718911002648774,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-08",
+"source": "short",
+"demand": {
+"value": 639.0960000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97675732322812,
+"unit": "MWh"
+},
+"backup": {
+"value": 615.3473359162267,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7719067605456114,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-09",
+"source": "short",
+"demand": {
+"value": 595.3680000000006,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976145380975723,
+"unit": "MWh"
+},
+"backup": {
+"value": 571.6201495383189,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77170508070603,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-10",
+"source": "short",
+"demand": {
+"value": 574.296,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975817342977287,
+"unit": "MWh"
+},
+"backup": {
+"value": 550.5485857213482,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7715969356744288,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-11",
+"source": "short",
+"demand": {
+"value": 600.312,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97621902291107,
+"unit": "MWh"
+},
+"backup": {
+"value": 576.5640516217948,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771729355294317,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-12",
+"source": "short",
+"demand": {
+"value": 575.424,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975835509480238,
+"unit": "MWh"
+},
+"backup": {
+"value": 551.6765615652602,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77160292525959,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-13",
+"source": "short",
+"demand": {
+"value": 593.8079999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97612189084077,
+"unit": "MWh"
+},
+"backup": {
+"value": 570.060180771746,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716973374132214,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-14",
+"source": "short",
+"demand": {
+"value": 593.4720000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976116815321685,
+"unit": "MWh"
+},
+"backup": {
+"value": 569.7241875203762,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771695664302647,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-15",
+"source": "short",
+"demand": {
+"value": 623.6400000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976550799659968,
+"unit": "MWh"
+},
+"backup": {
+"value": 599.8916104956451,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718387046951656,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-16",
+"source": "short",
+"demand": {
+"value": 591.6959999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97608989215946,
+"unit": "MWh"
+},
+"backup": {
+"value": 567.9482233186641,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771686789175928,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-17",
+"source": "short",
+"demand": {
+"value": 584.9520000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975986173235416,
+"unit": "MWh"
+},
+"backup": {
+"value": 561.204361229604,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716525971608457,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-18",
+"source": "short",
+"demand": {
+"value": 627.6719999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976605652628898,
+"unit": "MWh"
+},
+"backup": {
+"value": 603.9235375660651,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77185678130576,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-19",
+"source": "short",
+"demand": {
+"value": 636.1680000000007,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97671896709561,
+"unit": "MWh"
+},
+"backup": {
+"value": 612.4193869112033,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771894121701628,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-20",
+"source": "short",
+"demand": {
+"value": 630.0479999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976637649050712,
+"unit": "MWh"
+},
+"backup": {
+"value": 606.2994950256228,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718673253262636,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-21",
+"source": "short",
+"demand": {
+"value": 633.7679999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97668726421976,
+"unit": "MWh"
+},
+"backup": {
+"value": 610.0194290608221,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718836749581395,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-22",
+"source": "short",
+"demand": {
+"value": 643.6079999999993,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976815748392344,
+"unit": "MWh"
+},
+"backup": {
+"value": 619.8592582398034,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7719260118037163,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-23",
+"source": "short",
+"demand": {
+"value": 635.3279999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97670789824271,
+"unit": "MWh"
+},
+"backup": {
+"value": 611.5794016274435,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718904743136465,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-24",
+"source": "short",
+"demand": {
+"value": 631.2480000000004,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97665371762204,
+"unit": "MWh"
+},
+"backup": {
+"value": 607.4994736619368,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771872620441556,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-25",
+"source": "short",
+"demand": {
+"value": 654.3840000000004,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97695203574109,
+"unit": "MWh"
+},
+"backup": {
+"value": 630.6350770481772,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7719709160820245,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-26",
+"source": "short",
+"demand": {
+"value": 677.6400000000006,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.977231436267854,
+"unit": "MWh"
+},
+"backup": {
+"value": 653.890705602298,
+"unit": "MWh"
+},
+"short": {
+"value": 2.772062961434662,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-27",
+"source": "short",
+"demand": {
+"value": 697.0560000000004,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97745046600175,
+"unit": "MWh"
+},
+"backup": {
+"value": 673.3064144271448,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7721351068539324,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-28",
+"source": "short",
+"demand": {
+"value": 719.9999999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.977694111766098,
+"unit": "MWh"
+},
+"backup": {
+"value": 696.250090539593,
+"unit": "MWh"
+},
+"short": {
+"value": 2.772215348640561,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-29",
+"source": "short",
+"demand": {
+"value": 712.7760000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97761908587384,
+"unit": "MWh"
+},
+"backup": {
+"value": 689.0261902730313,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7721906410951913,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-30",
+"source": "short",
+"demand": {
+"value": 656.2799999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976975553512812,
+"unit": "MWh"
+},
+"backup": {
+"value": 632.5310457821088,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7719786643782256,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-01-31",
+"source": "short",
+"demand": {
+"value": 631.4639999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976656603500842,
+"unit": "MWh"
+},
+"backup": {
+"value": 607.7154698250725,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718735714265406,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-01",
+"source": "short",
+"demand": {
+"value": 651.6479999999993,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976917858257767,
+"unit": "MWh"
+},
+"backup": {
+"value": 627.8991224861712,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7719596555703583,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-02",
+"source": "short",
+"demand": {
+"value": 621.5280000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976521784092903,
+"unit": "MWh"
+},
+"backup": {
+"value": 597.7796490734511,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771829142456234,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-03",
+"source": "short",
+"demand": {
+"value": 592.1280000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976096455849646,
+"unit": "MWh"
+},
+"backup": {
+"value": 568.3802145912638,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716889528867603,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-04",
+"source": "short",
+"demand": {
+"value": 548.9040000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975388722165107,
+"unit": "MWh"
+},
+"backup": {
+"value": 525.1571556807489,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714555970861317,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-05",
+"source": "short",
+"demand": {
+"value": 554.4480000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975485642971755,
+"unit": "MWh"
+},
+"backup": {
+"value": 530.7010267967163,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714875603123006,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-06",
+"source": "short",
+"demand": {
+"value": 546.0240000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975337599945785,
+"unit": "MWh"
+},
+"backup": {
+"value": 522.2772236632126,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771438736842126,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-07",
+"source": "short",
+"demand": {
+"value": 579.3120000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975897585756066,
+"unit": "MWh"
+},
+"backup": {
+"value": 555.564479022656,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716233915881516,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-08",
+"source": "short",
+"demand": {
+"value": 591.8639999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97609244584131,
+"unit": "MWh"
+},
+"backup": {
+"value": 568.1162199231649,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771687630993664,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-09",
+"source": "short",
+"demand": {
+"value": 598.4160000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976190924921273,
+"unit": "MWh"
+},
+"backup": {
+"value": 574.6680889815896,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7717200934893493,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-10",
+"source": "short",
+"demand": {
+"value": 589.3679999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97605435612941,
+"unit": "MWh"
+},
+"backup": {
+"value": 565.6202705692584,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716750746119616,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-11",
+"source": "short",
+"demand": {
+"value": 587.712,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976028907186507,
+"unit": "MWh"
+},
+"backup": {
+"value": 563.9643044076905,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716666851229665,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-12",
+"source": "short",
+"demand": {
+"value": 585.2159999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97599027820182,
+"unit": "MWh"
+},
+"backup": {
+"value": 561.4683557713502,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716539504479467,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-13",
+"source": "short",
+"demand": {
+"value": 539.0880000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975212247615577,
+"unit": "MWh"
+},
+"backup": {
+"value": 515.3413903594101,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7713973929747344,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-14",
+"source": "short",
+"demand": {
+"value": 524.8079999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.974943778418062,
+"unit": "MWh"
+},
+"backup": {
+"value": 501.06174738663555,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7713088349462147,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-15",
+"source": "short",
+"demand": {
+"value": 560.9760000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975597319586516,
+"unit": "MWh"
+},
+"backup": {
+"value": 537.2288782930606,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7715243873533906,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-16",
+"source": "short",
+"demand": {
+"value": 551.9759999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97544266679001,
+"unit": "MWh"
+},
+"backup": {
+"value": 528.2290839456404,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714733875693978,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-17",
+"source": "short",
+"demand": {
+"value": 547.7280000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97536791195035,
+"unit": "MWh"
+},
+"backup": {
+"value": 523.9811833541622,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771448733887881,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-18",
+"source": "short",
+"demand": {
+"value": 554.4480000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975485642971755,
+"unit": "MWh"
+},
+"backup": {
+"value": 530.7010267967163,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714875603123006,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-19",
+"source": "short",
+"demand": {
+"value": 528.9839999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975023782319305,
+"unit": "MWh"
+},
+"backup": {
+"value": 505.23764099082257,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77133522685796,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-20",
+"source": "short",
+"demand": {
+"value": 482.1120000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97404663336921,
+"unit": "MWh"
+},
+"backup": {
+"value": 458.36694057717705,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771012789453924,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-21",
+"source": "short",
+"demand": {
+"value": 481.6080000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.974035097382068,
+"unit": "MWh"
+},
+"backup": {
+"value": 457.8629559209912,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771008981627017,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-22",
+"source": "short",
+"demand": {
+"value": 527.136,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97498853401804,
+"unit": "MWh"
+},
+"backup": {
+"value": 503.38968786676526,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7713235992166996,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-23",
+"source": "short",
+"demand": {
+"value": 531.528,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97507190660715,
+"unit": "MWh"
+},
+"backup": {
+"value": 507.7815769918106,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771351101582289,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-24",
+"source": "short",
+"demand": {
+"value": 529.7039999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975037449111223,
+"unit": "MWh"
+},
+"backup": {
+"value": 505.9576228157251,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7713397351632416,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-25",
+"source": "short",
+"demand": {
+"value": 484.3200000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97409689022851,
+"unit": "MWh"
+},
+"backup": {
+"value": 460.57487373173905,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771029378032714,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-26",
+"source": "short",
+"demand": {
+"value": 461.472,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973553688364746,
+"unit": "MWh"
+},
+"backup": {
+"value": 437.72759625985407,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7708500517811774,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-27",
+"source": "short",
+"demand": {
+"value": 439.344,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972974009687185,
+"unit": "MWh"
+},
+"backup": {
+"value": 415.60036737593583,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7706586143770218,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-02-28",
+"source": "short",
+"demand": {
+"value": 423.4080000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97251919931197,
+"unit": "MWh"
+},
+"backup": {
+"value": 399.6649724363301,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770508364358038,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-01",
+"source": "short",
+"demand": {
+"value": 463.3920000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973601387652636,
+"unit": "MWh"
+},
+"backup": {
+"value": 439.64753281117845,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770865801169098,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-02",
+"source": "short",
+"demand": {
+"value": 468.9840000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97373809670472,
+"unit": "MWh"
+},
+"backup": {
+"value": 445.23935096610114,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770910937194556,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-03",
+"source": "short",
+"demand": {
+"value": 471.7200000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973803808855774,
+"unit": "MWh"
+},
+"backup": {
+"value": 447.9752635597586,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770932631386012,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-04",
+"source": "short",
+"demand": {
+"value": 455.8560000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973411872243645,
+"unit": "MWh"
+},
+"backup": {
+"value": 432.1117849037876,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7708032239689233,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-05",
+"source": "short",
+"demand": {
+"value": 453.1920000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973343377191306,
+"unit": "MWh"
+},
+"backup": {
+"value": 429.4478760174995,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7707806053094273,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-06",
+"source": "short",
+"demand": {
+"value": 415.2720000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972273608698607,
+"unit": "MWh"
+},
+"backup": {
+"value": 391.5292991779697,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704272133318786,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-07",
+"source": "short",
+"demand": {
+"value": 416.85600000000034,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97232217047763,
+"unit": "MWh"
+},
+"backup": {
+"value": 393.1132345687995,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704432607232334,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-08",
+"source": "short",
+"demand": {
+"value": 458.4240000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973477148944855,
+"unit": "MWh"
+},
+"backup": {
+"value": 434.6796980721302,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7708247789252995,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-09",
+"source": "short",
+"demand": {
+"value": 421.77599999999944,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.9724706921134,
+"unit": "MWh"
+},
+"backup": {
+"value": 398.0330369708447,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770492337041319,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-10",
+"source": "short",
+"demand": {
+"value": 428.496,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972668067766666,
+"unit": "MWh"
+},
+"backup": {
+"value": 404.75277438321444,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77055754901886,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-11",
+"source": "short",
+"demand": {
+"value": 454.8720000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973386665273193,
+"unit": "MWh"
+},
+"backup": {
+"value": 431.1278184345703,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770794900156677,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-12",
+"source": "short",
+"demand": {
+"value": 467.5920000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973704370401144,
+"unit": "MWh"
+},
+"backup": {
+"value": 443.8473958271527,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770899802446306,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-13",
+"source": "short",
+"demand": {
+"value": 421.7999999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97247140816021,
+"unit": "MWh"
+},
+"backup": {
+"value": 398.05703601820494,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704925736346837,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-14",
+"source": "short",
+"demand": {
+"value": 415.20000000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97227139258599,
+"unit": "MWh"
+},
+"backup": {
+"value": 391.45730212641547,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704264809986054,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-15",
+"source": "short",
+"demand": {
+"value": 419.2800000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97239577794409,
+"unit": "MWh"
+},
+"backup": {
+"value": 395.53713663847446,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704675835816266,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-16",
+"source": "short",
+"demand": {
+"value": 413.88000000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972230627919913,
+"unit": "MWh"
+},
+"backup": {
+"value": 390.1373563623004,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704130097797814,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-17",
+"source": "short",
+"demand": {
+"value": 417.2640000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972334619405746,
+"unit": "MWh"
+},
+"backup": {
+"value": 393.52121800616453,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704473744298816,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-18",
+"source": "short",
+"demand": {
+"value": 402.64800000000025,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97187300180292,
+"unit": "MWh"
+},
+"backup": {
+"value": 378.9058321858617,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77029481233564,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-19",
+"source": "short",
+"demand": {
+"value": 416.23199999999974,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972303083975554,
+"unit": "MWh"
+},
+"backup": {
+"value": 392.48925996243526,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770436953588933,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-20",
+"source": "short",
+"demand": {
+"value": 368.9999999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970672102051257,
+"unit": "MWh"
+},
+"backup": {
+"value": 345.25943018978364,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769897708164826,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-21",
+"source": "short",
+"demand": {
+"value": 391.68000000000046,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.971504095922352,
+"unit": "MWh"
+},
+"backup": {
+"value": 367.93832304583316,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7701728582449854,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-22",
+"source": "short",
+"demand": {
+"value": 417.5040000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972341930997374,
+"unit": "MWh"
+},
+"backup": {
+"value": 393.7612082784984,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770449790504664,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-23",
+"source": "short",
+"demand": {
+"value": 414.3360000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972244739472867,
+"unit": "MWh"
+},
+"backup": {
+"value": 390.59333758735943,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704176731679735,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-24",
+"source": "short",
+"demand": {
+"value": 388.0560000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.971377645350575,
+"unit": "MWh"
+},
+"backup": {
+"value": 364.314491305536,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7701310491136164,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-25",
+"source": "short",
+"demand": {
+"value": 366.5040000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970574285712598,
+"unit": "MWh"
+},
+"backup": {
+"value": 342.7635603648702,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7698653494173886,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-26",
+"source": "short",
+"demand": {
+"value": 378.11999999999966,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97101859038687,
+"unit": "MWh"
+},
+"backup": {
+"value": 354.37896909570156,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7700123139111996,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-27",
+"source": "short",
+"demand": {
+"value": 369.26399999999967,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97068237112987,
+"unit": "MWh"
+},
+"backup": {
+"value": 345.5234165236974,
+"unit": "MWh"
+},
+"short": {
+"value": 2.76990110517244,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-28",
+"source": "short",
+"demand": {
+"value": 342.7920000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.969574428335545,
+"unit": "MWh"
+},
+"backup": {
+"value": 319.0528911041486,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769534467515916,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-29",
+"source": "short",
+"demand": {
+"value": 353.6159999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970047374774932,
+"unit": "MWh"
+},
+"backup": {
+"value": 329.87626161920036,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7696910060244946,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-30",
+"source": "short",
+"demand": {
+"value": 345.7440000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.969706332306743,
+"unit": "MWh"
+},
+"backup": {
+"value": 322.0047155370126,
+"unit": "MWh"
+},
+"short": {
+"value": 2.76957813068077,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-03-31",
+"source": "short",
+"demand": {
+"value": 354.8160000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97009804173863,
+"unit": "MWh"
+},
+"backup": {
+"value": 331.0761941850482,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769707773213327,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-01",
+"source": "short",
+"demand": {
+"value": 338.3999999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.969373948951603,
+"unit": "MWh"
+},
+"backup": {
+"value": 314.6611579538634,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769468097184971,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-02",
+"source": "short",
+"demand": {
+"value": 348.0240000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.969806687224626,
+"unit": "MWh"
+},
+"backup": {
+"value": 324.28458196487867,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769611347896874,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-03",
+"source": "short",
+"demand": {
+"value": 332.5679999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.969099607382535,
+"unit": "MWh"
+},
+"backup": {
+"value": 308.8295231324666,
+"unit": "MWh"
+},
+"short": {
+"value": 2.76937726015082,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-04",
+"source": "short",
+"demand": {
+"value": 338.3039999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.969369509123922,
+"unit": "MWh"
+},
+"backup": {
+"value": 314.5651638636303,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7694666272456945,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-05",
+"source": "short",
+"demand": {
+"value": 357.9839999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970230180181385,
+"unit": "MWh"
+},
+"backup": {
+"value": 334.2440183207009,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7697514991176426,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-06",
+"source": "short",
+"demand": {
+"value": 367.24800000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970603580791593,
+"unit": "MWh"
+},
+"backup": {
+"value": 343.507521378434,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7698750407745543,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-07",
+"source": "short",
+"demand": {
+"value": 349.0079999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96984959572637,
+"unit": "MWh"
+},
+"backup": {
+"value": 325.26852485443567,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7696255498378575,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-08",
+"source": "short",
+"demand": {
+"value": 324.40799999999996,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.968699308537126,
+"unit": "MWh"
+},
+"backup": {
+"value": 300.6700560030724,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769244688390404,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-09",
+"source": "short",
+"demand": {
+"value": 323.7119999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96866423751414,
+"unit": "MWh"
+},
+"backup": {
+"value": 299.9741026906321,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769233071853623,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-10",
+"source": "short",
+"demand": {
+"value": 292.6080000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96692784331,
+"unit": "MWh"
+},
+"backup": {
+"value": 268.8724145613978,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7686575952923893,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-11",
+"source": "short",
+"demand": {
+"value": 294.64800000000025,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96705287872684,
+"unit": "MWh"
+},
+"backup": {
+"value": 270.91224806486287,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768699056410536,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-12",
+"source": "short",
+"demand": {
+"value": 302.28000000000026,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.967505797341108,
+"unit": "MWh"
+},
+"backup": {
+"value": 278.54364498909473,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768849213564381,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-13",
+"source": "short",
+"demand": {
+"value": 303.86400000000026,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96759696847367,
+"unit": "MWh"
+},
+"backup": {
+"value": 280.127523597162,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768879434364587,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-14",
+"source": "short",
+"demand": {
+"value": 293.66400000000004,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.966992782812834,
+"unit": "MWh"
+},
+"backup": {
+"value": 269.9283280878571,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7686791293300836,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-15",
+"source": "short",
+"demand": {
+"value": 277.5119999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96594589052749,
+"unit": "MWh"
+},
+"backup": {
+"value": 253.77772224289225,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768331866580158,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-16",
+"source": "short",
+"demand": {
+"value": 274.22400000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.965717789661408,
+"unit": "MWh"
+},
+"backup": {
+"value": 250.49002603832426,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7682561720144,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-17",
+"source": "short",
+"demand": {
+"value": 234.76800000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.962486795787573,
+"unit": "MWh"
+},
+"backup": {
+"value": 211.038330449427,
+"unit": "MWh"
+},
+"short": {
+"value": 2.767182754785463,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-18",
+"source": "short",
+"demand": {
+"value": 260.01600000000025,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96466635395646,
+"unit": "MWh"
+},
+"backup": {
+"value": 236.28342653644575,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7679071095980703,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-19",
+"source": "short",
+"demand": {
+"value": 264.912,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96504130529511,
+"unit": "MWh"
+},
+"backup": {
+"value": 241.1789270786469,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768031616057992,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-20",
+"source": "short",
+"demand": {
+"value": 274.848,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.965761495172977,
+"unit": "MWh"
+},
+"backup": {
+"value": 251.11396782839586,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7682706764312237,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-21",
+"source": "short",
+"demand": {
+"value": 270.98400000000015,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.965487647071363,
+"unit": "MWh"
+},
+"backup": {
+"value": 247.25033256451178,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7681797884169965,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-22",
+"source": "short",
+"demand": {
+"value": 254.13599999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96419711268842,
+"unit": "MWh"
+},
+"backup": {
+"value": 230.40405163743782,
+"unit": "MWh"
+},
+"short": {
+"value": 2.767751249873713,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-23",
+"source": "short",
+"demand": {
+"value": 240.00000000000023,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.962975782113674,
+"unit": "MWh"
+},
+"backup": {
+"value": 216.26967886250173,
+"unit": "MWh"
+},
+"short": {
+"value": 2.767345355384812,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-24",
+"source": "short",
+"demand": {
+"value": 215.1119999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.960439328252672,
+"unit": "MWh"
+},
+"backup": {
+"value": 191.3850593258543,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766501345892936,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-25",
+"source": "short",
+"demand": {
+"value": 214.848,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96040930476439,
+"unit": "MWh"
+},
+"backup": {
+"value": 191.1210993482323,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7664913470033405,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-26",
+"source": "short",
+"demand": {
+"value": 196.3920000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.95811253633696,
+"unit": "MWh"
+},
+"backup": {
+"value": 172.66816161643465,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7657258472285196,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-27",
+"source": "short",
+"demand": {
+"value": 220.41600000000022,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.961027439963104,
+"unit": "MWh"
+},
+"backup": {
+"value": 196.68827539230895,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7666971677281706,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-28",
+"source": "short",
+"demand": {
+"value": 206.25600000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.9593906637671,
+"unit": "MWh"
+},
+"backup": {
+"value": 182.530457351522,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766151984710976,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-29",
+"source": "short",
+"demand": {
+"value": 214.82400000000013,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.960406571735025,
+"unit": "MWh"
+},
+"backup": {
+"value": 191.0971029914682,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7664904367969183,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-04-30",
+"source": "short",
+"demand": {
+"value": 218.83200000000014,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96085476085162,
+"unit": "MWh"
+},
+"backup": {
+"value": 195.10450555993296,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766639679215565,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-01",
+"source": "short",
+"demand": {
+"value": 224.27999999999983,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.961438539174797,
+"unit": "MWh"
+},
+"backup": {
+"value": 200.55172745606734,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766834004757702,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-02",
+"source": "short",
+"demand": {
+"value": 222.79200000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.961281899573088,
+"unit": "MWh"
+},
+"backup": {
+"value": 199.06393622976495,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7667818706620184,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-03",
+"source": "short",
+"demand": {
+"value": 225.528,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.961568335872414,
+"unit": "MWh"
+},
+"backup": {
+"value": 201.79955446346247,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766877200665116,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-04",
+"source": "short",
+"demand": {
+"value": 210.33600000000038,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.95988464503014,
+"unit": "MWh"
+},
+"backup": {
+"value": 186.60979877061794,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766316584352255,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-05",
+"source": "short",
+"demand": {
+"value": 203.6400000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.959063631291272,
+"unit": "MWh"
+},
+"backup": {
+"value": 179.91489338445783,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766042984250993,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-06",
+"source": "short",
+"demand": {
+"value": 187.29600000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.956815998968363,
+"unit": "MWh"
+},
+"backup": {
+"value": 163.57389080236297,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7652931986686813,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-07",
+"source": "short",
+"demand": {
+"value": 166.63199999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.984973299875616,
+"unit": "MWh"
+},
+"backup": {
+"value": 142.88289147312463,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7641352269997372,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-08",
+"source": "short",
+"demand": {
+"value": 128.64,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 125.87896135144275,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7610386485572453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-09",
+"source": "short",
+"demand": {
+"value": 140.448,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 137.68582004025006,
+"unit": "MWh"
+},
+"short": {
+"value": 2.762179959749937,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-10",
+"source": "short",
+"demand": {
+"value": 146.13600000000008,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 143.37333589389914,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7626641061009467,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-11",
+"source": "short",
+"demand": {
+"value": 125.18400000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 122.42333598711348,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7606640128865685,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-12",
+"source": "short",
+"demand": {
+"value": 137.544,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 134.7820826137703,
+"unit": "MWh"
+},
+"short": {
+"value": 2.761917386229694,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-13",
+"source": "short",
+"demand": {
+"value": 122.68800000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 119.92761963844157,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7603803615584597,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-14",
+"source": "short",
+"demand": {
+"value": 118.72799999999988,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 115.96809404590881,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7599059540910793,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-15",
+"source": "short",
+"demand": {
+"value": 116.27999999999986,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 113.52040341898389,
+"unit": "MWh"
+},
+"short": {
+"value": 2.759596581015989,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-16",
+"source": "short",
+"demand": {
+"value": 115.91999999999986,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 113.16045001309186,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7595499869080036,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-17",
+"source": "short",
+"demand": {
+"value": 112.46399999999993,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 109.70491243699335,
+"unit": "MWh"
+},
+"short": {
+"value": 2.759087563006572,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-18",
+"source": "short",
+"demand": {
+"value": 92.32800000000009,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 89.5722920029621,
+"unit": "MWh"
+},
+"short": {
+"value": 2.755707997037966,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-19",
+"source": "short",
+"demand": {
+"value": 93.31200000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 90.55609310766775,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7559068923323116,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-20",
+"source": "short",
+"demand": {
+"value": 106.68000000000013,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 103.92175312201077,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7582468779893667,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-21",
+"source": "short",
+"demand": {
+"value": 123.216,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.140349687989474,
+"unit": "MWh"
+},
+"backup": {
+"value": 99.31520899220001,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7604413198105098,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-22",
+"source": "short",
+"demand": {
+"value": 119.59199999999991,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 116.8319878686837,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7600121313162145,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-23",
+"source": "short",
+"demand": {
+"value": 117.57599999999991,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 114.81623803423672,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7597619657631816,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-24",
+"source": "short",
+"demand": {
+"value": 110.66399999999994,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.20847299748641,
+"unit": "MWh"
+},
+"backup": {
+"value": 86.69669168068778,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7588353218257575,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-25",
+"source": "short",
+"demand": {
+"value": 93.52800000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 90.77205000537282,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7559499946272115,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-26",
+"source": "short",
+"demand": {
+"value": 96.40800000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 93.6514936829119,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7565063170881197,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-27",
+"source": "short",
+"demand": {
+"value": 103.51200000000007,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.25484413787502,
+"unit": "MWh"
+},
+"backup": {
+"value": 79.499409101748,
+"unit": "MWh"
+},
+"short": {
+"value": 2.757746760377057,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-28",
+"source": "short",
+"demand": {
+"value": 107.20799999999987,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 104.44967263136405,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7583273686358183,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-29",
+"source": "short",
+"demand": {
+"value": 95.32800000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 92.5716983820464,
+"unit": "MWh"
+},
+"short": {
+"value": 2.756301617953621,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-30",
+"source": "short",
+"demand": {
+"value": 71.4,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 68.64981270388752,
+"unit": "MWh"
+},
+"short": {
+"value": 2.750187296112489,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-05-31",
+"source": "short",
+"demand": {
+"value": 83.11200000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 80.35838228442469,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7536177155753188,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-01",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-02",
+"source": "short",
+"demand": {
+"value": 79.10399999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 76.35144249804792,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7525575019520594,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-03",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-04",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-05",
+"source": "short",
+"demand": {
+"value": 72.624,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 69.87340272365222,
+"unit": "MWh"
+},
+"short": {
+"value": 2.750597276347775,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-06",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-07",
+"source": "short",
+"demand": {
+"value": 85.32,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.408781851433037,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.157058705343545,
+"unit": "MWh"
+},
+"short": {
+"value": 2.754159443223417,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-08",
+"source": "short",
+"demand": {
+"value": 97.96799999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.295558025652678,
+"unit": "MWh"
+},
+"backup": {
+"value": 73.91564791419214,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7567940601551384,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-09",
+"source": "short",
+"demand": {
+"value": 102.91200000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.259033970962108,
+"unit": "MWh"
+},
+"backup": {
+"value": 78.89531744172425,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7576485873137075,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-10",
+"source": "short",
+"demand": {
+"value": 118.51200000000006,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.164155729720115,
+"unit": "MWh"
+},
+"backup": {
+"value": 94.5879651015324,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7598791687475295,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-11",
+"source": "short",
+"demand": {
+"value": 135.57599999999994,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.08580699257362,
+"unit": "MWh"
+},
+"backup": {
+"value": 111.72845993814379,
+"unit": "MWh"
+},
+"short": {
+"value": 2.761733069282524,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-12",
+"source": "short",
+"demand": {
+"value": 127.704,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.119301591320696,
+"unit": "MWh"
+},
+"backup": {
+"value": 103.82375922836493,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7609391803143617,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-13",
+"source": "short",
+"demand": {
+"value": 107.11199999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.230712168744745,
+"unit": "MWh"
+},
+"backup": {
+"value": 83.12297503849089,
+"unit": "MWh"
+},
+"short": {
+"value": 2.758312792764343,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-14",
+"source": "short",
+"demand": {
+"value": 87.14400000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.390372168388904,
+"unit": "MWh"
+},
+"backup": {
+"value": 62.99904147972795,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7545863518831544,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-15",
+"source": "short",
+"demand": {
+"value": 107.73600000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.226696819242953,
+"unit": "MWh"
+},
+"backup": {
+"value": 83.75089610733407,
+"unit": "MWh"
+},
+"short": {
+"value": 2.758407073423013,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-16",
+"source": "short",
+"demand": {
+"value": 100.608,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.27559800499481,
+"unit": "MWh"
+},
+"backup": {
+"value": 76.57514122811008,
+"unit": "MWh"
+},
+"short": {
+"value": 2.757260766895115,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-17",
+"source": "short",
+"demand": {
+"value": 85.68000000000004,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.405084624771952,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.5206702410951,
+"unit": "MWh"
+},
+"short": {
+"value": 2.754245134132985,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-18",
+"source": "short",
+"demand": {
+"value": 81.11999999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.454408930433658,
+"unit": "MWh"
+},
+"backup": {
+"value": 56.91248725921869,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7531038103476018,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-19",
+"source": "short",
+"demand": {
+"value": 86.15999999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.400204320524814,
+"unit": "MWh"
+},
+"backup": {
+"value": 62.00543739924637,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7543582802288014,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-20",
+"source": "short",
+"demand": {
+"value": 76.94400000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.504859699790956,
+"unit": "MWh"
+},
+"backup": {
+"value": 52.68719972239065,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7519405778184383,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-21",
+"source": "short",
+"demand": {
+"value": 98.59199999999996,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.290741476427257,
+"unit": "MWh"
+},
+"backup": {
+"value": 74.54435190490526,
+"unit": "MWh"
+},
+"short": {
+"value": 2.756906618667439,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-22",
+"source": "short",
+"demand": {
+"value": 98.49599999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.291478418794693,
+"unit": "MWh"
+},
+"backup": {
+"value": 74.44763218680131,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7568893944039603,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-23",
+"source": "short",
+"demand": {
+"value": 124.63199999999992,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.133542078077316,
+"unit": "MWh"
+},
+"backup": {
+"value": 100.73785566446364,
+"unit": "MWh"
+},
+"short": {
+"value": 2.760602257458955,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-24",
+"source": "short",
+"demand": {
+"value": 113.18400000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.19355901504296,
+"unit": "MWh"
+},
+"backup": {
+"value": 89.2312547635281,
+"unit": "MWh"
+},
+"short": {
+"value": 2.759186221428953,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-25",
+"source": "short",
+"demand": {
+"value": 109.224,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.217310836011347,
+"unit": "MWh"
+},
+"backup": {
+"value": 85.24806159793853,
+"unit": "MWh"
+},
+"short": {
+"value": 2.758627566050112,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-26",
+"source": "short",
+"demand": {
+"value": 81.168,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.45386005730206,
+"unit": "MWh"
+},
+"backup": {
+"value": 56.96102345404959,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7531164886483555,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-27",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-28",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-29",
+"source": "short",
+"demand": {
+"value": 89.30399999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.369568640247973,
+"unit": "MWh"
+},
+"backup": {
+"value": 65.17936190503907,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7550694547129013,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-06-30",
+"source": "short",
+"demand": {
+"value": 109.24799999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.21716158892101,
+"unit": "MWh"
+},
+"backup": {
+"value": 85.27220733772604,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7586310733529107,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-01",
+"source": "short",
+"demand": {
+"value": 117.07200000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.17183338795942,
+"unit": "MWh"
+},
+"backup": {
+"value": 93.1404685290318,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7596980830087885,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-02",
+"source": "short",
+"demand": {
+"value": 140.208,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.067885433974386,
+"unit": "MWh"
+},
+"backup": {
+"value": 116.37795589549434,
+"unit": "MWh"
+},
+"short": {
+"value": 2.762158670531273,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-03",
+"source": "short",
+"demand": {
+"value": 125.68800000000016,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.12856692841619,
+"unit": "MWh"
+},
+"backup": {
+"value": 101.7987131454531,
+"unit": "MWh"
+},
+"short": {
+"value": 2.760719926130869,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-04",
+"source": "short",
+"demand": {
+"value": 121.46400000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.148996586146833,
+"unit": "MWh"
+},
+"backup": {
+"value": 97.5547663958196,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7602370180335867,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-05",
+"source": "short",
+"demand": {
+"value": 128.20800000000014,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.117031619158567,
+"unit": "MWh"
+},
+"backup": {
+"value": 104.32997546082687,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7609929200147167,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-06",
+"source": "short",
+"demand": {
+"value": 137.76000000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.077204202984454,
+"unit": "MWh"
+},
+"backup": {
+"value": 113.9208585006128,
+"unit": "MWh"
+},
+"short": {
+"value": 2.761937296402775,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-07",
+"source": "short",
+"demand": {
+"value": 140.952,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.065118470196428,
+"unit": "MWh"
+},
+"backup": {
+"value": 117.12465709797102,
+"unit": "MWh"
+},
+"short": {
+"value": 2.762224431832552,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-08",
+"source": "short",
+"demand": {
+"value": 113.59200000000007,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.191207886479795,
+"unit": "MWh"
+},
+"backup": {
+"value": 89.64155053875677,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7592415747634846,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-09",
+"source": "short",
+"demand": {
+"value": 83.35200000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.42957328332192,
+"unit": "MWh"
+},
+"backup": {
+"value": 59.16874873441637,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7536779822617397,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-10",
+"source": "short",
+"demand": {
+"value": 77.736,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.49486276334792,
+"unit": "MWh"
+},
+"backup": {
+"value": 53.48896649414018,
+"unit": "MWh"
+},
+"short": {
+"value": 2.752170742511898,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-11",
+"source": "short",
+"demand": {
+"value": 81.55199999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.44949297953546,
+"unit": "MWh"
+},
+"backup": {
+"value": 57.349289639910765,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7532173805537705,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-12",
+"source": "short",
+"demand": {
+"value": 76.00799999999994,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.51695090262732,
+"unit": "MWh"
+},
+"backup": {
+"value": 51.7393866821317,
+"unit": "MWh"
+},
+"short": {
+"value": 2.751662415240906,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-13",
+"source": "short",
+"demand": {
+"value": 66.60000000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.658121998436183,
+"unit": "MWh"
+},
+"backup": {
+"value": 42.19344297393421,
+"unit": "MWh"
+},
+"short": {
+"value": 2.748435027629625,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-14",
+"source": "short",
+"demand": {
+"value": 77.61599999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.49636395267445,
+"unit": "MWh"
+},
+"backup": {
+"value": 53.36749987795776,
+"unit": "MWh"
+},
+"short": {
+"value": 2.752136169367757,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-15",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-16",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-17",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-18",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-19",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-20",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-21",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-22",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-23",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-24",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-25",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-26",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-27",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-28",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-29",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-30",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-07-31",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-01",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-02",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-03",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-04",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-05",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-06",
+"source": "short",
+"demand": {
+"value": 66.64800000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.65729416886258,
+"unit": "MWh"
+},
+"backup": {
+"value": 42.24225203935781,
+"unit": "MWh"
+},
+"short": {
+"value": 2.74845379177963,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-07",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-08",
+"source": "short",
+"demand": {
+"value": 64.872,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.688871957760753,
+"unit": "MWh"
+},
+"backup": {
+"value": 40.43538689726088,
+"unit": "MWh"
+},
+"short": {
+"value": 2.747741144978374,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-09",
+"source": "short",
+"demand": {
+"value": 70.704,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.591715859557002,
+"unit": "MWh"
+},
+"backup": {
+"value": 46.362336263245226,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7499478771977723,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-10",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-11",
+"source": "short",
+"demand": {
+"value": 69.672,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.60763523589617,
+"unit": "MWh"
+},
+"backup": {
+"value": 45.31478063878726,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7495841253165487,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-12",
+"source": "short",
+"demand": {
+"value": 80.08800000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.46637334722972,
+"unit": "MWh"
+},
+"backup": {
+"value": 55.86879908237072,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7528275703995635,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-13",
+"source": "short",
+"demand": {
+"value": 93.38400000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.332963114091665,
+"unit": "MWh"
+},
+"backup": {
+"value": 69.29511560408959,
+"unit": "MWh"
+},
+"short": {
+"value": 2.75592128181877,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-14",
+"source": "short",
+"demand": {
+"value": 86.544,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.396340081065777,
+"unit": "MWh"
+},
+"backup": {
+"value": 62.39321202108783,
+"unit": "MWh"
+},
+"short": {
+"value": 2.754447897846401,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-15",
+"source": "short",
+"demand": {
+"value": 82.84800000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.43506115639463,
+"unit": "MWh"
+},
+"backup": {
+"value": 58.659387822623316,
+"unit": "MWh"
+},
+"short": {
+"value": 2.753551020982068,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-16",
+"source": "short",
+"demand": {
+"value": 69.12,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.616354526795895,
+"unit": "MWh"
+},
+"backup": {
+"value": 44.754260344433426,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7493851287706903,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-17",
+"source": "short",
+"demand": {
+"value": 68.44799999999994,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.62716955851856,
+"unit": "MWh"
+},
+"backup": {
+"value": 44.07169187477383,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7491385667075554,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-18",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-19",
+"source": "short",
+"demand": {
+"value": 90.21600000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.361091602344633,
+"unit": "MWh"
+},
+"backup": {
+"value": 66.0996418794576,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7552665181977973,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-20",
+"source": "short",
+"demand": {
+"value": 87.216,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.389661681127222,
+"unit": "MWh"
+},
+"backup": {
+"value": 63.07173547990099,
+"unit": "MWh"
+},
+"short": {
+"value": 2.754602838971794,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-21",
+"source": "short",
+"demand": {
+"value": 74.16,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.5417471638982,
+"unit": "MWh"
+},
+"backup": {
+"value": 49.867160113382845,
+"unit": "MWh"
+},
+"short": {
+"value": 2.751092722718943,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-22",
+"source": "short",
+"demand": {
+"value": 92.99999999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.33626804686743,
+"unit": "MWh"
+},
+"backup": {
+"value": 68.9078876715375,
+"unit": "MWh"
+},
+"short": {
+"value": 2.75584428159507,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-23",
+"source": "short",
+"demand": {
+"value": 90.09600000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.36219694805807,
+"unit": "MWh"
+},
+"backup": {
+"value": 65.97856223628142,
+"unit": "MWh"
+},
+"short": {
+"value": 2.75524081566054,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-24",
+"source": "short",
+"demand": {
+"value": 68.16000000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.63187393007809,
+"unit": "MWh"
+},
+"backup": {
+"value": 43.77909465176716,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7490314181547686,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-25",
+"source": "short",
+"demand": {
+"value": 66.04800000000006,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.667740066180915,
+"unit": "MWh"
+},
+"backup": {
+"value": 41.63204264168393,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7482172921352053,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-26",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.702286395013065,
+"unit": "MWh"
+},
+"backup": {
+"value": 39.70227253784457,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-27",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-28",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-29",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-30",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-08-31",
+"source": "short",
+"demand": {
+"value": 72.11999999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 69.36956986355075,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7504301364492254,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-01",
+"source": "short",
+"demand": {
+"value": 65.27999999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 62.53209173020211,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7479082697978803,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-02",
+"source": "short",
+"demand": {
+"value": 64.15199999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 61.40455893285763,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7474410671423453,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-03",
+"source": "short",
+"demand": {
+"value": 90.86399999999992,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.355174456145523,
+"unit": "MWh"
+},
+"backup": {
+"value": 66.75342139962154,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7554041442328505,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-04",
+"source": "short",
+"demand": {
+"value": 82.22400000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 0.0,
+"unit": "MWh"
+},
+"backup": {
+"value": 79.47060831454719,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7533916854528635,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-05",
+"source": "short",
+"demand": {
+"value": 98.73600000000012,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.28963881256127,
+"unit": "MWh"
+},
+"backup": {
+"value": 74.68942879490912,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7569323925297295,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-06",
+"source": "short",
+"demand": {
+"value": 102.81599999999992,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.25970898436171,
+"unit": "MWh"
+},
+"backup": {
+"value": 78.79865824190962,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7576327737285684,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-07",
+"source": "short",
+"demand": {
+"value": 102.52800000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.26174178005576,
+"unit": "MWh"
+},
+"backup": {
+"value": 78.50867306392085,
+"unit": "MWh"
+},
+"short": {
+"value": 2.757585156023439,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-08",
+"source": "short",
+"demand": {
+"value": 120.67199999999988,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.15298946298659,
+"unit": "MWh"
+},
+"backup": {
+"value": 96.75886781480617,
+"unit": "MWh"
+},
+"short": {
+"value": 2.760142722207137,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-09",
+"source": "short",
+"demand": {
+"value": 134.85600000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.088705216827037,
+"unit": "MWh"
+},
+"backup": {
+"value": 111.00563048681526,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7616642963577362,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-10",
+"source": "short",
+"demand": {
+"value": 136.63200000000006,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.08161246905667,
+"unit": "MWh"
+},
+"backup": {
+"value": 112.78855490176696,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7618326291764226,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-11",
+"source": "short",
+"demand": {
+"value": 132.984,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.096390073717657,
+"unit": "MWh"
+},
+"backup": {
+"value": 109.12612791366239,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7614820126199944,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-12",
+"source": "short",
+"demand": {
+"value": 120.21600000000012,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.155312722383144,
+"unit": "MWh"
+},
+"backup": {
+"value": 96.30059940858597,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7600878690310044,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-13",
+"source": "short",
+"demand": {
+"value": 130.89599999999996,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.105225623766838,
+"unit": "MWh"
+},
+"backup": {
+"value": 107.02950181120418,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7612725650289205,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-14",
+"source": "short",
+"demand": {
+"value": 161.44799999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.999068034453273,
+"unit": "MWh"
+},
+"backup": {
+"value": 137.68513362823015,
+"unit": "MWh"
+},
+"short": {
+"value": 2.763798337316528,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-15",
+"source": "short",
+"demand": {
+"value": 139.344,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.071136390619042,
+"unit": "MWh"
+},
+"backup": {
+"value": 115.51078218541431,
+"unit": "MWh"
+},
+"short": {
+"value": 2.762081423966646,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-16",
+"source": "short",
+"demand": {
+"value": 172.2480000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970674627069947,
+"unit": "MWh"
+},
+"backup": {
+"value": 148.5128480093828,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7644773635473547,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-17",
+"source": "short",
+"demand": {
+"value": 181.56000000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.9559324046551,
+"unit": "MWh"
+},
+"backup": {
+"value": 157.83906946414984,
+"unit": "MWh"
+},
+"short": {
+"value": 2.764998131195113,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-18",
+"source": "short",
+"demand": {
+"value": 152.0880000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.02698856893784,
+"unit": "MWh"
+},
+"backup": {
+"value": 128.29787937387337,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7631320571889204,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-19",
+"source": "short",
+"demand": {
+"value": 137.66400000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.077576513920963,
+"unit": "MWh"
+},
+"backup": {
+"value": 113.82449503095226,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7619284551267844,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-20",
+"source": "short",
+"demand": {
+"value": 155.80799999999996,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.015484144516467,
+"unit": "MWh"
+},
+"backup": {
+"value": 132.0291094351448,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7634064203387276,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-21",
+"source": "short",
+"demand": {
+"value": 161.23200000000006,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.999675274658802,
+"unit": "MWh"
+},
+"backup": {
+"value": 137.46854089399554,
+"unit": "MWh"
+},
+"short": {
+"value": 2.763783831345745,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-22",
+"source": "short",
+"demand": {
+"value": 148.176,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 21.039719878478945,
+"unit": "MWh"
+},
+"backup": {
+"value": 124.37345140664685,
+"unit": "MWh"
+},
+"short": {
+"value": 2.762828714874208,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-23",
+"source": "short",
+"demand": {
+"value": 187.65599999999986,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.956869674176815,
+"unit": "MWh"
+},
+"backup": {
+"value": 163.9338192085077,
+"unit": "MWh"
+},
+"short": {
+"value": 2.765311117315337,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-24",
+"source": "short",
+"demand": {
+"value": 203.6400000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.959063631291272,
+"unit": "MWh"
+},
+"backup": {
+"value": 179.91489338445783,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766042984250993,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-25",
+"source": "short",
+"demand": {
+"value": 199.9920000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.958593457534317,
+"unit": "MWh"
+},
+"backup": {
+"value": 176.2675203096614,
+"unit": "MWh"
+},
+"short": {
+"value": 2.76588623280441,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-26",
+"source": "short",
+"demand": {
+"value": 182.92800000000017,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.956148108144404,
+"unit": "MWh"
+},
+"backup": {
+"value": 159.20678171244262,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7650701794131396,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-27",
+"source": "short",
+"demand": {
+"value": 177.19200000000015,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.95884718465751,
+"unit": "MWh"
+},
+"backup": {
+"value": 153.46839216216893,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7647606531737,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-28",
+"source": "short",
+"demand": {
+"value": 201.43199999999982,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.958781064849138,
+"unit": "MWh"
+},
+"backup": {
+"value": 177.70727014994608,
+"unit": "MWh"
+},
+"short": {
+"value": 2.765948785204567,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-29",
+"source": "short",
+"demand": {
+"value": 202.9680000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.958978276638927,
+"unit": "MWh"
+},
+"backup": {
+"value": 179.24300719187596,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766014531485252,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-09-30",
+"source": "short",
+"demand": {
+"value": 194.87999999999977,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.957905310253558,
+"unit": "MWh"
+},
+"backup": {
+"value": 171.15643796764004,
+"unit": "MWh"
+},
+"short": {
+"value": 2.765656722106174,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-01",
+"source": "short",
+"demand": {
+"value": 246.96,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96359443654585,
+"unit": "MWh"
+},
+"backup": {
+"value": 223.22885456481242,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7675509986417293,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-02",
+"source": "short",
+"demand": {
+"value": 219.21599999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96089684933734,
+"unit": "MWh"
+},
+"backup": {
+"value": 195.48844945869507,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766653691967562,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-03",
+"source": "short",
+"demand": {
+"value": 226.32000000000014,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96164997149372,
+"unit": "MWh"
+},
+"backup": {
+"value": 202.5914456616862,
+"unit": "MWh"
+},
+"short": {
+"value": 2.766904366820231,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-04",
+"source": "short",
+"demand": {
+"value": 231.38399999999996,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96215885809624,
+"unit": "MWh"
+},
+"backup": {
+"value": 207.65476746438324,
+"unit": "MWh"
+},
+"short": {
+"value": 2.767073677520469,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-05",
+"source": "short",
+"demand": {
+"value": 226.51200000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96166967679751,
+"unit": "MWh"
+},
+"backup": {
+"value": 202.78341939920352,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7669109239989966,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-06",
+"source": "short",
+"demand": {
+"value": 226.65599999999986,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.961684434076545,
+"unit": "MWh"
+},
+"backup": {
+"value": 202.92739973131728,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7669158346060367,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-07",
+"source": "short",
+"demand": {
+"value": 241.96800000000027,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96315428867185,
+"unit": "MWh"
+},
+"backup": {
+"value": 218.2374410110034,
+"unit": "MWh"
+},
+"short": {
+"value": 2.767404700325042,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-08",
+"source": "short",
+"demand": {
+"value": 264.6720000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.965023246023296,
+"unit": "MWh"
+},
+"backup": {
+"value": 240.93895113398193,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768025619995073,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-09",
+"source": "short",
+"demand": {
+"value": 252.62400000000025,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96407295015395,
+"unit": "MWh"
+},
+"backup": {
+"value": 228.892217048952,
+"unit": "MWh"
+},
+"short": {
+"value": 2.767710000894293,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-10",
+"source": "short",
+"demand": {
+"value": 253.19999999999987,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.9641204235276,
+"unit": "MWh"
+},
+"backup": {
+"value": 229.46815380368866,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7677257727836224,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-11",
+"source": "short",
+"demand": {
+"value": 263.42400000000015,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.964928811699867,
+"unit": "MWh"
+},
+"backup": {
+"value": 239.6910769236746,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7679942646256834,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-12",
+"source": "short",
+"demand": {
+"value": 290.6640000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.966807070845604,
+"unit": "MWh"
+},
+"backup": {
+"value": 266.9285753846276,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768617544526905,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-13",
+"source": "short",
+"demand": {
+"value": 282.7919999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.966301170538785,
+"unit": "MWh"
+},
+"backup": {
+"value": 259.0572490868758,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7684497425852417,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-14",
+"source": "short",
+"demand": {
+"value": 288.50400000000025,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96667098456776,
+"unit": "MWh"
+},
+"backup": {
+"value": 264.76875660386,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7685724115724417,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-15",
+"source": "short",
+"demand": {
+"value": 294.31199999999984,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.967032403021097,
+"unit": "MWh"
+},
+"backup": {
+"value": 270.576275329977,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768692267001688,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-16",
+"source": "short",
+"demand": {
+"value": 277.2,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96592447648847,
+"unit": "MWh"
+},
+"backup": {
+"value": 253.4657507626319,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768324760879636,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-17",
+"source": "short",
+"demand": {
+"value": 274.07999999999987,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.965707675734638,
+"unit": "MWh"
+},
+"backup": {
+"value": 250.34603950878846,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7682528154768047,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-18",
+"source": "short",
+"demand": {
+"value": 285.6000000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.966484804484605,
+"unit": "MWh"
+},
+"backup": {
+"value": 261.8650045370028,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7685106585126817,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-19",
+"source": "short",
+"demand": {
+"value": 282.5760000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.966286894835353,
+"unit": "MWh"
+},
+"backup": {
+"value": 258.8412680984906,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7684450066741406,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-20",
+"source": "short",
+"demand": {
+"value": 265.2480000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.965066533817293,
+"unit": "MWh"
+},
+"backup": {
+"value": 241.51489347383668,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7680399923463166,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-21",
+"source": "short",
+"demand": {
+"value": 300.8159999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96742068541169,
+"unit": "MWh"
+},
+"backup": {
+"value": 277.07975831498516,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768820999603063,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-22",
+"source": "short",
+"demand": {
+"value": 302.87999999999994,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96754044326079,
+"unit": "MWh"
+},
+"backup": {
+"value": 279.14359885876354,
+"unit": "MWh"
+},
+"short": {
+"value": 2.768860697975591,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-23",
+"source": "short",
+"demand": {
+"value": 318.672,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.968405734477642,
+"unit": "MWh"
+},
+"backup": {
+"value": 294.9344468255453,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7691474399770497,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-24",
+"source": "short",
+"demand": {
+"value": 332.80800000000016,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96911108563316,
+"unit": "MWh"
+},
+"backup": {
+"value": 309.06950785333584,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769381061031118,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-25",
+"source": "short",
+"demand": {
+"value": 328.87200000000007,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.96892074056542,
+"unit": "MWh"
+},
+"backup": {
+"value": 305.13376123247804,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7693180269566477,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-26",
+"source": "short",
+"demand": {
+"value": 318.81599999999986,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.968413232936623,
+"unit": "MWh"
+},
+"backup": {
+"value": 295.07843684293846,
+"unit": "MWh"
+},
+"short": {
+"value": 2.769149924124822,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-27",
+"source": "short",
+"demand": {
+"value": 322.2959999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.968592421673893,
+"unit": "MWh"
+},
+"backup": {
+"value": 298.5581982947849,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7692092835409343,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-28",
+"source": "short",
+"demand": {
+"value": 368.6160000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970657139105796,
+"unit": "MWh"
+},
+"backup": {
+"value": 344.8754501025084,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7698927583861352,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-29",
+"source": "short",
+"demand": {
+"value": 375.07199999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.970904654321433,
+"unit": "MWh"
+},
+"backup": {
+"value": 351.3311207148381,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7699746308403763,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-30",
+"source": "short",
+"demand": {
+"value": 363.36,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.9704491735549,
+"unit": "MWh"
+},
+"backup": {
+"value": 339.6197268685309,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7698239579142334,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-10-31",
+"source": "short",
+"demand": {
+"value": 383.44799999999964,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.971213427971602,
+"unit": "MWh"
+},
+"backup": {
+"value": 359.70670982422297,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7700767478051187,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-01",
+"source": "short",
+"demand": {
+"value": 396.6479999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97167370736134,
+"unit": "MWh"
+},
+"backup": {
+"value": 372.9060973600874,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77022893255122,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-02",
+"source": "short",
+"demand": {
+"value": 384.7680000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97126086916232,
+"unit": "MWh"
+},
+"backup": {
+"value": 361.0266466951915,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7700924356462657,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-03",
+"source": "short",
+"demand": {
+"value": 418.7519999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972379816858528,
+"unit": "MWh"
+},
+"backup": {
+"value": 395.0091578736434,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704623094976246,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-04",
+"source": "short",
+"demand": {
+"value": 381.9839999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97116043004024,
+"unit": "MWh"
+},
+"backup": {
+"value": 358.242780348066,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770059221893608,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-05",
+"source": "short",
+"demand": {
+"value": 399.76800000000026,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.971778083073616,
+"unit": "MWh"
+},
+"backup": {
+"value": 376.02595848035145,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770263436575204,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-06",
+"source": "short",
+"demand": {
+"value": 385.05600000000027,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97127117698348,
+"unit": "MWh"
+},
+"backup": {
+"value": 361.31463297884704,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7700958441697656,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-07",
+"source": "short",
+"demand": {
+"value": 387.50400000000013,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.971358178245545,
+"unit": "MWh"
+},
+"backup": {
+"value": 363.7625172094731,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7701246122814567,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-08",
+"source": "short",
+"demand": {
+"value": 414.432,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97224770638871,
+"unit": "MWh"
+},
+"backup": {
+"value": 390.6893336399839,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704186536273956,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-09",
+"source": "short",
+"demand": {
+"value": 403.92,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.971914495589257,
+"unit": "MWh"
+},
+"backup": {
+"value": 380.1777769767451,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7703085276656596,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-10",
+"source": "short",
+"demand": {
+"value": 408.64800000000054,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972066474531648,
+"unit": "MWh"
+},
+"backup": {
+"value": 384.9055747659187,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7703587595501538,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-11",
+"source": "short",
+"demand": {
+"value": 438.3600000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97294687974167,
+"unit": "MWh"
+},
+"backup": {
+"value": 414.61640346722675,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770649653031856,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-12",
+"source": "short",
+"demand": {
+"value": 453.5519999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973352680078506,
+"unit": "MWh"
+},
+"backup": {
+"value": 429.8078636425237,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7707836773976386,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-13",
+"source": "short",
+"demand": {
+"value": 403.36799999999965,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.971896520822764,
+"unit": "MWh"
+},
+"backup": {
+"value": 379.6258008928342,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770302586342692,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-14",
+"source": "short",
+"demand": {
+"value": 424.8240000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97256098599124,
+"unit": "MWh"
+},
+"backup": {
+"value": 401.08091684326956,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770522170739442,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-15",
+"source": "short",
+"demand": {
+"value": 413.3999999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972215740194322,
+"unit": "MWh"
+},
+"backup": {
+"value": 389.65737616995835,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7704080898472365,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-16",
+"source": "short",
+"demand": {
+"value": 447.9360000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97320586027002,
+"unit": "MWh"
+},
+"backup": {
+"value": 424.1920589487169,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7707351910134554,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-17",
+"source": "short",
+"demand": {
+"value": 458.73599999999993,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973485030199768,
+"unit": "MWh"
+},
+"backup": {
+"value": 434.9916875884745,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770827381325632,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-18",
+"source": "short",
+"demand": {
+"value": 470.5439999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973775657374862,
+"unit": "MWh"
+},
+"backup": {
+"value": 446.79930100504873,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7709233375762996,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-19",
+"source": "short",
+"demand": {
+"value": 450.26399999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973267163800003,
+"unit": "MWh"
+},
+"backup": {
+"value": 426.5199773994963,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7707554367035923,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-20",
+"source": "short",
+"demand": {
+"value": 431.78400000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97276241351962,
+"unit": "MWh"
+},
+"backup": {
+"value": 408.0406488690047,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7705887174757424,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-21",
+"source": "short",
+"demand": {
+"value": 422.9520000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.972505683324577,
+"unit": "MWh"
+},
+"backup": {
+"value": 399.20899041809963,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770503898576051,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-22",
+"source": "short",
+"demand": {
+"value": 441.888,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973043593222854,
+"unit": "MWh"
+},
+"backup": {
+"value": 418.14427480884075,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7706815979363917,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-23",
+"source": "short",
+"demand": {
+"value": 448.84800000000047,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973229951489447,
+"unit": "MWh"
+},
+"backup": {
+"value": 425.1040269011986,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770743147312373,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-24",
+"source": "short",
+"demand": {
+"value": 443.0879999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973076139636994,
+"unit": "MWh"
+},
+"backup": {
+"value": 419.34423151264434,
+"unit": "MWh"
+},
+"short": {
+"value": 2.770692347718358,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-25",
+"source": "short",
+"demand": {
+"value": 488.42399999999947,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97418910051179,
+"unit": "MWh"
+},
+"backup": {
+"value": 464.6787510864544,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771059813033283,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-26",
+"source": "short",
+"demand": {
+"value": 498.7440000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.974414297008988,
+"unit": "MWh"
+},
+"backup": {
+"value": 474.99845156899596,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771134133995414,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-27",
+"source": "short",
+"demand": {
+"value": 456.9839999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.973440635116578,
+"unit": "MWh"
+},
+"backup": {
+"value": 433.23974664304234,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7708127218410072,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-28",
+"source": "short",
+"demand": {
+"value": 466.34399999999954,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.9736739626317,
+"unit": "MWh"
+},
+"backup": {
+"value": 442.59943627426173,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7708897631061373,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-29",
+"source": "short",
+"demand": {
+"value": 503.1119999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.974506841830255,
+"unit": "MWh"
+},
+"backup": {
+"value": 479.36632848498203,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7711646731875534,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-11-30",
+"source": "short",
+"demand": {
+"value": 527.8800000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975002754452227,
+"unit": "MWh"
+},
+"backup": {
+"value": 504.13366895529055,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7713282902574834,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-01",
+"source": "short",
+"demand": {
+"value": 545.232,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975323447023154,
+"unit": "MWh"
+},
+"backup": {
+"value": 521.4852424839041,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714340690727233,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-02",
+"source": "short",
+"demand": {
+"value": 552.7439999999995,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975456059614658,
+"unit": "MWh"
+},
+"backup": {
+"value": 528.9970661360693,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714778043155075,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-03",
+"source": "short",
+"demand": {
+"value": 545.7120000000004,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975332029436828,
+"unit": "MWh"
+},
+"backup": {
+"value": 521.9652310709231,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714368996405305,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-04",
+"source": "short",
+"demand": {
+"value": 533.9279999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975116888162137,
+"unit": "MWh"
+},
+"backup": {
+"value": 510.1815171726658,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77136593917194,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-05",
+"source": "short",
+"demand": {
+"value": 528.936,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97502286988115,
+"unit": "MWh"
+},
+"backup": {
+"value": 505.18964220425033,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771334925868601,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-06",
+"source": "short",
+"demand": {
+"value": 583.9440000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975970465711594,
+"unit": "MWh"
+},
+"backup": {
+"value": 560.1963821154728,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716474188157023,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-07",
+"source": "short",
+"demand": {
+"value": 604.896,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97628623083925,
+"unit": "MWh"
+},
+"backup": {
+"value": 581.147962261116,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77175150804463,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-08",
+"source": "short",
+"demand": {
+"value": 600.8879999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97622752401662,
+"unit": "MWh"
+},
+"backup": {
+"value": 577.1400403185439,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771732157439291,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-09",
+"source": "short",
+"demand": {
+"value": 598.848,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976197342589856,
+"unit": "MWh"
+},
+"backup": {
+"value": 575.1000804484806,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7717222089294493,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-10",
+"source": "short",
+"demand": {
+"value": 587.064,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976018909962654,
+"unit": "MWh"
+},
+"backup": {
+"value": 563.3163177006319,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771663389405489,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-11",
+"source": "short",
+"demand": {
+"value": 574.7040000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975823922041894,
+"unit": "MWh"
+},
+"backup": {
+"value": 550.9565769731262,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771599104832113,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-12",
+"source": "short",
+"demand": {
+"value": 563.4959999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975639740432978,
+"unit": "MWh"
+},
+"backup": {
+"value": 539.7488218839919,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7715383755748864,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-13",
+"source": "short",
+"demand": {
+"value": 588.4319999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976039989481208,
+"unit": "MWh"
+},
+"backup": {
+"value": 564.684289671994,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716703385246393,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-14",
+"source": "short",
+"demand": {
+"value": 566.3279999999997,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.9756869645493,
+"unit": "MWh"
+},
+"backup": {
+"value": 542.5807590882275,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7715539472230075,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-15",
+"source": "short",
+"demand": {
+"value": 581.184,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975927179194688,
+"unit": "MWh"
+},
+"backup": {
+"value": 557.4364396726505,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716331481547356,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-16",
+"source": "short",
+"demand": {
+"value": 543.4799999999999,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975291993065596,
+"unit": "MWh"
+},
+"backup": {
+"value": 519.7332843118286,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714236951057014,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-17",
+"source": "short",
+"demand": {
+"value": 566.424,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975688557123423,
+"unit": "MWh"
+},
+"backup": {
+"value": 542.6767569705283,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771554472348213,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-18",
+"source": "short",
+"demand": {
+"value": 535.032,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975137444704295,
+"unit": "MWh"
+},
+"backup": {
+"value": 511.28548983549643,
+"unit": "MWh"
+},
+"short": {
+"value": 2.77137271979928,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-19",
+"source": "short",
+"demand": {
+"value": 555.4079999999996,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97550223001552,
+"unit": "MWh"
+},
+"backup": {
+"value": 531.6610047396791,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7714930303049385,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-20",
+"source": "short",
+"demand": {
+"value": 601.7280000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97623989239049,
+"unit": "MWh"
+},
+"backup": {
+"value": 577.9800238733175,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7717362342922094,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-21",
+"source": "short",
+"demand": {
+"value": 622.5120000000002,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97653532712126,
+"unit": "MWh"
+},
+"backup": {
+"value": 598.7636310672211,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771833605657667,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-22",
+"source": "short",
+"demand": {
+"value": 623.8560000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97655375612593,
+"unit": "MWh"
+},
+"backup": {
+"value": 600.1076065648699,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718396790043713,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-23",
+"source": "short",
+"demand": {
+"value": 616.272,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976448714549544,
+"unit": "MWh"
+},
+"backup": {
+"value": 592.523746224244,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771805061206579,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-24",
+"source": "short",
+"demand": {
+"value": 620.976,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976514168055534,
+"unit": "MWh"
+},
+"backup": {
+"value": 597.2276591994238,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7718266325206757,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-25",
+"source": "short",
+"demand": {
+"value": 586.896,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.976016314498427,
+"unit": "MWh"
+},
+"backup": {
+"value": 563.1483211517286,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716625337729455,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-26",
+"source": "short",
+"demand": {
+"value": 577.752,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975872778600692,
+"unit": "MWh"
+},
+"backup": {
+"value": 554.0045120085454,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716152128539084,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-27",
+"source": "short",
+"demand": {
+"value": 611.5920000000003,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97638259929323,
+"unit": "MWh"
+},
+"backup": {
+"value": 587.8438341298213,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7717832708857357,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-28",
+"source": "short",
+"demand": {
+"value": 587.4240000000005,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97602446668863,
+"unit": "MWh"
+},
+"backup": {
+"value": 563.6763103120551,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7716652212567925,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-29",
+"source": "short",
+"demand": {
+"value": 570.4560000000006,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97575496298671,
+"unit": "MWh"
+},
+"backup": {
+"value": 546.7086686688594,
+"unit": "MWh"
+},
+"short": {
+"value": 2.7715763681543466,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-30",
+"source": "short",
+"demand": {
+"value": 548.9520000000001,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.975389569675208,
+"unit": "MWh"
+},
+"backup": {
+"value": 525.2051545537327,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771455876592249,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+},
+{
+"date": "2027-12-31",
+"source": "short",
+"demand": {
+"value": 556.7279999999998,
+"unit": "MWh"
+},
+"geothermal": {
+"value": 20.97552494415307,
+"unit": "MWh"
+},
+"backup": {
+"value": 532.9809745350794,
+"unit": "MWh"
+},
+"short": {
+"value": 2.771500520767271,
+"unit": "MWh"
+},
+"failed_steps": {
+"value": 0.0,
+"unit": "-"
+}
+}
+]
