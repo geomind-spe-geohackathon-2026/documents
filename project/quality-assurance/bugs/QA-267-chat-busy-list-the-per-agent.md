@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -34,4 +34,6 @@ Guess: the busy list starts a local clock when it first sees an agent; `GET /ass
 
 ## Fix
 
+frontend 1.1.126 (commit 7f06fdd, bundle index--MmxqmDW.js). Cause (fact): the backend already sends `ts` on step.started and step.finished, live and on replay (`callbacks.py` `public`, from geomind's event `time`), but the frontend event parser (`shared/sse/events.ts`) built step events without it, so `startedAt` always fell back to the browser clock at page load. The parser now keeps `ts`; each timer counts from the server time of the agent's first step. No backend change needed (a per-session `started` in /agents is not needed for this).
+- 2026-11-05 18:23 UTC: frontend 1.1.126, commit 7f06fdd
 ## Retest
