@@ -23,7 +23,7 @@ The study table fits the panel: #, Study name, Status, Result, Actions visible; 
 ## Actual
 
 The table is scrolled sideways: the # column and most of each Study name are hidden ('on LCTS', 'nt: sized', 'lingPlant: LCTS'); the evolve row's 'Compare structures' + 'Run again' make the Actions column wide.
-Also (Sahand: "it keeps coming up and gets on my nerves"): the composer's Auto-approve control is shown highlighted (blue) on a new, empty chat; it draws attention every time and it is not clear whether it is on. It should be a quiet toggle that clearly says off/on and is off unless the user turns it on.
+Also (Sahand 20:12 CET: the auto-approve box keeps popping up again and again, it is annoying): the composer's Auto-approve control is shown highlighted (blue) on a new, empty chat; it draws attention every time and it is not clear whether it is on. It should be a quiet toggle that clearly says off/on and is off unless the user turns it on; any auto-approve prompt or popup must appear at most once (remember the choice per user/chat) and never again after it was dismissed.
 
 ## Evidence
 
