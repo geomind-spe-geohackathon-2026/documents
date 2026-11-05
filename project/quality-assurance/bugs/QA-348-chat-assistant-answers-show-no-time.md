@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -35,7 +35,7 @@ Sahand's request (top). Messages have a created time in the API.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 20:20 UTC: frontend 1.1.141 (commit d54548e, bundle index-DRkasU2C.js)
 ## Retest
 
 (Who, when, result.)
