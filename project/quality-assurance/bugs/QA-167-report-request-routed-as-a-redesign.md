@@ -6,32 +6,63 @@
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
-| Found | 2026-11-05 17:08 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 17:14 UTC |
+| Versions | backend 1.1.102 at the start (geomind 0.4.97), frontend bundle index-TsXgd_n9.js |
+| Where | https://geomind.team/projects/0e44cb05-6096-434e-95ee-56b434898015/assistant/chat; project QA-TEST QA-E2E-report-I 1; run 3f8270d5-b11e-4c86-b3ca-b0b4d4feb61c; project_lead steps 1-5 (16:51:19-16:51:36 UTC), design_lead steps 1-6 |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Project with case, plant v1 and v2, and a done Study-page simulation of v1 (QA-165 Steps 1).
+2. Chat: the report request of QA-165 Steps 2.
 
 ## Expected
 
+A report request on a project with a finished simulation goes to the analysis lead and the
+explainer with the existing result; no design work, no Build plant card.
+
 ## Actual
+
+- The project lead's context holds "Problem state, version 1 / Case: ..." only: no plant
+  versions, no studies, no results. The project lead has no `list_plants` / `list_studies` tool
+  (`geomind/agents/project/lead.py`: read_case, set_case, case_changes, accept_case,
+  update_state, read_stored, ask_user, teams). It also tried `read_case(section="design")`
+  (refused).
+- Its plan (R0): "design_lead builds/simulates the plant on the case ... reviewer verifies ...
+  analysis_lead produces the key numbers, explainer writes the report".
+- The design lead tries `simulate("design/HackathonPlant")` (refused: not a design of this
+  chat), then `build_plant` with the plant `read_plant(plant_version=1)` returned: refused,
+  `fluids.chiller_cooler: salinity Input should be a valid number, input_value=None` (read_plant
+  returns `null` for fluid fields that build_plant requires), then a second build_plant with
+  23 modules / 39 connections that reaches the user as an approval card whose body is raw JSON
+  (screenshot 1; QA-121 asked for a one-sentence card).
+- Timing: request 16:51:19; approval card 16:52:05; after my Deny 16:58:00 the run needed 135
+  steps and 17 min to reach the analysis lead (1.22 M input tokens, 0.032 USD at 17:06).
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-167/1.png)
-- Run JSON: `../evidence/QA-167/run-<id>.json`
+- ![approval card with raw plant JSON](../evidence/QA-167/1.png)
+- Run steps: `../evidence/QA-167/run-3f8270d5-steps.txt`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact (code read, geomind 0.4.98): `geomind/context/state.py` `render()` lists goal,
+requirements, assumptions, design, results of this chat and the case; the project's plant
+versions and studies (`project_designs`) are not in it, and the project lead has no tool that
+reads them. Second, smaller cause: `read_plant` output is not a valid `build_plant` input (null
+fluid fields).
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+Proposal (geomind, hotfix-python):
+1. `render()` adds one line per project plant version and per project study with its result id
+   and KPIs (`project_designs`), so every lead sees them; or give the project lead
+   `list_studies` (read only).
+2. Prompt `project/lead`: a report, explanation or comparison request on a project with a done
+   current result goes to analysis_lead/explainer with that result; design_lead only when no
+   current result exists.
+3. `read_plant` drops `null` fields (or `build_plant` accepts them), so a stored version can be
+   rebuilt unchanged; better, `simulate(plant_version=N)` (QA-166) makes the rebuild needless.
 
 ## Retest
 
