@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | minor |
-| Area | backend |
+| Area | frontend |
 | Reporter | functional-qa-study-I |
 | Found | 2026-11-05 14:21 UTC |
 | Versions | frontend as live 2026-11-05, backend 1.1.83-1.1.84 |
@@ -36,7 +36,7 @@ Study and Results 'Out of date' before and after the run; Activity shows 'Study 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:37 UTC: hotfix-back-III, cause (fact): GET /design/results lists oldest first (contract, paginate by created asc); frontend toStaleSteps(project, results.data?.[0]) in src/app/layouts/progress.tsx:20 and src/domains/workspace/overview/page.tsx:20 takes the OLDEST result as the newest. QA3 study: oldest = 'simulation HackathonPlant' (case 3, plant 1) vs project plant 13 -> Out of date; newest is sized2 (case 3, plant null) -> current. Fix for hotfix-front-III: use the last item (or max by created). Note: agent results have plant_version null (backend 1.1.81) and a plain chat simulate saves a new plant version with no result (QA-092), so freshness there is judged by case only. No backend change.
 ## Retest
 
 (Who, when, result.)
