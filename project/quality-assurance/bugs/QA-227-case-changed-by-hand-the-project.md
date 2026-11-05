@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -54,6 +54,8 @@ Time to the needless question: 3 min 13 s (17:33:53 to 17:37:06), with the appro
 ## Retest
 
 - 2026-11-05 18:23 UTC: QA-AI-project-I 18:23 UTC, backend 1.1.114, new chat, run a4203016: case 150 -> 175 mD by hand; no question to the user, design lead re-simulated design/v2 on 175 mD, reviewer passed 15/15, LCOH 44.134 EUR/MWh (between 43.753 at 200 and 44.641 at 150 mD); 6 min, 0.0126 USD, one card. Trace evidence/QA-227/retest-a4203016.trace.txt
+- 2026-11-05 18:48 UTC: QA-AI-case-I run 8b7f20e7, geomind 0.4.114
 ## More evidence (QA-AI-project-I, 17:38 UTC)
 
 After the user's answer "150 mD. It is already in the case I saved (version 4).", the case lead asks a third card (request-118): "Allow set_case (write)? Change the case: site.reservoir.permeability." with the same value 150 mD the case already holds (a no-op write). One user edit of one value cost three stops: load card, question, no-op change card.
+- 2026-11-05 18:50 UTC (19:50 CET), QA-AI-case-I: project QA-TEST QA-AI-case-I 8 (8b943903-52a4-4f0d-836f-e4150a8320ff), reference case (version 3) + HackathonPlant, message 1 (simulate and check) in chat 485a131e-a87d-4339-bc82-cd120c8e5005, then the case saved by hand with permeability 200 -> 150 mD (`POST /design/case`, version 4) and the QA-224 message; run 8b7f20e7-cfcf-4933-b3cc-c17cb8ec8796 (geomind 0.4.114). The project lead loads the saved case (card "Load the project's saved case, version 4: site.reservoir.permeability 200 mD -> 150 mD"), briefs the design lead "re-simulate ... on the current case ... 150 mD, down from 200 mD", then reviewer, analysis lead, explainer. No `case_lead` call and no question to the user. Verified. Side notes for the project and analysis threads (not this bug): run 10 min 55 s, 0.044 USD; the economist made 43 `calculate` calls for 7 differences (the same differences 3 times), and the project lead called the explainer twice. Evidence: `../evidence/QA-227/run-8b7f20e7.json`.
