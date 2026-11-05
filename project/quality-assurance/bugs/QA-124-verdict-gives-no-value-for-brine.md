@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-report-I |
@@ -34,7 +34,7 @@ The table has values for production flow (300 m3/h), pump efficiency 0.7, double
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:28 UTC: geomind 0.4.86 (reading-results: requirement values from check_results), backend 1.1.89, deployed 14:27 UTC
 ## Retest
 
 (Who, when, result.)
