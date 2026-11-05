@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Coordinator-V |
 | Found | 2026-11-05 16:51 UTC |
 | Versions | frontend 1.1.113, backend 1.1.101 (geomind 0.4.97, gemini 0.6.16) |
 | Where | Task (Sahand 2026-11-05 16:51 UTC: all work goes to hotfix threads as bugs or tasks); `documents/project/plans/speed-case-plant-baseline.md` (top 10 causes), `documents/project/plans/speed-case-plant.md` (B2-B5, C) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
