@@ -7,32 +7,26 @@
 | Area | backend |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 18:28 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.115, frontend 1.1.126 |
+| Where | https://geomind.team/projects/4678c5c6-66fc-46dd-9d1e-358c3c5c1d24/design (No-agent showcase) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+POST /design/study with kind evolve, settings {objectives: [lcts, co2], evaluations: 160, population: 16, seed: 0, polish: 2, prepare: [size]}.
 
 ## Expected
 
+Refused at creation (422 with the rule), or the form limits polish by population.
+
 ## Actual
+
+The study is created, queued and fails at once: `study_failed: study.evolve: population = 16; polish searches with minimize, which needs at least 5 per variable`. Two such failed studies now stand at the top of the Study list of the showcase project (they were mine, sent by API).
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-282/1.png)
-- Run JSON: `../evidence/QA-282/run-<id>.json`
-
-## Cause
-
-(Facts, or a guess marked as one.)
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
