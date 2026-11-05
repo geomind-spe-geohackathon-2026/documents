@@ -78,3 +78,37 @@ Not found: no wrong value in the stored case, no question repeated, no lost user
 
 Evidence: `evidence/QA-153/run-f5f86362.json`, `evidence/QA-153/run-519ccc65.json` (full run logs)
 and each bug's folder. Driver script: `~/qa-ai-case/drive.py` on the Dell (not in a repo).
+
+## Round 2 (17:10-19:10 UTC; geomind 0.4.100, then 0.4.114 and later)
+
+Coordinator-V asked for retests on geomind 0.4.100 / 0.4.114, a timed rerun of run 1, a review of
+the case prompts against the new general handbook-case (Knowledge 77135767), and new scenarios.
+
+| Run | Project | Scenario | geomind | Result | Wall time | Cost |
+|---|---|---|---|---|---|---|
+| 3 `84526204` | QA-TEST QA-AI-case-I 3 | as run 1 (approve all) | 0.4.100 | done; question before any `set_case` | ~5 min 4 s active (the driver stopped during a deploy; the run then waited 13 min on `accept_case`) | 0.031 USD |
+| 4 `dd6b4700` | ... 4 | `stop` on the confirmation question | 0.4.100 | QA-197 reproduced (project lead sent the case lead again, 2 min more), nothing stored | 6 min 1 s | 0.031 USD |
+| 5 `7ff26b69` | ... 5 | no files, vague ("geothermal heating for a small town"), typed site and peak, own assumptions | 0.4.114 | case stored with 4 values that differ from the approved ones (QA-295); cancelled at the design stage | case stage 8 min 34 s | 0.014 USD (case) |
+| 6 `6a8dba9a` | ... 6 | deny the `set_case` card with "55 °C instead of 60" | 0.4.114 | QA-230, QA-198 verified; 55 degC stored | 7 min 13 s | 0.033 USD |
+| 7 `efe4576b` | ... 7 | `stop` | 0.4.114 | QA-197 verified: no second case lead, nothing stored | 3 min 26 s | 0.020 USD |
+| 8 `5a30bc42`, `8b7f20e7`, `64913dcb` | ... 8 | reference case + HackathonPlant; hand change 200 -> 150 mD, then 150 -> 175 mD | 0.4.114 | QA-227, QA-266 verified | 7 min 36 s, 10 min 55 s, 5 min 51 s | 0.021, 0.044, 0.030 USD |
+| 9 `7825eeac` | ... 9 | "design me a geothermal plant" with the three files | 0.4.114+ | case right (8 requirements, all reference values) in 5 min 7 s; cancelled at the design stage | - | 0.042 USD (to cancel) |
+| 10 `55a9cd7b` | ... 10 | "design me a geothermal plant", empty project | 0.4.114+ | QA-283 verified (question in 10 s); choosing the example case gives peaks as constant demand (QA-309); cancelled at design | case stage 5 min 16 s | - |
+
+Speed against run 1 (6 min 12 s, 0.036 USD): run 3 about 5 min, 0.031 USD; run 9 about 5 min. The
+parallel geoscientist stage got slower (58 s -> 84-96 s); the confirmation-first order (QA-153 fix)
+removed one `set_case` approval but every run still loses its first one or two `set_case` calls
+(QA-222).
+
+Retests: verified QA-140, QA-153, QA-158, QA-197, QA-198, QA-227, QA-230, QA-266, QA-283. Still open
+after retest: QA-156, QA-157, QA-160 (1 of 4 runs wrong).
+
+New bugs in round 2:
+
+| Id | Severity | Area | Title |
+|---|---|---|---|
+| QA-177 | major | geomind | Case lead prompt (0.4.100) and handbook-case contradict (7 rows: order, `converted`/`plants_need` before any `set_case`, `calculate`, tool names, source labels, geoscientist rules, field groups) |
+| QA-217 | major | backend | API 500s: Postgres pool exhausted; 116 failed requests in 27 s, `/runs/{id}/agents` polled ~400/min |
+| QA-222 | minor | geomind | First `set_case` refused in 6 of 6 case runs (files-only, `source=project`, `time_zone`, `columns`, empty or `mol/mol` units) |
+| QA-295 | major | geomind | No-files case: approved gradient 25, depth 2000, pressure 200, GLR 0.5; stored 30 / 2500 / 250 / 0.8 |
+| QA-309 | major | geomind | Empty project: "use the hackathon example case" cannot be done (no demand files); peaks set as constant demand |
