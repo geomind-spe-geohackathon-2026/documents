@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind,gemini |
 | Reporter | QA-E2E-study-I |
@@ -71,7 +71,7 @@ labelled as such), and say in one line which parameters were varied.
   and values are given with 15 digits (QA-099).
   Log: `../evidence/QA-248/run-8d7c09f7-retest-log.json`.
 - 2026-11-05 18:48 UTC: retest QA-AI-analysis-I 18:47 UTC backend 1.1.117: only the 3 prices sampled; P10/P90 gap filed as QA-299
-
+- 2026-11-05 19:51 UTC: QA-E2E-study-II 2026-11-05 retest in QA-TEST QA-E2E-study-II 1 (geomind 0.4.130 era, deploy 36): asked 3 prices + P10/P50/P90; got P10 45.92, P50 48.83, P90 52.73 (200 draws, seed 42), one question for the missing heat range (correct)
 ## Retest
 
 QA-E2E-study-I, 2026-11-05 18:53 UTC, project QA-TEST QA-E2E-study-I 3, run ce4be675-134b-439a-a1cc-7e879acd7112 ("sample only the gas, electricity and carbon prices ... P10, P50 and P90"): half passes. The subset works: `varied` lists exactly the three prices, the discount rate stays 0.05 (2 min 36 s, 25 calls, 0 cards). Still fails: "P10 and P90 are not available: gemini sample_uncertainty reports only P5, P50 and P95"; and the figures are 15 digits (53.976480849763796; QA-099). Reopened for the percentiles.
