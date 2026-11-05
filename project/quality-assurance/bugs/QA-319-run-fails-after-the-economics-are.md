@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -58,6 +58,7 @@ geomind engine:
 
 ## Fix
 
+- 2026-11-05 19:41 UTC: geomind 0.4.132 a04e761; pending deploy
 ## Retest
 
 ## The nested error (QA-E2E-economics-I, 2026-11-05 19:32 UTC, for the fixer)
