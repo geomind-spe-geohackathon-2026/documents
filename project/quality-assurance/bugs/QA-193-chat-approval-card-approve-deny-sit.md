@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 17:05 UTC |
 | Versions | frontend 1.1.114, backend 1.1.104 |
 | Where | https://geomind.team/projects/e4a51b01-9faf-4bbc-819e-2223ef3d9e7b/assistant/chat/01f6cabc-e78c-4227-844e-a9f78e4106b1 (run bf3990c4), viewport 1440x1000 |
-| Fixer | |
+| Fixer | hotfix-front-VII |
 
 ## Steps
 
