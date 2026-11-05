@@ -358,3 +358,14 @@ and the case lead reads it again after they return. When the lead finds an assum
 the case (one `search_rag`), it can read it once before the split and put the part each group needs
 in its brief; the geoscientists then need no Knowledge call. Saves about 10-20 s of the parallel
 stage and ~60 k input tokens per run.
+
+## IMP-031: the reference economics names its price sources
+
+Status: idea (QA-AI-analysis-I, 2026-11-05 17:25 UTC). Every costing answer on the reference case
+ends with "the case names no source document or catalogue row for these prices (its `about` section is
+empty)", runs 389be3c3, 7a7ace73, 57c42f61, 7a70bf41. The sources exist in
+`inputs/hackathon-2026-assumptions.md` (Eurostat, Instrat, DEA sheets, Team) and most values are rows
+of `knowledge/data-economics.csv`. Proposal: give `gemini/examples/hackathon_2026/economics.json` an
+`about.sources` (per key: catalogue row id or citation), so the economist can cite them; or let the
+economist match each case value to a catalogue row (`search_rag`) once and record it. A request to
+gemini needs Sahand's OK (the file is gemini's).
