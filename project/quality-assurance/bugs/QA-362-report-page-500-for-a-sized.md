@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend |
 | Reporter | Sahand (screenshot), Coordinator-V (log) |
@@ -35,7 +35,7 @@ study_origin builds 'with the objective ...' even when the study has no objectiv
 ## Fix
 
 study_origin built the objective clause eagerly; title_of(None) raised. The clause is now built only for a named objective (test added). Backend 1.1.135, deployed 22:54 Trondheim, hotfix-back-lead-II.
-
+- 2026-11-05 21:54 UTC: backend 1.1.135
 ## Retest
 
 Open Design > Report for b_sized: the draft renders; section text names the study without an objective.
