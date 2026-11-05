@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 19:05 UTC |
 | Versions | geomind 0.4.131 (backend live at 19:00 UTC) |
 | Where | api.geomind.team; project QA-TEST QA-AI-case-I 11 (ed373904-e143-412b-b1b5-f4a21fe6f48b); run f4018b98-e445-4c8f-a3f5-4c6eea269d10; case_lead `ask_economics` request-464 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II (m4) |
 
 ## Steps
 
