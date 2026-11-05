@@ -1009,6 +1009,21 @@ Dutch CO2 levy 61.10 (2026); the Instrat 2025 average above is row
   grid electricity; then do not also count the carbon cost inside the electricity price.
 - Future carbon prices are uncertain and politically set; use a range (chapter 13).
 
+### 8.3 Worked example: the carbon cost of a plant
+
+Invented plant (the same as in §9.7): scope 1 emissions 464.6 t CO2e/yr (vented CO2, flared
+methane), scope 2 emissions 2 000 t CO2/yr (grid electricity). At a carbon price of 60 EUR/t:
+
+| View | Emissions priced | Carbon cost |
+|---|---|---|
+| Financial, operator outside any trading system | none, unless a national tax applies | 0 |
+| Financial, operator pays for its own emissions | scope 1: 464.6 t | 27.9 kEUR/yr |
+| Social (shadow price on all emissions) | scope 1 + 2: 2 464.6 t | 147.9 kEUR/yr |
+
+gemini takes the second view: `carbon.price` multiplies the plant's own CO2e (§3.6, §16.7); the
+grid's carbon is already in the electricity price in a market with emissions trading, so pricing
+it again would count it twice (§15 item 6). A social view is a separate study, stated as such.
+
 ---
 
 ## 9. CO2 accounting
@@ -1092,6 +1107,42 @@ efficiencies and its factors; they are assumptions with sources like any other v
 emissions of the reference − yearly emissions of the plant)` in EUR/t CO2e. It compares climate
 options on one scale. It is only defined when the plant emits less than the reference; a negative
 value means the plant is cheaper and cleaner.
+
+### 9.7 Worked example: a plant's footprint and its reference
+
+Invented heat-only plant delivering 60 000 MWh/yr of heat.
+
+| Source | Calculation | t CO2e/yr |
+|---|---|---|
+| Grid electricity | 10 000 MWh x 0.200 t/MWh | 2 000.0 |
+| CO2 dissolved in the brine, vented | measured mass | 300.0 |
+| Methane, flared at 98 % | 50 t CH4: 49 t burnt x 2.75 | 134.8 |
+| Methane, unburnt | 1 t x GWP100 29.8 (fossil, §9.3) | 29.8 |
+| **Plant total** | scope 1 464.6 + scope 2 2 000 | **2 464.6** |
+
+Reference: gas boilers at 90 % efficiency (on the lower heating value) need 66 667 MWh of gas.
+The IPCC default emission factor of natural gas is 56 100 kg CO2/TJ (2006 IPCC Guidelines, Vol. 2,
+ch. 2, table 2.2), 0.202 t/MWh, so the reference emits about 13 467 t CO2/yr. Avoided emissions:
+`13 467 - 2 465 = 11 002 t/yr`, 82 %.
+
+Abatement cost (§9.6): with the plant's annualised cost 2.619 MEUR/yr (§6.6) and an invented
+reference annualised cost of 2.200 MEUR/yr, `(2.619 - 2.200) MEUR / 11 002 t = 38 EUR/t`.
+
+Checks: the grid share dominates such a plant, so the grid factor (§19.2) is the first
+sensitivity of its CO2; a vented gas stream can outweigh years of pump electricity, so the
+gas handling choice (vent, flare, boiler, CHP, §17.7) belongs in every design comparison.
+
+### 9.8 CO2 in gemini and geomind
+
+| Concept | Where |
+|---|---|
+| Plant CO2e per year | `co2` of `estimate_costs` (and of the report) |
+| Grid factor | case `utilities.electricity.co2_intensity` (g/kWh, constant or profile) |
+| Methane GWP and its standard | `economics.accounting.gwp.CH4`, `.standard` |
+| Carbon price | `economics.carbon.price` (on the plant's own CO2e only) |
+| How CO2 moves with the grid factor | `sensitivity` on the case key, with a sourced range (handbook-studies 3.1) |
+
+Quote gemini's `co2` digit for digit; the table of §9.7 explains it and is not for recomputing.
 
 ---
 
@@ -1251,6 +1302,28 @@ changes?" and is often more useful than a tornado. For a price that enters linea
 value follows from the derivative of the output (for example ∂LCTS/∂p_el = E_el / (Q_heat + Q_cold),
 **derived** from section 6.3).
 
+### 12.4 Worked example: sensitivity and a switching value
+
+Two invented designs deliver the same 60 000 MWh/yr: A (LCTS 43.65 EUR/MWh, buys 8 000 MWh/yr of
+electricity) and B (LCTS 41.00, buys 14 000 MWh/yr), both at an electricity price of
+100 EUR/MWh. The electricity price enters linearly:
+`dLCTS/dp = E_el / Q`: A 0.133, B 0.233 EUR/MWh per EUR/MWh.
+
+- Over a sourced price range of 80 to 140 EUR/MWh, A moves 8.0 EUR/MWh, B 14.0.
+- The switching price, where they tie:
+  `43.65 + 0.133 (p - 100) = 41.00 + 0.233 (p - 100)`, so `p = 126.5 EUR/MWh`.
+- Report: "B is cheaper below 126.5 EUR/MWh of electricity, A above; the sourced range reaches
+  140." That sentence is worth more than either base LCTS.
+
+**Steps** for any sensitivity request: (1) list every declared uncertainty of the case
+(handbook-studies 3.1); (2) run the study with the sourced ranges; (3) rank by swing; (4) for
+the top input, find the switching value against the runner-up design; (5) report base, ranges,
+swings and switching values with the study key.
+
+Global methods (variance-based indices that also catch interactions) are described in
+Saltelli et al. (2008); one-at-a-time ranges suffice when the outputs are nearly linear in the
+inputs, as prices are.
+
 ---
 
 ## 13. Uncertainty analysis
@@ -1295,6 +1368,27 @@ Report the mean, the median (P50) and a range such as P5 to P95, with N and the 
 project finance P90 often denotes a value exceeded with 90 % probability (a conservative output);
 say which convention is used. Compare designs on the same draws (common random numbers), so the
 difference between them is not noise.
+
+### 13.4 Worked example: how many draws
+
+Invented study: the LCTS of a design has a standard deviation of about 5 EUR/MWh across the
+uncertain inputs.
+
+| Draws N | Standard error of the mean (`5 / sqrt(N)`) | Good for |
+|---|---|---|
+| 25 | 1.0 EUR/MWh | an impression of the spread |
+| 100 | 0.5 | mean and median |
+| 400 | 0.25 | P10 and P90 |
+| 1 000+ | 0.16 | P5, P95 and the probability of a rare failure |
+
+Tail percentiles need more draws than the mean because few draws fall in the tail: at N = 100
+only about five lie below P5 (Morgan and Henrion 1990 discuss sample sizes for percentile
+estimates). If the study's budget is small, report P10 to P90, say N, and say that P5/P95 would
+need more draws. Each draw that re-simulates the plant costs a simulation; prices alone cost
+only the accounting (§12.1), so price-only uncertainty can afford many more draws.
+
+Reading the result: "LCTS P50 44.1, P10 39.8, P90 49.6 EUR/MWh (N 400, seed 7, 3 draws failed
+the heat requirement)". A design whose failed share is large is fragile, whatever its P50.
 
 ---
 
@@ -1921,6 +2015,11 @@ handbook.
   exchange reference rates (section 19.1).
 - Brealey, R. A., Myers, S. C. and Allen, F., *Principles of Corporate Finance*, McGraw-Hill (any
   recent edition; WACC and NPV chapters; sections 5.6, 7.5).
+- IPCC (2006), *2006 IPCC Guidelines for National Greenhouse Gas Inventories*, Vol. 2 Energy,
+  chapter 2, table 2.2 (default CO2 emission factor of natural gas, 56 100 kg/TJ; section 9.7).
+- Morgan, M. G. and Henrion, M. (1990), *Uncertainty: A Guide to Dealing with Uncertainty in
+  Quantitative Risk and Policy Analysis*, Cambridge University Press (section 13.4).
+- Saltelli, A. et al. (2008), *Global Sensitivity Analysis: The Primer*, Wiley (section 12.4).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
