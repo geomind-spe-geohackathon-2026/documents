@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend |
 | Reporter | functional-qa-3 |
@@ -48,7 +48,7 @@ Fix: backend 1.1.82 (commit 9da4bbf): a successful `patch_plant`, `merge_designs
 that design, as the project's next plant version. Deployed with hotfix-python-II's batch (by
 10:30 UTC). Not covered: a plain `simulate` result still writes no result row (Results 'No
 results'); only recorded studies do (QA-088). The counts 4 / 6 / 7 come from the older plant.
-
+- 2026-11-05 10:01 UTC: deployed in backend 1.1.83 (10:00 UTC, with geomind 0.4.78, gemini 0.6.12) by hotfix-python-II
 ## Retest
 
 (Who, when, result.)
