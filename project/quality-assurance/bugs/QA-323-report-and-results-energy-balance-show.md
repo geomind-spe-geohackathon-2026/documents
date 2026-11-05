@@ -26,3 +26,7 @@ Backend backend part 1.1.125 (energy table adds fuel burned on site and produced
 ## Retest
 
 Report energy table of a plant with produced gas: boiler no longer above 100%.
+
+- 2026-11-05 19:58 UTC, QA-AI-analysis-I, backend 1.1.125, API only: same report (result b7af0082): Table 4.1 has "Fuel burned on site 30.49 GWh" and "Produced gas burned (fuel burned
+  less gas bought) 18.77 GWh" beside "Gas bought 11.72 GWh"; the text says "The plant burns 30.49 GWh of fuel on site:
+  11.72 GWh of gas bought and 18.77 GWh of gas produced with the brine." Verified.
