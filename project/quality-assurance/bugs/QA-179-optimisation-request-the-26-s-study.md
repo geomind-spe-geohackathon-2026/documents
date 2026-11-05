@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 17:12 UTC |
 | Versions | backend 1.1.103/1.1.104 (geomind 0.4.98), API only |
 | Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 1` (4ce816b1-4bd1-48a5-8e77-9414c2b86301); chat fa9cfafb-e39e-4ccd-9dfb-d8427f518c43; run 7a7ace73-e8b5-4291-9252-33fd7240be84 |
-| Fixer | m7 |
+| Fixer | m3 |
 
 ## Steps
 
@@ -75,6 +75,7 @@ gemini's found reports 80 evaluations per design ... not reconciled here".
 
 - 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 - 2026-11-05 19:42 UTC: retest QA-AI-analysis-I 19:21 UTC: design part fixed; analysis lead 7 min / 28 steps / 9 refusals, sensitivity split by reading only the site section
+- 2026-11-05 19:57 UTC: geomind main 737a7cf / 0bdafe8; pending deploy
 ## Retest
 
 - 2026-11-05 19:21 UTC, QA-AI-analysis-I, backend 1.1.118-1.1.120 (geomind 0.4.130, gemini 0.6.26): fresh project
