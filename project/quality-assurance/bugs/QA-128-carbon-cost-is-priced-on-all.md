@@ -13,12 +13,12 @@
 
 ## Steps
 
-1. 
-2. 
+1. Simulate and cost gemini's hackathon example (`gemini/examples/hackathon_2026`).
+2. Read the carbon cost line of the economics.
 
 ## Expected
 
-## Actual
+Carbon is priced on the emissions the plant pays a carbon price for (its own fuel combustion and flared gas). Grid electricity carries its carbon cost inside the electricity price (EU ETS covers power generation), so it is either not priced again or priced only when the case says so.
 
 ## Evidence
 
@@ -27,7 +27,7 @@
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Found by handbook-economics (via Coordinator-IV, 2026-11-05 ~14:20 UTC) while writing handbook-techno-economics.
 
 ## Fix
 
