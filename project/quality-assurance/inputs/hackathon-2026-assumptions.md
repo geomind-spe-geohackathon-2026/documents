@@ -141,11 +141,29 @@ each as one requirement of the case, never `when: always`.
 | Doublet flow limits of the requirements file (maximum, minimum stable) | Per doublet, while that doublet runs; a stopped doublet (zero flow) is no violation of the minimum | Team (reading of "while active" in the file) |
 | Brine cooling limit of the requirements file | Producer to injector temperature drop, per doublet, while running | Team (reading of "producer to injector" in the file) |
 | Equal production and injection volume | Reinjection ratio 0.99999 to 1.00001 while running | Team |
+| Doublet operating days | The 330 days of the requirements file: days with production flow, per doublet, over the year | Organisers (section 2) |
 | Pump intake (only if the design checks it) | Free gas at most 18.75 % of the volume; intake pressure at least 5 bar | Team (catalogue rows `esp-maximum-gas-fraction`, `esp-minimum-intake-pressure`) |
 | Well depth search range | 2000 to 3500 m | Team |
 
 A 1 % tolerance is the margin of a daily model against a synthetic profile, not a service level a
 utility would sign; a design that meets 100 % is better, and the report says how much it misses.
+
+How gemini takes each (one requirement each; the limits are the requirements file's, the
+tolerances above; the form is that of gemini's sample `case.json`):
+
+| Requirement | on / quantity / over / when |
+|---|---|
+| Doublet flow range | doublet / production_flow / each / running; min and max in m3/h |
+| Brine cooling limit | doublet / brine_cooling / each / running; max in K |
+| Operating days | doublet / production_flow / duration / running; max in d |
+| Pump efficiency | doublet / pump_efficiency / (none) / (none); min = max |
+| Full reinjection | doublet / reinjection_ratio / each / running; min and max |
+| Number of doublets | doublet / count / (none) / (none); min and max |
+| Heat delivered, cold delivered | heating_supply, cooling_supply / unmet_share / (none) / (none); max 0.01 |
+
+The supply temperatures are `demand.*.supply_temperature`, not requirements. This case has no
+yearly energy cap; never write one with `over: sum`, which adds the daily power values and gives
+no energy (a cap would be `over: mean` with the energy divided by the period).
 
 ## 5 Economics
 
