@@ -31,4 +31,6 @@ Open the report (or Results) of B_r1_best: one compression chiller (electric) is
 
 ## Fix
 
+Frontend part (hotfix-front-lead, by front-m2): frontend 1.1.133/1.1.134 (bundle see STATUS): Days covered names sources from `labels`, `no_demand` days are 'No demand', cooling never 'backup'; fallback for old results. KPI titles shown as gemini sends them.
+
 ## Retest
