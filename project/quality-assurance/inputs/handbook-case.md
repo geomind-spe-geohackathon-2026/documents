@@ -37,7 +37,8 @@ the design of the plant is `knowledge/handbook-design.md`; the report is
 ### How to read it
 
 Every numbered section stands on its own: read only the section you need. Sections cross-refer
-by number (§n.m). Chapter 12 is a worked example; chapter 11 holds the checklists.
+by number (§n.m). Chapter 0 is the case lead's split plan; chapter 12 is a worked example;
+chapter 11 holds the checklists.
 
 ### Conventions
 
@@ -55,6 +56,13 @@ by number (§n.m). Chapter 12 is a worked example; chapter 11 holds the checklis
 
 ## Table of contents
 
+0. Case checklist for the case lead
+   0.1 How the lead uses it
+   0.2 Group 1: site and subsurface
+   0.3 Group 2: demand series
+   0.4 Group 3: brine and gas
+   0.5 Group 4: economics and requirements
+   0.6 Freedoms the case never holds
 1. What a case is
    1.1 The case and the plant
    1.2 Why the case comes first
@@ -142,6 +150,105 @@ by number (§n.m). Chapter 12 is a worked example; chapter 11 holds the checklis
 Appendix A. Glossary
 Appendix B. Unit pitfalls
 Appendix C. References
+
+---
+
+# 0. Case checklist for the case lead
+
+The lead's split plan, readable on its own: every field gemini's case takes, in four field
+groups, one per geoscientist (at most four, `knowledge/handbook-case.md` is cited by section).
+Field names, units and keys are those of `gemini/gemini/case/` (`site.py`, `demand.py`,
+`utilities.py`, `economics.py`, `time.py`, `requirement.py`); nothing here is a value.
+
+## 0.1 How the lead uses it
+
+1. Read the inputs once (§2.1) and classify every statement (§2.3); write each case field of
+   the four tables below against the passage that holds it, or "none".
+2. Give each geoscientist its group, the passages and the handbook sections of its table. A
+   geoscientist reads Knowledge only and returns, per field: value, unit as the source prints it,
+   source (file and page, Knowledge document and section, connector and origin), quality and range
+   (§4.7, §9), and the flaws it saw (§2.5). It never computes a value (§8.6).
+3. The lead merges the four answers, writes the case once, lists every value that did not come
+   from the user's files in the one confirmation question (§8.5), then asks economics once.
+4. Where the table says **user question**, the value is asked for by its path and unit with no
+   number of the agent (§8.1, step 5), once, with every other gap and flaw.
+
+Source order for every field: user request and answers, project files, Knowledge, connector, then
+the question (§8.1). A field no source gives stays unset and is listed as open; the case holds no
+default (`.claude/memory/feedback-no-defaults.md`).
+
+Source key: **File** = a user input file; **Know** = a Knowledge document (assumptions document
+first, §8.3); **Conn** = a connector (MCP); **Ask** = the one user question.
+
+## 0.2 Group 1: site and subsurface (geoscientist I)
+
+| Field | Comes from | Unit (gemini) | The check | Section |
+|---|---|---|---|---|
+| `site.ground.surface_temperature` | File (brief), Know, Conn, Ask | `degC` | a site value, not a regional average | §4.1 |
+| `site.ground.gradient` | File (well data, brief), Know, Ask | `degC/km` or `K/km` (equal) | a site value; never the reservoir temperature derived by hand | §4.1, §4.3 |
+| `site.reservoir.reference_depth` | File (brief, well report), Ask | `m` | TVD not MD; the depth the pressure and temperature belong to; not the design depth, which is a freedom | §4.2, §7 |
+| `site.reservoir.thickness` | File (reservoir report), Know | `m` | gross or net named by the source | §4.2 |
+| `site.reservoir.permeability` | File (reservoir report), Know | `mD` (gemini converts) | unit is mD not D; range kept as uncertainty | §4.2, §4.7 |
+| `site.reservoir.pressure` | File, Know | `barg` or `bar`, as printed | gauge or absolute named by the source | §4.2, App. B |
+| `site.reservoir.temperature` | File, only if measured | `degC` | never derived by hand: unset without a measurement | §4.3, §10.5 |
+| `site.air.temperature` | File (series), Conn (weather), Know | `degC` | constant or series said; constant is a simplification | §4.6 |
+| `site.air.relative_humidity` | File, Conn, Know | fraction 0 to 1, or `%` as printed | within 0 to 1 after conversion | §4.6 |
+| `site.air.pressure` | File, or elevation | `Pa`, `bar` | with only an elevation, `set_case` applies the standard atmosphere: no value of the agent | §4.6 |
+| `initial_state` of stateful modules | Ask (plant lead names the modules) | per module | no default state: asked, or left to the plant stage | §10.1 |
+| Data quality of each value above | File, Know | text | measured on site, nearby, regional or assumed, recorded with the value | §4.7 |
+
+## 0.3 Group 2: demand series (geoscientist II)
+
+| Field | Comes from | Unit (gemini) | The check | Section |
+|---|---|---|---|---|
+| `time.start`, `time.end`, `time.step` | File (the demand file's span) | date and `d`, `h` | copy from the file's span; `end` excluded; time zone stated or asked | §3.3 |
+| `demand.heating.power` | File (series), or Ask (values or constant) | `MW` (`MWth` is `MW`) | count, gaps, sign, unit against the brief's checking values, season, zero days, base load | §3.1, §3.4, §3.8 |
+| `demand.heating.supply_temperature` | File (brief), Know, Ask | `degC` | a fixed supply is a case value; return on the colder side | §3.5, §3.7 |
+| `demand.heating.return_temperature` | File, Know, or a team design choice with reason | `degC` | below the supply; a design choice is proposed with `source: agent` and its reason | §3.5, §7.3 |
+| `demand.heating.minimum_return_temperature`, `maximum_return_temperature` | File (network data), Know | `degC` | only when a source states them | §3.5 |
+| `demand.heating.return_pressure` | File (network data), Know | `bar`, `barg` as printed | gauge or absolute named | §3.5 |
+| `demand.cooling.power` | File (series), or Ask | `MW` (`MWcool` is `MW`) | as heating; a cold power, not chiller electricity; zero days counted | §3.1, §3.4, §3.6 |
+| `demand.cooling.supply_temperature` | File (brief), Know, Ask | `degC` | return on the warmer side | §3.6, §3.7 |
+| `demand.cooling.return_temperature`, minimum, maximum, `return_pressure` | as heating | `degC`, pressure unit | return above the supply | §3.6 |
+| `demand.cooling.indoor_temperature`, `indoor_relative_humidity`, `dew_point_margin` | File (building data, brief), Know | `degC`, fraction or `%`, `K` | humidity within 0 to 1; sensible against latent load named | §3.6 |
+
+Flaws this group reports at once: a series span that differs from the brief, a unit error, a
+return on the wrong side of its supply, a peak in the wrong season (§2.4, §2.5).
+
+## 0.4 Group 3: brine and gas (geoscientist III)
+
+| Field | Comes from | Unit (gemini) | The check | Section |
+|---|---|---|---|---|
+| `site.fluid.density` | File (fluid analysis, brief), Know | `kg/m3` | stated temperature and salinity noted | §4.4 |
+| `site.fluid.viscosity` | File, Know | `mPa.s` | stated temperature noted | §4.4 |
+| `site.fluid.gas_liquid_ratio` | File, Know | `Nm3/m3` | normal or standard conditions named by the source | §4.5, App. B |
+| `site.fluid.dissolved_gas` (species) | File, Know | mole fractions or `mol%` | adds up to one as the source writes it; the produced gas, never the grid gas | §4.5 |
+| `site.fluid.sand_concentration` | File (fluid analysis), Know | `mg/l` | unit as printed | §4.4 |
+| `utilities.gas.composition` (species) | Know (supplier, assumptions document), Conn, Ask | mole fractions or `mol%` | adds up to one; never the dissolved gas | §5.3 |
+| `utilities.gas.heating_value` | Know, Conn, Ask | per mass, unit as printed | lower or higher heating value named by the source | §5.3 |
+
+## 0.5 Group 4: economics and requirements (geoscientist IV)
+
+| Field | Comes from | Unit (gemini) | The check | Section |
+|---|---|---|---|---|
+| `utilities.electricity.co2_intensity` | File (brief), Know, Conn | `g/kWh` as printed | location or market basis named; constant is a simplification | §5.1, §5.2 |
+| `utilities.electricity.import_limit`, `export_limit` | File (grid operator) | `MW` | only when a source states them; else unset | §5.1 |
+| `requirements` (`name`, `on`, `quantity`, `unit`, `over`, `when`, `min`, `max`) | File (brief: every "shall", "must", "at most", "between") | the quantity's unit | one rule per requirement; a range is one; durations as durations; fractions without unit; `when: running` for supply temperatures | §6.3 to §6.11 |
+| Tolerances (demand met, exact ratios) | Know, Ask (an assumption, confirmed) | fraction | named as assumptions with a reason | §6.8 |
+| Rules gemini cannot express | File | text | kept in the case's `about`, named as open | §6.10 |
+| `economics.currency`, `price_year`, `discount_rate`, `analysis_period` | Know (assumptions document, catalogue), Conn, Ask | currency, year, fraction, `a` | one source per key; converted values name the conversion | §5.4; economics handbook |
+| `economics.capex.*`, `opex.*` (`chemical`, `waste_disposal`, `fixed`, `per_energy`) | Know (`knowledge/data-economics.md`), Ask | money per basis, as the key's unit | each equipment kind a price from a source, else `open` | §5.4; economics handbook |
+| `economics.energy.*` (electricity, gas prices) | Know, Conn, File (tariff) | money per energy | price year stated | economics handbook |
+| `economics.carbon.price`, `accounting.gwp`, `accounting.allocation.heat_cost_share` | Know, Ask | money per mass, none, fraction | the GWP set named; allocation asked only when heat and cold are both delivered | economics handbook |
+| `economics.revenue.heat`, `cold`, `subsidy.*` | File, Know | money per energy | no subsidy unless a source states one | economics handbook |
+
+The economics questions follow the case question and are one question (§8.5).
+
+## 0.6 Freedoms the case never holds
+
+Well depth, number of doublets, flows, set points, units and their sizes, backup policy, gas
+handling (§7.2). A bound the brief puts on one is a requirement (group 4); the choice is the
+design's. A return temperature no file gives is the one team choice that sits in the case (§7.3).
 
 ---
 

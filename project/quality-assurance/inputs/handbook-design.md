@@ -24,6 +24,7 @@ little. A plant that merely runs in a simulation is not yet a good plant.
 - Every chapter starts with what it is for, and every section (`##`) stands on its own: an agent
   may read only the section it needs. Cross-references name the section number (for example
   "see 4.4").
+- Chapter 0 is the design lead's short path: read it first, then only the sections it names.
 - Chapters 1 to 10 are engineering and hold for any tool. Chapter 11 maps that engineering onto
   gemini: its plant files, modules, roles and the GeoMind skills that drive it. Chapter 12 is one
   worked example (the GEMINI hackathon 2026 case). The appendices hold the formulas, the rules of
@@ -51,6 +52,12 @@ giving one.
 
 ## Table of contents
 
+0. Design path in gemini
+   - 0.1 How the lead uses it
+   - 0.2 Choosing the plant family
+   - 0.3 Module groups for up to four engineers
+   - 0.4 The order: build, size, simulate, check, optimize
+   - 0.5 Failure to fix
 1. Introduction and design philosophy
    - 1.1 What a good plant is
    - 1.2 Demand first
@@ -149,6 +156,102 @@ giving one.
 
 ---
 
+# 0 Design path in gemini
+
+For the design lead: one section to plan a plant from. It chooses a family, splits the modules
+among up to four engineers, fixes the order of work and says what to do when a check fails. The
+reasons and the numbers are in chapters 1 to 11; this chapter only points to them. No value is
+given here: every value comes from the case, Knowledge, a connector, or a gemini calculation, and
+is approved with its source (1.5). General: any case, any site.
+
+## 0.1 How the lead uses it
+
+1. Read the case (demand peaks and energy, site, requirements, economics; Chapter 2) and choose
+   one or more families (0.2).
+2. Give each engineer of 0.3 its modules, the case values it needs, and the chapters it reads. An
+   engineer returns module values with their sources; it writes no project file. A number that
+   needs gemini (a pump power, a COP at a lift) is asked of the lead, who evaluates the module
+   (skill `evaluating-a-module`).
+3. The lead builds the whole plant in one write, then follows 0.4, and re-splits a failure to the
+   owner of 0.5.
+
+## 0.2 Choosing the plant family
+
+The test is the case, not the habit. Compare at least two materially different families (10.7);
+mark a family gemini cannot run `blocked` with the reason.
+
+| Family (8.1) | Choose when (8.2) | gemini class (closest) | Read |
+|---|---|---|---|
+| A. Direct use + peak boiler | brine hotter than the supply plus the approach; no cooling | `HeatingPlant`, `DoubletHeatPlant` | 6.1, 6.5 |
+| B. Heat pump boost + peak boiler, compression chiller | brine somewhat colder than the supply, moderate lift, affordable electricity | `HeatingHeatPumpCoolingPlant` | 6.3, 6.4, 7.4 |
+| C. Direct use + absorption cooling | brine hot enough in summer to drive the chiller; doublets otherwise idle | `HeatingAbsorptionCoolingPlant` | 7.2, 7.8 |
+| D. Heat pump boost + all chillers | as B, and each chiller covers a distinct part of the cold load duration curve | `HeatingCoolingPlant` | 7.7, 7.8 |
+| E. Direct use + all chillers | as A with D's cooling | `HeatingFullCoolingPlant` | 7.7, 7.8 |
+| F. Hybrid with gas use | co-produced gas substantial: burn it for heat or power, flare only the surplus | a plant file built from modules (the sample of 8.1) | 5.5, 5.6 |
+| G. Boiler + CHP on the secondary side | co-produced gas substantial, no cooling | `BoilerCHPPlant` | 5.5, 6.6 |
+| H. Low-temperature aquifer with heat pump | low-temperature reservoir | `ATESPlant` | 6.4, 6.7 |
+| I. District energy on an aquifer store | heating and cooling networks on one store | `DistrictEnergyPlant` | 6.7, 7.7 |
+
+## 0.3 Module groups for up to four engineers
+
+One engineer per group; the lead owns the wiring and what the groups share. Module classes are
+those of 11.3 (`gm.modules.<Name>`) and the plant classes of 11.5.
+
+| Engineer | Group | gemini module classes | Chapters |
+|---|---|---|---|
+| I | Subsurface and wells | `ProductionReservoir`, `InjectionReservoir`, `ThermalDecline`, `BoreholeField`, `DownholeHeatExchanger`, `ProductionWell`, `InjectionWell`, `ESP`, `LineShaftPump`, `InjectionPump`, `Formation`; plant classes `Doublet`, `NodalDoublet`, `MultiWellPlant` | 3, 4 |
+| II | Treatment and gas | `Degasser`, `Desander`, `Filter`, `InhibitorDosing`, `Flare`, `Blowdown`, `GasCompressor`, `GasMakeup`, `GasGrid`, `ChemicalGrid`, `WasteGrid` | 5 |
+| III | Heating | `HeatExchanger`, `HeatPump` (heating mode), `Boiler`, `ElectricBoiler`, `CHP`, `ThermalStorage`, `HeatingGrid` | 6, 8.3, 9 |
+| IV | Cooling | `AbsorptionUnit`, `AdsorptionChiller`, `HeatPump` (cooling mode, an electric chiller), `Cooler`, `IceStorage`, `CoolingGrid`, `Atmosphere` | 7 |
+| Lead | Shared | `Pipe`, `Mixer`, `Splitter`, `Valve`, `PressurizationTank`, `CirculationPump`, `CentrifugalPump`, `ElectricityGrid`, `PIDController`, `ORC`, `FlashTurbine`, `Separator`, `AquiferStorage`; the plant `type`, `size`, `params.backup`, `params.control`, `fluids`, every connection | 8, 9, 11.2 |
+
+Interfaces where two groups meet, settled by the lead before the engineers start: the brine
+temperature and flow at the exit of the wells (I to the others); the gas stream out of the
+degasser (II to III for a boiler or CHP that burns it); the hot water that drives an absorption
+chiller (III to IV); the brine order of the cascade (6.2). A module whose class is unsure is read
+with `describe_module` (skill `evaluating-a-module`) before its values are asked.
+
+## 0.4 The order: build, size, simulate, check, optimize
+
+| Step | What | Gate to the next step | Read |
+|---|---|---|---|
+| 1. Build | start from a complete plant file or a class; fill every `issue` from a source; backup policy with its reason; pump intake limits on every ESP | `missing` count is 0 | 11.2, 11.5, 8.4, 4.4 |
+| 2. Size | `size_plant`; read what was sized, what stayed unchanged, what is broken | no broken module in the notes | 8.3, 10.1 |
+| 3. Simulate a short window | around the critical day (the heating peak; the cooling peak too if cold is made from brine heat) | no failed step | 11.6 |
+| 4. Check | `check_results`; fix what it names, owner by owner (0.5); after any change every earlier result of that design is stale | `feasible` true | 11.7 |
+| 5. Simulate the whole period and check again | the engineering checks beyond the verdict | `feasible` true on the whole period | 11.7 |
+| 6. Optimize | few leaves with ranges that come from the case or the user | a feasible, better result | 10.1, 10.2, 10.6 |
+| 7. Compare and record | families by one study; simulate the best for the whole period and check it; record design, result and study key | recorded in the shared state | 10.7, 11.6 |
+
+Skills: `designing-a-plant` (build), `simulating-a-plant` (size, simulate, optimize),
+`reading-results` (check), `comparing-designs` (compare), `working-in-a-team` (record).
+Three rounds on the same failing requirement without progress: stop, record the best variant and
+the conflict with its owner (1.4).
+
+## 0.5 Failure to fix
+
+Read the worst step of the failing reason first (11.7), then the module's results around it
+(`read_result`), then change one owner's values. This is the table of 11.8, moved here.
+
+| Symptom | Engineering cause | Fix | Owner (§0.3) |
+|---|---|---|---|
+| `missing_value` naming a path | a design value or a case value not stated | give the value from a source; for a designed doublet give the design value (`depth`, `well_diameter`), not the derived child [gemini: `docs/guide.md`] | lead |
+| `missing_value` on `params.backup` | backup policy not stated | state `peak` or `none` with its reason (8.4) | lead |
+| Plant file refused for a case value | a site or network value written in the plant | remove it; it belongs to the case (11.1) | lead |
+| Pipe `PhysicsError`: outlet pressure below zero | friction and static drop exceed the inlet pressure: pipe too narrow or too long for its flow, or the loop pressure too low [gemini: `gemini/modules/piping/pipe.py`] | enlarge the diameter, shorten the pipe, or raise the loop pressure; check the flow is the intended one | lead (pipe's module group) |
+| `bound` on `intake_pressure` or `intake_gas_fraction` | pump set too shallow for the drawdown, or too much flow per well, or too deep a design | set deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) | I |
+| Heat pump: no duty, source below the minimum | brine already at or below `minimum_source_outlet_temperature` at the evaporator, or a lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, or check the limit (6.4) | III |
+| Unit off: below minimum part load | machine too large for a low-demand step | smaller units, or two units, or accept and cover by backup (9.2) | III or IV |
+| Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | drive from hotter water (first in the cascade), larger cooler, or another chiller (7.2) | IV |
+| `heat_delivered` / `cold_delivered` fails | not enough capacity on peak days or outage days, or a unit capped | read the worst step; add boiler/chiller capacity, or check the backup policy covers outage days (8.4, 8.5) | III (IV for cold) |
+| `brine_cooling_limit` fails | brine cooled beyond the cap (heat pump on brine too large or its source limit missing) | set the heat pump's `minimum_source_outlet_temperature` to the production temperature less the cap, or lower its capacity | III |
+| `running_time_limit` fails | a doublet runs more days than allowed | outages policy `lowest_demand`, a second doublet, backup that covers the days off (8.5) | I, II |
+| `numerical` reason | a loop that does not close, or water returned into a fixed-temperature supply | plan where each stream goes; do not mix a colder return into a fixed supply (skill `designing-a-plant`, "What gemini can run") | lead |
+| Supply temperature rule fails on zero-demand days | a rule with `when: always` | a case change: the rule holds only while that supply runs (9.4, QA-091); never force circulation | lead; case lead for the rule |
+| `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call (QA-083) | lead |
+
+---
+
 # 1 Introduction and design philosophy
 
 This chapter says what the designer optimises and in what order: demand, then reliability, then
@@ -215,7 +318,7 @@ Every design, by hand or by agent, follows the same loop:
 4. **Size** it: first capacities from the demand peaks and the subsurface (8.3, 10.1).
 5. **Simulate** a short window around the critical day, then the whole period.
 6. **Check** the results against the requirements and the safe windows of each unit (11.7).
-7. **Fix** what the check names, owner by owner; never loosen a requirement (11.8).
+7. **Fix** what the check names, owner by owner; never loosen a requirement (0.5).
 8. **Optimise** the few values that matter, inside sensible ranges (Chapter 10).
 9. **Compare** the families on the same case and objective, and pick one with its reasons.
 
@@ -347,7 +450,7 @@ dew-point margin is a case value.
   if measured at the buildings, add them. Ask which, never assume.
 - **Pressure losses** set the network pump. In a plant model, a pipe whose friction plus static
   drop exceeds its inlet pressure has no physical solution (in gemini, a `PhysicsError` at the
-  pipe, see 11.8): give the pipe a sensible diameter for its flow, and the loop enough pressure.
+  pipe, see 0.5): give the pipe a sensible diameter for its flow, and the loop enough pressure.
 
 A sensible pipe velocity for district heating water is of the order of 1 to 3 m/s; higher
 velocities raise friction with the square of the velocity [textbook: Frederiksen and Werner 2013;
@@ -1435,7 +1538,7 @@ added to a class (for example `thermal_storage`) through `build_plant` with `fro
    CHP), what is broken.
 6. **Simulate a short window** around the critical day (the heating peak; also the cooling peak if
    cold is made from brine heat), check, fix; then **simulate the whole period** and check.
-7. **Fix** what the check names (11.8), owner by owner. After any change every earlier result of
+7. **Fix** what the check names (0.5), owner by owner. After any change every earlier result of
    that design is stale.
 8. **Optimise** few leaves with ranges that come from the case or the user (10.1, 10.2).
 9. **Compare** families with one study (10.7); simulate the best for the whole period and check it
@@ -1481,22 +1584,8 @@ Engineering checks beyond the verdict (read them in every full-period result):
 
 ## 11.8 Common failures and their engineering fixes
 
-| Symptom | Engineering cause | Fix |
-|---|---|---|
-| `missing_value` naming a path | a design value or a case value not stated | give the value from a source; for a designed doublet give the design value (`depth`, `well_diameter`), not the derived child [gemini: `docs/guide.md`] |
-| `missing_value` on `params.backup` | backup policy not stated | state `peak` or `none` with its reason (8.4) |
-| Plant file refused for a case value | a site or network value written in the plant | remove it; it belongs to the case (11.1) |
-| Pipe `PhysicsError`: outlet pressure below zero | friction and static drop exceed the inlet pressure: pipe too narrow or too long for its flow, or the loop pressure too low [gemini: `gemini/modules/piping/pipe.py`] | enlarge the diameter, shorten the pipe, or raise the loop pressure; check the flow is the intended one |
-| `bound` on `intake_pressure` or `intake_gas_fraction` | pump set too shallow for the drawdown, or too much flow per well, or too deep a design | set deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) |
-| Heat pump: no duty, source below the minimum | brine already at or below `minimum_source_outlet_temperature` at the evaporator, or a lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, or check the limit (6.4) |
-| Unit off: below minimum part load | machine too large for a low-demand step | smaller units, or two units, or accept and cover by backup (9.2) |
-| Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | drive from hotter water (first in the cascade), larger cooler, or another chiller (7.2) |
-| `heat_delivered` / `cold_delivered` fails | not enough capacity on peak days or outage days, or a unit capped | read the worst step; add boiler/chiller capacity, or check the backup policy covers outage days (8.4, 8.5) |
-| `brine_cooling_limit` fails | brine cooled beyond the cap (heat pump on brine too large or its source limit missing) | set the heat pump's `minimum_source_outlet_temperature` to the production temperature less the cap, or lower its capacity |
-| `running_time_limit` fails | a doublet runs more days than allowed | outages policy `lowest_demand`, a second doublet, backup that covers the days off (8.5) |
-| `numerical` reason | a loop that does not close, or water returned into a fixed-temperature supply | plan where each stream goes; do not mix a colder return into a fixed supply (skill `designing-a-plant`, "What gemini can run") |
-| Supply temperature rule fails on zero-demand days | a rule with `when: always` | a case change: the rule holds only while that supply runs (9.4, QA-091); never force circulation |
-| `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call (QA-083) |
+The table is section 0.5 (symptom, cause, fix, owner). The rule that belongs to chapter 11 stays
+here:
 
 Three rounds on the same failing requirement without progress: stop, record the best variant and
 the conflict with its owner (1.4).
@@ -1685,7 +1774,7 @@ the hackathon design guide in Knowledge]:
 - QA-091: a supply temperature rule `when: always` fails on the 146 days without cooling demand;
   the rule holds only while the supply runs; never force circulation (9.4).
 - QA-082: case values written into a plant are refused (11.1).
-- QA-083: an inlet is `<module>.<port>`; after an internal error change the input (11.8).
+- QA-083: an inlet is `<module>.<port>`; after an internal error change the input (0.5).
 - QA-104: `unmet_share` with failed steps is undecided; fix the steps first (11.7).
 - QA-119: change the plant's depth, not the case's reference depth (3.2).
 
