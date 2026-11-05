@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | backend,frontend |
 | Reporter | Sahand (screenshot) |
@@ -62,3 +62,4 @@ Report draft and PDF export: numbered sections, caption and text after every fig
   checked, frontend scope). Gaps filed as QA-338: section 7 Studies says only "This result is not a sensitivity or
   uncertainty study" for an optimisation result (no reading of the search), and unmet demand is printed as "2.01e-12 MWh
   of demand is not met". Report: `../evidence/QA-313/report-b7af0082-noimg.md` (images removed).
+- 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:59 UTC: numbered sections, captions, text (md); gaps QA-338
