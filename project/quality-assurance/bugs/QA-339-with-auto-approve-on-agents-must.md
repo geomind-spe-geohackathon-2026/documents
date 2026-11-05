@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | Sahand |
 | Found | 2026-11-05 19:59 UTC |
 | Versions | live 2026-11-05 20:58 Trondheim |
 | Where | any chat with Auto-approve on |
-| Fixer | |
+| Fixer | m2 |
 
 ## Steps
 
