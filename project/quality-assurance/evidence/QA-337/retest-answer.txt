@@ -1,0 +1,513 @@
+I need the design report of this project for the hackathon submission.
+21:34
+Copy
+6 agents
+Coordinator
+· done
+· 1 step
+· 2.5 K tokens
+· 0 USD
+· 2.3 s
+Project lead
+· done
+· 9 steps
+· 135 K tokens
+· 0.006 USD
+· 7 min 32 s
+Case lead
+· done
+· 5 steps
+· 134 K tokens
+· 0.005 USD
+· 1 min 20 s
+Design lead
+· done
+· 10 steps
+· 361 K tokens
+· 0.006 USD
+· 44 s
+Reviewer
+· done
+· 4 steps
+· 68.3 K tokens
+· 0.002 USD
+· 16 s
+Explainer
+· done
+· 10 steps
+· 445 K tokens
+· 0.011 USD
+· 3 min 44 s
+Total
+· done, 2 needed another try
+· 72 steps
+· 1.15 M tokens
+· 0.03 USD
+· 7 min 36 s
+Design report — GEMINI hackathon submission (case hackathon_2026, 2027 demand year)
+
+Recommended design: design/v1 (HackathonPlant), result result/9b0db55da13a4a5b — gemini's verdict feasible, 15 of 15 requirement checks passed, 0 failed steps, not stale, no unconfirmed assumption. Alternative: design/v2 (HeatingAbsorptionCoolingPlant), result result/5d243b9525aa0719 — also feasible, ranked second. Comparison: study/hackathon_versions_compare — one run_study, method run, over design/v1 and design/v2 on the current case, 2 designs tried, current: true.
+
+How this report answers the brief
+
+The brief (GEMINI_Hackathon_Challenge_Requirements.pdf, read by the case team in finding d81b7e2d) has no explicit scoring rubric: its criteria are its objective/scope statements and its constraints (p.1 §1, p.2 §3). Mapped to the sections below:
+
+Criterion of the brief
+	
+Where answered
+
+
+Problem analysed (annual heating + cooling load, 2027, fixed reservoir inputs)
+	
+this preamble, Design, Delivered
+
+
+Models selected and run, gaps found and filled
+	
+this preamble, Decisions
+
+
+Alternatives compared
+	
+Decisions (ranked table, study/hackathon_versions_compare)
+
+
+Final choice explained
+	
+Decisions
+
+
+Technologies chosen and sized, heating and cooling capacities
+	
+Design, Schematic, Capacities
+
+
+Costs
+	
+Costs
+
+
+Autonomous verification (thermal, hydraulic, operational constraints)
+	
+Checks
+
+
+Uncertainty
+	
+Open points (declared in the case, not propagated — no uncertainty study was run)
+
+Workflow, as it ran. The case was set from the brief's fixed inputs and the two 2027 demand files and checked against them by the case team; that check found no gap and changed nothing (case_changes returns no change). The demand is a daily 2027 profile in data/demand.csv (heating column heating_demand_MWth, cooling column cooling_demand_MWcool), with heating supply/return 100/60 °C and cooling supply/return 20/25 °C fixed by the case. Two plant versions were built and saved as project versions, design/v1 and design/v2, differing in how the 100 °C supply is reached and how cold is made. Both were then run on the same case in one run_study (study/hackathon_versions_compare, method run, metrics heating_coverage, cooling_coverage, lcts, annualised_cost, co2), which wrote design/hackathon_versions_compare_v1 and design/hackathon_versions_compare_v2; the recommended version was then simulated over the whole year and checked by gemini (result/9b0db55da13a4a5b). No case value, design or study was changed while writing this report, and no new study, sensitivity or uncertainty sample was run.
+
+Design
+
+design/v1, plant HackathonPlant, family B/D hybrid: geothermal brine → heat exchanger → heat-pump boost → peak boiler for heating, with an absorption chiller on the hot-water drive for cooling.
+
+Doublets: two, d0 and d1, each 2500 m deep (the case's reservoir reference depth, site.reservoir.reference_depth), each at a nominal production flow of 300 m3/h (the case's cap, requirements.production_flow_range max 300 m3/h), pump efficiency 0.7, well diameter 0.244 m, drainage radius 1000 m.
+Brine train: production mixer → degasser (separation efficiency 1.0) → desander (separation efficiency 0.9) → dosing (10 ppm, product concentration 0.3) → hx → heat_pump.source_in → injection splitter back to d0.return_in and d1.return_in.
+Heat exchanger: counterflow, thermal conductance 1500000.0 W/K, hot nominal mass flow 171.7 kg/s, cold nominal mass flow 178.0 kg/s, fouling threshold 0.15.
+Heat pump: HeatPump in heating mode, capacity 15 MW, Carnot COP model with carnot_fraction 0.5, minimum temperature lift 10 K, minimum source outlet temperature 47 °C. Realised COP over the year: 3.8259.
+Peak boiler: 30 MW, efficiency 0.9, supply margin 0 K, fed by makeup (co-produced gas plus gas grid).
+How the 100 °C supply is reached: the heating return (60 °C, demand.heating.return_temperature) is warmed in the counterflow exchanger by the brine, lifted by the 15 MW heat pump, and trimmed to the fixed 100 °C supply by the boiler through the loads splitter. The boiler carries only 253.9 MWh of the year's heat; the heat pump and the exchanger carry the rest.
+How cold is made: an absorption chiller (AbsorptionUnit, mode chiller) of 10 MW cooling capacity, thermal COP 0.7, minimum driving temperature 80 °C, minimum driving difference 10 K, auxiliary power ratio 0.01, fed from the hot-water splitter (loads.branch2_out → chiller.generator_in) and returning to heat_return. Its rejection heat goes to a 40 MW dry cooler (chiller_cooler, approach 5 K, specific fan power 0.02, setpoint 15 °C) and back to the chiller.
+Where the gas goes: the reservoir's co-produced gas leaves the degasser to makeup, which also takes the gas grid; makeup.fuel_out feeds the boiler and makeup.excess_out goes to the flare (combustion efficiency 0.98). Gas bought over the year: 0 MWh — the co-produced gas covers the boiler's small duty.
+Backup policy: backup: peak — the boiler can cover the whole heating peak with the doublets off. Dispatch is least_cost, outages at lowest_demand.
+Schematic
+
+design/v1 (HackathonPlant), as stored in the design's schematic:
+
+Brine: d0.supply_out and d1.supply_out → production mixer → degasser → desander (waste to waste grid) → dosing (chemicals from chemicals grid) → hx.hot_in → hx.hot_out → heat_pump.source_in → heat_pump.source_out → injection splitter → d0.return_in, d1.return_in.
+Heating water: heat_users.return_out → heat_return mixer → hx.cold_in → hx.cold_out → heat_pump.sink_in → heat_pump.sink_out → boiler.fluid_in → boiler.fluid_out → loads splitter → loads.branch1_out → heat_users.supply_in (100 °C).
+Chilled water: cool_users.return_out (25 °C) → chiller.chilled_in → chiller.chilled_out → cool_users.supply_in (20 °C).
+Chiller drive and rejection: loads.branch2_out → chiller.generator_in → chiller.generator_out → heat_return.branch2_in; chiller.cooling_out → chiller_cooler.fluid_in → chiller_cooler.fluid_out → chiller.cooling_in, with air.air_out → chiller_cooler.air_in → air.air_in.
+Gas: degasser.gas_out → makeup.gas_in; gas_grid.gas_out → makeup.grid_in; makeup.fuel_out → boiler.fuel_in; makeup.excess_out → flare.gas_in; boiler.flue_out and flare.flue_out → air.gas_in; flare.loss_out and boiler.loss_out → air.heat_in.
+Electricity: grid.power_out → d0.power_in, d1.power_in, heat_pump.power_in, chiller.power_in, chiller_cooler.power_in.
+Capacities
+
+Peaks of the case's demand: peak heat 30.0 MW, peak cold 10.0 MW (compute_kpis on result/9b0db55da13a4a5b).
+
+Unit
+	
+Kind
+	
+Capacity
+	
+Peak use in the run
+	
+Share of capacity
+
+
+d0
+	
+production pump
+	
+300 m3/h
+	
+300 m3/h
+	
+100.0 %
+
+
+d1
+	
+production pump
+	
+300 m3/h
+	
+300 m3/h
+	
+100.0 %
+
+
+hx
+	
+heat exchanger
+	
+1500000.0 W/K
+	
+not measured — "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+	
+—
+
+
+heat_pump
+	
+heat pump
+	
+15 MW
+	
+15 MW
+	
+100.0 %
+
+
+boiler
+	
+boiler
+	
+30 MW
+	
+2.636 MW
+	
+8.787 %
+
+
+chiller
+	
+absorption chiller
+	
+10 MW
+	
+10 MW
+	
+100.0 %
+
+
+chiller_cooler
+	
+cooler (dry)
+	
+40 MW
+	
+24.386 MW
+	
+60.96 %
+
+Reading: the two doublets, the heat pump and the absorption chiller all run at their capacity at the peak — they set the plant's limit. The boiler is a peak backup (8.787 % of its 30 MW) and the dry cooler is sized well above its peak use (60.96 %), both deliberately oversized for the backup: peak policy and for summer rejection.
+
+Delivered
+Heat delivered: 111670 MWh over the 2027 year, against the case's heating demand, with heating coverage 1.0 and unmet heat 0 MWh (1.1366e-11 MWh) — the plant meets the demand exactly, with no surplus (heat surplus 1.8217e-12 MWh).
+Cold delivered: 23743 MWh, against the case's cooling demand, with cooling coverage 1.0 and unmet cold 0 MWh (2.0103e-12 MWh); cold surplus 0 MWh.
+Heat by source: geothermal heat 91399 MWh (geothermal heat share 81.85 %), boiler heat 253.9 MWh; the heat pump's output is the brine heat it lifts plus its compressor work, and its realised COP is 3.8259.
+Cold by source: geothermal cold 23743 MWh, geothermal cold share 100.0 % — all cold is made by the absorption chiller on geothermal/boiler hot water, with no compression chiller.
+Electricity bought: 26728 MWh, of which 20015 MWh by the heat pump; electricity sold 0 MWh. Gas bought: 0 MWh (the co-produced gas covers the boiler). Plant losses 31339 MWh.
+Costs
+
+Economic basis, once: currency EUR, price year 2015 (read_case section economics); discount rate 0.05, analysis period 25 yr, heat/cold revenue 60 EUR/MWh each, electricity 105.75 EUR/MWh, gas 39.92 EUR/MWh, carbon 57.03 EUR/t, heat cost share 0.8; gemini scales annual figures to a year of 365.25 days.
+
+Metric
+	
+Value
+
+
+Investment (capex)
+	
+34.636 MEUR
+
+
+Operating cost (opex)
+	
+3.6539 MEUR/yr
+
+
+Annualised cost
+	
+6.1114 MEUR/yr
+
+
+Cost of heat (LCOH)
+	
+43.753 EUR/MWh
+
+
+Cost of cold (LCOC)
+	
+51.445 EUR/MWh
+
+
+Cost of thermal supply (LCTS)
+	
+45.102 EUR/MWh
+
+
+Net present value
+	
+28.453 MEUR
+
+
+Payback time
+	
+7.7377 yr
+
+
+CO2
+	
+13.774 kt
+
+Capex parts (MEUR): heat pump 11.068, dry cooler 4.0, absorption chiller 3.0, injectors 3.0978 each, wells 2.6586 each, boiler 1.8219, degasser 1.0, heat exchanger 0.75, risers 0.43921 each, production pumps 0.22765 each, flare 0.1, gas makeup 0.05. Opex parts (MEUR/yr): electricity 2.8284, CO2 0.32847, fixed 0.38751, chemical 0.098042, waste 0.011423, fuel 0.0. CO2 parts: direct 4.9021 kt, grid electricity 8.0184 kt (at the case's 300 g/kWh), methane 0.028643 kt (GWP 29.8, IPCC AR6).
+
+LCOH and LCOC rest on the case's heat_cost_share of 0.8; LCTS is the whole cost over heat plus cold and is the ranking metric. No economic value is missing from the case, and no assumption of the design is unconfirmed.
+
+Checks
+
+gemini's verdict: feasible — reasons empty, 15 of 15 requirement checks passed, 0 failed steps, no numerical or bound reason (result/9b0db55da13a4a5b, reviewer's report). The run's window is the case's whole year, 2027-01-01 → 2028-01-01 (365 d), so the result is not stale.
+
+Requirement
+	
+Worst value
+	
+Limit
+	
+Verdict
+
+
+Production flow range (d0)
+	
+300 m3/h
+	
+max 300 m3/h (min 50)
+	
+passed
+
+
+Production flow range (d1)
+	
+300 m3/h
+	
+max 300 m3/h (min 50)
+	
+passed
+
+
+Brine cooling limit (d0)
+	
+35.516 K
+	
+max 40 K
+	
+passed
+
+
+Brine cooling limit (d1)
+	
+34.771 K
+	
+max 40 K
+	
+passed
+
+
+Running time limit (d0)
+	
+330 d
+	
+max 330 d
+	
+passed
+
+
+Running time limit (d1)
+	
+330 d
+	
+max 330 d
+	
+passed
+
+
+Pump efficiency (d0)
+	
+0.7
+	
+0.7
+	
+passed
+
+
+Pump efficiency (d1)
+	
+0.7
+	
+0.7
+	
+passed
+
+
+Full reinjection (d0)
+	
+0.99999
+	
+0.99999–1.00001
+	
+passed
+
+
+Full reinjection (d1)
+	
+0.99999
+	
+0.99999–1.00001
+	
+passed
+
+
+Doublet count
+	
+2
+	
+1–3
+	
+passed
+
+
+Heat delivered (unmet share)
+	
+0
+	
+max 0.01
+	
+passed
+
+
+Cold delivered (unmet share)
+	
+0
+	
+max 0.01
+	
+passed
+
+
+Heating supply temperature
+	
+100 degC
+	
+100 degC
+	
+passed
+
+
+Cooling supply temperature
+	
+20 degC
+	
+20 degC
+	
+passed
+
+The case's requirements list states eight named limits; the run judged fifteen checks because the per-unit limits (over: each, over: duration) are checked per doublet and the two fixed supply temperatures of the demand are checked as well. Nothing was "not judged" in this run (not_assessed 0).
+
+Open points
+No uncertainty or sensitivity study was run for this submission, so the case's declared uncertainties are not propagated: permeability 200 mD (triangular 100–400), temperature gradient 30 K/km (normal, std 2, 25–35), electricity price 105.75 EUR/MWh (uniform 80–140), gas price 39.92 EUR/MWh (triangular 25–70), carbon price 57.03 EUR/t (triangular 30–110), discount rate 0.05 (normal, std 0.01, 0.02–0.08). LCOH, LCOC, LCTS, NPV, payback and CO2 above are single-point values on the case's central values.
+NPV and payback rest on the case's revenue prices of 60 EUR/MWh for heat and for cold, which the brief does not state; they are case values, not a market study.
+LCOH/LCOC rest on the case's heat_cost_share of 0.8; a different allocation moves both.
+No margin below the hard caps. Production flow sits exactly at 300 m3/h and running time exactly at 330 d, and brine cooling reaches 35.516 K of the 40 K cap. gemini's verdict is feasible, but a solver overshoot or a colder year would leave no headroom.
+The heat exchanger's UA (1500000.0 W/K) was not sized by gemini — size keeps the plant's UA — so its approach is a design value, not a sized result; the run reports no peak use for it.
+The boiler (30 MW) and the dry cooler (40 MW) are oversized relative to their peak use (2.636 MW and 24.386 MW); that is the backup: peak policy and summer rejection, not a sized optimum.
+CO2 is dominated by bought electricity (8.0184 kt of 13.774 kt) at the case's 300 g/kWh; a cleaner grid changes the ranking margin against design/v2.
+The brief has no explicit scoring rubric (finding d81b7e2d), so compliance is judged against its objective/scope statements and its constraint table, not against published marks.
+Decisions
+
+Ranked comparison — study/hackathon_versions_compare (one run_study, method run, over design/v1 and design/v2 on the current case; 2 designs tried; current: true):
+
+Design
+	
+Feasible
+	
+Rank (lcts / annualised_cost / co2)
+	
+LCTS (EUR/MWh)
+	
+Annualised cost (MEUR/yr)
+	
+CO2 (kt)
+	
+Capex (MEUR)
+	
+Pareto
+
+
+design/v1 (HackathonPlant)
+	
+yes
+	
+1 / 1 / 1
+	
+45.10
+	
+6.111
+	
+13.77
+	
+34.64
+	
+yes
+
+
+design/v2 (HeatingAbsorptionCoolingPlant)
+	
+yes
+	
+2 / 2 / 2
+	
+49.28
+	
+6.678
+	
+20.96
+	
+23.96
+	
+no
+
+Both designs reach heating coverage 1.0 and cooling coverage 1.0. The study's best is empty because method run ranks the designs rather than selecting one; the ranking itself puts design/v1 first on all three metrics and makes it the only Pareto design.
+
+Why design/v1 won. It costs 34.64 MEUR against 23.96 MEUR for design/v2 — 10.68 MEUR more, mostly the 11.068 MEUR heat pump — but it buys 0 MWh of gas against 65190 MWh for design/v2, and its boiler carries 253.9 MWh against 76830 MWh. That shows up in opex (3.6539 against 4.978 MEUR/yr, of which fuel 0.0 against 2.6041 MEUR/yr) and in CO2 (13.774 kt against 20.96 kt, of which direct 4.9021 kt against 18.22 kt). The higher capex is repaid within the 25-year period: annualised cost 6.1114 against 6.6778 MEUR/yr, LCTS 45.102 against 49.281 EUR/MWh, LCOH 43.753 against 47.808 EUR/MWh, LCOC 51.445 against 56.213 EUR/MWh. design/v2 is the cheaper plant to build and the dearer plant to run and to emit.
+
+Why this family over the other. design/v2 (family C: direct use plus absorption cooling) reaches the 100 °C supply with the brine and a 30 MW peak boiler alone — its boiler peaks at 17.636 MW (58.79 % of capacity) and it has no heat pump that heats (heat_pump_cop is None: "the plant has no heat pump that heats"). design/v1 inserts a 15 MW heat pump between the exchanger and the boiler, which lifts the brine heat to the supply temperature with a realised COP of 3.8259 and leaves the boiler as a 2.636 MW peak trimmer. Both make cold the same way — a 10 MW absorption chiller at 100 % of capacity, rejected by a 40 MW dry cooler at 24.386 MW peak — so the difference between the versions is entirely in the heating path, and that is where the cost and emission gap comes from.
+
+Depth and number of doublets. Two doublets at 2500 m, each 300 m3/h: 2500 m is the case's reservoir reference depth (site.reservoir.reference_depth), and 300 m3/h is the case's cap. Two doublets are what the case's doublet_count limit (1–3) allows and what the 30 MW heating peak needs at that flow; the run's doublet_count check reads 2 against the 1–3 range.
+
+How the case's supply temperature is reached. Heating: exchanger → 15 MW heat pump (Carnot, carnot_fraction 0.5, minimum lift 10 K) → 30 MW boiler trim, delivering exactly 100 degC at the heating grid (worst value 100 degC against the 100 degC limit). Cooling: the absorption chiller on the hot-water splitter delivers exactly 20 degC at the cooling grid (worst value 20 degC against the 20 degC limit), with the 25 °C return taken back to the chiller.
+
+What the optimisation changed from the sized start. Nothing in this submission: the two versions were compared as saved, in one run_study with method run, and no optimize, size_plant or evolve_structure search was run for this report. The capacities in Capacities are the plant file's values, not a searched optimum.
+
+Choices recorded in the design, for the user to overrule. The problem state records no assumption with confirmed: false, and case_changes shows no change to the case — the case team's check against the brief and the two demand files found nothing to change. The design values that are choices rather than case values are: two doublets at 2500 m and 300 m3/h; heat exchanger UA 1500000.0 W/K; heat pump 15 MW with carnot_fraction 0.5; boiler 30 MW with backup: peak; absorption chiller 10 MW with thermal COP 0.7 and minimum driving temperature 80 °C; dry cooler 40 MW, dry, approach 5 K; dispatch least_cost, outages at lowest_demand; surplus co-produced gas flared at 0.98 combustion efficiency.
+
+Suggestions only (not work done). (1) Run a sensitivity on lcts and co2 over the case's declared uncertainties (electricity price, carbon price, discount rate, permeability, gradient) and a sample_uncertainty for a p5/p50/p95 band, to put a range on the 45.102 EUR/MWh and 13.774 kt. (2) Search the two doublets' flow and depth and the heat pump and chiller capacities with one optimize on lcts, to see whether the 34.64 MEUR capex can fall without losing the emission advantage. (3) Set a small margin below the 300 m3/h flow and 330 d running caps, and check the exchanger approach, so the feasible verdict does not sit on the hard limits. (4) Size the boiler and the dry cooler to their peak use instead of the backup: peak policy, and re-cost.
+
+Copy
+21:41
+Sensitivity analysis
+Optimise the design
+Write the report
+Auto-approve

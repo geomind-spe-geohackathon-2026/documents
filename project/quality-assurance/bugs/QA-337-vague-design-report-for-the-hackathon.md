@@ -52,4 +52,4 @@ recommended design" without that comparison.
 - 2026-11-05 20:01 UTC: geomind acc7b6c + 97ac62d; pending deploy
 ## Retest
 
-(Who, when, result.)
+QA-E2E-report-I, 2026-11-05 20:45 UTC, after deploy 55 (geomind main HEAD), project QA-TEST QA-E2E-report-I 7 (551392b1; case v3, plant v1 HackathonPlant, v2 HeatingAbsorptionCoolingPlant, no study), run bbee08fa (20:34:19-20:41:54 UTC), the same request: the agents ran one run_study over design/v1 and design/v2 (study/hackathon_versions_compare), ranked v1 first on LCTS 45.10 vs 49.28 EUR/MWh, LCOH, LCOC, and wrote 'Recommended design: design/v1 (HackathonPlant) ... Alternative: design/v2', with the trade-off (CAPEX 34.64 vs 23.96 MEUR, gas 0 vs 65,190 MWh). 7 min 36 s, 1.10 M input tokens, 0.030 USD. Verified. (A note on the first retest: project 6 had no plant versions because of my seed error, so it does not count.) Text: `../evidence/QA-337/retest-answer.txt`.
