@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | wont-fix |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -57,5 +57,5 @@ implies) and let gemini derive at run time; prompt: never write a formula result
   confirms the elevation, never the ISA pressure" (geomind commit 76a46bd).
 - Status: wont-fix (by design); the wording fix is in 76a46bd. Keeping the elevation in the case
   would need gemini to take an elevation form: a gemini request, only with Sahand's permission.
-
+- 2026-11-05 19:09 UTC: by design: set_case converts the approved elevation to ISA pressure (ISO 2533); wording fixed in geomind 76a46bd
 ## Retest
