@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 18:47 UTC |
 | Versions | backend 1.1.116 (geomind 0.4.12x) |
 | Where | project "QA-TEST QA-E2E-economics-I 8"; run 658ca8f2-504f-4dc5-b568-ee65e62cc62c; analysis_lead steps 10-21 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -80,4 +80,5 @@ geomind `tools/gemini/economics.py`:
 
 ## Fix
 
+- 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
