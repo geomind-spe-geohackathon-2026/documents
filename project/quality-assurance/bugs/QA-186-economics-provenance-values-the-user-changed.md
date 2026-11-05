@@ -79,3 +79,11 @@ economics skill: a changed value carries its new source.
   3.786 MEUR/yr equal a page `run` study on case version 4. Speed of this run is filed separately (QA-258).
   Log: `../evidence/QA-186/run-ce5d9ffc-retest-log.json`.
 - 2026-11-05 18:04 UTC: retest QA-AI-analysis-I 18:03 UTC backend 1.1.108: stale sources dropped; changed keys have no user source (not in fix)
+- 2026-11-05 18:08 UTC, QA-E2E-economics-I: PASSES. Project "QA-TEST QA-E2E-economics-I 6"
+  (run 74ef2d84-0f1f-4163-bd8c-3d4b71e6f74b), the same typed answer as in the Steps: ONE
+  `set_case` with discount 0.06 and carbon 80 EUR/t, each with source "user: ... in the answer to
+  the economics question", and the four kinds and their sources set to null; stored
+  `economics.json` matches (`../evidence/QA-186/economics-retest-project6.json`, card
+  `../evidence/QA-186/retest-set-case-card.txt`). Uncertainty kept on discount, carbon,
+  electricity, gas. Run 4 min 33 s, 0.0137 USD, one approval card.
+- 2026-11-05 18:08 UTC: QA-E2E-economics-I 18:08 UTC, run 74ef2d84: one set_case, user sources, nulls dropped; see Retest
