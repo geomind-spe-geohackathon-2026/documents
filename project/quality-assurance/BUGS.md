@@ -140,3 +140,4 @@ wont-fix, duplicate.
 | [QA-132](bugs/QA-132-simulation-of-the-stored-plant-has.md) | fixing | major | gemini | Simulation of the stored plant has d0 flow 341 m3/h (> 300 m3/h hard cap) on 2027-01-01 while verdict.feasible is true | functional-qa-simulation-I | hotfix-python |
 | [QA-133](bugs/QA-133-cancel-run-does-nothing-on-a.md) | open | major | frontend,backend | Cancel run does nothing on a run waiting at an approval card (stays 'waiting', 1 run active) | functional-qa-case-I |  |
 | [QA-134](bugs/QA-134-cancel-run-does-nothing-while-the.md) | open | minor | frontend | Cancel run does nothing while the run waits for an approval; Deny first is needed | functional-qa-plant-I |  |
+| [QA-135](bugs/QA-135-overview-and-design-show-study-and.md) | open | minor | backend | Overview and Design show Study and Results 'Out of date' on a freshly seeded project, and still after a fresh full-year run of the stored plant | functional-qa-study-I |  |
