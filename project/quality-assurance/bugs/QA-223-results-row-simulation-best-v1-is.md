@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | backend |
 | Reporter | QA-E2E-design-I |
@@ -56,6 +56,7 @@ hotfix-back-lead, backend 1.1.109 (tag v1.1.109), deployed 2026-11-05 ~17:43 UTC
 `adapters/simulated.py` `last_simulation` skips a `simulate` whose input has `changes`, `start` or
 `end` (`is_what_if`); the newest plain simulate becomes the result row. Old rows stay as stored.
 - 2026-11-05 17:43 UTC: backend 1.1.109
+- 2026-11-05 19:13 UTC: QA-E2E-design-I retest 19:14 UTC: a what-if stored as its own design (hc_flow150) still becomes the Results row; use state.design.reference
 ## Retest
 
 Recipe: a run whose analysis lead calls a what-if simulate after the plain simulate of the chosen
