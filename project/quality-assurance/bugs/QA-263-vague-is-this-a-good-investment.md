@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -52,3 +52,7 @@ and the gradient is a physical parameter. The Monte Carlo in the same answer did
    without `values` (every declared uncertainty); with `values`, say in the answer which declared values were left out".
 2. `sensitivity` answer: list the declared uncertain values that were not moved (`not_moved`), so the lead can
    see it ranked a subset.
+
+## Fix
+
+- 2026-11-05 18:34 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
