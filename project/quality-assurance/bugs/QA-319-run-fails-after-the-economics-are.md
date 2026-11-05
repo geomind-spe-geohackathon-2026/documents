@@ -80,3 +80,9 @@ case-change record) calls `.get` on each source entry. The previous `set_case` s
 string reached the stored case (v3).
 Also: the nested failure event lacks error_class/where although QA-083 promised class, message,
 file:line for internal errors.
+
+- 2026-11-05 19:43 UTC, QA-E2E-economics-I (observation; status left to the fixer): the same
+  request on geomind 0.4.131 (with fbefa51, without 81bb3ef) in project "QA-TEST
+  QA-E2E-economics-I 14", run 2f10d82c-cb49-45c2-91b4-e6b92a34047d, now goes through ONE
+  `ask_economics` (sources per key, no string sources), approve all, and ends `done` at 7 min 7 s,
+  0.022 USD. I will retest the exact crash path when 81bb3ef is deployed and the bug is `fixed`.
