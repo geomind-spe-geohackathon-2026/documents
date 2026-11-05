@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
-| Area | backend,geomind |
+| Area | geomind |
 | Reporter | speed-analysis-II |
 | Found | 2026-11-05 17:32 UTC |
 | Versions | backend 1.1.100-1.1.103 (geomind 0.4.96-0.4.98) |
@@ -37,7 +37,7 @@ Fact: tool duration is measured around the call that returns the pending card, n
 Backend part, backend 1.1.117 (f9a8d40, back-m2): GET /assistant/runs/{id}/log has `waits`, one span per answered request card (request, kind, call_id, tool, agent, run_id, started, ended, decision, duration s) and `wait` (s) on the gated tool call. geomind part with hotfix-python-lead.
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 18:46 UTC: backend part 1.1.117 f9a8d40; geomind part open
 ## Retest
 
 GET /assistant/runs/bf3990c4.../log: the set_case wait shows about 755 s in `waits` and as `wait` on its call.
