@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Coordinator-V |
 | Found | 2026-11-05 16:51 UTC |
 | Versions | frontend 1.1.113, backend 1.1.101 (geomind 0.4.97, gemini 0.6.16) |
 | Where | Task (Sahand 2026-11-05 16:51 UTC); Knowledge file handbook-design (id 6d617b90), source `documents/project/quality-assurance/inputs/handbook-design.md` and geomind `handbook-design.md` |
-| Fixer | |
+| Fixer | handbook-design-I |
 
 ## Steps
 
