@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -66,4 +66,5 @@ economics skill: a changed value carries its new source.
 
 ## Fix
 
+- 2026-11-05 17:40 UTC: geomind 0.4.107, deployed: set_case economics patch drops about.sources of each changed or removed key without its own source
 ## Retest
