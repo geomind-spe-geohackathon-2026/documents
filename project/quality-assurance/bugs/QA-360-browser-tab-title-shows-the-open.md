@@ -7,27 +7,29 @@
 | Area | frontend |
 | Reporter | Sahand |
 | Found | 2026-11-05 21:29 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 22:28 Trondheim |
+| Where | geomind.team, browser tab title |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open a project in Chrome.
 
 ## Expected
 
+Tab title '<project name> · GeoMind' inside a project (optionally with the page first); 'GeoMind' on pages outside a project.
+
 ## Actual
+
+The tab shows the same generic title on every page.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-360/1.png)
-- Run JSON: `../evidence/QA-360/run-<id>.json`
+Sahand's request via the coordinator, 22:28 Trondheim.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Sahand's request (top); already sent to front-lead.
 
 ## Fix
 
