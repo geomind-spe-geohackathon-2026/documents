@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend,frontend |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 17:40 UTC |
 | Versions | frontend 1.1.113, backend 1.1.108, geomind 0.4.97, gemini 0.6.16 |
 | Where | https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7/design/plant; plant version 14 ('Plant best_v1 optimised by the assistant', 17:16:42 UTC), made by run 76d19df6 |
-| Fixer | |
+| Fixer | hotfix-back-lead |
 
 ## Steps
 
