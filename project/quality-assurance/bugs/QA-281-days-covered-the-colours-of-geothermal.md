@@ -7,32 +7,26 @@
 | Area | frontend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
 | Found | 2026-11-05 18:28 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.115, frontend 1.1.126 |
+| Where | https://geomind.team/projects/4678c5c6-66fc-46dd-9d1e-358c3c5c1d24/design (No-agent showcase) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+Open Results of a design whose boiler tops up the heat every day; look at Days covered, Heating.
 
 ## Expected
 
+'Geothermal topped up by backup' and 'Backup only' in clearly different colours (for example a green-grey or hatched green for topped up, plain grey for backup only), so a 99 % geothermal day does not look like a boiler-only day (QA-126 asked the same).
+
 ## Actual
+
+Both are greys of almost the same tone (legend squares side by side in the screenshot); all 365 days here are 'topped up', which reads as 'backup'.
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-281/1.png)
-- Run JSON: `../evidence/QA-281/run-<id>.json`
-
-## Cause
-
-(Facts, or a guess marked as one.)
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
