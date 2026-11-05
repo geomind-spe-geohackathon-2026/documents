@@ -72,3 +72,4 @@ wont-fix, duplicate.
 | [QA-064](bugs/QA-064-results-empty-state-the-sentence-no.md) | fixing | cosmetic | frontend | Results empty state: the sentence 'No results yet. Run a study to get one.' is split over three lines with the link alone in the middle | qa-ux | hotfix-front |
 | [QA-065](bugs/QA-065-case-lacks-the-pdf-s-1.md) | fixing | minor | geomind | Case lacks the PDF's 1-3 doublets rule, yet the design lead says 'the case fixes the number of doublets at 1-3' | qa-func-1 | hotfix-python |
 | [QA-066](bugs/QA-066-new-project-dialog-is-taller-than.md) | fixing | minor | frontend | New project dialog is taller than a 577 px window and cannot scroll: title and Create/Cancel buttons are cut off | qa-ux | hotfix-front |
+| [QA-067](bugs/QA-067-auto-approve-toggle-does-nothing-in.md) | open | minor | frontend | Auto-approve toggle does nothing in a new chat before the first message | qa-func-2-II |  |
