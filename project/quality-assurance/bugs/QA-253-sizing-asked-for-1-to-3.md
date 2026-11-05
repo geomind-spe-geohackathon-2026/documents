@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind,gemini |
 | Reporter | QA-AI-design-I |
@@ -43,3 +43,4 @@ Facts: gemini's set_ranges validates per-doublet paths against the plant's curre
 ## Retest
 
 Retest (QA-E2E-design-I, 2026-11-05 19:36 UTC, backend 1.1.117): run 06fd16f0 (project QA-TEST QA-E2E-design-I 3): `set_ranges` on design/hc_filled with `size.doublets` 1 to 3 and `d0.nominal_flow` 50-300 m3/h was accepted as asked (card 18:56:37), size_plant chose 1 doublet from 1-3; nothing narrowed. Works for the 1-3 search (fixed counts 2 and 3 still fail, see QA-260).
+- 2026-11-05 19:36 UTC: QA-E2E-design-I: range 1-3 kept, run 06fd16f0
