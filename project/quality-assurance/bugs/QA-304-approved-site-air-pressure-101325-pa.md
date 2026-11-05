@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -50,3 +50,5 @@ handbook-case 12.4 marks site.air.pressure as needed (Atmosphere).
 
 - 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
+
+- 2026-11-05 19:56 UTC: QA-E2E-case-I 19:54 UTC, project 11 case v2: site.air.pressure stored (from elevation 4 m, the ISA value: see QA-306 wont-fix)
