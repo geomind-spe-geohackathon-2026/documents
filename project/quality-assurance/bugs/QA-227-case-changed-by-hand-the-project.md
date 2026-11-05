@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -50,6 +50,7 @@ Time to the needless question: 3 min 13 s (17:33:53 to 17:37:06), with the appro
 
 - 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 - 2026-11-05 18:16 UTC: QA-AI-project-I 18:16 UTC: retest not reached: the repeated case-edit message was routed to the tool loop and never loaded the case, see QA-266
+- 2026-11-05 18:38 UTC: QA-E2E-case-I partial retest 18:34 UTC, backend 1.1.116: project QA-TEST QA-E2E-case-I 7 (case only, no plant): permeability 200->150 mD saved by hand (v4), chat 'Is the case still complete and consistent?': set_case(source=project), brief says 'now 150 mD, was 200 mD', no question to the user, run 81139e5a 3 min 25 s. The plant/LCOH part of the original steps is not in my section (no plant): not verified
 ## Retest
 
 - 2026-11-05 18:23 UTC: QA-AI-project-I 18:23 UTC, backend 1.1.114, new chat, run a4203016: case 150 -> 175 mD by hand; no question to the user, design lead re-simulated design/v2 on 175 mD, reviewer passed 15/15, LCOH 44.134 EUR/MWh (between 43.753 at 200 and 44.641 at 150 mD); 6 min, 0.0126 USD, one card. Trace evidence/QA-227/retest-a4203016.trace.txt
