@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-design-I |
@@ -71,4 +71,5 @@ Extra proposed fix: give the engineers `read_skill` (or have the brief say "no s
 
 ## Fix
 
+- 2026-11-05 17:27 UTC: geomind 0.4.104, commit 356e1dc, deployed: bare Knowledge name, '3 Wells'-style section keys, outline numbers once; lead prompt part (sections by number) still open with QA-178
 ## Retest
