@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend,backend |
 | Reporter | Fatemeh, Claude (write-up) |
@@ -36,5 +36,5 @@ Fact: the default is the list's first result, with no look at feasibility or obj
 ## Fix
 
 hotfix-front-III, frontend 1.1.100 (c7a17a7), QA-127 and QA-109 together: `report/defaults.ts` picks the result: design results whose checks all pass (none failed, none not assessed), the best on the objective of the newest minimize/maximize study among them, else the newest feasible, else the newest result; the run is the result's study `started_by.run` (empty when a user started the study). A `result` or `run` in the URL still wins. Checked locally against production data: 'geo mind testing' opens lcts_best (12/12, lcts 70.95 vs lcts_fixed 72.94) with run 32a12115's log; QA3 study opens sized2 with its run. Deploy 14:30 UTC.
-
+- 2026-11-05 14:27 UTC: frontend 1.1.104 deployed 14:27 UTC, bundle index-DjTPYa7Q.js
 ## Retest
