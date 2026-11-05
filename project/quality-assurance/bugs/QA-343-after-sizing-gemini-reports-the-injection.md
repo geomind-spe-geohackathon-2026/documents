@@ -27,6 +27,8 @@ Three patch cards in a row, each for what the previous answer named:
 3. request-2107: `injection_pump.efficiency` 0.7 ("gemini reports injection_pump.efficiency missing after sizing").
 The values are in the assumptions document and the case, known before sizing.
 
+4. request-2161 (21:07 CET): `d0.esp.frequency`, `tubing`, `minimum_intake_pressure`, `maximum_gas_fraction` ("repair1").
+
 ## Cause
 
 Guess: the run/simulate path after sizing raises the first binding or design error only (invalid_binding, invalid_design, missing_value come from different stages); QA-175 collected missing values for build/patch but not for these run-time checks. Also the injection pump's frequency and efficiency could be filled by size (fixed-speed pump, case pump efficiency).
