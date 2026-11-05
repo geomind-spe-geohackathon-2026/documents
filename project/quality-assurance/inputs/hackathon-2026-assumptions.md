@@ -224,3 +224,67 @@ there is no subsidy, and no source prices the chillers per MWh. Method:
 | Discount rate | normal, std 1 %, 2 to 8 % |
 | Geothermal gradient | normal, std 2 K/km, 25 to 35 K/km |
 | Permeability | triangular 100 to 400 mD, mode 200 |
+
+## Plant design values (design team)
+
+Values for the plant paths gemini asks for (`knowledge/handbook-design.md` section 0.7 says what
+each means and how to choose it). They are the values of gemini's hackathon sample plants
+(`gemini/examples/hackathon_2026/README.md`, "Values the plants state that a module no longer
+defaults", and `plants/*.json`). Cited rows carry the source named; Team rows are assumptions of
+the sample: record them as assumptions (`confirmed: false`) with this file as the source. `dN` is
+each doublet. These are values only, never a plant template (IMP-023).
+
+| Path | Value | Source |
+|---|---|---|
+| `dN.well_diameter` | 0.244 m | Team |
+| `dN.drainage_radius` | 1000 m | Team (lower end of 1 to 2 km Dutch doublet spacing, Willems 2016) |
+| `dN.roughness`, pipe `roughness` | 4.5e-5 m | Cited: new commercial steel, Moody (1944) |
+| `dN.pump_efficiency`, `injection_pump.efficiency` | 0.7 | PDF |
+| `dN.nominal_wellhead_pressure` | 10 bar | Team |
+| `dN.reservoir.skin`, `dN.sink.skin` | 0 | Team |
+| `dN.reservoir.decline_threshold`, `dN.sink.decline_threshold`, `heat_exchanger.fouling_threshold` | 0.15 | Team (alarm threshold) |
+| `dN.well/riser/injector.friction_correlation` / `two_phase_friction_correlation` | `darcy_weisbach` / `BeggsBrill` | Team (model choice) |
+| `dN.well/riser/injector.heat_transfer_coefficient` | 10 W/m2/K | Team (original GEMINI well model) |
+| `dN.esp.pump_type` | `unspecified` (no curves) | Team |
+| `dN.esp.minimum_intake_pressure` | 5 bar | Team (no verified source) |
+| `dN.esp.maximum_gas_fraction` | 0.1875 | Cited: Baker Hughes, Ace Plus gas handler pumps (standard stages one fourth of 75 %) |
+| `dN.esp.motor_efficiency` | 1.0 | Team |
+| `degasser.separation_efficiency` / `nominal_pressure_drop` | 1.0 / 14900 Pa | Team |
+| `filters.<f>.nominal_pressure_drop` / `clogging_pressure_drop` | 1600 Pa / 50000 Pa | Team |
+| `desander.separation_efficiency` / `nominal_pressure_drop` | 0.9 / 20000 Pa | Team |
+| `dosing.dose` / `product_concentration` | 10 ppm / 0.3 | Team |
+| `flare.combustion_efficiency` | 0.98 | Cited: US EPA AP-42 13.5 |
+| `heat_exchanger.thermal_conductance` / `arrangement` | 1.5e6 W/K / `counterflow` | Team |
+| `heat_pump.cop_model`, `compression_chiller.cop_model` | `carnot` | Team (model choice) |
+| `heat_pump.carnot_fraction`, `compression_chiller.carnot_fraction` | 0.5 | Cited: Frutschi, ABB Review 5/1996 |
+| `heat_pump.lorenz_fraction`, `compression_chiller.lorenz_fraction` | 0.5 | Team |
+| `heat_pump.minimum_temperature_lift`, `compression_chiller.minimum_temperature_lift` | 10 K | Cited: Arpagaus et al. (2018), lowest lift |
+| `heat_pump.minimum_source_outlet_temperature` | 47 degC at 2500 m (production temperature less the 40 K cap; about 62 degC at 3000 m) | Derived from the PDF |
+| `*.supply_margin` | 0 K | Team |
+| `boiler.efficiency` (peak boiler) | 0.9 | Team |
+| plant pipes `length` / `inner_diameter` / `elevation_change` / `heat_transfer_coefficient` | 100 m / 0.5 m / 0 m / 0 W/m2/K | Team |
+| `absorption_chiller.thermal_cop` | 0.7 | Cited: Herold, Radermacher and Klein (2016) |
+| `absorption_chiller.minimum_driving_temperature` | 353.15 K | Team (GEMINI LiBr operating limit) |
+| `absorption_chiller.characteristic_slope` / `minimum_driving_difference` / `rejection_coefficient` / `evaporator_coefficient` / `auxiliary_power_ratio` | 700000 W/K / 10 K / 2.2 / 1.2 / 0.01 | Team |
+| `adsorption_chiller.thermal_cop` | 0.55 | Cited: Wang and Oliveira (2006) |
+| `adsorption_chiller.minimum_driving_temperature` / `maximum_driving_temperature` | 328.15 K / 363.15 K | Team (GEMINI silica-gel range) |
+| `adsorption_chiller.characteristic_slope` / `minimum_driving_difference` / `rejection_coefficient` / `evaporator_coefficient` / `auxiliary_power_ratio` | 70000 W/K / 5 K / 2.0 / 1.0 / 0.02 | Team |
+| coolers `cooler_type` / `approach` / `specific_fan_power` / `loop_pressure` | `dry` / 5 K / 0.02 / 3 bar | Team (dry approach 5 to 15 K, ASHRAE) |
+| compression chiller cooler `capacity` / `flow` / `temperature_setpoint` | 20 MW / 400 kg/s / 25 degC | Team |
+| absorption chiller cooler `capacity` / `flow` / `temperature_setpoint` | 40 MW / 800 kg/s / 15 degC | Team |
+| search ranges (to propose to the user) | `size.doublets` 1 to 3; `dN.nominal_flow` 50 to 300 m3/h; `depth` 2000 to 3500 m; heat pump 3 to 30 MW; chillers 1 to 10 MW | PDF (doublets, flow); Team (depth, capacities) |
+
+## What the limits mean for the design
+
+- One doublet at the caps (300 m3/h, 40 K, 1030 kg/m3, c_p about 4.2 kJ/kg/K) gives about 14.4 MW;
+  the 30 MW heating peak needs two or three doublets, or fewer with a heat pump and a boiler.
+- At 2500 m the reservoir is 87 degC, below the 100 degC supply: the heat pump share of the peak
+  (ideal exchanger) is (100 - 87) / (100 - 60) = 0.325, about 9.75 MW; direct supply needs about
+  3000 m or more (102 degC less the approach).
+- The 20 degC cold supply favours a compression chiller (gemini's sample study ranked heat pump +
+  boiler + compression chiller first; absorption needs drive water above 80 degC).
+- Gas per doublet at 300 m3/h: 240 Nm3/h (192 Nm3/h CH4, about 1.9 MW of fuel): burn it in the peak
+  boiler first through a `GasMakeup`, flare only the surplus.
+- One doublet at 50 m3/h and 40 K gives about 2.4 MW, just below the 2.673 MW heating minimum, so a
+  doublet can run on the lowest days; the 330-day cap still takes 35 days off per doublet, placed by
+  `lowest_demand` and covered by the backup (`peak`).
