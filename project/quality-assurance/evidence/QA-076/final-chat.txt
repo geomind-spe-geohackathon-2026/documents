@@ -1,0 +1,20 @@
+Projects
+QA2 functional-qa-I full run
+Chat
+2 runs active
+Design
+Chat
+Please carry out the GEMINI hackathon challenge from the attached requirements and the two daily demand profiles for 2027: interpret the demand, set up the case, generate system configurations (1 to 3 doublets plus whatever the 100 C heating and 20 C cooling need), check them with GEMINI, find and fix any violation of the hard limits, improve the design iteratively, and explain every major engineering decision. Compare at least two configurations and give the realised heating and cooling capacities and energies.
+
+Attached files: GEMINI_Hackathon_Challenge_Requirements.pdf, GEMINI_Heating_Demand_Daily_2027.csv, GEMINI_Cooling_Demand_Daily_2027.csv
+01:43
+Copy
+Worked through 317 steps, 93 needed another try
+You answered: I do not know these; the challenge gives no site. Time zone: UTC. Site/country: unknown, keep it generic, do not pick a country. For the rest, please propose one clearly labelled engineering assumption each (sourced where you can) and ask me once to approve. Yes, use the Ember EU value 209.21 g/kWh for the CO2 intensity. Leave grid gas open (no gas purchase).
+You answered: approve all
+You answered: Approve all except: leave all economics.revenue.subsidy.* open (no site, so no Dutch subsidy) and leave economics.opex.variable.waste_disposal open (a French low-level radioactive waste tariff does not fit). Keep the others.
+You answered: approve all
+
+d0.drainage_radius: no value [m]: Radius of the drainage area around each well; d0.roughness: no value [m]: Absolute roughness of the inner wall of both vertical wells; d0.reservoir.pressure: no value [Pa]: Static reservoir pressure; d0.reservoir.temperature: no value [K]: Undisturbed reservoir temperature; d0.reservoir.permeability: no value [m2]: Permeability of the aquifer rock; d0.reservoir.aq… (d0.drainage_radius)
+
+Auto-approve

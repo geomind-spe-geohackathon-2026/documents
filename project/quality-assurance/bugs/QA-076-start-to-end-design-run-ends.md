@@ -28,6 +28,14 @@ A stored, checked plant (at least one configuration, ideally two), or a plain st
 - ![screenshot](../evidence/QA-076/1.png)
 - Run JSON: `../evidence/QA-076/run-<id>.json`
 
+## Final chat text (run 861ef137, chat 81b51db5)
+
+After the three 'You answered' lines the chat shows only this, with no heading and no status:
+
+> d0.drainage_radius: no value [m]: Radius of the drainage area around each well; d0.roughness: no value [m]: Absolute roughness of the inner wall of both vertical wells; d0.reservoir.pressure: no value [Pa]: Static reservoir pressure; d0.reservoir.temperature: no value [K]: Undisturbed reservoir temperature; d0.reservoir.permeability: no value [m2]: Permeability of the aquifer rock; d0.reservoir.aq… (d0.drainage_radius)
+
+Screenshot: ../evidence/QA-076/final-chat.png, full chat text: ../evidence/QA-076/final-chat.txt. The run list says 'waiting' (QA-077), the JSON says 'failed'.
+
 ## Cause
 
 Facts: ownership checks (design.owners) refuse writes of roles that do not own a path; engineers loop hand-backs. Guess: the ownership design needs a path for plant-level values (backup, esp) or the design lead needs write rights; the run kept re-reading the plant instead of stopping with a question to the user.
