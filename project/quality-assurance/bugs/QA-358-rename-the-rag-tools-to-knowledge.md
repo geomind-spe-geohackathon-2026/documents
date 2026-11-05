@@ -45,3 +45,8 @@ Old RAG names kept beside the new Knowledge names (the read_rag -> read_file/rea
 "I meant in the frontend": UI ONLY. The frontend shows 'read knowledge' / 'search knowledge' as
 the labels for both the old tool names (read_rag, search_rag) and the new ones. No geomind tool
 rename; revert any geomind rename already made. Handbook text renames already done stay.
+
+Evidence (Sahand 22:23 Trondheim): ![steps window](../evidence/QA-358/1.png): the Case lead's steps
+window shows 'Read rag' / 'Search rag'; must read 'Read knowledge' / 'Search knowledge'. Same
+screenshot also shows the case lead reading handbook-case.md 4 times and hackathon-2026-assumptions.md
+3 times in one run (re-reads; QA-351 section reads should cut this).
