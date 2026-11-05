@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 17:07 UTC |
 | Versions | frontend 1.1.113, backend 1.1.104, geomind 0.4.97 |
 | Where | https://geomind.team/projects/f1704a61-f1b8-4b63-84d3-20bd30beaed7/assistant/chat/cd332dde-7afa-4865-8a75-d8f6d4be6354; run 76d19df6-485f-46ee-a182-6b03ed70ab33; every patch_plant card (request-1xx, 17:07-17:11 UTC) |
-| Fixer | |
+| Fixer | hotfix-python-VIII |
 
 ## Steps
 
