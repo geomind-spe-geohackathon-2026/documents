@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | data |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 17:13 UTC |
 | Versions | backend 1.1.102/1.1.104 (geomind 0.4.10x); Knowledge 8bd08430 (hackathon-2026-assumptions.md), 74a0d44b (data-economics.csv) |
 | Where | projects "QA-TEST QA-E2E-economics-I 1" (run bf3990c4) and "... 2" (run 2d5ced06) |
-| Fixer | |
+| Fixer | handbook-econ-report-I |
 
 ## Steps
 
