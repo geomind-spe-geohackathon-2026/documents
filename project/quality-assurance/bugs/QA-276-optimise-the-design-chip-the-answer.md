@@ -62,3 +62,7 @@ the stored plant as a candidate (or the lead compares best vs the start and keep
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+## Retest
+
+QA-E2E-study-I, 2026-11-05 19:11 UTC, project QA-TEST QA-E2E-study-I 4, run 5929c329-332d-4128-bfa2-983c9b57814e (chip "Optimise the design", approve all): speed part passes: 4 min 39 s, 28 steps, 52 calls, 0 approval cards, 0.015 USD, no unasked family. Accuracy part still fails: the answer compares the best (LCTS 49.33 EUR/MWh, capex 24.01 MEUR) only with the sized start design/v2_sized (53.32, 30.47 MEUR: "6.46 MEUR less investment") and never with the user's stored plant v2 as it is (LCTS 49.28, capex 23.96 MEUR, round 1), which is cheaper than the "optimised" design. A Study page "Run again" of the same search on plant v6 found 49.268 at 285 m3/h. Reopened for: seed the stored plant as a candidate, and compare best vs the stored plant.
