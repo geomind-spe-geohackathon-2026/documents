@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-case-I |
@@ -67,3 +67,5 @@ calls list_mcp.
 frontend 1.1.125 (commit 1fc1de0, bundle index-Dv6SDJq8.js): the New project dialog lists every connector that is On, checked by default, and sends the checked ids as `mcp`; when no connector is On the field is not shown and `mcp` is not sent (backend default by back-lead). The geomind part (the case lead naming a connector that is off for the project) is open.
 - 2026-11-05 18:10 UTC: frontend 1.1.125, commit 1fc1de0
 ## Retest
+
+- 2026-11-05 18:52 UTC: QA-E2E-case-I 18:42 UTC: New project dialog has open-meteo checked; project 9 mcp=[13c641ae...]; case lead calls list_mcp/read_mcp/save_mcp_table, the question cites open-meteo openmeteo_get_climate with time and coordinates. (Storing the saved series: new bug QA-301)
