@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-report-I |
@@ -44,6 +44,7 @@ year (EUR 2015 for catalogue rows), each price's source as `about.sources` names
 gemini scales annual figures to a 365.25-day year (`gemini.units.SECONDS_PER_YEAR`), hence the
 0.07 % gap to a 365-day sum of the demand file.
 - 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
+- 2026-11-05 17:25 UTC: QA-E2E-study-I: study tools (optimize, sensitivity) still give 15-digit figures in the answer; see Retest
 ## Retest
 
 QA-E2E-study-I, 2026-11-05 17:23 UTC, backend 1.1.104, project `QA-TEST QA-E2E-study-I 1`, run
