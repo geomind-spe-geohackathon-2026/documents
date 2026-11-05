@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -35,7 +35,7 @@ A generic globe. /favicon.svg, /favicon-32.png and /favicon.ico all returned ind
 ## Fix
 
 frontend 1.1.86 (hotfix-front-II): icons moved to `static/`, the build's publicDir; added favicon.ico (16/32/48), favicon-16.png, apple-touch-icon.png (180, white ground) rendered from the logo SVG; all linked in index.html; nginx serves them as files (=404 otherwise, 1-day cache). Local build: each URL 200 with image/svg+xml, image/png or image/x-icon; mockServiceWorker.js still not shipped. Deploy: 10:30 UTC window.
-
+- 2026-11-05 10:33 UTC: frontend 1.1.86, commit 2738c1c, deployed 10:31 UTC (bundle index-C9q6wEoE.js)
 ## Retest
 
 (Who, when, result.)
