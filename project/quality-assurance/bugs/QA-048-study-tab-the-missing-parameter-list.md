@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -39,3 +39,5 @@ Guess: the Study table puts the plant's whole missing list in a result cell and 
 - 2026-11-04 23:33 UTC: correction to the note above: the follow-up is frontend 1.1.55, commit 2d5da06
 - 2026-11-05 00:04 UTC: frontend 1.1.53 + 1.1.55 (2d5da06) + 1.1.57 (e133e92), deployed 00:05 UTC (bundle index-CscJSVvY.js)
 ## Retest
+
+- 2026-11-05 00:04 UTC: geomind.team 1.1.57, qa-8 design/study in the side panel: table 572 px in a 572 px box (was 850), 'Waits for 136 values', 'Fill them in on Plant', button 'Start'; Kind and Started by hidden below 44 rem
