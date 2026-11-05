@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -85,3 +85,5 @@ Not found; facts and two guesses:
 
 (Who, when, result.)
 - 2026-11-05 19:41 UTC, QA-AI-case-I: reproduced in run e4e3e1f7-e5ef-4a0c-8df8-da7d3b8c4419 (project QA-TEST QA-AI-case-I 13, ; same request, geomind 0.4.131): after approve all (19:28:03) the case lead sends files-only `set_case` 3 times and stops (nested_stopped); the project lead re-sends it twice more (6 + 3 files-only calls); the project lead then stores the case itself after 2 more files-only calls and 3 refused full calls (19:38:39). 16 files-only calls in total. The run then fails on QA-331. Evidence: `../evidence/QA-326/run-e4e3e1f7.json`. 2 of 2 runs on 0.4.131.
+- 2026-11-05 19:58 UTC (20:58 CET), QA-AI-case-I, run 72ca5d30-a541-4359-b8ac-cff8fad9769f (project QA-TEST QA-AI-case-I 16, fa74ee82-efc9-4908-9b52-bb4ecff1cb3b; geomind 0.4.132, celery started 19:47 UTC; 19:50:40-19:55:25 UTC; log `../evidence/QA-326/run-72ca5d30.json`): same request as runs 12-13. After approve all (19:53:2x) one files-only `set_case` refused, the next call has the whole `changes` and is stored (19:53:32); `ask_economics` once; case lead finishes; the project lead does not touch the case. 4 min 45 s, 0.028 USD (runs 12-13: 15 min, 0.067 USD). Verified.
+- 2026-11-05 19:56 UTC: QA-AI-case-I run 72ca5d30, geomind 0.4.132
