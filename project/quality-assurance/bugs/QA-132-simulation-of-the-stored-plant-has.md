@@ -37,6 +37,9 @@ Guess: the plant's flow limit is not set to 300 m3/h (plant stage), and the verd
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 14:28 UTC: geomind 0.4.87 (341 m3/h was the ESP intake volume with free gas; liquid flow 300; skill names reservoir.liquid_flow), backend 1.1.89, deployed 14:27 UTC
+
+Cause: not a breach. 341.28 m3/h is `d0.esp.fluid_in.volume_flow`, the volume at the pump intake including free gas; the requirement judges `d0.reservoir.liquid_flow`, which peaks at 300.0 m3/h (reproduced on gemini's hackathon sample: 341.276 vs 300.0). Fix: the reading-results skill names `reservoir.liquid_flow` as the flow the range judges. The 25 C cooling supply on days without cooling demand is the `when: running` rule (QA-091).
+
 ## Retest
 
 (Who, when, result.)
