@@ -61,3 +61,5 @@ versions. geomind part (no rebuild to read a version) with hotfix-python-lead.
 ## Retest
 
 Recipe: A comparison or design run in chat; afterwards /plant/flowsheet/versions has no new version; adopting the result adds one.
+
+QA-E2E-study-I, 2026-11-05 19:05 UTC: backend part passes. Project QA-TEST QA-E2E-study-I 3: optimisation (run 4885075b), comparison (run b709a671, 67 s, no rebuild) and an adopt-and-simulate request (run 9a45c7ce) wrote no plant version (still 1, 2). Side effect: the chat can no longer adopt at all; filed as a separate bug.
