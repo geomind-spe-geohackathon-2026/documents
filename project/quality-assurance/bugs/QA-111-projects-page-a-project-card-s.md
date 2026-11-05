@@ -7,31 +7,34 @@
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 10:45 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.86 |
+| Where | https://geomind.team/projects, a project card's ... menu |
 | Fixer | hotfix-front-II |
 
 ## Steps
 
-1. 
-2. 
+1. Open Projects.
+2. Open the ... menu of a project card.
 
 ## Expected
 
+Pin, Settings (opens the project's settings), Rename, Delete (confirm dialog naming the project, destructive style): the same actions and components as the project menu in the sidebar.
+
 ## Actual
+
+Only Pin.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-111/1.png)
-- Run JSON: `../evidence/QA-111/run-<id>.json`
+- ![card menu](../evidence/QA-111/1.png)
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+The card had its own PinMenu; the sidebar's ProjectMenu (Pin, Rename, Settings) lived in `app/layouts`, which a feature may not import.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+frontend 1.1.89 (hotfix-front-II): `domains/workspace/settings/project-menu.tsx` holds the one menu (Pin, Rename, Settings, Delete with a confirmation naming the project); the sidebar and the cards use it; `workspace/routes.ts` passes it to the Projects page. No backend change (PATCH and DELETE /workspace/projects/{id} exist). Checked locally on a card: the four items; Delete opens 'Delete <name>?' and Keep it closes it; Rename shows the name; Settings opens the settings window; no DELETE/PATCH sent. Deploy: 11:00 UTC window.
 
 ## Retest
 
