@@ -38,3 +38,9 @@ Old RAG names kept beside the new Knowledge names (the read_rag -> read_file/rea
 ## Retest
 
 (Who, when, result.)
+
+## Scope corrected (Sahand, 2026-11-05 22:22 Trondheim)
+
+"I meant in the frontend": UI ONLY. The frontend shows 'read knowledge' / 'search knowledge' as
+the labels for both the old tool names (read_rag, search_rag) and the new ones. No geomind tool
+rename; revert any geomind rename already made. Handbook text renames already done stay.
