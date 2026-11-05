@@ -54,4 +54,8 @@ The families ran one after the other, and neither got a second round. The user a
 
 ## Fix
 
+hotfix-back-lead, backend 1.1.112, ~18:01 UTC: GEOMIND_COMPARE_CONCURRENCY=3, GEOMIND_COMPARE_RETRIES=1 in all four backend env files; checked in the worker (3, 1).
+
 ## Retest
+
+Recipe: Ask to compare two families: both design at the same time (overlapping step times), a failed family is tried once more.

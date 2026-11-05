@@ -38,4 +38,8 @@ frontend: show it in the Chat column (chat title as the secondary line).
 
 ## Fix
 
+hotfix-back-lead, backend 1.1.111 (additive): every run of `GET /assistant/runs` has `prompt`, the user message that started it (one query per page).
+
 ## Retest
+
+Recipe: GET /assistant/runs?project=...: each item has prompt = the chat message text; front shows it in Runs and logs.

@@ -33,10 +33,8 @@ Depth rounded (3,282 m); Doublets 2 for the superstructure result; readable poin
 
 ## Fix
 
-frontend 1.1.121 (commit 191c92a, bundle index-DxyOvFkB.js): depth through `formatFigure`; scatter labels of nearby points are shifted down 14 px each so they do not overlap; "The dashed line is the trade-off line" shows only when two or more shown designs are on it (the line needs two). Open, backend (hotfix-back-lead): `doublets` is null in GET /design/results/{id} for the superstructure result that has d0 and d1.
-- 2026-11-05 17:48 UTC: frontend 1.1.121; backend doublets null open
-## Retest
-
-Not run (no tests now).
+hotfix-back-lead, backend 1.1.111: `design_facts` counts the `Doublet` modules when the plant has no class size (`counted_doublets`).
 
 ## Retest
+
+Recipe: Compare a superstructure result with d0, d1: doublets shows 2.
