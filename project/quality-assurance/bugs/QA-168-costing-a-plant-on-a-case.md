@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -100,3 +100,7 @@ economics. Also: `simulate(changes={"plant": {"project_plant": ...}})` was tried
   page study. 4 min 0 s wall (incl. ~20 s for my answer), 613 k input tokens, 0.0120 USD, 0 refused calls.
   Verified. Left over (not this bug): the economist still re-reads the economics 3 times and searches the
   sources twice (QA-159). Log: `../evidence/QA-168/run-da297015-retest-log.json`.
+
+## Retest
+
+- 2026-11-05 17:47 UTC: retest QA-AI-analysis-I 17:46 UTC backend 1.1.108: ask_economics, approved values written, costs equal the reference
