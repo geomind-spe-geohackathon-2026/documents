@@ -1,4 +1,4 @@
-# QA-275: Report 'Geothermal covers 100% of the heating demand' for a plant whose 15 MW heat pump runs on grid electricity: the heat-pump electricity is counted as geothermal (geothermal = demand - boiler)
+# QA-270: Report 'Geothermal covers 100% of the heating demand' for a plant whose 15 MW heat pump runs on grid electricity: the heat-pump electricity is counted as geothermal (geothermal = demand - boiler)
 
 | Field | Value |
 |---|---|
@@ -35,8 +35,8 @@ compared on an unequal basis.
 
 ## Evidence
 
-- ![Report summary](../evidence/QA-275/1.png)
-- Report page text: `../evidence/QA-275/report-page-text.txt`
+- ![Report summary](../evidence/QA-270/1.png)
+- Report page text: `../evidence/QA-270/report-page-text.txt`
 
 ## Cause
 
