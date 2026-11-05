@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -65,3 +65,4 @@ sub-agent that has no `ask_user`.
   assumption claiming they came from the user (its update_state records only the result). Numbers: p5 37.97, p50 46.10,
   p95 54.31 EUR/MWh, equal to the page study 5d7bbf26. Verified. (Side note: the lead's brief said "the case declares
   four uncertainties"; the economist corrected it to six.) Log: `../evidence/QA-195/run-bbff4ad3-retest-log.json`.
+- 2026-11-05 18:52 UTC: retest QA-AI-analysis-I 18:51 UTC backend 1.1.117: no false user-confirmed seed
