@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 16:40 UTC |
 | Versions | Seen on geomind 0.4.87-0.4.91 (runs of 2026-11-05); the code is unchanged in geomind 0.4.96 / gemini 0.6.16 (live, backend 1.1.99) |
 | Where | geomind.team run logs (GET /assistant/runs/{id}/log), 42 runs of 2026-11-05; e.g. design runs ed03d7ea, 37950240, 3bdd7ebb |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
