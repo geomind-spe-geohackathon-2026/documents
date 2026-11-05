@@ -1,0 +1,470 @@
+Compare the two plant versions in this project for my manager: which one would you build and why? Give the key figures side by side, in a short form.
+19:24
+Copy
+Worked through 84 steps, 14 needed another try
+1. Design report — HackathonPlant, plant version 1
+
+design/v1 — the project's plant file HackathonPlant, plant version 1, 23 modules, issues: [], simulated whole-year on case hackathon_2026 (2027-01-01..2028-01-01, step 1 d) as result/9b0db55da13a4a5b. gemini's verdict on that result: feasible true, 15 requirement entries passed, 0 failed, 0 not assessed, 0 failed steps.
+
+The plant is a geothermal heating-and-cooling plant with two production/injection doublets, a heat exchanger, a heat pump as the main heat source, an absorption chiller for cold, and a boiler as peak backup:
+
+Doublets: d0 and d1, each 2500.0 m deep, 300.0 m3/h nominal flow, well diameter 0.244 m, drainage radius 1000.0 m, pump efficiency 0.7, nominal wellhead pressure 1000000.0 Pa.
+Brine train: production Mixer → degasser (separation efficiency 1.0) → desander (separation efficiency 0.9, waste to waste WasteGrid) → dosing InhibitorDosing (dose 10 ppm, product concentration 0.3, chemical from chemicals ChemicalGrid) → hx HeatExchanger (thermal conductance 1500000.0 W/K, counterflow) hot side → heat_pump.source_in.
+Reinjection: heat_pump.source_out → injection Splitter → d0.return_in / d1.return_in; full reinjection, no brine discharge.
+Heating loop: heat_users HeatingGrid return → heat_return Mixer → hx cold side → heat_pump.sink_in → heat_pump.sink_out → boiler → loads Splitter → heat_users supply (branch 1) and chiller.generator_in (branch 2).
+Heat pump: 15.0 MW, mode heating, Carnot model with carnot_fraction 0.5, minimum_source_outlet_temperature 47.0 degC, minimum_temperature_lift 10.0 K.
+Boiler: 30.0 MW, efficiency 0.9, peak backup (params.backup peak).
+Cooling: cool_users CoolingGrid return → chiller.chilled_in → chiller.chilled_out → cool_users supply; chiller AbsorptionUnit 10.0 MW, mode chiller, thermal_cop 0.7, minimum_driving_temperature 80.0 degC, driven by the heating supply splitter; rejection chiller.cooling_out → chiller_cooler (dry Cooler, 40.0 MW, approach 5.0 K, air from air Atmosphere) → chiller.cooling_in.
+Gas: degasser.gas_out → makeup.gas_in, gas_grid → makeup.grid_in, makeup.fuel_out → boiler.fuel_in, makeup.excess_out → flare (combustion efficiency 0.98) → air.
+Electricity: grid ElectricityGrid → d0, d1, heat_pump, chiller, chiller_cooler. Boiler and flare flue/loss streams → air.
+Control: dispatch least_cost, outages lowest_demand.
+Schematic
+
+HackathonPlant v1, 23 modules: d0 and d1 (Doublet, 2500 m, 300 m3/h each) → production Mixer → degasser → desander (waste to WasteGrid) → inhibitor dosing (ChemicalGrid) → hx (HeatExchanger) hot side → heat_pump.source_in; heat_pump.source_out → injection Splitter → d0/d1 return_in (full reinjection). Heating loop: heat_users (HeatingGrid) return → heat_return Mixer → hx cold side → heat_pump.sink_in → heat_pump.sink_out → boiler → loads Splitter → heat_users supply (branch1) and chiller.generator_in (branch2). Cooling: cool_users (CoolingGrid) return → chiller.chilled_in → chiller.chilled_out → cool_users supply; chiller.cooling_out → chiller_cooler (dry Cooler, air from Atmosphere) → chiller.cooling_in. Gas: degasser.gas_out → makeup.gas_in, gas_grid → makeup.grid_in, makeup.fuel_out → boiler.fuel_in, makeup.excess_out → flare → air. Electricity: grid (ElectricityGrid) → d0, d1, heat_pump, chiller, chiller_cooler. Boiler and flare flue/loss → air.
+
+Capacities
+Unit
+	
+Kind
+	
+Capacity
+	
+Peak use
+	
+Share
+
+
+d0
+	
+production pump
+	
+300.0 m3/h
+	
+300.0 m3/h
+	
+1.0 -
+
+
+d1
+	
+production pump
+	
+300.0 m3/h
+	
+300.0 m3/h
+	
+1.0 -
+
+
+hx
+	
+heat exchanger
+	
+1500000.0 W/K
+	
+— (a rating in W/K is not a use the run measures; the module ran 365 of 365 steps)
+	
+—
+
+
+heat_pump
+	
+heat pump
+	
+15.0 MW
+	
+15.0 MW
+	
+1.0 -
+
+
+boiler
+	
+boiler
+	
+30.0 MW
+	
+2.636 MW
+	
+0.087865 -
+
+
+chiller
+	
+absorption chiller
+	
+10.0 MW
+	
+10.0 MW
+	
+1.0 -
+
+
+chiller_cooler
+	
+cooler
+	
+40.0 MW
+	
+24.386 MW
+	
+0.60964 -
+
+Against the case's peaks: peak_heat 30.0 MW and peak_cold 10.0 MW. Both doublets run at their full 300.0 m3/h capacity at the peak, the heat pump and the absorption chiller at their full 15.0 MW and 10.0 MW, and the boiler covers only the residual (2.636 MW of its 30.0 MW).
+
+Delivered
+Heat: 111670.0 MWh delivered against the case's heating demand of 111.67 GWhth/year (GEMINI_Hackathon_Challenge_Requirements.pdf p.1); heating_coverage 1.0, heat_surplus 1.8217e-12 MWh. Of that, boiler_heat is 253.9 MWh; the rest comes from the geothermal doublets and the heat pump.
+Cold: 23743.0 MWh delivered against the case's cooling demand of 23.74 GWhcool/year (same source); cooling_coverage 1.0, cold_surplus 0.0 MWh.
+Peaks: peak_heat 30.0 MW, peak_cold 10.0 MW.
+Electricity: 26728.0 MWh bought, 0.0 MWh sold. Gas: 0.0 MWh bought — the boiler runs on the co-produced gas, not on grid gas.
+Plant COP: 4.1779 -. Losses: 31339.0 MWh. Waste: 0.057074 kt. Chemicals: 0.032658 kt.
+Costs
+
+From estimate_costs on result/9b0db55da13a4a5b, on the case's economics (hackathon_2026, price year 2015, discount rate 0.05, analysis period 25.0 yr):
+
+CAPEX: 34.636 MEUR — largest items heat_pump 11.068 MEUR, chiller_cooler 4.0 MEUR, d0.injector 3.0978 MEUR, d1.injector 3.0978 MEUR, chiller 3.0 MEUR, d0.well 2.6586 MEUR, d1.well 2.6586 MEUR, boiler 1.8219 MEUR, degasser 1.0 MEUR, hx 0.75 MEUR.
+OPEX: 3.6539 MEUR/yr — electricity 2.8284 MEUR/yr, fixed 0.38751 MEUR/yr, CO2 0.32847 MEUR/yr, chemical 0.098042 MEUR/yr, waste 0.011423 MEUR/yr, fuel 0.0 MEUR/yr.
+Annualised cost: 6.1114 MEUR/yr.
+LCOH: 43.753 EUR/MWh (energy 111740.0 MWh/yr).
+LCOC: 51.445 EUR/MWh (energy 23759.0 MWh/yr).
+LCTS: 45.102 EUR/MWh (heat 111740.0 MWh/yr, cold 23759.0 MWh/yr).
+NPV: 28.453 MEUR; payback: 7.7377 yr.
+CO2: 13.774 kt — direct 4.9021 kt, methane 0.028643 kt, electricity 8.0184 kt (grid energy 26728.0 MWh, fuel energy 19779.0 MWh, window 365.0 d).
+
+Economic basis: electricity 105.75 EUR/MWh, gas 39.92 EUR/MWh, carbon price 57.03 EUR/t, heat and cold revenue 60 EUR/MWh, heat cost share 0.8, all from the case's economics file. No target or limit for LCOH, LCOC, CAPEX, OPEX or CO2 exists in the case's economics or in the challenge requirements (GEMINI_Hackathon_Challenge_Requirements.pdf pages 1-2): these numbers are reported, not judged against a limit.
+
+Checks
+
+gemini's verdict on result/9b0db55da13a4a5b: feasible true, reasons none, 15 requirement entries passed, 0 failed, 0 not assessed, 0 failed steps. Per-requirement entries (worst value / limit, worst step):
+
+Requirement
+	
+Unit
+	
+Value
+	
+Limit
+	
+Worst step
+	
+Result
+
+
+production_flow_range (d0)
+	
+m3/h
+	
+300.0
+	
+300.0
+	
+2027-01-01T00:00:00+00:00
+	
+passed
+
+
+production_flow_range (d1)
+	
+m3/h
+	
+300.0
+	
+300.0
+	
+2027-01-27T00:00:00+00:00
+	
+passed
+
+
+brine_cooling_limit (d0)
+	
+K
+	
+35.515755069967724
+	
+40.0
+	
+2027-07-19T00:00:00+00:00
+	
+passed
+
+
+brine_cooling_limit (d1)
+	
+K
+	
+34.77110870762044
+	
+40.0
+	
+2027-05-25T00:00:00+00:00
+	
+passed
+
+
+running_time_limit (d0)
+	
+d
+	
+330.0
+	
+330.0
+	
+—
+	
+passed
+
+
+running_time_limit (d1)
+	
+d
+	
+330.0
+	
+330.0
+	
+—
+	
+passed
+
+
+pump_efficiency (d0)
+	
+-
+	
+0.7
+	
+0.7
+	
+—
+	
+passed
+
+
+pump_efficiency (d1)
+	
+-
+	
+0.7
+	
+0.7
+	
+—
+	
+passed
+
+
+full_reinjection (d0)
+	
+-
+	
+0.9999925240970869
+	
+0.99999
+	
+2027-05-05T00:00:00+00:00
+	
+passed
+
+
+full_reinjection (d1)
+	
+-
+	
+0.999992524097087
+	
+0.99999
+	
+2027-01-09T00:00:00+00:00
+	
+passed
+
+
+doublet_count
+	
+-
+	
+2.0
+	
+1 (min 1, max 3)
+	
+—
+	
+passed
+
+
+heat_delivered (unmet share)
+	
+-
+	
+1.0178290352774679e-16
+	
+0.01
+	
+—
+	
+passed
+
+
+cold_delivered (unmet share)
+	
+-
+	
+8.466915474660113e-17
+	
+0.01
+	
+—
+	
+passed
+
+
+heating_supply_temperature
+	
+degC
+	
+100.0
+	
+100.0
+	
+2027-01-01T00:00:00+00:00
+	
+passed
+
+
+cooling_supply_temperature
+	
+degC
+	
+20.0
+	
+20.0
+	
+2027-03-22T00:00:00+00:00
+	
+passed
+
+The limits are the case's requirements (hackathon_2026) and the challenge's fixed settings (GEMINI_Hackathon_Challenge_Requirements.pdf p.2: 300 m3/h maximum production flow, 40 °C maximum brine cooling, 330 daily steps, 70 % pump efficiency, equal production/injection volumes, 1–3 doublets, 100 °C heating and 20 °C cooling supply).
+
+Open points
+No cost or CO2 target exists. The case's economics and the challenge requirements (pages 1-2) state no limit for LCOH, LCOC, CAPEX, OPEX or CO2, so gemini did not judge them; the figures above are reported, not compliant or non-compliant.
+The run is deterministic and one year long. No uncertainty or sensitivity study was run, although the case declares uncertainty on the temperature gradient, permeability, discount rate, electricity price, gas price and carbon price; the reported numbers do not reflect those ranges.
+The design was not sized or optimised. design/v1 was simulated as it stands; no search over doublet count, depth, flow or unit capacities was run, so these numbers are not a least-cost design.
+No chat study exists to cite. list_studies shows only the project's read-only studies; the one for this plant is "simulation HackathonPlant" (plant version 1, case version 3), whose KPIs equal result/9b0db55da13a4a5b digit for digit. No comparison, ranking or uncertainty range is claimed in this report.
+The economics are the case's, at 2015 prices (discount rate 0.05, analysis period 25.0 yr); a different price year or discount rate would change LCOH, LCOC, LCTS, NPV and payback.
+The plant file's values are the design's, not the user's. Values such as params.backup peak, dispatch least_cost, outages lowest_demand, well diameter 0.244 m, drainage radius 1000.0 m, hx 1500000.0 W/K, heat_pump carnot_fraction 0.5, chiller thermal_cop 0.7 and chiller_cooler 40.0 MW dry are stated in the plant file; the user can overrule any of them.
+Decisions
+Family: two doublets + heat exchanger + heat pump + absorption chiller + peak boiler. The case fixes a 100 °C heating supply and a 20 °C cooling supply with 30.0 MW and 10.0 MW peaks. The doublets deliver brine heat through hx; the 15.0 MW heat pump lifts the loop to the 100 °C supply (its minimum_source_outlet_temperature 47.0 degC and carnot_fraction 0.5 set the lift), the 30.0 MW boiler covers the residual peak (2.636 MW used), and cold is made by the 10.0 MW absorption chiller driven by the heating supply splitter, rejected through the 40.0 MW dry cooler. Source: design/v1 (read_plant), result/9b0db55da13a4a5b.
+Two doublets at 2500.0 m and 300.0 m3/h each. The reservoir midpoint depth of 2500 m is the case's (site.reservoir.reference_depth), and 300 m3/h is the challenge's hard cap per doublet (PDF p.2). Two doublets are what the case's doublet_count requirement allows (2.0 against min 1, max 3) and they run at their full capacity at the peak (share 1.0 each). Source: read_case, compute_kpis capacities, PDF p.2.
+How the 100 °C supply is reached: brine from the doublets through hx into the heat pump source, the heat pump raising the loop to the supply, and the boiler trimming the peak; the run holds heating_supply_temperature at 100.0 degC on every step (worst step 2027-01-01T00:00:00+00:00). Source: design/v1 schematic, result/9b0db55da13a4a5b check entries.
+How cold is made: an absorption chiller (10.0 MW, thermal_cop 0.7, minimum_driving_temperature 80.0 degC) driven by the heating supply, rejecting to a dry cooler; cooling_supply_temperature holds 20.0 degC (worst step 2027-03-22T00:00:00+00:00) and cold_delivered unmet share is 8.466915474660113e-17 against 0.01. Source: design/v1, result/9b0db55da13a4a5b.
+Where the gas goes: the co-produced gas is separated in degasser, made up in makeup, burned in the boiler and the excess flared; gas_bought is 0.0 MWh, so the boiler's 253.9 MWh of heat is covered by co-produced gas. Source: compute_kpis on result/9b0db55da13a4a5b.
+What the optimisation changed from the sized start: nothing. No sizing or optimisation study was run on this plant; design/v1 is the project's plant version 1 simulated as it stands, and the project study "simulation HackathonPlant" (id a59c86cb-a555-401b-944e-c394b45c560f, result a528d8da-1fad-4175-8aab-3bc3209871f1, plant version 1, case version 3, read-only) records the same run with KPIs equal to result/9b0db55da13a4a5b digit for digit. Source: list_studies, result/9b0db55da13a4a5b.
+Case changes approved by the user: none. case_changes is empty: the case is the one the user gave (hackathon_2026). Source: case_changes.
+2. The two plant versions side by side (short form, for your manager)
+
+Same case hackathon_2026, whole year 2027-01-01..2028-01-01, step 1 d. All figures from gemini compare (result-963fb70a9b2b9508); A = result/9b0db55da13a4a5b (HackathonPlant v1), B = result/f2d63fe613c99a0f (= project study 'simulation HeatingAbsorptionCoolingPlant', plant version 2).
+
+Metric
+	
+A: HackathonPlant v1
+	
+B: HeatingAbsorptionCoolingPlant v2
+
+
+Heat delivered
+	
+111667.68 MWh
+	
+111667.68 MWh
+
+
+Cold delivered
+	
+23742.528 MWh
+	
+23742.528 MWh
+
+
+LCOH
+	
+43.75277721956231 EUR/MWh
+	
+47.80750773904089 EUR/MWh
+
+
+LCOC
+	
+51.44535499405721 EUR/MWh
+	
+56.212984942049346 EUR/MWh
+
+
+LCTS
+	
+45.10157688467414 EUR/MWh
+	
+49.28130562173663 EUR/MWh
+
+
+CAPEX
+	
+34.63640461864158 MEUR
+	
+23.955885571022524 MEUR
+
+
+OPEX
+	
+3.6538589106027404 MEUR/yr
+	
+4.97803357605344 MEUR/yr
+
+
+CO2
+	
+13.77402062640555 kt
+	
+20.960160002433348 kt
+
+
+Electricity bought
+	
+26727.91980017326 MWh
+	
+9134.32254234211 MWh
+
+
+Gas bought
+	
+0.0 MWh
+	
+65189.528949888336 MWh
+
+
+Boiler heat
+	
+253.8975085761609 MWh
+	
+76829.96207840637 MWh
+
+
+Requirement check
+	
+feasible, 15/15 passed, 0 failed, 0 failed steps
+	
+feasible, 15/15 passed, 0 failed, 0 failed steps
+
+Both are Pareto (neither dominates). Costs are EUR at price_year 2015, discount_rate 0.05, analysis_period 25 yr, heat_cost_share 0.8 (case economics). Same case, window, step, prices and scope; the two differ in plant version/topology (v1 has a 15 MW heat pump + hx; v2 has an absorption chiller driven by a splitter, pipes, injection pump, no heat pump).
+
+Recommendation: build A (HackathonPlant, plant version 1)
+Cheaper heat and cold: LCOH 43.75 vs 47.81 EUR/MWh, LCOC 51.45 vs 56.21 EUR/MWh, LCTS 45.10 vs 49.28 EUR/MWh — A is lower on all three, on identical deliveries.
+Lower running cost and emissions: OPEX 3.65 vs 4.98 MEUR/yr; CO2 13.77 vs 20.96 kt.
+No fuel dependence: gas bought 0.0 MWh and boiler heat 253.9 MWh (backup only) vs 65189.5 MWh gas and 76829.96 MWh boiler heat — B's heat is ~2/3 fossil, which is what drives its CO2 and opex.
+Trade-off: A needs 34.64 MEUR investment vs 23.96 MEUR for B (+10.68 MEUR, a difference read off the two gemini values), and buys more grid electricity (26727.92 vs 9134.32 MWh) because the heat pump runs on power. So A is the lower-cost, lower-carbon plant but the more capital-hungry and more grid-exposed one; B is cheaper to build but dearer to run and gas-based.
+
+Caveats: no limit exists in the case economics or the challenge requirements PDF for LCOH, LCOC, CAPEX, OPEX or CO2, so this is a comparison between the two designs, not against a limit. For B only gemini's verdict (feasible, 15/15, 0 failed) is recorded; its per-requirement worst values are not readable from the stored result. No sensitivity, uncertainty or optimisation was run.
+
+Copy
+Sensitivity on the key costs
+Auto-approve
