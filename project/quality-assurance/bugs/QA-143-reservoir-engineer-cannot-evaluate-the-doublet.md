@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (screenshots), Claude (run log and write-up) |
@@ -44,7 +44,7 @@ Fact (geomind 0.4.91, `geomind/tools/gemini/module_call.py` `prepared_call`): wi
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 15:14 UTC: geomind 0.4.93 (evaluate_module: class name with design resolves the module; inlet refusal explains design vs result; identical failed call not run again, failed_before), backend 1.1.97, deployed ~15:20 UTC
 ## Retest
 
 (Who, when, result.)
