@@ -339,3 +339,22 @@ demand day, a missing price or value (must be an error, never a default). Each m
 right verdict and a readable reason.
 
 Decision (user, 2026-11-05 ~15:00 UTC): approved, after IMP-025; tests with no LLM.
+
+## IMP-029: fewer approval cards in a case run
+
+Status: idea (QA-AI-case-I, 2026-11-05 17:10 UTC). A chat-first case run on the competition files
+stops for 6 or 7 cards: 3 `set_case` approvals (each with the raw JSON of the call), the
+confirmation question, the economics question, and the project lead's `accept_case` approval
+(runs f5f86362, 519ccc65). The two questions already ask the user for every value; the `set_case`
+and `accept_case` approvals add nothing the user can judge. Proposal: in the case loop, auto-allow
+`set_case` writes of file values and `accept_case` after the confirmation question was answered,
+and show what was written in the run's answer instead. Saves 4 cards and 30-60 s of user time.
+
+## IMP-030: the case lead hands the assumptions document to the geoscientists
+
+Status: idea (QA-AI-case-I, 2026-11-05 17:10 UTC). In both case runs 3 of 4 geoscientists read
+`knowledge/hackathon-2026-assumptions.md` themselves (`read_knowledge`, plus 5-8 `search_knowledge`),
+and the case lead reads it again after they return. When the lead finds an assumptions document for
+the case (one `search_rag`), it can read it once before the split and put the part each group needs
+in its brief; the geoscientists then need no Knowledge call. Saves about 10-20 s of the parallel
+stage and ~60 k input tokens per run.
