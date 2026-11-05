@@ -1,0 +1,192 @@
+{
+ "project": "80139e85-7b9d-4333-b238-b48411f3f356",
+ "version": 2,
+ "content": {
+  "kind": "case",
+  "name": "Trondheim district heating and cooling 2027",
+  "site": {
+   "air": {
+    "about": {
+     "pressure": "ISA (ISO 2533:1975) at the site's elevation 10 m: p = 101325*(1-2.25577e-5*h)^5.25588 Pa, h the elevation in m"
+    },
+    "pressure": {
+     "unit": "Pa",
+     "value": 101204.92615896827
+    },
+    "temperature": {
+     "unit": "degC",
+     "value": 5
+    }
+   },
+   "fluid": {
+    "density": {
+     "unit": "kg/m3",
+     "value": 1030
+    },
+    "viscosity": {
+     "unit": "mPa.s",
+     "value": 0.5
+    },
+    "dissolved_gas": {
+     "CH4": {
+      "unit": "-",
+      "value": 0.8
+     },
+     "CO2": {
+      "unit": "-",
+      "value": 0.2
+     }
+    },
+    "gas_liquid_ratio": {
+     "unit": "Nm3/m3",
+     "value": 0.2
+    },
+    "sand_concentration": {
+     "unit": "mg/l",
+     "value": 10
+    }
+   },
+   "ground": {
+    "gradient": {
+     "unit": "degC/km",
+     "value": 25
+    },
+    "surface_temperature": {
+     "unit": "degC",
+     "value": 5
+    }
+   },
+   "reservoir": {
+    "pressure": {
+     "unit": "barg",
+     "value": 200
+    },
+    "thickness": {
+     "unit": "m",
+     "value": 100
+    },
+    "permeability": {
+     "unit": "mD",
+     "value": 100
+    },
+    "reference_depth": {
+     "unit": "m",
+     "value": 2000
+    }
+   }
+  },
+  "time": {
+   "end": "2028-01-01T00:00:00",
+   "step": {
+    "unit": "d",
+    "value": 1
+   },
+   "start": "2027-01-01T00:00:00"
+  },
+  "about": {
+   "note": "No project files; case set from the user's answers and approved engineering assumptions.",
+   "site": "Trondheim, Norway",
+   "services": "district heating and district cooling"
+  },
+  "demand": {
+   "cooling": {
+    "power": {
+     "unit": "MW",
+     "value": 3
+    },
+    "return_pressure": {
+     "unit": "bar",
+     "value": 3
+    },
+    "dew_point_margin": {
+     "unit": "K",
+     "value": 2
+    },
+    "indoor_temperature": {
+     "unit": "degC",
+     "value": 24
+    },
+    "return_temperature": {
+     "unit": "degC",
+     "value": 14
+    },
+    "supply_temperature": {
+     "unit": "degC",
+     "value": 8
+    },
+    "indoor_relative_humidity": {
+     "unit": "-",
+     "value": 0.5
+    }
+   },
+   "heating": {
+    "power": {
+     "unit": "MW",
+     "value": 20
+    },
+    "return_pressure": {
+     "unit": "bar",
+     "value": 4
+    },
+    "return_temperature": {
+     "unit": "degC",
+     "value": 50
+    },
+    "supply_temperature": {
+     "unit": "degC",
+     "value": 80
+    }
+   }
+  },
+  "format": 1,
+  "economics": "economics.json",
+  "utilities": {
+   "electricity": {
+    "co2_intensity": {
+     "unit": "g/kWh",
+     "value": 209.21
+    }
+   }
+  },
+  "requirements": [
+   {
+    "on": "cooling_supply",
+    "max": 0.01,
+    "name": "cold_delivered",
+    "quantity": "unmet_share"
+   },
+   {
+    "on": "heating_supply",
+    "max": 0.01,
+    "name": "heat_delivered",
+    "quantity": "unmet_share"
+   },
+   {
+    "on": "cooling_supply",
+    "max": 8,
+    "name": "cooling_supply_temperature",
+    "over": "each",
+    "unit": "degC",
+    "when": "running",
+    "quantity": "temperature"
+   },
+   {
+    "on": "heating_supply",
+    "min": 80,
+    "name": "heating_supply_temperature",
+    "over": "each",
+    "unit": "degC",
+    "when": "running",
+    "quantity": "temperature"
+   }
+  ]
+ },
+ "files": [
+  {
+   "name": "economics.json",
+   "size": 22294
+  }
+ ],
+ "missing": [],
+ "problems": []
+}
