@@ -44,3 +44,8 @@ Proposal: accept an optional `uncertainty` object per value (gemini's form: `{ki
 ## Retest
 
 (Who, when, result.)
+
+- 2026-11-05 18:08 UTC, QA-E2E-economics-I (observation, status left to the fixer): in project
+  "QA-TEST QA-E2E-economics-I 6" (run 74ef2d84) the stored economics carry the reference
+  uncertainty on discount_rate, energy.electricity, energy.gas and carbon.price
+  (`../evidence/QA-186/economics-retest-project6.json`).
