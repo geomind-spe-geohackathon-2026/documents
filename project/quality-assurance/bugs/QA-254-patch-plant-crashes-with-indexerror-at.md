@@ -34,3 +34,5 @@ Fix: when `_missing_paths()` is empty, name the parameter itself (`self.path.nam
 ## Retest
 
 - 2026-11-05 18:03 UTC: Manual QA-IV 18:04 UTC on gemini 0.6.19: the same patch_plant (d0.nominal_flow on design/A_filled, run bfcec811) saves design/A_flow and lists missing values (pump_efficiency, nominal_wellhead_pressure) instead of IndexError
+
+- 2026-11-05 QA-E2E-design-I: run dca5ed1a (project QA-TEST QA-E2E-design-I 2): patch_plant B_ready 17:57:22 UTC and size_plant B_sized 18:02:08 UTC, both "internal error IndexError: list index out of range at modules/values.py:70" (d0.nominal_flow missing). The 18:02:08 call was one minute after the 18:01 UTC deploy of 0.6.19, in a run started at 17:46: either the worker still had 0.6.17, or size_plant has the same crash path. To retest on a fresh run.
