@@ -39,6 +39,7 @@ Guess: the lead patches after each refusal of `check`/`simulate` (one missing va
 - 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 - 2026-11-05 18:29 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 - 2026-11-05 18:33 UTC: Manual QA-IV 18:33 UTC: 113-value patch works, but 5 small follow-up patches remain for one configuration (setpoints, ESP stages, injection pressure) even with QA-175 live
+- 2026-11-05 18:34 UTC: QA-AI-design-I retest on 0.4.119 (run 2b72af99): 5 patch_plant (2 refused) instead of 7-10; tear stream and simulate's control check still come later
 ## Retest
 
 ## Retest: not fixed (QA-AI-design-I, 2026-11-05 17:50 UTC)
@@ -60,3 +61,7 @@ The prompt cannot fix this alone: each patch is a correct "one patch per round",
 ## Retest 2026-11-05 18:33 UTC (Manual QA-IV), run bfcec811, geomind 0.4.119-0.4.124 (QA-175 live)
 
 Better but not done. The lead wrote A_filled with 113 values in one patch (good), but after that: A_flow (1 value, nominal_flow, partly QA-254), A_ready (2), A_setpoints (4 setpoints), then after set_ranges A_complete (1: d0.esp.stage_count) and A_plant (1: injection_pump.pressure_setpoint). Setpoints, ESP stage count and injection pressure are all known before the first patch; they should be in it, or in one patch after one check. 7 patch/build cards for one configuration.
+
+## Retest on geomind 0.4.119 (QA-AI-design-I, 2026-11-05 18:35 UTC): improved, not one patch
+
+Run 2b72af99-9161-4049-b192-4b12d6db9625 (project QA-TEST QA-AI-design-I 4, backend 1.1.112, the same request as run 0df89b7e, chat auto-approve). From build_plant (18:07:13) to `missing 0` (18:17:18): 5 patch_plant, 2 refused (18:13:52 `params.d0.permeability`/`thickness` are case values, not design values; 18:16:39 `injection_pump.efficiency = 0.7` without `{value}`), 3 saved. The team patch (18:14:50) left 1 missing (`compression_chiller.capacity`); the next one revealed a tear stream (`compression_cooler.fluid_out` has no first guess) that build_plant had not named. `simulate` (18:15:35) refused `injection_pump.frequency` as a parameter although patch_plant had accepted it. Before: 7-10 patch_plant per plant (runs 0df89b7e, 5d0216a6); now 5. Still open: the tear-stream stage and the parameter/control check of simulate are not in the first answer.
