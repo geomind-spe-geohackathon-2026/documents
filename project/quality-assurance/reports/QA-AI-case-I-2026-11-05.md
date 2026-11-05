@@ -112,3 +112,26 @@ New bugs in round 2:
 | QA-222 | minor | geomind | First `set_case` refused in 6 of 6 case runs (files-only, `source=project`, `time_zone`, `columns`, empty or `mol/mol` units) |
 | QA-295 | major | geomind | No-files case: approved gradient 25, depth 2000, pressure 200, GLR 0.5; stored 30 / 2500 / 250 / 0.8 |
 | QA-309 | major | geomind | Empty project: "use the hackathon example case" cannot be done (no demand files); peaks set as constant demand |
+
+## Round 3 (19:00-19:45 UTC; geomind 0.4.114 -> 0.4.131, backend 1.1.120)
+
+| Run | Project | Scenario | Result | Wall time | Cost |
+|---|---|---|---|---|---|
+| 11 `f4018b98` | QA-TEST QA-AI-case-I 11 | three files + "site Delft, outside air from a weather service" | done; open-meteo 2027 daily air series (CMIP6 projection, said so), elevation -> ISA pressure; economics mix Dutch rows and the assumptions document under a note saying "every value" is the document (QA-314); `save_mcp_table` refuses UTC for GMT (QA-315) | 7 min 20 s | 0.036 USD |
+| 12 `9c02d335` | ... 12 | as run 1 (approve all), 0.4.131 | done after 15 min: case lead loops on files-only `set_case` (24 refused), project lead sets case and economics itself (QA-326) | 15 min 0 s | 0.067 USD |
+| 13 `e4e3e1f7` | ... 13 | as run 1 again, 0.4.131 | QA-326 again; run ends **failed** on the `read_case` ban (QA-331) although case and economics are stored | 15 min 21 s | 0.068 USD |
+
+Verified in round 3: QA-156, QA-160, QA-161, QA-163, QA-217. Not retestable on 0.4.131 (the case
+lead never reaches its checklist): QA-157, QA-177.
+
+Speed: 0.4.131 is 3x slower than 0.4.100-0.4.114 on the same request (15 min vs 5 min) because of
+QA-326; before that deploy the case stage was ~5 min and ~0.03 USD per run.
+
+New in round 3:
+
+| Id | Severity | Area | Title |
+|---|---|---|---|
+| QA-314 | minor | geomind | Economics note says every value is the assumptions document while 8 keys are Dutch rows; analysis_period 15 yr from the SDE++ subsidy period |
+| QA-315 | minor | geomind | `save_mcp_table` refuses `UTC` because open-meteo says `GMT` |
+| QA-326 | blocker | geomind | Case lead loops on files-only `set_case` after approve all (0.4.131; 2 of 2 runs) |
+| QA-331 | blocker | geomind | `read_case` banned for the run after `no_case` errors; the next call ends the run failed |
