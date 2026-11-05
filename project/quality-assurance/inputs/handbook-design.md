@@ -2516,7 +2516,7 @@ Worked on 12.1 at 250 m3/h, a = 5 K [derived]:
 
 | Plant | ΔT, K | Heat per doublet, MW | Doublets for the 24 MW peak |
 |---|---|---|---|
-| exchanger only | 99.6 − 60 = 39.6 | 12.1 | 2 (24.3 MW, no margin) |
+| exchanger only (brine heat available; the 110 °C supply still needs a top-up, 14.1, 14.10) | 99.6 − 60 = 39.6 at most | 12.1 | 2 (24.3 MW, no margin) |
 | exchanger + heat pump to the cap | 45 | 13.8 brine + heat pump electricity | 2 (27.6 MW plus electricity) |
 
 The exchanger-only plant meets the peak with 0.3 MW to spare: any loss of productivity, a warmer
@@ -2750,9 +2750,9 @@ What this teaches:
 ## 14.11 Reservoir uncertainty and the doublet count
 
 The design flow and count rest on PI and T_res, both uncertain (3.7). PI scales with k h
-(13.5); a P90 permeability (the value exceeded with 90 % probability) can be a half or a third of
-the P50 in a sandstone reservoir [textbook: Stober and Bucher 2013; treat the ratio as case
-data].
+(13.5); a P90 permeability (the value exceeded with 90 % probability) is often well below the P50;
+the ratio is case data (the case's uncertainty ranges), never a handbook number. The table
+shows what a half and a third would do.
 
 Worked on 13.5's well (PI 12.3 m3/h/bar at P50) at 250 m3/h [derived]:
 
