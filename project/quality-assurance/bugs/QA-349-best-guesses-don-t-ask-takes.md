@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 20:18 UTC |
 | Versions | backend 1.1.126 (geomind with 35c2cb0, QA-320 fix) |
 | Where | project "QA-TEST QA-E2E-economics-I 16"; run 45becf5b-36c2-496f-a8e0-68e46e7ffa76 |
-| Fixer | |
+| Fixer | m8 |
 
 ## Steps
 
