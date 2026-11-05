@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -39,6 +39,7 @@ frontend 1.1.88 (hotfix-front-II), in `dataTableClass` of `src/shared/ui/data-ta
 
 Addition (user, 10:47 UTC: every table, a row-number column '#'): frontend 1.1.90, commit 22b5c0b: `.data-table-numbered` (CSS counter, `styles/index.css`) on by default in DataTable/DataTableFrame and Markdown tables, off for Alternatives and evolve structures (own rank); the chat's runs window moved to DataTableFrame, so no table in the app is left outside the shared one. Checked locally: CSV view and runs list show '#' 1..n, muted; even rows sunken at 0.6.
 - 2026-11-05 10:48 UTC: user addition 10:47 UTC: every table gets the three colours and a row-number column '#' (on by default, a prop turns it off where a table has its own index), including the lists with actions
+- 2026-11-05 11:02 UTC: deployed 11:01 UTC, live 1.1.92 bundle index-BnoB2Kcd.js; live verification left to hotfix-front-III (handover at the context limit)
 ## Retest
 
 (Who, when, result.)
