@@ -34,4 +34,13 @@ Fact: no knowledge row holds the organisers' value. Fix (data): add a row `co2-g
 
 ## Fix
 
+hotfix-back-II, 2026-11-05 09:35 UTC: geomind `main` commit 3a5027d adds the knowledge row
+`co2-grid-organisers-2026` (300 g/kWh, path utilities.electricity.co2_intensity, status verified,
+source: GEMINI GeoHackathon 2026 organisers, Discord #technical-q-and-a, 2026-11-04 15:08, quote in
+the row) with the note "Recommended for the GEMINI GeoHackathon 2026 cases"; Ember stays the
+alternative. Data only, not yet live. Still owed:
+1. a geomind release with the row (hotfix-python-II, on Sahand's word) and a backend deploy;
+2. the Knowledge re-seed with the new catalogue (Sahand; same command as 2026-11-04 23:35 UTC);
+3. the case lead offering this row first for challenge cases (prompt or skill: hotfix-python-II).
+
 ## Retest
