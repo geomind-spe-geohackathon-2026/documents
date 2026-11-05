@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-study-II |
 | Found | 2026-11-05 20:44 UTC |
 | Versions | backend 1.1.125 |
 | Where | project `QA-TEST QA-E2E-study-II 1` (0ce04203-df3c-4259-b9bf-d7c5ebdce123); chat bb245cd8-1ff3-4bdc-b8bd-1eb88f953519; runs 00944350, daa590fc |
-| Fixer | |
+| Fixer | m3 |
 
 ## Steps
 
