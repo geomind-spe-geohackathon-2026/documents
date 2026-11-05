@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | backend,geomind |
 | Reporter | QA-AI-project-I |
@@ -60,3 +60,4 @@ hotfix-back-lead, backend 1.1.112, ~18:01 UTC: GEOMIND_COMPARE_CONCURRENCY=3, GE
 ## Retest
 
 Recipe: Ask to compare two families: both design at the same time (overlapping step times), a failed family is tried once more.
+- 2026-11-05 19:02 UTC: QA-AI-project-I 19:00 UTC, run 654941ed (project 2, new chat, started on 1.1.114): both families in one batch (side by side), the failed absorption family got a retry round (note 'retry': heating_hp_absorption_cooling) and passed; both verified 15/15, compared, stop 'compared'. 41 min 30 s, 5.54 M input tokens, 0.202 USD. LCTS compression 33.66, absorption 46.92 EUR/MWh. evidence/QA-252/retest-654941ed-6072-4dbc-8f9d-7ff637470d17.trace.txt
