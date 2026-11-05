@@ -36,4 +36,7 @@ Fact: a free plant has no `size.doublets`; the doublet count lives on class plan
 ## Fix
 
 - 2026-11-05 14:28 UTC: gemini 0.6.15 (free plant takes size.doublets, resize joins copies) + geomind 0.4.87 skill (no silent drop, handbook ch 10/11), backend 1.1.89, deployed 14:27 UTC
+
+Cause: `size.doublets` existed only on plant classes; a free plant refused it and the design lead dropped the range in silence. Fix: gemini 0.6.15: a plant without a class on one doublet `d0` takes a range on `size.doublets`; `resized` copies d0, joins the supplies with mixers, splits the brine with splitters and repeats d0's other connections, so `optimize` searches 1 to 3 doublets. geomind 0.4.87: designing-a-plant says so, forbids dropping an approved range in silence, and points to handbook-plant-design chapters 10 and 11 (IMP-023 rejected by the user).
+
 ## Retest
