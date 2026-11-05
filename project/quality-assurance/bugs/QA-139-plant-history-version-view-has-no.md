@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -38,3 +38,4 @@ hotfix-front-IV: VersionDetail takes extra `views`; the plant passes "Flowsheet"
 ## Retest
 
 hotfix-front-IV, live: version 21 of geo mind testing shows the Flowsheet tab with the full diagram and "No module changed from version 20.".
+- 2026-11-05 14:58 UTC: live check /tmp/hf-check/qa137.js on geo mind testing
