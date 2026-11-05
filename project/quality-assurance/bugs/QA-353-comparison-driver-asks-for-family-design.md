@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -31,4 +31,5 @@ Guess: the comparison driver is a deterministic driver (0 tokens in the agents l
 
 ## Fix
 
+- 2026-11-05 20:47 UTC: geomind 8361717: a denied family run is never asked again; the driver compares what has results with the user's words; pending deploy
 ## Retest
