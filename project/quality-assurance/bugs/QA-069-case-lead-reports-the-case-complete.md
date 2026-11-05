@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-I |
@@ -35,7 +35,7 @@ The case lead reported the case complete; the design stage then blocked on site.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 01:05 UTC: geomind 0.4.62 (7a71ecc: set_case returns plants_need from gm.check of each project plant; case lead checklist), backend 1.1.64 (ae8e646), deployed 01:06 UTC
 ## Retest
 
 (Who, when, result.)
