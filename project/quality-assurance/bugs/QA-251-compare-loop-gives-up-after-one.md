@@ -43,3 +43,5 @@ Fact: `geomind/agents/project/comparison.py` `after_batch` records a family with
 
 - 2026-11-05 18:34 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+Retest (QA-E2E-design-I, 2026-11-05 19:36 UTC, backend 1.1.117): run 06fd16f0: the first whole-year runs failed (365/365, then 330/365, QA-250) and the design lead ran a repair round (well engineer, 8 values) and reached a feasible run, then compared it with the 150 m3/h variant; run e3c10ff9 compared 1/2/3 doublets with run_study and compare, all feasible, ranked. The loop no longer gives up after one failed simulate. Works.
