@@ -30,6 +30,10 @@ The challenge and the case give no network: the plant is at the consumer (gemini
 
 Speed: ~11 min and ~1 M input tokens of the run went to a pipe the challenge does not have.
 
+## After the user's answer (17:26-17:39 UTC)
+
+The tester answered the question in text: "Do not change heat_delivered: it is a hard limit ... The 5 km heating main is not in the case or the challenge; where does it come from? Fix the design so it meets every limit (you may use 1 to 3 doublets) ...". The design lead then removed the main and the 3 K margins in ONE patch (`design/fixed3`, 17:28:23) and the full-year result `result/e7301855ea3b38df` is feasible (0 reasons): LCTS 40.62 EUR/MWh (reference 40.34), LCOH 39.41, LCOC 46.34, CAPEX 22.55 MEUR, CO2 14.81 kt/yr, 43 % of heat from the gas boiler, still 1 doublet at 250 m3/h, no optimize. The fix took the agents 3 min once a person named the cause. The project lead then added review, economics and a 200-draw uncertainty sample nobody asked for (17:31-17:39, 8 min). Run total: 48.5 min, 206 steps, 327 tool calls (43 refused), 6.0 M input tokens, 0.18 USD.
+
 ## Cause
 
 Facts: `prompts/design/energy.md` and the brief give the pipe paths to the engineer with no rule for a network the case does not describe; `hackathon-2026-assumptions.md` (Knowledge) and the case hold no network length; the engineer prompt allows `source: assumption` for any value.
