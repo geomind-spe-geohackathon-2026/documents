@@ -1,4 +1,4 @@
-# Handbook of Techno-Economic and Environmental Assessment of Geothermal Heating and Cooling Plants
+**Handbook of Techno-Economic and Environmental Assessment of Geothermal Heating and Cooling Plants**
 
 How to cost a geothermal heating and cooling plant, put a carbon footprint on it, and use both to
 choose between designs. General for any case; chapter 17 works a full example on invented
@@ -731,6 +731,46 @@ At 5 %: A(5 %, 15) = 10.380, A(5 %, 20) = 12.462, A(5 %, 30) = 15.372 **(derived
 - **Part years**: a simulation of 365 days is scaled to a year of 365.25 days in gemini (section
   16.7). Small, but it explains why per-year energies differ slightly from the run totals.
 
+### 5.5 Worked example: replacements and residual value
+
+Invented numbers; real discount rate 5 %, analysis period 25 yr. The formulas explain gemini's
+results; agents quote gemini's numbers (§0.1).
+
+**Replacements.** A downhole pump costing 0.5 MEUR lasts 5 years, so it is replaced in years 5,
+10, 15 and 20. Present value of the replacements:
+`0.5 x (1/1.05^5 + 1/1.05^10 + 1/1.05^15 + 1/1.05^20) = 0.5 x 2.2553 = 1.128 MEUR`.
+As an equal yearly cost: `1.128 x CRF(5 %, 25) = 1.128 x 0.07095 = 0.080 MEUR/yr`, which is
+16 % of the pump's price per year. A fixed O&M share of 20 %/yr for such a pump (the catalogue's
+ESP replacement row, §0.4.2) is of this order; take one or the other, never both (§15 item 18).
+
+**Residual value.** A heat pump of 6 MEUR with a 30-year life is 25 years old at the end:
+straight-line residual `6 x 5/30 = 1.0 MEUR` at year 25, worth `1.0 / 1.05^25 = 0.295 MEUR` today,
+5 % of its price. Ignoring it is conservative and usually small; gemini counts no residual value.
+
+**Steps for any lifetime question**
+
+1. List each kind's technical life (source: DEA data sheets, vendor data).
+2. Lives shorter than the analysis period: replacement cash flows, or a fixed O&M row that says it
+   includes them.
+3. Lives longer: residual value, or state that it is ignored.
+4. Report which kinds were treated how.
+
+### 5.6 The weighted average cost of capital
+
+An investor discounts at the project's weighted average cost of capital (Brealey, Myers and
+Allen, *Principles of Corporate Finance*, chapter on the WACC):
+
+`WACC = E/V x r_E + D/V x r_D x (1 - T)`
+
+with `E` and `D` equity and debt, `V = E + D`, `r_E` the return equity holders require, `r_D` the
+interest rate and `T` the corporate tax rate. Invented example: 30 % equity at 10 %, 70 % debt at
+4 %, tax 25 %: `0.3 x 0.10 + 0.7 x 0.04 x 0.75 = 0.051`, a nominal WACC of 5.1 %. With 2 %
+inflation the real rate is `1.051 / 1.02 - 1 = 3.0 %` (Fisher, §4.1).
+
+Rules: a WACC is nominal unless its source says real; a policy rate (§5.1) is not an investor's
+rate; whichever is used, `economics.discount_rate` in gemini is a **real** rate (§16.1), so a
+nominal rate is converted first and the conversion is written in the source.
+
 ---
 
 ## 6. Levelised costs
@@ -803,6 +843,43 @@ Rules:
 - It does not show scale: a small plant with low LCOH may not meet the demand.
 - It ignores the timing of revenue and the value of flexibility.
 - It is only as good as its weakest input; a placeholder capex makes the LCOH a placeholder too.
+
+### 6.6 Worked example: an LCOH by hand, and what moves it
+
+Invented heat-only plant: capex `I0` 20 MEUR, opex `C` 1.2 MEUR/yr, useful heat `Q` 60 000
+MWh/yr, real rate 5 %, 25 yr.
+
+1. `CRF(5 %, 25) = 0.07095`, so the annualised capex is `20 x 0.07095 = 1.419 MEUR/yr`.
+2. Annualised cost `= 1.419 + 1.2 = 2.619 MEUR/yr` (gemini's `annualised_cost`).
+3. `LCOH = 2.619 MEUR / 60 000 MWh = 43.65 EUR/MWh`; capex is 54 % of it.
+
+Sensitivities that follow from the formula (check gemini's study against them):
+
+| Change | Effect on LCOH |
+|---|---|
+| capex +10 % | `+0.1 x 1.419 / 60 000 = +2.37 EUR/MWh` (+5.4 %) |
+| opex +10 % | `+0.12 / 60 000 = +2.00 EUR/MWh` (+4.6 %) |
+| heat -10 % (same plant) | `43.65 / 0.9 = 48.50 EUR/MWh` (+11 %) |
+| rate 5 % to 8 % | CRF 0.0937: `(1.874 + 1.2)/60 000 = 51.23 EUR/MWh` (+17 %) |
+
+Lessons: energy delivered sits in the denominator, so an under-used plant is expensive however
+cheap its parts; a capital-heavy plant is most sensitive to the discount rate.
+
+**Checks on any gemini result**: `lcts x (Q_heat + Q_cold)` must give back `annualised_cost`;
+`annualised_cost - opex` must equal `capex x CRF`; a heat-only plant's `lcoh` equals its `lcts`.
+A failed check means a wrong reading (another result, another case), not a gemini error to fix.
+
+### 6.7 Levelised costs in gemini and geomind
+
+| Concept | gemini name | Tool | Needs |
+|---|---|---|---|
+| Annualised cost | `annualised_cost` | `estimate_costs` | capex, opex, `discount_rate`, `analysis_period` |
+| LCOH, LCOC | `lcoh`, `lcoc` | `estimate_costs` | heat and cold delivered; `heat_cost_share` when both |
+| LCTS | `lcts` | `estimate_costs` | as annualised cost |
+| How they move | study metric | `sensitivity`, `sample_uncertainty` | an `uncertainty` on the moved keys (§18.9) |
+| Lowest LCTS design | objective | `optimize` | a feasible search space (handbook-studies) |
+
+`read_result` and `compute_kpis` do not give cost metrics (§0.8, QA-209).
 
 ---
 
@@ -877,6 +954,30 @@ How to model it:
   change the risk, not the expected capex; they belong in the uncertainty analysis.
 - **Taxes**: corporate income tax, depreciation allowances and property tax change an investor's
   cash flows. A pre-tax analysis is simpler and common for comparing designs; say which is used.
+
+### 7.5 Worked example: NPV, IRR and paybacks
+
+The plant of §6.6 sells heat at 70 EUR/MWh: revenue `60 000 x 70 = 4.2 MEUR/yr`, net
+`4.2 - 1.2 = 3.0 MEUR/yr`.
+
+| Measure | Calculation | Result |
+|---|---|---|
+| NPV (5 %, 25 yr) | `-20 + 3.0 x A(5 %, 25) = -20 + 3.0 x 14.094` | 22.28 MEUR |
+| Simple payback | `20 / 3.0` | 6.7 yr (gemini's `payback`) |
+| Discounted payback | first `n` with `A(5 %, n) >= 6.667`: A(5 %, 8) = 6.463, A(5 %, 9) = 7.108 | 9 yr |
+| IRR | rate where `A(r, 25) = 20 / 3.0` | 14.5 % |
+| Break-even heat price | the LCOH | 43.65 EUR/MWh |
+
+**With a sliding premium** (§7.3): base amount 60, correction amount 35 EUR/MWh, so 25 EUR/MWh
+on the heat up to a cap of 6 000 full-load hours x 10 MW = 60 000 MWh/yr, for 15 years:
+`25 x 60 000 = 1.5 MEUR/yr`, present value `1.5 x A(5 %, 15) = 1.5 x 10.380 = 15.57 MEUR`.
+The subsidy adds to the NPV, not to the LCOH. In gemini: `revenue.subsidy.amount` 25 EUR/MWh,
+`duration` 15 yr, `cap` as full-load hours times `capacity` (§16.1, §16.5).
+
+**Reading the measures together.** NPV says how much value; IRR how robust to the rate; payback
+how soon the money returns. Rank by NPV at the case's rate (or by LCTS when prices are equal,
+§7.2); quote the others as context. A design with a higher IRR but lower NPV is smaller, not
+better.
 
 ---
 
@@ -1818,6 +1919,8 @@ handbook.
   generation" (section 19.2).
 - Eurostat, `ert_bil_eur_a`, euro exchange rates, annual data; European Central Bank, euro foreign
   exchange reference rates (section 19.1).
+- Brealey, R. A., Myers, S. C. and Allen, F., *Principles of Corporate Finance*, McGraw-Hill (any
+  recent edition; WACC and NPV chapters; sections 5.6, 7.5).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
