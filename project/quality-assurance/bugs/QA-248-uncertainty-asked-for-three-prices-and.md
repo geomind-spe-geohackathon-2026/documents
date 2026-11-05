@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind,gemini |
 | Reporter | QA-E2E-study-I |
@@ -68,3 +68,4 @@ labelled as such), and say in one line which parameters were varied.
   open, filed as QA-299: P10 and P90 are not available ("gemini's Monte Carlo output carries only p5, p50 and p95"),
   and values are given with 15 digits (QA-099).
   Log: `../evidence/QA-248/run-8d7c09f7-retest-log.json`.
+- 2026-11-05 18:48 UTC: retest QA-AI-analysis-I 18:47 UTC backend 1.1.117: only the 3 prices sampled; P10/P90 gap filed as QA-299
