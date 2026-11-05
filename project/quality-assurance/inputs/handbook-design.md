@@ -1981,6 +1981,77 @@ Each a general rule from GeoMind's QA (`documents/project/quality-assurance/BUGS
   repair round from 0.5 (at most three changes aimed at the failing check, 0.1) before giving a
   family up, and say what was tried.
 
+## 12.16 Lesson: choosing a heat exchanger's UA from its approach
+
+`size_plant` keeps the exchanger's `thermal_conductance` (6.1): the designer sets it. Invented
+numbers: brine enters at 85 °C, network water at 40 °C, both with C = ṁ c_p = 250 kW/K
+(balanced counterflow). In a balanced counterflow exchanger the temperature difference is the
+same at both ends, so ΔT_lm equals the approach a [textbook: Incropera et al. 2007]:
+
+cold outlet = 85 − a, duty Q = C (85 − a − 40), UA = Q / a
+
+| Approach a, K | Network outlet, °C | Duty, MW | UA, MW/K |
+|---|---|---|---|
+| 10 | 75 | 8.75 | 0.88 |
+| 5 | 80 | 10.0 | 2.0 |
+| 2 | 83 | 10.75 | 5.38 |
+
+[derived]. Going from 5 K to 2 K gains 7.5 % duty for 2.7 times the UA (and roughly the plate
+area). The approach is an economic choice (10.1): price the UA from the case's economics, and
+remember every kelvin also lowers a downstream heat pump's lift (12.8).
+
+Procedure for unbalanced flows: compute C_min, C_max; pick the approach at the pinch end;
+get the outlet temperatures by the energy balance; ΔT_lm = (ΔT₁ − ΔT₂) / ln(ΔT₁ / ΔT₂); UA =
+Q / ΔT_lm (A.8). Check with `evaluate_module` on the design point, then read the approach in
+the simulated results on the worst step (11.7).
+
+## 12.17 Lesson: breakthrough time of a doublet
+
+Formula of 3.5 [Gringarten and Sauty 1975]: V_B = π L² H (ρc)_a / (3 (ρc)_w), t_B = V_B / Q.
+Invented: H 100 m, (ρc)_a 2.6 MJ/m3/K, (ρc)_w 4.1 MJ/m3/K.
+
+| Spacing L, m | Flow, m3/h | t_B, years |
+|---|---|---|
+| 800 | 300 | 16 |
+| 1,200 | 300 | 36 |
+| 1,200 | 200 | 55 |
+
+[derived]. Lessons: spacing enters squared, flow inversely. A higher design flow per doublet that
+saves a doublet now can bring breakthrough inside the plant's life. The formula ignores
+heterogeneity and regional flow, which can shorten t_B; state it as an estimate, and treat
+`drainage_radius` (about half the spacing, 0.7.1) consistently with the spacing chosen.
+
+## 12.18 Lesson: sizing a plant pipe
+
+Invented: 10 MW carried at 40 K (80 to 40 °C): ṁ = Q / (c_p ΔT) = 10e6 / (4,190 × 40) = 59.7 kg/s,
+0.0612 m3/s at 975 kg/m3. Darcy-Weisbach with the Swamee-Jain friction factor, f = 0.25 / log10(ε/(3.7 D) + 5.74/Re^0.9)², which
+gemini uses (A.4 gives the close Haaland form) [Moody 1944;
+gemini: `gemini/physics/hydraulics.py`], roughness 4.5e-5 m, μ 0.4 mPa s:
+
+| Inner diameter, m | Velocity, m/s | Friction factor | Loss, bar per km |
+|---|---|---|---|
+| 0.15 | 3.46 | 0.0156 | 6.1 |
+| 0.20 | 1.95 | 0.0151 | 1.4 |
+| 0.25 | 1.25 | 0.0148 | 0.45 |
+
+[derived]. The loss falls about as D⁻⁵: one size up cuts it by three to four times. 0.20 m sits
+in the 1 to 3 m/s band (2.5). A pipe at 3.5 m/s over several kilometres is the usual cause of a
+`PhysicsError` with an outlet pressure below zero (0.5.2). The pipe's length is the case's,
+never invented (0.6).
+
+## 12.19 Lesson: how much of the cold can free cooling give?
+
+Free cooling works on a step when the cold source is colder than the chilled water return by
+more than the cooler's approach (7.5). Invented: chilled water 20 °C supply, 26 °C return, dry
+cooler approach 6 K [ASHRAE]. Full free cooling needs air below 20 − 6 = 14 °C; partial free
+cooling (pre-cooling the return) works below 26 − 6 = 20 °C [derived].
+
+Procedure: count the steps of the case's air temperature series below each threshold and weigh
+them by the cold demand of those steps; that share of cold needs only fan power (`specific_fan_power`,
+7.6). A high chilled water temperature makes free cooling far more useful than a low one; a
+dehumidifying 6 °C supply (13.9) leaves little. In gemini, model it as a cooler on the chilled
+water loop before the chiller, and read its delivered cold in the results.
+
 # 13 Answers to the design questions agents ask
 
 Each section answers one question that design agents searched Knowledge for again and again in
@@ -2032,7 +2103,7 @@ with `dN.riser.esp_depth` the pump depth. A designed `Doublet` builds these path
   vertical, θ = 90° − β, and write L cos θ) [textbook: Economides et al. 2013]. Writing 0 for a
   vertical well makes it horizontal. Check the unit (rad) in `describe_module`.
 - The tubing above the pump is narrower than the casing below; friction above the pump grows
-  as 1/D⁵ at a given flow (Darcy-Weisbach, A.3) and can dominate at high flow (4.2).
+  as 1/D⁵ at a given flow (Darcy-Weisbach, A.4) and can dominate at high flow (4.2).
 
 Mistake to avoid: changing the case's reference depth to move the reservoir; change the plant's
 `depth` (QA-119).
