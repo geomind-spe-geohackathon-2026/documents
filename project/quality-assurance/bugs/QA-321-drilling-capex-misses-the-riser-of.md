@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -30,6 +30,7 @@ Guess: the drilling cost sums the well and injector section lengths of a Doublet
 
 ## Fix
 
+- 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
 
 ## Update 2026-11-05 20:25 CET (from hotfix-python-lead-II)
