@@ -1,0 +1,2038 @@
+[
+ {
+  "ts": "2026-11-05T17:06:00.746364+00:00",
+  "agent": "design_lead",
+  "tool": "patch_plant",
+  "input": {
+   "name": "assembled",
+   "design": "design/start",
+   "changes": [
+    {
+     "path": "params.d0.depth",
+     "value": {
+      "unit": "m",
+      "value": 2500
+     },
+     "reason": "Doublet at the case reference depth; gemini takes reservoir T and p from the case.",
+     "source": "case:site.reservoir.reference_depth"
+    },
+    {
+     "path": "params.d0.drainage_radius",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "1-2 km well spacing (handbook 3.5) pushes cold breakthrough beyond plant life.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.roughness",
+     "value": {
+      "unit": "m",
+      "value": 4.5e-05
+     },
+     "reason": "New commercial steel casing.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.reservoir.drainage_radius",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "Same drainage area as the doublet.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.reservoir.top_depth",
+     "value": {
+      "unit": "m",
+      "value": 2450
+     },
+     "reason": "Aquifer top 50 m above the 2500 m midpoint with the case's 100 m thickness.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.reservoir.skin",
+     "value": {
+      "unit": "-",
+      "value": 0
+     },
+     "reason": "New well at zero skin.",
+     "source": "knowledge/handbook-design.md 3.3"
+    },
+    {
+     "path": "params.d0.reservoir.wellbore_radius",
+     "value": {
+      "unit": "m",
+      "value": 0.122
+     },
+     "reason": "Half of the 0.244 m casing inner diameter.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.well.section_length",
+     "value": {
+      "unit": "m",
+      "value": [
+       2500
+      ]
+     },
+     "reason": "One vertical section to the reservoir midpoint.",
+     "source": "case:site.reservoir.reference_depth"
+    },
+    {
+     "path": "params.d0.well.section_inclination",
+     "value": {
+      "unit": "rad",
+      "value": [
+       1.5708
+      ]
+     },
+     "reason": "Vertical well, 90 deg from horizontal.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.well.section_diameter",
+     "value": {
+      "unit": "m",
+      "value": [
+       0.244
+      ]
+     },
+     "reason": "9 5/8 in production casing.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.well.section_roughness",
+     "value": {
+      "unit": "m",
+      "value": [
+       4.5e-05
+      ]
+     },
+     "reason": "New commercial steel.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.well.friction_correlation",
+     "value": "darcy_weisbach",
+     "reason": "Single-phase friction in the well.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.well.two_phase_friction_correlation",
+     "value": "BeggsBrill",
+     "reason": "Two-phase flow above the bubble point.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.well.correction_factors",
+     "value": [
+      1,
+      0
+     ],
+     "reason": "No calibration data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.well.soil_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 12
+     },
+     "reason": "Ground temperature around the well.",
+     "source": "case:site.ground.surface_temperature"
+    },
+    {
+     "path": "params.d0.well.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 10
+     },
+     "reason": "Overall fluid-to-soil coefficient.",
+     "source": "knowledge/handbook-design.md 3.1"
+    },
+    {
+     "path": "params.d0.well.segment",
+     "value": "below_esp",
+     "reason": "Well interval below the pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.well.esp_depth",
+     "value": {
+      "unit": "m",
+      "value": 2400
+     },
+     "reason": "Deep setting keeps intake pressure and free-gas fraction inside the pump limits.",
+     "source": "assumption (well engineer)"
+    },
+    {
+     "path": "params.d0.riser.section_length",
+     "value": {
+      "unit": "m",
+      "value": [
+       2400
+      ]
+     },
+     "reason": "Riser from the 2400 m pump setting to surface.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.section_inclination",
+     "value": {
+      "unit": "rad",
+      "value": [
+       1.5708
+      ]
+     },
+     "reason": "Vertical, as the well.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.section_diameter",
+     "value": {
+      "unit": "m",
+      "value": [
+       0.244
+      ]
+     },
+     "reason": "Same casing as the well.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.riser.section_roughness",
+     "value": {
+      "unit": "m",
+      "value": [
+       4.5e-05
+      ]
+     },
+     "reason": "New commercial steel.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.riser.friction_correlation",
+     "value": "darcy_weisbach",
+     "reason": "Single-phase friction above the pump.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.riser.two_phase_friction_correlation",
+     "value": "BeggsBrill",
+     "reason": "Gas comes out of solution above the pump.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.riser.correction_factors",
+     "value": [
+      1,
+      0
+     ],
+     "reason": "No calibration data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.soil_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 12
+     },
+     "reason": "Ground temperature around the riser.",
+     "source": "case:site.ground.surface_temperature"
+    },
+    {
+     "path": "params.d0.riser.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 10
+     },
+     "reason": "Overall fluid-to-soil coefficient of the riser.",
+     "source": "knowledge/handbook-design.md 3.1"
+    },
+    {
+     "path": "params.d0.riser.segment",
+     "value": "above_esp",
+     "reason": "Well interval above the pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.esp_depth",
+     "value": {
+      "unit": "m",
+      "value": 2400
+     },
+     "reason": "Pump depth that splits the well.",
+     "source": "assumption (well engineer)"
+    },
+    {
+     "path": "params.d0.injector.section_length",
+     "value": {
+      "unit": "m",
+      "value": [
+       2500
+      ]
+     },
+     "reason": "One vertical section to the reservoir midpoint.",
+     "source": "case:site.reservoir.reference_depth"
+    },
+    {
+     "path": "params.d0.injector.section_inclination",
+     "value": {
+      "unit": "rad",
+      "value": [
+       1.5708
+      ]
+     },
+     "reason": "Vertical injection well.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.injector.section_diameter",
+     "value": {
+      "unit": "m",
+      "value": [
+       0.244
+      ]
+     },
+     "reason": "Same casing as the producer.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.injector.section_roughness",
+     "value": {
+      "unit": "m",
+      "value": [
+       4.5e-05
+      ]
+     },
+     "reason": "New commercial steel.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.injector.friction_correlation",
+     "value": "darcy_weisbach",
+     "reason": "Single-phase friction in the injector.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.injector.two_phase_friction_correlation",
+     "value": "BeggsBrill",
+     "reason": "Same correlation as the producer.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.injector.correction_factors",
+     "value": [
+      1,
+      0
+     ],
+     "reason": "No calibration data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.injector.soil_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 12
+     },
+     "reason": "Ground temperature around the injector.",
+     "source": "case:site.ground.surface_temperature"
+    },
+    {
+     "path": "params.d0.injector.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 10
+     },
+     "reason": "Overall fluid-to-soil coefficient of the injector.",
+     "source": "knowledge/handbook-design.md 3.1"
+    },
+    {
+     "path": "params.d0.injector.segment",
+     "value": "full",
+     "reason": "The injector has no pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.sink.drainage_radius",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "Same drainage area as the producer, so the doublet is balanced.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.sink.top_depth",
+     "value": {
+      "unit": "m",
+      "value": 2450
+     },
+     "reason": "Same aquifer as the producer.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.sink.skin",
+     "value": {
+      "unit": "-",
+      "value": 0
+     },
+     "reason": "New well at zero skin.",
+     "source": "knowledge/handbook-design.md 3.3"
+    },
+    {
+     "path": "params.d0.sink.wellbore_radius",
+     "value": {
+      "unit": "m",
+      "value": 0.122
+     },
+     "reason": "Half of the 0.244 m casing inner diameter.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.esp.pump_type",
+     "value": "unspecified",
+     "reason": "No catalogue curve sourced; gemini derives head and power from the design and the case's 0.7 efficiency.",
+     "source": "brief (gemini reference plant)"
+    },
+    {
+     "path": "params.d0.esp.head_coefficients",
+     "value": [],
+     "reason": "No catalogue curve.",
+     "source": "brief (gemini reference plant)"
+    },
+    {
+     "path": "params.d0.esp.power_coefficients",
+     "value": [],
+     "reason": "No catalogue curve.",
+     "source": "brief (gemini reference plant)"
+    },
+    {
+     "path": "params.d0.esp.stage_count",
+     "value": {
+      "unit": "-",
+      "value": 1
+     },
+     "reason": "Placeholder for an unspecified pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.setting_depth",
+     "value": {
+      "unit": "m",
+      "value": 2400
+     },
+     "reason": "Deep setting keeps intake pressure and free-gas fraction inside the pump limits.",
+     "source": "assumption (well engineer)"
+    },
+    {
+     "path": "params.d0.esp.motor_efficiency",
+     "value": {
+      "unit": "-",
+      "value": 0.95
+     },
+     "reason": "Downhole induction motor efficiency; the case's 0.7 is the pump's own efficiency.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.minimum_flow",
+     "value": {
+      "unit": "m3/h",
+      "value": 50
+     },
+     "reason": "Lower end of the case's flow window.",
+     "source": "case:requirements.production_flow_range"
+    },
+    {
+     "path": "params.d0.esp.maximum_flow",
+     "value": {
+      "unit": "m3/h",
+      "value": 300
+     },
+     "reason": "Upper end of the case's flow window.",
+     "source": "case:requirements.production_flow_range"
+    },
+    {
+     "path": "params.d0.esp.best_efficiency_flow",
+     "value": {
+      "unit": "m3/h",
+      "value": 200
+     },
+     "reason": "Mid-window operating point of the unspecified pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.correction_factors",
+     "value": [
+      1,
+      0
+     ],
+     "reason": "No calibration data for the pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.tubing",
+     "value": {
+      "unit": "m",
+      "value": 0.244
+     },
+     "reason": "Pump discharges into the same casing it hangs in.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.esp.minimum_intake_pressure",
+     "value": {
+      "unit": "bar",
+      "value": 5
+     },
+     "reason": "Keeps the intake above the bubble point without PVT data.",
+     "source": "knowledge/handbook-design.md 4.3"
+    },
+    {
+     "path": "params.d0.esp.maximum_gas_fraction",
+     "value": {
+      "unit": "-",
+      "value": 0.1875
+     },
+     "reason": "Standard stage limit of 18.75 % free gas by volume.",
+     "source": "knowledge/handbook-design.md 4.4"
+    },
+    {
+     "path": "params.d0.esp.drift_threshold",
+     "value": {
+      "unit": "-",
+      "value": 0.1
+     },
+     "reason": "Health alarm at a 10 % drift from predicted head.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.degasser.nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.5
+     },
+     "reason": "Vessel internals loss at nominal flow; small against the wellhead pressure.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.degasser.separation_efficiency",
+     "value": 0.98,
+     "reason": "High-efficiency separator; only free gas is taken out (handbook 5.2).",
+     "source": "assumption"
+    },
+    {
+     "path": "params.filters.hot.nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.3
+     },
+     "reason": "Clean-filter loss at nominal flow, hot side.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.filters.hot.nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 85.8
+     },
+     "reason": "Brine mass flow at the top of the case's per-doublet flow band.",
+     "source": "calculation C60c2d6"
+    },
+    {
+     "path": "params.filters.cold.nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.3
+     },
+     "reason": "Clean-filter loss at nominal flow, cold side.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.filters.cold.nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 85.8
+     },
+     "reason": "Same brine mass flow before the injector.",
+     "source": "calculation C60c2d6"
+    },
+    {
+     "path": "params.flare.combustion_efficiency",
+     "value": 0.98,
+     "reason": "Flare burns 98 % of the surplus gas.",
+     "source": "knowledge/handbook-design.md 5.5"
+    },
+    {
+     "path": "params.heat_exchanger.thermal_conductance",
+     "value": {
+      "unit": "MW/K",
+      "value": 1.5
+     },
+     "reason": "UA set by the chosen approach (handbook 6.1); gives a 1.7 K approach at design duty.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_exchanger.arrangement",
+     "value": "counterflow",
+     "reason": "Plate exchangers are close to counterflow.",
+     "source": "knowledge/handbook-design.md 6.1"
+    },
+    {
+     "path": "params.heat_exchanger.hot_nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.5
+     },
+     "reason": "Brine-side design pressure drop at nominal flow.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_exchanger.cold_nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.5
+     },
+     "reason": "Network-side design pressure drop at nominal flow.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_exchanger.hot_nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 85.8
+     },
+     "reason": "Brine design flow through the exchanger, matching the doublet flow.",
+     "source": "calculation C60c2d6"
+    },
+    {
+     "path": "params.heat_exchanger.cold_nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 180
+     },
+     "reason": "Full network flow at the 30 MW peak and the case's 40 K supply-return difference.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_pump.mode",
+     "value": "heating",
+     "reason": "The unit lifts brine heat to the heating network.",
+     "source": "brief (plant text)"
+    },
+    {
+     "path": "params.heat_pump.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 10
+     },
+     "reason": "Share of the 30 MW peak the 87 degC brine cannot reach; the boiler covers the rest.",
+     "source": "assumption (handbook 8.3)"
+    },
+    {
+     "path": "params.heat_pump.cop_model",
+     "value": "lorenz",
+     "reason": "Large glides on both sides; Lorenz describes the machine better.",
+     "source": "knowledge/handbook-design.md 6.4"
+    },
+    {
+     "path": "params.heat_pump.carnot_fraction",
+     "value": 0.5,
+     "reason": "Required field; real machines reach 0.4-0.6 of Carnot.",
+     "source": "knowledge/handbook-design.md 6.4"
+    },
+    {
+     "path": "params.heat_pump.lorenz_fraction",
+     "value": 0.5,
+     "reason": "Lorenz efficiency of a large heat pump (DEA 2025, 48-50 %).",
+     "source": "knowledge/data-economics.csv heat-pump-lorenz-dea-2025"
+    },
+    {
+     "path": "params.heat_pump.minimum_temperature_lift",
+     "value": {
+      "unit": "K",
+      "value": 10
+     },
+     "reason": "Below this lift the COP formula overstates.",
+     "source": "knowledge/handbook-design.md 6.4"
+    },
+    {
+     "path": "params.heat_pump.minimum_source_outlet_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 48
+     },
+     "reason": "Lead's decision: keeps the brine cooling at 39 K, 1 K inside the case's 40 K cap.",
+     "source": "case:requirements.brine_cooling_limit (87 degC - 40 K = 47 degC) with 1 K margin"
+    },
+    {
+     "path": "params.heat_pump.supply_margin",
+     "value": {
+      "unit": "K",
+      "value": 2
+     },
+     "reason": "Small positive margin covers losses after the unit.",
+     "source": "assumption (handbook 9.4)"
+    },
+    {
+     "path": "params.heat_pump.temperature_setpoint",
+     "value": {
+      "unit": "degC",
+      "value": 100
+     },
+     "reason": "Outlet setpoint on the supply line.",
+     "source": "case demand.heating.supply_temperature"
+    },
+    {
+     "path": "params.peak_boiler.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 30
+     },
+     "reason": "With backup=peak the boiler covers the whole heating peak with the doublets off.",
+     "source": "case demand heating peak 30 MW; handbook 8.4 backup=peak"
+    },
+    {
+     "path": "params.peak_boiler.efficiency",
+     "value": 0.9,
+     "reason": "Boiler thermal efficiency.",
+     "source": "knowledge/handbook-design.md 6.5"
+    },
+    {
+     "path": "params.peak_boiler.temperature_setpoint",
+     "value": {
+      "unit": "degC",
+      "value": 100
+     },
+     "reason": "Outlet setpoint on the supply line.",
+     "source": "case demand.heating.supply_temperature"
+    },
+    {
+     "path": "params.peak_boiler.supply_margin",
+     "value": {
+      "unit": "K",
+      "value": 2
+     },
+     "reason": "Small positive margin covers losses after the unit.",
+     "source": "assumption (handbook 9.4)"
+    },
+    {
+     "path": "params.heating_supply_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 5000
+     },
+     "reason": "No case value for network length; 5 km main for a 30 MW district.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.35
+     },
+     "reason": "Sized for 180 kg/s at about 2 m/s (handbook 2.5).",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.roughness",
+     "value": {
+      "unit": "m",
+      "value": 5e-05
+     },
+     "reason": "Commercial steel roughness.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Flat terrain; no case elevation data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated district heating pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 5000
+     },
+     "reason": "Same main as the supply line.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.35
+     },
+     "reason": "Same size as the supply line.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.roughness",
+     "value": {
+      "unit": "m",
+      "value": 5e-05
+     },
+     "reason": "Commercial steel roughness.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Flat terrain.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated district heating pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.compression_chiller.mode",
+     "value": "cooling",
+     "reason": "Electric vapour-compression chiller; useful duty is the evaporator.",
+     "source": "brief (plant text); handbook 7.4"
+    },
+    {
+     "path": "params.compression_chiller.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 10
+     },
+     "reason": "Only cold source of the plant, so it carries the whole cooling peak.",
+     "source": "case demand cooling peak 10 MW"
+    },
+    {
+     "path": "params.compression_chiller.cop_model",
+     "value": "carnot",
+     "reason": "gemini refuses lorenz in cooling mode; Carnot with the same 0.5 fraction is used.",
+     "source": "lead's decision (gemini: the Lorenz COP is defined for heating only)"
+    },
+    {
+     "path": "params.compression_chiller.carnot_fraction",
+     "value": 0.5,
+     "reason": "Share of Carnot reached by a large electric chiller (48-50 %).",
+     "source": "knowledge/data-economics.csv heat-pump-lorenz-dea-2025"
+    },
+    {
+     "path": "params.compression_chiller.lorenz_fraction",
+     "value": 0.5,
+     "reason": "Required field; unused with cop_model carnot.",
+     "source": "knowledge/data-economics.csv heat-pump-lorenz-dea-2025"
+    },
+    {
+     "path": "params.compression_chiller.minimum_temperature_lift",
+     "value": {
+      "unit": "K",
+      "value": 2
+     },
+     "reason": "Floor that keeps the COP finite at a very small lift.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.compression_cooler.cooler_type",
+     "value": "dry",
+     "reason": "Site air 10 degC is far below the 20 degC chilled-water supply; a dry cooler needs no water.",
+     "source": "knowledge/handbook-design.md 7.6"
+    },
+    {
+     "path": "params.compression_cooler.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 12
+     },
+     "reason": "Covers the chiller's condenser duty at the cooling peak with margin.",
+     "source": "evaluation of compression_chiller at the 10 MW design point (condenser duty about 10.6 MW)"
+    },
+    {
+     "path": "params.compression_cooler.approach",
+     "value": {
+      "unit": "K",
+      "value": 8
+     },
+     "reason": "Mid of the dry-cooler 5-15 K range.",
+     "source": "knowledge/handbook-design.md 7.6"
+    },
+    {
+     "path": "params.compression_cooler.specific_fan_power",
+     "value": 0.02,
+     "reason": "Fan electricity as a share of rejected heat.",
+     "source": "knowledge/handbook-design.md 7.6"
+    },
+    {
+     "path": "params.cooling_supply_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "No case value for network length; compact 10 MW district cooling main.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.6
+     },
+     "reason": "Sized for the 10 MW peak at 5 K difference inside the 1-3 m/s band (handbook 2.5).",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.roughness",
+     "value": {
+      "unit": "mm",
+      "value": 0.045
+     },
+     "reason": "Commercial steel service pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Level network.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "Same route as the supply pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.6
+     },
+     "reason": "Same flow as the supply pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.roughness",
+     "value": {
+      "unit": "mm",
+      "value": 0.045
+     },
+     "reason": "Commercial steel service pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Level network.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated pipe.",
+     "source": "assumption"
+    }
+   ]
+  },
+  "output": {
+   "error": {
+    "code": "missing_value",
+    "path": "params.d0.well.friction_correlation",
+    "message": "params.d0.well.friction_correlation: params.d0.well.friction_correlation = 'darcy_weisbach'; expected an object like {'value': ...}; params.d0.well.two_phase_friction_correlation: params.d0.well.two_phase_friction_correlation = 'BeggsBrill'; expected an object like {'value': ...}; params.d0.well.correction_factors: params.d0.well.correction_factors = [1, 0]; expected an object like {'value': ...}; params.d0.well.segment: params.d0.well.segment = 'below_esp'; expected an object like {'value': ...}; params.d0.riser.friction_correlation: params.d0.riser.friction_correlation = 'darcy_weisbach'; expected an object like {'value': ...}; params.d0.riser.two_phase_friction_correlation: params.d0.riser.two_phase_friction_correlation = 'BeggsBrill'; expected an object like {'value': ...}; params.d0.riser.correction_factors: params.d0.riser.correction_factors = [1, 0]; expected an object like {'value': ...}; params.d0.riser.segment: params.d0.riser.segment = 'above_esp'; expected an object like {'value': ...}; params.d0.injector.friction_correlation: params.d0.injector.friction_correlation = 'darcy_weisbach'; expected an object like {'value': ...}; params.d0.injector.two_phase_friction_correlation: params.d0.injector.two_phase_friction_correlation = 'BeggsBrill'; expected an object like {'value': ...}; params.d0.injector.correction_factors: params.d0.injector.correction_factors = [1, 0]; expected an object like {'value': ...}; params.d0.esp.pump_type: params.d0.esp.pump_type = 'unspecified'; expected an object like {'value': ...}; params.d0.esp.head_coefficients: params.d0.esp.head_coefficients = []; expected an object like {'value': ...}; params.d0.esp.power_coefficients: params.d0.esp.power_coefficients = []; expected an object like {'value': ...}; params.d0.esp.correction_factors: params.d0.esp.correction_factors = [1, 0]; expected an object like {'value': ...}; params.degasser.separation_efficiency: params.degasser.separation_efficiency = 0.98; expected an object like {'value': ...}; params.flare.combustion_efficiency: params.flare.combustion_efficiency = 0.98; expected an object like {'value': ...}; params.heat_exchanger.arrangement: params.heat_exchanger.arrangement = 'counterflow'; expected an object like {'value': ...}; params.heat_pump.mode: params.heat_pump.mode = 'heating'; expected an object like {'value': ...}; params.heat_pump.cop_model: params.heat_pump.cop_model = 'lorenz'; expected an object like {'value': ...}; params.heat_pump.carnot_fraction: params.heat_pump.carnot_fraction = 0.5; expected an object like {'value': ...}; params.heat_pump.lorenz_fraction: params.heat_pump.lorenz_fraction = 0.5; expected an object like {'value': ...}; params.peak_boiler.efficiency: params.peak_boiler.efficiency = 0.9; expected an object like {'value': ...}; params.compression_chiller.mode: params.compression_chiller.mode = 'cooling'; expected an object like {'value': ...}; params.compression_chiller.cop_model: params.compression_chiller.cop_model = 'carnot'; expected an object like {'value': ...}; params.compression_chiller.carnot_fraction: params.compression_chiller.carnot_fraction = 0.5; expected an object like {'value': ...}; params.compression_chiller.lorenz_fraction: params.compression_chiller.lorenz_fraction = 0.5; expected an object like {'value': ...}; params.compression_cooler.cooler_type: params.compression_cooler.cooler_type = 'dry'; expected an object like {'value': ...}; params.compression_cooler.specific_fan_power: params.compression_cooler.specific_fan_power = 0.02; expected an object like {'value': ...}",
+    "suggestions": []
+   }
+  },
+  "error": true
+ },
+ {
+  "ts": "2026-11-05T17:06:59.480261+00:00",
+  "agent": "design_lead",
+  "tool": "patch_plant",
+  "input": {
+   "name": "assembled",
+   "design": "design/start",
+   "changes": [
+    {
+     "path": "params.d0.depth",
+     "value": {
+      "unit": "m",
+      "value": 2500
+     },
+     "reason": "Doublet at the case reference depth; gemini takes reservoir T and p from the case.",
+     "source": "case:site.reservoir.reference_depth"
+    },
+    {
+     "path": "params.d0.drainage_radius",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "1-2 km well spacing (handbook 3.5) pushes cold breakthrough beyond plant life.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.roughness",
+     "value": {
+      "unit": "m",
+      "value": 4.5e-05
+     },
+     "reason": "New commercial steel casing.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.reservoir.drainage_radius",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "Same drainage area as the doublet.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.reservoir.top_depth",
+     "value": {
+      "unit": "m",
+      "value": 2450
+     },
+     "reason": "Aquifer top 50 m above the 2500 m midpoint with the case's 100 m thickness.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.reservoir.skin",
+     "value": {
+      "unit": "-",
+      "value": 0
+     },
+     "reason": "New well at zero skin.",
+     "source": "knowledge/handbook-design.md 3.3"
+    },
+    {
+     "path": "params.d0.reservoir.wellbore_radius",
+     "value": {
+      "unit": "m",
+      "value": 0.122
+     },
+     "reason": "Half of the 0.244 m casing inner diameter.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.well.section_length",
+     "value": {
+      "unit": "m",
+      "value": [
+       2500
+      ]
+     },
+     "reason": "One vertical section to the reservoir midpoint.",
+     "source": "case:site.reservoir.reference_depth"
+    },
+    {
+     "path": "params.d0.well.section_inclination",
+     "value": {
+      "unit": "rad",
+      "value": [
+       1.5708
+      ]
+     },
+     "reason": "Vertical well, 90 deg from horizontal.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.well.section_diameter",
+     "value": {
+      "unit": "m",
+      "value": [
+       0.244
+      ]
+     },
+     "reason": "9 5/8 in production casing.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.well.section_roughness",
+     "value": {
+      "unit": "m",
+      "value": [
+       4.5e-05
+      ]
+     },
+     "reason": "New commercial steel.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.well.friction_correlation",
+     "value": {
+      "value": "darcy_weisbach"
+     },
+     "reason": "Single-phase friction in the well.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.well.two_phase_friction_correlation",
+     "value": {
+      "value": "BeggsBrill"
+     },
+     "reason": "Two-phase flow above the bubble point.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.well.correction_factors",
+     "value": {
+      "value": [
+       1,
+       0
+      ]
+     },
+     "reason": "No calibration data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.well.soil_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 12
+     },
+     "reason": "Ground temperature around the well.",
+     "source": "case:site.ground.surface_temperature"
+    },
+    {
+     "path": "params.d0.well.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 10
+     },
+     "reason": "Overall fluid-to-soil coefficient.",
+     "source": "knowledge/handbook-design.md 3.1"
+    },
+    {
+     "path": "params.d0.well.segment",
+     "value": {
+      "value": "below_esp"
+     },
+     "reason": "Well interval below the pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.well.esp_depth",
+     "value": {
+      "unit": "m",
+      "value": 2400
+     },
+     "reason": "Deep setting keeps intake pressure and free-gas fraction inside the pump limits.",
+     "source": "assumption (well engineer)"
+    },
+    {
+     "path": "params.d0.riser.section_length",
+     "value": {
+      "unit": "m",
+      "value": [
+       2400
+      ]
+     },
+     "reason": "Riser from the 2400 m pump setting to surface.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.section_inclination",
+     "value": {
+      "unit": "rad",
+      "value": [
+       1.5708
+      ]
+     },
+     "reason": "Vertical, as the well.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.section_diameter",
+     "value": {
+      "unit": "m",
+      "value": [
+       0.244
+      ]
+     },
+     "reason": "Same casing as the well.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.riser.section_roughness",
+     "value": {
+      "unit": "m",
+      "value": [
+       4.5e-05
+      ]
+     },
+     "reason": "New commercial steel.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.riser.friction_correlation",
+     "value": {
+      "value": "darcy_weisbach"
+     },
+     "reason": "Single-phase friction above the pump.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.riser.two_phase_friction_correlation",
+     "value": {
+      "value": "BeggsBrill"
+     },
+     "reason": "Gas comes out of solution above the pump.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.riser.correction_factors",
+     "value": {
+      "value": [
+       1,
+       0
+      ]
+     },
+     "reason": "No calibration data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.soil_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 12
+     },
+     "reason": "Ground temperature around the riser.",
+     "source": "case:site.ground.surface_temperature"
+    },
+    {
+     "path": "params.d0.riser.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 10
+     },
+     "reason": "Overall fluid-to-soil coefficient of the riser.",
+     "source": "knowledge/handbook-design.md 3.1"
+    },
+    {
+     "path": "params.d0.riser.segment",
+     "value": {
+      "value": "above_esp"
+     },
+     "reason": "Well interval above the pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.riser.esp_depth",
+     "value": {
+      "unit": "m",
+      "value": 2400
+     },
+     "reason": "Pump depth that splits the well.",
+     "source": "assumption (well engineer)"
+    },
+    {
+     "path": "params.d0.injector.section_length",
+     "value": {
+      "unit": "m",
+      "value": [
+       2500
+      ]
+     },
+     "reason": "One vertical section to the reservoir midpoint.",
+     "source": "case:site.reservoir.reference_depth"
+    },
+    {
+     "path": "params.d0.injector.section_inclination",
+     "value": {
+      "unit": "rad",
+      "value": [
+       1.5708
+      ]
+     },
+     "reason": "Vertical injection well.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.injector.section_diameter",
+     "value": {
+      "unit": "m",
+      "value": [
+       0.244
+      ]
+     },
+     "reason": "Same casing as the producer.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.injector.section_roughness",
+     "value": {
+      "unit": "m",
+      "value": [
+       4.5e-05
+      ]
+     },
+     "reason": "New commercial steel.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.injector.friction_correlation",
+     "value": {
+      "value": "darcy_weisbach"
+     },
+     "reason": "Single-phase friction in the injector.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.injector.two_phase_friction_correlation",
+     "value": {
+      "value": "BeggsBrill"
+     },
+     "reason": "Same correlation as the producer.",
+     "source": "knowledge/handbook-design.md 4.2"
+    },
+    {
+     "path": "params.d0.injector.correction_factors",
+     "value": {
+      "value": [
+       1,
+       0
+      ]
+     },
+     "reason": "No calibration data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.injector.soil_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 12
+     },
+     "reason": "Ground temperature around the injector.",
+     "source": "case:site.ground.surface_temperature"
+    },
+    {
+     "path": "params.d0.injector.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 10
+     },
+     "reason": "Overall fluid-to-soil coefficient of the injector.",
+     "source": "knowledge/handbook-design.md 3.1"
+    },
+    {
+     "path": "params.d0.injector.segment",
+     "value": {
+      "value": "full"
+     },
+     "reason": "The injector has no pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.sink.drainage_radius",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "Same drainage area as the producer, so the doublet is balanced.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.sink.top_depth",
+     "value": {
+      "unit": "m",
+      "value": 2450
+     },
+     "reason": "Same aquifer as the producer.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.sink.skin",
+     "value": {
+      "unit": "-",
+      "value": 0
+     },
+     "reason": "New well at zero skin.",
+     "source": "knowledge/handbook-design.md 3.3"
+    },
+    {
+     "path": "params.d0.sink.wellbore_radius",
+     "value": {
+      "unit": "m",
+      "value": 0.122
+     },
+     "reason": "Half of the 0.244 m casing inner diameter.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.esp.pump_type",
+     "value": {
+      "value": "unspecified"
+     },
+     "reason": "No catalogue curve sourced; gemini derives head and power from the design and the case's 0.7 efficiency.",
+     "source": "brief (gemini reference plant)"
+    },
+    {
+     "path": "params.d0.esp.head_coefficients",
+     "value": {
+      "value": []
+     },
+     "reason": "No catalogue curve.",
+     "source": "brief (gemini reference plant)"
+    },
+    {
+     "path": "params.d0.esp.power_coefficients",
+     "value": {
+      "value": []
+     },
+     "reason": "No catalogue curve.",
+     "source": "brief (gemini reference plant)"
+    },
+    {
+     "path": "params.d0.esp.stage_count",
+     "value": {
+      "unit": "-",
+      "value": 1
+     },
+     "reason": "Placeholder for an unspecified pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.setting_depth",
+     "value": {
+      "unit": "m",
+      "value": 2400
+     },
+     "reason": "Deep setting keeps intake pressure and free-gas fraction inside the pump limits.",
+     "source": "assumption (well engineer)"
+    },
+    {
+     "path": "params.d0.esp.motor_efficiency",
+     "value": {
+      "unit": "-",
+      "value": 0.95
+     },
+     "reason": "Downhole induction motor efficiency; the case's 0.7 is the pump's own efficiency.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.minimum_flow",
+     "value": {
+      "unit": "m3/h",
+      "value": 50
+     },
+     "reason": "Lower end of the case's flow window.",
+     "source": "case:requirements.production_flow_range"
+    },
+    {
+     "path": "params.d0.esp.maximum_flow",
+     "value": {
+      "unit": "m3/h",
+      "value": 300
+     },
+     "reason": "Upper end of the case's flow window.",
+     "source": "case:requirements.production_flow_range"
+    },
+    {
+     "path": "params.d0.esp.best_efficiency_flow",
+     "value": {
+      "unit": "m3/h",
+      "value": 200
+     },
+     "reason": "Mid-window operating point of the unspecified pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.correction_factors",
+     "value": {
+      "value": [
+       1,
+       0
+      ]
+     },
+     "reason": "No calibration data for the pump.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.d0.esp.tubing",
+     "value": {
+      "unit": "m",
+      "value": 0.244
+     },
+     "reason": "Pump discharges into the same casing it hangs in.",
+     "source": "knowledge/handbook-design.md 4.1"
+    },
+    {
+     "path": "params.d0.esp.minimum_intake_pressure",
+     "value": {
+      "unit": "bar",
+      "value": 5
+     },
+     "reason": "Keeps the intake above the bubble point without PVT data.",
+     "source": "knowledge/handbook-design.md 4.3"
+    },
+    {
+     "path": "params.d0.esp.maximum_gas_fraction",
+     "value": {
+      "unit": "-",
+      "value": 0.1875
+     },
+     "reason": "Standard stage limit of 18.75 % free gas by volume.",
+     "source": "knowledge/handbook-design.md 4.4"
+    },
+    {
+     "path": "params.d0.esp.drift_threshold",
+     "value": {
+      "unit": "-",
+      "value": 0.1
+     },
+     "reason": "Health alarm at a 10 % drift from predicted head.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.degasser.nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.5
+     },
+     "reason": "Vessel internals loss at nominal flow; small against the wellhead pressure.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.degasser.separation_efficiency",
+     "value": {
+      "value": 0.98
+     },
+     "reason": "High-efficiency separator; only free gas is taken out (handbook 5.2).",
+     "source": "assumption"
+    },
+    {
+     "path": "params.filters.hot.nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.3
+     },
+     "reason": "Clean-filter loss at nominal flow, hot side.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.filters.hot.nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 85.8
+     },
+     "reason": "Brine mass flow at the top of the case's per-doublet flow band.",
+     "source": "calculation C60c2d6"
+    },
+    {
+     "path": "params.filters.cold.nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.3
+     },
+     "reason": "Clean-filter loss at nominal flow, cold side.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.filters.cold.nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 85.8
+     },
+     "reason": "Same brine mass flow before the injector.",
+     "source": "calculation C60c2d6"
+    },
+    {
+     "path": "params.flare.combustion_efficiency",
+     "value": {
+      "value": 0.98
+     },
+     "reason": "Flare burns 98 % of the surplus gas.",
+     "source": "knowledge/handbook-design.md 5.5"
+    },
+    {
+     "path": "params.heat_exchanger.thermal_conductance",
+     "value": {
+      "unit": "MW/K",
+      "value": 1.5
+     },
+     "reason": "UA set by the chosen approach (handbook 6.1); gives a 1.7 K approach at design duty.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_exchanger.arrangement",
+     "value": {
+      "value": "counterflow"
+     },
+     "reason": "Plate exchangers are close to counterflow.",
+     "source": "knowledge/handbook-design.md 6.1"
+    },
+    {
+     "path": "params.heat_exchanger.hot_nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.5
+     },
+     "reason": "Brine-side design pressure drop at nominal flow.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_exchanger.cold_nominal_pressure_drop",
+     "value": {
+      "unit": "bar",
+      "value": 0.5
+     },
+     "reason": "Network-side design pressure drop at nominal flow.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_exchanger.hot_nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 85.8
+     },
+     "reason": "Brine design flow through the exchanger, matching the doublet flow.",
+     "source": "calculation C60c2d6"
+    },
+    {
+     "path": "params.heat_exchanger.cold_nominal_mass_flow",
+     "value": {
+      "unit": "kg/s",
+      "value": 180
+     },
+     "reason": "Full network flow at the 30 MW peak and the case's 40 K supply-return difference.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heat_pump.mode",
+     "value": {
+      "value": "heating"
+     },
+     "reason": "The unit lifts brine heat to the heating network.",
+     "source": "brief (plant text)"
+    },
+    {
+     "path": "params.heat_pump.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 10
+     },
+     "reason": "Share of the 30 MW peak the 87 degC brine cannot reach; the boiler covers the rest.",
+     "source": "assumption (handbook 8.3)"
+    },
+    {
+     "path": "params.heat_pump.cop_model",
+     "value": {
+      "value": "lorenz"
+     },
+     "reason": "Large glides on both sides; Lorenz describes the machine better.",
+     "source": "knowledge/handbook-design.md 6.4"
+    },
+    {
+     "path": "params.heat_pump.carnot_fraction",
+     "value": {
+      "unit": "-",
+      "value": 0.5
+     },
+     "reason": "Required field; real machines reach 0.4-0.6 of Carnot.",
+     "source": "knowledge/handbook-design.md 6.4"
+    },
+    {
+     "path": "params.heat_pump.lorenz_fraction",
+     "value": {
+      "unit": "-",
+      "value": 0.5
+     },
+     "reason": "Lorenz efficiency of a large heat pump (DEA 2025, 48-50 %).",
+     "source": "knowledge/data-economics.csv heat-pump-lorenz-dea-2025"
+    },
+    {
+     "path": "params.heat_pump.minimum_temperature_lift",
+     "value": {
+      "unit": "K",
+      "value": 10
+     },
+     "reason": "Below this lift the COP formula overstates.",
+     "source": "knowledge/handbook-design.md 6.4"
+    },
+    {
+     "path": "params.heat_pump.minimum_source_outlet_temperature",
+     "value": {
+      "unit": "degC",
+      "value": 48
+     },
+     "reason": "Lead's decision: keeps the brine cooling at 39 K, 1 K inside the case's 40 K cap.",
+     "source": "case:requirements.brine_cooling_limit (87 degC - 40 K = 47 degC) with 1 K margin"
+    },
+    {
+     "path": "params.heat_pump.supply_margin",
+     "value": {
+      "unit": "K",
+      "value": 2
+     },
+     "reason": "Small positive margin covers losses after the unit.",
+     "source": "assumption (handbook 9.4)"
+    },
+    {
+     "path": "params.heat_pump.temperature_setpoint",
+     "value": {
+      "unit": "degC",
+      "value": 100
+     },
+     "reason": "Outlet setpoint on the supply line.",
+     "source": "case demand.heating.supply_temperature"
+    },
+    {
+     "path": "params.peak_boiler.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 30
+     },
+     "reason": "With backup=peak the boiler covers the whole heating peak with the doublets off.",
+     "source": "case demand heating peak 30 MW; handbook 8.4 backup=peak"
+    },
+    {
+     "path": "params.peak_boiler.efficiency",
+     "value": {
+      "unit": "-",
+      "value": 0.9
+     },
+     "reason": "Boiler thermal efficiency.",
+     "source": "knowledge/handbook-design.md 6.5"
+    },
+    {
+     "path": "params.peak_boiler.temperature_setpoint",
+     "value": {
+      "unit": "degC",
+      "value": 100
+     },
+     "reason": "Outlet setpoint on the supply line.",
+     "source": "case demand.heating.supply_temperature"
+    },
+    {
+     "path": "params.peak_boiler.supply_margin",
+     "value": {
+      "unit": "K",
+      "value": 2
+     },
+     "reason": "Small positive margin covers losses after the unit.",
+     "source": "assumption (handbook 9.4)"
+    },
+    {
+     "path": "params.heating_supply_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 5000
+     },
+     "reason": "No case value for network length; 5 km main for a 30 MW district.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.35
+     },
+     "reason": "Sized for 180 kg/s at about 2 m/s (handbook 2.5).",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.roughness",
+     "value": {
+      "unit": "m",
+      "value": 5e-05
+     },
+     "reason": "Commercial steel roughness.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Flat terrain; no case elevation data.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_supply_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated district heating pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 5000
+     },
+     "reason": "Same main as the supply line.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.35
+     },
+     "reason": "Same size as the supply line.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.roughness",
+     "value": {
+      "unit": "m",
+      "value": 5e-05
+     },
+     "reason": "Commercial steel roughness.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Flat terrain.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.heating_return_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated district heating pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.compression_chiller.mode",
+     "value": {
+      "value": "cooling"
+     },
+     "reason": "Electric vapour-compression chiller; useful duty is the evaporator.",
+     "source": "brief (plant text); handbook 7.4"
+    },
+    {
+     "path": "params.compression_chiller.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 10
+     },
+     "reason": "Only cold source of the plant, so it carries the whole cooling peak.",
+     "source": "case demand cooling peak 10 MW"
+    },
+    {
+     "path": "params.compression_chiller.cop_model",
+     "value": {
+      "value": "carnot"
+     },
+     "reason": "gemini refuses lorenz in cooling mode; Carnot with the same 0.5 fraction is used.",
+     "source": "lead's decision (gemini: the Lorenz COP is defined for heating only)"
+    },
+    {
+     "path": "params.compression_chiller.carnot_fraction",
+     "value": {
+      "unit": "-",
+      "value": 0.5
+     },
+     "reason": "Share of Carnot reached by a large electric chiller (48-50 %).",
+     "source": "knowledge/data-economics.csv heat-pump-lorenz-dea-2025"
+    },
+    {
+     "path": "params.compression_chiller.lorenz_fraction",
+     "value": {
+      "unit": "-",
+      "value": 0.5
+     },
+     "reason": "Required field; unused with cop_model carnot.",
+     "source": "knowledge/data-economics.csv heat-pump-lorenz-dea-2025"
+    },
+    {
+     "path": "params.compression_chiller.minimum_temperature_lift",
+     "value": {
+      "unit": "K",
+      "value": 2
+     },
+     "reason": "Floor that keeps the COP finite at a very small lift.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.compression_cooler.cooler_type",
+     "value": {
+      "value": "dry"
+     },
+     "reason": "Site air 10 degC is far below the 20 degC chilled-water supply; a dry cooler needs no water.",
+     "source": "knowledge/handbook-design.md 7.6"
+    },
+    {
+     "path": "params.compression_cooler.capacity",
+     "value": {
+      "unit": "MW",
+      "value": 12
+     },
+     "reason": "Covers the chiller's condenser duty at the cooling peak with margin.",
+     "source": "evaluation of compression_chiller at the 10 MW design point (condenser duty about 10.6 MW)"
+    },
+    {
+     "path": "params.compression_cooler.approach",
+     "value": {
+      "unit": "K",
+      "value": 8
+     },
+     "reason": "Mid of the dry-cooler 5-15 K range.",
+     "source": "knowledge/handbook-design.md 7.6"
+    },
+    {
+     "path": "params.compression_cooler.specific_fan_power",
+     "value": {
+      "unit": "-",
+      "value": 0.02
+     },
+     "reason": "Fan electricity as a share of rejected heat.",
+     "source": "knowledge/handbook-design.md 7.6"
+    },
+    {
+     "path": "params.cooling_supply_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "No case value for network length; compact 10 MW district cooling main.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.6
+     },
+     "reason": "Sized for the 10 MW peak at 5 K difference inside the 1-3 m/s band (handbook 2.5).",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.roughness",
+     "value": {
+      "unit": "mm",
+      "value": 0.045
+     },
+     "reason": "Commercial steel service pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Level network.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_supply_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.length",
+     "value": {
+      "unit": "m",
+      "value": 1000
+     },
+     "reason": "Same route as the supply pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.inner_diameter",
+     "value": {
+      "unit": "m",
+      "value": 0.6
+     },
+     "reason": "Same flow as the supply pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.roughness",
+     "value": {
+      "unit": "mm",
+      "value": 0.045
+     },
+     "reason": "Commercial steel service pipe.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.elevation_change",
+     "value": {
+      "unit": "m",
+      "value": 0
+     },
+     "reason": "Level network.",
+     "source": "assumption"
+    },
+    {
+     "path": "params.cooling_return_pipe.heat_transfer_coefficient",
+     "value": {
+      "unit": "W/m2/K",
+      "value": 1
+     },
+     "reason": "Buried pre-insulated pipe.",
+     "source": "assumption"
+    }
+   ]
+  },
+  "output": {
+   "error": {
+    "code": "unknown_name",
+    "path": "params.d0.injector.segment",
+    "message": "params.d0.injector.segment: doublet: unknown parameter or control 'injector.segment'; did you mean 'riser.segment'?; params.d0.esp.head_coefficients: esp.head_coefficients: shape = (0,); expected (6,); params.d0.esp.power_coefficients: esp.power_coefficients: shape = (0,); expected (6,)",
+    "suggestions": [
+     "riser.segment",
+     "injector.section_length",
+     "injector.section_diameter"
+    ]
+   }
+  },
+  "error": true
+ }
+]
