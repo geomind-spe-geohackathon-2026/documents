@@ -108,6 +108,8 @@ extra steps cost about four times the tokens of the whole review.
 | How gemini computes a cost or CO2 | `knowledge/handbook-economics.md` §16 |
 | How to present uncertainty and sensitivity | §10 here; method in `knowledge/handbook-economics.md` §12, §13 |
 | What a scored brief or a page limit asks | §3.2, §16, and the brief's own document in Knowledge |
+| What a study found, how many runs it took, how to read its history | `knowledge/handbook-studies.md` §0.2, §0.4, §6.1 |
+| Heat by source (geothermal, heat pump, boiler) | `knowledge/handbook-economics.md` §1.4 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -332,6 +334,9 @@ geothermal heating and cooling plant the usual alternatives differ in:
 
 ## 6.2 A fair comparison
 
+The study side of a fair comparison (same case, same effort, compare then optimise):
+`knowledge/handbook-studies.md` §5.2.
+
 Compare only designs that were (`geomind/geomind/prompts/project/explainer.md` and team practice):
 
 - simulated over the whole period of the case and checked by gemini;
@@ -431,6 +436,10 @@ of the case, and where useful the heat from each source (`boiler_heat` and other
 gives them), the electricity and gas bought (`electricity_bought`, `gas_bought`), electricity
 sold. Where delivered heat exceeds the demand, say so plainly. Days not covered come from the
 coverage gemini reports; never count them by hand.
+
+Heat by source (geothermal, heat pump, boiler) comes from gemini's split, never from
+subtracting one unit's output from the total: a boiler may also drive a chiller, and a heat pump's
+output includes its compressor work (`knowledge/handbook-economics.md` §1.4).
 
 ## 8.4 Costs and key performance indicators
 

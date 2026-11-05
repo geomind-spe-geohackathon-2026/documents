@@ -275,6 +275,33 @@ method models degradation or changing prices year by year (section 5.3).
 A change upstream invalidates everything downstream: a new price changes the costs but not the
 simulation; a new return temperature changes the simulation and everything after it.
 
+### 1.4 Energy accounting: heat by source when one unit drives another
+
+Costs, CO2 and every "share from geothermal" rest on an energy balance at the system boundary
+(§1.2). Units in a plant are often in series, and then one unit's output is not a share of the
+delivered energy:
+
+- **A heater that drives another unit.** A boiler (or the geothermal water) that heats the
+  generator of an absorption chiller sends part of its heat into the chiller, not to the heating
+  users. The heating users' heat by source is therefore not `heat_delivered − boiler_heat`.
+- **A heat pump.** Its heat output is the heat it lifts from the brine plus its compressor work
+  (electricity). The brine gave the output minus that work: output / COP of it is electricity.
+- **A CHP.** Its fuel gives electricity and heat; the heat to the users is its heat output, the
+  electricity is sold or offsets grid power.
+
+Rules:
+
+1. Take the split by source from gemini (its per-service coverage: geothermal, backup and short,
+   as the result's coverage gives it), never by subtracting one unit's output from a total.
+2. When no tool gives the split you need, say so; do not derive it.
+3. For a heat pump plant, state the brine's heat and the compressor's electricity apart.
+
+Invented example: heating demand 100 000 MWh/yr. The boiler makes 40 000 MWh, of which 12 000
+drive the absorption chiller and 28 000 go to heating. Geothermal heat to the heating users is
+100 000 − 28 000 = 72 000 MWh, not 100 000 − 40 000 = 60 000 (20 % too low). A heat pump that
+delivers 50 000 MWh at a seasonal COP of 4 takes 12 500 MWh of electricity and 37 500 MWh from
+the brine; "50 000 MWh from geothermal" overstates the brine by a third.
+
 ---
 
 ## 2. Capital cost (capex)
@@ -1049,6 +1076,9 @@ estimate; its capex is a range, not a point.
 
 ### 12.1 One-at-a-time sensitivity
 
+How to run one with gemini and how many runs it takes: `knowledge/handbook-studies.md` §3.1 and
+§0.4. This chapter is the method.
+
 Change one input from its base value to a low and a high value, keep all others at base, and record
 the change of each output (LCTS, NPV, CO2). The low and high values must come from a source or be
 stated ranges (for example the bounds of the input's uncertainty, chapter 13). Equal percentage
@@ -1082,6 +1112,9 @@ value follows from the derivative of the output (for example ∂LCTS/∂p_el = E
 ## 13. Uncertainty analysis
 
 ### 13.1 Distributions for uncertain inputs
+
+How to run a Monte Carlo with gemini and how many draws to choose: `knowledge/handbook-studies.md`
+§3.2 and §0.4. This chapter is the method.
 
 | Distribution | Parameters | Use |
 |---|---|---|
@@ -1124,6 +1157,9 @@ difference between them is not noise.
 ## 14. Comparing configurations and deciding
 
 ### 14.1 Like-for-like comparison
+
+How to compare and optimise families with gemini's studies, and in which order:
+`knowledge/handbook-studies.md` §5.
 
 Designs are comparable only when:
 
