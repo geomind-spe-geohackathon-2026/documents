@@ -213,7 +213,7 @@ checks.
 | Kind of value | Examples | Comes from | Ask the user? |
 |---|---|---|---|
 | Case value | demand, supply temperatures, gradient, permeability, prices, requirements, the time axis | the case (`read_case`); the case lead set it from the user's files, Knowledge and the user's answers | never from design: hand over `case change needed: <path>: <why>` |
-| Equipment design value | well diameter, roughness, heat transfer coefficient, efficiencies, COP model, UA, pipe size, cooler approach, treatment values | 0.7 first; then one `search_knowledge` / `search_rag`; else your engineering choice with a one-line reason; record as an assumption `{id, text, value, source, confirmed: false}` | no; never ask for a datasheet, a pump curve or stage coefficients |
+| Equipment design value | well diameter, roughness, heat transfer coefficient, efficiencies, COP model, UA, pipe size, cooler approach, treatment values | first the row of `knowledge/data-equipment.csv` for the path, cited by its row id (`id` column; its `status` says whether the value is verified, secondary or a placeholder); then 0.7; then one `search_knowledge` / `search_rag`; else your engineering choice with a one-line reason; record as an assumption `{id, text, value, source, confirmed: false}` | no; never ask for a datasheet, a pump curve or stage coefficients |
 | Equipment operating limit | ESP minimum intake pressure and maximum gas fraction, minimum drive temperature, minimum part load | as an equipment value; keep it on every unit (4.4, 10.4) | no |
 | Plant rule | `params.control.dispatch`, `params.control.outages` | the one value gemini's `suggestions` give (0.5) | no |
 | Lead's decision | backup policy, objective, number of evaluations, seed, family | the lead, as an assumption with its reason | no |
@@ -229,8 +229,10 @@ assumption (1.5). Cite a value from this handbook as `knowledge/handbook-design.
 The plant paths gemini asks for when a plant is built from a class, grouped by engineer. `dN` is
 each doublet (`d0`, `d1`, ...). Write each with its unit as `{"value": 0.244, "unit": "m"}`; a
 dimensionless value is a number (skill `gemini-units`). The last column gives a published value
-where one exists; otherwise the value is an engineering choice: take it from the case's own
-assumptions document in Knowledge when there is one (search it once by the path), else choose it
+where one exists. First take the row of `knowledge/data-equipment.csv` for the path, cited by
+its row id; otherwise the value is an engineering choice: take it from the case's own
+assumptions document in Knowledge when there is one (it also states the case's conventions for
+the network, cooler loops and search ranges; follow them there, they are not copied here) (search it once by the path), else choose it
 with a one-line reason and record it as an assumption (0.6). Read only the subsection of your
 group: 0.7.1 doublet and reservoir, 0.7.2 pumps, 0.7.3 treatment and gas, 0.7.4 heating, 0.7.5
 cooling.
@@ -1798,6 +1800,132 @@ rule:
   standard pump survives; with the limits it fell to fifth [gemini: `examples/` README, "Pump
   intake limits"]. Keep the limits on every unit (4.4, 10.6).
 
+## 12.8 Lesson: heat pump COP, electricity and the geothermal share
+
+Invented numbers, not those of 12.1. A heat pump delivers 10 MW of heat at a condensing
+temperature of 85 °C from brine that it cools to an evaporating temperature of 25 °C.
+
+1. Carnot COP for heating: COP_C = T_h / (T_h − T_c) = 358.15 / 60 = 5.97 [textbook: Cengel and
+   Boles 2015].
+2. Real COP with a Carnot fraction of 0.5 (6.4) [Frutschi 1996; Arpagaus et al. 2018]:
+   COP = 0.5 × 5.97 = 2.98 [derived].
+3. Electricity: W = Q / COP = 10 / 2.98 = 3.35 MW; heat taken from the brine:
+   Q_source = Q − W = 6.65 MW [derived, first law].
+
+What the lesson teaches:
+
+- Only Q_source is geothermal heat. The 3.35 MW of electricity is bought energy with its own price
+  and emission factor (5.6); a report that says "geothermal covers 100 %" for this unit is wrong
+  (QA-270, QA-297). The geothermal share of the heat pump's output is 1 − 1/COP = 66 %.
+- The same holds for cold: cold from an electric compression chiller is electric cold, not
+  geothermal cold; only cold from a heat-driven chiller (absorption, adsorption) driven by brine
+  heat counts as geothermal (QA-238).
+- A plant-wide ratio of heat delivered to electricity bought is not a COP when geothermal or
+  boiler heat is in the numerator; call it what it is, and give each machine's COP on its own
+  (QA-322).
+- Every 10 K less lift raises the COP: at 50 K lift (T_c 35 °C) COP_C = 7.16 and COP = 3.58
+  [derived]. Cascading the heat pump downstream of the exchanger lowers the source temperature
+  and so the COP; upstream raises it but takes heat the exchanger could give for free (6.2, 6.3).
+  Read the trade in the results; never assume it.
+
+## 12.9 Lesson: sizing coolers from the heat they reject
+
+Invented numbers. A plant must deliver a cold peak of 8 MW.
+
+- With a compression chiller of cooling COP 4, the condenser rejects
+  Q_rej = Q_c (1 + 1/COP) = 8 × 1.25 = 10 MW [derived, first law].
+- With a single-effect absorption chiller of thermal COP 0.7 [Herold et al. 2016] the cooler must
+  reject the cold plus the drive heat: Q_rej = Q_c (1 + 1/COP_th) = 8 × 2.43 = 19.4 MW
+  [derived]; about twice the compression case. This is why absorption cooling needs a larger,
+  costlier heat rejection (7.2, 7.6).
+- A dry cooler's outlet is the air temperature plus the approach (5 to 15 K) [ASHRAE]; on the
+  hottest step the outlet may exceed the chiller's condensing limit, and the chiller then
+  delivers less. Rate the cooler for the hottest step, not for an average one.
+
+What the lesson teaches (QA-324, QA-335):
+
+- A cooler left at the top of its search range is not a design: 40 MW for a 14 MW duty pays
+  for capacity it never uses. Rate every cooler from its own rejected heat.
+- Rated exactly at the peak, the cooler can fail the cooling supply check on the hottest step or
+  under search, where flows and temperatures move. Keep a stated margin above the computed
+  rejection (4.9: margins below hard limits) and check on the worst step (11.7).
+
+## 12.10 Lesson: checking an ESP's intake pressure by hand
+
+Invented numbers. Reservoir midpoint 2,500 m TVD, reservoir pressure 250 bar, productivity index
+20 m3/h/bar, brine density 1,050 kg/m3, so ρ g = 0.103 bar/m [derived]. Pump at 500 m, friction
+below the pump 3 bar at 300 m3/h, scaling with Q² (4.2). Formula of 4.3:
+
+| Flow m3/h | Pump depth m | Drawdown bar | Column bar | Friction bar | Intake bar | Free gas % |
+|---|---|---|---|---|---|---|
+| 300 | 500 | 15.0 | 206.0 | 3.0 | 26.0 | 2.5 |
+| 450 | 500 | 22.5 | 206.0 | 6.75 | 14.7 | 4.4 |
+| 450 | 650 | 22.5 | 190.6 | 6.75 | 30.2 | 2.2 |
+
+Free gas from 4.4 with GLR 0.5 Nm3/m3 at 90 °C, all gas taken as free (an upper bound)
+[derived, A.6]. The friction is kept the same at 650 m for simplicity.
+
+What the lesson teaches:
+
+- 50 % more flow took 11 bar off the intake: drawdown grows with Q, friction with Q².
+- Each 100 m deeper gives back about 10 bar (ρ g × 100 m), at the cost of cable, tubing and a
+  hotter pump. That is the fix of a `bound` on `intake_pressure` (0.5.2).
+- Do this check before a search: the search range of the flow per doublet and the pump depth
+  must hold the intake and gas limits at the range's top, or the optimiser will sit in an
+  infeasible corner (10.6).
+- A stricter screen used for oil wells is the Turpin criterion, φ = 2000 (q_g / q_l) / (3 p) with
+  p in psia, stable below 1 [paper: Turpin, Lea and Bearden 1986, as quoted in Takacs 2009, not
+  verified at the paper]. Use it only as a cross-check, never as a case limit without a source.
+
+## 12.11 Lesson: drilled length, not depth, is what drilling costs
+
+Invented numbers. A producer is split at its pump into a riser of 800 m and a well below the
+pump of 1,700 m; the injector reaches the same 2,500 m TVD.
+
+- Drilled length = riser + well below the pump + injector = 800 + 1,700 + 2,500 = 5,000 m
+  [derived]. Costing 1,700 + 2,500 = 4,200 m, as a split well once was, leaves out 16 % of the
+  drilling (QA-321).
+- A deviated well is longer than its depth: a section of length L at inclination θ adds only
+  L cos θ of depth [textbook: Stober and Bucher 2013]. An injector placed 1.5 km away (3.5) from a
+  shared pad needs a deviated section; its measured depth, not its TVD, is costed.
+- Check the drilled length a cost reports against the sum of the well sections of the plant
+  before trusting an LCOH (handbook-economics).
+
+## 12.12 Lesson: checking an optimiser's answer
+
+Invented numbers. A minimiser returns a heat pump of 9.8 MW at 41.3 per MWh, the same capacity
+the sizing step gave it as a start. Simulating one-variable neighbours inside the search range:
+
+| Heat pump MW | 3 | 5 | 9.8 (reported) | 15 |
+|---|---|---|---|---|
+| Objective per MWh | 41.2 | 39.2 | 41.3 | 45.1 |
+| Feasible | yes | yes | yes | yes |
+
+The reported optimum is not one: a feasible point at 5 MW is 5 % better (QA-285). A local
+optimiser stops at a stationary point or when its tolerance or budget runs out, and a result that
+equals its start means it never moved [textbook: Nocedal and Wright 2006].
+
+What the lesson teaches:
+
+- Before calling a result "the optimum", check that it moved from its start, probe a few
+  neighbours of each searched variable, and note which variables sit on a range bound.
+- An objective that is flat or noisy along a variable (part load, discrete counts, outage days)
+  needs a coarse scan or several starts, not one local search (10.6).
+- Report what was checked: "best of N evaluations; one-variable probes found nothing better".
+
+## 12.13 More lessons from agent runs
+
+- QA-239: a heating-only plant on a case that demands cooling showed 13 passed, 0 failed, 2 not
+  assessed and looked the cheapest. "Not assessed" is not "passed": every service the case
+  demands needs a unit of its role, and a design with a check not assessed is not feasible (11.7).
+- QA-287, QA-343: values that the size step derives (ESP stages and curves, injection pump
+  rating) were patched by hand, one at a time, for 20 minutes. Size first; then patch once every
+  value the one message names (0.1, 0.4).
+- QA-276: the answer was ready at minute 4, then 32 more minutes built a family nobody asked for.
+  Answer the question asked; offer the other family in one line.
+- QA-245: after a case change, re-run the checks of the stored design (`check_results`) and read
+  its verdict; do not diff old and new results step by step.
+
 ---
 
 # Appendix A: Formulas
@@ -1929,6 +2057,8 @@ always in the original):
   pumps: market overview, state of the art, research status, refrigerants, and application
   potentials. *Energy* 152, 985-1010.
 - ASHRAE. *ASHRAE Handbook: HVAC Systems and Equipment* (chapter on cooling towers and fluid coolers).
+- Cengel, Y. A., Boles, M. A. (2015). *Thermodynamics: An Engineering Approach*, 8th ed.
+  McGraw-Hill.
 - Dake, L. P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
 - DiPippo, R. (2016). *Geothermal Power Plants*, 4th ed. Butterworth-Heinemann.
 - Danish Energy Agency. *Technology Data for Generation of Electricity and District Heating*,
@@ -1953,10 +2083,14 @@ always in the original):
 - Lund, H., et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
 - Mijnlieff, H., et al. (2013). SDE+ reference case, European Geothermal Congress (as cited in gemini).
 - Moody, L. F. (1944). Friction factors for pipe flow. *Trans. ASME* 66.
+- Nocedal, J., Wright, S. J. (2006). *Numerical Optimization*, 2nd ed. Springer.
 - Stober, I., Bucher, K. (2013). *Geothermal Energy: From Theoretical Models to Exploration and
   Development*. Springer.
 - Svarovsky, L. (2000). *Solid-Liquid Separation*, 4th ed. Butterworth-Heinemann.
 - Takacs, G. (2009). *Electrical Submersible Pumps Manual*. Gulf Professional (quoted, not verified).
+- Turpin, J. L., Lea, J. F., Bearden, J. L. (1986). Gas-liquid flow through centrifugal pumps:
+  correlation of data. Proc. 3rd International Pump Symposium, Texas A&M (quoted in Takacs 2009,
+  not verified).
 - US EPA. AP-42, 5th ed., section 13.5, Industrial Flares (2018).
 - Wang, R. Z., Oliveira, R. G. (2006). Adsorption refrigeration: an efficient way to make good use of
   waste heat and solar energy. *Prog. Energy Combust. Sci.* 32.
