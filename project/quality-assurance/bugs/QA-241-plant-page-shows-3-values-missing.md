@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend,frontend |
 | Reporter | QA-E2E-design-I |
@@ -47,7 +47,7 @@ A user who saves the plant from this page (a layout move, a module edit) saves a
 ## Fix
 
 hotfix-back-lead, backend 1.1.111, ~17:57 UTC: `core/gemini/plant.py` `free_document` adds `plant_level_params`: the plant's dispatch, outages and backup as gemini writes them on a plant without a class (`control.dispatch`, `control.outages`, `backup`). Checked: HackathonPlant round-trips with backup=peak, dispatch=least_cost, outages=lowest_demand.
-
+- 2026-11-05 18:05 UTC: backend 1.1.111
 ## Retest
 
 Recipe: Open the Plant page of a project with HackathonPlant: no "values missing" for backup/dispatch/outages; save and reload keeps them.
