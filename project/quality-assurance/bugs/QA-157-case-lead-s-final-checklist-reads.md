@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -75,3 +75,5 @@ Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4
 
 (Who, when, result.)
 - 2026-11-05 17:35 UTC, QA-AI-case-I, run 3 (geomind 0.4.100, backend 1.1.104; project QA-TEST QA-AI-case-I 3 f400fa2d-292d-4358-b3c1-9f4a51f51f7f; run 84526204-bfb7-4611-a476-abde6317c58e; log `../evidence/QA-153/run-84526204.json`): still present (open): after `ask_economics`, steps 16-18 read the case 6 times (`read_case()` whole, then economics, site, demand, requirements, utilities) and one refused `read_stored(path='plants_need')`; 7 s here (fast LLM calls), 170 k input tokens.
+- 2026-11-05 19:58 UTC, QA-AI-case-I, run 72ca5d30-a541-4359-b8ac-cff8fad9769f (project QA-TEST QA-AI-case-I 16, fa74ee82-efc9-4908-9b52-bb4ecff1cb3b; geomind 0.4.132, celery started 19:47 UTC; 19:50:40-19:55:25 UTC; log `../evidence/QA-326/run-72ca5d30.json`): after `ask_economics` the case lead calls `read_case()` once and `read_case(section='economics')` once (19:54:49, 19:54:52), then `finish` (19:54:55): 2 reads in 6 s (was 6 reads, 33 s). Verified.
+- 2026-11-05 19:56 UTC: QA-AI-case-I run 72ca5d30, geomind 0.4.132
