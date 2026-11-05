@@ -42,6 +42,21 @@ Guess: the worker restart of the 1.1.73 deploy (05:26 UTC) ended the run as fail
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+- 2026-11-05 hotfix-back: (a) The run WAS resumed by the 05:00 deploy (worker log 05:00:54 "Run
+  bd7aa40e ... resuming it") and ran on to 05:25. At 05:24:06 a resume task did nothing (0.01 s:
+  the run was no longer `running`); at 05:25:46 a second one (an answer or a cancel) failed in
+  1.4 s. That is geomind refusing the resume (for example "request ... unknown or already
+  answered"); the backend ended it with `stop_reason: error`, shown as "internal error in
+  geomind", and logged nothing. The exact text is in the run row's `error` (a prod DB read,
+  refused to this session; a person can read it on the Runs page or with
+  `select error from runs where id='bd7aa40e-e015-4852-97fd-46154fe0801b'`). Backend 1.1.74
+  (1b10ed7, deployed 05:3x): such a run now ends `geomind_refused` with geomind's message, and
+  the worker logs it.
+  (b) Step counter 3757 vs 261: the backend stores 261 steps (the export). Since QA-044 a
+  reconnect without a numeric Last-Event-ID replays the stream from the start; a page that adds
+  replayed `step.started` events without dropping ids it has counts them again (about 14 long
+  reconnects). For hotfix-front: keep events unique by `id` (and `text.delta` by step).
+
 ## Retest
 
 (Who, when, result.)
