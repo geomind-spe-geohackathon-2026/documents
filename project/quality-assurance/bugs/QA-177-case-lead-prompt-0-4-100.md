@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 17:15 UTC |
 | Versions | geomind 0.4.100 (backend 1.1.104); Knowledge handbook-case 77135767 (= `documents/project/quality-assurance/inputs/handbook-case.md`, b83e54e), hackathon-2026-assumptions 9f98c448 |
 | Where | `geomind/geomind/prompts/case/lead.md`, `geomind/geomind/prompts/case/geoscientist.md`, `knowledge/handbook-case.md` |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 Review asked by Coordinator-V (round 2): the case prompts against the new general handbook-case.
 Each line: where the two say different things, and the fix proposed.
