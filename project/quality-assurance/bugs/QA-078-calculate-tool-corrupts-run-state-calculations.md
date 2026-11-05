@@ -36,8 +36,8 @@ Fact: the state validator sees id C1 twice in `calculations`. Guess: `calculate`
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 05:01 UTC: geomind 0.4.68 (21e4fb1: random calculation ids C+6hex; repeated ids in a stored state keep the first), backend 1.1.72 (8722a33), deployed 05:00 UTC
+Cause (code and run_events of 6921d00e): `calculate` and `run_python` numbered ids C1, C2 ... from the problem state they saw. The design lead of that run was itself a rerun after the 04:30 deploy (QA-070) and its calculations, made at once and in nested runs holding their own copy of the state, both took C1 (seq 1823) and C3 (1875); from then on every state change of the run failed the id check, and the run ended failed at seq 2076. Fix: ids are random, `C` and six hex digits, never read from the state; a stored state with a repeated calculation or finding id loads again, keeping the first, so a corrupted chat recovers. geomind 0.4.68 (commit 21e4fb1, release 47259b8, tag v0.4.68), backend 1.1.72 (8722a33), deployed 2026-11-05 05:00 UTC by hotfix-python-II.
+
 ## Retest
 
 (Who, when, result.)

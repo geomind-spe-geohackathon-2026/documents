@@ -42,18 +42,8 @@ Facts: ownership checks (design.owners) refuse writes of roles that do not own a
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+Causes (run JSON 861ef137 and a reproduction): (1) a gemini 0.6.5 regression (geomind request 36): `gm.check`'s new rules read `module.segment` and the plant options by attribute, which raises `uninitialized parameters` for a plant with any unset value; every read_plant, build_plant and patch_plant check of an incomplete plant failed with missing_value (35x) instead of returning the issues, so the team could not see what to fill and looped. (2) `design.owners` held owners as tool names (`reservoir_engineer`, `well_engineer`), never equal to the disciplines `reservoir`, `well`, so the engineers were refused their own parts (not_allowed 16x; the well engineer's hand-back says so). The design lead has no discipline and was never refused. Fix: gemini 0.6.7 (commit 20db3c5a, tag v0.6.7) reads those parameters without raising (the bare DoubletHeatPlant now gives 74 issues; the complete hackathon plants still 0); geomind 0.4.67 (b7e7a8d) maps owner names in any form to their discipline; both in backend 1.1.72 (8722a33), deployed 2026-11-05 05:00 UTC by hotfix-python-II. Not fixed: the raw gemini error at the end of the chat, not found in the run JSON (status failed, no message). gemini's check still does not name a plant-level depth (QA-049's backend workaround stays).
 
-- 2026-11-05 hotfix-back (backend check): no backend part. The run's plants are built and read
-  inside geomind (`build_plant`, `read_plant` on `design/hackathon_superstructure_2`); the backend's
-  plant template and case code are not on that path. At steps[49] `read_plant` does not return
-  issues: it fails with `error.code = missing_value` listing d0.drainage_radius, d0.roughness and
-  the d0.reservoir.* values the case would fill (pressure, temperature, permeability, thickness,
-  top_depth). So the design is read without the case, or the load raises before `gm.check(plant,
-  case)` runs. Per QA-049, gemini fills a doublet's reservoir from the case only once the plant's
-  `depth` is set, and gemini's check does not name `depth`. For hotfix-python-II (geomind
-  `read_plant` / gemini).
-- 2026-11-05 05:01 UTC: gemini 0.6.7 (20db3c5a: gm.check returns issues, no raise) + geomind 0.4.67 (b7e7a8d: owner names map to disciplines), backend 1.1.72 (8722a33), deployed 05:00 UTC; raw final error not reproduced
 ## Retest
 
 (Who, when, result.)
