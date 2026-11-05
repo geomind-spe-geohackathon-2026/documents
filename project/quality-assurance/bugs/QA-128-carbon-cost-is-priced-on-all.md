@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | gemini |
 | Reporter | handbook-economics |
@@ -36,7 +36,7 @@ Found by handbook-economics (via Coordinator-IV, 2026-11-05 ~14:20 UTC) while wr
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 15:14 UTC: gemini 0.6.16 (carbon price only on the plant's own CO2e; grid electricity's CO2 counted in co2, not priced again), backend 1.1.97, deployed ~15:20 UTC
 ## Retest
 
 (Who, when, result.)
