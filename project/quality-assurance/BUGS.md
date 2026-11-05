@@ -139,3 +139,4 @@ wont-fix, duplicate.
 | [QA-131](bugs/QA-131-sensitivity-asked-in-chat-the-agent.md) | fixing | major | geomind | Sensitivity asked in chat: the agent tries run_python by hand (26 of 41 calls refused) instead of gemini's sensitivity study, and computes nothing | Fatemeh | hotfix-python |
 | [QA-132](bugs/QA-132-simulation-of-the-stored-plant-has.md) | open | major | gemini | Simulation of the stored plant has d0 flow 341 m3/h (> 300 m3/h hard cap) on 2027-01-01 while verdict.feasible is true | functional-qa-simulation-I |  |
 | [QA-133](bugs/QA-133-cancel-run-does-nothing-on-a.md) | open | major | frontend,backend | Cancel run does nothing on a run waiting at an approval card (stays 'waiting', 1 run active) | functional-qa-case-I |  |
+| [QA-134](bugs/QA-134-cancel-run-does-nothing-while-the.md) | open | minor | frontend | Cancel run does nothing while the run waits for an approval; Deny first is needed | functional-qa-plant-I |  |
