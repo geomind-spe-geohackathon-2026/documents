@@ -107,3 +107,17 @@ QA-305 (minor, hand save keeps the old source).
 | 5 | bfe3d68d | carbon back to Instrat (QA-256 retest) | 1 min 39 s | 263k | 0.0077 | one card |
 | 6 | (question) | after hand edit (QA-284 retest) | 21 s | | 0.001 | reads 0.07, flags stale source |
 | 9 (a2d1d833) | 746e64e9 | Trondheim, Norwegian prices (QA-279/280 retest) | 8 min 20 s incl. 4 approvals | 742k | 0.020 | only revenue.cold replaced |
+
+## Round 4 (19:09-20:18 UTC)
+
+Verified: QA-192, QA-194, QA-256, QA-279, QA-280, QA-284, QA-298, QA-305, QA-319, QA-320, QA-327.
+New: QA-305 (minor, verified), QA-319, QA-320, QA-327 (major, verified), QA-349 (major, speed, open).
+
+| Project | Run | Scenario | Time | Cost USD | Result |
+|---|---|---|---|---|---|
+| 10 | 039ccac8 | auto-approve on, "7 % discount, otherwise the competition assumptions" | 2 min 39 s | 0.013 | exact reference + 0.07, no card but the question; best result of the thread |
+| 11 | 6bb98a04 | "fill in yourself, best guesses, don't ask" | 7 min 33 s | 0.023 | QA-319, QA-320 |
+| 12 | 72d93b9f | "economics please", change some (QA-298 retest) | 2 min 55 s | 0.007 | path works; analysis lead ignored the assumptions (QA-327) |
+| 14 | 2f10d82c | best guesses (QA-320 retest 1) | 7 min 7 s | 0.022 | 9 agent values |
+| 15 | (19:43) | "economics please" (QA-327 retest) | 2 min 37 s | 0.008 | case lead, assumptions first |
+| 16 | 45becf5b | best guesses (QA-320 retest 2) | 17 min 36 s | 0.048 | right values, slow (QA-349) |
