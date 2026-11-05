@@ -44,3 +44,12 @@ Guess: the run resumes from the lead's last checkpoint, which is before the `fil
 ## Fix
 
 ## Retest
+
+## More evidence (QA-AI-analysis-I, 2026-11-05 17:17 UTC)
+
+Run 57c42f61-2a89-48ba-933c-e87fc348084f (project `QA-TEST QA-AI-analysis-I 1`): the deploy of backend
+1.1.105 (~17:16 UTC) hit an economist delegate mid-way. The first economist session (17:15:37-17:17:11,
+17 steps, 330 k input tokens, 0.007 USD) ends `failed` with no error in the run log (`/agents` status
+failed); after the restart a second economist session (17:17:32-17:17:48) re-reads the two stored
+studies and answers. The sensitivity and sample studies themselves had finished (stored), so only
+1.6 min and the tokens were lost. Log: `../evidence/QA-176/run-57c42f61-log.json`.
