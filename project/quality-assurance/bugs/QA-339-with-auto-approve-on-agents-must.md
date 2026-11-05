@@ -26,7 +26,7 @@ Reported by Sahand: with Auto-approve on, the agents still stop and ask the user
 
 ## Evidence
 
-Sahand, 2026-11-05 20:58 Trondheim. QA threads: please attach a run id with Auto-approve on that showed a question card.
+Sahand, 2026-11-05 20:58 Trondheim. Screenshot 21:02 Trondheim (![screenshot](../evidence/QA-339/1.png)): Auto-approve on, the user still answered two questions ('You answered: approve all' twice), and the case lead goes on to 'the one economics question'.
 
 ## Cause
 
