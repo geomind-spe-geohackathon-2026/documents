@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-2 |
 | Found | 2026-11-05 09:23 UTC |
 | Versions | frontend 1.1.7x, backend 1.1.75 at start (06:43 UTC), 1.1.79 at 08:13 UTC |
 | Where | https://geomind.team/projects/df514ce2-1d5b-4681-a7e6-5592cc5eac30/assistant/chat/138c18fa-3751-4f74-a76e-b52cbd1105ef; project QA2 functional-qa-2 economics B; run cef908d9-1818-4567-b39d-a8c46fe9fcd2 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
