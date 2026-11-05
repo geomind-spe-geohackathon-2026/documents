@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -38,6 +38,7 @@ and still there after a page reload.
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 20:16 UTC: frontend 1.1.140 (bundle index-CzdSC_uX.js)
+- 2026-11-05 20:46 UTC: backend part 1.1.130 45c4ce2 (instances)
 ## Retest
 
 (Who, when, result.)
