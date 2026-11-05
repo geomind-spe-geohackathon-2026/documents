@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -89,3 +89,4 @@ every other value exactly as the case already has it." Question: `../evidence/QA
   be set to 30 yr ... yours to approve"). 2 min 8 s, 0.0073 USD. Verified (parts 1-3). Part 4 (a what-if re-costing on a
   copy of the case) is not there, so the 30-year NPV itself is still not available without a case change.
   Log: `../evidence/QA-268/run-edaad491-retest-log.json`.
+- 2026-11-05 19:13 UTC: retest QA-AI-analysis-I 19:12 UTC backend 1.1.120: denial respected, no forced ask_economics; what-if copy not available
