@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-design-I |
 | Found | 2026-11-05 17:58 UTC |
 | Versions | backend 1.1.104 at start, 1.1.109 from ~17:38 UTC (geomind 0.4.110 prompt from 17:38:17 UTC, gemini 0.6.17) |
 | Where | api.geomind.team; project QA-TEST QA-AI-design-I 2 (3b95e854-f402-4f9b-9179-a6a820e7aac7); chat 85dbe5e6-dfea-4ffb-a7e3-b07487b3898d; run 5d0216a6-4acb-487b-a885-396a5e99366d (17:30:01-17:49:31 UTC) |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
