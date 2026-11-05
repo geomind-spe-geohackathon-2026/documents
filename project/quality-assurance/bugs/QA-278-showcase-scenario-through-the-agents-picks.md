@@ -132,3 +132,11 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
   answer). 40 min 48 s, 0.117 USD, 6.06 M input tokens; the answer came from the study record.
   Log: `../evidence/QA-278/run-e766608e-retest-log.json`.
 - 2026-11-05 20:04 UTC: m7: reopen explained by gemini 0.6.29 (e00d49d6). geomind's run_study hands gemini each design as plant.to_dict(structure=True); on gemini 0.6.26 that full form pinned the doublets' inherited depth, so the search could not move it. Offline, HeatingFullCoolingPlant, size + minimize lcts 20 seed 0: on 0.6.26 page dict 33.3 EUR/MWh vs full-form reload 52.2 (the 32.3 vs 52.8 of the retest); on 0.6.33 both 33.3. No geomind change. Retest after the deploy carrying gemini >= 0.6.29.
+- 2026-11-05 21:45 CET (20:45 UTC), QA-AI-analysis-II, backend 1.1.127 (geomind main HEAD incl. ff98774, gemini 0.6.33): fresh project
+  `QA-TEST QA-AI-analysis-II 17` (7665aa39-33f6-4bb6-b224-e2288f04f5fe), six versions, request "Size each one, optimise on LCTS (20
+  evaluations per doublet count, seed 0), rank by LCTS and CO2", run 1b4fb179-2642-431f-8102-8545343a4aa6 (20:15:26-20:28:51 UTC,
+  13 min 25 s, 0.036 USD, 1.61 M input tokens; was 41-57 min). One run_study minimize; agents: v1 30.60, v2 32.25, v3 31.34, v4 37.38,
+  v5 28.21, v6 26.96 (infeasible, no cold); v1 is no longer rank 6 (the 52.8 error is gone). Page studies `page-min-v1..v5` (minimize lcts, 20,
+  seed 0, prepare size) were started on the same project (results 9172ca16, 5b74bc90, 844042e6, 6ef6555d, c15e1b7d) but their numbers were not
+  read before the thread was closed: the side-by-side comparison is NOT done. The ranking now looks right (the v1 outlier is gone); the
+  numbers differ from the earlier 20-evaluation page figures only because this run searched 60 evaluations per family.
