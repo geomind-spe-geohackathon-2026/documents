@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Sahand (screenshot), Manual QA-IV |
 | Found | 2026-11-05 21:13 UTC |
 | Versions | backend 1.1.130 (geomind 0.4.135, gemini 0.6.34) |
 | Where | project e7dd5fb1-4fb5-477e-969a-9378a3ba803f, run 86867082, result 8d0e2821-d56c-410c-8379-2c62afcb4d0b (c-direct-boiler-absorption), also 682d2b1d, 0fed388c |
-| Fixer | m4 |
+| Fixer | hotfix-python-lead-II |
 
 ## Expected
 
@@ -29,4 +29,5 @@ Guess: the injection side of three doublets at 2,500 m is sized for one doublet 
 
 ## Fix
 
+- 2026-11-05 21:35 UTC: gemini 0.6.35 (55f2ddff) + geomind 0.4.138; pending deploy
 ## Retest
