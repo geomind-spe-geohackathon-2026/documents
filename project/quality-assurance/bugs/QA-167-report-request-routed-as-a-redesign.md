@@ -67,3 +67,5 @@ part was already live (QA-122). Not done: `read_plant` output with null fluid fi
 Recipe: on a project with a plant version and a finished study, ask in a new chat for the report;
 the project lead calls list_plants and list_studies, then briefs analysis_lead/explainer; no
 design_lead, no build_plant approval card.
+
+QA-E2E-report-I, 2026-11-05 19:30 UTC, project QA-TEST QA-E2E-report-I 3 (a9ff33c4), run 12115d92 (19:00:07-19:26:29 UTC), backend 1.1.122: the project lead sends the report request to the analysis lead, reviewer and explainer first; no design_lead, no Build plant card. (design_lead ran later only because of the finish false positive, QA-233.) Verified.
