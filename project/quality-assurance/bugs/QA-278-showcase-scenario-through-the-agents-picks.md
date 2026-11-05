@@ -105,3 +105,10 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
   ranges or doublet count differ from what `minimize` with `prepare: [size]` searches (the agents' v1 optimum: see the
   log, study v1_best, 85.9 s); the agents' v1 optimize ran 18:51:38-18:53:04, around the 1.1.118 deploy, but v4 ran
   after it (18:55) and differs too. Still open.
+  Detail: the page optimum of v4 has 3 doublets (d0-d2, 285.06 m3/h each, depth 3087 m, heat pump 3.0 MW, chillers
+  4.473 MW): LCTS 39.48. The agents' v4 optimum has the same depth (3087.3 m), flow (285.06 m3/h) and chiller (4.473 MW)
+  but 2 doublets and a 5.67 MW heat pump: LCTS 43.82. So the agents' search (size_plant, then optimize with
+  `evaluations_note`, 60 trials) does not search the doublet count / heat pump the way `minimize` with `prepare: [size]`
+  does; v1 the same (agents: 2 doublets, 2237 m, 52.82; page: 2 doublets, 3212 m, 32.31). Proposed: make the geomind
+  `size_plant` + `optimize` path call the same gemini study as the page `minimize` with `prepare: ["size"]` (or let
+  `optimize` take `prepare`), and compare one family both ways in a test.
