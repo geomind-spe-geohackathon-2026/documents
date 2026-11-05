@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -70,3 +70,7 @@ gemini's found reports 80 evaluations per design ... not reconciled here".
 3. `calculate` error (`tools/calculator.py`): when an operand path ends in `.value`, suggest the path
    without `.value`.
 4. `run_study` answer: give `evaluations_requested` and `evaluations_run` with the reason, from gemini.
+
+## Fix
+
+- 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
