@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
 | Found | 2026-11-05 17:20 UTC |
 | Versions | backend 1.1.102 to 1.1.104 during the run (geomind 0.4.96 to 0.4.98 local wheels, gemini 0.6.16/0.6.17); model deepseek/deepseek-v4.1-flash-1017 |
 | Where | https://api.geomind.team; project QA-TEST QA-AI-project-I 1 (35a70dbe-5e24-4f51-9c6f-50e06d47fe82); chat 134dae07-2e37-4a3a-ae0b-83b5e812017e; run b57abc5b-0497-46b3-a238-ddf87edaae02 |
-| Fixer | |
+| Fixer | hotfix-back-VI |
 
 ## Steps
 
