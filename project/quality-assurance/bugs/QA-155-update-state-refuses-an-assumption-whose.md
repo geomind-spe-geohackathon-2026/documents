@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -49,3 +49,7 @@ link?, note?}` (or `object`). Optionally accept a plain string citation as `{"no
 Run 57c42f61-2a89-48ba-933c-e87fc348084f, economist steps 11 and 15: the same refusal twice
 (`citation: 'user instruction in this chat'`), accepted at step 16 without the citation. Log:
 `../evidence/QA-176/run-57c42f61-log.json`.
+
+## Fix
+
+- 2026-11-05 18:59 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
