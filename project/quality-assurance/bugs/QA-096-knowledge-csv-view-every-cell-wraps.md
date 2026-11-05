@@ -66,6 +66,7 @@ Step 3: frontend 1.1.84, commit fbd04aa: Results compare, constraints (module in
 
 Step 4: frontend 1.1.85, commit 2f27a3d: studies, runs, run totals, Library, users, case and plant history. Checked locally: runs list and study list render in the shared table with the sticky header.
 - 2026-11-05 10:02 UTC: steps 1-3 deployed 10:01 UTC (1.1.82 c88543d, 1.1.83 cd5be85, 1.1.84 fbd04aa); step 4 (lists with actions) next
+- 2026-11-05 10:05 UTC: step 4 committed (1.1.85, 2f27a3d), deploys at 10:30 UTC
 ## Retest
 
 (Who, when, result.)
