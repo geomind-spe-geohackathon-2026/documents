@@ -36,6 +36,9 @@ Two answers in one chat contradict each other; the first would make a reader thi
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 14:28 UTC: gemini 0.6.14 (capacities reason for unmeasured ratings) + geomind 0.4.86 skill, backend 1.1.89, deployed 14:27 UTC
+
+Cause: gemini's `capacities` rates a heat exchanger by conductance (W/K), which no series measures, and gave "the run shows no use of this module". Fix: gemini 0.6.14 gives "a rating in W/K is not a use the run measures; the module ran n of m steps"; the reading-results skill says a module without an energy output was not idle.
+
 ## Retest
 
 (Who, when, result.)
