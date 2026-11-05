@@ -369,3 +369,19 @@ of `knowledge/data-economics.csv`. Proposal: give `gemini/examples/hackathon_202
 `about.sources` (per key: catalogue row id or citation), so the economist can cite them; or let the
 economist match each case value to a catalogue row (`search_rag`) once and record it. A request to
 gemini needs Sahand's OK (the file is gemini's).
+
+## IMP-032: checking a project plant needs no design team
+
+Status: idea (QA-AI-project-I, 2026-11-05 18:05 UTC). The same goal took 19 min, 82 LLM calls,
+2.48 M input tokens and one build_plant card through the project loop (run b57abc5b, "check this
+plant ..., simulate, review, explain"), and 1 min 56 s, 15 calls, ~0.35 M tokens and no card
+through the tool loop (run 436f8d53, "is the plant ok?", project QA-TEST QA-AI-project-I 3): the
+analysis lead called `simulate(plant_version: 1)` on the project plant directly, got gemini's
+verdict and the KPIs. In the project loop the design lead rebuilt the identical plant
+(`build_plant`, a second plant version, an approval card) only to get a `design/...` reference,
+then the reviewer and the analysis lead re-read everything (QA-187).
+Proposal (geomind): in `prompts/project/lead.md`, a request to check, simulate or cost a plant the
+project already holds goes without the design team: `simulate(plant_version)` and `check_results`
+by the `analysis_lead`, then the explainer; the design team only when the plant must change. Or let
+`simulate` / `check_results` on a `plant_version` record a `design.reference` the reviewer and the
+explainer can use, so no `build_plant` copy is needed.
