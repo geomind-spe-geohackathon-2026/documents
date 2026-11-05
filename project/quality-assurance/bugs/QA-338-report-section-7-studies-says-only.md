@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-AI-analysis-I |
@@ -52,3 +52,4 @@ met".
 
 - 2026-11-05 20:00 UTC: reporting/** is back-m1's; handed over by back-m2
 - 2026-11-05 21:20 Trondheim, back-m1, backend commit f994203 (not deployed): section 7 shows a minimize search (table Variable | First trial | Best | Explored from gemini's `found.history`, trials and feasible count, first feasible vs best objective), an evolve search (simulations, generations, front size), and names the project's sensitivity and sample studies of the same plant version with their main finding, or says none exists; the study line reads 'the study X (kind: Find the best design), with the objective ...'. Unmet energy below 0.01 % of a service's demand reads 'All demand is met.'
+- 2026-11-05 20:26 UTC: backend 1.1.128 f994203
