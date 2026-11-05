@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-func-2-II |
@@ -38,6 +38,7 @@ Guess: the toggle state is stored per chat and there is no chat yet to store it 
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 00:33 UTC: frontend 1.1.68 (42e7d45), pushed, build checked; deploy at 01:00 UTC
+- 2026-11-05 01:02 UTC: frontend 1.1.68, commit 42e7d45, deployed
 ## Retest
 
 (Who, when, result.)
