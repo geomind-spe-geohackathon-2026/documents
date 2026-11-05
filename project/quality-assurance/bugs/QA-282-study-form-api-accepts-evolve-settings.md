@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | backend |
 | Reporter | Manual QA-IV |
@@ -29,4 +29,5 @@ The study is created, queued and fails at once: `study_failed: study.evolve: pop
 
 ## Fix
 
+- 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
