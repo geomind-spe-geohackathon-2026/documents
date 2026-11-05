@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
-| Area | frontend,backend,geomind |
+| Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-05 10:45 UTC |
 | Versions | backend 1.1.84 |
@@ -44,5 +44,5 @@ run's user because the assistant saves as that user. Backend 1.1.87 (49d587b): `
 base); assistant case notes name up to six changed paths and files; `Version.by` = `assistant` or
 `user` on case and plant versions. Deploy 11:30 UTC. Still owed (frontend): open a version
 read-only, diff with the previous one, Restore, Saved by from `by`.
-
+- 2026-11-05 11:05 UTC: backend part done in 1.1.87 (11:30 UTC); frontend part for hotfix-front-III
 ## Retest
