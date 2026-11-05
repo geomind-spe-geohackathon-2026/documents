@@ -50,3 +50,8 @@ Evidence (Sahand 22:23 Trondheim): ![steps window](../evidence/QA-358/1.png): th
 window shows 'Read rag' / 'Search rag'; must read 'Read knowledge' / 'Search knowledge'. Same
 screenshot also shows the case lead reading handbook-case.md 4 times and hackathon-2026-assumptions.md
 3 times in one run (re-reads; QA-351 section reads should cut this).
+
+Label rule (Sahand, 22:24 Trondheim): choose the label by what is read. A project file (the user's
+inputs, e.g. GEMINI_..._Requirements.pdf, demand CSVs) -> 'Read inputs'; a Knowledge document
+(name starts with knowledge/, handbooks, catalogues, assumptions) -> 'Read knowledge'. Search over
+Knowledge -> 'Search knowledge'. Same for old (read_rag/search_rag) and new tool names.
