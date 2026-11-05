@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
 | Found | 2026-11-05 18:58 UTC |
 | Versions | backend 1.1.116+ |
 | Where | https://api.geomind.team; project QA-TEST QA-AI-project-I 3 (3ecb4493-3368-4bc2-b2f0-ca0b06670a86); chat 5db7a37c-b2ea-43d6-982f-5ebf2b8ad6a7; run d0098ccc-823c-4c39-9550-3f745612dc9b (after the cancelled run 204b9cd8 of QA-288); request-71 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -43,4 +43,5 @@ A question about a result: `loop: tool`, analysis lead, answer from the stored r
 
 ## Fix
 
+- 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
