@@ -62,7 +62,7 @@ Do the steps in order; do not start a step before its gate holds.
 | 2 | Choose by 0.2 the family that fits best and at least one materially different alternative (10.7); record both in `design.families` with their reasons | two families: one superstructure, or two designs for one study |
 | 3 | Build ONCE (`build_plant`): a project plant that fits, else the gemini class of the family; set `params.backup` (8.4), `params.control.dispatch` and `params.control.outages` (each the one value gemini suggests) | stored design; `issues` listed |
 | 4 | Split the `issues` by the groups of 0.3, at most four; ONE `fill_parts`, one brief per group with its paths, the plant text of its modules, the case values with units, the interface values and the sections to read (0.7, 0.8 and its chapter) | every engineer answered |
-| 5 | Write ONCE: all `changes` in one `patch_plant`; record every assumption in one `update_state` | `missing` is 0 |
+| 5 | Collect first, write ONCE: every missing value of `build_plant`'s `issues` and of the engineers' answers, including setpoints, choice values (as `{"value": ...}`), simulation inputs and closed-loop first guesses; apply them all in one `patch_plant`; record every assumption in one `update_state` | `missing` is 0; a new issue a patch reveals goes into the next single patch, never one call per value |
 | 6 | `size_plant` (new name); read what was sized and what was left (0.4) | no broken module |
 | 7 | `simulate` a short window around the critical day (heating peak; cooling peak too when cold is made from brine heat), then `check_results` | no failed step |
 | 8 | Fix from the failures by 0.5: the failure, gemini's message and the module's plant text to its owner, all owners in one `fill_parts`, one `patch_plant` | the change is applied |
@@ -179,6 +179,9 @@ Read the worst step of the failing reason (11.7), then the module's results arou
 | `inlet 'X': <error>` | the value at that inlet is invalid [gemini 0.6.17] | fix the value the message names; an inlet is `<module>.<port>` (QA-083) | lead |
 | Pipe `PhysicsError`: outlet pressure below zero | friction and static drop exceed the inlet pressure | wider pipe (2.5: 1 to 3 m/s), shorter pipe, or higher loop pressure; check the flow [gemini: `gemini/modules/piping/pipe.py`] | lead |
 | `bound` on `intake_pressure` or `intake_gas_fraction` | pump too shallow for the drawdown, too much flow per well, or a deep design | set the pump deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) | W |
+| ESP `out_of_range`: flow above `maximum_flow` on every step at the design flow | the pump's window equals the case's flow band and the design flow sits on its edge | a margin below the case's maximum, and a pump window wider than the band (4.9) | W |
+| Injection pump: head not a number, discharge below suction | no `pressure_setpoint` or rating | give the discharge target; let `size_plant` rate it (4.7, 4.9) | W |
+| `size_plant` returns a count outside `size.doublets`, or `read_plant` shows no `type`/`size` | a class plant saved as a free plant | build again from the class with the values found (11.10) | lead |
 | ESP `out_of_range` with a `curve` | the ESP curves do not cover the flows run | the well engineer gives sourced curves, or `pump_type` `"unspecified"` with no curves (the doublet derives them) | W |
 | Doublet flow below the demand it should carry | the schedule runs a doublet at most at its `nominal_flow` [gemini 0.6.15] | raise `nominal_flow` up to the case's flow cap, or add a doublet | R |
 | Heat pump: no duty, source below the minimum | brine at or below `minimum_source_outlet_temperature`, or lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, check the limit (6.4, 0.8) | H |
@@ -750,6 +753,29 @@ temperature, and leave margin for injectivity loss from fines and scale (5.3, 5.
 - Pump power computed, not guessed; efficiency as the case or the pump states.
 - Injection pressure at the largest flow and coldest brine; injection pump sized.
 - Reinjection ratio as the case requires.
+
+## 4.9 Margins below hard limits
+
+A hard limit is a line the plant must never cross in any step; a design that sits exactly on it
+fails on rounding. Rules:
+
+- **Design below the limit, with a margin.** Set a doublet's `nominal_flow` a few percent below
+  a case's maximum flow, and a brine cooling or a supply margin a little inside its cap, so that
+  the solver's small overshoot (a fraction of a percent) stays inside. Choose the margin from the
+  solver's tolerance and the steepness of the limit, record it as an assumption, and let the
+  search move inside the remaining range.
+- **The equipment window is the equipment's, not the case's.** A requirement band of the case
+  (a flow range per doublet) is judged by the case's requirement; do not copy it into a pump's
+  operating window (`esp.minimum_flow`, `maximum_flow`). Give the pump a window that contains the
+  design flow with room on both sides (its own data, or an open window when no curve is known),
+  so that a step at the design flow never fails on the pump while the requirement still judges
+  the band.
+- **Every pump needs a target.** An injection pump without a discharge target (`pressure_setpoint`)
+  and a rating (`nominal_head`, `nominal_flow`, set by `size_plant`, 4.7) has no operating point:
+  its steps fail with a head that is not a number. Give the target from the injection pressure the
+  injector needs at the largest flow (4.7).
+- After the first full-period run, read the failed steps by module (11.7): failures on every step
+  at the design flow point to a missing margin or a window, not to the reservoir.
 
 ---
 
@@ -1331,6 +1357,11 @@ finds better designs faster.
   a search over six leaves therefore needs 60 to 120 evaluations per doublet count.
 - A capacity range should reach from the share the geothermal side cannot cover (lower bound) to
   the full peak (upper bound).
+- **A range covers every value the user or the case asked for.** When a path of the range is
+  refused (a `d2.*` path before the third doublet exists), drop that path and keep the count
+  range: set per-doublet ranges on the doublets that exist (`d0` on a free plant, 11.10). Never
+  narrow `size.doublets` or any approved range to make a call pass; if a range cannot be set, say
+  in the answer which values were not searched and why, and ask before optimising without them.
 
 ## 10.3 Objectives: LCOH, LCOC, LCTS, annualised cost, CO2
 
@@ -1590,6 +1621,27 @@ failing requirement is in 0.1.
 All are in `geomind/geomind/skills/<name>/SKILL.md`.
 
 
+## 11.10 Class plants and free plants
+
+gemini knows two kinds of plant file, and a design keeps its kind for its whole life:
+
+| | Class plant | Free plant |
+|---|---|---|
+| Written as | `type` (a plant class) and `size` (structural sizes such as `size.doublets`), with `params` | `modules` and `connections`, no `type` |
+| Doublets | as many as `size.doublets.value`; a search over `size.doublets` rebuilds them | one doublet `d0`; a range on `size.doublets` copies `d0` and joins the copies in parallel [gemini 0.6.15] |
+| Per-doublet paths | `d0`, `d1`, ... exist up to the current count | only `d0` |
+
+Rules:
+
+- **Keep `type` and `size` in every stored design of a class plant.** After a patch, `read_plant`
+  of the new design must still show them; a design that lost them has become a free plant with one
+  doublet, and `size_plant` then sizes the wrong plant. When that happens, build again from the
+  class (`build_plant`) with the values found so far, never go on with the reduced design.
+- Do not turn a class plant into a free one by hand (copying its modules) to change one value:
+  patch the class plant's `params`.
+- A range on a per-doublet path holds for the doublets that exist; on a free plant set it on `d0`,
+  which every copy inherits (10.2).
+
 ---
 
 # 12 Worked lessons on an invented case
@@ -1709,6 +1761,17 @@ rule:
 - QA-083: an inlet is `<module>.<port>`; after an internal error change the input (0.5).
 - QA-104: `unmet_share` with failed steps is undecided; fix the steps first (11.7).
 - QA-119: change the plant's depth, not the case's reference depth (3.2).
+- QA-175, QA-212: missing values found one at a time (a setpoint, then a cooler, then a pump
+  frequency) gave six to thirteen patches and plant versions per design: collect every missing
+  value first, then patch once (0.1, step 5).
+- QA-250: a design flow exactly at the case's maximum, copied into the pump's window, failed every
+  step by 0.5 %: keep a margin below hard limits and keep equipment windows apart (4.9).
+- QA-253: a refused per-doublet path led to a narrower doublet range than the user asked: drop the
+  path, keep the range (10.2).
+- QA-260: a class plant saved without `type` and `size` became a one-doublet free plant: keep the
+  kind of the plant (11.10).
+- QA-210: a network length was invented: it is the site's, from the case or Knowledge, or asked
+  (0.6).
 - QA-145: 139 knowledge searches for a few equipment values, 27 hand patches and no simulation in
   70 minutes: read 0.7 once, write once, simulate as soon as nothing is missing (0.1, 0.9).
 - Operating limits change the answer: in gemini's own example study a search without the pump
