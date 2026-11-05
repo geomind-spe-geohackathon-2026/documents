@@ -249,3 +249,14 @@ for the agents; (b) the design lead picks a template, sizes, simulates, checks a
 engineers fill only what gemini reports missing; (c) the case starts complete: the sample's values
 offered to the user in one approval question, with gemini's README as their source (Sahand decides
 whether that counts as a source under the no-default rule).
+
+## IMP-024: "Run again" on a study
+
+Status: idea. From Coordinator-III (2026-11-05, engine check for functional-qa-study-I): a study
+record (Study tab, and a study's result) has no action to run it again with the same kind, name
+and settings, on the current plant version or a chosen one. To repeat project 46d15d6b's
+"Optimise LCTS" (minimize lcts, prepare size, 20 evaluations, seed 0) the user must read its
+settings and type them again, and a QA session could not check gemini on that project because its
+current plant (v3) has no doublet. Proposal: "Run again" on each study row opens New study filled
+with the study's kind, settings and plant version (editable), and the backend needs nothing new
+(`POST /design/study` takes them). Frontend.
