@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | Sahand |
 | Found | 2026-11-05 21:20 UTC |
 | Versions | geomind HEAD 2026-11-05 22:20 Trondheim |
 | Where | geomind tools, prompts, skills; Knowledge handbooks; backend events; frontend tool labels |
-| Fixer |  |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
