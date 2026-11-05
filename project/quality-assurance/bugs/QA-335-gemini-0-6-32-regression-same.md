@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -36,4 +36,5 @@ The failing check in both: `cooling_consumer.cooling_supply_temperature` 20.0032
 
 ## Fix
 
+- 2026-11-05 19:56 UTC: gemini cb3160ba 0.6.33 reverts a5f3b5f1; pending deploy
 ## Retest
