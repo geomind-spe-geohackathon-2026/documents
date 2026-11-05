@@ -21,7 +21,7 @@ rechecked against gemini 0.6.34.
   gemini, 12 worked lessons, 13 answers to the design questions agents ask (one per
   section: ESP curves, split wells, injection pump, wellhead pressure, productivity and skin,
   pressure drops, degasser, boiler efficiency, dew point, storage, part load, COP models, brine
-  cooling, network); appendices A formulas, B rules of thumb, C glossary, D references.
+  cooling, network, CHP, gas compressor, line-shaft and circulation pumps, ATES, ice storage); appendices A formulas, B rules of thumb, C glossary, D references.
 - **Chapter 0 is the working chapter**: the checklist, the decision order, where each value comes
   from, a table of design values with units and how to choose them, and how a case's limits bind
   the design. Chapters 1 to 11 give the reasons; chapter 12 worked lessons; the appendices formulas,
@@ -2300,6 +2300,82 @@ designer checks the plant pipes against them.
   `pipe-heat-transfer-coefficient-insulated` is 0 (no loss), a placeholder: a stated
   simplification, not a design value.
 
+## 13.15 CHP: electric and thermal efficiency, part load
+
+gemini's `CHP` is a gas engine heating a water circuit [gemini: `gemini/modules/heating/chp.py`].
+Fuel at load L (electric output over `electric_capacity`) follows the Willans line
+F = F_full (f0 + (1 − f0) L), F_full = electric_capacity / electric_efficiency, f0 =
+`no_load_fuel_fraction` [textbook: Heywood 1988]. Recovered heat is `thermal_efficiency` × F, up
+to `maximum_outlet_temperature`; the rest is dumped.
+
+- Typical gas engines: electric efficiency 0.35 to 0.44 and thermal 0.40 to 0.50 on the LHV
+  basis, their sum at most 1 [gemini docstring, from manufacturer data; Danish Energy Agency
+  technology data].
+- f0 of 0.05 to 0.15 reproduces the few points of electric efficiency lost at half load [gemini
+  docstring]. Invented: 4 MWe at 0.42, f0 0.1: F_full 9.52 MW, heat 4.29 MW; at half load
+  F = 5.24 MW and the electric efficiency falls to 0.38 [derived].
+- `maximum_outlet_temperature` is the engine's jacket limit (often around 90 °C, the maker's);
+  a hotter supply needs a boiler after it.
+- The engine burns the co-produced gas first (`fuel_in`), then grid gas when allowed (5.5).
+
+Use: a CHP pays when its electricity is worth more than the gas it burns beyond a boiler's; it
+needs a heat sink all year. Sizing to the base load (8.3), not to the peak, keeps it running.
+
+## 13.16 Gas compressor: raising degasser gas to a pipeline or engine
+
+`GasCompressor` lifts the gas from a degasser to a `pressure_setpoint` in `stage_count` equal
+adiabatic stages with intercooling [gemini: `gemini/modules/pumps/gascompressor.py`, after the
+GPSA Engineering Data Book, section 13]:
+
+T₂ = T₁ + T₁ (r^((k−1)/(k N)) − 1) / η_s,   P_shaft = ṁ N c_p (T₂ − T₁)
+
+- `heat_capacity_ratio` k and `gas_specific_heat` c_p are required: the non-condensable gas of
+  brines ranges from nearly pure CO2 (k about 1.29, c_p about 0.85 kJ/kg/K) to methane-rich
+  (k about 1.31, c_p about 2.2 kJ/kg/K) [textbook: Cengel and Boles 2015, ideal-gas tables].
+  Take them from the gas composition of the case.
+- Stage pressure ratios up to about 4 are usual, set by the discharge temperature [GPSA].
+- Invented: 1 kg/s CO2, 300 K, overall ratio 10, η_s 0.75: one stage gives 571 K and 231 kW;
+  two stages give 418 K and 201 kW [derived]. Intercooling saves power and keeps seals cool.
+
+## 13.17 Line-shaft and circulation pumps
+
+- `LineShaftPump`: a downhole pump driven from a surface motor through a shaft. Its stages use
+  the same curve basis as the ESP; the shaft adds a friction loss `shaft_friction_loss` per
+  metre at 60 Hz, scaling with speed [gemini: `gemini/modules/pumps/lineshaftpump.py`; standard:
+  ANSI/HI 2.3]. Line shafts suit shallow settings (a few hundred metres) and hot wells where an
+  ESP motor's temperature limit binds; deeper settings favour an ESP (4.6) [Stober and Bucher
+  2013].
+- `CirculationPump`: sets the flow of a closed circuit and holds it at `loop_pressure`; its
+  `pressure_rise` is the design head covering the circuit losses, which are not modelled;
+  electricity = Q Δp / `efficiency` [gemini: `gemini/modules/pumps/circulationpump.py`]. Take
+  Δp from the sum of the circuit's losses at design flow (13.6), not from a habit.
+
+## 13.18 Aquifer thermal energy storage (ATES)
+
+`AquiferStorage` is a balanced warm and cold well pair: `charge` stores heat in the warm well,
+`discharge` recovers it [gemini: `gemini/modules/storage/aquiferstorage.py`]. Each store is
+fully mixed; its loss is transient conduction through its envelope over the `storage_period`
+(about half a year for seasonal storage) [textbook: Carslaw and Jaeger 1959; paper: Bloemendal
+and Hartog 2018].
+
+- Inputs are subsurface values: `aquifer_temperature`, `aquifer_thickness`, `porosity`,
+  `rock_volumetric_heat_capacity` (about 2 to 2.5 MJ/m3/K for sandstone), `ground_conductivity`
+  (about 2 to 4 W/m/K) [Stober and Bucher 2013]. Take them from the case or its site data;
+  never invent them.
+- The thermal radius grows with the stored volume; losses scale with the area-to-volume ratio,
+  so large stores, and stores whose radius is close to the aquifer thickness, recover a larger
+  share of their heat [Bloemendal and Hartog 2018]. Read the recovered share in the results.
+- ATES serves low temperatures (heat pumps, direct cooling); `ATESPlant` and
+  `DistrictEnergyPlant` do not run a year in gemini 0.6.34 (11.5).
+
+## 13.19 Ice storage for cooling
+
+`IceStorage` freezes and melts a fixed `water_mass` through a glycol coil of effectiveness
+e = 1 − exp(−UA / C) [gemini: `gemini/modules/storage/icestorage.py`; Incropera et al. 2007].
+Latent cold = M L x with L = 334 kJ/kg: 1,000 t of water hold 92.8 MWh of cold [derived].
+Charging needs glycol below 0 °C, which lowers the chiller's COP by the extra lift (6.4); ice
+pays when off-peak electricity is cheap or the chiller would otherwise be sized for a short peak.
+
 ---
 
 # Appendix A: Formulas
@@ -2431,6 +2507,7 @@ always in the original):
   vapor pressure. *J. Appl. Meteorology* 35, 601-609.
 - API Specification 12J. *Specification for Oil and Gas Separators*. American Petroleum
   Institute.
+- ANSI/HI 2.3. *Rotodynamic Vertical Pumps for Design and Application*. Hydraulic Institute.
 - ANSI/HI 9.6.3. *Rotodynamic Pumps: Guideline for Operating Regions*. Hydraulic Institute.
 - Arnold, K., Stewart, M. (2008). *Surface Production Operations, Vol. 1: Design of Oil Handling
   Systems and Facilities*, 3rd ed. Gulf Professional.
@@ -2438,6 +2515,9 @@ always in the original):
   pumps: market overview, state of the art, research status, refrigerants, and application
   potentials. *Energy* 152, 985-1010.
 - ASHRAE. *ASHRAE Handbook: HVAC Systems and Equipment* (chapter on cooling towers and fluid coolers).
+- Bloemendal, M., Hartog, N. (2018). Analysis of the impact of storage conditions on the thermal
+  recovery efficiency of low-temperature ATES systems. *Geothermics* 71, 306-319.
+- Carslaw, H. S., Jaeger, J. C. (1959). *Conduction of Heat in Solids*, 2nd ed. Oxford.
 - Cengel, Y. A., Boles, M. A. (2015). *Thermodynamics: An Engineering Approach*, 8th ed.
   McGraw-Hill.
 - Dincer, I., Rosen, M. A. (2011). *Thermal Energy Storage: Systems and Applications*, 2nd ed.
@@ -2459,6 +2539,8 @@ always in the original):
 - Gringarten, A. C., Sauty, J. P. (1975). A theoretical study of heat extraction from aquifers with
   uniform regional flow. *J. Geophys. Res.* 80(35), 4956-4962.
 - Gülich, J. F. (2014). *Centrifugal Pumps*, 3rd ed. Springer.
+- GPSA. *Engineering Data Book*, 14th ed., section 13, Compressors. Gas Processors Suppliers
+  Association.
 - Hellmann, H.-M., Schweigler, C., Ziegler, F. (1999). The characteristic equations of absorption
   chillers. International Sorption Heat Pump Conference.
 - Herold, K. E., Radermacher, R., Klein, S. A. (2016). *Absorption Chillers and Heat Pumps*, 2nd ed.
