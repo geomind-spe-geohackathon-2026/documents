@@ -35,3 +35,15 @@ Guess: the answer was stored (or half-stored) while the worker restarted; on res
 
 - 2026-11-05 18:18 UTC: Manual QA-IV 18:19 UTC on the backend that health reports: run bfcec811 still 'waiting' on request-1290, answer still 409 'answered already', usage 0; not fixed for this run
 ## Retest
+
+## Fix (hotfix-back-lead)
+
+- backend 1.1.115 (~18:16 UTC): a decision counts as "answered already" only when it is newer than the
+  newest ask of that request.
+- backend 1.1.116 (~18:27 UTC; fastapi and celery recreated, VERSION 1.1.116 inside): `answer_run` on a
+  request the waiting run already has a decision on resumes the run from its log (no request) instead
+  of `409`. Cause seen in run bfcec811's events: request-1290 was asked (seq 1290) and answered (1293);
+  the run went on to seq 1504 (design_lead step 51), then a deploy stopped the worker and the row stayed
+  `waiting` on request-1290, which the old check refused for ever.
+- Unstick: answer request-1290 once more (any approval); the run goes to running and continues.
+
