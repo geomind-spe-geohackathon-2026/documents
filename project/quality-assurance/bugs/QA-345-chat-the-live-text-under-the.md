@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 20:11 UTC |
 | Versions | live 2026-11-05 21:10 Trondheim |
 | Where | geomind.team chat, the streamed text line under the busy list during a run |
-| Fixer | front-m2 |
+| Fixer | front-m1 |
 
 ## Steps
 
