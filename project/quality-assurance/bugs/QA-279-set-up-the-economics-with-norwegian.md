@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -77,3 +77,11 @@ geomind case lead skill (economics recipe) and `ask_economics`:
 
 - 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+- 2026-11-05 19:08 UTC, QA-E2E-economics-I: PASSES on backend 1.1.118. Project "QA-TEST
+  QA-E2E-economics-I 9", run 746e64e9-6212-4b7d-9aa5-2c26008eead5, same request: every value
+  stays the assumptions file's except `revenue.cold` -> row `cold-price-no-2017` (the one
+  Norwegian row), and the card lists it under "Replaced by a row of Norway". Two web searches for
+  Norwegian electricity and district-heat prices (approved) found nothing usable and changed
+  nothing. Card: `../evidence/QA-279/retest-card.txt`.
+- 2026-11-05 19:08 UTC: QA-E2E-economics-I 19:08 UTC run 746e64e9: only revenue.cold replaced by the NO row; see Retest
