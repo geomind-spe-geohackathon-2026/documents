@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,geomind,frontend |
 | Reporter | Fatemeh (asked for the run review), Claude (DB read and write-up) |
@@ -33,4 +33,5 @@ Guess: the rating shown is the pump's nominal flow (d0.nominal_flow, optimised),
 
 ## Fix
 
+- 2026-11-05 14:28 UTC: gemini 0.6.15 (doublet flow capped at its pump's nominal_flow), backend 1.1.89, deployed 14:27 UTC
 ## Retest
