@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-II |
 | Found | 2026-11-05 20:14 UTC |
 | Versions | backend 1.1.127 (geomind main HEAD, gemini 0.6.33) |
 | Where | api.geomind.team; project QA-TEST QA-AI-analysis-I 8 (485dbcfc-63f4-474f-a2dd-b94ab85bc34f); chat fb8fd813-1874-4583-b4e6-ca150c5d66ca; run 0f587461-d154-4317-be9f-a548197f5be2 |
-| Fixer | |
+| Fixer | m1 |
 
 ## Steps
 
