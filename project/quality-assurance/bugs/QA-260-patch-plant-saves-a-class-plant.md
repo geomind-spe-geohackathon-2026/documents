@@ -9,7 +9,7 @@
 | Found | 2026-11-05 18:04 UTC |
 | Versions | backend 1.1.109, geomind 0.4.11x, gemini 0.6.17-0.6.19 (deploy at 18:01 UTC during the run) |
 | Where | project QA-TEST QA-E2E-design-I 2 (72df9c82-e577-4605-8743-ffcee53c3a73); run dca5ed1a-35f5-4975-ad6e-94069b640590; design_lead 17:52-18:04 UTC |
-| Fixer | m6 |
+| Fixer | m4 |
 
 ## Steps
 
