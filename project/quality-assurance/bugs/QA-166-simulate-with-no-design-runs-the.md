@@ -67,4 +67,4 @@ versions and no `plant_version`, refuse with the list of versions. Prompt/skill
 - 2026-11-05 17:27 UTC: geomind 0.4.106, commit 23e5582, deployed: simulate takes plant_version; with neither design nor version the summary names the latest version
 ## Retest
 
-(Who, when, result.)
+QA-E2E-report-I, 2026-11-05 18:10 UTC, backend 1.1.109 (geomind 0.4.110), run d8662b0d: the agents simulated `design/v1` (built from plant_version 1), result/9b0db55da13a4a5b; its KPIs equal the page study of v1 to every digit (CAPEX 34.636 MEUR, LCTS 45.102 EUR/MWh, CO2 13.774 kt) and the report names plant version 1. The design=None path was not called in this run, so the exact failing call was not re-exercised; the user-visible symptom (v2 numbers under the v1 label) is gone. Verified.
