@@ -82,3 +82,32 @@ noticed the plant mix-up themselves (QA-166, verified fixed). Chat numbers are u
 A vague request ("summarise the results for my manager"), a report comparing the two plant
 versions, a report after a case change (outdated warning), and retests of the bugs above as
 they are fixed.
+
+## Round 2 (18:24-19:40 UTC)
+
+Project QA-TEST QA-E2E-report-I 3 (a9ff33c4-6e46-4eaf-be31-5277221dd51d) added, set up as 1 and 2.
+
+| # | Scenario | Result |
+|---|---|---|
+| R7 | "Compare the two plant versions for my manager ... short form" (project 1, run cb6ce579) | Right answer (build v1) but 470 lines with the old report repeated (QA-289) |
+| R8 | Case changed by hand (heating return 60 -> 50 degC, case v4), Report page | No warning (QA-290) |
+| R9 | Chat: "Is the report still valid? Update it" (project 2, run 8efe3722) | Asks to load case v4, re-simulates v1, numbers equal a page study on v4 exactly; also answers the R4 questions from read_result; 20 min, 111 read_result |
+| R10 | Retest R1 request (project 3, run 12115d92) | QA-165, QA-167, QA-257 verified; QA-233 reopened (finish result_off_case on the page result) |
+| R11 | Retest R7 (project 3, run f1108405) | QA-289 verified (3 min, one table) |
+| R12 | Retest Report banner (project 2) | QA-290 reopened: false "Out of date" when another plant (v2) exists |
+| R13 | Chip "Sensitivity analysis" then Report page (project 3, run e458852b) | Sensitivity in 1.5 min; not on the Report page: QA-274 reopened |
+
+| Run | Request | Wall time | Steps | Input tokens | Cost USD | Outcome |
+|---|---|---|---|---|---|---|
+| cb6ce579 | R7 compare for manager | 11 min 0 s | 84 | 1.61 M | 0.044 | done, too long |
+| 8efe3722 | R9 report after case change | 19 min 55 s | 207 | 3.18 M | 0.087 | done, correct |
+| 12115d92 | R10 report (retest) | 26 min 22 s | 114 | 3.96 M | 0.091 | done, correct, finish loop |
+| f1108405 | R11 compare (retest) | 3 min 17 s | 30 | 0.69 M | 0.012 | done |
+| e458852b | R13 sensitivity chip | 1 min 34 s | 15 | 0.35 M | 0.007 | done |
+
+Accuracy in round 2: case v4 (return 50 degC), plant v1: page study LCOH 40.522, LCOC 47.647,
+LCTS 41.772 EUR/MWh, OPEX 3.203 MEUR/yr, CO2 12.504 kt, electricity 22,458 MWh, boiler 0; the
+chat (R9) gave the same to every digit. R11 v1/v2 figures equal the page studies.
+
+Bug status at 19:40 UTC: verified QA-165, QA-166, QA-167, QA-257, QA-289; reopened QA-233,
+QA-274, QA-290; open QA-234, QA-269, QA-270; QA-242 being fixed.
