@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -29,4 +29,6 @@ Both are greys of almost the same tone (legend squares side by side in the scree
 
 ## Fix
 
+frontend 1.1.127 (commit 1fdd120, bundle index-DnQKqly3.js), by front-m1: topped-up days are diagonal stripes (mostly --ok, thin --gas), backup only stays plain --gas; legend uses the same stripes.
+- 2026-11-05 18:39 UTC: frontend 1.1.127
 ## Retest
