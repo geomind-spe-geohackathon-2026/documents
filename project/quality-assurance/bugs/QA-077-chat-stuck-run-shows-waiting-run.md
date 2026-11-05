@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend |
 | Reporter | functional-qa-I |
@@ -36,6 +36,7 @@ Guess: the run ended failed in the worker but the DB status stayed waiting (depl
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 04:19 UTC: frontend part: 1.1.74 (d9c8dd4), pushed, build checked, deploy at 04:30 UTC (Cancel shows while the run row is unfinished)
+- 2026-11-05 04:31 UTC: backend 1.1.70 (511b718), live in 1.1.71 (hotfix-python-II's deploy, 04:3x UTC): ended runs never return to waiting/running; a waiting run whose root run.finished is newer than its last request is ended when read, answered, cancelled or when its chat gets a message. Retest: open chat 81b51db5 (project 61134432) and send a message; run 861ef137 should show failed and the message go through. Cancel for every non-finished run is hotfix-front's.
 ## Retest
 
 (Who, when, result.)
