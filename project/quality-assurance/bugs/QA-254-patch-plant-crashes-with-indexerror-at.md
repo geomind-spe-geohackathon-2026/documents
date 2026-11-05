@@ -7,32 +7,28 @@
 | Area | gemini |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 17:58 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.109 (geomind 0.4.110, gemini 0.6.17) |
+| Where | https://geomind.team/projects/0b986dd6-8f95-4383-9d15-5e589ff122c9; run bfcec811-c5ad-496e-a829-6ec44de3251c (hackathon report run II), design_lead, 17:56-17:58 UTC |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. build_plant `A_hp_compression` (HeatingHeatPumpCoolingPlant, 1 doublet), then one patch_plant with 113 values -> `design/A_filled` (succeeds).
+2. patch_plant on `design/A_filled` with `params.d0.nominal_flow` 300 m3/h (alone, or with `pump_efficiency` 0.7 and `nominal_wellhead_pressure` 10 bar).
 
 ## Expected
 
+The patch is saved, or a `missing_value` error naming what is missing.
+
 ## Actual
 
-## Evidence
-
-- ![screenshot](../evidence/QA-254/1.png)
-- Run JSON: `../evidence/QA-254/run-<id>.json`
+`patch_plant: internal error IndexError: list index out of range at modules/values.py:70` on every try (list form and mapping form, 1 or 3 values). The design lead cannot set the design flow; the run is stuck before any study.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact: `gemini/gemini/modules/module.py:392` `_parameter_value` raises `root._missing_error(root._missing_paths())` when a parameter is not initialized. `_missing_paths()` returns an empty list here (the parameter is not listed: probably a `_waiting_params` one derived from a design value), and `_missing_error` (`values.py:70`) reads `items[0]`, so an IndexError escapes instead of a ValidationError.
+Fix: when `_missing_paths()` is empty, name the parameter itself (`self.path.name`) in the error; and find why the derived parameter is uninitialized after the 113-value patch (likely the ESP window or well sections derived from nominal_flow).
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
