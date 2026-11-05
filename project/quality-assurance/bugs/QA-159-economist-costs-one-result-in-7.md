@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -85,3 +85,4 @@ The same pattern in the next run (c2b815a8): the economist read the case or the 
   update_state; finish), no re-read of its own output (was 7 calls with 5 re-reads). Whole run 1 min 12 s, 0.0043 USD
   (was 75 s, 0.0055 USD). Numbers unchanged (LCTS 45.102 EUR/MWh). Verified.
   Log: `../evidence/QA-159/run-676a19e1-retest-log.json`.
+- 2026-11-05 19:40 UTC: retest QA-AI-analysis-I 19:11 UTC: economist 3 calls, no re-reads
