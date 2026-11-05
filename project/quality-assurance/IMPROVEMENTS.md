@@ -385,3 +385,12 @@ project already holds goes without the design team: `simulate(plant_version)` an
 by the `analysis_lead`, then the explainer; the design team only when the plant must change. Or let
 `simulate` / `check_results` on a `plant_version` record a `design.reference` the reviewer and the
 explainer can use, so no `build_plant` copy is needed.
+
+## IMP-033: one report for the chosen design, with its studies
+
+From Sahand, 2026-11-05 (Manual QA-IV). The report covers one result. For the chosen design the uncertainty section says
+"This result is not a sensitivity or uncertainty study", although the project holds a sensitivity and a sample study of the
+same plant version, and the comparison with the other candidates is only on the Compare page. A competition report needs
+them together. Proposal: the report of a result also takes the sensitivity and sample results of the same plant version
+(and case version), and a Compare table of the results the user picks (default: the best feasible result of each study);
+the Agent log part takes the run that made the plant version. Example project: https://geomind.team/projects/abf7ce3a-5485-4f5c-b2b5-d3d05ba098ff.
