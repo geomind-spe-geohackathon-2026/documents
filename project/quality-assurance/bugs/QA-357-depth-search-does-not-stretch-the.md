@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -32,3 +32,5 @@ Guess: a range on d0.depth sets the reservoir depth but not the well, riser and 
 
 - 2026-11-05 21:35 UTC: gemini 0.6.35 (55f2ddff) + geomind 0.4.138; pending deploy
 ## Retest
+
+- 2026-11-05 21:39 UTC: Manual QA-IV 22:42 CET on gemini 0.6.35: a run on the edb42b40 plant (depth range + hand section lengths) is refused with a clear message; with the section lists left out the wells follow the depth: 3 doublets at 3,250 m costed for 19,500 m (24.16 MEUR); LCTS 34.22 (was 28.38 with 15,000 m), 22/22 checks (result 9cee406f)
