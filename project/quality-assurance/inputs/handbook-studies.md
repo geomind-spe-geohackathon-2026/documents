@@ -1165,3 +1165,48 @@ p90 47.8 EUR/MWh, feasible 99 %. Design B (boiler peak): mean 44.1, p10 41.9, p9
 - No dominance: the CDFs cross near the 80th percentile.
 Answer: "A is cheaper on average and in 7 of 10 cases; B is the safer choice against high power
 prices. Which matters more to you?"
+
+---
+
+## 23. Value of information
+
+### 23.1 The question it answers
+
+"Is it worth measuring this before we decide?" A test well, a pumping test or a firm price quote
+reduces one uncertainty. Information has value only when it can change the decision (Howard
+1966; Clemen & Reilly 2014, ch 12; Bratvold & Begg 2010, ch 7 for subsurface decisions).
+
+### 23.2 Expected value of perfect information (EVPI)
+
+With designs A, B, ... and draws i = 1..N of the uncertain inputs, cost `y_{d,i}` of design d in
+draw i:
+
+`EVPI = min_d mean_i(y_{d,i}) − mean_i(min_d y_{d,i})`
+
+The first term is the best you can do deciding now (one design for all draws); the second, the
+best if you knew each draw before choosing. EVPI ≥ 0, in the unit of the cost; multiply a
+levelised cost by the annual energy and the annuity (§20.1) to get money.
+
+EVPI of one input (partial perfect information, EVPPI) asks the same with only that input known.
+With gemini's tools a simple estimate: run the paired sample (§22.1) and group the draws by bins
+of that input (5 to 10 bins); in each bin take the best design's mean; EVPPI = best mean overall
+minus the mean of the bin-wise best. Bins need about 30 draws each.
+
+### 23.3 Rules
+
+- EVPI is an upper bound: real tests are imperfect, so they are worth less.
+- When EVPI is below the cost of the test, do not test; when far above, a test may pay; the user
+  decides.
+- An input with a large tornado bar but no switching value inside its range (§15) has zero value
+  of information for this decision: it moves the cost of every design alike.
+- Arithmetic on the draws is done with `calculate` on the study's own numbers, never retyped by
+  hand.
+
+### 23.4 Worked example (invented numbers)
+
+Paired sample, 300 draws, designs A and B (§22.3). Mean A 43.0, mean B 44.1 EUR/MWh: decide now
+for A. Taking the cheaper design in each draw gives a mean of 42.6. EVPI = 43.0 − 42.6 = 0.4
+EUR/MWh. On 60,000 MWh/y over 25 years at 6 % (annuity factor 12.78): 0.4 × 60,000 × 12.78 ≈
+0.31 MEUR present value. Binned by electricity price, almost all of it comes from that input; a
+fixed-price power contract quote that costs 20 kEUR to obtain is worth asking for, a 2 MEUR test
+well to narrow permeability is not (its EVPPI is near zero here).
