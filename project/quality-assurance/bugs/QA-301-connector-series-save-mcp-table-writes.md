@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 18:52 UTC |
 | Versions | frontend 1.1.125+, backend 1.1.116+ (geomind 0.4.12x) |
 | Where | https://geomind.team/projects/dbe6165f-a36d-4643-9eca-027411ca9a7c; project QA-TEST QA-E2E-case-I 9; run 08d3739c |
-| Fixer | m7 |
+| Fixer | m1 |
 
 ## Steps
 
@@ -53,6 +53,7 @@ to the saved file; the "expected one of" list includes saved connector files; th
 
 - 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 - 2026-11-05 19:55 UTC: QA-E2E-case-I retest 19:54 UTC: file found now, but 9 files-alone refusals + a time-zone mismatch of the saved series; run 33 min, 4 M tokens (see Retest)
+- 2026-11-05 19:57 UTC: geomind 6be8022/bc9d09b; pending deploy
 ## Retest
 
 ## Retest (QA-E2E-case-I, 2026-11-05 19:21-19:54 UTC, backend 1.1.121)
