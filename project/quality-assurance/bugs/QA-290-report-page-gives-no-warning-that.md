@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-report-I |
@@ -47,6 +47,7 @@ exported header (backend export, if the text is built there).
 
 Fix: frontend 1.1.129 (commit da9da17, bundle index-DjK0zKa6.js), by front-m2: report-editor.tsx shows an 'Out of date' alert with the run's and the project's case/plant versions. PDF/Markdown note open for backend.
 - 2026-11-05 18:54 UTC: frontend 1.1.129
+- 2026-11-05 19:30 UTC: retest QA-E2E-report-I: case banner works; false 'Out of date' on a current result of plant v1 because v2 (another plant) exists
 ## Retest
 
 QA-E2E-report-I, 2026-11-05 19:35 UTC, backend 1.1.122, project QA-TEST QA-E2E-report-I 2: the banner works for a real case change: result "simulation HackathonPlant" (case v3) shows "Out of date. This result ran on case version 3, plant version 1; the project now has case version 4, plant version 2. Run the study again before you send this report." (screenshot 2). BUT it is a false alarm on a current result: "simulation HackathonPlant case v4" (page study of plant v1 on case v4, made at 19:00 UTC) shows "Out of date ... ran on case version 4, plant version 1; the project now has case version 4, plant version 2" (screenshot 3). Plant v2 is another plant (HeatingAbsorptionCoolingPlant), not a newer v1, so every report of v1 (the plant the agents recommend, QA-289) is marked out of date and "run the study again" cannot clear it. Proposal: flag the plant only when the result's plant version is older than the latest version of the SAME plant (same name/lineage, e.g. a version saved from it by patch or adopt), or say "a newer plant version exists" as an info line, not "Out of date"; the case check stays. Reopened.
