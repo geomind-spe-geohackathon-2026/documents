@@ -64,3 +64,4 @@ QA-E2E-report-I, 2026-11-05 20:05 UTC, backend 1.1.125, https://geomind.team/pro
   of demand is not met". Report: `../evidence/QA-313/report-b7af0082-noimg.md` (images removed).
 - 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:59 UTC: numbered sections, captions, text (md); gaps QA-338
 - 2026-11-05 20:00 UTC: retest QA-E2E-report-I 20:05 UTC backend 1.1.125, page and PDF
+- 2026-11-05 20:02 UTC: QA-E2E-study-II 2026-11-05 20:05 UTC, backend 1.1.125, project QA-TEST QA-E2E-study-II 1: Report page of opt-v3-lcoh-r2: numbered sections 1-9 with subsections 3.1-3.5, figure captions and short text. Verified again
