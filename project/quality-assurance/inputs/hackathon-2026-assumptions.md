@@ -73,12 +73,13 @@ Currency EUR, price year 2015 (`currency`, `price_year`). Keys under `economics.
 |---|---|---|
 | Discount rate (`discount_rate`) | 0.05 | Team |
 | Analysis period (`analysis_period`) | 25 yr | Team (DEA sheets give 25 yr technical lifetime for heat pump and boiler) |
-| Electricity price (`energy.electricity`) | 105.75 EUR/MWh | Cited: Eurostat nrg_pc_205, EU non-household, band IE, excl. VAT, 2025 |
-| Natural gas price (`energy.gas`) | 39.92 EUR/MWh | Cited: Eurostat nrg_pc_203, EU non-household, band I4, excl. VAT, 2025 |
-| CO2 price (`carbon.price`) | 57.03 EUR/t | Cited: Instrat, EU ETS 2025 average allowance price (8 Jan 2026) |
+| Electricity price (`energy.electricity`) | 105.75 EUR/MWh | Cited: Eurostat nrg_pc_205, EU non-household, band IE, excl. VAT, 2025 (catalogue row `electricity-eu-eurostat-price-2025-band-ie`) |
+| Natural gas price (`energy.gas`) | 39.92 EUR/MWh | Cited: Eurostat nrg_pc_203, EU non-household, band I4, excl. VAT, 2025 (row `gas-eu-eurostat-price-2025-band-i4`) |
+| CO2 price (`carbon.price`) | 57.03 EUR/t | Cited: Instrat, EU ETS 2025 average allowance price (8 Jan 2026) (row `carbon-price-eu-ets-instrat-price-2025`) |
 | Heat revenue / cold revenue (`revenue.heat`, `revenue.cold`) | 60 EUR/MWh each | Team |
 | Cost share of heat (`accounting.allocation.heat_cost_share`) | 0.8 | Team |
 | CH4 global warming potential (`accounting.gwp.CH4`) | 29.8 | Cited: IPCC AR6 WG1 table 7.15, GWP100, fossil methane |
+| GWP standard (`accounting.gwp.standard`) | IPCC AR6 WG1 table 7.15, GWP100 of fossil methane | Cited: the text exactly; never open |
 | Chemicals / waste disposal (`opex.variable.chemical`, `opex.variable.waste_disposal`) | 3 EUR/kg / 0.2 EUR/kg | Team |
 
 Capital cost (`capex.<kind>`) and fixed operating cost (`opex.fixed.<kind>`, % of capital cost per year). Source: Cited = Danish Energy
@@ -87,10 +88,10 @@ every other row is Team.
 
 | Equipment | Capex | Fixed opex | Source |
 |---|---|---|---|
-| Drilling | 1239.13 EUR/m | 1 %/yr | Team (SDE+ 2013 reference case, Mijnlieff et al. 2013, not re-verified) |
-| Heat pump | 0.738 EUR/W | 0.224 %/yr | Cited: DEA sheet 40 |
-| Gas boiler | 0.0607 EUR/W | 3.25 %/yr | Cited: DEA sheet 44 |
-| CHP | 0.962 EUR/W | 1.026 %/yr | Cited: DEA sheet 06 |
+| Drilling | 1239.1304347826087 EUR/m | 1 %/yr | Team (SDE+ 2013 reference case, Mijnlieff et al. 2013, not re-verified) |
+| Heat pump | 0.73786 EUR/W | 0.2239 %/yr | Cited: DEA sheet 40 |
+| Gas boiler | 0.06073 EUR/W | 3.25 %/yr | Cited: DEA sheet 44 |
+| CHP | 0.96155 EUR/W | 1.0263 %/yr | Cited: DEA sheet 06 |
 | Degasser | 1,000,000 EUR | 2 %/yr | Team |
 | Compression chiller | 0.3 EUR/W | 2 %/yr | Team |
 | Absorption chiller | 0.3 EUR/W | 2 %/yr | Team |
@@ -101,6 +102,9 @@ every other row is Team.
 | Gas make-up | 50,000 EUR | 2 %/yr | Team |
 | Cooler | 0.1 EUR/W | 2 %/yr | Team |
 | Pipe | 500 EUR/m | 0.5 %/yr | Team |
+
+Every number above is the exact value of gemini's sample `economics.json`: copy it digit for
+digit, never rounded (QA-191).
 
 ## How the competition files map to the case
 
@@ -216,12 +220,20 @@ there is no subsidy, and no source prices the chillers per MWh. Method:
 
 ## Uncertainty ranges (studies only)
 
+Economics: set each as the value's `uncertainty` together with the value, exactly as gemini's
+sample `economics.json` has it (QA-191):
+
+| Key | `uncertainty` |
+|---|---|
+| `economics.discount_rate` | `{"kind": "normal", "std": 0.01, "min": 0.02, "max": 0.08}` |
+| `economics.energy.electricity` | `{"kind": "uniform", "min": 80, "max": 140}` (EUR/MWh) |
+| `economics.energy.gas` | `{"kind": "triangular", "min": 25, "max": 70}` (EUR/MWh; the mode is the value 39.92) |
+| `economics.carbon.price` | `{"kind": "triangular", "min": 30, "max": 110}` (EUR/t; the mode is the value 57.03) |
+
+Case values (site), Team:
+
 | Value | Range |
 |---|---|
-| Electricity price | uniform 80 to 140 EUR/MWh |
-| Natural gas price | triangular 25 to 70 EUR/MWh, mode 39.92 |
-| CO2 price | triangular 30 to 110 EUR/t, mode 57.03 |
-| Discount rate | normal, std 1 %, 2 to 8 % |
 | Geothermal gradient | normal, std 2 K/km, 25 to 35 K/km |
 | Permeability | triangular 100 to 400 mD, mode 200 |
 

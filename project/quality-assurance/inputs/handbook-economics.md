@@ -2,7 +2,7 @@
 
 How to cost a geothermal heating and cooling plant, put a carbon footprint on it, and use both to
 choose between designs. General for any case; chapter 17 works a full example on invented
-numbers. Checked against gemini 0.6.17 and the cost catalogue `knowledge/data-economics.csv` (154
+numbers. Checked against gemini 0.6.17 and the cost catalogue `knowledge/data-economics.csv` (157
 rows) on 2026-11-05.
 
 Cite as `knowledge/handbook-economics.md` with the section (for example
@@ -97,11 +97,11 @@ is a share of that kind's capex, `EUR/MW/yr` an amount per capacity.
 | `capex.pipe` | `pipe-dea-2025-distribution-5-25mw` 1149 EUR/m (v); `pipe-dea-2025-distribution-1-5mw` 636 EUR/m (v); `pipe-dea-2025-transmission-0-50mw` 49.08 EUR/MW/m (v) |
 | `capex.production_pump` | `esp-unit-2019` 763359 EUR (s); `production-pump-esp-kennisagenda-2016-250kwel` 0.7183 EUR/W electric (s); `production-pump-esp-kennisagenda-2016-500kwel` 0.5986 EUR/W electric (s); `production-pump-schlagermann-2023-332kwel` 1.546 EUR/W electric (v) |
 | `capex.thermal_storage` | `thermal-storage-tank-dea-2025-3000m3` 168.6 EUR/m3 (v); `thermal-storage-pit-dea-2025-70000m3` 64.85 EUR/m3 (v) |
-| `carbon.price` | `carbon-price-eu-ets-esma-2026` 57.48 EUR/t CO2e (v); `carbon-price-eu-ets-esma-2025` 51.56 EUR/t CO2e (v); `carbon-price-nl-co2-levy-rijksoverheid-2026` 61.1 EUR/t CO2 (v) |
+| `carbon.price` | `carbon-price-eu-ets-esma-price-2025` 57.48 EUR/t CO2e (v); `carbon-price-eu-ets-esma-price-2024` 51.56 EUR/t CO2e (v); `carbon-price-nl-co2-levy-price-2026` 61.1 EUR/t CO2 (v); `carbon-price-eu-ets-instrat-price-2025` 57.03 EUR/t CO2e (s) |
 | `discount_rate` | `discount-rate-financial-eu` 0.04 - (v); `discount-rate-social-eu` 0.03 - (v); `discount-rate-pbl-sde-2022-geothermal-nominal` 0.056 - (v); `discount-rate-pbl-sde-2022-geothermal-real` 0.04 - (v); `discount-rate-ebn-gn-2026-pbl-ort` 0.087 - (s); `discount-rate-nl-mkba-2020` 0.0225 - (v); `discount-rate-pbl-sde-2025-geothermal-nominal` 0.072 - (v); `discount-rate-pbl-sde-2025-geothermal-real` 0.051 - (v); `discount-rate-pbl-sde-2026-erratum-row4-nominal` 0.073 - (s); `discount-rate-pbl-sde-2026-erratum-row4-real` 0.052 - (s) |
-| `energy.electricity` | `electricity-nl-eurostat-2024-band-id` 115 EUR/MWh (s); `electricity-nl-eurostat-2024-band-ie` 138 EUR/MWh (s) |
-| `energy.gas` | `gas-nl-eurostat-2024-band-i4` 37.51 EUR/MWh (GCV) (s); `gas-nl-eurostat-2024-band-i3` 44.42 EUR/MWh (GCV) (s) |
-| `opex.fixed.absorption_chiller` | `opex-absorption-chiller-iea-shc-2024` 3 %/yr (v); `opex-absorption-chiller-hre4-2017-500kw` 4 %/yr (s); `opex-absorption-chiller-hre4-2017-500kw` 6800 EUR/MW/yr (s) |
+| `energy.electricity` | `electricity-nl-eurostat-price-2024-band-ie` 115 EUR/MWh (s); `electricity-nl-eurostat-price-2024-band-if` 138 EUR/MWh (s); `electricity-eu-eurostat-price-2025-band-ie` 105.8 EUR/MWh (s) |
+| `energy.gas` | `gas-nl-eurostat-price-2024-band-i5` 37.51 EUR/MWh (GCV) (s); `gas-nl-eurostat-price-2024-band-i4` 44.42 EUR/MWh (GCV) (s); `gas-eu-eurostat-price-2025-band-i4` 39.92 EUR/MWh (GCV) (s) |
+| `opex.fixed.absorption_chiller` | `opex-absorption-chiller-iea-shc-2024` 3 %/yr (v); `opex-absorption-chiller-hre4-2017-500kw-share` 4 %/yr (s); `opex-absorption-chiller-hre4-2017-500kw-per-mw` 6800 EUR/MW/yr (s) |
 | `opex.fixed.adsorption_chiller` | `opex-adsorption-chiller-iea-shc-2024` 3 %/yr (v) |
 | `opex.fixed.boiler` | `opex-boiler-gas-dea-2018` 1950 EUR/MW/yr (v) |
 | `opex.fixed.chp` | `opex-chp-gas-engine-dea-2018` 9750 EUR/MW/yr (v) |
@@ -800,8 +800,9 @@ Sourced price: the volume-weighted average allowance price of the 213 primary-ma
 2025 was 73.43 EUR/t (Instrat Foundation, W. Przedlacki, "EU ETS 2025 summary and the beginning of
 2026 auctions", 8 January 2026, https://energy.instrat.pl/en/eu-ets-2025-summary/; a secondary
 source). In EUR 2015: `73.43 / 1.2875 = 57.03 EUR/t` **(derived)**. The catalogue's verified rows: EU ETS
-57.48 EUR2015/t (2026, `carbon-price-eu-ets-esma-2026`) and 51.56 (2025), Dutch CO2 levy 61.10
-(2026).
+57.48 EUR2015/t (price of 2025, `carbon-price-eu-ets-esma-price-2025`) and 51.56 (price of 2024),
+Dutch CO2 levy 61.10 (2026); the Instrat 2025 average above is row
+`carbon-price-eu-ets-instrat-price-2025`.
 
 ### 8.2 Using a carbon price in an assessment
 
@@ -938,9 +939,10 @@ Sourced examples (EU27_2020 average, `X_VAT`):
 - Gas, band I4, 2025-S1 0.0545 and 2025-S2 0.0483 EUR/kWh (gross calorific value), mean 51.4
   EUR/MWh (EUR 2025), 39.92 EUR/MWh in EUR 2015 (Eurostat `nrg_pc_203`).
 
-The catalogue's rows are Dutch, 2024 (secondary): electricity band ID 115.02 and band IE 138.02
-EUR2015/MWh (`electricity-nl-eurostat-2024-band-*`), gas band I4 37.51 and I3 44.42 EUR2015/MWh
-on the gross calorific value (`gas-nl-eurostat-2024-band-*`). It has no EU-average row.
+The catalogue's rows (secondary): Dutch 2024 electricity band IE 115.02 and band IF 138.02
+EUR2015/MWh (`electricity-nl-eurostat-price-2024-band-*`), Dutch 2024 gas band I4 44.42 and I5
+37.51 EUR2015/MWh on the gross calorific value (`gas-nl-eurostat-price-2024-band-*`), and the EU
+averages above (`electricity-eu-eurostat-price-2025-band-ie`, `gas-eu-eurostat-price-2025-band-i4`).
 
 ### 10.2 Choosing a band and a tax level
 
@@ -970,8 +972,8 @@ on the gross calorific value (`gas-nl-eurostat-2024-band-*`). It has no EU-avera
 | National geothermal reports (TNO, ECN, NLOG for the Netherlands) | drilling costs, reference cases | check year and scope |
 | Peer-reviewed papers | component costs, case studies | check the year and what is included |
 
-The project's own catalogue, `knowledge/data-economics.csv` (154 rows at 2026-11-05: 75
-verified, 79 secondary, no placeholder; notes and batches in `knowledge/data-economics.md`),
+The project's own catalogue, `knowledge/data-economics.csv` (157 rows at 2026-11-05: 75
+verified, 82 secondary, no placeholder; notes and batches in `knowledge/data-economics.md`),
 holds these figures with quote, price year, `value_2015` and the case key (`path`) each feeds.
 It is reference data, not defaults: a row enters a case only through the user's approval
 (§0.2).
