@@ -41,3 +41,7 @@ geomind `tools/suggestions.py` `next_steps`: after `checked`, append the stage's
 ## Fix
 
 ## Retest
+
+## More evidence (QA-AI-project-I, 17:57 UTC)
+
+Run 194c3879-076e-4e3a-b6bf-8f54da25a7ae (same chat, case changed by hand): the lead passes two suggestions and the user sees two. One of them has a label that does not match its message: label "Compare 100 vs 400 mD", message "Show the full sensitivity table of the new study on the current case, with each driver's effect on LCOH, LCOC and LCTS." `_fits` checks only length and script, not that the label names the message's action; a fix could keep the code's own label for a known `step` and let the lead change only the message.
