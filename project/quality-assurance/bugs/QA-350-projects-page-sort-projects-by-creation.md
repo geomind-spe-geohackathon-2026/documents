@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
@@ -34,7 +34,7 @@ Sahand's request (top).
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 21:08 UTC: backend 1.1.131 69e1461
 ## Retest
 
 (Who, when, result.)
