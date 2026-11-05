@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind,gemini |
 | Reporter | Sahand (reviewer notes), Manual QA-IV |
 | Found | 2026-11-05 19:23 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130, gemini 0.6.26) |
 | Where | report of result 54b2e4f4 (B_r1_best, project 0b986dd6) and result 8878eafd (no-agent, project 8d5d21e0); reviewer notes from Sahand 20:20 CET |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Expected
 
@@ -21,4 +21,5 @@ B_r1_best: compression cooler 20 MW rated, 11.04 MW peak (55 %), 2 MEUR at 0.1 E
 
 ## Fix
 
+- 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
