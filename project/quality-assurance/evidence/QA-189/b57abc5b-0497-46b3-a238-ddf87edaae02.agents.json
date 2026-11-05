@@ -1,0 +1,1472 @@
+{
+ "run": {
+  "id": "b57abc5b-0497-46b3-a238-ddf87edaae02",
+  "status": "done",
+  "input_tokens": 2481529,
+  "output_tokens": 95612,
+  "cached_tokens": 1449984,
+  "cost": 0.066738726,
+  "steps": 84,
+  "llm_calls": 82,
+  "tool_calls": 213
+ },
+ "agents": [
+  {
+   "session": "b57abc5b049746b3a238ddf87edaae02-route",
+   "parent_session": "b57abc5b049746b3a238ddf87edaae02",
+   "agent": "coordinator",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "finished",
+   "steps": 1,
+   "llm_calls": 1,
+   "input_tokens": 2389,
+   "output_tokens": 93,
+   "cached_tokens": 2048,
+   "cost": 5.2894e-05,
+   "context_used": 2389,
+   "context_peak": 2389,
+   "context_window": 200000,
+   "context_left": 197611,
+   "tool_calls": []
+  },
+  {
+   "session": "b57abc5b049746b3a238ddf87edaae02",
+   "parent_session": null,
+   "agent": "project_lead",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "finished",
+   "steps": 8,
+   "llm_calls": 8,
+   "input_tokens": 86080,
+   "output_tokens": 4420,
+   "cached_tokens": 54784,
+   "cost": 0.002675648,
+   "context_used": 16960,
+   "context_peak": 16960,
+   "context_window": 200000,
+   "context_left": 183040,
+   "tool_calls": [
+    {
+     "call_id": "call-146d74ba-d7cc-41e7-9af9-8266be10f12c",
+     "tool": "read_stored",
+     "error": true,
+     "duration": 0.003682726062834263
+    },
+    {
+     "call_id": "call-6e8e6024-2093-422c-818a-35b1b97f891c",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.011095913010649383
+    },
+    {
+     "call_id": "call-e51328b1-a960-4b95-bfbf-51060ef9237d",
+     "tool": "case_changes",
+     "error": false,
+     "duration": 0.0002635400742292404
+    },
+    {
+     "call_id": "call-f6cb739c-3acc-4897-b26e-b52b35e016ad",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0029124158900231123
+    },
+    {
+     "call_id": "call-bab3cd4f-0f82-4020-9e0e-5c51d988fc7f",
+     "tool": "design_lead",
+     "error": false,
+     "duration": 0.0
+    },
+    {
+     "call_id": "call-b33cb392-289b-4ce9-8551-8d872da6aaa6",
+     "tool": "reviewer",
+     "error": false,
+     "duration": 288.54410390299745
+    },
+    {
+     "call_id": "call-b531a3d2-4226-43f3-8c3d-98f4b8fbfe0c",
+     "tool": "analysis_lead",
+     "error": false,
+     "duration": 305.49018036504276
+    },
+    {
+     "call_id": "call-a6019db2-f4cb-46b2-aa8f-8a981c6de91d",
+     "tool": "explainer",
+     "error": false,
+     "duration": 69.25657262292225
+    },
+    {
+     "call_id": "call-1a5d667e-bf57-45a3-bc25-7bd252c7c412",
+     "tool": "finish",
+     "error": false,
+     "duration": 0.0
+    }
+   ]
+  },
+  {
+   "session": "250c989a3ea047a38c311a4862f32039",
+   "parent_session": "b57abc5b049746b3a238ddf87edaae02",
+   "agent": "design_lead",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "finished",
+   "steps": 11,
+   "llm_calls": 11,
+   "input_tokens": 259326,
+   "output_tokens": 6699,
+   "cached_tokens": 199680,
+   "cost": 0.004790532,
+   "context_used": 24914,
+   "context_peak": 28451,
+   "context_window": 200000,
+   "context_left": 175086,
+   "tool_calls": [
+    {
+     "call_id": "call-7b4adfff-91bd-47a2-93e4-f84a0d2438e8",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.004632730036973953
+    },
+    {
+     "call_id": "call-943e155e-1dc1-4851-92b7-ad30a1eb7bab",
+     "tool": "list_plants",
+     "error": false,
+     "duration": 0.07386452599894255
+    },
+    {
+     "call_id": "call-39c80a58-48f0-4a7e-808e-066a5d706a8a",
+     "tool": "read_knowledge",
+     "error": false,
+     "duration": 0.07878470898140222
+    },
+    {
+     "call_id": "call-8e84ec00-9d61-4bc8-bf47-aa11a1c6e28f",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.14471723791211843
+    },
+    {
+     "call_id": "call-a15cced6-40d2-42b1-a73b-bc8f235e08f4",
+     "tool": "list_profiles",
+     "error": false,
+     "duration": 0.1564775010338053
+    },
+    {
+     "call_id": "call-709b9a05-79df-4289-a001-01f81dfbe46e",
+     "tool": "read_plant",
+     "error": false,
+     "duration": 0.29189770098309964
+    },
+    {
+     "call_id": "call-1a03cf18-f06f-4621-978b-4302f5076cfe",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.00191090302541852
+    },
+    {
+     "call_id": "call-e5cf53cd-fc92-4a01-a0f8-973b86b29fc7",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0007857029559090734
+    },
+    {
+     "call_id": "call-2b5374d7-b188-421b-9a4d-032c5d4bdc42",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0018472149968147278
+    },
+    {
+     "call_id": "call-17c655af-de8d-4e1d-9360-d5b9b267c38a",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0009658089838922024
+    },
+    {
+     "call_id": "call-6d3eec44-2009-43e1-adf6-0a5061166988",
+     "tool": "build_plant",
+     "error": false,
+     "duration": 0.2220576659310609
+    },
+    {
+     "call_id": "call-4e9236f6-5b87-408a-82c2-9c36632250fb",
+     "tool": "simulate",
+     "error": false,
+     "duration": 0.4498365280451253
+    },
+    {
+     "call_id": "call-4f7f6515-0627-4a8e-b39a-eb6d1461bf1b",
+     "tool": "check_results",
+     "error": false,
+     "duration": 0.20872525009326637
+    },
+    {
+     "call_id": "call-558a2c6a-21de-4916-b8d0-aad30c10f9bd",
+     "tool": "update_state",
+     "error": false,
+     "duration": 0.004195593995973468
+    },
+    {
+     "call_id": "call-581e1d3c-103c-4a70-a197-165ef40328aa",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.003911813022568822
+    },
+    {
+     "call_id": "call-44dcead5-f038-42ec-8f1e-f9f50afe2069",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.002380584948696196
+    },
+    {
+     "call_id": "call-195fd3cb-f901-4ca0-b049-22de7512b47c",
+     "tool": "finish",
+     "error": false,
+     "duration": 0.0
+    }
+   ]
+  },
+  {
+   "session": "ddedd00af14a4f62b2dd238a55fe6b8d",
+   "parent_session": "b57abc5b049746b3a238ddf87edaae02",
+   "agent": "reviewer",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "failed",
+   "steps": 14,
+   "llm_calls": 13,
+   "input_tokens": 276818,
+   "output_tokens": 9863,
+   "cached_tokens": 161280,
+   "cost": 0.007132156000000001,
+   "context_used": 24242,
+   "context_peak": 28233,
+   "context_window": 200000,
+   "context_left": 175758,
+   "tool_calls": [
+    {
+     "call_id": "call-9c48a3bb-9f00-44c8-a17f-116b20c8ba16",
+     "tool": "case_changes",
+     "error": false,
+     "duration": 0.0007197940722107887
+    },
+    {
+     "call_id": "call-3bb7512f-1a5d-4c2a-87cc-a951fa8bbd76",
+     "tool": "read_skill",
+     "error": false,
+     "duration": 0.012585254968144
+    },
+    {
+     "call_id": "call-01cfaf72-8f7f-446e-8d2b-ccbdd151f5f5",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.01090118894353509
+    },
+    {
+     "call_id": "call-4a107446-077e-4fbe-ac47-5bfb9ac89bd5",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.002566052949987352
+    },
+    {
+     "call_id": "call-4976acb7-3eeb-4e3a-b052-5652eda661d7",
+     "tool": "compute_kpis",
+     "error": false,
+     "duration": 0.4546469550114125
+    },
+    {
+     "call_id": "call-f8ad968e-4647-4b78-b276-d3889da88e9b",
+     "tool": "check_results",
+     "error": false,
+     "duration": 0.45996739889960736
+    },
+    {
+     "call_id": "call-621e7a04-ad1b-4ef3-97ae-5add52dd1016",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.28968268097378314
+    },
+    {
+     "call_id": "call-e3a716e1-a569-45b6-a604-4f9a8082c870",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0014893610496073961
+    },
+    {
+     "call_id": "call-48503399-4d75-491f-8410-723f10b43048",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.017104589962400496
+    },
+    {
+     "call_id": "call-9bb27ef1-72a0-4324-bc5e-d3ddda9ee18a",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.16427771095186472
+    },
+    {
+     "call_id": "call-a8788836-7eef-4df6-bfc5-1916c1256b95",
+     "tool": "read_result",
+     "error": true,
+     "duration": 0.0006204260280355811
+    },
+    {
+     "call_id": "call-886b32aa-67e0-46c2-b343-09082ad34b48",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.14877681899815798
+    },
+    {
+     "call_id": "call-0248daf6-4b74-4c78-8adf-a215e919dc44",
+     "tool": "read_result",
+     "error": true,
+     "duration": 0.08964165206998587
+    },
+    {
+     "call_id": "call-9b411912-3c12-400b-857e-ecc385764c9a",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.41988022706937045
+    },
+    {
+     "call_id": "call-c88d6d02-ef89-4ede-93a9-1ccf9c0d1404",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.43381285399664193
+    },
+    {
+     "call_id": "call-84488dc8-f9f0-4fd6-80dd-26f7454b7417",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.4515981520526111
+    },
+    {
+     "call_id": "call-bba6a3ab-0d27-40c7-9565-176e782b9084",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.46241480903699994
+    },
+    {
+     "call_id": "call-4361c5b1-48d1-4989-8f24-ac1f9777930b",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0006847369950264692
+    },
+    {
+     "call_id": "call-ba22df06-eab3-4fb5-90e8-699045da6960",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0
+    },
+    {
+     "call_id": "call-2af3972b-f0b1-43da-9b12-f2989701c06b",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.00411655695643276
+    },
+    {
+     "call_id": "call-a38b47e9-fa6a-47ab-891b-b86fd6982a37",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0019912220304831862
+    },
+    {
+     "call_id": "call-a03b6dc4-ebe4-4d61-8df7-a4008d82ed3c",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.001257444964721799
+    },
+    {
+     "call_id": "call-2f2f9a0c-e3a4-49cc-b1dc-bdf98e8c3069",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.002556159975938499
+    },
+    {
+     "call_id": "call-79ea7e43-797a-40a0-b277-778a312f07bf",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.26821725396439433
+    },
+    {
+     "call_id": "call-e1f00029-c9f6-4bc5-b1ce-f73ef7e29436",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.26598498097155243
+    }
+   ]
+  },
+  {
+   "session": "50987019b79a44f3813f355671a89b23",
+   "parent_session": "b57abc5b049746b3a238ddf87edaae02",
+   "agent": "reviewer",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "finished",
+   "steps": 15,
+   "llm_calls": 15,
+   "input_tokens": 476844,
+   "output_tokens": 27021,
+   "cached_tokens": 222720,
+   "cost": 0.017290008000000003,
+   "context_used": 27578,
+   "context_peak": 48485,
+   "context_window": 200000,
+   "context_left": 172422,
+   "tool_calls": [
+    {
+     "call_id": "call-f5b970a8-2ed0-4c62-8179-673f2079efca",
+     "tool": "read_skill",
+     "error": false,
+     "duration": 0.01672527100890875
+    },
+    {
+     "call_id": "call-b44e5749-7f37-471e-859f-f19befcd1407",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.012202809914015234
+    },
+    {
+     "call_id": "call-1ed52275-1cab-4535-b78a-89d4476ceebb",
+     "tool": "case_changes",
+     "error": false,
+     "duration": 0.0005938719259575009
+    },
+    {
+     "call_id": "call-9b2f696f-7ff3-4fb1-b4b9-11b8a245c93d",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.010580033995211124
+    },
+    {
+     "call_id": "call-60febfb9-32a9-4dd7-a168-535f9615ea2a",
+     "tool": "check_results",
+     "error": false,
+     "duration": 0.609091964084655
+    },
+    {
+     "call_id": "call-c6b50a8f-b3a5-479d-b025-6e21ccb8570d",
+     "tool": "compute_kpis",
+     "error": false,
+     "duration": 0.6272770399227738
+    },
+    {
+     "call_id": "call-d16b0fe4-85ff-4ff2-8f1c-f81af8788a7a",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.18725305690895766
+    },
+    {
+     "call_id": "call-cbf50718-8176-40d0-8c73-9e62b88785b9",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.28362119395751506
+    },
+    {
+     "call_id": "call-4ef3eb73-b193-44f9-84ae-d42bd0f141b3",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.2892695680493489
+    },
+    {
+     "call_id": "call-e8b499e7-c5da-4166-b53d-acb85c0496e4",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.5342806929256767
+    },
+    {
+     "call_id": "call-87406503-e848-4bfc-bee2-29fb111b5dab",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.5683565910439938
+    },
+    {
+     "call_id": "call-d63f9889-8e62-47cd-b96e-12adab41ad9b",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.5735580889740959
+    },
+    {
+     "call_id": "call-cb4a80b9-45ee-4171-b8f7-a42026feab42",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.5630660840542987
+    },
+    {
+     "call_id": "call-6843d7f4-e27c-4749-998f-6401710a898c",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.00042772304732352495
+    },
+    {
+     "call_id": "call-9ee8ed9b-e0cf-42f1-a0d8-9d1d1ddea670",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.011794219957664609
+    },
+    {
+     "call_id": "call-bcf6a9fd-95d4-430e-a7ca-732c33ef4bf8",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.39650657400488853
+    },
+    {
+     "call_id": "call-d962ad90-a48a-4e1a-b949-231112d17120",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.40328345994930714
+    },
+    {
+     "call_id": "call-358eb7a6-d3e8-4344-9eff-5eb6c3429f3b",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.3581033830996603
+    },
+    {
+     "call_id": "call-d566880d-162b-4139-bb41-7cab2c44a17f",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6903552450239658
+    },
+    {
+     "call_id": "call-94d46810-9155-4cc6-aefa-a275706cc8cb",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6910323519259691
+    },
+    {
+     "call_id": "call-12bae931-508a-44ad-832d-82b5c56e0891",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.17737935890909284
+    },
+    {
+     "call_id": "call-5eb29b2d-a26b-4027-8372-2b7faa81b605",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.18230069999117404
+    },
+    {
+     "call_id": "call-3998ba4f-192f-4695-94fa-b1a2e5240b9d",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.001018960028886795
+    },
+    {
+     "call_id": "call-046ec960-c759-4226-ab8f-494c937acaac",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.005569498986005783
+    },
+    {
+     "call_id": "call-42ed1f06-00c3-47ef-a966-ce8e4b88d393",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.003828922053799033
+    },
+    {
+     "call_id": "call-47abe646-a18e-4c53-95d5-3a835c8d72af",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.37331449799239635
+    },
+    {
+     "call_id": "call-9a4d818c-f409-4294-bc4a-81a4c2ea0d7a",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.4166432310594246
+    },
+    {
+     "call_id": "call-c4817492-4a81-49d5-954f-5febc4bd7a53",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.4122614850057289
+    },
+    {
+     "call_id": "call-21b29021-ace9-43b0-8e42-16652ead0ee2",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0007134540937840939
+    },
+    {
+     "call_id": "call-634663fb-83be-494a-b49f-f14d063b63b4",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0007119029760360718
+    },
+    {
+     "call_id": "call-b7a1798a-1d81-47f6-8841-e1b6bca3d8ee",
+     "tool": "update_state",
+     "error": false,
+     "duration": 0.005438189022243023
+    },
+    {
+     "call_id": "call-308cfc6f-9843-4e69-886a-34dbc6494983",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.00443833798635751
+    },
+    {
+     "call_id": "call-d03532bd-c0ff-487e-b6b3-1d7d1d0c1577",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.09110530896577984
+    },
+    {
+     "call_id": "call-e0e29bdf-bf49-48e3-b101-1fcc2949809d",
+     "tool": "finish",
+     "error": false,
+     "duration": 0.0
+    }
+   ]
+  },
+  {
+   "session": "608d224a74614663b96dcb4276acadf6",
+   "parent_session": "b57abc5b049746b3a238ddf87edaae02",
+   "agent": "analysis_lead",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "failed",
+   "steps": 8,
+   "llm_calls": 7,
+   "input_tokens": 259888,
+   "output_tokens": 5624,
+   "cached_tokens": 164864,
+   "cost": 0.004999584,
+   "context_used": 45712,
+   "context_peak": 47513,
+   "context_window": 200000,
+   "context_left": 154288,
+   "tool_calls": [
+    {
+     "call_id": "call-6dfba29f-e055-499f-8373-4c2f7f8d2430",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.021410853951238096
+    },
+    {
+     "call_id": "call-b49d258d-9e0d-4f0d-b556-997a7aa5c28e",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.051754815969616175
+    },
+    {
+     "call_id": "call-09cc029d-457f-4172-ab91-ff995605da5e",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.09145862702280283
+    },
+    {
+     "call_id": "call-e82f6114-ee44-44c4-9b29-46f530236e8b",
+     "tool": "read_plant",
+     "error": false,
+     "duration": 0.20261540391948074
+    },
+    {
+     "call_id": "call-c29af2cf-bdfd-4622-94c1-6b83148c3b30",
+     "tool": "update_state",
+     "error": false,
+     "duration": 0.0035194780211895704
+    },
+    {
+     "call_id": "call-deee9a65-6953-42e4-ad5a-1b096aa051bd",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.006723244092427194
+    },
+    {
+     "call_id": "call-e6dc610a-e97b-49b6-a778-6c37c401b40d",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.15032889891881496
+    },
+    {
+     "call_id": "call-240cde70-e305-402e-af02-be31851ccb44",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.13437550200615078
+    },
+    {
+     "call_id": "call-286dbb90-1aa4-4b79-a15f-3f1669291241",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.2740347500657663
+    },
+    {
+     "call_id": "call-59ae43fc-d5ab-4d97-af2f-938b95605d7c",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.13296706590335816
+    },
+    {
+     "call_id": "call-f9807761-aabe-4e3a-a9a1-c4d6c07ab95c",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.1366597480373457
+    },
+    {
+     "call_id": "call-cdcd1923-1174-455b-ac71-383cb772d541",
+     "tool": "read_result",
+     "error": true,
+     "duration": 0.08722525101620704
+    },
+    {
+     "call_id": "call-accc5737-c576-4121-a37f-5a1fe38fb1f4",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0006524500204250216
+    },
+    {
+     "call_id": "call-30eef6f9-64cf-4b5a-98c2-a59b20a25d93",
+     "tool": "compute_kpis",
+     "error": false,
+     "duration": 0.843413254013285
+    },
+    {
+     "call_id": "call-fc2df8cf-676a-49dc-9fdc-290b86c794ef",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.974175980896689
+    },
+    {
+     "call_id": "call-b32caf4b-36f2-4437-853b-f51a0d43bc8d",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.9865843179868534
+    },
+    {
+     "call_id": "call-2f25455d-2627-4816-9c3c-3706fe63a574",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.9871360590914264
+    },
+    {
+     "call_id": "call-e33ad1ff-6f36-4bef-a53d-c603f41fb007",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.003429990960285
+    },
+    {
+     "call_id": "call-7b1d1639-81f3-4e89-a8e7-de709864d9cd",
+     "tool": "economist",
+     "error": false,
+     "duration": 60.116750275017694
+    },
+    {
+     "call_id": "call-e44e3814-bdfa-4a62-af1d-4758749260be",
+     "tool": "list_profiles",
+     "error": false,
+     "duration": 0.012937827035784721
+    },
+    {
+     "call_id": "call-101a755c-d038-40ff-9db6-0b54296caf12",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.005168571951799095
+    },
+    {
+     "call_id": "call-9e9824f5-a09c-4eb8-803d-5a34a548eac7",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.004432937013916671
+    },
+    {
+     "call_id": "call-c350b4b6-d824-44d7-b0d6-70deecd265e9",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6331775800790638
+    },
+    {
+     "call_id": "call-c3676d01-2079-4ac4-ac8f-75e69406bcf9",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6953167619649321
+    },
+    {
+     "call_id": "call-b3bfb8d3-063c-4788-835c-70729f1f9860",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6889283440541476
+    },
+    {
+     "call_id": "call-724f8d7f-ece8-44f2-9763-4433272f5879",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0024294089525938034
+    },
+    {
+     "call_id": "call-aad1ff91-3f3c-4bec-b34e-afc219514570",
+     "tool": "list_modules",
+     "error": false,
+     "duration": 0.09855159290600568
+    },
+    {
+     "call_id": "call-7e70b480-e7aa-42cf-9cb0-4c1a5e8b065d",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.4638711439911276
+    },
+    {
+     "call_id": "call-ea1447de-caff-43d4-b69e-2ee206efca9c",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.43469900207128376
+    },
+    {
+     "call_id": "call-5e7fcad9-467c-4319-a458-468976d198d7",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6202267039334401
+    },
+    {
+     "call_id": "call-7385e8fd-1675-48ee-a19b-0370cd297b10",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.920208971016109
+    },
+    {
+     "call_id": "call-1cfb5d60-9711-4b15-9ff7-b91705bf8762",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.9105257849441841
+    }
+   ]
+  },
+  {
+   "session": "f46663a18e2d49569a09fecee053ced4",
+   "parent_session": "608d224a74614663b96dcb4276acadf6",
+   "agent": "economist",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "finished",
+   "steps": 7,
+   "llm_calls": 7,
+   "input_tokens": 143438,
+   "output_tokens": 5627,
+   "cached_tokens": 96768,
+   "cost": 0.0036646120000000003,
+   "context_used": 29600,
+   "context_peak": 29600,
+   "context_window": 200000,
+   "context_left": 170400,
+   "tool_calls": [
+    {
+     "call_id": "call-c6fc5cf8-c675-4eeb-bd2f-0973a4c1c378",
+     "tool": "read_skill",
+     "error": false,
+     "duration": 0.004897505044937134
+    },
+    {
+     "call_id": "call-d0ed58e3-cedf-4f99-aead-a58fbae00e71",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.00934632692951709
+    },
+    {
+     "call_id": "call-5db2fdc8-4582-47e9-b3f7-716da59f6280",
+     "tool": "estimate_costs",
+     "error": false,
+     "duration": 0.37078413704875857
+    },
+    {
+     "call_id": "call-9e079f54-3f81-44d6-a92f-14793bffd11a",
+     "tool": "sensitivity",
+     "error": false,
+     "duration": 1.3303209750447422
+    },
+    {
+     "call_id": "call-89af410c-7e19-41df-bec2-95a1e36b111e",
+     "tool": "sample_uncertainty",
+     "error": false,
+     "duration": 12.954045697930269
+    },
+    {
+     "call_id": "call-6a66f2c5-3ade-4357-8bac-a28a56b4363f",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0025838679866865277
+    },
+    {
+     "call_id": "call-56b661e1-2b25-40d2-bec5-c9aae02e73e4",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.009450893965549767
+    },
+    {
+     "call_id": "call-49cf40db-8050-4041-bbf1-ffe59840eba4",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.007067856029607356
+    },
+    {
+     "call_id": "call-ead4d5bd-d9b8-4124-9495-6f2c1297eb79",
+     "tool": "update_state",
+     "error": false,
+     "duration": 0.0037597089540213346
+    },
+    {
+     "call_id": "call-d0c6cf26-3166-4995-b18f-b3ece8d3b8f4",
+     "tool": "finish",
+     "error": false,
+     "duration": 0.0
+    }
+   ]
+  },
+  {
+   "session": "7030efa2bbc2455681ac0ef426cbca5c",
+   "parent_session": "b57abc5b049746b3a238ddf87edaae02",
+   "agent": "analysis_lead",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "finished",
+   "steps": 16,
+   "llm_calls": 16,
+   "input_tokens": 859706,
+   "output_tokens": 28639,
+   "cached_tokens": 477184,
+   "cost": 0.02177982,
+   "context_used": 53207,
+   "context_peak": 91874,
+   "context_window": 200000,
+   "context_left": 146793,
+   "tool_calls": [
+    {
+     "call_id": "call-f2d7f2eb-31f2-4045-a858-f8eb208e27bd",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.013608910026960075
+    },
+    {
+     "call_id": "call-bb67cca2-62a1-44d1-85eb-cf6fd0b153ba",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.012849270016886294
+    },
+    {
+     "call_id": "call-aa544e3a-a7b7-4e21-ad2b-3cb6b59630f3",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.012439045938663185
+    },
+    {
+     "call_id": "call-b8036b7e-c9fa-4e4f-b9ea-6e294e54baba",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.007440205896273255
+    },
+    {
+     "call_id": "call-66623245-5821-43c4-9296-d0454232f728",
+     "tool": "read_plant",
+     "error": false,
+     "duration": 0.359098069020547
+    },
+    {
+     "call_id": "call-cd5e2dc5-fd75-4c61-a1e8-ed0d6b130f37",
+     "tool": "compute_kpis",
+     "error": false,
+     "duration": 0.5766391579527408
+    },
+    {
+     "call_id": "call-88832b6a-e02e-4c34-8279-deb5f60619eb",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0009936600690707564
+    },
+    {
+     "call_id": "call-0b2d46c5-59b2-4f4e-96e8-5d963138d7b5",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.49979919590987265
+    },
+    {
+     "call_id": "call-c3dc85f0-d73d-48f3-b0f1-46b9cbec84ce",
+     "tool": "read_result",
+     "error": true,
+     "duration": 1.180201387964189
+    },
+    {
+     "call_id": "call-79942364-c427-4961-b0a8-15011db98c75",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.2243174760369584
+    },
+    {
+     "call_id": "call-aa7ffbf5-70da-4b97-a019-ad422d0e913e",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.2420281040249392
+    },
+    {
+     "call_id": "call-92468835-c8ba-4dc5-990c-ccaf42e7008f",
+     "tool": "read_result",
+     "error": true,
+     "duration": 1.2067160320002586
+    },
+    {
+     "call_id": "call-b6f509b7-c266-43a8-ad30-21b2c8f7425e",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.423942897003144
+    },
+    {
+     "call_id": "call-34e3f4ff-05c4-48e3-9a91-d46a05b1fc9f",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.3836079019820318
+    },
+    {
+     "call_id": "call-4609e21a-43ab-4894-9056-7b5efeed854c",
+     "tool": "list_profiles",
+     "error": false,
+     "duration": 0.062318476964719594
+    },
+    {
+     "call_id": "call-9f9fe118-e281-4c6c-a623-cd77ece75208",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6785783750237897
+    },
+    {
+     "call_id": "call-91cea8d7-5138-43f1-9391-3a67f2663491",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.8021120639750734
+    },
+    {
+     "call_id": "call-68271773-865d-48b8-9539-008a299ae7dc",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.9257437830092385
+    },
+    {
+     "call_id": "call-5092950b-bb5e-44d5-8915-5c052687f6f4",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.0263253359589726
+    },
+    {
+     "call_id": "call-fe9793ae-2f09-4526-a2a1-8668026afdbf",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.0445818250300363
+    },
+    {
+     "call_id": "call-33ed4a75-ea89-4edf-a72a-a2b97d2628f8",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.0359873339766636
+    },
+    {
+     "call_id": "call-d5d87101-8378-4aa9-a47c-998124deb77c",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.42440130293834955
+    },
+    {
+     "call_id": "call-8df489eb-b15e-47f8-bc01-51178d429fd9",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.5049738630186766
+    },
+    {
+     "call_id": "call-3c082eed-3849-4569-bcdd-97a6188f5cb4",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.7042631430085748
+    },
+    {
+     "call_id": "call-24e79263-02a6-49d0-a551-4b325cb98315",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.7992976249661297
+    },
+    {
+     "call_id": "call-e668f323-95cc-4700-b5cb-1dc329284c4d",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.7893969259457663
+    },
+    {
+     "call_id": "call-6a26a00c-d7b5-42f7-8d80-cbdab7402449",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.0905947869177908
+    },
+    {
+     "call_id": "call-1e71bf4f-3bfe-4f0f-849f-07be2d305b00",
+     "tool": "read_result",
+     "error": false,
+     "duration": 1.0995327380951494
+    },
+    {
+     "call_id": "call-5dff2f3d-3a3f-4175-857e-b28b5b9e87a8",
+     "tool": "list_modules",
+     "error": true,
+     "duration": 0.0007615820504724979
+    },
+    {
+     "call_id": "call-d3e46fd7-b5b0-46e2-88fb-ac305531867d",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.4034841349348426
+    },
+    {
+     "call_id": "call-54adb684-80ee-48a0-b38c-802ba8339c0e",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.41390445502474904
+    },
+    {
+     "call_id": "call-572497d1-61b0-43a7-bafc-e64dbae5aadd",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.41897958505433053
+    },
+    {
+     "call_id": "call-666f119d-286b-4ccd-89ed-1eaf61647c58",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.555128914071247
+    },
+    {
+     "call_id": "call-bb1e3f63-aaf9-464e-9008-4cfb4903782c",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.5752952490001917
+    },
+    {
+     "call_id": "call-cf55397a-1c3f-46bb-aa27-8f75c252cf2b",
+     "tool": "list_modules",
+     "error": false,
+     "duration": 0.0026602880097925663
+    },
+    {
+     "call_id": "call-6cfd3b9e-02b9-4b2b-9ab7-52ea61cf41e3",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0033827009610831738
+    },
+    {
+     "call_id": "call-c7446182-978d-415a-bed6-26650b04b598",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.002479161019437015
+    },
+    {
+     "call_id": "call-20476c37-c935-4bcf-b4d1-bb0f28100007",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0020560550037771463
+    },
+    {
+     "call_id": "call-3331d4e3-81fc-4314-9bf3-a8304df2db71",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0023071999894455075
+    },
+    {
+     "call_id": "call-85f3653e-ea07-499d-b317-665bdf71c48e",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.008232694934122264
+    },
+    {
+     "call_id": "call-32a9543f-0bb4-4258-a447-123042fef387",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.0
+    },
+    {
+     "call_id": "call-8d7ba31e-8216-4ede-aded-3a8b39ead869",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.41255807399284095
+    },
+    {
+     "call_id": "call-1f1e375e-0585-46d0-82ad-c0e1c51c0dc8",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.6002887149807066
+    },
+    {
+     "call_id": "call-9893b6a9-082b-4edd-9f1e-bffc9d94e898",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.7502055139048025
+    },
+    {
+     "call_id": "call-e6f10093-cd21-49e1-9475-1319286dcd0e",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.7955789900152013
+    },
+    {
+     "call_id": "call-e0a06d24-c43d-4835-9510-6ba5c689143d",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.8908408479765058
+    },
+    {
+     "call_id": "call-94a57439-cb1b-4e89-80f3-06581bece42d",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.005746650043874979
+    },
+    {
+     "call_id": "call-a49c2abb-f54b-48e0-95e5-bef7154bc8ba",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.006597839063033462
+    },
+    {
+     "call_id": "call-d9fd7b6a-2d06-47f1-9e24-4b582cef8164",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.007499361992813647
+    },
+    {
+     "call_id": "call-9a462dbe-bb54-423b-af27-dbc0afdf26f8",
+     "tool": "list_modules",
+     "error": false,
+     "duration": 0.0041083929827436805
+    },
+    {
+     "call_id": "call-86d1767a-7c07-4b6c-825b-2cb441454ad5",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.0
+    },
+    {
+     "call_id": "call-acba3b46-fb27-43da-8082-3294e8d92106",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.3526748159201816
+    },
+    {
+     "call_id": "call-66718260-eece-400f-8acf-f72ea1ccc572",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.3898847110103816
+    },
+    {
+     "call_id": "call-440bab42-251a-42ad-9a8f-d92dabc8a896",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.5799404559656978
+    },
+    {
+     "call_id": "call-627c3611-8378-4e03-92b6-236dc6bf7832",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.2087557460181415
+    },
+    {
+     "call_id": "call-9ea40296-58d1-4253-97da-f3a529409756",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.3876545230159536
+    },
+    {
+     "call_id": "call-baa3f792-326d-4be8-833a-6f9e4d336286",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.4549171789549291
+    },
+    {
+     "call_id": "call-4d3d6feb-3715-4d67-aedd-d588afbb7d60",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.49676067603286356
+    },
+    {
+     "call_id": "call-308a124d-a55c-4e1a-be44-3907429a73d3",
+     "tool": "calculate",
+     "error": true,
+     "duration": 0.0002596989506855607
+    },
+    {
+     "call_id": "call-cec54f49-bb3c-4908-adfe-4d844e23fed8",
+     "tool": "calculate",
+     "error": true,
+     "duration": 9.281793609261513e-05
+    },
+    {
+     "call_id": "call-bcb818ad-d33e-427c-9868-2d35eda1362f",
+     "tool": "calculate",
+     "error": true,
+     "duration": 5.675398278981447e-05
+    },
+    {
+     "call_id": "call-48887e53-b9df-47f0-8dda-eeec071aea03",
+     "tool": "calculate",
+     "error": true,
+     "duration": 5.3621013648808e-05
+    },
+    {
+     "call_id": "call-7e56c80c-c3bd-4453-9aac-0ac9dc13b3e5",
+     "tool": "calculate",
+     "error": true,
+     "duration": 5.438493099063635e-05
+    },
+    {
+     "call_id": "call-eeedc463-2bf2-404b-a72a-5475c18faa10",
+     "tool": "calculate",
+     "error": true,
+     "duration": 6.58789649605751e-05
+    },
+    {
+     "call_id": "call-5fa9be53-1917-4e4e-8772-09c2932e0f87",
+     "tool": "calculate",
+     "error": true,
+     "duration": 6.973301060497761e-05
+    },
+    {
+     "call_id": "call-345fbddd-a968-4bf6-84a1-669ecc2364d5",
+     "tool": "calculate",
+     "error": true,
+     "duration": 5.4885982535779476e-05
+    },
+    {
+     "call_id": "call-56fe892c-cc7e-474f-b9bf-b222a5ed8770",
+     "tool": "calculate",
+     "error": true,
+     "duration": 5.1999930292367935e-05
+    },
+    {
+     "call_id": "call-4ed7f492-bf72-4a17-8c1a-78d223e1fd60",
+     "tool": "calculate",
+     "error": true,
+     "duration": 4.940503276884556e-05
+    },
+    {
+     "call_id": "call-339721ec-90bc-4baf-a672-7554aef72a46",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.002318423008546233
+    },
+    {
+     "call_id": "call-937e217d-a1dd-450d-a3e5-b9bc4ea39863",
+     "tool": "read_stored",
+     "error": false,
+     "duration": 0.0034960879711434245
+    },
+    {
+     "call_id": "call-62615f08-3d19-41aa-862a-89de400013ff",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.1878194719320163
+    },
+    {
+     "call_id": "call-7d22475f-f45a-479b-8a18-c74d008d01ae",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.18802068498916924
+    },
+    {
+     "call_id": "call-432ecd24-4e1b-4e91-b8c1-1fc2d6f63f22",
+     "tool": "update_state",
+     "error": false,
+     "duration": 0.0036667189560830593
+    },
+    {
+     "call_id": "call-4bb8af13-8822-4194-a869-d9fcd17ff449",
+     "tool": "finish",
+     "error": false,
+     "duration": 0.0
+    }
+   ]
+  },
+  {
+   "session": "e5ac1d4ab27a408e8f8f7549786a3de9",
+   "parent_session": "b57abc5b049746b3a238ddf87edaae02",
+   "agent": "explainer",
+   "instance": null,
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "status": "finished",
+   "steps": 4,
+   "llm_calls": 4,
+   "input_tokens": 117040,
+   "output_tokens": 7626,
+   "cached_tokens": 70656,
+   "cost": 0.004353472,
+   "context_used": 43027,
+   "context_peak": 43027,
+   "context_window": 200000,
+   "context_left": 156973,
+   "tool_calls": [
+    {
+     "call_id": "call-5fee2105-39a0-4b8c-9535-a6a07242ec35",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.024214972974732518
+    },
+    {
+     "call_id": "call-dfdc1984-bfa3-4ca3-94e8-20a3cf8f0a1f",
+     "tool": "read_plant",
+     "error": false,
+     "duration": 0.15976371511351317
+    },
+    {
+     "call_id": "call-204e49da-63ed-4ab1-ba64-6154ff092711",
+     "tool": "list_studies",
+     "error": false,
+     "duration": 0.03161888895556331
+    },
+    {
+     "call_id": "call-4c46eb09-34e2-40b5-9379-3b6d82360925",
+     "tool": "compute_kpis",
+     "error": false,
+     "duration": 1.0201075490331277
+    },
+    {
+     "call_id": "call-a8ccbb56-70ed-4d23-a27a-ecb117abeec3",
+     "tool": "estimate_costs",
+     "error": false,
+     "duration": 0.9931883600074798
+    },
+    {
+     "call_id": "call-00ef3b4c-21c5-49ac-862f-1ebb078ef54f",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.0006764089921489358
+    },
+    {
+     "call_id": "call-94757d71-e59f-4a0b-b6fa-85fcac1719f6",
+     "tool": "read_study",
+     "error": false,
+     "duration": 0.012958216946572065
+    },
+    {
+     "call_id": "call-df77a17c-1899-4194-b97a-dfc6befda84d",
+     "tool": "case_changes",
+     "error": false,
+     "duration": 0.0009112410480156541
+    },
+    {
+     "call_id": "call-fe8679d3-578f-4889-a195-2fdb6b8aee0f",
+     "tool": "read_study",
+     "error": false,
+     "duration": 0.036174019100144506
+    },
+    {
+     "call_id": "call-81d11d55-2352-4c8a-91e5-22de6d20284e",
+     "tool": "read_case",
+     "error": false,
+     "duration": 0.02228574501350522
+    },
+    {
+     "call_id": "call-81a4818e-a47c-471f-a65d-6aea64fe8b19",
+     "tool": "read_result",
+     "error": false,
+     "duration": 0.1842348329955712
+    },
+    {
+     "call_id": "call-279542b8-4207-4f78-9d96-a6e53193f99a",
+     "tool": "finish",
+     "error": false,
+     "duration": 0.0
+    }
+   ]
+  }
+ ]
+}
