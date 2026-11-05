@@ -24,14 +24,14 @@ rest of the case: `knowledge/handbook-case.md`. Reporting the numbers:
 | 1 | Scope, boundary, energy by source | 1.4 |
 | 2 | Capex: structure, drilling, pumps, surface plant, scaling, benchmarks, step by step | 2.8 |
 | 3 | Opex: fixed, variable, energy, chemicals, workovers, carbon, step by step | 3.7 |
-| 4 | Nominal and real money, price year (HICP), currency, escalation | 4.2 |
+| 4 | Nominal and real money, price year (HICP), currency, escalation | 4.2, 4.5 |
 | 5 | Discount rate, annuity and CRF, lifetimes, timing, replacements, WACC | 5.2 |
 | 6 | LCOH, LCOC, LCTS, allocation, worked LCOH, mapping to gemini | 6.6 |
 | 7 | Revenue, NPV, IRR, payback, subsidies, worked NPV | 7.5 |
 | 8, 9 | Carbon price; CO2 accounting, GWP, grid factors, footprint example | 9.7 |
 | 10, 11 | Energy price statistics; data sources and estimate classes | 11.2 |
 | 12, 13 | Sensitivity, switching values; uncertainty and number of draws | 12.4, 13.4 |
-| 14, 15 | Comparing and deciding; common mistakes | 15 |
+| 14, 15 | Comparing and deciding (worked 14.4); common mistakes | 14.4, 15 |
 | 16 | How gemini computes economics (keys, bases, formulas, errors) | 16.1 |
 | 17 | Full worked example on invented numbers | 17.1 |
 | 18 | Lessons from practice (QA): source order, units, basis, stale results, sizing | 18.1 |
@@ -736,6 +736,25 @@ escalation rate**. Energy and carbon prices are the usual candidates. Escalation
 that needs a source (for example a published price scenario). Without one, a constant real price
 over the analysis period is the transparent choice, and the range of plausible futures goes into
 the sensitivity and uncertainty analysis (chapters 12 and 13).
+
+### 4.5 Worked example: an escalating price as one constant price
+
+gemini's yearly accounting takes one price per key for every year of the analysis (§16.4; a
+series varies within the simulated year, not across years). A sourced real escalation is
+therefore entered as its **levelised** constant price, with the conversion in the source text.
+
+A price `p0` that rises at a real rate `e` per year has the present value of a constant price
+discounted at `r_e = (1 + r)/(1 + e) - 1`. The equivalent constant price is
+
+`p_lev = p0 x A(r_e, n) / A(r, n)` (A from §5.2).
+
+Invented example: electricity 100 EUR/MWh today, a published scenario with +2 %/yr real, real
+discount rate 5 %, 25 years: `r_e = 1.05/1.02 - 1 = 2.94 %`, `A(2.94 %, 25) = 17.528`,
+`A(5 %, 25) = 14.094`, so `p_lev = 100 x 17.528 / 14.094 = 124.4 EUR/MWh`.
+
+A 2 %/yr real rise is worth a quarter more on the price over 25 years: enough to change a
+ranking between an electric and a gas-fired design (§12.4). Without a sourced scenario use the
+constant price and put the range in the uncertainty (§4.4, §18.9); never escalate by habit.
 
 ---
 
@@ -1512,6 +1531,28 @@ When cost and CO2 pull in different directions:
 - **Weighted scores**: normalise each criterion and weight it; the weights are the user's choice and
   must be stated. Weighted sums hide trade-offs; show the raw criteria next to the score.
 - **Constraint form**: minimise cost subject to CO2 below a limit, or the reverse.
+
+### 14.4 Worked example: deciding between two designs
+
+Invented results, both designs feasible on the same case and gemini version (§14.1):
+
+| Measure | Design A (deep doublet + heat pump) | Design B (shallower doublet + larger boiler) |
+|---|---|---|
+| capex | 16.2 MEUR | 11.8 MEUR |
+| LCTS | 43.7 EUR/MWh | 45.9 EUR/MWh |
+| NPV at the case's prices | 22.3 MEUR | 19.0 MEUR |
+| CO2 | 2 465 t/yr | 5 900 t/yr |
+| LCTS P10 to P90 | 40.2 to 48.1 | 39.5 to 54.0 |
+| Electricity switching price vs the other | A cheaper above 126 EUR/MWh | B cheaper below |
+
+Reading: A is cheaper at the base case, emits 58 % less and has the narrower spread; B needs
+4.4 MEUR less capital and wins only when electricity stays low. Recommendation: A, with the
+condition stated ("if capital is limited to 12 MEUR, B is the feasible alternative at +2.2
+EUR/MWh"). Show the whole table: the user may weigh capex or CO2 differently (§14.3).
+
+**Steps**: (1) only feasible designs (§0.1 rule 4); (2) the same case, prices and version;
+(3) LCTS or NPV for cost (§14.2); (4) CO2 and capex beside it; (5) the spread and the switching
+values of the inputs that flip the ranking; (6) a recommendation with its conditions.
 
 ---
 
