@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
@@ -59,3 +59,4 @@ names estimate_costs for cost checks; read_rag's refusal for a case file should 
 ## Retest
 
 QA-E2E-study-I, 2026-11-05 18:47 UTC, run 4885075b (same optimisation request, project 3): no read_result / compute_kpis / read_rag refusal in 107 calls. Verified.
+- 2026-11-05 18:47 UTC: QA-E2E-study-I: no cost-name refusals in run 4885075b
