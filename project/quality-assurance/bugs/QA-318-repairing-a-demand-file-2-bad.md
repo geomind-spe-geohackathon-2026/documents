@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -51,7 +51,26 @@ tell the lead to ask the user for a fixed file. `calculate`: accept a file cell 
 ## Fix
 
 - 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
+- 2026-11-05 20:32 UTC: QA-E2E-case-I retest 20:32 UTC (run 3bc29e97): repair_series cannot add the missing row, cannot re-repair its output, output header 'date' refused by set_case; proposal 500 kW (sign dropped) vs neighbours 5237/5342; no case after 17 min, cancelled
 ## Retest
 
 Update 19:19 UTC: a 6th cut save_profile (output tokens 124774 -> 140774); I cancelled the run at 19:19
 (QA-TEST QA-E2E-case-I 10, 19 min, ~1.5 M input tokens, no case).
+
+## Retest (QA-E2E-case-I, 2026-11-05 20:15-20:32 UTC, backend 1.1.127, new tool repair_series)
+
+Project QA-TEST QA-E2E-case-I 15 (369b56d4), run 3bc29e97, same flawed heating file. Still no case after 17 min
+(2.97 M input tokens, 0.064 USD); I cancelled at 20:32. 3 case-lead delegations, 8 repair_series, 11 set_case:
+1. repair_series cannot ADD a missing row: "row '2027-03-15' is no time of the file's 'date' column nor a row index below 364"
+   (refused 3x). A gap is the most common flaw; the tool only replaces rows.
+2. The repaired file cannot be repaired again: repair_series(file='data/heating_demand_2027.csv') -> "expected one of
+   GEMINI_Cooling..., GEMINI_Hackathon..., Heating_Demand_2027_flawed.csv" (2x).
+3. The repaired file keeps the header `date`, and set_case refuses it 5x: "data/heating_demand_2027.csv first column = 'date';
+   expected 'time'" (the `columns: {date: time}` mapping is not applied to a data/ file); plus 4x files alone.
+4. Accuracy of the proposal: this time the case lead proposed its own repairs in the one question (no free question as in
+   run ed83d196): "fill 2027-03-15 with 17300 kW (the previous day's value held)" and for 2027-07-04 = -500 kW
+   "500 kW (the magnitude as written, sign dropped)" although the neighbours are 5237 and 5342 kW: 500 is 10x too low.
+   Evidence: `../evidence/QA-318/project15-question.txt`, `../evidence/QA-318/run-3bc29e97-log.json.gz`.
+Proposed: repair_series takes missing rows too (insert by time), accepts its own outputs, writes the time column as
+`time` (or set_case applies `columns` to data/ files); the case-lead prompt proposes interpolation from the neighbours
+(with `calculate`) for a single bad day, never a sign flip, and asks the user.
