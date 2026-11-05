@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -89,3 +89,5 @@ until the design stage.
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 20:55 UTC, QA-AI-case-I, run f399557c-18c1-4e21-9c9c-6fd49f21c377 (project QA-TEST QA-AI-case-I 18, f97019c9-b619-43a2-856d-6451b94f1383; same no-files Trondheim request as run 7ff26b69; geomind 0.4.132): approved surface 5 degC, gradient 25 K/km, depth 2000 m, pressure 200 barg; stored exactly those (GLR 0.8 was proposed and approved as 0.8 this time). Verified. (The run then went on into design for ~1 h and 0.20 USD on auto-approved cards and was cancelled by QA at 20:50 UTC.) Evidence `../evidence/QA-295/run-f399557c.json`.
+- 2026-11-05 20:48 UTC: QA-AI-case-I, geomind 0.4.132
