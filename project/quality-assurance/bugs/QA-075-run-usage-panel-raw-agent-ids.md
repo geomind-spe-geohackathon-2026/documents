@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
@@ -30,6 +30,7 @@ Fact: `agent-usage.tsx` counted a call as failed when `error !== null`; the API 
 ## Fix
 frontend 1.1.73: 4bf6ec4 (failed = error true or non-empty text), 2267a4a (shared display-name map `shared/sse/agent-names.ts`, also in the run panel, the chat's busy lines and the run log), af889da (each ring shows its percent with a tooltip), 0269379 (version).
 - 2026-11-05 04:16 UTC: frontend 1.1.73 (0269379), pushed, build checked; deploy at the next window
+- 2026-11-05 04:31 UTC: frontend 1.1.73 (4bf6ec4, 2267a4a, af889da, 0269379), deployed with 1.1.74
 ## Retest
 
 (Who, when, result.)
