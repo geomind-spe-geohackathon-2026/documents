@@ -30,6 +30,7 @@ One long flat column of every model step (Process engineer · step 1..10, Energy
 ## Fix
 frontend 1.1.80 (commit in git log, 'QA-089: ...'): agent tree with step count and tokens per agent, the selected step's agent open, a 260 px list with its own scroll beside the detail. Status per agent is not shown: the run log has no per-agent status.
 - 2026-11-05 09:20 UTC: frontend 1.1.80 (8673032), pushed, build checked, held
+- 2026-11-05 09:29 UTC: handover: hotfix-front-II deploys 1.1.80 at 10:00 UTC and rechecks (notes/sessions/hotfix-front-1.md)
 ## Retest
 
 (Who, when, result.)
