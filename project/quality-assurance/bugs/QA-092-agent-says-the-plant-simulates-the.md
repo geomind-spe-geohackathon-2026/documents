@@ -39,7 +39,15 @@ Guess: agent designs live in the problem state / `design/<name>` store and are n
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-back-II, 2026-11-05 09:37 UTC. Cause (backend): `VersionRecorder` saved a plant version
+only after `build_plant`. The agents changed their design with `patch_plant` (gas-free, ESP flows)
+and simulated it; that design stayed in the chat's `design/<name>` store, so the Plant page kept
+the older built plant (degasser, filters, missing ESP values) and Study blocked on its gaps.
+Fix: backend 1.1.82 (commit 9da4bbf): a successful `patch_plant`, `merge_designs`, `set_ranges`,
+`size_plant` or `optimize` saves the design it stored, and `simulate` on a stored design saves
+that design, as the project's next plant version. Deployed with hotfix-python-II's batch (by
+10:30 UTC). Not covered: a plain `simulate` result still writes no result row (Results 'No
+results'); only recorded studies do (QA-088). The counts 4 / 6 / 7 come from the older plant.
 
 ## Retest
 
