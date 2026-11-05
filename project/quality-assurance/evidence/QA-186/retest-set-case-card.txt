@@ -1,0 +1,103 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA-TEST QA-E2E-economics-I 6
+Overview
+Library
+Runs and logs
+Chats
+Please set up the economics for this project, each value…
+waits for your approval · 19:04
+AD
+Administrator
+admin
+Projects
+QA-TEST QA-E2E-economics-I 6
+Chat
+1 run active
+Design
+Chat
+Please set up the economics for this project, each value with its source.
+19:04
+Copy
+
+Waiting for your answer below
+
+Steps so far (25 steps)
+You answered: Approve all, with three changes: discount rate 6 %; carbon price 80 EUR/t; and leave the electric boiler, circulation pump, ice storage and thermal storage keys open, our plant has none of them.
+
+The user approved with three changes. I'll apply them in one set_case (economics argument, since the case already has economics)
+
+Approval needed
+
+Allow "Set case" to change the project?
+
+Change the case: economics.discount_rate, economics.carbon.price, economics.capex.electric_boiler, economics.capex.ice_storage, economics.capex.thermal_storage, economics.opex.fixed.electric_boiler and 12 more.
+
+What the call sends:
+
+{
+  "economics": {
+    "discount_rate": {
+      "value": 0.06,
+      "uncertainty": {
+        "kind": "normal",
+        "std": 0.01,
+        "min": 0.02,
+        "max": 0.08
+      }
+    },
+    "carbon": {
+      "price": {
+        "value": 80,
+        "unit": "EUR/t",
+        "uncertainty": {
+          "kind": "triangular",
+          "min": 30,
+          "max": 110
+        }
+      }
+    },
+    "capex": {
+      "electric_boiler": null,
+      "ice_storage": null,
+      "thermal_storage": null
+    },
+    "opex": {
+      "fixed": {
+        "electric_boiler": null,
+        "ice_storage": null,
+        "thermal_storage": null,
+        "circulation_pump": null
+      }
+    },
+    "about": {
+      "sources": {
+        "capex.electric_boiler": null,
+        "opex.fixed.electric_boiler": null,
+        "capex.ice_storage": null,
+        "opex.fixed.ice_storage": null,
+        "capex.thermal_storage": null,
+        "opex.fixed.thermal_storage": null,
+        "opex.fixed.circulation_pump": null,
+        "discount_rate": {
+          "source": "user: 6 % in the answer to the economics question (the assumptions document gives 0.05)"
+        },
+        "carbon.price": {
+          "source": "user: 80 EUR/t in the answer to the economics question (the assumptions document gives 57.03 EUR/t)"
+        }
+      }
+    }
+  }
+}
+Reason or change (optional)
+
+To change a value, write what to change here and press Deny: the assistant gets your words and proposes again.
+
+Approve
+Deny
+Auto-approve

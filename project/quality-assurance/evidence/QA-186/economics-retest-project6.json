@@ -1,0 +1,352 @@
+{
+ "format": 1,
+ "kind": "economics",
+ "name": "hackathon_2026 economics",
+ "discount_rate": {
+  "value": 0.06,
+  "uncertainty": {
+   "max": 0.08,
+   "min": 0.02,
+   "std": 0.01,
+   "kind": "normal"
+  }
+ },
+ "analysis_period": {
+  "value": 25,
+  "unit": "yr"
+ },
+ "energy": {
+  "electricity": {
+   "value": 105.75,
+   "unit": "EUR/MWh",
+   "uncertainty": {
+    "max": 140,
+    "min": 80,
+    "kind": "uniform"
+   }
+  },
+  "gas": {
+   "value": 39.92,
+   "unit": "EUR/MWh",
+   "uncertainty": {
+    "max": 70,
+    "min": 25,
+    "kind": "triangular"
+   }
+  }
+ },
+ "carbon": {
+  "price": {
+   "value": 80,
+   "unit": "EUR/t",
+   "uncertainty": {
+    "max": 110,
+    "min": 30,
+    "kind": "triangular"
+   }
+  }
+ },
+ "revenue": {
+  "heat": {
+   "value": 60,
+   "unit": "EUR/MWh"
+  },
+  "cold": {
+   "value": 60,
+   "unit": "EUR/MWh"
+  }
+ },
+ "accounting": {
+  "allocation": {
+   "heat_cost_share": {
+    "value": 0.8
+   }
+  },
+  "gwp": {
+   "CH4": {
+    "value": 29.8
+   },
+   "standard": {
+    "value": "IPCC AR6 WG1 table 7.15, GWP100 of fossil methane"
+   }
+  }
+ },
+ "opex": {
+  "variable": {
+   "chemical": {
+    "value": 3,
+    "unit": "EUR/kg"
+   },
+   "waste_disposal": {
+    "value": 0.2,
+    "unit": "EUR/kg"
+   }
+  },
+  "fixed": {
+   "drilling": {
+    "value": 1,
+    "unit": "%/yr"
+   },
+   "heat_pump": {
+    "value": 0.2239,
+    "unit": "%/yr"
+   },
+   "boiler": {
+    "value": 3.25,
+    "unit": "%/yr"
+   },
+   "chp": {
+    "value": 1.0263,
+    "unit": "%/yr"
+   },
+   "degasser": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "compression_chiller": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "absorption_chiller": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "adsorption_chiller": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "production_pump": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "injection_pump": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "heat_exchanger": {
+    "value": 1,
+    "unit": "%/yr"
+   },
+   "flare": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "gas_makeup": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "cooler": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "pipe": {
+    "value": 0.5,
+    "unit": "%/yr"
+   }
+  }
+ },
+ "capex": {
+  "drilling": {
+   "value": 1239.1304347826087,
+   "unit": "EUR/m"
+  },
+  "heat_pump": {
+   "value": 0.73786,
+   "unit": "EUR/W"
+  },
+  "boiler": {
+   "value": 0.06073,
+   "unit": "EUR/W"
+  },
+  "chp": {
+   "value": 0.96155,
+   "unit": "EUR/W"
+  },
+  "degasser": {
+   "value": 1000000,
+   "unit": "EUR"
+  },
+  "compression_chiller": {
+   "value": 0.3,
+   "unit": "EUR/W"
+  },
+  "absorption_chiller": {
+   "value": 0.3,
+   "unit": "EUR/W"
+  },
+  "adsorption_chiller": {
+   "value": 0.3,
+   "unit": "EUR/W"
+  },
+  "production_pump": {
+   "value": 0.5,
+   "unit": "EUR/W"
+  },
+  "injection_pump": {
+   "value": 0.5,
+   "unit": "EUR/W"
+  },
+  "heat_exchanger": {
+   "value": 0.5,
+   "unit": "EUR/(W/K)"
+  },
+  "flare": {
+   "value": 100000,
+   "unit": "EUR"
+  },
+  "gas_makeup": {
+   "value": 50000,
+   "unit": "EUR"
+  },
+  "cooler": {
+   "value": 0.1,
+   "unit": "EUR/W"
+  },
+  "pipe": {
+   "value": 500,
+   "unit": "EUR/m"
+  }
+ },
+ "currency": {
+  "value": "EUR"
+ },
+ "price_year": {
+  "value": 2015
+ },
+ "about": {
+  "sources": {
+   "discount_rate": {
+    "source": "user: 6 % in the answer to the economics question (the assumptions document gives 0.05)"
+   },
+   "analysis_period": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "energy.electricity": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "energy.gas": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "carbon.price": {
+    "source": "user: 80 EUR/t in the answer to the economics question (the assumptions document gives 57.03 EUR/t)"
+   },
+   "revenue.heat": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "revenue.cold": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "accounting.allocation.heat_cost_share": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "accounting.gwp.CH4": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "accounting.gwp.standard": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.variable.chemical": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.variable.waste_disposal": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.drilling": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.drilling": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.heat_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.heat_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.boiler": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.boiler": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.chp": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.chp": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.degasser": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.degasser": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.compression_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.compression_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.absorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.absorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.adsorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.adsorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.production_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.production_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.injection_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.injection_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.heat_exchanger": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.heat_exchanger": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.flare": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.flare": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.gas_makeup": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.gas_makeup": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.cooler": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.cooler": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "capex.pipe": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "opex.fixed.pipe": {
+    "source": "knowledge/hackathon-2026-assumptions.md, section Economics"
+   },
+   "currency": {
+    "source": "the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)"
+   },
+   "price_year": {
+    "source": "the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)"
+   }
+  }
+ }
+}
