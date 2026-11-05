@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -60,3 +60,5 @@ case right.
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 19:30 UTC, QA-AI-case-I, run 9c02d335-d9e5-48a8-a687-1c244aeeaee4 (project QA-TEST QA-AI-case-I 12, geomind 0.4.131, backend 1.1.120; log `../evidence/QA-326/run-9c02d335.json`): the confirmation question writes the gas composition digit for digit ('N2 0.11083897243546233 | assumptions document (team; digits as written, not rounded)'). Verified on this run (the wrong digit was 1 of 2 runs before).
+- 2026-11-05 19:26 UTC: QA-AI-case-I run 9c02d335, geomind 0.4.131
