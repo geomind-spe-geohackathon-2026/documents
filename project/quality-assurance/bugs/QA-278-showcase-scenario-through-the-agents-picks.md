@@ -112,3 +112,20 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
   does; v1 the same (agents: 2 doublets, 2237 m, 52.82; page: 2 doublets, 3212 m, 32.31). Proposed: make the geomind
   `size_plant` + `optimize` path call the same gemini study as the page `minimize` with `prepare: ["size"]` (or let
   `optimize` take `prepare`), and compare one family both ways in a test.
+
+- 2026-11-05 19:51 UTC, QA-AI-analysis-I, backend 1.1.120-1.1.124 (geomind 0.4.130+, gemini 0.6.26+): fresh project
+  `QA-TEST QA-AI-analysis-I 13` (eb812328-3758-42a0-9fb4-f6f9a88e0415), same six versions and request, run
+  e766608e-f9b3-46ba-af80-f4cb657d6e1e. Now the design lead runs ONE `run_study(designs=["design/v1", ..., "design/v6"],
+  method="minimize", prepare=["size"], evaluations=20, seed=0)` (19:11:45, 112 s). That gemini study itself gives:
+  v1 52.816, v2 36.73, v3 32.535, v4 43.82, v5 49.332, v6 44.619 (infeasible), best v3. The page study `minimize`
+  (lcts, 20, seed 0, prepare size) on the same plant versions, gemini 0.6.26, gives v1 32.31 and v4 39.48 (project 10,
+  run right after 19:04). So the gap is not the agents any more: the same gemini study run through geomind's
+  `run_study` on `design/vN` and through the backend page study on `plant_version` N finds different optima for v1
+  (2 doublets 2237 m vs 2 doublets 3212 m) and v4 (2 doublets vs 3 doublets). v3 and v5 agree. Guess: the plant that
+  `design/vN` resolves to differs from the one the page study builds for version N (search ranges, e.g. depth or
+  `size.doublets`, or the sizing input). Still wrong ranking -> still open; to check in geomind `stored.load_design`
+  for `design/v<N>` against the backend's study builder.
+  Speed: after the 112 s study the run went on per family (comparison driver, 6 rounds, internal error, then
+  `nested_stopped`; v4 re-optimised on a "fix1" design to 32.835, v5 to 27.608, v6 to 28.41, none of them used in the
+  answer). 40 min 48 s, 0.117 USD, 6.06 M input tokens; the answer came from the study record.
+  Log: `../evidence/QA-278/run-e766608e-retest-log.json`.
