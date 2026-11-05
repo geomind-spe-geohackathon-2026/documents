@@ -63,3 +63,5 @@ frontend 1.1.118 (commit 246ad1a): Days covered no longer claims geothermal was 
 Not run (no tests now).
 
 QA-E2E-study-I, 2026-11-05 18:40 UTC: frontend part verified (Days covered: 'on 125 days geothermal gave none of this demand (it may still run for another service)'). Still open: the Running time check shows exactly 330 d for both doublets (the cap); its value should be the real active-day count.
+
+QA-E2E-study-I, 2026-11-05 19:13 UTC: project QA-TEST QA-E2E-study-I 4 (backend 1.1.118, gemini 0.6.26): running_time_limit still 330 d for every doublet (2- and 3-doublet designs). That is consistent with the organisers' rule "annual operation of a doublet: 330 daily steps" (each doublet gets 35 outage days), and the Days covered text no longer claims geothermal was off. I take the value as the real count; verified.
