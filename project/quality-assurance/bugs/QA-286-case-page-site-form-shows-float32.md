@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | QA-E2E-case-I |
@@ -43,4 +43,5 @@ frontend Case form: keep the JSON number as is (Float64), or round for display t
 
 Fix: frontend 1.1.128 (commit 1322f2d, bundle index-bxsE_Wl4.js), by front-m2: display rounded to 7 significant digits (also % fields); min/max hints converted to the field's unit (barg, mD, °C, kPa ...), else the SI unit is named. Display only.
 - 2026-11-05 18:46 UTC: frontend 1.1.128
+- 2026-11-05 19:22 UTC: QA-E2E-case-I retest 19:25 UTC, bundle index-PVHgYO42.js (current on geomind.team): Case > Site still shows Viscosity 0.4000000059604645 and Gas liquid ratio 0.800000011920929 (spinbutton values), project QA-TEST QA-E2E-case-I 7; screenshot evidence/QA-286/retest-1.png
 ## Retest
