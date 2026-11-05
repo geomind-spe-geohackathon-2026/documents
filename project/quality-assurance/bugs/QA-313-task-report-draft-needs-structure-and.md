@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend,frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 19:04 UTC |
 | Versions | live 2026-11-05 20:02 Trondheim |
 | Where | geomind.team Design > Report ('Draft from best'), also Export PDF / Markdown |
-| Fixer | hotfix-front-lead |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
@@ -48,7 +48,7 @@ Sahand's request (top priority). Backend report draft builder: add the section t
 Backend 1.1.123 (numbered sections 1-9, subsections, captions and paragraphs, PDF typography), hotfix-back-lead-II.
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 19:54 UTC: backend live 1.1.125
 ## Retest
 
 Report draft and PDF export: numbered sections, caption and text after every figure and table.
