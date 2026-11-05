@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 04:14 UTC |
 | Versions | backend 1.1.62 at start, 1.1.65-1.1.69 at end (deploys during the run); geomind 0.4.60 to 0.4.64+ |
 | Where | project QA2 functional-qa-I full run 61134432; chat 81b51db5-1a6b-402a-9223-66c8af1c6403; run 861ef137-08a2-4252-bf30-437630caf747 (started 00:43, ended 01:49 UTC, status failed) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
