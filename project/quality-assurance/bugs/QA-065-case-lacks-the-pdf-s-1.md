@@ -39,4 +39,4 @@ Cause: the case lead's prompt named `count` only as 'a number of units' with no 
 - 2026-11-05 00:23 UTC: geomind 0.4.60 (273cc1f, case lead maps doublet count to {on: doublet, quantity: count, min, max}; design lead cites only read_case requirements), backend 1.1.61 (3d2aa31), deployed 00:3x UTC
 ## Retest
 
-(Who, when, result.)
+functional-qa-I, 2026-11-05 ~00:55 UTC, backend 1.1.62, fresh project 'QA2 functional-qa-I full run' (61134432) from the PDF and CSVs: Case, Requirements now has 'Each doublet: count between 1 and 3' next to flow 50/300, brine cooling 40, reinjection 1, 330 d, pump efficiency >= 0.7, supply 100/20. Passed. (Pump efficiency is now 'at least 0.7'; the PDF says 70 %, fine.)
