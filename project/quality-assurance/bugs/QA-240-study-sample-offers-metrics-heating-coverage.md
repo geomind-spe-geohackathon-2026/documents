@@ -7,32 +7,22 @@
 | Area | backend,gemini |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 17:42 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.108 (geomind 0.4.110, gemini 0.6.17) |
+| Where | https://geomind.team/projects/4678c5c6-66fc-46dd-9d1e-358c3c5c1d24 (No-agent showcase); sample study on plant version 8 |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. New study of kind `sample` with metrics heating_coverage (offered by `/design/study/kinds`).
 
 ## Expected
 
+The study runs, or the form does not offer the metric.
+
 ## Actual
 
-## Evidence
-
-- ![screenshot](../evidence/QA-240/1.png)
-- Run JSON: `../evidence/QA-240/run-<id>.json`
-
-## Cause
-
-(Facts, or a guess marked as one.)
+failed: `by = 'heating_coverage'; expected a key of the reports; did you mean 'heat_delivered'?`. Same for cooling_coverage (offered too).
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
