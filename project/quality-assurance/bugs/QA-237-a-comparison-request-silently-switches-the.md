@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 17:45 UTC |
 | Versions | backend 1.1.106 (run), 1.1.108 (seen) |
 | Where | project `QA-TEST QA-E2E-study-I 1` (8fcbf709-537a-40d9-ac1f-abadd1061775); run 52383511-cdea-47d7-8f61-4a1737248856, design_lead build_plant 17:30:36 UTC |
-| Fixer | |
+| Fixer | hotfix-back-lead |
 
 ## Steps
 
