@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
@@ -38,6 +38,7 @@ Guess: the lead patches after each refusal of `check`/`simulate` (one missing va
 - 2026-11-05 17:44 UTC: QA-AI-design-I retest 17:50 UTC: 7 patch_plant per plant on the new prompt (run 5d0216a6); needs QA-175 (gemini all-stage check)
 - 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 - 2026-11-05 18:29 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
+- 2026-11-05 18:33 UTC: Manual QA-IV 18:33 UTC: 113-value patch works, but 5 small follow-up patches remain for one configuration (setpoints, ESP stages, injection pressure) even with QA-175 live
 ## Retest
 
 ## Retest: not fixed (QA-AI-design-I, 2026-11-05 17:50 UTC)
@@ -55,3 +56,7 @@ Run 5d0216a6-4acb-487b-a885-396a5e99366d (project QA-TEST QA-AI-design-I 2, comp
 | 17:40:56 | C_direct_absorption_ready3 | missing 0 |
 
 The prompt cannot fix this alone: each patch is a correct "one patch per round", because gemini names the next stage's missing values only after the current stage passes (QA-175, with the table of run 0df89b7e). The fix needs gemini's check to report all stages at once, or geomind's patch_plant to run the later stages (schedule, bindings, tear streams) on the patched plant and return all their issues together. Evidence: `../evidence/QA-236/run-5d0216a6-tool-calls-partial.txt`.
+
+## Retest 2026-11-05 18:33 UTC (Manual QA-IV), run bfcec811, geomind 0.4.119-0.4.124 (QA-175 live)
+
+Better but not done. The lead wrote A_filled with 113 values in one patch (good), but after that: A_flow (1 value, nominal_flow, partly QA-254), A_ready (2), A_setpoints (4 setpoints), then after set_ranges A_complete (1: d0.esp.stage_count) and A_plant (1: injection_pump.pressure_setpoint). Setpoints, ESP stage count and injection pressure are all known before the first patch; they should be in it, or in one patch after one check. 7 patch/build cards for one configuration.
