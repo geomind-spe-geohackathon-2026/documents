@@ -30,4 +30,5 @@ Guess: the automatic answer is scheduled in the worker when the request opens; a
 
 ## Fix
 
+- 2026-11-05 20:58 UTC: geomind 0.4.137 (cf9536b / 67d1ac9); backend part with back-lead
 ## Retest
