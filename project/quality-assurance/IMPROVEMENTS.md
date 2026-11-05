@@ -49,6 +49,9 @@ still active, 58 steps.
 | IMP-022 | idea | QA | Two measures after every deploy: first-try error rate per tool; runs that reach simulate, check and optimize | shows whether a fix helps |
 | IMP-023 | rejected | geomind, frontend | Start from gemini's six hackathon plant files (125 values each) and a complete case; size then optimize; no hand-built plants | the only path that has reached a passing result |
 | IMP-025 | approved, TOP | geomind, frontend | Parallel agents: a lead runs several instances of one role (Geoscientist I, II, III) or of different roles at once, each on a task the lead assigns; each reports back to the lead | a complete case in about 5 minutes |
+| IMP-026 | idea | gemini, QA | Cooling tested with real network heat loss and a valid minimum part load of the chiller | cooling results that hold on a real network |
+| IMP-027 | idea | geomind, backend | A time and round budget per agent: a nested agent hands back after N minutes or N rounds with what it has | no 60-min runs that end with nothing |
+| IMP-028 | idea | gemini, geomind, QA | Margin tests and failure scenarios: designs a little above and below each requirement, and outages (doublet off, pump at its limit, peak day) | the checks are proven at their edges |
 
 ## IMP-001: ask_economics fills the recommended rows itself
 
@@ -289,3 +292,27 @@ merges and resolves; (c) the case lead's prompt/skill: split the case by field g
 in one Team call, then check gaps and assign again; (d) frontend: show each instance by its name
 with its own activity line; (e) a measure: time from first request to a complete case.
 
+## IMP-026: cooling with real heat loss and part load
+
+Status: idea (Fatemeh, 2026-11-05 15:00 UTC). Today the cooling side is tested only with lossless
+pipes and no minimum part load on the compression chiller, so a low-demand day looks free. Add a
+test case and a QA scenario: cooling network pipes with real heat gain (length, insulation,
+ground temperature) and the chiller's minimum part load from a sourced datasheet; check that days
+below the minimum load are handled (cycling or unmet, stated) and that the cold delivered and the
+chiller energy include the network loss.
+
+## IMP-027: a time and round budget per agent
+
+Status: idea (Fatemeh, 2026-11-05 15:00 UTC). IMP-015 stops an identical failing call and IMP-016
+stops the design loop after 3 rounds, but no agent has a time limit: one nested agent can run for
+an hour (QA-076: 66 min, 317 steps, nothing stored). Give every nested agent a wall-clock and
+round budget set by its lead; at the limit it hands back what it has (stored ids, open points) and
+the lead decides. Show the budget and its use in Runs and logs.
+
+## IMP-028: margin tests and failure scenarios
+
+Status: idea (Fatemeh, 2026-11-05 15:00 UTC). Add tests (gemini and geomind evals) and QA
+scenarios at the edges: designs just inside and just outside each requirement (tolerance ±),
+a doublet off for its outage days, the production pump at its nominal flow (QA-130), the peak
+demand day, a missing price or value (must be an error, never a default). Each must give the
+right verdict and a readable reason.
