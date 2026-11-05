@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixed |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 16:50 UTC |
 | Versions | frontend 1.1.114, backend 1.1.102 / 1.1.104 |
 | Where | https://geomind.team/projects/e4a51b01-9faf-4bbc-819e-2223ef3d9e7b/assistant/chat (empty chat), and project "QA-TEST QA-E2E-economics-I 2" |
-| Fixer | |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
@@ -51,6 +51,7 @@ Backend 1.1.123 (progress.economics on workspace projects and the agents' projec
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 - 2026-11-05 18:59 UTC: retest 19:00 UTC fails: empty chat has no problem state and the project progress has no economics item; backend should add it (see Retest)
+- 2026-11-05 19:54 UTC: backend live 1.1.125
 ## Retest
 
 A project with a case without economics: chips offer 'Set the economics'.
