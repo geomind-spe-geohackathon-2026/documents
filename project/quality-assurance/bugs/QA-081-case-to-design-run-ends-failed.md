@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend |
 | Reporter | functional-qa-3 |
@@ -71,6 +71,7 @@ Guess: the worker restart of the 1.1.73 deploy (05:26 UTC) ended the run as fail
 - 2026-11-05 05:34 UTC: part (b) by hotfix-front: frontend 1.1.77 (f64dc8d), pushed, build checked, deploy at 06:00 UTC. streamEvents (shared/sse/stream.ts) passes each stored event once by its id, so a reconnect that replays from the start no longer re-counts steps (3757 for 261). Events without an id (text.delta, retry) pass as before.
 - 2026-11-05 06:01 UTC: frontend part deployed: 1.1.77 (f64dc8d), 06:00 UTC
 - 2026-11-05 07:23 UTC: functional-qa-3: second occurrence 07:22 UTC on 1.1.76, geomind refused the resume: request-1124 unknown or already answered (see Retest section)
+- 2026-11-05 07:32 UTC: hotfix-back, backend 1.1.79 (516de3f, with 1.1.77 3ae25ec), deployed 07:3x with geomind 0.4.73: a second answer to an already decided request is 409; geomind's AlreadyAnsweredError is caught by class: 'the run goes on' skips the resume (logged), 'the run waits on request-X' puts the run back to wait on X; the older text match stays as fallback. The run is no longer failed by such a resume.
 ## Retest
 
 (Who, when, result.)
