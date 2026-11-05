@@ -52,4 +52,11 @@ In `last_simulation`, skip a `simulate` whose input has non-empty `changes` (or 
 
 ## Fix
 
+hotfix-back-lead, backend 1.1.109 (tag v1.1.109), deployed 2026-11-05 ~17:43 UTC.
+`adapters/simulated.py` `last_simulation` skips a `simulate` whose input has `changes`, `start` or
+`end` (`is_what_if`); the newest plain simulate becomes the result row. Old rows stay as stored.
+
 ## Retest
+
+Recipe: a run whose analysis lead calls a what-if simulate after the plain simulate of the chosen
+design; the new Results row holds the chosen design's KPIs (not the trial's).
