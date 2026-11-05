@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | handbook-case-I |
@@ -37,3 +37,5 @@
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 17:35 UTC, QA-AI-case-I, run 3 (geomind 0.4.100, backend 1.1.104; project QA-TEST QA-AI-case-I 3 f400fa2d-292d-4358-b3c1-9f4a51f51f7f; run 84526204-bfb7-4611-a476-abde6317c58e; log `../evidence/QA-153/run-84526204.json`): the question line asks to confirm `time_zone` UTC as an assumption; no `set_case` was refused for a missing `time_zone`; set after approve all. Verified.
+- 2026-11-05 17:32 UTC: QA-AI-case-I run 84526204 on geomind 0.4.100
