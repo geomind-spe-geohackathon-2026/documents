@@ -5,34 +5,33 @@
 | Status | open |
 | Severity | minor |
 | Area | geomind |
-| Reporter | Fatemeh |
+| Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-05 10:17 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.83 |
+| Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/assistant/chat/27379f2e-0103-4ddf-a020-f0cd4deb20a6 (project geo mind testing) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. The case lead sets the case and records the requirements (state version 8).
+2. It checks the case's open items before handing over.
 
 ## Expected
 
+The case lead reads what the plants still need where set_case puts it (QA-069: set_case returns `plants_need`).
+
 ## Actual
+
+`read_stored(reference="result-ec6ec0f12e031b4e", path="plants_need")` fails: "'plants_need' is no key or index of the result; expected one of kind, name, site, time, about, demand, format, economics, utilities, requirements". The stored result is the case itself, not set_case's answer. The next call (read_stored without that path) works and shows "open site.air.relative_humidity, ...". One wasted call and a red "failed" row in the chat.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-097/1.png)
-- Run JSON: `../evidence/QA-097/run-<id>.json`
+- ![read_stored refusal](../evidence/QA-097/1.webp)
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: set_case's answer carries `plants_need` inline, but the stored result referenced in it holds only the case; the prompt (or the answer's wording) leads the agent to read `plants_need` from the stored case.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
