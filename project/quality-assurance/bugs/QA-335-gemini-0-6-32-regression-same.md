@@ -9,7 +9,7 @@
 | Found | 2026-11-05 19:51 UTC |
 | Versions | good: backend 1.1.118, gemini 0.6.26 (project 8d5d21e0, 19:56-20:05 CET); bad: backend 1.1.125, gemini 0.6.32 (project 0f909768, 20:48-20:52 CET) |
 | Where | good https://geomind.team/projects/8d5d21e0-ecb0-4894-9cfd-bdd61f670ac7 ; bad https://geomind.team/projects/0f909768-7749-4cca-9974-f441aaffc216 |
-| Fixer | m2 |
+| Fixer | m6 |
 
 ## Steps
 
