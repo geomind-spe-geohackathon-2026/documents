@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | functional-qa-2 |
@@ -37,7 +37,7 @@ Fact: the state validator sees id C1 twice in `calculations`. Guess: `calculate`
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 05:01 UTC: geomind 0.4.68 (21e4fb1: random calculation ids C+6hex; repeated ids in a stored state keep the first), backend 1.1.72 (8722a33), deployed 05:00 UTC
 ## Retest
 
 (Who, when, result.)
