@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | frontend |
 | Reporter | qa-func-1 |
@@ -40,3 +40,4 @@ Guess: mol% is treated as a fraction and shown x100; the values 0.8 humidity and
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 00:32 UTC: geomind.team 1.1.67 (index-D3Dw0_He.js), Playwright 00:35 UTC: project a0947848 Case > Site: CH4 80, CO2 20, 'Total 100.0 %', no float-noise values in the inputs
