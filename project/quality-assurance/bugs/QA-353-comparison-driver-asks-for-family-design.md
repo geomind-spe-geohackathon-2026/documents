@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 20:44 UTC |
 | Versions | backend 1.1.130 (geomind 0.4.135, gemini 0.6.34) |
 | Where | run 86867082-66b2-4cb1-9c34-bdfc479f278c, project e7dd5fb1-4fb5-477e-969a-9378a3ba803f, 21:40-21:44 CET |
-| Fixer | |
+| Fixer | m3 |
 
 ## Steps
 
