@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
@@ -57,4 +57,8 @@ from `{}`; a view switch alone must not mark the case dirty.
 
 ## Fix
 
+frontend 1.1.116 (commit 7340b3d, bundle index-B5FsgIA4.js): `VariantField` (`shared/forms/schema-fields.tsx`) switching from "From a file" to "Fill in here" reads the file (`source.read`) and puts its JSON object into the form; if the file cannot be read or is not an object, nothing changes (no empty `{}`, no wipe). The switch marks the case dirty only because the value really becomes inline. Not done: showing `about.sources` per key in the file view (separate improvement).
+- 2026-11-05 17:21 UTC: frontend 1.1.116, commit 7340b3d
 ## Retest
+
+Not run (no tests now). Retest: project QA-TEST QA-E2E-economics-I 1, Case > Economics > Fill in here shows the 30+ values.
