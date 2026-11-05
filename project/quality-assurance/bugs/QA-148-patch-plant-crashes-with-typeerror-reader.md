@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -38,4 +38,5 @@ Two parts: (a) the reader should refuse a non-port `inlets` value with a Validat
 
 ## Fix
 
+- 2026-11-05 16:56 UTC: gemini 0.6.17 (a872275d, tag v0.6.17), backend 1.1.103 (665763d), deployed 2026-11-05: reader skips non-port inlets values; tear without first guess names the loop's offering modules (Cooler loop_pressure and flow); inlet errors say 'inlet X: <error>'. QA-149 geomind part (control in parameters) already fixed since geomind 0.4.81. Not live-retested.
 ## Retest
