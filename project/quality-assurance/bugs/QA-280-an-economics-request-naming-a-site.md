@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -67,3 +67,10 @@ geomind:
 
 - 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+- 2026-11-05 19:08 UTC, QA-E2E-economics-I: PASSES on backend 1.1.118. Same request, project
+  "QA-TEST QA-E2E-economics-I 9", run 746e64e9: no geoscientist, no open-meteo; 26 tool calls
+  (was 117), economics question at 19:05:38 (5.6 min incl. three approvals: one set_case of
+  `about.site`/`ownership`, two web searches), run done 19:08:20, 742k tokens, 0.020 USD (was
+  3.55M, 0.072). The site is only recorded in `about.site`. Run: `../evidence/QA-280/run-746e64e9.json.gz`.
+- 2026-11-05 19:08 UTC: QA-E2E-economics-I 19:08 UTC run 746e64e9: no site survey, 26 calls, 8 min, 0.020 USD; see Retest
