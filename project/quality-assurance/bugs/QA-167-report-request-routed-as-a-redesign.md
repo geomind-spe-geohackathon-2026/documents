@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -61,7 +61,7 @@ for a request about a design, result or report, read both first; a project with 
 a study with results gets a brief to `analysis_lead` / `explainer`, never `design_lead`. The backend
 part was already live (QA-122). Not done: `read_plant` output with null fluid fields is no valid
 `build_plant` input (for hotfix-python).
-
+- 2026-11-05 17:33 UTC: geomind 0.4.108 242177e, backend 1.1.107
 ## Retest
 
 Recipe: on a project with a plant version and a finished study, ask in a new chat for the report;
