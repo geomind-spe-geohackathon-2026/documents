@@ -1,0 +1,39 @@
+Projects
+QA3 report
+Chat
+Design
+Chat
+Please work out the economics of the finished study: CAPEX, annual OPEX, the cost of heat and of cooling per MWh, and the payback. Tell me where every cost figure comes from.
+11:31
+Copy
+Worked through 29 steps, 3 needed another try
+Economics of the finished study — HeatingAbsorptionCoolingPlant on case hackathon_2026
+
+The verified run is result/11c2e401cd91606b (simulate of the project plant, 365 daily steps 2027-01-01…2027-12-31, 0 failed steps, verdict feasible, heating and cooling coverage 1.0). Every cost figure below is gemini's (estimate_costs on that result, stored as result-ac6f803291d37e42, via the economist), computed from the case's economics file economics.json (project file; price year 2015, discount rate 0.05, analysis period 25 yr, revenue heat 60 EUR/MWh and cold 60 EUR/MWh, electricity 105.75 EUR/MWh, gas 39.92 EUR/MWh, carbon 57.03 EUR/t, heat_cost_share 0.8).
+
+CAPEX — 23.955885571022524 MEUR (gemini), by module, with the unit-cost basis each kind takes from economics.json:
+
+drilling 1239.1304347826087 EUR/m: d0.well 2.658616298885492, d1.well 2.658616298885492, d0.injector 3.097826086956522, d1.injector 3.097826086956522, d0.riser 0.43920978807103006, d1.riser 0.43920978807103006 MEUR
+production_pump 0.5 EUR/W: d0 0.22765013540774365, d1 0.22765013540774365 MEUR; injection_pump 0.5 EUR/W: 0.18738095238095237 MEUR
+boiler 0.06073 EUR/W: peak_boiler 1.8219 MEUR; heat_exchanger 0.5 EUR/(W/K): 0.75 MEUR
+absorption_chiller 0.3 EUR/W: 3.0 MEUR; cooler 0.1 EUR/W: absorption_cooler 4.0 MEUR
+pipe 500 EUR/m: four pipes at 0.05 MEUR each
+fixed amounts: degasser 1.0 MEUR (1000000 EUR), flare 0.1 MEUR (100000 EUR), gas_makeup 0.05 MEUR (50000 EUR)
+
+Annual OPEX — 5.1344197409265195 MEUR/yr (gemini): fixed 0.36747841794218966, fuel 2.6041484381423365, electricity 0.9666162215984677, CO2 1.1961766632435265, chemical 0.0, waste 0.0 MEUR/yr. Fixed O&M by kind (MEUR/yr): drilling 0.12391304347826086, cooler 0.08, absorption_chiller 0.06, boiler 0.05921175, degasser 0.02, production_pump 0.009106005416309747, heat_exchanger 0.0075, injection_pump 0.0037476190476190474, flare 0.002, pipe 0.001, gas_makeup 0.001 — from the fixed rates in economics.json (drilling 1 %/yr, pumps 2 %/yr, boiler 3.25 %/yr, heat_exchanger 1 %/yr, absorption_chiller 2 %/yr, cooler 2 %/yr, pipe 0.5 %/yr, degasser/flare/gas_makeup 2 %/yr). Chemical (3 EUR/kg) and waste (0.2 EUR/kg) are zero because the plant has no such module at its edge.
+
+Cost of heat — lcoh 48.927109216402506 EUR/MWh (gemini), over 111744.16471232877 MWh/yr, with capex 23.955885571022524 MEUR, opex 5.1344197409265195 MEUR/yr, discount rate 0.05, 25 yr. Cost of cooling — lcoc 57.529433842325936 EUR/MWh (gemini), over 23758.79000547945 MWh/yr, same capex/opex/discount/period. lcts 50.43542189321398 EUR/MWh (gemini), annualised cost 6.8341486889697265 MEUR/yr over heat 111744.16471232877 MWh/yr and cold 23758.79000547945 MWh/yr.
+
+Payback — 7.9966036082793295 yr (gemini: capex 23.955885571022524 MEUR over net cash flow 2.9957575421419738 MEUR/yr). NPV 18.266155161236956 MEUR; CO2 20.960160002433348 kt (direct 18.219863239730717 kt, electricity 2.7402967627026333 kt).
+
+What I could not get: the uncertainty of these costs. sample_uncertainty needs a stored design/<name> and none exists in this chat (gemini unknown_name), so no range is reported even though economics.json declares uncertainty on the discount rate, gas, electricity and carbon price. No comparison was run either: no alternative designs are stored and the state names none.
+
+improvement: store the plant as a design/<name> and re-run the uncertainty: the cost metrics have declared uncertainty (discount rate, gas, electricity, carbon) that cannot be sampled without a design reference, so lcoh/lcoc/payback are single points today. improvement: cut the boiler's share of the heat: boiler_heat 76829.96207840637 MWh against heat_delivered 111667.68 MWh, and fuel 2.6041484381423365 MEUR/yr is the largest OPEX component — more doublet flow or depth (ranges allow up to 3 doublets) would displace gas. improvement: review the absorption_cooler sizing: at 4.0 MEUR it is the largest single CAPEX module, and lcoc 57.529433842325936 EUR/MWh sits close to the 60 EUR/MWh cold revenue. improvement: check the heat_cost_share 0.8 allocation: it charges most of the joint cost to heat, which is why lcoh 48.927109216402506 EUR/MWh and lcoc 57.529433842325936 EUR/MWh differ so much on the same plant.
+
+The numbers come from gemini's estimate_costs on result/11c2e401cd91606b (economist, stored result-ac6f803291d37e42) and rest on the case's economics.json as the project gave it; the run itself is result/11c2e401cd91606b with 0 failed steps.
+
+Copy
+Write the report
+Explain the results
+Sensitivity analysis
+Auto-approve
