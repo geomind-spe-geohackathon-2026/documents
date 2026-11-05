@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-E2E-report-I |
 | Found | 2026-11-05 18:33 UTC |
 | Versions | backend 1.1.109 (geomind 0.4.110), frontend bundle index-TsXgd_n9.js |
 | Where | https://geomind.team/projects/fa329839-43df-48c3-81c3-89af503b92c0/design/report; run d8662b0d |
-| Fixer | |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
@@ -44,7 +44,7 @@ Backend 1.1.117 (8936366, back-m1): on a root chat run's finish each sensitivity
 
 Proposal (backend, hotfix-back): save a chat study of kind sensitivity / uncertainty as a Result
 with its tornado / spread (the fields the Results page already reads), named after the study.
-
+- 2026-11-05 18:46 UTC: backend 1.1.117, 8936366
 ## Retest
 
 Chat: simulate a design, then a sensitivity study on it. Report page: the Design list offers the study and 'Uncertainty and sensitivity' shows its tornado.
