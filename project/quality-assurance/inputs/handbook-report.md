@@ -1484,15 +1484,12 @@ result: the summary is corrected to 48.1 and the study is named as older (§17.5
 
 # Appendix B. References
 
+## B.1 Standards and guides
+
 - ANSI/NISO Z39.18-2005 (R2010). *Scientific and Technical Reports: Preparation, Presentation,
   and Preservation*. Baltimore: NISO. ISBN 978-1-880124-66-6.
-- Markel, M. and Selber, S. A. (2021). *Technical Communication*, 13th ed. Boston: Bedford/St.
-  Martin's.
-- Tufte, E. R. (2001). *The Visual Display of Quantitative Information*, 2nd ed. Cheshire, CT:
-  Graphics Press.
 - JCGM 100:2008. *Evaluation of measurement data — Guide to the expression of uncertainty in
   measurement* (GUM). BIPM.
-- Nygard, M. (2011). "Documenting Architecture Decisions". Blog post, Cognitect.
 - AACE International Recommended Practice 18R-97. *Cost Estimate Classification System — As
   Applied in Engineering, Procurement, and Construction for the Process Industries*. (Ranges in
   §10.4 from secondary summaries.)
@@ -1503,6 +1500,19 @@ result: the summary is corrected to 48.1 and the study is named as older (§17.5
 - Directive (EU) 2018/2001 (Renewable Energy Directive), Annex VII: energy from heat pumps.
 - EN 14511 (all parts). *Air conditioners, liquid chilling packages and heat pumps … — rating
   conditions and test methods*. CEN.
+- ISO 31000:2018. *Risk management — Guidelines*.
+- EN ISO 52000-1:2017. *Energy performance of buildings — Overarching EPB assessment — Part 1*.
+- ASME V&V 20-2009 (R2021). *Standard for Verification and Validation in Computational Fluid
+  Dynamics and Heat Transfer*. New York: ASME.
+- ISO 9001:2015. *Quality management systems — Requirements*, §8.3 Design and development.
+
+## B.2 Books, papers and reports
+
+- Markel, M. and Selber, S. A. (2021). *Technical Communication*, 13th ed. Boston: Bedford/St.
+  Martin's.
+- Tufte, E. R. (2001). *The Visual Display of Quantitative Information*, 2nd ed. Cheshire, CT:
+  Graphics Press.
+- Nygard, M. (2011). "Documenting Architecture Decisions". Blog post, Cognitect.
 - Zottl, A., Nordman, R. et al. (2012). *Concept for evaluation of the SPF*. SEPEMO-Build
   project (EU Intelligent Energy Europe), system boundaries H1–H4.
 - Çengel, Y. A. and Boles, M. A. (2019). *Thermodynamics: An Engineering Approach*, 9th ed.
@@ -1517,12 +1527,8 @@ result: the summary is corrected to 48.1 and the study is named as older (§17.5
 - IEA and NEA (2020). *Projected Costs of Generating Electricity, 2020 Edition*. Paris: OECD.
 - ESMAP (2012). *Geothermal Handbook: Planning and Financing Power Generation*. Technical Report
   002/12. Washington, DC: World Bank.
-- ISO 31000:2018. *Risk management — Guidelines*.
-- EN ISO 52000-1:2017. *Energy performance of buildings — Overarching EPB assessment — Part 1*.
 - Oberkampf, W. L. and Roy, C. J. (2010). *Verification and Validation in Scientific
   Computing*. Cambridge: Cambridge University Press.
-- ASME V&V 20-2009 (R2021). *Standard for Verification and Validation in Computational Fluid
-  Dynamics and Heat Transfer*. New York: ASME.
 - Schmidt, M. (2008). "The Sankey diagram in energy and material flow management, Part I:
   History". *Journal of Industrial Ecology* 12(1), 82–94.
 - WRI and WBCSD (2004). *The Greenhouse Gas Protocol: A Corporate Accounting and Reporting
@@ -1531,10 +1537,12 @@ result: the summary is corrected to 48.1 and the study is named as older (§17.5
   ch. 2, table 2.2 (default CO2 emission factors for stationary combustion).
 - IPCC (2021). *Climate Change 2021: The Physical Science Basis* (AR6 WG I), ch. 7, table 7.15
   (GWP values).
-- ISO 9001:2015. *Quality management systems — Requirements*, §8.3 Design and development.
 - Ullman, D. G. (2010). *The Mechanical Design Process*, 4th ed. New York: McGraw-Hill.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
+
+## B.3 gemini, geomind and the team
+
 - gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `coverage.py`,
   `balances.py`, `_utils/display.py`.
 - geomind: prompts `geomind/geomind/prompts/project/explainer.md`, `reviewer.md`; skills
