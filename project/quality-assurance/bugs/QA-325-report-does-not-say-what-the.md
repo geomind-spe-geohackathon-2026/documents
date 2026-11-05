@@ -21,4 +21,8 @@ Next to 'All N checks pass' the report says what was checked and what the model 
 
 ## Fix
 
+Backend 1.1.125 (section 8 states the case's rules, the quantities gemini can bound but this case does not, and the co2.window run), hotfix-back-lead-II.
+
 ## Retest
+
+Report section 8 has the scope paragraph.

@@ -47,9 +47,13 @@ case's plants need), put an economics step first in the "case" stage ("Set the e
 
 ## Fix
 
+Backend 1.1.123 (progress.economics on workspace projects and the agents' project state), hotfix-back-lead-II.
+
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 - 2026-11-05 18:59 UTC: retest 19:00 UTC fails: empty chat has no problem state and the project progress has no economics item; backend should add it (see Retest)
 ## Retest
+
+A project with a case without economics: chips offer 'Set the economics'.
 
 - 2026-11-05 19:00 UTC, QA-E2E-economics-I: **FAILS** on backend 1.1.118 (geomind 0.4.130). New
   project "QA-TEST QA-E2E-economics-I 9" (a2d1d833-beb5-4216-b2f7-4bb4d40f50fb), case complete, no

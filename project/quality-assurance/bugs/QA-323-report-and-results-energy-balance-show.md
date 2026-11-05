@@ -21,4 +21,8 @@ Only 'Gas bought 34.06 GWh' and 'Heat from the boilers 40.42 GWh': a reader comp
 
 ## Fix
 
+Backend backend part 1.1.125 (energy table adds fuel burned on site and produced gas burned; includes flared gas, boiler-only needs gemini), hotfix-back-lead-II.
+
 ## Retest
+
+Report energy table of a plant with produced gas: boiler no longer above 100%.

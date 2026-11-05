@@ -45,8 +45,12 @@ Sahand's request (top priority). Backend report draft builder: add the section t
 
 ## Fix
 
+Backend 1.1.123 (numbered sections 1-9, subsections, captions and paragraphs, PDF typography), hotfix-back-lead-II.
+
 (Hotfix session: cause, commit, version, deployed at.)
 
 ## Retest
+
+Report draft and PDF export: numbered sections, caption and text after every figure and table.
 
 (Who, when, result.)

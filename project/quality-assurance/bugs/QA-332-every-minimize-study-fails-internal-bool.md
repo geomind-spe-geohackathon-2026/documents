@@ -30,4 +30,8 @@ Every study with a full-year run is broken on production, agent runs included.
 
 ## Fix
 
+Backend 1.1.125 (study.plain_day delegates to evaluate.plain_day; bools, numbers, None, labels kept), hotfix-back-lead-II.
+
 ## Retest
+
+Run a minimize study on gemini 0.6.31+: it finishes; Results opens its coverage.
