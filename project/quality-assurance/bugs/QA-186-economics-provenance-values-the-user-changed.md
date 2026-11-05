@@ -68,3 +68,13 @@ economics skill: a changed value carries its new source.
 
 - 2026-11-05 17:40 UTC: geomind 0.4.107, deployed: set_case economics patch drops about.sources of each changed or removed key without its own source
 ## Retest
+
+- 2026-11-05 18:03 UTC, QA-AI-analysis-I, backend 1.1.108: project `QA-TEST QA-AI-analysis-I 5` (economics set by
+  ask_economics from the assumptions document, each key with its source), chat "Change two economics values to my own:
+  discount rate 6 % and carbon price 80 EUR/t", run ce5d9ffc-9717-4de4-92d9-bf971c20a0a9. One `set_case` card (request-58)
+  + accept_case. Stored economics.json: discount_rate 0.06, carbon.price 80 EUR/t; `about.sources` has no entry for
+  either any more (the Knowledge source is dropped), `energy.electricity` keeps its source. Verified as fixed (stale
+  source gone). Not done (the fix says so): the changed keys get no "user" source, so the file says nothing about who
+  set them; the chat answer says "your own values". Accuracy: new LCTS 47.937 EUR/MWh, LCOH 46.504, LCOC 54.68, opex
+  3.786 MEUR/yr equal a page `run` study on case version 4. Speed of this run is filed separately (QA-223).
+  Log: `../evidence/QA-186/run-ce5d9ffc-retest-log.json`.
