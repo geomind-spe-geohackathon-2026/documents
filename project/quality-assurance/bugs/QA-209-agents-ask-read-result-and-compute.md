@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 17:30 UTC |
 | Versions | backend 1.1.104 |
 | Where | project `QA-TEST QA-E2E-study-I 1` (8fcbf709-537a-40d9-ac1f-abadd1061775); run 4eb8e2f4-e775-4e2a-b257-853eae883724 |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
