@@ -394,3 +394,12 @@ same plant version, and the comparison with the other candidates is only on the 
 them together. Proposal: the report of a result also takes the sensitivity and sample results of the same plant version
 (and case version), and a Compare table of the results the user picks (default: the best feasible result of each study);
 the Agent log part takes the run that made the plant version. Example project: https://geomind.team/projects/abf7ce3a-5485-4f5c-b2b5-d3d05ba098ff.
+
+## IMP-034: what-if costing without changing the case
+
+Status: idea (QA-AI-analysis-I, 2026-11-05 19:13 UTC). "What would the NPV be at 30 years / with X instead of Y?"
+can only be answered by writing the case (QA-268 retest, run edaad491): `estimate_costs` reads only the case's stored
+economics. A what-if covered by a stored sensitivity row is answered in 19 s (run e26ff474), any other is not. Proposal:
+`estimate_costs(reference, economics_overrides={path: value})` costs a stored result on a copy of the case's economics
+(not stored as the case, marked "what-if" in the answer), so the analysis lead can answer what-ifs without a card and
+without making every study out of date.
