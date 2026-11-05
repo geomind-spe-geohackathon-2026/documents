@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 19:25 UTC |
 | Versions | backend 1.1.120, geomind 0.4.131 (API container started 19:06:54 UTC; includes 35c3a0c "set_case split into steps", 19:05 UTC) |
 | Where | api.geomind.team; project QA-TEST QA-AI-case-I 12 (7be82545-0553-4f6b-ad77-7fbeab8da266); chat 73567385-49b4-4ef4-8af7-91da2b3a3e8f; run 9c02d335-d9e5-48a8-a687-1c244aeeaee4 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -80,7 +80,7 @@ Not found; facts and two guesses:
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 19:33 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
 
 (Who, when, result.)
