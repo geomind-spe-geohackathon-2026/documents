@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Sahand |
@@ -49,7 +49,7 @@ sends no language to SearXNG.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 02:00 UTC: geomind 0.4.65 (ea62530: language=en, English-only short queries, query rules in tool and skill), backend 1.1.69 (c330a8d), deployed 02:00 UTC
 ## Retest
 
 (Who, when, result.)
