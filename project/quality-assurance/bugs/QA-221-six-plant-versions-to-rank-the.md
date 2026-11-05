@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -67,3 +67,7 @@ say why. Re-typing a plant through the LLM also drops values (step 15).
 ## Fix
 
 - 2026-11-05 17:40 UTC: geomind 0.4.110, deployed: reuse design/v<N>, never re-type with build_plant
+- 2026-11-05 17:47 UTC: QA-AI-design-I retest 17:50 UTC on 0.4.110: lead re-types one stored plant for sizing (run 5e847cc6); see QA-247
+## Retest: not fixed for one stored plant (QA-AI-design-I, 2026-11-05 17:50 UTC)
+
+Backend 1.1.109 (geomind 0.4.110, the QA-221 rule is in the design lead's system prompt of this run). Run 5e847cc6-14af-4f05-a34f-5b3cb10fdb2e, project QA-TEST QA-AI-design-I 3: "Size the stored plant ..." on plant version 1 (HeatingHeatPumpCoolingPlant). The design lead reads the project plant and re-types it into `build_plant` twice (12,886 and 6,619 characters, the first refused, the second an approval card), although the brief says "Start from that stored plant". The rule says "to compare or rank plant versions" only; see QA-247.
