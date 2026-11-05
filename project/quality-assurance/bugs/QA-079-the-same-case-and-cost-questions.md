@@ -4,7 +4,7 @@
 |---|---|
 | Status | open |
 | Severity | major |
-| Area | geomind |
+| Area | frontend |
 | Reporter | functional-qa-2 |
 | Found | 2026-11-05 04:49 UTC |
 | Versions | frontend 1.1.71, backend 1.1.69-1.1.71 (geomind 0.4.65) |
@@ -36,7 +36,7 @@ Guess: the nested leads (case_lead, design_lead) restart and re-ask because the 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 04:51 UTC: hotfix-python-II: not geomind. run_events of 6921d00e: case_lead made exactly 3 requests (seq 239, 281, 316, 04:20-04:22), each once; the only later request is the design lead's (seq 2074). The chat shows each answered question three times: a display of the answers/requests, for hotfix-front. The run's failure is QA-078 (fixed in geomind 0.4.68).
 ## Retest
 
 (Who, when, result.)
