@@ -6,33 +6,38 @@
 | Severity | minor |
 | Area | gemini |
 | Reporter | QA-AI-analysis-I |
-| Found | 2026-11-05 18:48 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 18:47 UTC |
+| Versions | backend 1.1.117 (gemini 0.6.21+), API only |
+| Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 8` (485dbcfc-63f4-474f-a2dd-b94ab85bc34f); run 8d7c09f7-3356-4e40-8c37-40fefeeacc1e |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Reference case + HackathonPlant. Chat: "Run an uncertainty study on the current plant: sample the gas, electricity and
+   carbon prices over their ranges in the economics file and give me the P10, P50 and P90 of the cost of thermal supply."
 
 ## Expected
 
+P10, P50 and P90 of LCTS (P10/P90 is the usual reporting band in geothermal resource and cost studies).
+
 ## Actual
+
+The study runs right (only the three prices, 200 draws, seed 42). The answer: "gemini does not produce P10 and P90: its
+Monte Carlo output carries only p5, p50 and p95 ... the 10th and 90th percentiles are not available from gemini, and I
+have not computed them myself", then p5 40.84453095568741, p50 46.34714771797602, p95 51.570972388640115 EUR/MWh (15
+digits, QA-099). The 200 draws are stored, so the percentiles exist in the data; the agents are (rightly) not allowed to
+compute them.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-299/1.png)
-- Run JSON: `../evidence/QA-299/run-<id>.json`
+- `../evidence/QA-248/run-8d7c09f7-retest-log.json` (economist sample_uncertainty output: summary keys mean, p5, p50,
+  p95, failed).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+`gm.study.sample` summary gives fixed percentiles (p5, p50, p95); geomind's `sample_uncertainty` passes it through.
 
-## Fix
+## Proposed fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
-## Retest
-
-(Who, when, result.)
+gemini: the sample summary takes `percentiles` (default [5, 10, 50, 90, 95]) or always adds p10 and p90; geomind
+`sample_uncertainty` passes a `percentiles` input and the display rounds to 4 significant digits (QA-099).
