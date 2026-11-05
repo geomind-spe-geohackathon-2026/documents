@@ -7,32 +7,28 @@
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 20:44 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.130 (geomind 0.4.135, gemini 0.6.34) |
+| Where | run 86867082-66b2-4cb1-9c34-bdfc479f278c, project e7dd5fb1-4fb5-477e-969a-9378a3ba803f, 21:40-21:44 CET |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Design stage: the comparison driver ran family_design_lead three times (approved, 20:55 CET); family A finished (minimize, LCTS 29.03, 10/10 checks), B and C partly.
+2. The comparison driver asks again: "Allow family_design_lead (write)?" with the same task text.
+3. Deny with a reason: "No new family run ... Compare the families you have now ... and answer."
 
 ## Expected
 
+The driver takes the denial and its reason, compares the stored results and finishes.
+
 ## Actual
 
-## Evidence
-
-- ![screenshot](../evidence/QA-353/1.png)
-- Run JSON: `../evidence/QA-353/run-<id>.json`
+It asks again with the same call: request-2858 (denied 21:40), request-2865 (denied 21:42 with "do not call family_design_lead any more"), request-2996 (21:44). The reasons are ignored; the run made no comparison after 70 min and 0.34 USD and was cancelled by QA.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: the comparison driver is a deterministic driver (0 tokens in the agents list) that re-issues family_design_lead while some family has no verified result, and it does not read the denial reason; QA-143's failed_before does not cover denied calls.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
