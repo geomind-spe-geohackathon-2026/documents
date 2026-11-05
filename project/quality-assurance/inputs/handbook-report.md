@@ -14,7 +14,7 @@ summary · 5 Design basis · 6 Alternatives · 7 Decisions · 8 Results (8.6 num
 source, 8.8 COP and SPF, 8.9 energy balance) · 9 Compliance (9.5 scope, 9.6 values) · 10
 Uncertainty · 11 Limitations · 12 Figures and tables · 13 Agent log · 14 Style · 15 Checklist ·
 16 Worked example · 17 Lessons from reviewed reports · 18 Explaining a result · 19
-Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · 22 Method and V&V · A Templates · B References.
+Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · 22 Method and V&V · 23 Energy flows and time series · A Templates · B References.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -129,6 +129,7 @@ extra steps cost about four times the tokens of the whole review.
 | Full-load hours, capacity factor, specific indicators | §20 |
 | What a gemini metric name means (`cop`, `heat_useful`, `capacities` ...) | §21 |
 | What the method section holds; verified versus validated | §22 |
+| Sankey diagram, demand over the year, load duration curve, monthly table | §23 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -1257,6 +1258,52 @@ EUR/MWh across its range, the daily model is good enough for the ranking.
 
 ---
 
+# 23. Showing energy flows and time series
+
+## 23.1 The energy flow (Sankey) diagram
+
+A Sankey diagram draws each energy flow as a band whose width is proportional to its size, from
+the sources (brine heat, electricity, fuel by source) through the units to the services (heat,
+cold) and the losses (rejected heat, flue, flare) (Schmidt, 2008). It shows at a glance where
+the energy comes from and where it goes, and whether the balance closes (§8.9).
+
+Rules: one unit of energy for every band (MWh or GWh of the period); inputs on the left,
+services and losses on the right; the bands into a unit equal the bands out; label each band
+with its value from the tool. Draw no band the tools did not give: a loss nobody computed is a
+gap in the balance, named as such.
+
+Invented example: brine heat 70 GWh and heat-pump electricity 18 GWh enter the heat pump and
+the exchanger; boilers take 13 GWh of gas and give 12 GWh; heat delivered 100 GWh; flue loss 1
+GWh. The bands balance: 70 + 18 + 13 = 100 + 1.
+
+## 23.2 Demand and supply over the year
+
+A stacked area or bar chart per step, one layer per source (brine heat, heat-pump electricity,
+backup), with the demand as a line on top, shows when each source runs and where demand was not
+met. Use the same order and colour of sources in every figure (Tufte, 2001). For a daily step,
+say the chart shows daily means; an hourly peak can be higher (§22.3).
+
+## 23.3 Load duration curve
+
+Sort the demand of the period from the highest to the lowest step and plot it against the
+cumulative hours: the area under the curve is the energy; the base load (many hours, low
+power) suits the geothermal source, the peak (few hours, high power) the backup (Frederiksen and
+Werner, 2013, ch. 4). Draw the capacity of each source as a horizontal line: the area below
+the geothermal line is what it can cover at most. A source sized for 50 % of the peak often
+covers 80 % to 90 % of the energy in a heating-dominated load, because peak hours are few
+(Frederiksen and Werner, 2013); quote the share the tool gives, not this rule.
+
+Invented example: peak 30 MW, geothermal 15 MW. The duration curve shows demand above 15 MW
+for 1100 h of 8760 h; the tool gives geothermal heat 86 % of the energy and backup 14 %.
+
+## 23.4 Monthly balance table
+
+A table of month, demand, delivered by source, unmet and electricity bought, from the tool's
+series (summed by a tool or `run_python`, with its id), lets a reader see the season of each
+source. Totals must match the period figures of §8.3.
+
+---
+
 ---
 
 # Appendix A. Templates
@@ -1351,6 +1398,8 @@ EUR/MWh across its range, the daily model is good enough for the ranking.
   Computing*. Cambridge: Cambridge University Press.
 - ASME V&V 20-2009 (R2021). *Standard for Verification and Validation in Computational Fluid
   Dynamics and Heat Transfer*. New York: ASME.
+- Schmidt, M. (2008). "The Sankey diagram in energy and material flow management, Part I:
+  History". *Journal of Industrial Ecology* 12(1), 82–94.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
 - gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `coverage.py`,
