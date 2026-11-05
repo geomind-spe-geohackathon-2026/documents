@@ -34,4 +34,7 @@ Guess: the rating shown is the pump's nominal flow (d0.nominal_flow, optimised),
 ## Fix
 
 - 2026-11-05 14:28 UTC: gemini 0.6.15 (doublet flow capped at its pump's nominal_flow), backend 1.1.89, deployed 14:27 UTC
+
+Cause: the schedule ran every doublet up to the case's flow maximum (300 m3/h) whatever its `nominal_flow`, the flow its pump is designed and priced for (162.6 m3/h after the optimiser); no check compared the two. Fix: the gemini 0.6.15 schedule runs a doublet at most at its nominal_flow (never below the case minimum), so a smaller pump costs the heat it cannot give. No frontend part.
+
 ## Retest
