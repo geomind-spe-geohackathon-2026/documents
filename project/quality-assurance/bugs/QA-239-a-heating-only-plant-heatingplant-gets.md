@@ -30,4 +30,11 @@ Fact: a requirement on a role the plant lacks is reported as not assessed. For a
 
 ## Fix
 
+hotfix-back-lead, backend 1.1.110, deployed ~17:50 UTC (backend part). Additive: every result
+(list and detail) has `feasible` = no check failed and none not assessed; a ranking (Results,
+Compare: frontend) leaves out the others. gemini part (a missing role on a stated demand fails)
+with the python team.
+
 ## Retest
+
+Recipe: GET /design/results?project=...: the heating-only result on a case with cooling has feasible false.

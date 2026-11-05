@@ -52,4 +52,12 @@ the project plant" when it does.
 
 ## Fix
 
+hotfix-back-lead, backend 1.1.110 (tag v1.1.110), deployed 2026-11-05 ~17:50 UTC (backend part).
+`adapters/versions.py` `VersionRecorder` no longer saves a design an agent builds, changes or
+simulates as a plant version; the project plant changes only on an explicit save (Plant page) or
+adopt (`POST /design/results/{id}/adopt`). Reverses 1.1.82 (QA-092). Agents still read the saved
+versions. geomind part (no rebuild to read a version) with hotfix-python-lead.
+
 ## Retest
+
+Recipe: A comparison or design run in chat; afterwards /plant/flowsheet/versions has no new version; adopting the result adds one.
