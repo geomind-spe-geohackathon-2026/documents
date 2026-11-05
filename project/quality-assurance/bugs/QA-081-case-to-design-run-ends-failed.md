@@ -58,6 +58,7 @@ Guess: the worker restart of the 1.1.73 deploy (05:26 UTC) ended the run as fail
   reconnects). For hotfix-front: keep events unique by `id` (and `text.delta` by step).
 - 2026-11-05 05:33 UTC: backend part in 1.1.74 (1b10ed7): refusals named geomind_refused and logged; the run was resumed at 05:00. Counter inflation is hotfix-front's (dedupe by event id). See Fix.
 - 2026-11-05 05:34 UTC: part (b) by hotfix-front: frontend 1.1.77 (f64dc8d), pushed, build checked, deploy at 06:00 UTC. streamEvents (shared/sse/stream.ts) passes each stored event once by its id, so a reconnect that replays from the start no longer re-counts steps (3757 for 261). Events without an id (text.delta, retry) pass as before.
+- 2026-11-05 06:01 UTC: frontend part deployed: 1.1.77 (f64dc8d), 06:00 UTC
 ## Retest
 
 (Who, when, result.)
