@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | blocked |
+| Status | open |
 | Severity | major |
-| Area | backend |
+| Area | geomind,gemini,frontend |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 01:49 UTC |
 | Versions | backend 1.1.53-1.1.62 (see Where), geomind per backend |
@@ -65,6 +65,7 @@ Guess: the run was resumed after the 00:3x deploy and stalled, or the provider c
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 04:14 UTC: hotfix-back: most likely provider refusals retried with back-off (0 tokens = no call succeeded) around the key limit (QA-068), not an idle worker or queue; visible now through the retry event (QA-021) once QA-030 shows it, and provider_refused (QA-068). Needs a person to read the run's retry/error events (query in Fix) to confirm; prod DB reads are refused to me.
+- 2026-11-05 09:15 UTC: DB read: no provider errors; 17 calculate calls refused (no unit for g: m/s2, N/kg ...); 708k tokens recorded, the page showed 0
 ## Retest
 
 (Who, when, result.)
