@@ -118,3 +118,4 @@ wont-fix, duplicate.
 | [QA-110](bugs/QA-110-case-history-a-version-cannot-be.md) | open | major | frontend,backend,geomind | Case History: a version cannot be opened, compared or restored; the note is always 'Case set by the assistant' and Saved by says Administrator | Fatemeh |  |
 | [QA-111](bugs/QA-111-projects-page-a-project-card-s.md) | fixing | minor | frontend | Projects page: a project card's ... menu has only Pin (no Settings, Rename, Delete) | user via coordinator | hotfix-front-II |
 | [QA-112](bugs/QA-112-knowledge-assumptions-bought-gas-composition-sums.md) | open | major | data | Knowledge assumptions: bought gas composition sums to 1.001, case cannot be set | functional-qa-case-I |  |
+| [QA-113](bugs/QA-113-drop-zone-drag-and-drop-files.md) | open | minor | frontend | Drop zone 'Drag and drop files here, or browse' is too thin; no clear highlight while dragging | user via coordinator |  |
