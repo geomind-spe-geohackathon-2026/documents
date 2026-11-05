@@ -63,3 +63,4 @@ QA-E2E-report-I, 2026-11-05 20:05 UTC, backend 1.1.125, https://geomind.team/pro
   uncertainty study" for an optimisation result (no reading of the search), and unmet demand is printed as "2.01e-12 MWh
   of demand is not met". Report: `../evidence/QA-313/report-b7af0082-noimg.md` (images removed).
 - 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:59 UTC: numbered sections, captions, text (md); gaps QA-338
+- 2026-11-05 20:00 UTC: retest QA-E2E-report-I 20:05 UTC backend 1.1.125, page and PDF
