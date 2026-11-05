@@ -38,6 +38,9 @@ Guess: no tool returns a series summary (count of non-zero steps, peak with its 
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 14:28 UTC: geomind 0.4.86 (read_result series summary + module operation), backend 1.1.89, deployed 14:27 UTC
+
+Cause: no read tool returned a series summary, so the agent counted with run_python. Fix: `read_result` of a series carries `summary` (max and min with their time, mean, active_steps, active_days, first/last active); `read_result` of a module path carries `operation` (operating_steps, operating_days, gemini's energy per output in MWh). The reading-results skill maps each result question to one call (plant energies and boiler heat from `check_results` metrics). Checked on gemini's hackathon sample: d0.esp operating_days 330; heat exchanger duty max 12.36 MW on 2027-01-28.
+
 ## Retest
 
 (Who, when, result.)
