@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | minor |
-| Area | frontend,backend |
+| Area | frontend |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
 | Found | 2026-11-05 10:39 UTC |
 | Versions | frontend and backend as deployed 2026-11-05 ~10:45 UTC |
@@ -42,5 +42,5 @@ number as `link.id` on new "Saved case/plant version N" rows (assistant and user
 already carry the study id. Older rows stay without an id. Deploy 11:30 UTC. Still owed
 (frontend, hotfix-front-III): route design/case and design/plant with id N to History on version
 N, design/study/<id> to the study; sentence-case actor.
-
+- 2026-11-05 11:05 UTC: backend part done in 1.1.87 (11:30 UTC); frontend part for hotfix-front-III
 ## Retest
