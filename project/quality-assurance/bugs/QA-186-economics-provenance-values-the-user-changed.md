@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -78,3 +78,4 @@ economics skill: a changed value carries its new source.
   set them; the chat answer says "your own values". Accuracy: new LCTS 47.937 EUR/MWh, LCOH 46.504, LCOC 54.68, opex
   3.786 MEUR/yr equal a page `run` study on case version 4. Speed of this run is filed separately (QA-223).
   Log: `../evidence/QA-186/run-ce5d9ffc-retest-log.json`.
+- 2026-11-05 18:04 UTC: retest QA-AI-analysis-I 18:03 UTC backend 1.1.108: stale sources dropped; changed keys have no user source (not in fix)
