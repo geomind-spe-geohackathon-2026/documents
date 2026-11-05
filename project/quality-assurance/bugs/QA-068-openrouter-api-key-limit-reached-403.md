@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | infra |
 | Reporter | qa-func-1 |
 | Found | 2026-11-05 00:24 UTC |
 | Versions | backend 1.1.61 (health 2026-11-05 00:30 UTC), frontend 1.1.61 clone |
 | Where | https://geomind.team/projects/a0947848-b958-4ee9-8927-56ec0a9cff03/assistant/runs/6d47f7c9-db08-42da-aa66-f9c212991e41; project QA2 qa-func-1 S1 full case; chat 235c60c5-da86-4f21-9257-e21a6e400697; run 6d47f7c9 |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 
