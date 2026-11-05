@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -64,7 +64,7 @@ Proposal (geomind, hotfix-python): `simulate` (and every tool with `design=None`
 the version it ran into the result (`plant_version` in the summary). With several project
 versions and no `plant_version`, refuse with the list of versions. Prompt/skill
 `simulating-a-plant`: name the version you simulate.
-
+- 2026-11-05 17:27 UTC: geomind 0.4.106, commit 23e5582, deployed: simulate takes plant_version; with neither design nor version the summary names the latest version
 ## Retest
 
 (Who, when, result.)
