@@ -21,7 +21,7 @@
 
 ## Expected
 
-The case holds exactly the values of the approved question (prompt : "On approve
+The case holds exactly the values of the approved question (prompt `case/lead.md`: "On approve
 all, set them with `set_case`"; handbook-case §8.4).
 
 ## Actual
