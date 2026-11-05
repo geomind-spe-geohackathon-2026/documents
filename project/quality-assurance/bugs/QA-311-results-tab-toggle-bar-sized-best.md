@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 19:00 UTC |
 | Versions | live 2026-11-05 19:59 Trondheim |
 | Where | geomind.team Results page, the result tab toggle bar (e.g. 'sized', 'best', 'Compare') |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
