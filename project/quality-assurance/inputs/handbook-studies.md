@@ -653,6 +653,8 @@ supply 75 °C. The user asks: "Find the cheapest design and tell me how sure the
 
 ## 11. Sources
 
+### 11.1 Sources of chapters 0 to 17
+
 - Saltelli A., Ratto M., Andres T. et al. (2008). *Global Sensitivity Analysis. The Primer*.
   Wiley. (§3.5, §3.6, §14.2)
 - Saltelli A., Annoni P. (2010). How to avoid a perfunctory sensitivity analysis. *Environmental
@@ -700,6 +702,36 @@ supply 75 °C. The user asks: "Find the cheapest design and tell me how sure the
   `sensitivity.py`, `evolve.py`, `calibrate.py`; geomind `geomind/tools/gemini/study.py`,
   `studies.py`.
 - QA lessons: `documents/project/quality-assurance/bugs` (numbers given in the sections).
+
+### 11.2 Sources of chapters 18 to 26
+
+- Papalambros P.Y., Wilde D.J. (2017). *Principles of Optimal Design*, 3rd ed. Cambridge. (§18)
+- Biegler L.T. (2010). *Nonlinear Programming*. SIAM. (§18)
+- Biegler L.T., Grossmann I.E., Westerberg A.W. (1997). *Systematic Methods of Chemical Process
+  Design*. Prentice Hall. (§24)
+- Grossmann I.E. (1985). Mixed-integer programming approach for the synthesis of integrated
+  process flowsheets. *Computers & Chemical Engineering* 9, 463-482. (§24)
+- Box G.E.P., Hunter J.S., Hunter W.G. (2005). *Statistics for Experimenters*, 2nd ed. Wiley.
+  (§19)
+- Short W., Packey D.J., Holt T. (1995). *A Manual for the Economic Evaluation of Energy
+  Efficiency and Renewable Energy Technologies*. NREL/TP-462-5173. (§20)
+- Das I., Dennis J.E. (1997). A closer look at drawbacks of minimizing weighted sums of objectives
+  for Pareto set generation. *Structural Optimization* 14, 63-69. (§20)
+- Haimes Y.Y., Lasdon L.S., Wismer D.A. (1971). On a bicriterion formulation of the problems of
+  integrated system identification and system optimization. *IEEE Trans. SMC* 1, 296-297. (§20)
+- Frederiksen S., Werner S. (2013). *District Heating and Cooling*. Studentlitteratur. (§21)
+- Law A.M. (2015). *Simulation Modeling and Analysis*, 5th ed. McGraw-Hill. (§22, §26)
+- Hadar J., Russell W.R. (1969). Rules for ordering uncertain prospects. *American Economic
+  Review* 59, 25-34. (§22)
+- Savage L.J. (1951). The theory of statistical decision. *J. American Statistical Association*
+  46, 55-67. (§22)
+- Howard R.A. (1966). Information value theory. *IEEE Trans. Systems Science and Cybernetics* 2,
+  22-26. (§23)
+- Bratvold R.B., Begg S.H. (2010). *Making Good Decisions*. SPE. (§23)
+- Tufte E.R. (2001). *The Visual Display of Quantitative Information*, 2nd ed. Graphics Press;
+  Few S. (2012). *Show Me the Numbers*, 2nd ed. Analytics Press. (§25)
+- Budescu D.V., Wallsten T.S. (1985). Consistency in interpretation of probabilistic phrases.
+  *Organizational Behavior and Human Decision Processes* 36, 391-405. (§25)
 
 ---
 
@@ -1311,3 +1343,52 @@ the cost lies between 39.6 and 46.9 EUR/MWh in 80 % of cases (10th to 90th perce
 the discount rate moves it most (`study/hp_sens`). In 7 % of draws a low permeability leaves 1 %
 of the heat unmet. Input correlations were not modelled. I can test a 2 MW peak boiler as a
 margin if you wish."
+
+---
+
+## 26. Planning a study
+
+### 26.1 A study plan, written before the first run
+
+| Item | Example entry |
+|---|---|
+| Decision and question | choose between two families; "cheapest feasible?" |
+| Objective, constraints, variables, parameters | §18.1 table |
+| Studies in order | size → compare → optimise best two → sensitivity → Monte Carlo |
+| Budget of each | runs (§0.4) and estimated time (§21.3) |
+| Seeds | one per study, recorded as the agent's choice |
+| Checks | §17 table: which ones, when |
+| Stop rule | §0.3 and §8 |
+| What goes to the user | approvals needed (ranges, uncertainties), the final answer shape (§25) |
+
+A plan is short (the table above), stated in the first message of the work when the request is
+large, and followed. Deviations are named in the answer (Law 2015, ch 12, on planning simulation
+experiments).
+
+### 26.2 Splitting a budget
+
+- Spend first on what decides most: the family comparison (§5.1), then the search of the chosen
+  family, then uncertainty.
+- Keep 10 to 20 % for checks (§17): a second seed, a confirmation at a fine time step (§21.2).
+- Equal budgets for designs that are compared (§5.2).
+- A study that would pass the tool time limit is split (fewer doublet counts per study, or fewer
+  designs per `run_study`) or reduced, never cut silently.
+
+### 26.3 Parallel runs
+
+gemini runs a study's trials in `gm.runtime.settings(processes=n)` worker processes with the same
+result. The runtime sets `n`; an agent does not. One study at a time per request is the norm;
+several large studies at once compete for the same processes and each takes longer.
+
+### 26.4 Worked example (invented numbers)
+
+Request: "Compare the three families, optimise the best and tell me the risk." Seconds per daily
+run: 0.2.
+- Size and compare: `run_study` run, 3 designs, 3 runs, 1 s.
+- Optimise the best two: 4 variables, doublets 1 to 2, 60 evaluations: 2 × 120 = 240 runs, 48 s.
+- Second seed for the winner: 120 runs, 24 s.
+- Sensitivity, 6 declared values: 12 runs, 2.4 s.
+- Monte Carlo, 300 draws: 60 s.
+- Confirmation at the hourly step: 2 runs × 4 s.
+Total about 2.5 min of simulation on one process: well inside the limit. The plan is stated once,
+then the work runs without further questions except the range approval.
