@@ -77,3 +77,11 @@ The same pattern in the next run (c2b815a8): the economist read the case or the 
 ## Fix
 
 - 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:11 UTC, QA-AI-analysis-I, backend 1.1.120: fresh project `QA-TEST QA-AI-analysis-I 14`, the same costing
+  request, run 676a19e1-6534-4a06-8920-582a1df475d9. Economist: 3 LLM calls (read_knowledge + read_case + estimate_costs;
+  update_state; finish), no re-read of its own output (was 7 calls with 5 re-reads). Whole run 1 min 12 s, 0.0043 USD
+  (was 75 s, 0.0055 USD). Numbers unchanged (LCTS 45.102 EUR/MWh). Verified.
+  Log: `../evidence/QA-159/run-676a19e1-retest-log.json`.
