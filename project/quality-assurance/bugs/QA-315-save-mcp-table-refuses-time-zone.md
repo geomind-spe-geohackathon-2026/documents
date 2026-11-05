@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 19:00 UTC |
 | Versions | geomind 0.4.131 |
 | Where | api.geomind.team; project QA-TEST QA-AI-case-I 11 (ed373904-e143-412b-b1b5-f4a21fe6f48b); run f4018b98-e445-4c8f-a3f5-4c6eea269d10; case_lead 19:00:17 and 19:00:32 UTC |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -47,7 +47,7 @@ geomind `tools/mcp.py` (`save_mcp_table`): compare zones by their offset or IANA
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 19:13 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
 
 (Who, when, result.)
