@@ -461,7 +461,7 @@ CO2-equivalent mass per step, so `over: sum` is the run's mass.
 | `over` | Judges | Use for |
 |---|---|---|
 | `each` | every counted step | a cap or band per step (flow range, brine cooling, temperature) |
-| `sum` | the sum | a total (CO2 of the year, energy bought) |
+| `sum` | the sum of the step values | a total of a per-step amount (CO2 mass of the year); a power's `sum` adds step values, not an energy: an energy cap is `over: mean` (§17.2) |
 | `mean` | the mean | an average limit |
 | `max`, `min` | the extreme | a peak as one figure |
 | `duration` | total time of the steps where `when` holds; bounds are durations | days or hours of operation |
@@ -507,6 +507,7 @@ Placeholders A, B, X, N, E, M come from the brief.
 | "The heat demand is met" | `on: heating_supply, quantity: unmet_share, max: <tolerance>` |
 | "Supply at T °C, fixed" | case value `demand.*.supply_temperature`; a temperature requirement, if written, is `when: running` |
 | "Annual emissions below M t" | `on: plant, quantity: co2, over: sum, max: M, unit: t` |
+| "Electricity bought at most E per year" (one-year case) | `on: plant, quantity: electricity_bought, over: mean, max: E / period` as a power (§17.2) |
 
 A limit on one source's availability (a doublet's days) is that source's, never the system's:
 the system meets the demand on every day.
