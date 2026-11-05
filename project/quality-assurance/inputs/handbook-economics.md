@@ -2273,6 +2273,72 @@ does not draw screening curves. Use them to set sensible search ranges and to ex
 
 ---
 
+## 22. Heat pumps against boilers: price ratio, COP and CO2
+
+A geothermal plant often lifts its heat with an electric heat pump, or tops it up with a gas or
+electric boiler. Which is cheaper and cleaner depends on three ratios: electricity to gas price,
+the heat pump's COP, and the grid's CO2 factor to that of gas.
+
+### 22.1 COP from the temperature lift
+
+The ideal (Carnot) heating COP is `COP_C = T_sink / (T_sink - T_source)`, temperatures in K.
+Real large heat pumps reach roughly half of it or somewhat more (a Carnot efficiency of about
+0.4 to 0.6 is common in studies of large district heating heat pumps, e.g. David et al. 2017).
+Example (invented): sink 80 °C (353 K), source 40 °C: `COP_C = 353 / 40 = 8.8`; at 0.5,
+`COP = 4.4`. Sink 70 °C: `343 / 30 = 11.4`, `COP = 5.7`, 30 % more heat per kWh of electricity.
+
+Lesson: the network supply temperature is an economic variable. Lower supply temperatures, the
+idea of fourth-generation district heating (Lund et al. 2014), raise the COP, cut electricity
+and CO2, and may let a shallower doublet do without a heat pump (§20.1).
+
+### 22.2 Running-cost break-even
+
+Per MWh of heat, a heat pump costs `p_el / COP + v_hp`, a gas boiler `p_gas / eta + v_b`
+(`p_gas` per MWh of the lower heating value, §19.5). The heat pump runs cheaper when
+
+`COP > p_el / (p_gas / eta + v_b - v_hp)`.
+
+Invented example: electricity 100, gas 40 EUR/MWh, `eta` 0.9, variable O&M 1.7 and 1.0 EUR/MWh:
+break-even COP `100 / (44.4 + 1.0 - 1.7) = 2.29`. A COP of 4.4 runs at 24.4 EUR/MWh against the
+boiler's 45.4. With electricity at 200 EUR/MWh the break-even COP doubles to 4.6, and the heat
+pump of COP 4.4 loses on running cost alone.
+
+### 22.3 CO2 break-even
+
+The heat pump emits less than a gas boiler when `EF_el / COP < EF_gas / eta`, i.e.
+
+`COP > EF_el x eta / EF_gas`.
+
+With `EF_gas` 0.202 t/MWh (IPCC 2006 default, §9.7), `eta` 0.9 and a grid of 0.300 t/MWh, the
+break-even COP is 1.34; with a grid of 0.200 t/MWh it is 0.89, so any working heat pump wins.
+An electric boiler (COP about 1) beats a gas boiler on CO2 only on grids below about
+0.22 t/MWh. These ratios make the grid factor (§19.2) decisive for electric designs.
+
+### 22.4 Including capital: the full comparison
+
+Running cost decides only for units that already exist. For a new unit use the screening curve
+(§21.2). Invented: heat pump capex 0.75 MEUR/MW, fixed O&M 2 000 EUR/MW/yr, so
+`F = 0.75e6 x 0.07095 + 2 000 = 55 213 EUR/MW/yr`, `v = 24.4 EUR/MWh`; boiler `F` 6 257,
+`v` 45.4. Equal cost at `(55 213 - 6 257) / (45.4 - 24.4) = 2 329 h`. A heat pump that would run
+fewer than about 2 300 full-load hours a year costs more than the boiler it replaces; size it on
+the base of the load curve, not on the peak.
+
+### 22.5 Steps and checks
+
+1. Take the COP from gemini's result, not from a rule of thumb; check it against
+   `0.4 to 0.6 x COP_C` for its temperatures. A COP far outside that range means a temperature
+   or a reading is wrong.
+2. Compute the cost and CO2 break-even COPs with the case's prices and factors; say where the
+   design's COP lies.
+3. Check the heat pump's full-load hours against the screening-curve threshold.
+4. Vary the electricity price and the grid factor in the sensitivity (§12.4): electric designs
+   are exposed to both.
+
+In gemini: kinds `heat_pump`, `boiler`, `electric_boiler` (§16.2); prices `energy.electricity`,
+`energy.gas`; grid factor `utilities.electricity.co2_intensity` in the case.
+
+---
+
 ## Appendix A. Symbols and formulas
 
 | Symbol | Meaning | Unit |
@@ -2356,6 +2422,12 @@ handbook.
   mixes, load duration, heat sources; chapters 21 to 24).
 - Stoft, S. (2002), *Power System Economics: Designing Markets for Electricity*, IEEE Press and
   Wiley (screening curves and load duration; chapter 21).
+- David, A., Mathiesen, B. V., Averfalk, H., Werner, S. and Lund, H. (2017), "Heat Roadmap
+  Europe: large-scale electric heat pumps in district heating systems", *Energies* 10(4), 578,
+  https://doi.org/10.3390/en10040578 (section 22.1).
+- Lund, H., Werner, S., Wiltshire, R. et al. (2014), "4th Generation District Heating (4GDH):
+  integrating smart thermal grids into future sustainable energy systems", *Energy* 68, 1-11,
+  https://doi.org/10.1016/j.energy.2014.02.089 (section 22.1).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
