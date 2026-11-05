@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
@@ -58,3 +58,5 @@ loads skills with read_skill, never with a dummy URL.
 
 - 2026-11-05 19:11 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
+
+- 2026-11-05 19:51 UTC: QA-E2E-study-II 2026-11-05 retest in QA-TEST QA-E2E-study-II 1 (geomind 0.4.130 era, deploy 36): uncertainty run asked 1 approval card (set_case), optimisation 1 (set_ranges), comparison 0; none refused
