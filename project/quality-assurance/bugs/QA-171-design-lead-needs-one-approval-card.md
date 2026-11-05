@@ -65,3 +65,5 @@ The setpoints follow from the case alone (100 degC heating supply, 20 degC cooli
 - 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 - 2026-11-05 18:28 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+Retest (QA-E2E-design-I, 2026-11-05 19:15 UTC, backend 1.1.117): better, not fixed. Run 06fd16f0: after the full patch (120 values, 18:56) and size_plant, three one-value patches followed, each its own card and design (`compression_cooler.capacity` 18:57:11, `injection_pump.frequency` 18:57:44, `compression_cooler.flow` 18:58:18), then a first whole-year run failed and a well fix (8 values) at 19:05. 7 patch cards in round 1, 3 here.
