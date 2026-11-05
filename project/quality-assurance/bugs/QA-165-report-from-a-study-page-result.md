@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -64,7 +64,7 @@ Proposal (geomind, hotfix-python): give a project result a reference the readers
 the Results page shows: kpis, checks, capacities, coverage, series). Backend part (hotfix-back):
 serve that method from the results table. Also: an `unknown_name` error for a uuid that
 `list_studies` listed should say how to read it, not "none stored".
-
+- 2026-11-05 17:13 UTC: geomind 0.4.101 (QA-162 af0d5bf) / 0.4.102 (QA-165 c5ed1b1), pushed 2026-11-05; NOT deployed yet: hotfix_deploy.sh fails at backend requirements (kombu 5.7.0 vs redis<6), told the coordinator. QA-165: result tools explain a Study-page result (quote kpis/checks or simulate design/v<N>).
 ## Retest
 
 (Who, when, result.)
