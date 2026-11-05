@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -37,7 +37,7 @@ Fact: `GroupFields` in `frontend/src/shared/forms/schema-fields.tsx` opened ever
 (Hotfix session: cause, commit, version, deployed at.)
 
 hotfix-front-III, frontend 1.1.93 (564972b): one `CollapsibleGroup` for required and optional groups, closed by default; a group with a form error, a gemini problem or a missing value reported by gemini opens and shows a warning mark; the open/closed state is kept per path while the page stays loaded (also across the form's tabs). Deploy 11:30 UTC.
-
+- 2026-11-05 14:11 UTC: frontend 1.1.99 (e9435c4) deployed 14:10 UTC, bundle index-BlepNtQt.js
 ## Retest
 
 (Who, when, result.)
