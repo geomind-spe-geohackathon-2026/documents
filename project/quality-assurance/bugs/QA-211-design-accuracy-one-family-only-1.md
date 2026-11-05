@@ -35,6 +35,10 @@ Timing: build 16:50:58, team 16:52-17:04 (with a deploy restart, QA-176), 7+3 pa
 
 The project lead's question (17:26 UTC) offers "Accept the design with heat_delivered open (recommended)" or "Change the heat_delivered requirement": both drop a hard limit of the challenge, while a second doublet, a larger heat pump share, or removing the invented main (QA-210) were never tried. The lead reports "Three design changes were already spent on it", i.e. it stopped by the handbook's 3-round rule (0.4) on a cause it had itself introduced.
 
+## After the user's answer (17:26-17:39 UTC)
+
+The tester answered the question in text: "Do not change heat_delivered: it is a hard limit ... The 5 km heating main is not in the case or the challenge; where does it come from? Fix the design so it meets every limit (you may use 1 to 3 doublets) ...". The design lead then removed the main and the 3 K margins in ONE patch (`design/fixed3`, 17:28:23) and the full-year result `result/e7301855ea3b38df` is feasible (0 reasons): LCTS 40.62 EUR/MWh (reference 40.34), LCOH 39.41, LCOC 46.34, CAPEX 22.55 MEUR, CO2 14.81 kt/yr, 43 % of heat from the gas boiler, still 1 doublet at 250 m3/h, no optimize. The fix took the agents 3 min once a person named the cause. The project lead then added review, economics and a 200-draw uncertainty sample nobody asked for (17:31-17:39, 8 min). Run total: 48.5 min, 206 steps, 327 tool calls (43 refused), 6.0 M input tokens, 0.18 USD.
+
 ## Cause
 
 Facts: `prompts/design/lead.md` steps 2-5 say "Choose the family ... build it ONCE" and go straight from simulate to fix; nothing in the prompt makes the lead size the doublet count, optimize, or compare a second family before it finishes; the handbook's "compare at least two families" (0.2) and step 6 "Optimize" (0.4) are not in the prompt's numbered steps. The project lead prompt lets a question offer a requirement change for a case limit.
