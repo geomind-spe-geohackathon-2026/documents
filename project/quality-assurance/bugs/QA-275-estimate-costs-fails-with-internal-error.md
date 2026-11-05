@@ -51,3 +51,7 @@ economics is a file name and a result from run_study.
 
 - 2026-11-05 19:00 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+## Retest
+
+QA-E2E-study-I, 2026-11-05 19:11 UTC, project QA-TEST QA-E2E-study-I 4 (4597d7cb-943b-4480-8447-6a41825bca4e), run 5929c329-332d-4128-bfa2-983c9b57814e (chip "Optimise the design"): explainer estimate_costs at 19:09:03 succeeds; the answer has capex, opex, annualised cost, LCTS, LCOH/LCOC. Verified.
