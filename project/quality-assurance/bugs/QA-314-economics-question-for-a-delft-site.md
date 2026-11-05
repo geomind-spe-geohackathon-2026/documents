@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -73,3 +73,5 @@ on a wrong basis. Run 7 min 20 s, 0.036 USD.
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 20:55 UTC (21:55 CET), QA-AI-case-I, run ef324318-df2e-4f3b-8abf-d76060d259e2 (project QA-TEST QA-AI-case-I 17, 96837972-54a4-4f01-a795-5a72d574ebd6; Delft + weather; geomind 0.4.132): the economics question now starts 'Where the values come from: 39 from knowledge/hackathon-2026-assumptions.md; 10 from catalogue rows, general'; `analysis_period = 25 yr | knowledge/hackathon-2026-assumptions.md`; discount rate 0.05 from the document. Verified. Evidence `../evidence/QA-314/run-ef324318.json`.
+- 2026-11-05 20:48 UTC: QA-AI-case-I, geomind 0.4.132
