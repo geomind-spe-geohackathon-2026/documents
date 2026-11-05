@@ -35,7 +35,11 @@ Guess: the agent reads the version from a gemini or problem-state counter instea
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-python-III, 2026-11-05, geomind 0.4.83 (tag v0.4.83), backend 1.1.88 (deploy 11:30 UTC).
+Cause: `set_case` returns `version`, the problem state's change count, and the agent quoted it
+as the case version. Fix: the answer adds `version_is` (what it counts, never to quote as the case
+version); the case lead, project lead and explainer prompts name no version number to the user
+(the app shows its own).
 
 ## Retest
 

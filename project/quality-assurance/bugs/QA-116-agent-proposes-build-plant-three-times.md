@@ -37,7 +37,11 @@ The agent asked for a plant build three times, ignored both denial reasons, and 
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-python-III, 2026-11-05, geomind 0.4.82/0.4.83, backend 1.1.88 (deploy 11:30 UTC).
+Fix: a tool the user denied is not asked again in the same request by any agent of the run tree
+(`engine/session.py::earlier_denial`): the call is denied with the user's reason and "answer in
+text with what you have". The project lead's prompt: an explanation request is answered in text
+and builds, patches and simulates nothing.
 
 ## Retest
 

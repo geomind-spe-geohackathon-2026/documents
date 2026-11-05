@@ -37,7 +37,12 @@ Figures rounded for a reader (MEUR to 2-3 decimals, EUR/MWh to 1-2). One energy 
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-python-III, 2026-11-05, geomind 0.4.83 (tag v0.4.83), backend 1.1.88 (deploy 11:30 UTC).
+Fix: `compute_kpis` and `estimate_costs` give every figure to five significant digits
+(`assessment.py::rounded`); the economist prompt says to state the basis once: currency and price
+year (EUR 2015 for catalogue rows), each price's source as `about.sources` names it, and that
+gemini scales annual figures to a 365.25-day year (`gemini.units.SECONDS_PER_YEAR`), hence the
+0.07 % gap to a 365-day sum of the demand file.
 
 ## Retest
 

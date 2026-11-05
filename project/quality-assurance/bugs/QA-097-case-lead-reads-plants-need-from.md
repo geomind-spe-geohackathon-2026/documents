@@ -34,4 +34,11 @@ Guess: set_case's answer carries `plants_need` inline, but the stored result ref
 
 ## Fix
 
+hotfix-python-III, 2026-11-05, geomind 0.4.83 (tag v0.4.83), backend 1.1.88 (deploy 11:30 UTC).
+Cause: a long `set_case` answer is stored whole and the model reads `reference` + an outline;
+the agent read `plants_need` (shown inline) from the stored artifact under a wrong reference, and
+`stored_form` overwrote the answer's own `note` with "read_stored(reference)". Fix (geomind
+c. "QA-097"): `read_stored` says, on a missing top-level key, that a key shown beside a
+`reference` is in the answer itself; `stored_form` keeps the answer's note as `answer_note`.
+
 ## Retest
