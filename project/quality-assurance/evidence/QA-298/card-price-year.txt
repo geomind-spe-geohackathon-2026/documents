@@ -1,0 +1,41 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA-TEST QA-E2E-economics-I 8
+Overview
+Library
+Runs and logs
+Chats
+economics please
+needs your input · 19:34
+AD
+Administrator
+admin
+Projects
+QA-TEST QA-E2E-economics-I 8
+Chat
+1 run active
+Design
+Chat
+economics please
+19:34
+Copy
+
+Waiting for your answer below
+
+Steps so far (19 steps)
+You answered: change some
+You answered: Gas price 45 EUR/MWh, from our 2025 supply offer (2025 prices). Heat revenue 70 EUR/MWh, our tariff (2015 prices).
+The assistant asks
+
+The case's economics are at 2015 prices (currency EUR, price_year 2015), and I never convert a price year myself. Your gas price of 45 EUR/MWh is at 2025 prices. How should I record it? (a) give me the 2015-price value of that offer, or (b) record 45 EUR/MWh as it stands, noting in the case that it is a 2025 price and the gas cost is therefore not on the same price year as the rest.
+
+(b) record 45 EUR/MWh as it stands, with the 2025 price year noted
+(a) I will give the 2015-price value
+Or type your own answer
+Answer
+Auto-approve
