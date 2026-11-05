@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 19:18 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130), Knowledge data-economics.csv and hackathon-2026-assumptions.md as of 18:00 UTC |
 | Where | project "QA-TEST QA-E2E-economics-I 11"; run 6bb98a04-1d74-4207-a96c-89aa9058909e; case lead steps 8-9 (`set_case`) |
-| Fixer | hotfix-python-lead-II |
+| Fixer | hotfix-python-lead-II (m8) |
 
 ## Steps
 
