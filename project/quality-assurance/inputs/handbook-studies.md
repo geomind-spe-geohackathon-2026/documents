@@ -1083,3 +1083,45 @@ CRF = 0.06·1.06²⁵/(1.06²⁵ − 1) = 0.0782; LC = (0.0782·30 + 1.2)/0.06 =
 At r = 3 %: CRF = 0.0574; LC = 48.7 EUR/MWh. A rival with I = 18 MEUR, C_year = 2.0 MEUR/y gives
 56.8 at 6 % and 50.6 at 3 %: the ranking flips between the two rates, a switching value (§15) to
 report.
+
+---
+
+## 21. Time step and computing cost
+
+### 21.1 What the time step does to a study
+
+gemini simulates the case's profiles at their own time step (daily, hourly or other;
+`gm.profiles.from_csv`, `from_values`). A study multiplies the cost of one run by its number of
+runs (§0.4), so the step decides what a study can afford: an hourly year is 8,760 steps, a daily
+year 365, about 24 times fewer.
+
+What a coarse step loses (Frederiksen & Werner 2013, ch 3 and 5, on heat load variation):
+- **Peaks**: a daily mean is below the hour's peak; a design sized and checked on daily data can
+  miss the hourly peak (often 1.3 to 2 times the daily mean in winter for space heating).
+- **Short events**: a morning peak, a few hours of cold demand, a short stop.
+- **Storage and control**: effects within the day vanish.
+What it keeps well: annual energy, annual cost, seasonal balance, reservoir trends over years.
+
+### 21.2 Screen coarse, confirm fine
+
+1. Run wide studies (family comparison, optimisation, Monte Carlo) on the coarse case when the
+   decision rests on annual energy and cost.
+2. Confirm the chosen design, and its nearest rival, with one run on the fine case.
+3. When the confirmation breaks a requirement the coarse run met, the peak was the binding
+   cause: add margin (§16) and confirm again; report both runs.
+Only the case owner provides the fine case: never resample profiles yourself to invent a finer
+step; a missing finer profile is a question for the user.
+
+### 21.3 Cost of a study, estimated before it runs
+
+`time ≈ runs × seconds per run / processes`. Measure seconds per run from one `simulate` of the
+same design and case (its duration is in the run record). Keep a study inside the tool's time
+limit (15 minutes); split it or lower the budget otherwise, and say so.
+
+### 21.4 Worked example (invented numbers)
+
+Daily case: 0.15 s per run; hourly: 3.5 s. A 60-evaluation search over 3 doublet counts (180
+runs): 27 s daily, 10.5 min hourly on one process. Plan: search on the daily case; confirm the
+best and the runner-up hourly (2 runs, 7 s). The hourly run of the best shows a peak shortfall of
+0.4 MW on two winter hours: coverage 98.9 % against 99 %. The runner-up, with a larger peak unit,
+passes: report both and recommend the runner-up, or the best with 0.5 MW more peak capacity.
