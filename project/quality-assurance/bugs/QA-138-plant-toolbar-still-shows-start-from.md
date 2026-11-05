@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -34,7 +34,7 @@ The toolbar button and its replace-plant dialog were still wired in `domains/des
 ## Fix
 
 hotfix-front-IV: toolbar button, its dialog and state removed (`page.tsx`). The empty-plant card ("This project has no plant yet") still offers a template start; remove it too if the user wants. Frontend 1.1.108, commit 97dd942, live in 1.1.109 (bundle index-DwO4tlF4.js).
-
+- 2026-11-05 14:58 UTC: frontend 1.1.108, commit 97dd942, deployed (1.1.109)
 ## Retest
 
 hotfix-front-IV, live: 0 "Start from template" buttons on the Plant page of geo mind testing.
