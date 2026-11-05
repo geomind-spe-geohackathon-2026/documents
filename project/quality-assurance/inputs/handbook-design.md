@@ -1098,7 +1098,10 @@ them where the drive water is too cool for absorption.
 
 ## 7.4 Compression chillers
 
-An electric vapour-compression chiller is a heat pump in cooling mode:
+An electric vapour-compression chiller is a heat pump in cooling mode. In gemini it is a
+`HeatPump` in cooling mode, as `compression_chiller` of the reference plant
+`HeatingHeatPumpCoolingPlant`; `list_modules` lists it under heating (its category), not
+cooling. Its COP:
 
 COP_cooling = η_C · T_evap / (T_cond − T_evap)
 
