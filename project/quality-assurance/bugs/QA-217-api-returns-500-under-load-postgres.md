@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 17:29 UTC |
 | Versions | backend 1.1.104 (geomind 0.4.100) |
 | Where | api.geomind.team; seen by the QA-AI-case-I driver on `GET /assistant/runs/dd6b4700-3db4-43a7-8c48-4bf018600e1c` (project QA-TEST QA-AI-case-I 4) |
-| Fixer | |
+| Fixer | hotfix-back-VI |
 
 ## Steps
 
