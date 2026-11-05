@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-report-I |
@@ -59,3 +59,4 @@ Proposed: round in the study results the agent reads (the same `rounded`), and s
 line. Reopened.
 
 QA-E2E-study-I, 2026-11-05 18:53 UTC: still 15 digits in study answers: sensitivity run 82efd097 (45.79283566620754 ...), uncertainty run ce4be675 (53.917317324077345 ...). The optimisation answer of run 4885075b is rounded (49.34), so the rounding now covers optimize but not sensitivity / sample_uncertainty.
+- 2026-11-05 19:51 UTC: QA-E2E-study-II 2026-11-05 retest in QA-TEST QA-E2E-study-II 1 (geomind 0.4.130 era, deploy 36): figures 2 decimals or rounded; 365.25-day basis stated ('can differ by about 0.07 %')
