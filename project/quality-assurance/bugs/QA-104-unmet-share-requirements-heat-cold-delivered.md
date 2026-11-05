@@ -39,4 +39,9 @@ Guess: gemini's check finds no `unmet_share` series for the plant's heating_supp
 ## Fix
 
 - 2026-11-05 11:01 UTC: gemini 0.6.13 (unmet_share with failed steps: passed None, reason names them) + geomind 0.4.81, backend 1.1.86, deployed 11:00 UTC by hotfix-python-III
+hotfix-back-II, 2026-11-05 11:05 UTC, backend part: backend 1.1.87 (949850f) adds the run's
+largest failure group to a constraint with no value ("missing: 122 steps of the run failed; first
+failure: cooling_return_pipe, 2027-05-18: <gemini's words>; limit 0.01"), on every result read,
+so page studies show it too. Deploy 11:30 UTC.
+
 ## Retest
