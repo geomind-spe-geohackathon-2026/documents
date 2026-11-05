@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
@@ -65,6 +65,7 @@ write (explainer once).
 - 2026-11-05 18:29 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
 
+- 2026-11-05 18:49 UTC: QA-E2E-study-I: geothermal heat 43626 MWh matches Results; run b709a671
 ## Retest
 
 QA-E2E-study-I, 2026-11-05 18:49 UTC, project QA-TEST QA-E2E-study-I 3, run b709a671-9bad-4a4d-9f2d-3913f11e977f (same comparison request): passes. Geothermal heat v2 = 43 626.0 MWh (share 0.39067), equal to the Results page; v1 = 91 399.0 MWh (share 0.81849, no longer heat delivered minus boiler). Run 67 s, 18 calls, 0 approval cards, project plant unchanged (versions 1, 2 only).
