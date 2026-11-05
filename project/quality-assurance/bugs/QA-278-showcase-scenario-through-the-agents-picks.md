@@ -9,7 +9,7 @@
 | Found | 2026-11-05 18:25 UTC |
 | Versions | backend 1.1.105 -> 1.1.112 during the run (geomind 0.4.10x -> 0.4.119, gemini 0.6.17 -> 0.6.19), API only |
 | Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 4` (71a75f1c-d83f-41b1-b28e-539cb0340bdf); chat 0893ab3d-3bb9-4fe8-9a8b-0b72378b5623; run f548029f-572c-48cc-8773-de9d1f05bac3 (17:25:32-18:22:21 UTC) |
-| Fixer | hotfix-python-lead-II |
+| Fixer | m7 |
 
 ## Steps
 
@@ -131,3 +131,4 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
   `nested_stopped`; v4 re-optimised on a "fix1" design to 32.835, v5 to 27.608, v6 to 28.41, none of them used in the
   answer). 40 min 48 s, 0.117 USD, 6.06 M input tokens; the answer came from the study record.
   Log: `../evidence/QA-278/run-e766608e-retest-log.json`.
+- 2026-11-05 20:04 UTC: m7 21:xx Trondheim: reopen explained by gemini 0.6.29 (e00d49d6). geomind's run_study hands gemini each design as plant.to_dict(structure=True); on gemini 0.6.26 that full form pinned the doublets' inherited depth, so the search could not move it. Offline, HeatingFullCoolingPlant, size + minimize lcts 20 seed 0: on 0.6.26 page dict 33.3 EUR/MWh vs full-form reload 52.2 (the 32.3 vs 52.8 of the retest); on 0.6.33 both 33.3. No geomind change. Retest after the deploy carrying gemini >= 0.6.29.
