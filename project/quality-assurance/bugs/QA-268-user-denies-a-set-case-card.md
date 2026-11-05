@@ -78,3 +78,14 @@ every other value exactly as the case already has it." Question: `../evidence/QA
 ## Fix
 
 - 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:12 UTC, QA-AI-analysis-I, backend 1.1.120 (geomind 0.4.130+): project `QA-TEST QA-AI-analysis-I 6`,
+  same chat text, run edaad491-cb24-4145-8a7a-a1028aafe79d. The `set_case` card now shows the value ("Economics values:
+  analysis_period: 30 yr"); denied with the same reason. No `ask_economics` followed; the project lead sent the what-if to
+  the analysis lead, the economist answered "no run-level analysis-period override exists", and the user got: case
+  untouched, the 25-year figures, and a one-line offer ("if you want the 30-year NPV, the case's analysis_period has to
+  be set to 30 yr ... yours to approve"). 2 min 8 s, 0.0073 USD. Verified (parts 1-3). Part 4 (a what-if re-costing on a
+  copy of the case) is not there, so the 30-year NPV itself is still not available without a case change.
+  Log: `../evidence/QA-268/run-edaad491-retest-log.json`.
