@@ -118,3 +118,11 @@ so, and the lead should not re-delegate the same refused call.
 
 - 2026-11-05 17:02 UTC: geomind 0.4.99 (163c82b, tag v0.4.99), pushed 2026-11-05; NOT deployed yet (deploy freeze during the live run): the backend hotfix-mode deploy picks it up. QA-152: design/<project plant name> or design/v<N> in every design tool; QA-158: case lead prompt asks time_zone as an assumption.
 - 2026-11-05 17:07 UTC: Deployed: geomind 0.4.100 in backend 1.1.104 hotfix image, 2026-11-05.
+
+- 2026-11-05 17:22 UTC, QA-AI-analysis-I, backend 1.1.105: fresh project `QA-TEST QA-AI-analysis-I 3`
+  (cdb636b7-f6ae-4395-b8c0-ad19bc5cacd4), plant version 1 from the API, run 7a70bf41-cdbf-4448-a405-46869b534cd0.
+  The lead used `design/HackathonPlant`; the economist ran `sensitivity` (0.9 s) and `sample_uncertainty`
+  (24.8 s) at the first try. Rows equal the page study (electricity 11.84, discount rate 10.85, carbon
+  3.40 EUR/MWh) and p5/p50/p95 37.97/46.10/54.31 EUR/MWh equal the page `sample` study with seed 42.
+  Whole run 1 min 56 s, 0.0066 USD, 0 refused study calls. Verified. Log:
+  `../evidence/QA-152/run-7a70bf41-retest-log.json`.
