@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
 | Found | 2026-11-05 20:17 UTC |
 | Versions | backend 1.1.125+ (geomind 0.4.133+, deploy 55 went live during the run), frontend live |
 | Where | https://geomind.team/projects/c60d19cd-b8c1-4c29-8e64-fd168a01ae76/assistant/chat; project QA-TEST QA-E2E-report-I 5; run 4ffa1142-8fb5-42f4-ad58-622c6bd04520 (20:07:58-20:14:27 UTC) |
-| Fixer | |
+| Fixer | m3 |
 
 ## Steps
 
