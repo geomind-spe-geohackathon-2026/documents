@@ -30,6 +30,7 @@ Constraints: "Heating unmet share: fail, missing: no value; limit 0.01" and "Coo
 - ![Days covered](../evidence/QA-104/2.webp)
 - ![Constraints](../evidence/QA-104/3.webp)
 - Postgres read-only: case_versions of project cf0c3d9c, number 3 (10 requirements).
+- Comparison: on 2026-11-02 (project 'Live test d', run fc41f258) the same kind of rule (`heat_delivered` / `cold_delivered`, quantity unmet_share, max 0.01, no over/when) was evaluated and check_results returned feasible: true (lcoh 39.1, lcoc 46.0 EUR/MWh). So unmet_share worked then: a regression since, or it fails only on a sized-study result.
 
 ## Cause
 
