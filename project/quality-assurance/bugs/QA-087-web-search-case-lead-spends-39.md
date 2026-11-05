@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-3 |
 | Found | 2026-11-05 07:23 UTC |
 | Versions | backend 1.1.75-1.1.76 (geomind 0.4.71-0.4.72), frontend 1.1.71 |
 | Where | project QA2 functional-qa-3 studies (932b318c-f285-4827-aefe-c8fa3327735b), chat 510ab94f-c4f7-4019-9f75-cb40229b374e, run 753645c0, case_lead steps after the 'chiller O&M' question |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
