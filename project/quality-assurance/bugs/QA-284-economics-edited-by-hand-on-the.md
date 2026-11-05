@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -66,3 +66,11 @@ hand.
 
 - 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+- 2026-11-05 18:57 UTC, QA-E2E-economics-I: main part PASSES on backend 1.1.118. Project 6, new
+  chat "Which discount rate does the case use now ...?" -> "0.07 ... the case you saved by hand"
+  and it flags that the stored source note is stale. `economics.json` is gone from the case files
+  after the next save (v7). Still failing, filed separately as QA-305 (minor): a hand save
+  (v7, discount 0.065, 18:57 UTC) keeps `about.sources.discount_rate` = "user: 6 % in the answer
+  to the economics question".
+- 2026-11-05 18:57 UTC: QA-E2E-economics-I 18:57 UTC backend 1.1.118: agents read the hand-saved value; stale source split to QA-305
