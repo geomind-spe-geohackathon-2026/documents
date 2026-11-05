@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend,backend |
 | Reporter | Fatemeh, Claude (write-up) |
 | Found | 2026-11-05 11:23 UTC |
 | Versions | frontend as deployed 2026-11-05 ~12:50 UTC |
 | Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/report (project geo mind testing) |
-| Fixer | |
+| Fixer | hotfix-front-III |
 
 ## Steps
 
