@@ -7,27 +7,29 @@
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 22:06 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 23:05 Trondheim |
+| Where | geomind.team chat, busy list during a run |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Run a request; watch an agent finish while others still work.
 
 ## Expected
 
+When an agent finishes, its line stays in the list; the spinner is replaced by a green filled circle with a white check, the activity text becomes 'done', and its steps, tokens, cost and time freeze at their final values. Same for every agent; the Total line counts them. (See also QA-341: the whole list stays after the run ends.)
+
 ## Actual
+
+A finished agent disappears from the busy list (screenshot shows only the agents still working).
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-363/1.png)
-- Run JSON: `../evidence/QA-363/run-<id>.json`
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Sahand's request (top).
 
 ## Fix
 
