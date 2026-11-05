@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -58,6 +58,7 @@ after a change-denial, propose again with the change.
 
 ## Fix
 
+- 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
 
 ## Also seen: build_plant (QA-E2E-design-I, 2026-11-05 17:47 UTC, backend 1.1.108)
