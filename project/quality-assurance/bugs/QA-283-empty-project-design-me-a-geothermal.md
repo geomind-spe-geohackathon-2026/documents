@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -44,3 +44,5 @@ GeoMind is general, the competition is one example. With nothing in the project,
 ## Fix
 
 ## Retest
+- 2026-11-05 19:00 UTC (20:00 CET), QA-AI-case-I, project QA-TEST QA-AI-case-I 10 (40d0f25a-2b9e-4785-b41a-5f3ca414adf4), run 55a9cd7b-18ce-43a9-b260-a4982eb07a1c (geomind 0.4.114+): "design me a geothermal plant" on an empty project. The project lead calls `list_files`, `list_studies`, `list_plants` and asks the user in 10 s for the site, the demand and the services, offering the hackathon example case as an option; no brief from a non-existent case.json. The reported flow is fixed. Choosing the example case leads to a new problem, filed as QA-309 (demand files not available, peaks as constant demand). Verified for this bug.
+- 2026-11-05 18:58 UTC: QA-AI-case-I run 55a9cd7b: asks in 10 s; follow-up QA-309
