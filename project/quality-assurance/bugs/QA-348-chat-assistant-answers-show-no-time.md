@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 20:16 UTC |
 | Versions | live 2026-11-05 21:16 Trondheim |
 | Where | geomind.team chat, assistant messages |
-| Fixer | |
+| Fixer | front-m2 |
 
 ## Steps
 
