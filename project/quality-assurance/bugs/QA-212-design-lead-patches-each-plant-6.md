@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Status | open |
-| Severity | major |
+| Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 17:29 UTC |
