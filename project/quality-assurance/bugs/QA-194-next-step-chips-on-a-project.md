@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | verified |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-E2E-economics-I |
@@ -61,3 +61,8 @@ case's plants need), put an economics step first in the "case" stage ("Set the e
   `economics` item, so "unknown is not unset" and no chip. Fix: backend adds an `economics` item
   to the project progress (unset / ready from the latest case version), or `economics_unset`
   reads the project's latest case when the chat has no state.
+- 2026-11-05 19:29 UTC, QA-E2E-economics-I: PASSES on backend 1.1.122. New projects "QA-TEST
+  QA-E2E-economics-I 12" and "13" (case complete, no economics): the empty chat shows "Set the
+  economics" first, then "Design a plant", "Check the case and its sources"
+  (`../evidence/QA-194/retest-2.png`).
+- 2026-11-05 19:28 UTC: QA-E2E-economics-I 19:29 UTC backend 1.1.122: empty chat shows 'Set the economics' first
