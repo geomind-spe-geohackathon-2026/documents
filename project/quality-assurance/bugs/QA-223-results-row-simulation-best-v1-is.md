@@ -6,7 +6,7 @@
 | Severity | major |
 | Area | backend |
 | Reporter | QA-E2E-design-I |
-| Found | 2026-11-05 17:40 UTC |
+| Found | 2026-11-05 17:33 UTC |
 | Versions | frontend 1.1.113, backend 1.1.104 when the run ended (1.1.107 at 17:40), geomind 0.4.97, gemini 0.6.16 |
 | Where | project QA-TEST QA-E2E-design-I 1 (f1704a61-f1b8-4b63-84d3-20bd30beaed7); run 76d19df6-485f-46ee-a182-6b03ed70ab33 (ended 17:31:10 UTC); result a6a3aec3-0ac8-48a0-b0f1-c5bc00d1b208 'simulation best_v1' |
 | Fixer | hotfix-back-lead |
