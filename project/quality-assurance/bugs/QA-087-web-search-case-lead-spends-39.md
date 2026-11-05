@@ -35,8 +35,8 @@ Guess: the web-search skill has no search budget or stop rule, and the 8-term li
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 07:31 UTC: geomind 0.4.73 (web_search: six searches per agent and run, searches_left, then a labelled assumption or a gap), backend 1.1.78 (1ed06d8), deployed 07:30 UTC
+Cause: nothing bounded the searches; the skill's 'stop after three' was advice only. Fix: `web_search` counts the searches of each agent in a run, says `searches_left` in every result and refuses the seventh with the advice to propose a labelled engineering assumption with a reason, or name the gap; the `web-search` skill says three queries per value at most. geomind 0.4.73 (tag v0.4.73), backend 1.1.78 (1ed06d8), deployed 2026-11-05 07:30 UTC by hotfix-python-II.
+
 ## Retest
 
 (Who, when, result.)

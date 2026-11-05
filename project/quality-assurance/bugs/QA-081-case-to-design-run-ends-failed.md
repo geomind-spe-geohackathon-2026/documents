@@ -35,6 +35,8 @@ A stored plant and results, or a plain statement of what blocked it; a run cut b
 - Run JSON (gzip, 36 MB unpacked): `../evidence/QA-081/run-bd7aa40e.json.gz`; live view at failure: `../evidence/QA-081/live-3757-steps.png`
 
 
+- 2026-11-05 07:30 UTC (hotfix-python-II, geomind side of the reopen): `Run.resume` with the id of a request the run already settled now raises `gd.errors.AlreadyAnsweredError`, a subclass of `RequestError` (unknown ids stay a plain `RequestError`), so the backend can treat a second answer as a no-op. geomind 0.4.73 (7057024), backend 1.1.78. Still needed in the backend (hotfix-back, asked through the coordinator): catch it as a no-op instead of failing the run, and find who answers one request twice (auto-approve beside the page, or a retry).
+
 ## Retest / second occurrence (functional-qa-3, 2026-11-05 07:23 UTC, backend 1.1.76, geomind 0.4.72)
 
 Run 753645c0 (same chat, started 06:06:59 UTC, 'simpler plant' request) ended **failed** at 07:22:31 UTC after 212 steps, 7.77M tokens in, while energy_systems_engineer (step 6, parent design_lead) was working, with the exact chat text:
