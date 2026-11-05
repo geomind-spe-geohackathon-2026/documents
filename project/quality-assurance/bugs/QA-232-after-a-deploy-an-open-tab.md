@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-study-I |
@@ -43,4 +43,8 @@ failure reload the page once (guard with a sessionStorage flag to avoid a loop).
 
 ## Fix
 
+frontend 1.1.120 (commit 6b99d31, bundle index-D68-vYXf.js): `route-error.tsx` reloads the page once when the error is a failed dynamic import (stale build), and `main.tsx` does the same on `vite:preloadError`; a sessionStorage stamp allows one reload per 30 s, so no loop.
+- 2026-11-05 17:44 UTC: frontend 1.1.120, commit 6b99d31
 ## Retest
+
+Not run (no tests now).
