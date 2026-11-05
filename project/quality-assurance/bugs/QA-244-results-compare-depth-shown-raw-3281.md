@@ -34,7 +34,7 @@ Depth rounded (3,282 m); Doublets 2 for the superstructure result; readable poin
 ## Fix
 
 hotfix-back-lead, backend 1.1.111: `design_facts` counts the `Doublet` modules when the plant has no class size (`counted_doublets`).
-
+- 2026-11-05 18:05 UTC: backend 1.1.111
 ## Retest
 
 Recipe: Compare a superstructure result with d0, d1: doublets shows 2.
