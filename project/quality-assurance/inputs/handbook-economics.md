@@ -2202,6 +2202,77 @@ never as a hidden factor.
 
 ---
 
+## 21. Matching technology to the load: base, mid and peak
+
+A plant usually combines a capital-heavy, cheap-to-run base unit (geothermal, heat pump) with a
+cheap-to-build, dear-to-run peak unit (boiler). How much of each is an economic question with a
+classic answer: the load duration curve and screening curves (Stoft 2002, chapter on screening
+curves; Frederiksen and Werner 2013, on district heating plant mixes).
+
+### 21.1 The load duration curve
+
+Sort the demand of every hour of the year from highest to lowest and plot it against the hours:
+the load duration curve (LDC). The area under it is the yearly energy; the height at `h` hours is
+the load exceeded for `h` hours. A unit of capacity `K` placed at the bottom of the curve
+delivers `integral of min(L(h), K) dh`: the first MW runs all year, the last MW of the peak runs a
+few hours. Heat and cold have separate curves; a plant that serves both needs both.
+
+The time step matters: daily means flatten the peaks of hourly data, so a unit sized on daily
+data may fall short at the hourly peak. Use the step of the case's profiles and say which.
+
+### 21.2 Screening curves
+
+The yearly cost of 1 MW of a technology that runs `h` hours is `c(h) = F + v h`:
+
+- `F` (EUR/MW/yr): annualised capex `I x CRF` plus fixed O&M;
+- `v` (EUR/MWh): running cost: fuel / efficiency, or electricity / COP, plus variable O&M.
+
+Two technologies cost the same at `h* = (F1 - F2) / (v2 - v1)` hours. Below `h*` the cheap-to-
+build unit wins, above it the cheap-to-run one.
+
+Worked example (invented; 5 %, 25 yr, CRF 0.07095):
+
+| Unit | Capex | Fixed O&M | F | v |
+|---|---|---|---|---|
+| Geothermal with heat pump | 1.5 MEUR/MW | 30 000 EUR/MW/yr | 136 425 EUR/MW/yr | 10 EUR/MWh (pumps, compressor) |
+| Gas boiler | 0.06 MEUR/MW | 2 000 EUR/MW/yr | 6 257 EUR/MW/yr | 40 / 0.9 + 1 = 45.4 EUR/MWh |
+
+`h* = (136 425 - 6 257) / (45.4 - 10) = 3 672 h`. The base unit is the cheaper choice for every
+MW of load that is present more than about 3 700 hours a year. At 8 760 h it costs 25.6 EUR/MWh;
+used only 500 h it would cost 283 EUR/MWh against the boiler's 58.
+
+### 21.3 Worked example: sizing base and peak from the curve
+
+Invented LDC falling linearly from 20 MW (peak hour) to 2 MW (lowest hour); yearly heat
+96 360 MWh. The load exceeded 3 672 h is `20 - 18 x 3 672 / 8 760 = 12.45 MW`.
+
+| Unit | Capacity | Energy | Share |
+|---|---|---|---|
+| Base (geothermal + heat pump) | 12.45 MW (62 % of peak) | 82 504 MWh | 86 % |
+| Peak boiler | 7.55 MW | 13 856 MWh | 14 % |
+
+The pattern is general: a base unit sized at roughly half to two thirds of the peak covers most
+of the energy, because the top of the curve is narrow. Changing prices move `h*` and with it the
+split: a higher gas price lowers `h*` and enlarges the base unit (§12.4 for switching values).
+
+Limits of the method: it ignores storage (chapter 24), minimum loads and ramping, the supply
+temperature each unit can reach (chapter 22), and requirements such as a CO2 cap or a limit on
+fossil heat share (§0.6), which may force a larger base unit than cost alone would choose.
+
+### 21.4 In gemini and geomind
+
+gemini simulates the case's demand profiles step by step and dispatches the plant's units; it
+does not draw screening curves. Use them to set sensible search ranges and to explain a result:
+
+- base-unit capacity (doublets, heat pump) and peak capacity (boiler) are searched by `size` or
+  `optimize` (handbook-studies); start the range around the screening-curve split;
+- after a run, compare each unit's rated capacity with its peak and its full-load hours
+  (energy / capacity): a base unit with few full-load hours or a boiler with many signals a poor
+  split (§18.7);
+- the heat-by-source accounting (§1.4) gives each unit's energy share for the report.
+
+---
+
 ## Appendix A. Symbols and formulas
 
 | Symbol | Meaning | Unit |
@@ -2281,6 +2352,10 @@ handbook.
   Technical Report 002/12 (exploration risk and its mitigation; section 20.4).
 - Grant, M. A. and Bixley, P. F. (2011), *Geothermal Reservoir Engineering*, 2nd ed., Academic
   Press (productivity and injectivity; section 20.2).
+- Frederiksen, S. and Werner, S. (2013), *District Heating and Cooling*, Studentlitteratur (plant
+  mixes, load duration, heat sources; chapters 21 to 24).
+- Stoft, S. (2002), *Power System Economics: Designing Markets for Electricity*, IEEE Press and
+  Wiley (screening curves and load duration; chapter 21).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
