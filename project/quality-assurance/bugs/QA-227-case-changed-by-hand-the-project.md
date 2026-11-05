@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -48,6 +48,7 @@ Time to the needless question: 3 min 13 s (17:33:53 to 17:37:06), with the appro
 
 ## Fix
 
+- 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
 
 ## More evidence (QA-AI-project-I, 17:38 UTC)
