@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | qa-func-1 |
 | Found | 2026-11-05 00:10 UTC |
 | Versions | backend 1.1.56 (health 2026-11-05 ~00:10 UTC); frontend version not read from the live site (clone says 1.1.61) |
 | Where | https://geomind.team/projects/a0947848-b958-4ee9-8927-56ec0a9cff03/design/case, tab Site, Fluid, Dissolved gas; project QA2 qa-func-1 S1 full case |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
