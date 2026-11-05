@@ -45,6 +45,7 @@ failure reload the page once (guard with a sessionStorage flag to avoid a loop).
 
 frontend 1.1.120 (commit 6b99d31, bundle index-D68-vYXf.js): `route-error.tsx` reloads the page once when the error is a failed dynamic import (stale build), and `main.tsx` does the same on `vite:preloadError`; a sessionStorage stamp allows one reload per 30 s, so no loop.
 - 2026-11-05 17:44 UTC: frontend 1.1.120, commit 6b99d31
+- 2026-11-05 19:52 UTC: QA-E2E-study-II 2026-11-05 19:55 UTC: tab open since 19:19 UTC across a deploy (API 502 ~19:36-19:39 UTC); SPA navigation chat -> Runs and logs worked, no 'failed to fetch module'. Not conclusive: unknown whether the frontend chunk hashes changed; stays fixed until a frontend deploy is seen with an open tab
 ## Retest
 
 Not run (no tests now).
