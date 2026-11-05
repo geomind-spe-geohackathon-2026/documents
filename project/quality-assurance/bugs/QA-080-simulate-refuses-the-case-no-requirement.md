@@ -34,8 +34,8 @@ Guess: either the case lead should store ONE doublet rule with min 50 and max 30
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 05:31 UTC: gemini 0.6.8 (85e9ba8a: flow range = largest min and smallest max over all flow rules), geomind 0.4.69 (21d4771: case lead writes one min+max rule), backend 1.1.73 (27880c2), deployed 05:30 UTC
+Cause: gemini's schedule (`engine/schedule/limits.py`) took a doublet's flow range only from ONE requirement with both `min` and `max`; the case held the brief's 50 and 300 m3/h as two one-sided rules (`min_stable_flow`, `max_production_flow`, both `over: each`, `when: running`), so every simulate stopped with case_incomplete. Fix: gemini 0.6.8 reads the range over all `production_flow` rules of the doublet: the largest `min` and the smallest `max` (one rule with both works as before); the brine cooling is the smallest `max` of its rules; an empty range is refused naming the rules. Checked: the hackathon case with its range split into two rules simulates; prod split() gives 50 to 300 m3/h. The case lead's prompt now writes a two-ended range as one rule. gemini 0.6.8 (85e9ba8a, release 48cbcacc, tag v0.6.8), geomind 0.4.69 (21d4771, tag v0.4.69), backend 1.1.73 (27880c2), deployed 2026-11-05 05:30 UTC by hotfix-python-II.
+
 ## Retest
 
 (Who, when, result.)
