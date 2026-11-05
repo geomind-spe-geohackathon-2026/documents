@@ -35,6 +35,8 @@ Guess: the model confused a rule 'times are UTC without an offset' with a user i
 
 ## Fix
 
+Cause: the case lead's prompt said dates without an offset are read as UTC, with nothing saying that is gemini's reading and not the user's; no rule forbade attributing a statement to the user. Fix: a shared rule for every agent ("the user said" only for what the user wrote in this chat; a rule, a file or the agent's choice is named as what it is, a choice is an assumption to confirm) and the case lead's time-zone line (UTC is how gemini reads such dates; a zone no file or user message states is an assumption `source: agent`, `confirmed: false` in the one question). geomind 0.4.66 (commit 6d46e72, tag v0.4.66), backend 1.1.71 (d68105b), deployed 2026-11-05 04:30 UTC by hotfix-python-II. Prompt change: retest by setting up a case from the PDF and CSVs.
+
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 04:31 UTC: geomind 0.4.66 (6d46e72: shared rule, never attribute to the user what they did not write; case lead: UTC is gemini's reading, zone is an assumption), backend 1.1.71 (d68105b), deployed 04:30 UTC
 ## Retest
