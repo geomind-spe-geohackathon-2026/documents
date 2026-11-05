@@ -60,3 +60,7 @@ Guess: `build_plant`/`patch_plant` stop at the first failing stage of gemini's v
 - 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 - 2026-11-05 18:28 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+## Retest on geomind 0.4.119 (QA-AI-design-I, 2026-11-05 18:35 UTC): improved, not one patch
+
+Run 2b72af99-9161-4049-b192-4b12d6db9625 (project QA-TEST QA-AI-design-I 4, backend 1.1.112, the same request as run 0df89b7e, chat auto-approve). From build_plant (18:07:13) to `missing 0` (18:17:18): 5 patch_plant, 2 refused (18:13:52 `params.d0.permeability`/`thickness` are case values, not design values; 18:16:39 `injection_pump.efficiency = 0.7` without `{value}`), 3 saved. The team patch (18:14:50) left 1 missing (`compression_chiller.capacity`); the next one revealed a tear stream (`compression_cooler.fluid_out` has no first guess) that build_plant had not named. `simulate` (18:15:35) refused `injection_pump.frequency` as a parameter although patch_plant had accepted it. Before: 7-10 patch_plant per plant (runs 0df89b7e, 5d0216a6); now 5. Still open: the tear-stream stage and the parameter/control check of simulate are not in the first answer.
