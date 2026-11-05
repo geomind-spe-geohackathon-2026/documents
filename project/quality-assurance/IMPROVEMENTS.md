@@ -292,6 +292,12 @@ merges and resolves; (c) the case lead's prompt/skill: split the case by field g
 in one Team call, then check gaps and assign again; (d) frontend: show each instance by its name
 with its own activity line; (e) a measure: time from first request to a complete case.
 
+Design rule (user, 16:05 UTC; `.claude/memory/feedback-team-lead-only-writes.md`): only the team lead
+reads and writes project files; it splits a task into at most 4 sub-tasks for sub-agents of its
+team, which have no file access, only do their sub-task and return the result; when all are back
+the lead writes once, re-splits any remaining problem among its team, repeats until done, then
+reports to the project manager.
+
 ## IMP-026: cooling with real heat loss and part load
 
 Status: idea (Fatemeh, 2026-11-05 15:00 UTC). Today the cooling side is tested only with lossless
