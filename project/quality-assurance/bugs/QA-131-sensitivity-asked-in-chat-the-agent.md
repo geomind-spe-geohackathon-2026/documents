@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (asked for the run review), Claude (DB read and write-up) |
@@ -33,4 +33,5 @@ Guess: the analysis lead does not use (or does not have) the sensitivity study, 
 
 ## Fix
 
+- 2026-11-05 14:38 UTC: geomind 0.4.88 (sensitivity values=; ranges into the case with set_case then sensitivity, never run_python), backend 1.1.92, deployed
 ## Retest
