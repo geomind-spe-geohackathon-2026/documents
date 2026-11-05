@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -47,3 +47,4 @@ summaries (`compute_kpis`, `check_results`) as `compute_kpis` already does for s
 ## Retest
 
 QA-E2E-report-I, 2026-11-05 19:45 UTC, project 3 runs 12115d92 and f1108405: headline figures are rounded (LCTS 45.10 EUR/MWh, CAPEX 34.636 MEUR, CO2 13.77 kt, 2.636 MW); no 16-digit floats left. Leftovers: unmet heat as 1.1366e-11 / 2.0103e-12 MW (should read 0), and 5 significant figures in cost parts (0.098042, 0.028643 MEUR). Verified for the main complaint; the e-12 leftovers are cosmetic.
+- 2026-11-05 19:39 UTC: retest QA-E2E-report-I: headline figures rounded; e-12 unmet leftovers cosmetic
