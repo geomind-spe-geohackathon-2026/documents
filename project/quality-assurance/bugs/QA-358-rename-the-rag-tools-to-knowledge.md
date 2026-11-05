@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | Sahand |
@@ -36,6 +36,8 @@ Old RAG names kept beside the new Knowledge names (the read_rag -> read_file/rea
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 21:23 UTC: Sahand: the frontend label only (read rag -> read knowledge); geomind rename stopped, nothing pushed
 - 2026-11-05 21:24 UTC: Sahand: frontend labels only
+Fix: frontend 1.1.147 (bundle index-nDjuu_Z1.js): pretty.ts toToolName(tool, input) labels read_rag / rag_read / read_document by target: name 'knowledge/...' -> 'Read knowledge', else 'Read inputs'; search_rag / rag_search / search_knowledge -> 'Search knowledge'; read_knowledge -> 'Read knowledge'. Busy list: 'Reading inputs' / 'Reading knowledge' / 'Searching knowledge'. Steps, busy list and run-log step detail. geomind unchanged.
+- 2026-11-05 21:28 UTC: frontend 1.1.147
 ## Retest
 
 (Who, when, result.)
