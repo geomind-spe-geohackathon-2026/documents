@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | Fatemeh (question and screenshot), Claude (data and write-up) |
 | Found | 2026-11-05 11:22 UTC |
 | Versions | backend 1.1.86 / gemini as deployed 2026-11-05 ~12:45 UTC |
 | Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/results/c5db89bc-2edc-44ae-85d9-df03168913bf (result lcts_best, 12 of 12 pass), Days covered |
-| Fixer | |
+| Fixer | hotfix-front-III |
 
 ## Steps
 
