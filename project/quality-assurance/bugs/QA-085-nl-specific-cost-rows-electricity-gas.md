@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-2 |
@@ -42,7 +42,7 @@ Fact: source ids in about.sources. Guess: the catalogue's 'recommended' row per 
 ## Retest
 
 (Who, when, result.)
-
+- 2026-11-05 20:45 UTC: QA-E2E-case-I 20:44 UTC: project 12 (site Trondheim, Norway) economics question: 'Where the values come from: 44 from catalogue rows, general; 1 Denmark; 1 Norway', no Netherlands rows (was 9 NL rows at 18:40)
 ## Seen again (QA-E2E-case-I, 2026-11-05 18:40 UTC, backend 1.1.116)
 
 Project QA-TEST QA-E2E-case-I 6 (80139e85), no files, site given by the user: "Trondheim, Norway"
