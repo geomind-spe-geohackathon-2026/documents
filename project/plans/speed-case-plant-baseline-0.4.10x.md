@@ -123,3 +123,35 @@ T1, T2, T5, T6, T8 are near 0. T3, T4, T7, T9 remain; their main forms in group 
 On ended runs after the next geomind release: copy the scripts to a fresh work dir (the scripts
 use one dir; `analyse.py` reads every run in its `data/`), set the start filter in `fetch2.py`,
 keep only ended runs. Group the runs by deploy time from `.claude/STATUS.md`.
+
+## Case stage: prompt size (group B, 11 case runs)
+
+Method: `speed-baseline-scripts/prompt.py <data dir> <agent>` splits every model call's messages
+(the log stores them in full) into parts and converts characters to tokens with a fit of
+`input_tokens` on characters (case_lead: tokens = 1.4 k + 0.33 x chars, so tool schemas and
+other fixed parts are ~3%). 75% of the case lead's input tokens were served from the prompt cache.
+
+| Part of the input | case_lead (215 calls, 9.23 M tokens, 42.9 k per call) | geoscientist (62 calls, 0.92 M, 14.9 k per call) |
+|---|---|---|
+| System prompt (role, rules, case keys) | 33.5% (42-46 k chars, Rules 27 k) | 39.1% (20 k chars) |
+| Knowledge and file text (read_rag, search_rag) | 25.5% | 26.5% |
+| Skills attached to tool results | 15.0% (reading-results 38 k chars, finding-sources 18 k, setting-the-case 10 k) | 24.7% |
+| Later system messages (problem state, steps left) | 7.5% | 0.3% |
+| read_stored outputs (geoscientist findings) | 5.7% | - |
+| read_case, describe_case, set_case outputs | 4.1% | 3.1% |
+| Assistant text and tool-call arguments | 2.4% | 0.3% |
+| User brief | 1.3% | 4.9% |
+
+Biggest cuts, filed under QA-150:
+
+1. **QA-271** (major): case lead system prompt ~15 k tokens on every call (33.5%); the Rules
+   section (27 k chars) holds step-specific detail that belongs in handbook-case / the skill.
+2. **QA-272** (major): Knowledge pasted whole (25.5%): search_rag gives 8 matches of up to
+   1.5 k chars (~13 k per call), each answer repeating the brief PDF already read; read_rag reads
+   both demand CSVs (8 k each) and the 20 k assumptions document whole, twice in one run.
+3. **QA-273** (minor): skills stay in the context for the rest of the run (15%); the case lead
+   gets the 38 k-char reading-results skill just to read the geoscientists' findings.
+
+Together these are ~74% of the case lead's input; cutting each by half would take its mean call
+from ~43 k to ~27 k input tokens. QA-261 (read_case before a case) and QA-157 (re-reads) cut
+calls, not size.
