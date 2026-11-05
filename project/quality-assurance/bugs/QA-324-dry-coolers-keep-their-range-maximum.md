@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | minor |
 | Area | geomind,gemini |
 | Reporter | Sahand (reviewer notes), Manual QA-IV |
 | Found | 2026-11-05 19:23 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130, gemini 0.6.26) |
 | Where | report of result 54b2e4f4 (B_r1_best, project 0b986dd6) and result 8878eafd (no-agent, project 8d5d21e0); reviewer notes from Sahand 20:20 CET |
-| Fixer | m7 |
+| Fixer |  |
 
 ## Expected
 
