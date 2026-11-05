@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -83,7 +83,7 @@ Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 17:07 UTC: geomind 0.4.100 (592d31a, tag v0.4.100), deployed in backend 1.1.104 hotfix image 2026-11-05: case lead asks the ONE confirmation question (Knowledge values, time_zone) before the first set_case and saves after approve all in one set_case. Not live-retested.
 ## Retest
 
 (Who, when, result.)
