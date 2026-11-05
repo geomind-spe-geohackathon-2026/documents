@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-design-I |
@@ -75,3 +75,4 @@ Extra proposed fix: give the engineers `read_skill` (or have the brief say "no s
 ## Retest
 
 Retest (QA-E2E-design-I, 2026-11-05 19:14 UTC, backend 1.1.117): run 06fd16f0 (project QA-TEST QA-E2E-design-I 3): 48 read_knowledge calls by 7 agents, 1 refused (`{"name": "finding-9878dd62"}` by the energy systems engineer: a finding id sent to read_knowledge, not a Knowledge document). No bare 'handbook-design.md', no '3 Wells' titles, no repeats. Works.
+- 2026-11-05 19:13 UTC: QA-E2E-design-I: 1 of 48 refused (a finding id), run 06fd16f0
