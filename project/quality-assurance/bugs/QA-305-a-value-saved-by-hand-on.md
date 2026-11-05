@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
@@ -46,3 +46,9 @@ for each changed key write `about.sources.<key> = {"source": "edited by hand", "
 Fix: frontend 1.1.131 (commit 9f40897, bundle index-PVHgYO42.js), by front-m2: withHandSources in use-case-editor.ts sets 'user: set by hand on the Case page' on changed keys.
 - 2026-11-05 19:14 UTC: frontend 1.1.131
 ## Retest
+
+- 2026-11-05 19:26 UTC, QA-E2E-economics-I: PASSES on frontend bundle index-PVHgYO42.js. Project 6,
+  Fill in here, discount 0.055, Save version (v8): `about.sources.discount_rate` = "user: set by
+  hand on the Case page"; the unchanged `carbon.price` keeps its own source. (Version and note are
+  not in the source; fine.)
+- 2026-11-05 19:24 UTC: QA-E2E-economics-I 19:26 UTC: hand save writes 'user: set by hand on the Case page' for the changed key only (v8)
