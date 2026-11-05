@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | qa-func-1 |
 | Found | 2026-11-05 00:11 UTC |
 | Versions | backend 1.1.56 (health 2026-11-05 ~00:15 UTC) |
 | Where | https://geomind.team/projects/a0947848-b958-4ee9-8927-56ec0a9cff03/design/case, tab Requirements; chat 235c60c5-da86-4f21-9257-e21a6e400697, design lead question about search ranges |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
