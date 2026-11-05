@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 18:57 UTC |
 | Versions | live 2026-11-05 19:54 Trondheim (after QA-291) |
 | Where | geomind.team chat, busy list under a running run |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
@@ -18,6 +18,8 @@
 ## Expected
 
 The last line, below all agent lines, reads 'Total · 77 steps · 2.2 M tokens · 0.05 USD · 7 min 23 s': label 'Total' in the same bold style as the agent names, then the same fields in the same order and separators as the agent lines (steps · tokens · cost · time).
+
+Clarified by Sahand (19:58 CET): same order and columns as the agent rows, aligned with them; where an agent row shows its activity ('Asking the reviewer', 'Thinking'), the Total row shows a useful run summary there (e.g. '3 agents working' or the current stage), e.g. 'Total · 3 agents working · 77 steps · 2.2 M tokens · 0.05 USD · 7 min 23 s'.
 
 ## Actual
 
