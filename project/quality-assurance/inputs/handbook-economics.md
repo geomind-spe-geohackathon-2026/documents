@@ -1543,10 +1543,11 @@ Invented results, both designs feasible on the same case and gemini version (§1
 | NPV at the case's prices | 22.3 MEUR | 19.0 MEUR |
 | CO2 | 2 465 t/yr | 5 900 t/yr |
 | LCTS P10 to P90 | 40.2 to 48.1 | 39.5 to 54.0 |
-| Electricity switching price vs the other | A cheaper above 126 EUR/MWh | B cheaper below |
+| Electricity switching price vs the other | A cheaper below 160 EUR/MWh | B cheaper above |
 
 Reading: A is cheaper at the base case, emits 58 % less and has the narrower spread; B needs
-4.4 MEUR less capital and wins only when electricity stays low. Recommendation: A, with the
+4.4 MEUR less capital and burns more gas, so it wins on cost only if electricity rises above
+160 EUR/MWh (outside a sourced range of 80 to 140). Recommendation: A, with the
 condition stated ("if capital is limited to 12 MEUR, B is the feasible alternative at +2.2
 EUR/MWh"). Show the whole table: the user may weigh capex or CO2 differently (§14.3).
 
