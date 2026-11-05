@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend,frontend |
 | Reporter | Sahand (screenshot) |
 | Found | 2026-11-05 19:04 UTC |
 | Versions | live 2026-11-05 20:02 Trondheim |
 | Where | geomind.team Design > Report ('Draft from best'), also Export PDF / Markdown |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
