@@ -1071,4 +1071,401 @@ When cost and CO2 pull in different directions:
 
 ---
 
-> **Draft stop (2026-11-05, usage pause):** chapters 1 to 15 are written; chapter 16 (how gemini computes economics), chapter 17 (worked example, numbers already verified with gemini 0.6.13) and the appendices follow.
+## 16. How gemini computes economics
+
+This chapter describes what gemini (`import gemini as gm`) computes and under which names, read
+from the code of gemini 0.6.13 (`gemini/gemini/evaluate/costs.py`, `evaluate/_utils/cost.py`,
+`evaluate/_utils/levelised.py`, `evaluate/_utils/cashflow.py`, `evaluate/emissions.py`,
+`case/economics.py`, `case/_utils/kinds.py`, `study/metrics.py`). How an agent calls these through
+its tools is in the `economics` skill (`geomind/geomind/skills/economics/SKILL.md`), and only there.
+
+### 16.1 The economics file (`economics.json`)
+
+The economics of a case is one JSON file with the header `format`, `kind: "economics"`, `name`.
+Every value is `{"value": ..., "unit": ...}`; nothing has a default, and a value that is absent is
+missing (section 16.8). Keys (paths as gemini names them in errors, prefixed `economics.`):
+
+| Key | Meaning |
+|---|---|
+| `currency` | a label for every amount (text); gemini converts no currency |
+| `price_year` | the year the prices are in (whole number) |
+| `discount_rate` | real discount rate per year, a fraction (0.05 is 5 %) |
+| `analysis_period` | years of the analysis (yr) |
+| `capex.<kind>` | capex factor of each equipment kind (section 16.2); `capex.drilling` may be a depth table `{depth: {value: [...], unit: "m"}, cost_per_metre: {value: [...], unit: "EUR/m"}}`, interpolated linearly, no extrapolation (`out_of_bounds`) |
+| `opex.fixed.<kind>` | fixed O&M of each kind: share of its capex per year (`%/yr`, `1/yr`), or for a kind sized by a power an amount per capacity and year (`EUR/MW/yr`) |
+| `opex.per_energy.<kind>` | optional variable O&M per energy produced (EUR/MWh) for the producing kinds `boiler`, `electric_boiler`, `chp`, `heat_pump`, `compression_chiller`, `absorption_chiller`, `adsorption_chiller`; once given, every producing kind of the plant needs one |
+| `opex.variable.chemical` | price of dosed chemicals per kg (constant or series) |
+| `opex.variable.waste_disposal` | cost of waste disposal per kg (constant or series) |
+| `energy.electricity` | price of grid electricity (constant or series) |
+| `energy.gas` | price of bought gas per energy of its **lower** heating value (constant or series); co-produced gas costs nothing |
+| `carbon.price` | price of CO2-equivalent emitted, added to the opex (constant or series) |
+| `revenue.heat`, `revenue.cold` | price of useful heat and cold delivered (constant or series) |
+| `revenue.subsidy` | `amount` (per year, or per energy of useful heat as SDE++ pays), `duration` (yr), optional `cap` (MWh/yr, or full-load hours h/yr times `capacity` MW) |
+| `accounting.allocation.heat_cost_share` | share of the cost charged to heat (0 to 1); LCOC gets the rest |
+| `accounting.gwp.standard`, `accounting.gwp.CH4` | the name of the GWP set, and the GWP of methane |
+
+Any value may carry an `uncertainty`: `{kind: "uniform", min, max}`, `{kind: "triangular", min,
+max}` (the value is the mode) or `{kind: "normal", std, min, max}` (cut at min and max). A normal
+run uses only the value; the studies draw from the uncertainty. The grid emission factor is not in
+the economics but in the case: `utilities.electricity.co2_intensity` (g/kWh, constant or profile).
+`gm.Case.schema()` and `Economics.schema()` give the full JSON Schema.
+
+### 16.2 Capex by equipment kind
+
+Each module that is equipment declares a kind; its capex is the factor of its kind times its cost
+size. The capex of the plant is the sum over modules; the result lists every module path with its
+kind and capex, and the price year. The kinds and their bases (`case/_utils/kinds.py`):
+
+| Kind | Basis of `capex.<kind>` | Other accepted bases |
+|---|---|---|
+| `drilling` | per m of well (EUR/m), or depth table | |
+| `production_pump`, `injection_pump`, `circulation_pump` | per W of shaft power at nominal flow (EUR/W) | `production_pump`: per unit (EUR) |
+| `heat_pump`, `boiler`, `electric_boiler`, `absorption_chiller`, `adsorption_chiller`, `compression_chiller`, `cooler` | per W of capacity | |
+| `chp` | per W of electric capacity | |
+| `heat_exchanger` | per W/K of conductance | per W of nominal duty |
+| `pipe` | per m | per MW and m |
+| `thermal_storage`, `ice_storage` | per m3 | per MWh of energy capacity; `ice_storage` is priced only when its capex is given |
+| `degasser`, `flare`, `gas_makeup` | fixed amount (EUR) | |
+
+The unit of the factor tells gemini which basis is meant. Wells are priced as their sections: in
+the sample plants a production doublet has `dN.well` (below the pump), `dN.riser` (above it) and
+`dN.injector`, each of kind `drilling` (section 17.3).
+
+### 16.3 Opex
+
+`gm.evaluate.opex` returns the yearly operating cost with `components`:
+
+- `fixed`: per kind, `opex.fixed.<kind>` × capex of that kind (or × capacity for EUR/MW/yr);
+  listed in `fixed_by_kind`;
+- `electricity`, `fuel`, `waste`, `chemical`: what the run bought or discarded × its price, step
+  by step (a price series follows the run);
+- `co2`: the CO2-equivalent of every step × `carbon.price`, when a carbon price is given;
+- `per_energy` (and `per_energy_by_kind`): only when `opex.per_energy` is given.
+
+The run is scaled to a year: amount over the run × 365.25 d / duration of the run.
+
+### 16.4 Annualised cost, LCOH, LCOC, LCTS
+
+With `A = (1 − (1 + r)^−n) / r` (the annuity factor of section 5.2, `n` the analysis period; `A =
+n` at `r = 0`) and constant yearly opex, heat and cold:
+
+| Name (gemini) | Formula | Unit (display) |
+|---|---|---|
+| `annualised_cost` | `capex / A + opex` | MEUR/yr |
+| `lcoh` | `s_heat · (capex + opex · A) / (Q_heat · A)` | EUR/MWh |
+| `lcoc` | `(1 − s_heat) · (capex + opex · A) / (Q_cold · A)` | EUR/MWh |
+| `lcts` | `annualised_cost / (Q_heat + Q_cold)` | EUR/MWh |
+
+`s_heat` is `accounting.allocation.heat_cost_share`. A plant that delivers only heat charges it the
+whole cost (`s_heat` not needed); a plant that delivers heat and cold without a share gets no LCOH
+or LCOC, with the reason "the split of its cost is not defined". `lcts` needs no share. Heat is
+the useful heat delivered to the heating grid, cold what the water gains across the cooling grid,
+both per year as scaled from the run.
+
+### 16.5 NPV, payback and subsidy
+
+| Name | Formula |
+|---|---|
+| `npv` | `−capex + (revenue − opex) · A + subsidy · A(r, min(duration, n))` |
+| `payback` | `capex / (revenue − opex + subsidy)` years, without discounting; with a subsidy shorter than the payback, the years after it count at `revenue − opex` only |
+
+`revenue` = heat × `revenue.heat` + cold × `revenue.cold` per year. A subsidy pays from the first
+year for its `duration`; a subsidy per energy pays on the useful heat of a year up to its `cap`. A
+subsidy with only one of `amount` and `duration` earns nothing. A plant whose yearly revenue does
+not exceed its yearly cost has no payback ("never pays back").
+
+### 16.6 CO2
+
+`gm.evaluate.co2` returns the CO2-equivalent over the run (kg; display kt), step by step:
+
+`co2 = direct + GWP_CH4 · methane + grid_energy · co2_intensity`
+
+with parts `direct` (CO2 released: from the brine gas and from combustion in boilers, CHP and the
+flare), `methane` (mass of CH4 released, before the GWP), `electricity` (CO2 of grid electricity),
+`fuel_energy`, `grid_energy` and `window`. On-site generation offsets grid consumption first; a
+surplus earns no credit. The CO2 follows the gas composition of the case, because each module
+computes what it burns or releases.
+
+### 16.7 Conventions and limits
+
+- One representative run, scaled to a year of 365.25 days, repeated over the analysis period: no
+  degradation, no replacements, no residual value, no tax, no escalation, no construction period
+  (sections 5.3, 5.4).
+- All capex at year 0; yearly flows at the end of years 1 to `n`.
+- `currency` is a label; prices must be converted to `price_year` before they enter the file
+  (chapter 4).
+- The carbon price applies to **all** CO2-equivalent of the run, including that of grid
+  electricity (`emitted_steps` in `evaluate/_utils/cost.py`). This is a social-cost convention; in
+  a financial view where the electricity price already contains the generators' ETS cost it counts
+  that carbon twice (section 3.6). In the worked example it is 0.45 of 0.71 MEUR/yr (section 17.4).
+- A replacement (for example ESPs every 5 years) is not modelled; fold it into `opex.fixed` as an
+  equivalent yearly share if needed, and say so.
+- The metrics a study reads are `heating_coverage`, `cooling_coverage`, `cop`, `peak_heat`,
+  `peak_cold`, `lcoh`, `lcoc`, `lcts`, `annualised_cost`, `co2` (`gm.study.metrics()`); `npv` and
+  `payback` are functions of `gm.evaluate`, not study metrics.
+- `gm.evaluate.report` gives `heat_delivered`, `cold_delivered`, `boiler_heat`,
+  `electricity_bought`, `gas_bought`, `capacities`, `capex`, `opex`, `lcts`, `lcoh`, `lcoc`, `co2`,
+  `requirements`, `passed`, `verdict`, `failed_steps`, `failures`, `services`; costs are read with
+  `on_error="record"`, so a cost that cannot be given is `None` with a `reason`.
+
+### 16.8 Errors, missing values and tools
+
+- A factor, price or rate the plant needs and the case lacks raises `ValidationError` with code
+  `missing_assumption` and the `path` of the missing key (for example
+  `economics.capex.heat_pump`). gemini never estimates it. The fix is to find a sourced value
+  (chapter 11) and have the user approve it, then set it in the case.
+- With `on_error="record"` the value is `None` with a `reason`, so a report of many designs stays
+  comparable.
+- The agent tools that compute these numbers (`estimate_costs`, `compute_kpis`,
+  `sample_uncertainty`, `sensitivity`) and the studies are documented in the `economics` skill.
+  Read the skill for their arguments; this handbook does not repeat them.
+
+---
+
+## 17. Worked example: GEMINI hackathon 2026
+
+All numbers in this chapter were computed on 2026-11-05 with gemini 0.6.13 (the `gemini/` clone,
+commit f9274a30) by `gm.simulate` and `gm.evaluate` on the files of
+`gemini/examples/hackathon_2026` (`case.json`, `economics.json`, `plants/<Class>.json`), stored
+designs as given, no search. Values marked **(derived)** were computed by hand from those outputs.
+
+### 17.1 The case
+
+From `gemini/examples/hackathon_2026/README.md` and the organisers' files:
+
+- Demand: daily profiles for 2027; heating peak 30.0 MW, 111.67 GWh/yr, supply 100 °C; cooling
+  peak 10.0 MW, 23.74 GWh/yr, supply 20 °C.
+- Reservoir: 2500 m TVD, 100 m thick, 30 °C/km from 12 °C, 250 bar(g), 200 mD; brine 1030 kg/m3,
+  0.40 mPa·s, gas-liquid ratio 0.8 Nm3/m3 with 80 mol% CH4 and 20 mol% CO2.
+- Limits: 1 to 3 doublets, 50 to 300 m3/h per doublet while running, brine cooling at most 40 K,
+  at most 330 running days, pump efficiency 0.70, equal production and injection volume.
+- Team assumptions: return temperatures 60 °C (heating) and 25 °C (cooling); heat and cold
+  delivered within 1 % of the yearly demand.
+- Grid electricity 300 g CO2/kWh (organisers, per
+  `documents/project/quality-assurance/inputs/hackathon-2026-assumptions.md`).
+
+### 17.2 Economic inputs and their sources
+
+Currency EUR, price year 2015, discount rate 0.05 (team assumption), analysis period 25 yr (team
+assumption, agrees with the DEA 25-year technical lifetimes), `heat_cost_share` 0.8 (team
+assumption), CH4 GWP 29.8 (IPCC AR6, section 9.3).
+
+| Key | Value | Source (as in the sample README) |
+|---|---|---|
+| `energy.electricity` | 105.75 EUR/MWh | Eurostat `nrg_pc_205`, EU, band IE, `X_VAT`, 2025 mean 136.15, / 1.2875 |
+| `energy.gas` | 39.92 EUR/MWh | Eurostat `nrg_pc_203`, EU, band I4, `X_VAT`, 2025 mean 51.4, / 1.2875 (gross calorific value: see section 3.3) |
+| `carbon.price` | 57.03 EUR/t | Instrat, 2025 EU ETS auction average 73.43, / 1.2875 |
+| `capex.heat_pump`, `opex.fixed.heat_pump` | 0.73786 EUR/W, 0.2239 %/yr | DEA 0019 sheet 40 |
+| `capex.boiler`, `opex.fixed.boiler` | 0.06073 EUR/W, 3.25 %/yr | DEA 0019 sheet 44 |
+| `capex.chp`, `opex.fixed.chp` | 0.96155 EUR/W, 1.0263 %/yr | DEA 0019 sheet 06 |
+| `capex.drilling` | 1239.13 EUR/m | Mijnlieff et al. 2013, 2300 m doublet; one price for every depth; placeholder status |
+| `capex.degasser` | 1.0 MEUR | Mijnlieff et al. 2013; placeholder status |
+| chillers, pumps, heat exchanger, cooler, pipe, flare, gas make-up | 0.3, 0.5 EUR/W, 0.5 EUR/(W/K), 0.1 EUR/W, 500 EUR/m, 100 000 EUR, 50 000 EUR | placeholders, no verified source |
+| other fixed opex | 0.5 to 2 %/yr | placeholders |
+| `revenue.heat`, `revenue.cold` | 60 EUR/MWh each | placeholders; below every sourced tariff of section 7.1 |
+| `opex.variable.chemical`, `waste_disposal` | 3, 0.2 EUR/kg | placeholders |
+
+Uncertainty declared in the case (ranges are assumptions of the sample): electricity uniform 80 to
+140 EUR/MWh; gas triangular 25 to 70; carbon triangular 30 to 110 EUR/t; permeability triangular
+100 to 400 mD; gradient normal, std 2, 25 to 35 K/km; discount rate normal, std 0.01, 0.02 to 0.08.
+
+### 17.3 Capex of HeatingHeatPumpCoolingPlant
+
+Two doublets at 2500 m with ESPs, a degasser, a brine heat exchanger, a 15 MW heat pump, a 30 MW
+peak gas boiler, a 10 MW compression chiller with its cooler, flare and gas make-up. gemini output
+(MEUR, EUR 2015) with sizes **(derived: capex / factor)**:
+
+| Module (kind) | Capex | Size implied |
+|---|---|---|
+| `d0.well` + `d0.riser` (drilling) | 2.6586 + 0.4392 | 2145.6 m + 354.4 m = 2500 m |
+| `d0.injector` (drilling) | 3.0978 | 2500 m |
+| `d1.*` (same) | 6.1957 | same |
+| `d0`, `d1` (production_pump) | 0.2277 each | 455 kW shaft each |
+| `injection_pump` | 0.1874 | 375 kW shaft |
+| `degasser` | 1.0000 | fixed |
+| `heat_exchanger` | 0.7500 | 1.5 MW/K |
+| `heat_pump` | 11.0679 | 15.0 MW |
+| `peak_boiler` (boiler) | 1.8219 | 30.0 MW |
+| `compression_chiller` | 3.0000 | 10.0 MW |
+| `compression_cooler` (cooler) | 2.0000 | 20.0 MW |
+| four pipes (pipe) | 0.05 each | 100 m each |
+| `flare`, `gas_makeup` | 0.10, 0.05 | fixed |
+| **Total** | **33.0238** | |
+
+Drilling is 12.39 MEUR, 37.5 % of the capex; the heat pump 33.5 % **(derived)**. Check against
+the benchmarks of section 2.7 **(derived)**: 33.02 MEUR over 30 MW of peak heat is 1.10 EUR/W in
+EUR 2015, near the low end of the DEA and PBL whole-plant range of 1.04 to 1.91 EUR2015/W; the
+peak boiler makes the heat capacity cheap, and the plant also delivers cold.
+
+### 17.4 Opex
+
+gemini output (MEUR/yr):
+
+| Component | Value | Check **(derived)** |
+|---|---|---|
+| fixed | 0.3523 | drilling 1 % × 12.39 = 0.1239; boiler 3.25 % × 1.822 = 0.0592; chiller 0.06; cooler 0.04; degasser 0.02; heat pump 0.0248; others |
+| electricity | 2.7826 | 26 295 MWh bought in the run × 365.25/365 = 26 313 MWh/yr × 105.75 EUR/MWh |
+| fuel | 0.0014 | 35 MWh of bought gas |
+| waste, chemical | 0 | the plant has no dosing or desander |
+| co2 | 0.7079 | 12.41 kt/yr × 57.03 EUR/t; of it 0.450 from grid electricity (section 16.7) |
+| **Total** | **3.8442** | |
+
+Electricity is 72 % of the opex **(derived)**. The plant buys about 26 GWh/yr of electricity,
+which is Eurostat band IE (20 000 to 69 999 MWh), the band the price was taken from (section 10.2).
+
+### 17.5 Levelised costs by hand
+
+**(derived)** with `A(5 %, 25) = 14.0939`, heat 111 744 MWh/yr and cold 23 759 MWh/yr (run
+totals 111 667.68 and 23 742.53 MWh × 365.25/365):
+
+- annualised cost = 33.0238 / 14.0939 + 3.8442 = 2.3431 + 3.8442 = **6.1873 MEUR/yr** (gemini:
+  6.18733);
+- LCTS = 6 187 330 / 135 503 = **45.66 EUR/MWh** (gemini: 45.662);
+- LCOH = 0.8 × 6 187 330 / 111 744 = **44.30 EUR/MWh** (gemini: 44.296);
+- LCOC = 0.2 × 6 187 330 / 23 759 = **52.08 EUR/MWh** (gemini: 52.085).
+
+The energy share of heat is 111 744 / 135 503 = 0.825; with that share LCOH = LCOC = LCTS = 45.66
+(section 6.3). The fixed 0.8 makes cold look dearer than heat; that is the allocation, not the
+plant. Without the carbon price in the opex the LCTS would be 40.44 EUR/MWh **(derived)**.
+
+### 17.6 NPV, payback and break-even price
+
+gemini: NPV **27.38 MEUR**, simple payback **7.71 yr**, yearly net cash flow 4.286 MEUR/yr.
+**(derived)** revenue 60 × 135 503 MWh = 8.130 MEUR/yr; net 8.130 − 3.844 = 4.286; NPV = 4.286 ×
+14.0939 − 33.024 = 27.38; payback 33.024 / 4.286 = 7.71 yr. Break-even price for heat and cold
+alike = LCTS = 45.66 EUR/MWh (section 7.2); the placeholder price of 60 EUR/MWh is 31 % above it.
+No subsidy is set in the sample.
+
+### 17.7 CO2
+
+gemini, over the 365 days of the run: direct CO2 3.863 kt; methane released 0.0219 kt, × 29.8 =
+0.654 kt CO2e **(derived)**; grid electricity 26 295 MWh × 0.3 t/MWh = 7.889 kt; total **12.40 kt
+CO2e**. Per MWh delivered: 12 405 t / 135 410 MWh = 91.6 kg/MWh **(derived)**. Grid electricity is
+64 % of it **(derived)**, so the plant's footprint depends mainly on the grid factor: at the 2025
+EU average of 209.21 g/kWh (Ember) the grid part would be 5.50 kt instead of 7.89 **(derived)**.
+
+### 17.8 Sensitivity by hand
+
+For economic inputs the simulation does not change, so the LCTS moves linearly **(derived,
+design and run held fixed; not a gemini sensitivity study)** over the case's uncertainty bounds:
+
+| Input | Low | High | LCTS at low | LCTS at high | Swing |
+|---|---|---|---|---|---|
+| Electricity price | 80 EUR/MWh | 140 EUR/MWh | 40.66 | 52.31 | 11.65 |
+| Discount rate | 0.02 | 0.08 | 40.85 | 51.20 | 10.35 |
+| Carbon price | 30 EUR/t | 110 EUR/t | 43.19 | 50.51 | 7.33 |
+| Gas price | 25 EUR/MWh | 70 EUR/MWh | ≈45.66 | ≈45.67 | < 0.01 |
+
+Method: electricity `ΔLCTS = Δp · 26 313 MWh / 135 503 MWh`; carbon `Δp · 12 413 t / 135 503
+MWh`; discount rate `capex · (1/A(r) − 1/A(5 %)) / 135 503 MWh` with A(2 %, 25) = 19.5235 and
+A(8 %, 25) = 10.6748. The tornado order is electricity, discount rate, carbon, gas. Permeability
+and gradient change the physics; their effect needs new runs (`gm.study.sensitivity`, through the
+`economics` skill) and is not computed here.
+
+### 17.9 Six configurations compared
+
+The six stored plants of the sample on the same case (gemini 0.6.13; MEUR, EUR/MWh, kt over the
+run):
+
+| Plant | Feasible | Capex | Opex/yr | LCTS | LCOH | LCOC | CO2 | Grid el. (MWh) | Gas bought (MWh) | NPV | Payback (yr) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| HeatingHeatPumpCoolingPlant | yes | 33.02 | 3.84 | **45.66** | 44.30 | 52.08 | **12.40** | 26 295 | 35 | **27.38** | 7.71 |
+| HackathonPlant | yes | 34.64 | 4.11 | 48.48 | 47.03 | 55.30 | 13.77 | 26 728 | 0 | 22.00 | 8.62 |
+| HeatingAbsorptionCoolingPlant | yes | 23.96 | 5.13 | 50.44 | 48.93 | 57.53 | 20.96 | 9 134 | 65 190 | 18.27 | 8.00 |
+| HeatingCoolingPlant | yes | 38.92 | 4.38 | 52.68 | 51.10 | 60.09 | 14.49 | 29 099 | 0 | 13.98 | 10.37 |
+| HeatingFullCoolingPlant | yes | 27.86 | 5.20 | 52.98 | 51.40 | 60.44 | 20.92 | 9 174 | 64 908 | 13.40 | 9.52 |
+| HeatingPlant | **no** (no cold) | 16.86 | 4.14 | 47.79 | 47.79 | none | 16.89 | 8 576 | 51 221 | 19.23 | 6.58 |
+
+Reading:
+
+- `HeatingPlant` fails `cold_delivered`; its low capex and LCTS are not comparable (section 14.1).
+- Among the feasible plants `HeatingHeatPumpCoolingPlant` has the lowest LCTS, the lowest CO2 and
+  the highest NPV: it dominates the others on these three criteria (a Pareto front of one point).
+- The gas-boiler designs (`HeatingAbsorptionCoolingPlant`, `HeatingFullCoolingPlant`) have the
+  lowest capex but the highest opex and CO2; a higher discount rate favours them, a higher carbon
+  or gas price penalises them (section 5.1).
+- The heat-pump designs depend on the electricity price and the grid factor (section 17.8).
+- These are stored designs. The sample's search (`study.json`, 20 evaluations, seed 0, with the
+  pump intake limits) reports for its searched designs a lowest LCTS among plants that deliver
+  heat and cold of 40.34 EUR/MWh, again `HeatingHeatPumpCoolingPlant`
+  (`gemini/examples/hackathon_2026/README.md`, from an earlier gemini version; not re-run here).
+
+### 17.10 Lessons from the example
+
+1. Most capex factors of the sample are placeholders (section 17.2); its costs rank designs on a
+   shared basis but are not a cost estimate. A real answer needs sourced factors, above all for
+   drilling by depth.
+2. The two largest levers on the LCTS are the electricity price and the discount rate; better data
+   on these pay off first.
+3. The carbon price on grid electricity is 0.45 MEUR/yr of the opex (7.3 % of the LCTS is carbon on
+   grid power, **derived**: 0.450 / 6.187); state whether this is meant.
+4. The fixed `heat_cost_share` 0.8 makes LCOC 18 % above LCOH **(derived)**; compare designs on
+   LCTS or NPV.
+5. The revenue price of 60 EUR/MWh is a placeholder below every sourced tariff; NPV and payback are
+   therefore indicative.
+
+---
+
+## Appendix A. Symbols and formulas
+
+| Symbol | Meaning | Unit |
+|---|---|---|
+| `I_0`, capex | investment at year 0 | EUR |
+| `C`, opex | yearly operating cost | EUR/yr |
+| `R` | yearly revenue | EUR/yr |
+| `Q_heat`, `Q_cold` | useful heat and cold delivered per year | MWh/yr |
+| `r` | real discount rate | - |
+| `n` | analysis period | yr |
+| `A(r, n)` | annuity factor `(1 − (1+r)^−n)/r` | yr |
+| `CRF` | capital recovery factor `1/A` | 1/yr |
+| `s_heat` | share of cost charged to heat | - |
+
+- Present value: `PV = F/(1+r)^t`
+- Annualised cost: `I_0 · CRF + C`
+- LCOH: `s_heat · (I_0 · CRF + C) / Q_heat`; LCOC: `(1 − s_heat) · (I_0 · CRF + C) / Q_cold`
+- LCTS: `(I_0 · CRF + C) / (Q_heat + Q_cold)`
+- NPV: `−I_0 + (R − C) · A`; payback: `I_0 / (R − C)`
+- Price conversion: `x_b = x_a · HICP(b)/HICP(a)`
+- Fisher: `1 + i_nom = (1 + i_real)(1 + π)`
+- CO2e: `m_CO2 + GWP_CH4 · m_CH4 + E_grid · f_grid`
+- Abatement cost: `ΔAnnualised cost / ΔEmissions`
+
+## Appendix B. References
+
+Sources marked *as quoted* were read through the named project file, not re-opened for this
+handbook.
+
+- AACE International, Recommended Practice 18R-97, Cost Estimate Classification System (ranges not
+  re-read; section 11.2).
+- Copenhagen Economics (2021), *District Heating Tariffs in Europe*, for the Dutch Ministry of
+  Economic Affairs and Climate, p. 21 (as quoted in the gemini cost catalogue).
+- Danish Energy Agency and Energinet (2026), *Technology Data for Generation of Electricity and
+  District Heating*, version 0019, with data sheets, https://ens.dk/en/analyses-and-statistics/technology-data-generation-electricity-and-district-heating
+  (as quoted in `gemini/examples/hackathon_2026/README.md` and the cost catalogue).
+- Ember, Yearly Electricity Data (as quoted in the cost catalogue, rows `co2-grid-eu-*`).
+- European Commission (2025), Better Regulation Toolbox, Tool #64 Discount factors (as quoted in
+  the cost catalogue).
+- Commission Delegated Regulation (EU) No 480/2014, Art. 19(3) (as quoted in the cost catalogue).
+- Directive 2003/87/EC establishing the EU Emissions Trading System, as amended.
+- Eurostat, `prc_hicp_aind`, `nrg_pc_203`, `nrg_pc_205` (as quoted in the sample README and the
+  cost catalogue); band codes from Eurostat dataset metadata.
+- Forster, P. et al. (2021), IPCC AR6 WG1 chapter 7, table 7.15, as quoted by Muñoz, Schmidt and
+  Weidema (2024), *Environmental Research Letters* 19(12), 121002, https://doi.org/10.1088/1748-9326/ad8edd.
+- Geothermal Energy (2021), "Economic and fault stability analysis of geothermal field development
+  in direct-use hydrothermal reservoirs", Table 4 (as quoted in the cost catalogue).
+- Instrat Foundation (W. Przedlacki, 2026), "EU ETS 2025 summary and the beginning of 2026
+  auctions", https://energy.instrat.pl/en/eu-ets-2025-summary/ (as quoted in the sample README).
+- Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
+  Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
+- PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
+  cost catalogue).
+- RVO, SDE++ pages "Berekening SDE++" and "Kenmerken", https://www.rvo.nl/subsidies-financiering/sde.
+- Short, W., Packey, D. J. and Holt, T. (1995), *A Manual for the Economic Evaluation of Energy
+  Efficiency and Renewable Energy Technologies*, NREL/TP-462-5173, https://www.nrel.gov/docs/legosti/old/5173.pdf
+  (the reference for the standard definitions; not re-read for this handbook).
+- Straathof, D. (2012), *Costs of Deep Geothermal Energy in the Netherlands*, MSc thesis,
+  ECN-O--12-043 (as quoted in the cost catalogue).
+- US EPA, AP-42, section 13.5, flares (as quoted in the sample README).
+- Project files: `gemini/docs/cost-sources/` (cost catalogue), `gemini/examples/hackathon_2026/`
+  (sample), `documents/project/quality-assurance/inputs/hackathon-2026-assumptions.md`, gemini
+  0.6.13 source code (chapter 16).
