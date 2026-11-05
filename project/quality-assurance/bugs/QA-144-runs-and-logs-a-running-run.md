@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | backend,frontend |
 | Reporter | Fatemeh (screenshot), Claude (API read and write-up) |
@@ -36,8 +36,8 @@ Also seen in the same agents list (not this bug's subject): three design_lead se
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
+Cause: `UsageTree` (runs/adapters/callbacks.py) wrote live totals only for direct children of the root and only after the root's own first `usage`; with IMP-025 the work runs in grandchildren and the root's first step stays open. Fix: tree keyed by run_id with parents, any depth, root base 0 allowed; run total = max(own, sum of children). Backend 1.1.98, deployed (hotfix-back-IV, tag v1.1.98). Offline test tests/api/v1/assistant/runs/test_usage_tree.py. Frontend part: none needed (it reads run.usage).
+- 2026-11-05 15:17 UTC: backend 1.1.98: live totals count nested runs at any depth; not live-checked
 ## Retest
 
-(Who, when, result.)
+Not live-checked (QA-test stop). Retest: start a design run with parallel instances; Runs and logs row Tokens/Cost must grow while it runs and match /runs/{id}/agents roughly.
