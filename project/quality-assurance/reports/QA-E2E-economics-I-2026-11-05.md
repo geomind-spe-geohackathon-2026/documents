@@ -91,3 +91,19 @@ Retests: QA-181 failed on 0.4.106 (reopened with the code cause: answered calls 
 | 7 (fa001b0b) | 5c1cd7b2 | "Trondheim, Norwegian prices where they differ" | 19 min | 3.55M | 0.072 | unasked site survey (QA-280); catalogue rows replace the assumptions (QA-279); fixed after a typed answer |
 
 New bugs: QA-256, QA-279, QA-280, QA-284 (all major, geomind).
+
+## Round 3 (18:33-19:10 UTC)
+
+Retests on backend 1.1.116-1.1.118: QA-192, QA-256, QA-284 (main part), QA-279, QA-280 verified;
+QA-194 reopened (area backend: project progress has no economics item). New: QA-298 (major,
+change-some path via the analysis lead: dict values, approve all lost, keys dropped to Open),
+QA-305 (minor, hand save keeps the old source).
+
+| Project | Run | Scenario | Time | Tokens in | Cost USD | Result |
+|---|---|---|---|---|---|---|
+| 5 | (heat cost question) | "Roughly what will our heat cost per MWh?" | 46 s | | | correct refusal: lcoh needs a simulated design; peaks 30/10 MW right |
+| 8 (in list) | 658ca8f2 | "economics please" -> change some (gas 45 EUR/MWh 2025, heat 70) | 16 min | 900k | 0.016 | QA-298; stopped |
+| 8 | 40536a82 | "set it" | 2 min 46 s | 242k | 0.0078 | set right: gas 34.95 (HICP), heat 70; no uncertainty this time |
+| 5 | bfe3d68d | carbon back to Instrat (QA-256 retest) | 1 min 39 s | 263k | 0.0077 | one card |
+| 6 | (question) | after hand edit (QA-284 retest) | 21 s | | 0.001 | reads 0.07, flags stale source |
+| 9 (a2d1d833) | 746e64e9 | Trondheim, Norwegian prices (QA-279/280 retest) | 8 min 20 s incl. 4 approvals | 742k | 0.020 | only revenue.cold replaced |
