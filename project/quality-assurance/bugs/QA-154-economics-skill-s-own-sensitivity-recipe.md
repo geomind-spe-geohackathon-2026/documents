@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -47,3 +47,7 @@ Either (a) in `set_case`, replace an `uncertainty` object whole when the patch c
 (an uncertainty is one value, not a set of fields), or (b) skill `economics` and the error suggestion:
 "to change the kind, send the old keys as null, e.g. `{"kind": "uniform", "min": .., "max": .., "std": null}`".
 (a) is safer.
+
+## Fix
+
+- 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
