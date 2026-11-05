@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | backend,gemini |
 | Reporter | Sahand (reviewer notes), Manual QA-IV |
 | Found | 2026-11-05 19:23 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130, gemini 0.6.26) |
 | Where | report of result 54b2e4f4 (B_r1_best, project 0b986dd6) and result 8878eafd (no-agent, project 8d5d21e0); reviewer notes from Sahand 20:20 CET |
-| Fixer | |
+| Fixer | hotfix-back-lead-II |
 
 ## Expected
 
@@ -22,7 +22,7 @@ Only 'Gas bought 34.06 GWh' and 'Heat from the boilers 40.42 GWh': a reader comp
 ## Fix
 
 Backend backend part 1.1.125 (energy table adds fuel burned on site and produced gas burned; includes flared gas, boiler-only needs gemini), hotfix-back-lead-II.
-
+- 2026-11-05 19:54 UTC: backend part 1.1.125; boiler-only gas figure needs gemini
 ## Retest
 
 Report energy table of a plant with produced gas: boiler no longer above 100%.
