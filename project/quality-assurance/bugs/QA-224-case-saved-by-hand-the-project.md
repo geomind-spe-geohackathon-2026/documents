@@ -48,4 +48,5 @@ geomind:
 ## Fix
 
 - 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
+- 2026-11-05 18:16 UTC: QA-AI-project-I 18:16 UTC: retest not reached: the repeated case-edit message was routed to the tool loop and never loaded the case, see QA-266
 ## Retest
