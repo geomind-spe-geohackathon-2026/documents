@@ -38,3 +38,9 @@ Sahand's request (top). text.delta events carry the agent and instance since IMP
 ## Retest
 
 (Who, when, result.)
+
+## Reopened (Sahand, 2026-11-05 21:34 Trondheim)
+
+The label is now on its own line above the text (![now](../evidence/QA-345/2.png)). Sahand wants it
+inline, on the same line, as a bold prefix with a colon: '**Case lead:** The PDF is fully read
+(3,663 characters, pages 1-2). Now I'll split the case ...'.
