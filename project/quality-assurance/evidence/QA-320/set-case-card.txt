@@ -1,0 +1,103 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA-TEST QA-E2E-economics-I 11
+Overview
+Library
+Runs and logs
+Chats
+Fill in the economics yourself with your own best guesses,…
+waits for your approval · 20:13
+AD
+Administrator
+admin
+Projects
+QA-TEST QA-E2E-economics-I 11
+Chat
+1 run active
+Design
+Chat
+Fill in the economics yourself with your own best guesses, including the per-MWh operating costs and a subsidy; I don't want to be asked.
+20:13
+Copy
+
+Waiting for your answer below
+
+Steps so far (32 steps)
+· 365 K tokens
+· 0.012 USD
+
+The pipe fixed O&M must be an annual rate; I use the verified 1 %/yr row instead and resend the same full call
+
+Approval needed
+
+Allow "Set case" to change the project?
+
+Change the case: economics.about.notes, economics.about.sources, economics.accounting.allocation.heat_cost_share, economics.accounting.gwp.CH4, economics.accounting.gwp.standard, economics.analysis_period and 47 more.
+
+What the call sends:
+
+changes.economics.about.notes: "capex.production_pump is per W electric (ESP rows); shaft power is about 0.85 to 0.9 of the electric rating. energy.gas: the source row states EUR/MWh (GCV); no conversion to LHV applied. capex.drilling is a depth table (2300/3000/4000 m) so the design may choose the well depth without a computed interpolation. No subsidy cap: a cap in full-load hours needs a capacity the case does not give."
+changes.economics.about.sources: "All values are cost-catalogue rows of knowledge/data-economics.csv at EUR 2015 prices, except the two chiller variable-O&M values, which are engineering assumptions (no catalogue row). The user delegated the economics to the team and asked not to be questioned."
+changes.economics.accounting.allocation.heat_cost_share: 0.87
+changes.economics.accounting.gwp.CH4: 27.9
+changes.economics.accounting.gwp.standard: IPCC AR6 GWP100
+changes.economics.analysis_period: 25 yr
+changes.economics.capex.absorption_chiller: 0.233861 EUR/W
+changes.economics.capex.boiler: 0.06 EUR/W
+changes.economics.capex.circulation_pump: 0.09 EUR/W
+changes.economics.capex.compression_chiller: 0.159156 EUR/W
+changes.economics.capex.cooler: 0.0490933 EUR/W
+changes.economics.capex.degasser: 1006240 EUR
+changes.economics.capex.drilling.cost_per_metre: [1246.83, 1844.74, 2075.37] EUR/m
+changes.economics.capex.drilling.depth: [2300, 3000, 4000] m
+changes.economics.capex.electric_boiler: 0.07 EUR/W
+changes.economics.capex.flare: 57700 EUR
+changes.economics.capex.heat_exchanger: 0.108893 EUR/W
+changes.economics.capex.heat_pump: 0.737864 EUR/W
+changes.economics.capex.injection_pump: 0.0990291 EUR/W
+changes.economics.capex.pipe: 1148.56 EUR/m
+changes.economics.capex.production_pump: 1.54577 EUR/W
+changes.economics.carbon.price: 57.4757 EUR/t
+changes.economics.currency: EUR
+changes.economics.discount_rate: 0.051
+changes.economics.energy.electricity: 105.75 EUR/MWh
+changes.economics.energy.gas: 39.92 EUR/MWh
+changes.economics.format: 1
+changes.economics.kind: "economics"
+changes.economics.name: "hackathon_2026 economics"
+changes.economics.opex.fixed.absorption_chiller: 3 %/yr
+changes.economics.opex.fixed.boiler: 1950 EUR/MW/yr
+changes.economics.opex.fixed.circulation_pump: 2 %/yr
+changes.economics.opex.fixed.compression_chiller: 4639.7 EUR/MW/yr
+changes.economics.opex.fixed.cooler: 2 %/yr
+changes.economics.opex.fixed.degasser: 3 %/yr
+changes.economics.opex.fixed.drilling: 1 %/yr
+changes.economics.opex.fixed.electric_boiler: 1070 EUR/MW/yr
+changes.economics.opex.fixed.flare: 3 %/yr
+changes.economics.opex.fixed.heat_exchanger: 1.5 %/yr
+changes.economics.opex.fixed.heat_pump: 1652.04 EUR/MW/yr
+changes.economics.opex.fixed.injection_pump: 3 %/yr
+changes.economics.opex.fixed.pipe: 1 %/yr
+changes.economics.opex.fixed.production_pump: 20 %/yr
+changes.economics.opex.per_energy.absorption_chiller: 2 EUR/MWh
+changes.economics.opex.per_energy.boiler: 1.1 EUR/MWh
+changes.economics.opex.per_energy.compression_chiller: 2 EUR/MWh
+changes.economics.opex.per_energy.electric_boiler: 0.9 EUR/MWh
+changes.economics.opex.per_energy.heat_pump: 1.69 EUR/MWh
+changes.economics.price_year: 2015
+changes.economics.revenue.cold: 81.1542 EUR/MWh
+changes.economics.revenue.heat: 93.5115 EUR/MWh
+changes.economics.revenue.subsidy.amount: 48.699 EUR/MWh
+changes.economics.revenue.subsidy.duration: 15 yr
+Reason or change (optional)
+
+To change a value, write what to change here and press Deny: the assistant gets your words and proposes again.
+
+Approve
+Deny
+Auto-approve
