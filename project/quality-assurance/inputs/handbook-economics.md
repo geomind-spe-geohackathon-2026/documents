@@ -16,6 +16,27 @@ Setting economics in a case (`ask_economics`, `set_case`): skill `setting-the-ca
 rest of the case: `knowledge/handbook-case.md`. Reporting the numbers:
 `knowledge/handbook-report.md`.
 
+**Outline** (read the section you need, not the whole book):
+
+| Ch. | Topic | Start with |
+|---|---|---|
+| 0 | Rules, value sources, catalogue keys (0.4.1 capex, 0.4.2 opex, 0.4.3 prices), checklist | 0.1, 0.2 |
+| 1 | Scope, boundary, energy by source | 1.4 |
+| 2 | Capex: structure, drilling, pumps, surface plant, scaling, benchmarks, step by step | 2.8 |
+| 3 | Opex: fixed, variable, energy, chemicals, workovers, carbon, step by step | 3.7 |
+| 4 | Nominal and real money, price year (HICP), currency, escalation | 4.2 |
+| 5 | Discount rate, annuity and CRF, lifetimes, timing, replacements, WACC | 5.2 |
+| 6 | LCOH, LCOC, LCTS, allocation, worked LCOH, mapping to gemini | 6.6 |
+| 7 | Revenue, NPV, IRR, payback, subsidies, worked NPV | 7.5 |
+| 8, 9 | Carbon price; CO2 accounting, GWP, grid factors, footprint example | 9.7 |
+| 10, 11 | Energy price statistics; data sources and estimate classes | 11.2 |
+| 12, 13 | Sensitivity, switching values; uncertainty and number of draws | 12.4, 13.4 |
+| 14, 15 | Comparing and deciding; common mistakes | 15 |
+| 16 | How gemini computes economics (keys, bases, formulas, errors) | 16.1 |
+| 17 | Full worked example on invented numbers | 17.1 |
+| 18 | Lessons from practice (QA): source order, units, basis, stale results, sizing | 18.1 |
+| 19 | Finding a value the catalogue lacks (other countries, grid CO2, chillers, GCV) | 19.1 |
+
 ---
 
 ## 0. Quick reference for the agents
@@ -505,6 +526,41 @@ All rows status *verified* in the catalogue. Use these to check the order of mag
 design, never as its cost: they do not split by component, and they include items a component
 estimate may leave out.
 
+### 2.8 Step by step: a capex estimate and its check
+
+1. **List the equipment** of the design by gemini kind (§16.2) with its cost size: well metres
+   (measured depth, every section once), pump shaft power, capacities in W, conductance, pipe
+   metres, fixed items.
+2. **Pick one factor per kind** from §0.2's order, in the case's price year, with the basis the
+   unit says (§18.3). For drilling over a range of depths, a depth table (§2.2).
+3. **Multiply and sum** (gemini does this: `estimate_costs`, capex by module).
+4. **Add what the factors leave out**, as stated items: drill site, indirect costs and
+   contingency when the factors are bare equipment prices (§2.6). gemini adds none of them; a
+   report says whether they are in or out.
+5. **Check against whole-plant benchmarks** per W of heat (§2.7) and find the largest items.
+
+Worked example (invented factors, EUR of the case's year): a doublet of two 2 500 m wells, a
+geothermal exchanger of 8 MW, a heat pump of 4 MW and a gas boiler of 6 MW; peak heat 12 MW.
+
+| Item | Size x factor | MEUR |
+|---|---|---|
+| Wells | 5 000 m x 1 400 EUR/m | 7.00 |
+| Drill site | one site | 0.30 |
+| Production pump | 0.40 MW shaft x 0.60 EUR/W | 0.24 |
+| Injection pump | 0.15 MW shaft x 0.30 EUR/W | 0.05 |
+| Heat exchanger | 8 MW x 0.10 EUR/W | 0.80 |
+| Heat pump | 4 MW x 0.75 EUR/W | 3.00 |
+| Gas boiler | 6 MW x 0.06 EUR/W | 0.36 |
+| **Direct** | | **11.75** |
+| Indirect, 15 % of direct | | 1.76 |
+| Contingency, 20 % of the above | | 2.70 |
+| **Total** | | **16.21** |
+
+Check: 16.21 MEUR / 12 MW = 1.35 EUR/W, inside the whole-plant range of §2.7 (about 1.0 to
+1.9 EUR2015/W). Wells are 60 % of the direct cost, so the drilling factor and the well depth are
+the first sensitivities. Had the total come out at 0.4 or 4 EUR/W, a factor basis or a size
+would be wrong (§18.3, §18.7) before any design conclusion is drawn.
+
 ---
 
 ## 3. Operating cost (opex)
@@ -594,6 +650,32 @@ plant's opex counts it twice.
 gemini's convention (since 0.6.16, QA-128): `carbon.price` applies to the plant's own CO2 and
 methane (as CO2-equivalent) only. Grid electricity's CO2 is in the `co2` metric but not priced
 (section 16.7).
+
+### 3.7 Step by step: yearly opex, with a worked example
+
+1. **Fixed O&M** per kind: `%/yr` x its capex, or `EUR/MW/yr` x its capacity (§3.1).
+2. **Variable O&M** per MWh produced, if the source gives it (and for every producing kind, or
+   for none, §19.3).
+3. **Electricity** of every consumer from the simulation, times the price (§3.3). For a pump:
+   `P_el = dp x V / eta`, with `dp` in Pa, `V` in m3/s, `eta` the pump-and-motor efficiency.
+4. **Gas bought** on the lower heating value (§19.5), chemicals, waste (§3.4).
+5. **Carbon** on the plant's own CO2e (§8.3).
+
+Worked example (invented, the plant of §2.8):
+
+| Item | Calculation | MEUR/yr |
+|---|---|---|
+| Fixed O&M, wells and site | 1 %/yr x 7.30 MEUR | 0.073 |
+| Fixed O&M, surface equipment | 2 %/yr x 4.45 MEUR | 0.089 |
+| Production pump electricity | `5e6 Pa x 0.0833 m3/s / 0.6 = 0.69 MW`, x 8 000 h = 5 556 MWh, x 100 EUR/MWh | 0.556 |
+| Heat pump electricity | 40 000 MWh heat / COP 4 = 10 000 MWh, x 100 EUR/MWh | 1.000 |
+| Gas for the boiler | 2 000 MWh heat / 0.9 = 2 222 MWh, x 40 EUR/MWh | 0.089 |
+| **Total** | | **1.807** |
+
+Electricity is 86 % of the opex: the electricity price and the heat pump's COP are this plant's
+first opex sensitivities, and a design that cuts pump head or lifts the COP pays twice (opex and
+CO2). gemini computes each of these from the simulated year (§16.3); the table explains its
+answer and is not a substitute for it.
 
 ---
 
@@ -1533,7 +1615,9 @@ kind and capex, and the price year. The kinds and their bases (`case/_utils/kind
 
 The unit of the factor tells gemini which basis is meant. Wells are priced as their sections: in
 gemini's plant classes a production doublet has `dN.well` (below the pump), `dN.riser` (above
-it) and `dN.injector`, each of kind `drilling`; their lengths add to the well depth.
+it) and `dN.injector`, each of kind `drilling`. The riser and the well carry the same whole path; each is costed on
+the measured length of its segment (`above_esp`, `below_esp`, gemini `modules/wells/
+productionwell.py`), so riser plus well is the producer's measured depth (§2.2).
 
 ### 16.3 Opex
 
