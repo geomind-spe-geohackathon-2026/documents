@@ -63,6 +63,10 @@ case output is long (economics inline) and comes back partly outlined.
 Speed: 26 s and ~216 k input tokens per case run (of 6 min 18 s and 1.61 M in total). No accuracy
 effect.
 
+## Reproduced
+
+Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4386e6e3c744, run 519ccc65-564e-4d1e-9139-a23777cd1107, backend 1.1.104, log `../evidence/QA-153/run-519ccc65.json`): case_lead steps 20-25 (17:03:36-17:03:54) are again checklist reads (`read_case` 9 times in the run), 18 s and ~315 k input tokens before `finish`.
+
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
