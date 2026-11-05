@@ -8,7 +8,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
   section="0")`. Chapter 0 is the short version of the whole handbook; read it first, then only
   the sections it points to.
 - **Source of truth.** Keys, units, roles and quantities are gemini's (`gemini/gemini/case/`,
-  `gemini/gemini/plants/roles.py`, `gemini/gemini/units/inputs.py`, gemini 0.6.17). When this
+  `gemini/gemini/plants/roles.py`, `gemini/gemini/units/inputs.py`, gemini 0.6.34). When this
   handbook and `describe_case(path)` differ, `describe_case` wins.
 - **Not here.** How to call a tool: skill `setting-the-case` (cases), `finding-sources`
   (files, Knowledge), `connectors` (servers), `calculator`, `gemini-units`. Economics:
@@ -238,7 +238,7 @@ accepted units of each key.
 | `fluid.dissolved_gas` | per species, a mole fraction or `mol%` | fluid analysis, brief | the produced gas; sums to one as written |
 | `fluid.sand_concentration` | `mg/l` | fluid analysis, assumptions document | |
 | `air.temperature` | `degC`, constant or series | file, weather connector, Knowledge | say "constant" when it is |
-| `air.relative_humidity` | fraction 0 to 1, or `%` with `"unit": "%"` | file, weather connector | optional: no module reads it in gemini 0.6.17; leave it open unless a source gives it, never ask for it; never convert it yourself |
+| `air.relative_humidity` | fraction 0 to 1, or `%` with `"unit": "%"` | file, weather connector | optional: no module reads it in gemini 0.6.34; leave it open unless a source gives it, never ask for it; never convert it yourself |
 | `air.pressure` | `Pa`, `bar`; or `{"elevation": {value, unit}}` | file, connector, or the site's elevation | the elevation is the value confirmed; the ISA pressure gemini derives from it is not asked again |
 
 ## 2.5 `utilities`
@@ -1232,7 +1232,7 @@ holds the rule. They apply to any case.
 - gemini physics: `gemini/gemini/physics/ground.py` (geotherm, Gringarten-Sauty doublet, Ramey),
   `hydraulics.py` (hydrostatic, productivity and injectivity indices), `energy.py`, `fluid.py`
   (constant property snapshots), `gas.py`.
-- gemini 0.6.17: `gemini/gemini/case/`, `gemini/gemini/plants/roles.py`,
+- gemini 0.6.34: `gemini/gemini/case/`, `gemini/gemini/plants/roles.py`,
   `gemini/gemini/units/inputs.py`.
 - geomind: prompts `case/lead.md`, `case/geoscientist.md`; skills `setting-the-case`,
   `finding-sources`, `connectors`, `gemini-units`, `calculator`.
