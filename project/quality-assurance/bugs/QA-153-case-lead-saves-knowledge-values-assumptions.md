@@ -97,5 +97,5 @@ Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4
   2nd set_case for requirements. The curator then wrote this order as lesson
   `case-lead-one-confirmation-question` ("Set the case from the project files and the knowledge base's
   assumptions document first, then gather ...", run a5118d9e; see QA-199).
-- Project 2, run a5118d9e (17:07, geomind 0.4.98/0.4.99): correct order (file values first, question,
+- Both runs started before backend 1.1.104 (geomind 0.4.100). Project 2, run a5118d9e (17:07, geomind 0.4.98/0.4.99): better order (file values first, question,
   then the confirmed values in one set_case). Not seen again after that.
