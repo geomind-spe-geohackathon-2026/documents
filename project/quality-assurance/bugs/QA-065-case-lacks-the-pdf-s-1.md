@@ -35,7 +35,7 @@ Guess: the case lead did not map the PDF doublet rule to a requirement and the d
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+Cause: the case lead's prompt named `count` only as 'a number of units' with no form for a doublet limit, and its checklist did not require every hard rule of the brief to become a requirement; the design lead's prompt let it name brief rules as the case's. gemini accepts `{name: doublet_count, on: doublet, quantity: count, min: 1, max: 3}` (no over/when/unit; checked). Fix: the case lead's prompt gives that form and its checklist requires every hard rule (flow, temperatures, reinjection, days, efficiency, number of doublets or units) as a requirement or named as open; the design lead says the case states a rule only when `read_case` shows the requirement by name, else hands it over as `case change needed: requirements: ...`. geomind 0.4.60 (commit 273cc1f, tag v0.4.59/v0.4.60), backend 1.1.61 (3d2aa31), deployed 2026-11-05 00:22 UTC by hotfix-python-II. Prompt change: retest by setting up the case from the challenge PDF again.
 - 2026-11-05 00:23 UTC: geomind 0.4.60 (273cc1f, case lead maps doublet count to {on: doublet, quantity: count, min, max}; design lead cites only read_case requirements), backend 1.1.61 (3d2aa31), deployed 00:3x UTC
 ## Retest
 

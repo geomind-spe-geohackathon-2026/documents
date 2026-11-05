@@ -37,7 +37,7 @@ Guess: the ask_user tool appends the 'already answered' guard text to the questi
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+Cause: `geomind/engine/questions.py::asking_new` appended the repeat guard's note (`Already answered in this run, not asked again: <paths> (request-id): '<answer>'`) to the question's message, which is the text the card shows. Fix: the message stays as the agent wrote it; only a question that is nothing but a list of paths gets one plain line, `You answered <paths> earlier in this chat; answer only <paths>.` No request id, no quote. geomind 0.4.60 (commit c9fdb22), backend 1.1.61 (3d2aa31), deployed 2026-11-05 00:22 UTC by hotfix-python-II. The second remark (15 'engineering assumption, no source' values) is QA-010 behaviour, left for qa-func-1 to judge.
 - 2026-11-05 00:23 UTC: geomind 0.4.60 (c9fdb22, no internal already-answered note in the question; only-path questions get one plain line), backend 1.1.61 (3d2aa31), deployed
 ## Retest
 
