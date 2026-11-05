@@ -8,8 +8,10 @@ and do not ask for them again.
 
 Each value says where it comes from:
 - **Organisers**: answers of the organisers on Discord #technical-q-and-a, 2026-11-04.
-- **Team**: the team's assumption, taken from gemini's sample case
-  (`gemini/examples/hackathon_2026/case.json` and `economics.json`).
+- **Team**: the team's assumption (a placeholder with no verified source), taken from gemini's sample
+  case (`gemini/examples/hackathon_2026/case.json` and `economics.json`).
+- **Cited**: from gemini's sample case, which cites the source named in the row (details in
+  `gemini/examples/hackathon_2026/README.md`); converted to EUR of 2015 with the euro-area HICP.
 
 ## Rules from the organisers (beyond the requirements PDF)
 
@@ -42,8 +44,8 @@ Each value says where it comes from:
 
 | Requirement | Rule | Source |
 |---|---|---|
-| Heat delivered | Unmet share of the yearly heat demand at most 1 %, over all 365 days | Team |
-| Cold delivered | Unmet share of the yearly cold demand at most 1 %, over all 365 days | Team |
+| Heat delivered | Unmet share of the yearly heat demand at most 1 %, over all 365 days | Organisers (365 days), Team (1 %) |
+| Cold delivered | Unmet share of the yearly cold demand at most 1 %, over all 365 days | Organisers (365 days), Team (1 %) |
 | Supply temperatures 100 degC / 20 degC | Hold while that supply is running (a day with zero cooling demand is no violation) | Team |
 | Equal production and injection volume | Reinjection ratio 0.99999 to 1.00001 while running | Team |
 | Production flow 50-300 m3/h, brine cooling <= 40 K | Per doublet, in every step in which the doublet runs | PDF |
@@ -58,33 +60,35 @@ Currency EUR, price year 2015.
 | Item | Value | Source |
 |---|---|---|
 | Discount rate | 5 %/yr | Team |
-| Analysis period | 25 years | Team |
-| Electricity price | 105.75 EUR/MWh | Team |
-| Natural gas price | 39.92 EUR/MWh | Team |
-| CO2 price | 57.03 EUR/t | Team |
+| Analysis period | 25 years | Team (DEA sheets give 25 yr technical lifetime for heat pump and boiler) |
+| Electricity price | 105.75 EUR/MWh | Cited: Eurostat nrg_pc_205, EU non-household, band IE, excl. VAT, 2025 |
+| Natural gas price | 39.92 EUR/MWh | Cited: Eurostat nrg_pc_203, EU non-household, band I4, excl. VAT, 2025 |
+| CO2 price | 57.03 EUR/t | Cited: Instrat, EU ETS 2025 average allowance price (8 Jan 2026) |
 | Heat revenue / cold revenue | 60 EUR/MWh each | Team |
 | Cost share of heat (allocation heat vs cold) | 0.8 | Team |
-| CH4 global warming potential | 29.8 (IPCC AR6 WG1 table 7.15, GWP100 fossil methane) | Team |
+| CH4 global warming potential | 29.8 | Cited: IPCC AR6 WG1 table 7.15, GWP100, fossil methane |
 | Chemicals / waste disposal | 3 EUR/kg / 0.2 EUR/kg | Team |
 
-Capital cost and fixed operating cost (% of capital cost per year):
+Capital cost and fixed operating cost (% of capital cost per year). Source: Cited = Danish Energy
+Agency, Technology Data for Generation of Electricity and District Heating, version 0019 (Aug 2026);
+every other row is Team.
 
-| Equipment | Capex | Fixed opex |
-|---|---|---|
-| Drilling | 1239.13 EUR/m | 1 %/yr |
-| Heat pump | 0.738 EUR/W | 0.224 %/yr |
-| Gas boiler | 0.0607 EUR/W | 3.25 %/yr |
-| CHP | 0.962 EUR/W | 1.026 %/yr |
-| Degasser | 1,000,000 EUR | 2 %/yr |
-| Compression chiller | 0.3 EUR/W | 2 %/yr |
-| Absorption chiller | 0.3 EUR/W | 2 %/yr |
-| Adsorption chiller | 0.3 EUR/W | 2 %/yr |
-| Production pump / injection pump | 0.5 EUR/W each | 2 %/yr |
-| Heat exchanger | 0.5 EUR/(W/K) | 1 %/yr |
-| Flare | 100,000 EUR | 2 %/yr |
-| Gas make-up | 50,000 EUR | 2 %/yr |
-| Cooler | 0.1 EUR/W | 2 %/yr |
-| Pipe | 500 EUR/m | 0.5 %/yr |
+| Equipment | Capex | Fixed opex | Source |
+|---|---|---|---|
+| Drilling | 1239.13 EUR/m | 1 %/yr | Team (SDE+ 2013 reference case, Mijnlieff et al. 2013, not re-verified) |
+| Heat pump | 0.738 EUR/W | 0.224 %/yr | Cited: DEA sheet 40 |
+| Gas boiler | 0.0607 EUR/W | 3.25 %/yr | Cited: DEA sheet 44 |
+| CHP | 0.962 EUR/W | 1.026 %/yr | Cited: DEA sheet 06 |
+| Degasser | 1,000,000 EUR | 2 %/yr | Team |
+| Compression chiller | 0.3 EUR/W | 2 %/yr | Team |
+| Absorption chiller | 0.3 EUR/W | 2 %/yr | Team |
+| Adsorption chiller | 0.3 EUR/W | 2 %/yr | Team |
+| Production pump / injection pump | 0.5 EUR/W each | 2 %/yr | Team |
+| Heat exchanger | 0.5 EUR/(W/K) | 1 %/yr | Team |
+| Flare | 100,000 EUR | 2 %/yr | Team |
+| Gas make-up | 50,000 EUR | 2 %/yr | Team |
+| Cooler | 0.1 EUR/W | 2 %/yr | Team |
+| Pipe | 500 EUR/m | 0.5 %/yr | Team |
 
 ## Uncertainty ranges (studies only)
 
