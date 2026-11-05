@@ -70,7 +70,47 @@ The explainer finishes with Markdown under exactly these headings, in this order
 - [ ] Every `source: agent` assumption and approved case change listed under `Decisions`.
 - [ ] No number that a tool did not give; no unit conversion.
 
-## 0.5 What the writer asks, and what it does not
+## 0.5 When the job is done: stop rules
+
+A review or an explanation is short when it reads only what it quotes. Every extra read makes
+each later step slower and dearer, because the conversation grows.
+
+**Reviewer.** In one step: `check_results`, `case_changes`, `compute_kpis` on the result. Then
+record and finish. Read a module result (`read_result`) only for a failure of kind `requirement`
+or `failed_step`, on that module and those days. A feasible verdict needs no module result. Never
+read a case section you already hold from a whole `read_case`. The reviewer judges the verdict,
+the case changes, a stale result and unconfirmed assumptions; an engineering review of the
+structure, the dispatch or the backup is the analysis lead's, even when a brief asks for it.
+
+**Explainer.** Read once, in one step (§0.3), and write. Quote no module result the answer does
+not use. When the question is not the explanation of the verified design (another family, a
+concept, a why), answer that question only, under headings that fit it, not the eight headings
+of §0.2.
+
+**Finding a section.** Open a handbook section by its number with `read_knowledge`
+(§0.6). Search (`search_rag`) only to find which document holds a topic, a few times per answer
+at most, never to fish for a section whose number you already know: a search returns snippets,
+not the section.
+
+Invented example: a reviewer gets a feasible verdict at step 2 and then reads twelve module
+results and the case section by section until step 15. The verdict never changes; the thirteen
+extra steps cost about four times the tokens of the whole review.
+
+## 0.6 Which section answers which question
+
+| Question | Read |
+|---|---|
+| What goes under each heading of the explanation | `knowledge/handbook-report.md` §0.2 |
+| Is the design feasible; how to show the checks | §9 (feasible is the verdict, §9.1) |
+| How to present alternatives and the ranking | §6 |
+| How to state a decision and its reason | §7 |
+| What each cost metric means; which tool gives it | `knowledge/handbook-economics.md` §0.5, §0.8 |
+| How gemini computes a cost or CO2 | `knowledge/handbook-economics.md` §16 |
+| How to present uncertainty and sensitivity | §10 here; method in `knowledge/handbook-economics.md` §12, §13 |
+| What a scored brief or a page limit asks | §3.2, §16, and the brief's own document in Knowledge |
+| The full review checklist | §15 |
+
+## 0.7 What the writer asks, and what it does not
 
 A report asks the user nothing. A value it lacks is named under `Open points` ("not given:
 <what>, <why it matters>"); a missing economics key is named with its `economics.<key>` path for

@@ -30,8 +30,10 @@ rest of the case: `knowledge/handbook-case.md`. Reporting the numbers:
 3. **One price year, one currency, one convention.** Catalogue values are EUR at 2015 prices;
    the case's `currency` and `price_year` say so. Real prices go with a real discount rate (§4.1).
 4. **A cost counts only for a feasible design.** Cost the verified result; a design whose gemini
-   verdict is not feasible is not compared with one that is (§14.1). The verdict is
-   `check_results`'s `feasible`, not a count of passed checks.
+   verdict is not feasible is not compared with one that is (§14.1). Feasible means
+   `check_results`'s `feasible` true, never the report's `passed`: `passed` counts only the checks
+   that ran, so a plant that leaves a whole service unmet can show `passed` true and still be
+   infeasible.
 5. **Every value carries its source**: file and page, Knowledge document and section, or
    catalogue row `id`.
 
@@ -176,6 +178,38 @@ feasible and is never ranked on cost (§14.1). Each kind of limit moves the cost
 Read the limits before costing, and say in the report which of them drove the cost of the
 chosen design.
 
+### 0.8 Which tool gives which number
+
+Ask each tool only for what it holds; a name it does not hold is refused and costs a round trip.
+
+| You need | Tool | Not from |
+|---|---|---|
+| capex (by module), opex (by component), `annualised_cost`, `lcoh`, `lcoc`, `lcts`, `npv`, `payback` | `estimate_costs` on the result | `compute_kpis` (it has no `annualised_cost`, `npv` or `payback`), `read_result` |
+| energies delivered and bought, coverage, peaks, COP, capacities, the `co2` metric | `compute_kpis` on the result | `read_result` |
+| feasible or not, and why | `check_results`: `feasible` and `reasons` | the report's `passed` |
+| one module's series (a flow, a temperature, a day range) | `read_result` with that module's `path` | it holds module columns only: never `costs`, `lcts` or a cost name |
+| the prices, rates and factors the costs used | `read_case` with section `economics` | `read_rag` (economics is a case file, not a document) |
+| a ranking, a range or a sensitivity | `read_study` of its `study/<name>` | recomputing it |
+
+### 0.9 A case without economics
+
+Costs need every economics key the plant uses. When a case has none, or lacks some:
+
+1. The agent that owns the case (the case lead) asks the user ONE economics question
+   (`ask_economics`), which fills catalogue rows with their `value_2015` and sources (§0.2). Any
+   other agent reports the missing keys with their paths and hands the work back; it does not
+   build the economics itself.
+2. What is written into the case is exactly what the user approved: the same number, unit and
+   source. Never convert a unit or a price year between the question and the write, never pick
+   a different row, never add a key the question did not show.
+3. Ask once. After the approval the keys are set; a later question about costs reads them with
+   `read_case`, never asks again.
+
+Invented example of what goes wrong: the user approves "electricity 0.145 EUR/kWh (2024)" and the
+case receives 115 EUR/MWh (converted to 2015 by the agent). The user approved one number and the
+plant is costed on another; the card must show 115 EUR/MWh at 2015 prices from the start, as the
+catalogue's `value_2015` gives it.
+
 ### 0.7 Checklist before costs are reported
 
 - [ ] The costed result is the verified one, and its verdict is feasible (§0.1 rule 4).
@@ -188,6 +222,8 @@ chosen design.
 - [ ] Every number as the tool gave it, with its unit and the result reference.
 - [ ] Sensitivity or uncertainty only when asked, with study key, samples, seed and failed draws.
 - [ ] Placeholder or `secondary` inputs named, so the reader knows the estimate class (§11.2).
+- [ ] Every number read from the tool that holds it (§0.8); the economics are the approved ones
+      (§0.9).
 
 ---
 
@@ -1055,7 +1091,10 @@ value follows from the derivative of the output (for example ∂LCTS/∂p_el = E
 | Lognormal | mean and spread of the log | positive quantities with long upper tails (permeability, drilling overruns) |
 | Discrete | values and probabilities | scenarios (policy on or off, one or two wells succeed) |
 
-Every distribution is an assumption with a source or a stated reason. Correlated inputs (gas and
+Every distribution is an assumption with a source or a stated reason. Changing a value's
+distribution to another kind replaces all its parameters: a uniform range set over a normal one
+must not keep the old `std` (in gemini a merge patch keeps keys it is not given, so send the
+whole new `uncertainty`, and check it with `read_case`). Correlated inputs (gas and
 electricity prices, carbon and electricity prices) sampled independently understate or overstate
 the spread; state whether correlations are modelled.
 
@@ -1063,7 +1102,9 @@ the spread; state whether correlations are modelled.
 
 Draw `N` sets of inputs from their distributions, run the evaluation for each, collect the outputs.
 
-- Fix the random **seed** and report it, so the result can be reproduced.
+- Fix the random **seed** and report it, so the result can be reproduced. A sample count or seed
+  the agent chose itself is the agent's assumption (`source: agent`, not confirmed), never the
+  user's.
 - The number of draws sets the precision: the standard error of a mean falls as `1/√N`; tail
   percentiles need many more draws than the mean. A handful of draws gives an impression, not a
   percentile; say so.
