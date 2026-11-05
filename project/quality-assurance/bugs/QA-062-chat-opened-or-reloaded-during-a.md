@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
 | Found | 2026-11-05 00:08 UTC |
 | Versions | frontend 1.1.5x, backend 1.1.55 (health), geomind 0.4.54 |
 | Where | https://geomind.team/projects/4cfeab2d-73e3-4299-a1f8-afec3d7e4bae/design/case?chat=159de1e5-d65d-4031-946d-86046aefcaaa; project QA2 qa-ux flow; first chat, run waiting for an economics answer |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
