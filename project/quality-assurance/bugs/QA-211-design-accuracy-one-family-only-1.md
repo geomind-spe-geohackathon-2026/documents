@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-design-I |
@@ -47,4 +47,5 @@ Facts: `prompts/design/lead.md` steps 2-5 say "Choose the family ... build it ON
 
 ## Fix
 
+- 2026-11-05 17:39 UTC: geomind 0.4.109, deployed: best family plus a materially different alternative; size doublets and optimize before a verdict
 ## Retest
