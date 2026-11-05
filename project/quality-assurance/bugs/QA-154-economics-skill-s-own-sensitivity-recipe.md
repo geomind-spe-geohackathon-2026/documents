@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -60,3 +60,4 @@ Either (a) in `set_case`, replace an `uncertainty` object whole when the patch c
   `{"kind": "uniform", "min": 0.03, "max": 0.09, "std": null}` and was accepted (one card); the economist ran
   `sensitivity(values=["economics.discount_rate"])`: LCTS 41.65 at 3 %, 52.99 at 9 %, effect 11.34 EUR/MWh. 58 s,
   0.0029 USD. Verified. Log: `../evidence/QA-154/run-6c88bb13-retest-log.json`.
+- 2026-11-05 19:40 UTC: retest QA-AI-analysis-I 19:15 UTC: kind change with std null accepted first time
