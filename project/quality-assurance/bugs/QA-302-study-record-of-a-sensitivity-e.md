@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | hotfix-front-lead (QA-215 follow-up) |
@@ -33,6 +33,8 @@
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.130 (bundle see STATUS), by front-m1: SensitivityTable ranked by swing, raw JSON collapsed. Shape read from gemini sensitivity.py, not checked on study fa3dcd72.
+- 2026-11-05 19:01 UTC: frontend 1.1.130
 ## Retest
 
 (Who, when, result.)
