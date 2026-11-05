@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -68,4 +68,5 @@ one answer (needs >= 2 runs); (4) after a Deny with reason, never write that les
 
 ## Fix
 
+- 2026-11-05 18:30 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
