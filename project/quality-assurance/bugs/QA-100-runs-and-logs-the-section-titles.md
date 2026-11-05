@@ -5,34 +5,33 @@
 | Status | open |
 | Severity | cosmetic |
 | Area | frontend |
-| Reporter | Fatemeh |
+| Reporter | Fatemeh (screenshot), Claude (write-up) |
 | Found | 2026-11-05 10:36 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend as deployed 2026-11-05 ~10:30 UTC |
+| Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/assistant/runs/32a12115-1a7d-4e89-8582-05466fad0db0 |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open Runs and logs and a run; scroll to the totals.
 
 ## Expected
 
+"Per agent" and "Per model" read as section titles, like the card titles elsewhere in the app (larger or bolder than the table's column headers).
+
 ## Actual
+
+The titles are the table's caption (`TableCaption`, `font-medium`, the default small size), the same size and weight as the column headers (Agent, Calls, Tokens in ...), so they look like one more header row. Fatemeh: "aren't these titles very small?"
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-100/1.png)
-- Run JSON: `../evidence/QA-100/run-<id>.json`
+- ![Per agent / Per model](../evidence/QA-100/1.webp)
+- `frontend/src/domains/assistant/runs/totals-table.tsx` line 19.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact: the caption has no size of its own. Fix: a section title above each table (as the other cards use), or `text-base font-semibold` on the caption.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
