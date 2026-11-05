@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -49,7 +49,7 @@ Proposal (geomind): project lead prompt and handbook-report: when the project ho
 one plant version and the request does not name one, simulate each current version (cheap: about
 1 s each) and compare them, or ask the user which to report; never call the latest one "the
 recommended design" without that comparison.
-
+- 2026-11-05 20:01 UTC: geomind acc7b6c + 97ac62d; pending deploy
 ## Retest
 
 (Who, when, result.)
