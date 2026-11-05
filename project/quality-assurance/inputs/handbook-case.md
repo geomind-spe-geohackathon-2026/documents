@@ -37,7 +37,8 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 13. Engineering background for checking a case: demand, load duration, ground, reservoir,
     doublet power, brine and gas, emission factors, outside air (each with a worked example)
 14. Lessons from case reviews: stored = approved, nothing to start from, how the user answers,
-    scope
+    scope, values and digits, requirements that fail a correct plant, saying what is true, one
+    question once
 15. Reference ranges for the values agents search most: network temperatures, cooling and
     dew point, produced gas, sand, grid limits, initial state, salinity and net-to-gross
 Appendix A. Unit pitfalls
@@ -1174,6 +1175,56 @@ holds the rule. They apply to any case.
   only for the keys the user names (§8.1, §8.2).
 - **Read by section.** Knowledge is read by section after its outline, never whole; a search
   result is a pointer to a section, not a value to paste (front matter of this handbook).
+
+## 14.5 Values and digits
+
+- **Retyped digits.** A number shown in a question or a card with other digits than the source
+  (rounded, a digit dropped, a float tail). Rule: copy every value from the source text or the
+  tool result exactly; show it as the source prints it, and store the same digits (§8.8).
+- **Units gemini refuses.** A value approved in a unit gemini does not read (`mg/L` in another
+  spelling, a bare percent) means a second approval. Rule: before the question, check each
+  key's accepted units with `describe_case` and write the value in one of them, converting
+  nothing; the unit the source prints goes in the source note (Appendix A).
+- **Dependent values.** When one value changes, values the source tied to it may no longer
+  hold: a pressure given "at" a depth holds at that `reference_depth`, not at a new design
+  depth; a density given at one temperature does not follow a new one. Rule: when the user
+  changes a value, list the values its source tied to it and say whether they still hold
+  (§2.3, §13.4).
+- **A series from two numbers.** A peak power and a yearly energy do not define a series:
+  the shape is missing. Rule: ask for a series or a cited profile; never build one, and never
+  fall back to a constant without the user's approval (§3.3, §8.5).
+
+## 14.6 Requirements that fail a correct plant
+
+- **Exact and always.** A supply temperature written as an exact value checked `always` fails
+  on every step where the service is idle (no demand). Rule: a temperature the plant must give
+  while serving is checked `when: running`, with the tolerance from one source (§6.6, §6.8).
+- **Half a range.** A flow band given as "between A and B" is ONE requirement with `min` and
+  `max`; written as two, or with one end only, gemini cannot read it as a range for the units
+  that need one (§6.7).
+- **Rules not in the case.** A rule of the brief that gemini cannot express stays out of the
+  case and is named in the handover (§6.10). No agent may later say "the case fixes" it.
+
+## 14.7 Saying what is true
+
+- **Claimed but not done.** Never say "the case is set" or "complete" when the last `set_case`
+  was refused or `describe_case` still lists missing keys; say what is missing (§11.2).
+- **Words put in the user's mouth.** Never write "the user said" or "the user chose" for a value
+  the user did not state; an agent choice is `source: agent` with its reason (§3.2, §8.3).
+- **Delegated values.** When the user says "you choose" or "use your best judgement", that is
+  not a reason to leave the values open: propose each with the best source found, mark it as
+  the agent's choice, and ask the one question unless approval is waived (§14.3).
+
+## 14.8 One question, once
+
+- **The same question again.** A question the user answered is never asked again in the run;
+  read the answer from the conversation and the case (§8.4, §8.7).
+- **Questions in rounds.** Asking site, then demand, then air in separate rounds triples the
+  user's work. Rule: one question with every open value grouped by section; a second only for
+  what `set_case` itself reports (`plants_need`, mapped units) (§0.1 steps 6 to 8).
+- **Values nobody needs.** Keys no module of the case reads, and that no source gives, are not
+  asked (§8.6); keys the plant needs that are missing are asked once, before the design starts,
+  never discovered by the design team later.
 
 # 15. Reference ranges for the values agents search most
 
