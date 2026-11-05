@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | data |
 | Reporter | Fatemeh (organisers' answers), Claude (write-up) |
@@ -42,5 +42,5 @@ alternative. Data only, not yet live. Still owed:
 1. a geomind release with the row (hotfix-python-II, on Sahand's word) and a backend deploy;
 2. the Knowledge re-seed with the new catalogue (Sahand; same command as 2026-11-04 23:35 UTC);
 3. the case lead offering this row first for challenge cases (prompt or skill: hotfix-python-II).
-
+- 2026-11-05 14:11 UTC: row co2-grid-organisers-2026 live: cost-sources.csv/md (110734/11260 bytes, = geomind main) re-uploaded to Knowledge 10:18 UTC, ready; case lead recommends it (geomind 0.4.79+)
 ## Retest
