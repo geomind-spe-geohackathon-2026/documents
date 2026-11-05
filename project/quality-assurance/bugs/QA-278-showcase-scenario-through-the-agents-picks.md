@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
-| Area | geomind |
+| Area | geomind,gemini |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 18:25 UTC |
 | Versions | backend 1.1.105 -> 1.1.112 during the run (geomind 0.4.10x -> 0.4.119, gemini 0.6.17 -> 0.6.19), API only |
@@ -84,6 +84,7 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 - 2026-11-05 19:33 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
+- 2026-11-05 19:52 UTC: retest QA-AI-analysis-I 19:51 UTC: one run_study now, but run_study on design/vN gives v1 52.8 / v4 43.8 vs page minimize 32.3 / 39.5; 41 min run
 ## Retest
 
 - 2026-11-05 19:04 UTC, QA-AI-analysis-I, backend 1.1.118 (geomind 0.4.130, gemini 0.6.26): project `QA-TEST
