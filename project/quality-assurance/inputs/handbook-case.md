@@ -726,7 +726,7 @@ sizing and optimisation use only the value; only uncertainty studies draw from t
 | lower and upper bounds only | `uniform` |
 | bounds and a most likely value (the value is the mode) | `triangular` |
 | mean and standard deviation | `normal`, truncated by `min`, `max` |
-| P10/P50/P90 | `triangular` or `normal`; name the reading chosen |
+| P10/P50/P90 | `triangular` or `normal`; name the reading chosen; check the convention (PRMS and finance: P90 is the value exceeded with 90 % probability, the LOW end; some sources mean the opposite), `knowledge/handbook-studies.md §4.3` |
 
 ## 9.3 Choosing a range
 
