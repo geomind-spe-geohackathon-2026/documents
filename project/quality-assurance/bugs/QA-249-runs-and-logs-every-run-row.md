@@ -42,6 +42,7 @@ frontend 1.1.124 (commit 9e86452, bundle index-BJQNq3nH.js): each Runs and logs 
 
 hotfix-back-lead, backend 1.1.111 (additive): every run of `GET /assistant/runs` has `prompt`, the user message that started it (one query per page).
 - 2026-11-05 18:05 UTC: frontend 1.1.124 + backend 1.1.111
+- 2026-11-05 18:05 UTC: backend 1.1.111
 ## Retest
 
 Recipe: GET /assistant/runs?project=...: each item has prompt = the chat message text; front shows it in Runs and logs.
