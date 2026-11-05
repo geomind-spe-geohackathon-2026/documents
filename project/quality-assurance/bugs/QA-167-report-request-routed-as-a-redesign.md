@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -69,3 +69,4 @@ the project lead calls list_plants and list_studies, then briefs analysis_lead/e
 design_lead, no build_plant approval card.
 
 QA-E2E-report-I, 2026-11-05 19:30 UTC, project QA-TEST QA-E2E-report-I 3 (a9ff33c4), run 12115d92 (19:00:07-19:26:29 UTC), backend 1.1.122: the project lead sends the report request to the analysis lead, reviewer and explainer first; no design_lead, no Build plant card. (design_lead ran later only because of the finish false positive, QA-233.) Verified.
+- 2026-11-05 19:28 UTC: retest run 12115d92: routed to analysis/reviewer/explainer, no design_lead first
