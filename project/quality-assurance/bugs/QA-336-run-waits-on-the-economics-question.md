@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | backend |
 | Reporter | QA-E2E-case-I |
@@ -55,6 +55,7 @@ Frontend part (front-m1, commit 80d5d25, not deployed yet): when GET /assistant/
 ## Retest
 
 - 2026-11-05 20:44 UTC: QA-E2E-case-I 20:44 UTC, backend 1.1.130: stuck run 3152a411 (project 12): after reload the economics card (request-797) shows within 50 s; approve all accepted, run goes on (status running, request cleared). Screenshot evidence/QA-336/retest-2-pass.png
+- 2026-11-05 20:55 UTC: QA-E2E-case-I 20:44 UTC (backend 1.1.130): pass, see retest-2-pass.png; set again because the index showed fixed
 ## Retest (QA-E2E-case-I, 2026-11-05 20:13-20:16 UTC)
 
 backend 1.1.127, frontend repo at 1.1.139 (contains 80d5d25), page bundle index-Sg-LtJuN.js. Run 3152a411 still
