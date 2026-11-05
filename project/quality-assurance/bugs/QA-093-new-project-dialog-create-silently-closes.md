@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-3 |
@@ -36,7 +36,7 @@ The dialog closed on any pointer-down outside it (Radix default), and in a 577 p
 ## Fix
 
 frontend 1.1.81, commit 8eacf11 (hotfix-front-II): the dialog ignores clicks outside (Cancel, X and Escape still close it); Cancel and Create stick to the dialog's foot; a missing name or Shared memory scrolls to and focuses that field next to its message. Checked on a local build at 1280x577: Create visible at y=512, an outside click keeps the dialog open, Create with empty Shared memory shows the message and focuses the select, no POST. Deploy: 10:00 UTC window.
-
+- 2026-11-05 10:02 UTC: frontend 1.1.81, commit 8eacf11, deployed 10:01 UTC (live 1.1.84)
 ## Retest
 
 (Who, when, result.)
