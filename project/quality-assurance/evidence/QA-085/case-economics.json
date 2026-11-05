@@ -1,0 +1,316 @@
+{
+  "format": 1,
+  "kind": "economics",
+  "name": "GEMINI Hackathon 2027 geothermal plant economics (cost catalogue, EUR 2015)",
+  "about": {
+    "notes": "All values are the cost catalogue's value_2015 in unit_2015: EUR at 2015 prices. capex.production_pump is the catalogue's ESP row per W electric (motor rating), not converted to shaft power; per W of shaft power the cost is about 10 to 15 % higher (shaft power about 0.85 to 0.9 of the electric rating). opex.per_energy.compression_chiller, absorption_chiller and adsorption_chiller have no catalogue row: the user gave no price per MWh of cold, so a plant that uses a chiller cannot be priced per energy until the user gives one. revenue.subsidy.cap and revenue.subsidy.capacity are open: the user assumes no subsidy and gave no MW the subsidy would be granted for. opex.fixed.pipe rows in EUR/MW/yr and EUR/MW/km/yr are not usable (the key takes %/yr). opex.variable.waste_disposal rows in EUR/m3 and t/m3 are not usable (the key takes EUR/kg).",
+    "sources": {
+      "accounting.allocation.heat_cost_share": "heat-cost-share-pes-fiaschi-2021-high",
+      "accounting.gwp.CH4": "gwp-ch4-ar6-ipcc-2021-sm",
+      "accounting.gwp.standard": "gwp-standard-ipcc-ar6-gwp100",
+      "analysis_period": "analysis-period-dea-2019-geothermal-dk",
+      "capex.absorption_chiller": "absorption-chiller-ecos-2023",
+      "capex.adsorption_chiller": "adsorption-chiller-edinburgh-2023",
+      "capex.boiler": "boiler-gas-dea-2018-2-3mw",
+      "capex.chp": "chp-gas-engine-dea-2018-1-10mwe",
+      "capex.circulation_pump": "circulation-pump-proxy-dea-2017-over-1mw",
+      "capex.compression_chiller": "compression-chiller-ecos-2023",
+      "capex.cooler": "dry-cooler-iea-2014-low",
+      "capex.degasser": "degasser-nl-2013",
+      "capex.drilling": "drilling-nl-2013-3000m",
+      "capex.electric_boiler": "boiler-electric-dea-2017-over-10mw",
+      "capex.flare": "flare-capex-proxy-epa-2019",
+      "capex.gas_makeup": "gas-makeup-capex-proxy-npro-chp-1mwe",
+      "capex.heat_exchanger": "heat-exchanger-dea-2025-station",
+      "capex.heat_pump": "heat-pump-dea-2025-10mw",
+      "capex.ice_storage": "ice-storage-mlakar-2022-low",
+      "capex.injection_pump": "injection-pump-proxy-dh-station",
+      "capex.pipe": "pipe-dea-2025-distribution-5-25mw",
+      "capex.production_pump": "production-pump-schlagermann-2023-332kwel",
+      "capex.thermal_storage": "thermal-storage-tank-dea-2025-3000m3",
+      "carbon.price": "carbon-price-eu-ets-esma-2026",
+      "discount_rate": "discount-rate-pbl-sde-2025-geothermal-real",
+      "energy.electricity": "electricity-nl-eurostat-2024-band-id",
+      "energy.gas": "gas-nl-eurostat-2024-band-i4",
+      "opex.fixed.absorption_chiller": "opex-absorption-chiller-iea-shc-2024",
+      "opex.fixed.adsorption_chiller": "opex-adsorption-chiller-iea-shc-2024",
+      "opex.fixed.boiler": "opex-boiler-gas-dea-2018",
+      "opex.fixed.chp": "opex-chp-gas-engine-dea-2018",
+      "opex.fixed.circulation_pump": "circulation-pump-om-vdi2067-vicus-2026-low",
+      "opex.fixed.compression_chiller": "opex-compression-chiller-hre4-2017-755kw",
+      "opex.fixed.cooler": "opex-dry-cooler-iea-shc-2024",
+      "opex.fixed.degasser": "opex-degasser-proxy-schlagermann-2023",
+      "opex.fixed.drilling": "opex-drilling-geophires-2026",
+      "opex.fixed.electric_boiler": "opex-boiler-electric-dea-2017",
+      "opex.fixed.flare": "opex-flare-proxy-schlagermann-2023",
+      "opex.fixed.gas_makeup": "opex-gas-makeup-proxy-npro-chp",
+      "opex.fixed.heat_exchanger": "opex-heat-exchanger-proxy-vdi2067-low",
+      "opex.fixed.heat_pump": "opex-heat-pump-dea-2025-10mw",
+      "opex.fixed.ice_storage": "ice-storage-om-spice-2024-mid-size-10000kwh",
+      "opex.fixed.injection_pump": "opex-injection-pump-proxy-schlagermann-2023",
+      "opex.fixed.pipe": "pipe-om-vesta-mais-pbl-2026-distribution",
+      "opex.fixed.production_pump": "opex-production-pump-ecn-2012-esp-replacement",
+      "opex.fixed.thermal_storage": "opex-thermal-storage-tank-dea-2025",
+      "opex.per_energy.boiler": "per-energy-boiler-gas-dea-ch44-2020col",
+      "opex.per_energy.chp": "opex-variable-chp-gas-engine-dea-2018",
+      "opex.per_energy.electric_boiler": "per-energy-electric-boiler-dea-ch41-2020col",
+      "opex.per_energy.heat_pump": "per-energy-heat-pump-dea-ch40-excess-heat-10mw-2025col",
+      "opex.variable.chemical": "scale-inhibitor-proxy-watertap-2020",
+      "opex.variable.waste_disposal": "waste-disposal-proxy-sewage-sludge",
+      "revenue.cold": "cold-price-no-2017",
+      "revenue.heat": "heat-price-nl-cap-2026",
+      "revenue.subsidy.amount": "sde-basisbedrag-geothermal-pbl-2026-over-20mw",
+      "revenue.subsidy.duration": "sde-duration-geothermal-stcrt-2025"
+    }
+  },
+  "accounting": {
+    "allocation": {
+      "heat_cost_share": {
+        "value": 0.76
+      }
+    },
+    "gwp": {
+      "CH4": {
+        "value": 27.9
+      },
+      "standard": {
+        "value": "IPCC AR6 GWP100"
+      }
+    }
+  },
+  "analysis_period": {
+    "unit": "yr",
+    "value": 25
+  },
+  "capex": {
+    "absorption_chiller": {
+      "unit": "EUR/W",
+      "value": 0.233861
+    },
+    "adsorption_chiller": {
+      "unit": "EUR/W",
+      "value": 0.826634
+    },
+    "boiler": {
+      "unit": "EUR/W",
+      "value": 0.06
+    },
+    "chp": {
+      "unit": "EUR/W",
+      "value": 0.95
+    },
+    "circulation_pump": {
+      "unit": "EUR/W",
+      "value": 0.09
+    },
+    "compression_chiller": {
+      "unit": "EUR/W",
+      "value": 0.159156
+    },
+    "cooler": {
+      "unit": "EUR/W",
+      "value": 0.0490933
+    },
+    "degasser": {
+      "unit": "EUR",
+      "value": 1006240
+    },
+    "drilling": {
+      "unit": "EUR/m",
+      "value": 1844.74
+    },
+    "electric_boiler": {
+      "unit": "EUR/W",
+      "value": 0.07
+    },
+    "flare": {
+      "unit": "EUR",
+      "value": 57700.03506496464
+    },
+    "gas_makeup": {
+      "unit": "EUR",
+      "value": 636893.2038834952
+    },
+    "heat_exchanger": {
+      "unit": "EUR/W",
+      "value": 0.108893
+    },
+    "heat_pump": {
+      "unit": "EUR/W",
+      "value": 0.737864
+    },
+    "ice_storage": {
+      "unit": "EUR/MWh",
+      "value": 23249.8663132687
+    },
+    "injection_pump": {
+      "unit": "EUR/W",
+      "value": 0.0990291
+    },
+    "pipe": {
+      "unit": "EUR/m",
+      "value": 1148.56
+    },
+    "production_pump": {
+      "unit": "EUR/W",
+      "value": 1.5457689466758628
+    },
+    "thermal_storage": {
+      "unit": "EUR/m3",
+      "value": 168.55429713524322
+    }
+  },
+  "carbon": {
+    "price": {
+      "unit": "EUR/t",
+      "value": 57.4757281553398
+    }
+  },
+  "currency": {
+    "value": "EUR"
+  },
+  "discount_rate": {
+    "value": 0.051
+  },
+  "energy": {
+    "electricity": {
+      "unit": "EUR/MWh",
+      "value": 115.01546759736655
+    },
+    "gas": {
+      "unit": "EUR/MWh",
+      "value": 37.507733798683276
+    }
+  },
+  "opex": {
+    "fixed": {
+      "absorption_chiller": {
+        "unit": "%/yr",
+        "value": 3
+      },
+      "adsorption_chiller": {
+        "unit": "%/yr",
+        "value": 3
+      },
+      "boiler": {
+        "unit": "EUR/MW/yr",
+        "value": 1950
+      },
+      "chp": {
+        "unit": "EUR/MW/yr",
+        "value": 9750
+      },
+      "circulation_pump": {
+        "unit": "%/yr",
+        "value": 2
+      },
+      "compression_chiller": {
+        "unit": "EUR/MW/yr",
+        "value": 4639.7
+      },
+      "cooler": {
+        "unit": "%/yr",
+        "value": 2
+      },
+      "degasser": {
+        "unit": "%/yr",
+        "value": 3
+      },
+      "drilling": {
+        "unit": "%/yr",
+        "value": 1
+      },
+      "electric_boiler": {
+        "unit": "EUR/MW/yr",
+        "value": 1070
+      },
+      "flare": {
+        "unit": "%/yr",
+        "value": 3
+      },
+      "gas_makeup": {
+        "unit": "%/yr",
+        "value": 8
+      },
+      "heat_exchanger": {
+        "unit": "%/yr",
+        "value": 1.5
+      },
+      "heat_pump": {
+        "unit": "EUR/MW/yr",
+        "value": 1652.04
+      },
+      "ice_storage": {
+        "unit": "%/yr",
+        "value": 0.7427277453722017
+      },
+      "injection_pump": {
+        "unit": "%/yr",
+        "value": 3
+      },
+      "pipe": {
+        "unit": "%/yr",
+        "value": 1
+      },
+      "production_pump": {
+        "unit": "%/yr",
+        "value": 20
+      },
+      "thermal_storage": {
+        "unit": "%/yr",
+        "value": 0.282326369282891
+      }
+    },
+    "per_energy": {
+      "boiler": {
+        "unit": "EUR/MWh",
+        "value": 1.1
+      },
+      "chp": {
+        "unit": "EUR/MWh",
+        "value": 5.4
+      },
+      "electric_boiler": {
+        "unit": "EUR/MWh",
+        "value": 0.9
+      },
+      "heat_pump": {
+        "unit": "EUR/MWh",
+        "value": 1.69
+      }
+    },
+    "variable": {
+      "chemical": {
+        "unit": "EUR/kg",
+        "value": 2.908067875204125
+      },
+      "waste_disposal": {
+        "unit": "EUR/kg",
+        "value": 0.0497087
+      }
+    }
+  },
+  "price_year": {
+    "value": 2015
+  },
+  "revenue": {
+    "cold": {
+      "unit": "EUR/MWh",
+      "value": 103.547
+    },
+    "heat": {
+      "unit": "EUR/MWh",
+      "value": 114.555
+    },
+    "subsidy": {
+      "amount": {
+        "unit": "EUR/MWh",
+        "value": 48.699029126213595
+      },
+      "duration": {
+        "unit": "yr",
+        "value": 15
+      }
+    }
+  }
+}

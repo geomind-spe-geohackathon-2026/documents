@@ -7,27 +7,31 @@
 | Area | geomind |
 | Reporter | functional-qa-2 |
 | Found | 2026-11-05 06:41 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.71, backend 1.1.71 (values set), read on backend 1.1.75; geomind 0.4.65 |
+| Where | https://geomind.team/projects/aa8023ca-33b3-4e5a-a7ea-5afad6ed4c1e/design/case (Economics tab); project QA2 functional-qa-2 economics; chat f349646d-953b-41c5-a349-09903a5e29c5; runs 6921d00e (set at 04:3x UTC) and f59e5d2c |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. New project, three competition files, Auto-approve on; ask for case, design, simulation and full economics.
+2. Answer the economics question: "Approve all the sourced catalogue rows as recommended ... I assume no subsidy, so leave revenue.subsidy.cap and revenue.subsidy.capacity unused." (the question had listed the rows, the NL rows included).
+3. Open Design > Case > Economics and read economics.json.
 
 ## Expected
 
+The brief gives no country. A region assumption is asked or clearly labelled (user assumption, to be confirmed), or country-neutral rows are used.
+
 ## Actual
+
+economics.json uses Dutch/NL-specific rows without a label: energy.electricity 115.02 EUR/MWh (electricity-nl-eurostat-2024-band-id), energy.gas (gas-nl-eurostat-2024-band-i4), revenue.heat 114.555 EUR/MWh (heat-price-nl-cap-2026, a Dutch heat price cap), subsidy (SDE++), capex.drilling and degasser (nl-2013). The agent's own question text said 'The brief gives no site country, so no row of the site's country could be preferred', yet it recommended NL rows and the user is not told that NL is assumed. These prices drive OPEX, revenue, LCOH and NPV.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-085/1.png)
-- Run JSON: `../evidence/QA-085/run-<id>.json`
+- Case economics: `../evidence/QA-085/case-economics.json`.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact: source ids in about.sources. Guess: the catalogue's 'recommended' row per key happens to be the NL one; the agent did not state the implied region.
 
 ## Fix
 
