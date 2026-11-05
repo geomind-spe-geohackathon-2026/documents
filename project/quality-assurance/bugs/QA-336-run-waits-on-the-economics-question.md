@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend |
 | Reporter | QA-E2E-case-I |
@@ -51,6 +51,7 @@ backend: on resume and on GET of a run in `waiting`, (re)emit the pending reques
 Frontend part (front-m1, commit 80d5d25, not deployed yet): when GET /assistant/runs/{id} says `waiting` with a `request` and the live view has no request (no request event came), the chat takes the card from run.request (view.ts `withStoredRequest`, used in workspace.tsx); a request the view already saw answered is not shown again. While a run is unfinished and shows no request, the run is refetched every 15 s, so a request stored without an event shows within 15 s. The answer goes through the same answer mutation.
 - 2026-11-05 20:13 UTC: QA-E2E-case-I retest 20:16 UTC: still no card for waiting run 3152a411 (request-797) after reload and a fresh open, waited 50 s; bundle index-Sg-LtJuN.js
 - 2026-11-05 20:26 UTC: backend 1.1.127 736e389 8798798
+- 2026-11-05 20:47 UTC: backend 1.1.130 9a942b4
 ## Retest
 
 - 2026-11-05 20:44 UTC: QA-E2E-case-I 20:44 UTC, backend 1.1.130: stuck run 3152a411 (project 12): after reload the economics card (request-797) shows within 50 s; approve all accepted, run goes on (status running, request cleared). Screenshot evidence/QA-336/retest-2-pass.png
