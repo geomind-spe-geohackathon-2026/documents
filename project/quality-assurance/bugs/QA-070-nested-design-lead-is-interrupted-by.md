@@ -34,7 +34,7 @@ Guess: a worker restart (deploy) killed the nested run and the parent treated it
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+Cause (code, hotfix-python-II): when a deploy restarts the worker, the backend resumes the run (QA-035) and geomind's `Engine.proceed` first ends every nested run left open (`end_orphans`, `interrupted by a crash`), then `settle_interrupted` turns each open call of a tool that is not idempotent into the error `<tool>: interrupted by a crash; it may have run in part` at once (0.0 s). A `Delegate` (the nested design lead) is not idempotent, so every restart during a nested run failed it; the 01:00 and 01:06 deploys match the two failures. The cause is in geomind, not the backend resume. Fix: `Delegate` and `Team` carry `reruns_after_crash`, and `settle_interrupted` leaves their open call to run again with the same brief (a new nested run), like an idempotent tool; the old nested run is still ended and its spending kept. The project lead's prompt: a failed team gets the same brief once more; a second failure is said plainly or asked, never a smaller task done silently.
 - 2026-11-05 01:31 UTC: geomind 0.4.64 (d60481a: Delegate/Team calls left open by a restart rerun on resume; project lead never narrows the brief silently), backend 1.1.65 (599b639), deployed 01:30 UTC
 ## Retest
 

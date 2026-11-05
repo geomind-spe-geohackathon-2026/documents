@@ -69,4 +69,6 @@ write, and a new run's brief starts from them.
 - 2026-11-04 21:28 UTC: part fixed in geomind 0.4.45 (commit 5ec7d83, project and design lead prompts: go on from the stored design after a stopped run); backend 1.1.43, waiting for deploy. The engineers' loss in (A) is QA-016 (fixed). Left for development mode: a work-in-progress record of unwritten findings (B: the geoscientist's answer before set_case).
 - 2026-11-04 21:39 UTC: shipped with backend 1.1.45 (geomind 0.4.46 holds 0.4.44/0.4.45); live retest still to do
 - 2026-11-05 01:31 UTC: part 2: geomind 0.4.63/0.4.64 (e90aa56: every teammate answer kept as a finding, artifact finding-<id> + problem state findings; shared rule reads it before asking again), backend 1.1.65 (599b639), deployed 01:30 UTC
+- 2026-11-05 01:30 UTC (hotfix-python-II, part 2, the work-in-progress record): every answer of a nested agent (`Delegate`, team members, also after a pause) is kept: the whole answer as the chat artifact `finding-<id>` and a `Finding {id, agent, task, summary, reference}` in the problem state's new `findings` list (newest eight shown). A cancelled or paused run leaves it for the next run; the shared rules say to read it with `read_stored` before asking that teammate again (B: the geoscientist's answer before set_case). geomind 0.4.63 (e90aa56) in 0.4.64, backend 1.1.65 (599b639).
+
 ## Retest
