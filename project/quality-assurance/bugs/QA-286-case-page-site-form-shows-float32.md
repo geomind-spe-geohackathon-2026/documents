@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | QA-E2E-case-I |
@@ -41,4 +41,6 @@ frontend Case form: keep the JSON number as is (Float64), or round for display t
 
 ## Fix
 
+Fix: frontend 1.1.128 (commit 1322f2d, bundle index-bxsE_Wl4.js), by front-m2: display rounded to 7 significant digits (also % fields); min/max hints converted to the field's unit (barg, mD, °C, kPa ...), else the SI unit is named. Display only.
+- 2026-11-05 18:46 UTC: frontend 1.1.128
 ## Retest
