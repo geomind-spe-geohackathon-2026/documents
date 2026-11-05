@@ -7,8 +7,8 @@
 | Area | backend |
 | Reporter | hotfix-front-III |
 | Found | 2026-11-05 14:30 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.104 |
+| Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/report; run 32a12115 |
 | Fixer | |
 
 ## Steps
@@ -29,14 +29,12 @@ Tokens and cost read like the rest of the app (14.8 M tokens in, 625 K out, 0.46
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-136/1.png)
-- Run JSON: `../evidence/QA-136/run-<id>.json`
+- Text read live with Playwright (`/tmp/hf-check/qa127.js`); no screenshot.
 
 ## Cause
 
 Fact: `backend/src/api/v1/reporting/design/services.py` line 275 writes `f"- Input tokens: {run.input_tokens}"` and the cost the same way, unformatted; the frontend shows the preview text as the backend sends it.
 
-(Facts, or a guess marked as one.)
 
 ## Fix
 
