@@ -121,3 +121,9 @@ New: QA-305 (minor, verified), QA-319, QA-320, QA-327 (major, verified), QA-349 
 | 14 | 2f10d82c | best guesses (QA-320 retest 1) | 7 min 7 s | 0.022 | 9 agent values |
 | 15 | (19:43) | "economics please" (QA-327 retest) | 2 min 37 s | 0.008 | case lead, assumptions first |
 | 16 | 45becf5b | best guesses (QA-320 retest 2) | 17 min 36 s | 0.048 | right values, slow (QA-349) |
+
+## Closed (2026-11-05 ~20:50 UTC, Sahand's order)
+
+18 bugs filed (1 blocker, 12 major, 5 minor). 16 verified; QA-349 fixed but not retested (deploy
+pending at close); QA-194 verified 19:29 UTC but shown "fixed" again after a later backend change.
+Handover: .claude/notes/sessions/qa-e2e-economics-1.md. Projects QA-TEST QA-E2E-economics-I 1-16 kept.
