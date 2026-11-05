@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | geomind,gemini |
 | Reporter | Manual QA-IV |
@@ -32,6 +32,7 @@ Guess: the check that patch_plant runs (QA-175) treats values derived by `size` 
 
 ## Fix
 
+- 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 ## Also seen (QA-E2E-design-I, 2026-11-05 18:05-18:36 UTC)
