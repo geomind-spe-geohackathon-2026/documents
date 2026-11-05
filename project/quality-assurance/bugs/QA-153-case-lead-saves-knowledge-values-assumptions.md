@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -87,7 +87,8 @@ Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4
 ## Retest
 
 (Who, when, result.)
-
+- 2026-11-05 17:35 UTC, QA-AI-case-I, run 3 (geomind 0.4.100, backend 1.1.104; project QA-TEST QA-AI-case-I 3 f400fa2d-292d-4358-b3c1-9f4a51f51f7f; run 84526204-bfb7-4611-a476-abde6317c58e; log `../evidence/QA-153/run-84526204.json`): the ONE confirmation question (`ask_user`, 17:14:57) comes before any `set_case`; the first `set_case` after approve all (17:15:13). No case version holds unconfirmed values. Verified. Left over (filed as QA-218): 4 `set_case` calls, 2 refused (a files-only call, then the full call without `columns`), requirements in a separate call; and the prompt now contradicts the handbook and itself (QA-177).
+- 2026-11-05 17:32 UTC: QA-AI-case-I run 84526204 on geomind 0.4.100
 ## More evidence (QA-E2E-case-I, 2026-11-05 16:50-17:20 UTC)
 
 - Project QA-TEST QA-E2E-case-I 1, run cf319cd4 (backend 1.1.102, geomind 0.4.97): the first good
