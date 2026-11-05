@@ -1,0 +1,33 @@
+Geomind
+Toggle Sidebar
+New
+Search
+Projects
+Connectors
+Knowledge
+QA-TEST QA-E2E-economics-I 11
+Overview
+Library
+Runs and logs
+Chats
+Fill in the economics yourself with your own best guesses,…
+failed · 20:13
+AD
+Administrator
+admin
+Projects
+QA-TEST QA-E2E-economics-I 11
+Chat
+Design
+Chat
+Fill in the economics yourself with your own best guesses, including the per-MWh operating costs and a subsidy; I don't want to be asked.
+20:13
+Copy
+Worked through 42 steps, 2 needed another try
+· 722 K tokens
+· 0.021 USD
+You approved "Set case"
+
+The assistant stopped with an internal error in geomind
+
+Auto-approve
