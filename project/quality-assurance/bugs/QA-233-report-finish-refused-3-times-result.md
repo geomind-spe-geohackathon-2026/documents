@@ -63,6 +63,7 @@ design built from a project plant version. Also: the project lead should not hit
 ask on a report (raise its budget or drop the ask with Auto-approve, as QA-086 did for the
 design lead).
 - 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
+- 2026-11-05 18:27 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
 
 (Who, when, result.)
