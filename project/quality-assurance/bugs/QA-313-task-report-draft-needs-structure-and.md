@@ -54,3 +54,11 @@ Backend 1.1.123 (numbered sections 1-9, subsections, captions and paragraphs, PD
 Report draft and PDF export: numbered sections, caption and text after every figure and table.
 
 (Who, when, result.)
+
+- 2026-11-05 19:58 UTC, QA-AI-analysis-I, backend 1.1.125, API only: POST /reporting/design/export (format md, all 11 parts) for result b7af0082 (project `QA-TEST QA-AI-analysis-I 1`):
+  numbered sections 1 Summary ... 9 Assumptions and sources, subsections 3.1 Subsurface ... 3.5 Grids, appendices A/B;
+  every figure and table has a caption ("Figure 4.1 - ...", "Table 4.1 - ...") and a paragraph built from the result's
+  numbers (e.g. days covered, peaks and dates). Verified for structure and text (markdown; the PDF typography was not
+  checked, frontend scope). Gaps filed as QA-338: section 7 Studies says only "This result is not a sensitivity or
+  uncertainty study" for an optimisation result (no reading of the search), and unmet demand is printed as "2.01e-12 MWh
+  of demand is not met". Report: `../evidence/QA-313/report-b7af0082-noimg.md` (images removed).
