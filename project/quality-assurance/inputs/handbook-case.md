@@ -42,6 +42,8 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 15. Reference ranges for the values agents search most: network temperatures, cooling and
     dew point, produced gas, sand, grid limits, initial state, salinity and net-to-gross
 16. Checking a data file step by step: procedure, outliers, weather and price series
+17. Requirements documents, limits, units and time in depth: modal verbs and traceability, the
+    four questions from limit to requirement, tolerances, ask or take from Knowledge, units, time
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1473,6 +1475,173 @@ please confirm or give the right values".
 - **Consistency between files.** Demand and weather of the same site must cover the same span
   in the same zone; a one-day shift between them is a time-zone error (§3.2).
 
+# 17. Requirements documents, limits, units and time in depth
+
+Deeper lessons for the four places a case goes wrong most: reading a requirements document,
+turning limits into requirements, deciding what to ask, and units and time. Every example is an
+invented text with invented numbers.
+
+## 17.1 Reading a requirements document
+
+**Modal verbs.** Requirements writing (ISO/IEC/IEEE 29148:2018; RFC 2119 for the keywords) gives
+each verb a strength: **shall / must** = a binding requirement; **should** = a recommendation
+(not checked as pass or fail; a design preference to report); **may** = a permission (a design
+freedom, §7.2); **will** = a statement of fact or intent (often a case value). "Is expected to",
+"typically", "about" mark an estimate, not a bound.
+
+**Per sentence, record.** The text (quoted), page, the kind (§1.2: case value, rule, freedom,
+reading instruction, value for checking), the quantity and its owner (which unit or service),
+the bound and its unit, and the condition ("while operating", "on average over the year").
+This is a traceability matrix: every requirement in the case points back to one sentence, and
+every binding sentence ends in a requirement, a case value, or a named rule gemini cannot
+express (§6.10). Nothing binding is lost; nothing is added that no sentence states.
+
+**Watch for.** Two sentences on one quantity (merge into one requirement, §6.12); a number in a
+table caption or footnote that changes a bound; "per well" vs "in total"; "net" vs "gross"
+(power, thickness); "at the wellhead" vs "at the pump intake"; a unit only in a column header.
+
+**Example (invented).** "The operator *shall* keep the production flow of each well between
+40 and 220 m³/h. Wells *should* run at least 300 days a year. The client *will* supply return
+water at about 45 °C. Additional wells *may* be drilled." Kinds: a rule (one flow-range
+requirement per §6.9); a recommendation (report it; no requirement unless the user makes it
+binding); a case value (`return_temperature`, with "about" in the source note); a freedom (the
+doublet count, bounded only if a sentence bounds it).
+
+## 17.2 From a limit to a requirement: the four questions
+
+For each binding limit, answer four questions; each answer is one key of the requirement (§6.3).
+
+| Question | Key | Typical answer in text |
+|---|---|---|
+| Whose quantity? | `on` + `quantity` | "each well's flow" -> `doublet` / `production_flow` |
+| Judged how over the run? | `over` | "at any time" -> `each`; "per year" total -> `sum`; "on average" -> `mean`; "peak" -> `max`; "days of" -> `duration` |
+| On which steps? | `when` | "while operating" -> `running`; "at all times, also idle" -> `always` |
+| Which bound? | `min`, `max`, `unit` | "at most" -> `max`; "at least" -> `min`; "between" -> both; "equal to" -> both equal, with a tolerance (§17.3) |
+
+**Worked examples (invented).**
+- "No well may produce more than 180 m³/h at any time": doublet, production_flow, each,
+  running, max 180 m3/h.
+- "Electricity bought shall not exceed 25 GWh per year" over a one-year case: plant,
+  electricity_bought, `over: mean`, no `when`, max `25 GWh / 8 760 h = 2.854 MW`. Not
+  `over: sum`: in gemini `sum` of a power adds the step values, not an energy
+  (`gemini/plants/roles.py`); the mean of a power over every step of equal length is the
+  energy over the period. Show the arithmetic in the one question so the user approves the
+  bound in gemini's form, next to the text it restates.
+- "The heat pump's COP shall average at least 3.2": heat_pump, cop, mean, running, min 3.2.
+- "Brine shall be cooled by no more than 50 K": doublet, brine_cooling, each, running, max 50 K.
+- "Between one and four doublets": doublet, count, min 1, max 4 (property: no over, no when).
+- "Emissions of 400 t at most" with no period named: ask whether per year or over the analysis
+  period; never guess the period.
+
+**Not a requirement.** A limit on something gemini has no quantity for (noise, land use, a
+permit date) is a rule gemini cannot express (§6.10). A target ("aim for", "ideally") is a
+design preference for the handover.
+
+## 17.3 Tolerances in depth
+
+**Why.** A simulation is a numerical solution: a balance closes to a solver tolerance, not to
+zero. A measurement-based acceptance test always allows for uncertainty: JCGM 106:2012 treats
+conformity with a limit as a decision with a stated risk, and sets an acceptance band (guard
+band) on purpose. An "exact" rule without a band fails a correct design on noise.
+
+**How to set one.** (1) Use a tolerance a source gives (the requirements document, a standard,
+the assumptions document). (2) Else propose one in the one question, as an assumption with its
+reason, from the size of the quantity and the solver's noise, and name its effect. (3) Use one
+source for all tolerances of a case (§6.12). Never tighten or loosen a tolerance after seeing a
+result: that is fitting the rule to the design.
+
+| Text | Band | Note |
+|---|---|---|
+| "equal to X" | `min = X − t`, `max = X + t` | t from a source, or proposed |
+| "all demand met" | `unmet_share` `max = t` | t a small share of the period's energy |
+| "100 % reinjection" | `reinjection_ratio` in `[1 − t, 1 + t]` | t relative, small |
+| "at least X" | `min = X` | no band needed: a one-sided limit |
+
+**Example (invented).** "All produced brine is reinjected." No tolerance in the text. Proposal:
+`reinjection_ratio` in [0.9999, 1.0001] ("relative 1×10⁻⁴, numerical noise only; a real
+loss of brine would be far larger"), for the user to approve.
+
+## 17.4 Ask the user or take from Knowledge
+
+| The value is ... | Source | Approval |
+|---|---|---|
+| stated in the user's files or messages | the file, page or message | none: set as given (§8.1) |
+| in the case's assumptions document | that document, its section | in the one question |
+| in another Knowledge file (catalogue, handbook data) | that file, row or section | in the one question |
+| from a connector or the web | server or URL, with date | in the one question |
+| a choice of the team (tolerance, zone, start state) | `source: agent`, with reason | in the one question |
+| in no source | none | asked in the one question as "unknown" |
+
+**Rules.** Knowledge and connectors are searched BEFORE the question so it offers candidates,
+not blanks (§0.1 step 5). A site value never comes from a generic default. When the user has
+waived approval (auto-approve, "best guesses"), the same order applies and nothing is asked
+(§14.3). A value the user gave beats every other source, even a "better" one; name the
+conflict in the handover instead of overriding it.
+
+**Example (invented).** Open: air temperature, a grid CO₂ factor, a reinjection tolerance.
+Search finds an hourly air series from a weather connector, and a national grid factor in a
+catalogue row (2024, location-based). Question: three numbered items, each with value, unit,
+source and date; the tolerance marked as the agent's proposal.
+
+## 17.5 Units in depth
+
+**Method.** Dimensional analysis (NIST SP 811, 2008; BIPM SI Brochure, 9th ed., 2019): every
+value has a number and a unit; a sum needs one dimension; a conversion is a factor of one
+(`1 h / 3 600 s`). Write the unit the source prints and let gemini convert (`describe_case`
+names the accepted units); the agent never converts a case value (§8.5).
+
+**Power, energy and their mix-ups.**
+
+| Printed | Is | Factor to check |
+|---|---|---|
+| MW in a daily file | mean power of the day | energy of the day = MW × 24 h |
+| MWh per day | energy per day | mean power = MWh/d ÷ 24 h |
+| GJ | energy | 1 GJ = 0.2778 MWh |
+| kW vs MW | power | factor 1 000 |
+| toe, Btu, therm | energy | 1 toe = 11.63 MWh; 1 therm = 29.31 kWh (IEA, NIST) |
+
+**Pressure.** Gauge vs absolute (`barg` vs `bar`, `psig` vs `psia`); 1 bar = 10⁵ Pa;
+1 psi = 6 894.76 Pa; a head in metres of water is a pressure only with a density
+(`p = ρ g h`).
+
+**Temperature.** A temperature (°C, K) and a temperature difference (K) are different
+quantities: 10 °C is 283.15 K, a difference of 10 °C is 10 K. °F to °C: `(F − 32) × 5/9`; a
+difference: `× 5/9`.
+
+**Flow.** m³/h vs m³/s (factor 3 600); L/s; volume vs mass flow (`ṁ = ρ Q`); a flow in
+`Sm³`/`Nm³` is a gas volume at reference conditions (§13.6).
+
+**Example (invented).** A table titled "Heat demand [MWh]" with daily rows: 96, 120, 84. These
+are energies per day, mean power 4.0, 5.0 and 3.5 MW. Give the file with unit `MWh` per day only
+if `describe_case` accepts an energy per step; otherwise name it as a flaw and ask the user to
+confirm the reading; never divide by 24 yourself.
+
+## 17.6 Time in depth
+
+**Standards.** ISO 8601 for timestamps (`2030-01-01T00:00:00+01:00`); the IANA time zone
+database for zone names (`Europe/Oslo`, never `CET` or `+01:00` for a zone with daylight
+saving time); UTC for the clock without seasons.
+
+**What a stamp marks.** A row's time is the start of its interval (interval-beginning) or its
+end (interval-ending, common in meter and market data: "00:00-01:00" stamped 01:00). A one-step
+shift moves a whole day of demand at a daily step. Read the file's description or the headers
+("period ending", "hour ending", `HE`); if nothing says, it is an open reading instruction for
+the one question.
+
+**Daylight saving.** A local-time hourly file has one 23-hour day in spring and one 25-hour day
+in autumn: one hour missing and one repeated. With offsets on every stamp, nothing is
+ambiguous; without, the zone is needed (§3.2). Daily files with a zone are matched by local
+date (§3.2).
+
+**Leap years.** A calendar year has 366 days when the year is divisible by 4, except century
+years not divisible by 400. A 365-row file for a leap year misses a day.
+
+**Example (invented).** An hourly file stamped `01:00 ... 24:00` local, with no offsets, for a
+site in a zone with daylight saving. Readings: interval-ending ("24:00" is the end of the
+day), local time. Ask once: "the file's hours look interval-ending in local time
+(Europe/<city>); confirm, or give the convention". The zone name comes from the site's
+location, as the agent's choice with its reason (§3.2).
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -1524,11 +1693,13 @@ please confirm or give the right values".
   human occupancy*.
 - Babiak, J., Olesen, B.W. and Petras, D. (2007). *Low temperature heating and high temperature
   cooling*. REHVA Guidebook No. 7.
+- BIPM (2019). *The International System of Units (SI)*, 9th ed.
 - Batzle, M. and Wang, Z. (1992). Seismic properties of pore fluids. *Geophysics* 57(11),
   1396-1408.
 - CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
 - DNV RP O501 (2015). *Managing sand production and erosion*.
 - Dake, L.P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
+- IANA. *Time Zone Database* (tz). ISO 8601-1:2019. *Date and time: representations*.
 - EN 12831-1:2017. *Energy performance of buildings: method for calculation of the design heat
   load*. EN ISO 15927-6:2007. *Hygrothermal performance of buildings: accumulated temperature
   differences (degree-days)*.
@@ -1539,9 +1710,13 @@ please confirm or give the right values".
   OTexts.
 - ISO 6976:2016. *Natural gas: calculation of calorific values, density, relative density and
   Wobbe indices from composition*.
+- JCGM 106:2012. *Evaluation of measurement data: the role of measurement uncertainty in
+  conformity assessment*.
 - Kestin, J., Khalifa, H.E. and Correia, R.J. (1981). Tables of the dynamic and kinematic
   viscosity of aqueous NaCl solutions. *J. Phys. Chem. Ref. Data* 10(1), 71-87.
 - Lund, H. et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
+- NIST SP 811 (2008). *Guide for the Use of the International System of Units*.
+- RFC 2119 (1997). *Key words for use in RFCs to indicate requirement levels*.
 - Ramey, H.J. (1962). Wellbore heat transmission. *Journal of Petroleum Technology* 14(4),
   427-435.
 - gemini physics: `gemini/gemini/physics/ground.py` (geotherm, Gringarten-Sauty doublet, Ramey),
