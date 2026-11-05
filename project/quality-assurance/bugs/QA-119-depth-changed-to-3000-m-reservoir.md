@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-case-I |
@@ -41,7 +41,7 @@ pressure and temperature hold) and kept 250 bar(g). Fix: `set_case` returns `che
 reference depth moves while pressure or temperature stay, saying a well depth is the plant's
 `params.depth` (gemini derives pressure and temperature there); the case lead prompt says the
 same and asks the user which is meant.
-
+- 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
 ## Retest
 
 (Who, when, result.)
