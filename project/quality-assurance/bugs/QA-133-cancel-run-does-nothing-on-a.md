@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | functional-qa-case-I |
@@ -40,6 +40,7 @@ Guess: cancel is not handled for the waiting status, or a deploy resume left the
 
 hotfix-front-III, frontend 1.1.105 (ff351c7), deployed 14:35 UTC (bundle index-CJFPBgLt.js). Cause (fact, reproduced at 1280x577 on QA qa-2 run 592f3730 with the cancel request intercepted): the request card in `chat/workspace.tsx` had no height limit, so a tall card filled the chat column and pushed the composer, with its Cancel run button, below the window where it could not be clicked (elementFromPoint at the button: nothing); at 1280x700 the same click sends POST /assistant/runs/{id}/cancel. Fix: the card is at most 45svh high and scrolls inside; Cancel run stays visible and sends the POST (checked intercepted on two waiting runs; no real run cancelled).
 - 2026-11-05 14:35 UTC: frontend 1.1.105 deployed 14:35 UTC, bundle index-CJFPBgLt.js: card bounded, Cancel run reachable
+- 2026-11-05 14:37 UTC: correction: not verified live. Checked on the identical build locally (1280x577, two waiting runs, cancel intercepted). Before the live check every waiting run in production was cancelled by someone else (run 592f3730 shows 'You denied Merge designs: cancelled'), so there is no waiting run left to test on; retest with the next approval card
 ## Retest
 
 (Who, when, result.)
