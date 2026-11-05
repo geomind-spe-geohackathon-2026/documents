@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 18:33 UTC |
 | Versions | frontend 1.1.113, backend 1.1.115 |
 | Where | https://geomind.team/projects/a60df495-3c12-4dfe-85f7-f678c2df933b/design/case, tab Site; project QA-TEST QA-E2E-case-I 7, case v3 |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
