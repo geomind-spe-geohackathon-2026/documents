@@ -82,3 +82,25 @@ same flow, more pump head; numbers match `compute_kpis`. Wrong current-case stat
 
 Speed, retest: the case-edit flow went from 22:47 / 3.95 M tokens / 3 stops (run 194c3879) to
 6:16 / 0.54 M tokens / 1 stop (run a4203016) after the QA-224/QA-227 fixes.
+
+## Round 3 (18:37 to 19:01 UTC, backend 1.1.116)
+
+| # | Request | Route | Wall time | Input tokens | Cost USD | Outcome | Bugs |
+|---|---|---|---|---|---|---|---|
+| 14 | Retest QA-187/245: case 175 -> 160 mD, re-check, review, "what moved against the last result" (new chat) | project | 8:17 (2 stops) | ~1.15 M | ~0.03 | reviewer 7 calls / 94 s, design lead 8 calls / 20 s; last result not found | QA-187, QA-245 verified; QA-294 |
+| 15 | Retest QA-252: compare HP + compression vs HP + absorption on LCTS (project 2, new chat) | project -> comparison | 41:30 | 5 538 596 | 0.2023 | both families side by side, failed family retried, both 15/15; compression wins | QA-252 verified |
+| 16 | Persian LCOH question right after a cancelled run | project (wrong: the cancelled request) | cancelled | - | - | patch_plant 10 MW asked again | QA-310 |
+| 17 | Same Persian question in a new chat | tool | 2:14 | - | - | right: LCOH 43.753, heat pump 11.068 MEUR, electricity 2.8284 MEUR/yr; answer in Persian, chips English | - |
+
+Accuracy, round 3: the comparison gives LCTS 33.66 EUR/MWh (HP + compression, 2 doublets 2500 m,
+heat pump 9.75 MW) and 46.92 EUR/MWh (HP + absorption, 2 doublets 2875 m). gemini's README of the
+sample (`gemini/examples/hackathon_2026/README.md`, the plants-folder search) gives 40.34 EUR/MWh for
+`HeatingHeatPumpCoolingPlant`; that figure predates several gemini changes (QA-128 carbon cost and
+others), so the gap is noted, not reported: worth a check by QA-AI-design-I or with gemini's own
+`examples/hackathon.py` on the current version.
+
+## Status of this thread's bugs at 19:01 UTC
+
+Verified: QA-187, QA-227, QA-245, QA-252. Open: QA-189, QA-190, QA-204, QA-218, QA-224 (no-op load
+card still asked), QA-266, QA-283, QA-288, QA-294, QA-310. Duplicates: QA-188 (= QA-176, fixed),
+QA-265 (= QA-199). Idea: IMP-032.
