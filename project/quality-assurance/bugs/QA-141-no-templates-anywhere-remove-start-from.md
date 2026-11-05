@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -32,7 +32,7 @@
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 15:03 UTC: frontend 1.1.110, commit 0c5bfc1/ffbe3ec, deployed
 ## Retest
 
 (Who, when, result.)
