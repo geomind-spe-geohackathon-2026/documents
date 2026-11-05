@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 19:59 UTC |
 | Versions | backend 1.1.125 |
 | Where | POST /reporting/design/export (md, all parts), project `QA-TEST QA-AI-analysis-I 1` (4ce816b1-4bd1-48a5-8e77-9414c2b86301), result b7af0082-b903-4346-a084-11e01f8e2710 (page study minimize "QA-332 retest minimize") |
-| Fixer | |
+| Fixer | back-m2 |
 
 ## Steps
 
