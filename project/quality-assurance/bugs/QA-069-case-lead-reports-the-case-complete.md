@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 00:25 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
 | Where | project 2cc9eadb (QA2 qa-func-3 economics), chat 63c70b89; found by qa-func-3-II, filed from its notes (no evidence file saved) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
