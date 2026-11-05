@@ -64,3 +64,4 @@ wont-fix, duplicate.
 | [QA-056](bugs/QA-056-chat-shows-an-already-answered-question.md) | fixed | blocker | backend | Chat shows an already answered question while the run waits on a design_lead approval; no approval card, auto-approve cannot fire, the run is stuck | qa-5 | hotfix-back |
 | [QA-057](bugs/QA-057-approval-card-the-json-the-call.md) | open | minor | frontend | Approval card: the JSON the call sends loses its indentation (pre-line, proportional font); nested values unreadable | qa-ux |  |
 | [QA-058](bugs/QA-058-chat-an-approve-or-deny-with.md) | open | minor | frontend | Chat: an Approve or Deny (with its reason) leaves no trace in the transcript; the card just vanishes | qa-ux |  |
+| [QA-059](bugs/QA-059-question-card-a-15-value-questionnaire.md) | open | minor | frontend | Question card: a 15-value questionnaire gets a one-line text input; no per-value fields, no multiline | qa-ux |  |
