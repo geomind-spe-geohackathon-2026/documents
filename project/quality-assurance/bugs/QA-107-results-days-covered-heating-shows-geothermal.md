@@ -42,4 +42,5 @@ Guess: a day counts as Short when the supply temperature misses 100 °C (93 °C 
 
 Part (b), frontend 1.1.92 (hotfix-front-II): `shared/charts/days-strip.tsx` splits gemini's `short` days into 'Partly short' (unmet share < 100 %, amber, share in the cell title, mean share in the legend) and 'Short' (nothing delivered or no demand figure); the legend states the rule (a day is short when any of its demand is unmet). Checked locally on project cf0c3d9c, result c16255f0: 'Partly short: 243 days, 5% unmet on average | Short: 122 days'. The 122 'Short' days and 'Geothermal: 0 days' are part (a), gemini's classification. Deploy: 11:00 UTC window.
 - 2026-11-05 11:03 UTC: part (b) live: frontend 1.1.92, deployed 11:01 UTC (index-BnoB2Kcd.js)
+- 2026-11-05 11:04 UTC: (b) live in frontend 1.1.92: Days covered shows Partly short days with the unmet share and the rule; part (a) stays with gemini
 ## Retest
