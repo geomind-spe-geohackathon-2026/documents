@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -52,4 +52,17 @@ to the saved file; the "expected one of" list includes saved connector files; th
 ## Fix
 
 - 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
+- 2026-11-05 19:55 UTC: QA-E2E-case-I retest 19:54 UTC: file found now, but 9 files-alone refusals + a time-zone mismatch of the saved series; run 33 min, 4 M tokens (see Retest)
 ## Retest
+
+## Retest (QA-E2E-case-I, 2026-11-05 19:21-19:54 UTC, backend 1.1.121)
+
+Project QA-TEST QA-E2E-case-I 11 (50adc3fa), run ec1094d9, same request as project 9. "File not found" is gone,
+but the connector path is still slow: 12 set_case (9 refused `case_incomplete` files alone, 1 `invalid_data`:
+"delft_air_temperature_2027.csv column 'temperature_2m_mean' covers 2026-12-31T23:00:00+00:00 to 2027-12-31T23:00:00+00:00;
+requested 2027-01-01T00:0..." (the series was saved at Amsterdam midnight = 23:00Z), 1 invalid_value, 1 invalid_input),
+5 save_mcp_table cards, 12 read_mcp, 44 read_stored, 2 case-lead delegations. The lead then switched both demand series to
+`time_zone: UTC` (project 9 had Europe/Amsterdam) to make the dates match. Run: 32 min 47 s, 4.04 M input tokens,
+0.086 USD (project 9: 13 min). Case v2 stored with the series. Evidence: `../evidence/QA-301/run-ec1094d9-log.json.gz`.
+Proposed: save_mcp_table saves daily data at the case's own day boundaries (time_zone of the case) or records the
+series' zone so set_case aligns it; see QA-200 for the files-alone refusals.
