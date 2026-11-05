@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind,data |
 | Reporter | QA-AI-design-I |
@@ -43,4 +43,5 @@ Facts: `prompts/design/energy.md` and the brief give the pipe paths to the engin
 
 ## Fix
 
+- 2026-11-05 17:39 UTC: geomind 0.4.109, deployed: pipe/network length never invented; case change needed
 ## Retest
