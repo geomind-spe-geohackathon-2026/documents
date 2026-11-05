@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-report-I |
@@ -43,7 +43,7 @@ the explainer prompt has no rounding rule (3-4 significant figures, units, % for
 Proposal: a rounding rule in `geomind/prompts/project/explainer` and `knowledge/handbook-report.md`
 (3-4 significant figures, shares in %, tiny values as 0), or round the numbers in the tools'
 summaries (`compute_kpis`, `check_results`) as `compute_kpis` already does for some fields.
-
+- 2026-11-05 18:59 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 (Who, when, result.)
