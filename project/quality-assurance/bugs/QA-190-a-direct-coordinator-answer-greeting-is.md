@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -40,3 +40,7 @@ geomind: record the loop as `answer` for a `kind: "answer"` route (a named `answ
 ## Fix
 
 - 2026-11-05 18:59 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:04 UTC: QA-AI-project-I 19:04 UTC, backend 1.1.119: greeting in a new chat (run bc87aea2, project 2) has loop 'answer' on the run row; 2 s.
