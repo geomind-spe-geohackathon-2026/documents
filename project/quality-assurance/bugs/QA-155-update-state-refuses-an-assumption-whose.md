@@ -53,3 +53,11 @@ Run 57c42f61-2a89-48ba-933c-e87fc348084f, economist steps 11 and 15: the same re
 ## Fix
 
 - 2026-11-05 18:59 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:15 UTC, QA-AI-analysis-I: geomind 0.4.130 (live since deploy 36, backend 1.1.118+) has
+  `Assumption._text_citation` (`geomind/context/state.py:43-46`): a text citation is kept as its `note`. In 5 live
+  runs since the deploy (676a19e1, 6c88bb13, edaad491, 1fba1e30, 511a6821) no `update_state` was refused for a citation;
+  the agents now send citations as objects. Verified (by the deployed code and no recurrence; the agents did not send a
+  text citation in these runs, so the text path itself was not hit live).
