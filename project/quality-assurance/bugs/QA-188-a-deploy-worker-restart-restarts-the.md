@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | duplicate |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -47,3 +47,7 @@ Guess, from the log: the resume (`engine.resume`, geomind; `adapters.resume`, ba
 
 - geomind `engine` resume: when the interrupted tool call is a `Delegate`, resume its nested run (its run id is in the stored events) from its last finished step instead of starting a new nested run. The nested run already stores its events, as the root run does.
 - Until then (backend ops): `scripts/hotfix_deploy.sh` could wait for running runs to reach a waiting point or warn the deployer with the number of running runs (the info is in `runs` with status `running`).
+
+## Fix
+
+- 2026-11-05 17:21 UTC: duplicate of QA-176 (deploy restarts in-flight delegates); evidence added there
