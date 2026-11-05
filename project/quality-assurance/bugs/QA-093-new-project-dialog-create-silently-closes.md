@@ -31,11 +31,11 @@ Created nothing, the dialog closed, no toast, no error, no request sent to the A
 
 ## Cause
 
-Guess: the click lands on the overlay below the dialog (closing it), or validation of the required Shared memory select closes the dialog without a message.
+The dialog closed on any pointer-down outside it (Radix default), and in a 577 px window Create sat below the dialog's visible part, so a click aimed at it could land on the overlay and close the dialog with nothing sent. The Shared memory message appeared beside the select, out of view when the dialog was scrolled.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+frontend 1.1.81, commit 8eacf11 (hotfix-front-II): the dialog ignores clicks outside (Cancel, X and Escape still close it); Cancel and Create stick to the dialog's foot; a missing name or Shared memory scrolls to and focuses that field next to its message. Checked on a local build at 1280x577: Create visible at y=512, an outside click keeps the dialog open, Create with empty Shared memory shows the message and focuses the select, no POST. Deploy: 10:00 UTC window.
 
 ## Retest
 
