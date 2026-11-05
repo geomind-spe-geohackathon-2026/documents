@@ -7,32 +7,45 @@
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 18:55 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.116+ (geomind 0.4.12x, gemini 0.6.2x) |
+| Where | project QA-TEST QA-E2E-case-I 9 (dbe6165f), run 08d3739c, case v2 |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. PDF + 2 CSVs, site Delft, real outside air (connector). The confirmation question (18:44:35 UTC) item 12:
+   "site.air.pressure = 101325 Pa | knowledge/hackathon-2026-assumptions.md, 'Case values' | constant; the projection gives no pressure". Approve all.
+2. Read the stored case.
 
 ## Expected
 
+`site.air.pressure` 101325 Pa in the case, as approved (the reference case.json has it too).
+
 ## Actual
+
+`site.air` = {temperature: file, relative_humidity: file}; **no pressure** (`../evidence/QA-304/case-project9-v2.json`).
+The final answer: "Deliberately left open — ... site.air.pressure (no module needs it)". gemini
+`gemini/modules/environment/atmosphere.py:25,113`: the Atmosphere module takes `site.air.pressure` from the
+case; "a run without it raises missing_value". A design with a cooler / air-side module will fail later on the
+design stage, and the user's approved value is silently gone.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-304/1.png)
-- Run JSON: `../evidence/QA-304/run-<id>.json`
+- Case v2 JSON; run log in `../evidence/QA-301/run-08d3739c-log.json.gz` (the set_case calls after the 20 refusals
+  drop the pressure leaf).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: during the QA-301 retry loop the lead rebuilt the changes and dropped the leaf; then it justified the
+gap with the QA-161 rule ("not needed: leave open") applied to the wrong key (QA-161 is about
+`site.air.relative_humidity` and `utilities.gas.heating_value` only).
+
+## Proposed fix
+
+geomind case lead final checklist (handbook-case 11.2): every approved value is in the stored case (diff the
+question's lines against read_case); the "not needed" list is exactly the keys the Knowledge names. Knowledge:
+handbook-case 12.4 marks site.air.pressure as needed (Atmosphere).
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)

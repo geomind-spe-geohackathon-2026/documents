@@ -1,0 +1,235 @@
+{
+ "kind": "case",
+ "name": "Delft geothermal heating and cooling plant 2027",
+ "site": {
+  "air": {
+   "temperature": {
+    "file": "data/open-meteo_delft_2027_climate.csv",
+    "unit": "\u00b0C",
+    "column": "temperature_2m_mean"
+   },
+   "relative_humidity": {
+    "file": "data/open-meteo_delft_2027_climate.csv",
+    "unit": "%",
+    "column": "relative_humidity_2m_mean"
+   }
+  },
+  "fluid": {
+   "density": {
+    "unit": "kg/m3",
+    "value": 1030
+   },
+   "viscosity": {
+    "unit": "mPa.s",
+    "value": 0.4
+   },
+   "dissolved_gas": {
+    "CH4": {
+     "unit": "-",
+     "value": 0.8
+    },
+    "CO2": {
+     "unit": "-",
+     "value": 0.2
+    }
+   },
+   "gas_liquid_ratio": {
+    "unit": "Nm3/m3",
+    "value": 0.8
+   },
+   "sand_concentration": {
+    "unit": "mg/l",
+    "value": 20
+   }
+  },
+  "ground": {
+   "gradient": {
+    "unit": "\u00b0C/km",
+    "value": 30
+   },
+   "surface_temperature": {
+    "unit": "degC",
+    "value": 12
+   }
+  },
+  "reservoir": {
+   "pressure": {
+    "unit": "barg",
+    "value": 250
+   },
+   "thickness": {
+    "unit": "m",
+    "value": 100
+   },
+   "permeability": {
+    "unit": "mD",
+    "value": 200
+   },
+   "reference_depth": {
+    "unit": "m",
+    "value": 2500
+   }
+  }
+ },
+ "time": {
+  "end": "2028-01-01",
+  "step": {
+   "unit": "d",
+   "value": 1
+  },
+  "start": "2027-01-01"
+ },
+ "demand": {
+  "cooling": {
+   "power": {
+    "file": "GEMINI_Cooling_Demand_Daily_2027.csv",
+    "unit": "MW",
+    "column": "cooling_demand_MWcool",
+    "time_zone": "Europe/Amsterdam"
+   },
+   "return_pressure": {
+    "unit": "bar",
+    "value": 4
+   },
+   "dew_point_margin": {
+    "unit": "K",
+    "value": 1
+   },
+   "indoor_temperature": {
+    "unit": "degC",
+    "value": 26
+   },
+   "return_temperature": {
+    "unit": "degC",
+    "value": 25
+   },
+   "supply_temperature": {
+    "unit": "degC",
+    "value": 20
+   },
+   "indoor_relative_humidity": {
+    "unit": "-",
+    "value": 0.5
+   }
+  },
+  "heating": {
+   "power": {
+    "file": "GEMINI_Heating_Demand_Daily_2027.csv",
+    "unit": "MW",
+    "column": "heating_demand_MWth",
+    "time_zone": "Europe/Amsterdam"
+   },
+   "return_pressure": {
+    "unit": "bar",
+    "value": 6
+   },
+   "return_temperature": {
+    "unit": "degC",
+    "value": 60
+   },
+   "supply_temperature": {
+    "unit": "degC",
+    "value": 100
+   }
+  }
+ },
+ "format": 1,
+ "economics": "economics.json",
+ "utilities": {
+  "gas": {
+   "composition": {
+    "N2": {
+     "unit": "-",
+     "value": 0.11083897243546233
+    },
+    "CH4": {
+     "unit": "-",
+     "value": 0.8249507401227822
+    },
+    "CO2": {
+     "unit": "-",
+     "value": 0.011912342910726407
+    },
+    "C2H6": {
+     "unit": "-",
+     "value": 0.039549858193534584
+    },
+    "C3H8": {
+     "unit": "-",
+     "value": 0.012748086337494389
+    }
+   }
+  },
+  "electricity": {
+   "co2_intensity": {
+    "unit": "g/kWh",
+    "value": 300
+   }
+  }
+ },
+ "requirements": [
+  {
+   "on": "doublet",
+   "max": 3,
+   "min": 1,
+   "name": "doublet_count",
+   "quantity": "count"
+  },
+  {
+   "on": "cooling_supply",
+   "max": 0.01,
+   "name": "cold_delivered",
+   "quantity": "unmet_share"
+  },
+  {
+   "on": "heating_supply",
+   "max": 0.01,
+   "name": "heat_delivered",
+   "quantity": "unmet_share"
+  },
+  {
+   "on": "doublet",
+   "max": 0.7,
+   "min": 0.7,
+   "name": "pump_efficiency",
+   "quantity": "pump_efficiency"
+  },
+  {
+   "on": "doublet",
+   "max": 1.00001,
+   "min": 0.99999,
+   "name": "full_reinjection",
+   "over": "each",
+   "when": "running",
+   "quantity": "reinjection_ratio"
+  },
+  {
+   "on": "doublet",
+   "max": 330,
+   "name": "running_time_limit",
+   "over": "duration",
+   "unit": "d",
+   "when": "running",
+   "quantity": "production_flow"
+  },
+  {
+   "on": "doublet",
+   "max": 40,
+   "name": "brine_cooling_limit",
+   "over": "each",
+   "unit": "K",
+   "when": "running",
+   "quantity": "brine_cooling"
+  },
+  {
+   "on": "doublet",
+   "max": 300,
+   "min": 50,
+   "name": "production_flow_range",
+   "over": "each",
+   "unit": "m3/h",
+   "when": "running",
+   "quantity": "production_flow"
+  }
+ ]
+}
