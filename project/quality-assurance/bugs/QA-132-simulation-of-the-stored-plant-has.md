@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini |
 | Reporter | functional-qa-simulation-I |
@@ -36,7 +36,7 @@ Guess: the plant's flow limit is not set to 300 m3/h (plant stage), and the verd
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:28 UTC: geomind 0.4.87 (341 m3/h was the ESP intake volume with free gas; liquid flow 300; skill names reservoir.liquid_flow), backend 1.1.89, deployed 14:27 UTC
 ## Retest
 
 (Who, when, result.)
