@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -67,7 +67,8 @@ since replaced by later revisions):
 ## Retest
 
 (Who, when, result.)
-
+- 2026-11-05 19:57 UTC: QA-AI-case-I run 72ca5d30, geomind 0.4.132
 ## Seen in a run
 
 - 2026-11-05 18:52 UTC, QA-AI-case-I run 7825eeac-4526-45d5-8ac9-baeca2b90223 (project QA-TEST QA-AI-case-I 9, cbcd3c85-b7ab-46f9-a8f7-d3c830189d2a; "design me a geothermal plant" with the three files; geomind 0.4.114+): at the checklist the case lead calls `read_stored(path="plants_need")` and `read_stored(path="converted")` on its `read_case` result: both refused ("no key or index of the result"). Row 2 in practice: the prompt sends it looking for `plants_need` and `converted`, which only a `set_case` result carries, and its one `set_case` came after the question. Evidence: `../evidence/QA-177/run-7825eeac.json` (case_lead 18:52:19).
+- 2026-11-05 19:58 UTC, QA-AI-case-I, run 72ca5d30-a541-4359-b8ac-cff8fad9769f (project QA-TEST QA-AI-case-I 16, fa74ee82-efc9-4908-9b52-bb4ecff1cb3b; geomind 0.4.132, celery started 19:47 UTC; 19:50:40-19:55:25 UTC; log `../evidence/QA-326/run-72ca5d30.json`): handbook-case §0.1 now orders Merge -> Search -> Ask once -> Set once -> Follow-up only for `plants_need`/`converted` -> Economics; §8.1 names the lead's `search_rag`/`read_rag` and the geoscientist's tools apart; no `or computed with calculate` line left. In the run: question before the one stored `set_case`, no `read_stored(plants_need)` attempts. Verified. (Rows 5-7 not checked one by one.)
