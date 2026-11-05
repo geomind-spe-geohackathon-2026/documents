@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | backend |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 04:15 UTC |
 | Versions | backend 1.1.69 (health 2026-11-05 ~04:20 UTC) |
 | Where | project 61134432, chat 81b51db5-1a6b-402a-9223-66c8af1c6403, run 861ef137-08a2-4252-bf30-437630caf747 |
-| Fixer | |
+| Fixer | hotfix-back |
 
 ## Steps
 
