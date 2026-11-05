@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -58,3 +58,11 @@ of the site's region. Or route "economics please" to the case lead like "set up 
 
 - 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
+
+- 2026-11-05 19:46 UTC, QA-E2E-economics-I: PASSES on backend 1.1.124. Project "QA-TEST
+  QA-E2E-economics-I 15", run in Retest card: "economics please" -> coordinator routes to the
+  project loop ("the case lead fills in the economics"), card at 1 min 52 s: "42 from
+  knowledge/hackathon-2026-assumptions.md; 5 from catalogue rows, general", discount 0.05,
+  electricity 105.75, gas 39.92, carbon 57.03 with the reference uncertainty. Card:
+  `../evidence/QA-327/retest-card.txt`.
+- 2026-11-05 19:46 UTC: QA-E2E-economics-I 19:46 UTC backend 1.1.124: routed to the case lead, assumptions file first; see Retest
