@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-3 |
@@ -36,7 +36,7 @@ Guess: the web-search skill has no search budget or stop rule, and the 8-term li
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 07:31 UTC: geomind 0.4.73 (web_search: six searches per agent and run, searches_left, then a labelled assumption or a gap), backend 1.1.78 (1ed06d8), deployed 07:30 UTC
 ## Retest
 
 (Who, when, result.)
