@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | backend,geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 20:52 UTC |
 | Versions | backend 1.1.130 (geomind 0.4.135); run started on 1.1.128 before deploy 62 |
 | Where | run b3a69d7c-58c4-4322-a747-203c5e206af6 (clean report run), project bf1bccef-f12e-43e5-b273-9040337062cc, chat 185e5160 (auto_approve true) |
-| Fixer | |
+| Fixer | m2 |
 
 ## Steps
 
