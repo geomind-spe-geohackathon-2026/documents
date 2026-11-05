@@ -104,3 +104,22 @@ others), so the gap is noted, not reported: worth a check by QA-AI-design-I or w
 Verified: QA-187, QA-227, QA-245, QA-252. Open: QA-189, QA-190, QA-204, QA-218, QA-224 (no-op load
 card still asked), QA-266, QA-283, QA-288, QA-294, QA-310. Duplicates: QA-188 (= QA-176, fixed),
 QA-265 (= QA-199). Idea: IMP-032.
+
+## Round 4: retests (19:04 to 19:33 UTC, backend 1.1.119)
+
+| Bug | Run | Result |
+|---|---|---|
+| QA-190 | bc87aea2 | verified: greeting run has loop `answer`, 2 s |
+| QA-283 | (project 4) | verified: empty project -> one question for site, demand, services (option: example case), ~15 s |
+| QA-218 | a5cd1779 | verified: explain-only 3:44, 268 k tokens, 0.0099 USD (was 8:26, 1.49 M, 0.034); 0 search_rag |
+| QA-189 | a5cd1779 | verified: no wasted opening calls |
+| QA-204 | a5cd1779 | verified: three chips, labels match |
+| QA-288 | c5793754 | verified: denial kept, no re-brief; but the design lead hand-analysed with run_python for 22 min (design scope) |
+| QA-224 | 1192fc2a | verified: case edit 160 -> 170 mD, no card, 2 min, LCOH 44.22 EUR/MWh |
+
+Accuracy, round 4: LCOH by permeability on the unchanged HackathonPlant: 200 mD 43.753, 175 mD
+44.134, 170 mD 44.22, 150 mD 44.641 EUR/MWh: monotonic, as expected (lower permeability, more
+drawdown, more pump power). Memory stage with memory on: 2 to 3 cards (was 9).
+
+Still open from this thread: QA-294 (project results invisible in a new chat), QA-310 (a cancelled
+request leaks into the next route).
