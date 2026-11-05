@@ -87,3 +87,15 @@ Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4
 ## Retest
 
 (Who, when, result.)
+
+## More evidence (QA-E2E-case-I, 2026-11-05 16:50-17:20 UTC)
+
+- Project QA-TEST QA-E2E-case-I 1, run cf319cd4 (backend 1.1.102, geomind 0.4.97): the first good
+  set_case (approved 16:54:30) wrote 46 leaves incl. return temperatures/pressures, indoor values,
+  air, sand, gas composition and CO2 intensity (case v2: `demand.heating.return_temperature` 60 degC
+  already set); the confirmation question with the same 17 values came only at 16:55:55, after a
+  2nd set_case for requirements. The curator then wrote this order as lesson
+  `case-lead-one-confirmation-question` ("Set the case from the project files and the knowledge base's
+  assumptions document first, then gather ...", run a5118d9e; see QA-199).
+- Project 2, run a5118d9e (17:07, geomind 0.4.98/0.4.99): correct order (file values first, question,
+  then the confirmed values in one set_case). Not seen again after that.
