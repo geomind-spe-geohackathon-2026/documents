@@ -135,3 +135,29 @@ New in round 3:
 | QA-315 | minor | geomind | `save_mcp_table` refuses `UTC` because open-meteo says `GMT` |
 | QA-326 | blocker | geomind | Case lead loops on files-only `set_case` after approve all (0.4.131; 2 of 2 runs) |
 | QA-331 | blocker | geomind | `read_case` banned for the run after `no_case` errors; the next call ends the run failed |
+
+## Round 4 and handover (19:42-20:55 UTC; geomind 0.4.131 -> 0.4.132)
+
+| Run | Project | Scenario | Result | Wall time | Cost |
+|---|---|---|---|---|---|
+| 14 `f1062bb7` | QA-TEST QA-AI-case-I 14 | reference case loaded; "change heating return to 55 degC and cooling return to 27 degC" | both changed, nothing else; the lead flags 27 degC > indoor 26 degC and asks | 57 s | 0.002 USD |
+| 15 `52794bcf` | ... 15 | only the PDF | asks for the two CSVs, stores nothing, lists what is missing; recorded time zone differs from the approved one (added to QA-295) | 5 min 14 s | 0.022 USD |
+| 16 `72ca5d30` | ... 16 | as run 1 (approve all), 0.4.132 | **case + economics in 4 min 45 s**; QA-326, QA-157, QA-177 verified | 4 min 45 s | 0.028 USD |
+| 17 `ef324318` | ... 17 | Delft + weather, 0.4.132 | QA-314, QA-315 verified | 6 min 7 s | 0.032 USD |
+| 18 `f399557c` | ... 18 | no files, Trondheim, 0.4.132 | QA-295 verified (stored = approved); then ran on into design for ~1 h (auto-approved cards), cancelled by QA | - | 0.197 USD |
+| 19 `291ea3b4` | ... 19 | empty, "design me a geothermal plant", 0.4.132 | no more example-case offer; asks for files (QA-309 partly checked) | 22 s | 0.001 USD |
+
+Final status of this thread's bugs (20:55 UTC): verified QA-153, 156, 157, 160, 161, 163, 177, 217,
+295, 314, 315, 326; fixed, not retested QA-309 (the "case from the Knowledge base" option untested)
+and QA-331 (fix c4108d3 was after 0.4.132, not deployed when testing stopped); QA-222 closed as a
+duplicate of QA-200. Also retested and verified for other threads: QA-140, 158, 197, 198, 227, 230,
+266, 283. Ideas: IMP-029, IMP-030.
+
+Best result: run 16, the whole competition case from one chat sentence and the three files in
+4 min 45 s for 0.028 USD, every value equal to `gemini/examples/hackathon_2026/case.json` (run 1:
+6 min 12 s, 0.036 USD).
+
+Testing stopped at 20:50 UTC on Sahand's word (all QA-AI threads closed). Projects QA-TEST QA-AI-case-I
+1-19 are kept on geomind.team. Driver scripts (not in a repo): `~/qa-ai-case/drive.py`, `qa227.py`,
+`qa266.py`, `qa_change.py`, `ana.py`, `peek.py`, `sumrun.py`; each run's log, answers and stored case in
+`~/qa-ai-case/run<n>/`.
