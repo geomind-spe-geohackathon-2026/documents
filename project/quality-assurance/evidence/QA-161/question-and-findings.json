@@ -1,0 +1,32 @@
+{
+ "missing": [
+  {
+   "why": "The brief gives no outside relative humidity, and the knowledge base's assumptions file gives only the INDOOR relative humidity of the cooled space (26 degC / 50 %, a demand.cooling value), which is not the outside air. It sets the wet-bulb and the air-cooler/cooling-tower duty, so it cannot be left to a typical value.",
+   "path": "site.air.relative_humidity",
+   "quantity": "Outside air relative humidity"
+  },
+  {
+   "why": "Neither the requirements PDF nor the assumptions document states a heating value (nor whether it is lower or higher). The handbook's ~50.0 MJ/kg is for pure methane / co-produced gas, not for this grid gas, so it is not used. Without it the boiler/CHP fuel input and the gas bill cannot be computed from the composition alone.",
+   "path": "utilities.gas.heating_value",
+   "quantity": "Heating value of the bought (grid) gas"
+  },
+  {
+   "why": "The brief calls it 'cooling_demand_MWcool' without saying whether dehumidification is included; with a dew-point margin and an indoor humidity in the case, the split decides whether the chilled-water duty covers latent load.",
+   "path": "demand.cooling.power",
+   "quantity": "whether the cooling demand file is sensible or total (latent included) cooling"
+  },
+  {
+   "why": "A 20 °C chilled-water supply can fall below the room dew point and take a latent load; without these the chiller and the cold output cannot be validated. The brief gives none.",
+   "path": "demand.cooling.indoor_temperature / demand.cooling.indoor_relative_humidity / demand.cooling.dew_point_margin",
+   "quantity": "cooling indoor temperature, indoor relative humidity and dew-point margin"
+  }
+ ],
+ "ask_user": {
+  "options": [
+   "approve all",
+   "change some",
+   "stop"
+  ],
+  "question": "The case is set from the brief and the two demand files. Every value below came from the knowledge base's assumptions document for this hackathon case (knowledge/hackathon-2026-assumptions.md), not from your files — please confirm them, and give me the two values nothing states.\n\nCONFIRM (source: knowledge/hackathon-2026-assumptions.md, \"Case values\" / \"Requirements\" sections):\n1. time_zone of both demand series = UTC | the CSV dates carry no offset; gemini reads them as UTC unless a zone is named | assumption\n2. demand.heating.return_temperature = 60 °C | design choice, the brief leaves it to the team (colder than the 100 °C supply)\n3. demand.heating.return_pressure = 6 bar | team assumption\n4. demand.cooling.return_temperature = 25 °C | design choice, the brief leaves it to the team (warmer than the 20 °C supply)\n5. demand.cooling.return_pressure = 4 bar | team assumption\n6. demand.cooling.dew_point_margin = 1 K | team assumption\n7. demand.cooling.indoor_temperature = 26 °C | team assumption\n8. demand.cooling.indoor_relative_humidity = 50 % | team assumption\n9. site.air.temperature = 10 °C (constant) | team assumption\n10. site.air.pressure = 101325 Pa (constant) | team assumption\n11. site.fluid.sand_concentration = 20 mg/l | team assumption\n12. utilities.electricity.co2_intensity = 300 g/kWh | organisers' reference value\n13. utilities.gas.composition = CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233 (mole fractions, sum 1) | team assumption\n14. heat_delivered: unmet share of the yearly heat demand ≤ 0.01 | the brief asks the demand be met but gives no tolerance; 1 % is the team's\n15. cold_delivered: unmet share of the yearly cold demand ≤ 0.01 | same\n16. volume_balance: reinjection ratio 0.99999 to 1.00001 while running | the brief requires equal production/injection volumes; the tolerance is the team's\n\nSTILL MISSING — please give me these two, with their units:\nA. site.air.relative_humidity (a fraction 0 to 1, e.g. 0.8 — not a percentage) — the outside air's humidity; no file and no knowledge document states it, and it is needed for air coolers and chillers that reject heat to air.\nB. utilities.gas.heating_value (J/kg or kJ/kg) — the heating value of the bought grid gas; the composition is known but no source states its heating value, and it is needed to price and burn the gas.\n\nOptions: approve all (the 16 above; A and B stay open), change some, or stop. You may also type the values for A and B, or any corrections."
+ }
+}
