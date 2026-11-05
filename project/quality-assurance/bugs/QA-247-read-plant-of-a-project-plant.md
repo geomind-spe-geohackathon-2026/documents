@@ -42,3 +42,5 @@ Facts: (1) the QA-221 rule in `prompts/design/lead.md` covers "to compare or ran
 
 - 2026-11-05 18:33 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+Retest (QA-E2E-design-I, 2026-11-05 19:36 UTC, backend 1.1.117): run e3c10ff9: after read_plant of the stored design/hc_wellfix the design lead rebuilt it with `build_plant doublet_2_class` (class HeatingHeatPumpCoolingPlant, size.doublets 2, its fluids) at 19:20:10 with no refusal (no 'extra inputs not permitted', no 'no module of the class'). Works.
