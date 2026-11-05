@@ -14,7 +14,7 @@ summary · 5 Design basis · 6 Alternatives · 7 Decisions · 8 Results (8.6 num
 source, 8.8 COP and SPF, 8.9 energy balance) · 9 Compliance (9.5 scope, 9.6 values) · 10
 Uncertainty · 11 Limitations · 12 Figures and tables · 13 Agent log · 14 Style · 15 Checklist ·
 16 Worked example · 17 Lessons from reviewed reports · 18 Explaining a result · 19
-Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · 22 Method and V&V · 23 Energy flows and time series · A Templates · B References.
+Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · 22 Method and V&V · 23 Energy flows and time series · 24 Presenting the economics · 25 Emissions · A Templates · B References.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -130,6 +130,8 @@ extra steps cost about four times the tokens of the whole review.
 | What a gemini metric name means (`cop`, `heat_useful`, `capacities` ...) | §21 |
 | What the method section holds; verified versus validated | §22 |
 | Sankey diagram, demand over the year, load duration curve, monthly table | §23 |
+| How to present the economic basis, capex, cash flow, NPV | §24 |
+| How to present emissions: scopes, GWP, intensity | §25 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -1304,6 +1306,78 @@ source. Totals must match the period figures of §8.3.
 
 ---
 
+# 24. Presenting the economics
+
+The method is in `knowledge/handbook-economics.md` (§4 prices and price year, §5 discounting,
+§6 levelised costs, §16 how gemini computes them). This chapter is how to show it.
+
+## 24.1 State the economic basis once
+
+One short paragraph or table, before any cost figure: currency and price year; real or nominal
+money, and a discount rate of the same kind (real with real, nominal with nominal; Short, Packey
+and Holt, 1995, ch. 3); the discount rate and its source; the analysis period; the
+`heat_cost_share` behind LCOH and LCOC; the sources of the energy and carbon prices with their
+years; what is excluded (taxes, subsidies, network, land). All from `read_case` section
+`economics` and the assumptions with their sources (§5.4). A cost without this basis cannot be
+compared with any other.
+
+## 24.2 The capex table
+
+List capex by kind (wells, pumps, heat pumps, chillers, exchangers, boilers, network, other) as
+`estimate_costs` gives it, with each item's source row, and the total. Name the estimate class
+(§10.4) under the table. Wells usually dominate a deep geothermal capex; if they do not, the
+reader will ask why, so say it.
+
+## 24.3 The cash flow
+
+A cash-flow table or chart by year (investment at year 0, then opex and revenue each year)
+makes NPV and payback traceable: NPV = Σ (revenue − cost)ₜ / (1 + r)ᵗ (Short, Packey and Holt,
+1995, ch. 4). gemini's payback is simple and undiscounted (§21.2): say so when it is quoted, and
+"never pays back" when revenue does not exceed opex.
+
+Invented example: capex 40 MEUR; revenue 7.0 MEUR/yr; opex 3.0 MEUR/yr; r = 4 % real; 25
+years. The annuity factor is (1 − 1.04⁻²⁵) / 0.04 = 15.62 (`calculate`), so NPV = −40 + 4.0 ×
+15.62 = 22.5 MEUR; simple payback 40 / 4.0 = 10 years. Each figure in a report comes from the
+tool or from `calculate` with its id.
+
+## 24.4 Levelised costs next to a reference
+
+A levelised cost means most beside a reference the reader knows: the price of the heat it
+replaces, or the levelised cost of a gas-boiler plant on the same economic basis. Give the
+reference only from a source or a tool run on the same basis (same price year, discount rate
+and period); never compare with a figure from another basis without saying so (IEA and NEA,
+2020, ch. 2).
+
+---
+
+# 25. Emissions in the report
+
+The accounting is in `knowledge/handbook-economics.md` §9 (boundary and scopes) and §16.6.
+
+## 25.1 Scopes and boundary
+
+The GHG Protocol splits emissions into scope 1 (direct: fuel burned, gas released, vented
+methane), scope 2 (purchased electricity and heat) and scope 3 (the rest of the value chain,
+such as drilling and materials) (WRI and WBCSD, 2004, ch. 4). gemini's `co2` holds scope 1 and
+the grid electricity's scope 2; `co2_emitted` and `methane_emitted` the direct part (§21.2).
+Scope 3 is not modelled: name it as open.
+
+## 25.2 How to state them
+
+- the total CO2-equivalent of the period, then split: direct CO2, methane as CO2e with the GWP
+  standard (for example IPCC AR6 100-year values; IPCC, 2021, ch. 7), grid electricity with
+  its intensity and source;
+- the intensity per MWh delivered, from a tool or `calculate`, beside a reference on the same
+  boundary (for example a gas-boiler plant: about 200 kg CO2/MWh of fuel, divided by the boiler
+  efficiency; IPCC, 2006, vol. 2, table 2.2, natural gas 56.1 t CO2/TJ);
+- what the carbon price covers (the plant's own CO2 and methane, not the grid's; §8.5).
+
+Invented example: co2 6.1 kt: direct 1.9 kt (backup gas), methane 0.4 kt CO2e (AR6 GWP100),
+grid 3.8 kt at 210 kg/MWh. Heat and cold delivered 120 GWh: intensity `calculate` 6100 / 120000
+= 0.051 t/MWh = 51 kg/MWh, against a gas boiler at 56.1 × 3.6 / 0.9 = 224 kg/MWh of heat.
+
+---
+
 ---
 
 # Appendix A. Templates
@@ -1400,6 +1474,12 @@ source. Totals must match the period figures of §8.3.
   Dynamics and Heat Transfer*. New York: ASME.
 - Schmidt, M. (2008). "The Sankey diagram in energy and material flow management, Part I:
   History". *Journal of Industrial Ecology* 12(1), 82–94.
+- WRI and WBCSD (2004). *The Greenhouse Gas Protocol: A Corporate Accounting and Reporting
+  Standard*, revised ed. Washington, DC and Geneva.
+- IPCC (2006). *2006 IPCC Guidelines for National Greenhouse Gas Inventories*, vol. 2 Energy,
+  ch. 2, table 2.2 (default CO2 emission factors for stationary combustion).
+- IPCC (2021). *Climate Change 2021: The Physical Science Basis* (AR6 WG I), ch. 7, table 7.15
+  (GWP values).
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
 - gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `coverage.py`,
