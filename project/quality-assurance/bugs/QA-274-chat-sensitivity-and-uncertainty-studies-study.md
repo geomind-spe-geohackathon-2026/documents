@@ -40,9 +40,13 @@ as Results with tornado/spread.
 
 ## Fix
 
+Backend 1.1.117 (8936366, back-m1): on a root chat run's finish each sensitivity or sample study the run started gets a Result (study_id, run.found = the study's stored result) with the report, coverage and design of the study's design on the case of the run's last plain simulate. A run with no plain simulate gives no study result (logged).
+
 Proposal (backend, hotfix-back): save a chat study of kind sensitivity / uncertainty as a Result
 with its tornado / spread (the fields the Results page already reads), named after the study.
 
 ## Retest
+
+Chat: simulate a design, then a sensitivity study on it. Report page: the Design list offers the study and 'Uncertainty and sensitivity' shows its tornado.
 
 (Who, when, result.)

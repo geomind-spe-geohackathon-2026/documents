@@ -47,4 +47,8 @@ Compute `run.usage` as the sum over all sessions of the run (the same query as /
 
 ## Fix
 
+Backend 1.1.117 (3113417, back-m2, lead hotfix-back-lead-II): UsageTree returns the tree totals for root usage events too and keeps each key's peak; set_values never writes a usage column below the row; on the root run.finished the recorder writes usage summed from every stored event (sessions.stored_totals, as /agents). Covers QA-144 and QA-277.
+
 ## Retest
+
+Poll GET /assistant/runs/{id} during a run with nested agents: input_tokens only rises; at the end it equals the sum of GET /assistant/runs/{id}/agents.

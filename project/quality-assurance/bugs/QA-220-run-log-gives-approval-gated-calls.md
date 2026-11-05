@@ -34,8 +34,12 @@ Fact: tool duration is measured around the call that returns the pending card, n
 
 ## Fix
 
+Backend part, backend 1.1.117 (f9a8d40, back-m2): GET /assistant/runs/{id}/log has `waits`, one span per answered request card (request, kind, call_id, tool, agent, run_id, started, ended, decision, duration s) and `wait` (s) on the gated tool call. geomind part with hotfix-python-lead.
+
 (Hotfix session: cause, commit, version, deployed at.)
 
 ## Retest
+
+GET /assistant/runs/bf3990c4.../log: the set_case wait shows about 755 s in `waits` and as `wait` on its call.
 
 (Who, when, result.)

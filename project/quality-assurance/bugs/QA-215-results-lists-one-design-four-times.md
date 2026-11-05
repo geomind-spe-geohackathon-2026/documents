@@ -57,10 +57,14 @@ render the study record of a sensitivity as a table/tornado.
 
 ## Fix
 
+Backend part, backend 1.1.117 (bf766bb, back-m1): agent study results get the saved plant version whose digest matches their design (found, never created, QA-237); the run's last simulate is not recorded when a design result of the same design and case version exists; a sensitivity study has its own result with the tornado (QA-274). Old rows keep their duplicates. Frontend part (one row per design, tab names) with hotfix-front.
+
 frontend 1.1.119 (commit f176515, bundle index-BdK4BvuF.js): each Results tab shows `plant vN · <time>` (when plant_version is set) so repeats can be told apart; the tab strip scrolls on its own. Open, backend (hotfix-back): set plant_version on every result row, skip or link a row whose design equals an existing one, give a sensitivity study a Results row with `tornado`. Open, frontend (later): render a sensitivity study record as a table or tornado instead of raw JSON.
 - 2026-11-05 17:40 UTC: frontend 1.1.119 part; backend dedup/plant_version open
 - 2026-11-05 18:31 UTC: QA-E2E-study-I: tab labels verified; plant_version/dedup/sensitivity view still open
 ## Retest
+
+New chat run with simulate + study of an adopted design: Results shows one row per design, each with a plant version.
 
 Not run (no tests now).
 
