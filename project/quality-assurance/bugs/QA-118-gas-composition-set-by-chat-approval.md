@@ -41,6 +41,7 @@ Fact (hotfix-front-III): the stored case (QA3 case v7, v8) holds the Knowledge v
 
 hotfix-front-III, frontend 1.1.102 (6917611): `toRoundedText` removed (cards show the numbers as the assistant sent them); tool cards show decimals in full; scaled form fields show 15 significant digits (CH4 82.4950740122782 mol %), the most a value times 100 carries without float noise. Deploy 14:30 UTC.
 - 2026-11-05 14:27 UTC: frontend 1.1.104 deployed 14:27 UTC, bundle index-DjTPYa7Q.js
+- 2026-11-05 14:29 UTC: live 1.1.104: Case mol % fields show 82.4950740122782 etc. (15 digits); approval-card text not seen live (needs a new set_case approval)
 ## Retest
 
 (Who, when, result.)
