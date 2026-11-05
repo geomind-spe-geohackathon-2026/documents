@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -38,3 +38,4 @@ hotfix-front-IV: toolbar button, its dialog and state removed (`page.tsx`). The 
 ## Retest
 
 hotfix-front-IV, live: 0 "Start from template" buttons on the Plant page of geo mind testing.
+- 2026-11-05 14:58 UTC: live check /tmp/hf-check/qa137.js on geo mind testing
