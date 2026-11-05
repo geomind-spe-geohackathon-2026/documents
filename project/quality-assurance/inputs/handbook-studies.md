@@ -1262,3 +1262,52 @@ stopped at its budget: 41 structures-and-size candidates feasible out of 160; be
 boiler on, compression chiller, 2 doublets, 40.8 EUR/MWh; next structure (absorption) 41.6. An
 `optimize` of the best structure's sizes alone, 60 evaluations, finds 40.3; the same for the
 runner-up 41.4. The ranking holds; the gap (1.1) exceeds a second seed's spread (0.3).
+
+---
+
+## 25. Presenting study results
+
+### 25.1 What every study answer holds
+
+1. **The answer first**, in the user's terms: the design, the number, the risk.
+2. **The evidence**: the study key, the method, the budget (evaluations or samples), the seed,
+   who chose each (§0.5).
+3. **The scope**: which values moved and which were held (§3.1); which designs were compared and
+   with what effort (§5.2).
+4. **The limits**: infeasible counts, edges of ranges, a coarse time step, unmodelled
+   correlation (§3.8, §4.4, §21, §3.9).
+5. **One offer** of the next study, if useful (§0.6).
+Report structure and wording: `knowledge/handbook-report.md` §6, §7.
+
+### 25.2 Which display for which study
+
+| Study | Table | Figure (when the report draws one) |
+|---|---|---|
+| Comparison | one row per design: objective, feasible, key KPIs | bar chart, infeasible marked |
+| Optimisation | start vs best: each variable and the objective | convergence of best-so-far against trial |
+| Sensitivity | tornado rows: input, range, at low, at high, effect | tornado (horizontal bars around the base) |
+| Monte Carlo | mean, p10/p50/p90 (or p5/p95), feasible share | histogram or cumulative curve (CDF) |
+| Paired comparison | mean difference, share where A wins | CDFs of both designs on one axis |
+| Front | one row per front design | cost against the second objective, knee marked |
+| Sweep | level, objective, feasible | objective against level, cliff marked |
+
+Tufte (2001) and Few (2012): one message per figure, the data in the units of the decision, no
+decoration; a tornado sorted by effect; a CDF better than a histogram for reading percentiles.
+
+### 25.3 Wording uncertainty
+
+- Give a range with its meaning: "between 39.6 and 46.9 EUR/MWh in 80 % of the draws (10th to
+  90th percentile)", not "± 3.6".
+- Name the percentile convention (§3.7).
+- Say what the range is conditional on: the declared input ranges and the model (§3.9).
+- Avoid words of probability without numbers ("likely", "robust"); give the share (Budescu &
+  Wallsten 1985 found wide spreads in how people read such words).
+
+### 25.4 Worked example (invented numbers)
+
+"The heat pump design is the cheapest: 42.4 EUR/MWh (`study/hp_opt`, 60 evaluations per doublet
+count, seed 3, my choice). Over all six declared uncertainties (`study/hp_mc`, 300 draws, seed 7)
+the cost lies between 39.6 and 46.9 EUR/MWh in 80 % of cases (10th to 90th percentile);
+the discount rate moves it most (`study/hp_sens`). In 7 % of draws a low permeability leaves 1 %
+of the heat unmet. Input correlations were not modelled. I can test a 2 MW peak boiler as a
+margin if you wish."
