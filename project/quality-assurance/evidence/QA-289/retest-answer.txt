@@ -1,0 +1,103 @@
+Compare the two plant versions in this project for my manager: which one would you build and why? Give the key figures side by side, in a short form.
+20:31
+Copy
+Worked through 30 steps, 5 needed another try
+· 705 K tokens
+· 0.012 USD
+Two plant versions, side by side — recommendation: build version 1
+
+First, a correction to the brief: the project does hold two plant versions, not one — HackathonPlant (version 1) and HeatingAbsorptionCoolingPlant (version 2). Both were simulated on the same current case (2027-01-01 to 2028-01-01, daily) and both were costed by the economist on that case. So this is a real comparison of two designs, not of two results of one design.
+
+	
+v1 — HackathonPlant (heat pump + boiler)
+	
+v2 — HeatingAbsorptionCoolingPlant (boiler only)
+
+
+Heat delivered
+	
+111667.68 MWh
+	
+111667.68 MWh
+
+
+Cold delivered
+	
+23742.528 MWh
+	
+23742.528 MWh
+
+
+LCOH
+	
+43.75 EUR/MWh
+	
+47.81 EUR/MWh
+
+
+LCOC
+	
+51.45 EUR/MWh
+	
+56.21 EUR/MWh
+
+
+LCTS (whole cost per MWh of heat + cold)
+	
+45.10 EUR/MWh
+	
+49.28 EUR/MWh
+
+
+CAPEX
+	
+34.636 MEUR
+	
+23.956 MEUR
+
+
+OPEX
+	
+3.654 MEUR/yr
+	
+4.978 MEUR/yr
+
+
+Annualised cost
+	
+6.111 MEUR/yr
+	
+6.678 MEUR/yr
+
+
+CO2
+	
+13.77 kt
+	
+20.96 kt
+
+
+Net present value
+	
+28.453 MEUR
+	
+20.470 MEUR
+
+Sources: v1 = result/9b0db55da13a4a5b, v2 = result/11c2e401cd91606b; costs from the economist's comparison of the two (EUR 2015, discount rate 5 %, 25 yr, case version 3). Ranking: v1 is first on LCTS, LCOH, LCOC, OPEX, CO2 and annualised cost; v2 is first on CAPEX only.
+
+Checks against the challenge limits — both pass. Both deliver the full demand (heating and cooling coverage 1.0, unmet heat and cold 0), both peak at 30.0 MW heat and 10.0 MW cold, exactly the challenge's 30.0 MWth and 10.0 MWcool, and both ran with 0 failed steps and gemini's verdict "feasible: true, reasons: none". For v1 gemini passed all 15 requirement checks; for v2 gemini's overall verdict is passed, and I have its peak, coverage and failure figures but not the item-by-item check list. The challenge PDF states no LCOH, LCOC or CO2 limit, so those three are reported, not judged.
+
+Which one I would build: version 1. It needs 10.7 MEUR more up front, but it is cheaper to run (3.654 vs 4.978 MEUR/yr), cheaper per MWh of heat, cold and thermal supply, and emits about a third less CO2 (13.77 vs 20.96 kt). The reason is visible in the energy figures: v1's heat pump carries the heat and the boiler only trims the peak (boiler heat 253.9 MWh, no gas bought), while v2 burns gas for most of the heat (boiler heat 76829.96 MWh, gas bought 65189.53 MWh). Version 2 is the right choice only if the capital budget is the binding constraint.
+
+What could improve it
+
+improvement: version 1 — shrink the 30.0 MW boiler, which peaks at 2.636 MW (8.787 % of capacity): it carries CAPEX and fixed OPEX for capacity that is never used.
+improvement: version 2 — add a heat pump to move heat off the gas boiler: its fuel OPEX is 2.604 MEUR/yr and its CO2 20.96 kt, the two figures that make it lose to version 1.
+
+Caveats: no uncertainty or sensitivity study was run on either design, so all figures are single-point values on the case's prices; LCOH and LCOC rest on the case's 80/20 heat/cold cost allocation, LCTS does not.
+
+Copy
+Write the report
+Explain the results
+Sensitivity analysis
+Auto-approve
