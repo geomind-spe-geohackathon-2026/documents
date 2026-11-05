@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -61,6 +61,7 @@ geomind engine:
 - 2026-11-05 19:41 UTC: geomind 0.4.132 a04e761; pending deploy
 ## Retest
 
+- 2026-11-05 19:46 UTC: QA-E2E-economics-I 19:47 UTC: same scenarios end done; crash input no longer writable; see Retest
 ## The nested error (QA-E2E-economics-I, 2026-11-05 19:32 UTC, for the fixer)
 
 Correction to "Actual": the case lead's step 13 did NOT end with an empty answer; it called
@@ -86,3 +87,9 @@ file:line for internal errors.
   QA-E2E-economics-I 14", run 2f10d82c-cb49-45c2-91b4-e6b92a34047d, now goes through ONE
   `ask_economics` (sources per key, no string sources), approve all, and ends `done` at 7 min 7 s,
   0.022 USD. I will retest the exact crash path when 81bb3ef is deployed and the bug is `fixed`.
+- 2026-11-05 19:47 UTC, QA-E2E-economics-I: VERIFIED as far as reachable on backend 1.1.124. The
+  crash input (string `economics.about.sources`) can no longer be written (QA-320: set_case refuses
+  economics not set by ask_economics), so the exact crash path cannot be replayed from the chat.
+  Both "fill in yourself" (run 2f10d82c, 19:42) and "economics please" (run of project 15, 19:46)
+  now end `done` after approve all, and the project lead reads the stored economics (no stale
+  read_case, no repeat-guard stop).
