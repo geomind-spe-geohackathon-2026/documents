@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | cosmetic |
 | Area | frontend |
 | Reporter | qa-ux |
 | Found | 2026-11-05 00:10 UTC |
 | Versions | frontend 1.1.5x, backend 1.1.55 (health) |
 | Where | https://geomind.team/projects/4b318ee0-b410-4e37-8cf6-c835bc76d8c2/design/results (looked only, no message sent; project of qa-func-2); same in any project with no study |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
