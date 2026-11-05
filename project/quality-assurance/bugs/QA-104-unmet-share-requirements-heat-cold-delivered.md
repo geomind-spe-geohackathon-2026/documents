@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,geomind |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
@@ -38,4 +38,5 @@ Guess: gemini's check finds no `unmet_share` series for the plant's heating_supp
 
 ## Fix
 
+- 2026-11-05 11:01 UTC: gemini 0.6.13 (unmet_share with failed steps: passed None, reason names them) + geomind 0.4.81, backend 1.1.86, deployed 11:00 UTC by hotfix-python-III
 ## Retest
