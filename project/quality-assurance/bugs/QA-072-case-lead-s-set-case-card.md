@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-I |
@@ -36,7 +36,7 @@ Guess: the model confused a rule 'times are UTC without an offset' with a user i
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 04:31 UTC: geomind 0.4.66 (6d46e72: shared rule, never attribute to the user what they did not write; case lead: UTC is gemini's reading, zone is an assumption), backend 1.1.71 (d68105b), deployed 04:30 UTC
 ## Retest
 
 (Who, when, result.)
