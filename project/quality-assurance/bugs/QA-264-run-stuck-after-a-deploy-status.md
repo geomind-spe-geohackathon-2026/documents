@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | backend |
 | Reporter | Manual QA-IV |
@@ -37,6 +37,7 @@ Guess: the answer was stored (or half-stored) while the worker restarted; on res
 - 2026-11-05 18:29 UTC: backend 1.1.116
 ## Retest
 
+- 2026-11-05 18:31 UTC: Manual QA-IV 18:30 UTC on 1.1.116: answer to request-1290 accepted (running), run bfcec811 went on to request-1515, usage back to 5.67 M tokens / 0.125 USD
 ## Fix (hotfix-back-lead)
 
 - backend 1.1.115 (~18:16 UTC): a decision counts as "answered already" only when it is newer than the
