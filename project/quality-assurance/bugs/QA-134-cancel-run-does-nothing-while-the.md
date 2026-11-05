@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-plant-I |
@@ -37,7 +37,7 @@ With the approval card open, Cancel run did nothing (run stayed active, 4 clicks
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:29 UTC: same cause as QA-133 (hotfix-back-III): the Cancel click sends no request while the approval card is open; after Deny the run resumes and the cancel flag/new state ends it. Frontend.
 ## Retest
 
 (Who, when, result.)
