@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 18:47 UTC |
 | Versions | backend 1.1.115+ (geomind 0.4.123, gemini 0.6.21) |
 | Where | project `QA-TEST QA-E2E-study-I 3` (ac687987-8bfe-452f-8013-7a4b577a3655); chat 00be49e5-9d56-4c05-8dc3-40f2a0a1d919; run 4885075b-6ee6-42bc-b8bb-92ba6fd0a69d |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -56,4 +56,5 @@ loads skills with read_skill, never with a dummy URL.
 
 ## Fix
 
+- 2026-11-05 19:11 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
