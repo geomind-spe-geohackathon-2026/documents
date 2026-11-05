@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | data,geomind |
 | Reporter | Sahand (Coordinator-V write-up) |
@@ -60,7 +60,7 @@ The files were built to speed up the competition case. Sahand's decision: blocke
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 20:06 UTC: geomind cc486a0 data-equipment.csv/.md; documents d93c467 assumptions stripped of pre-solved/pre-extracted parts; no agent-read reference to the brief (m8 grep). Needs Knowledge upload/re-upload by back-lead.
 ## Retest
 
 (Who, when, result.)
