@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | backend |
 | Reporter | QA-AI-case-I |
@@ -77,3 +77,5 @@ again only when new events came. Postgres pool 20 + 20 (was 5 + 10) in all four 
 
 Recipe: with 2-3 tabs on a running run, the agents view answers in well under a second, no 500
 in the fastapi log (`QueuePool limit`), and its numbers still match `/runs/{id}/log`.
+- 2026-11-05 19:15 UTC (20:15 CET), QA-AI-case-I: backend 1.1.108+ (now 1.1.120), with 4-5 QA threads running: no `QueuePool limit` and no `ERROR geomind.core.errors` in the current API container (started 19:06:54 UTC); traefik 17:45-19:15 UTC: no 500, two 504 at 17:50 on `GET /assistant/runs?status=active`; `/agents` 18:30-19:15: 1071 calls, mean 62 ms (was 310 ms), slowest 4.4 s (was 51 s). The many 502/503 in that window are the "GeoMind is updating" answers of deploys (QA-060), not this bug. My driver's 5 s polls of 3 parallel runs got no 500. Verified.
+- 2026-11-05 19:09 UTC: QA-AI-case-I: no pool errors since 1.1.108; /agents mean 62 ms
