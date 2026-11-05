@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | data |
 | Reporter | QA-AI-case-I |
 | Found | 2026-11-05 16:55 UTC |
 | Versions | backend 1.1.102 (geomind 0.4.98) |
 | Where | api.geomind.team; project QA-TEST QA-AI-case-I 1 (23e6faf0-7fa0-450b-860e-16cfe5fdd91b); run f5f86362-4596-4264-b00a-8c26e5adc5f3; case_lead steps 13 and 17 |
-| Fixer | |
+| Fixer | hotfix-back-VI |
 
 ## Steps
 
