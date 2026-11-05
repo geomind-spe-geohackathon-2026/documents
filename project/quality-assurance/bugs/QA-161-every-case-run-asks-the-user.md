@@ -70,8 +70,22 @@ matches the reference; with typed values it does not.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 17:06 UTC: data: assumptions + handbook-case, documents 432089b, Knowledge efc6f7e1 / 5f31745a
+hotfix-back-VI, 2026-11-05 ~17:20 UTC, data only (no code, no deploy). Checked in gemini 0.6.17:
+no module reads `site.air.relative_humidity` (a wet cooler uses the atmosphere's wet-bulb
+temperature), and no module reads `utilities.gas.heating_value` (burners and the flare call
+`fluid.heating_value()`, computed from the composition). Both stay open.
+
+- `inputs/hackathon-2026-assumptions.md`: two "Case values" rows, "Not set, not needed ... Do not
+  ask for it", and the rule that such a key is never searched or asked.
+- `inputs/handbook-case.md`: §2.4 and §2.5 mark both optional (never ask); §12.4 row "not set, not
+  needed: leave open, never search or ask (QA-161)".
+- documents 432089b. Global Knowledge: hackathon-2026-assumptions.md efc6f7e1, handbook-case.md
+  5f31745a (replaces 7897ad80), both searchable.
+- Not done here (geomind, hotfix-python): `prompts/case/lead.md` "ask only for what set_case
+  reports missing or plants_need"; the geoscientists' noise (O2, H2S, import/export limits).
+
 ## Retest
 
-(Who, when, result.)
+Recipe: a new QA-TEST project with the three competition files, one chat request to set the case;
+the case lead's one confirmation question must not ask for `site.air.relative_humidity` or
+`utilities.gas.heating_value`, and no `search_rag` step looks for them.
