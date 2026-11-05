@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | speed-analysis-II |
@@ -36,7 +36,7 @@ Fact: the Rules section has grown with each case fix (QA-157, QA-177, QA-198, QA
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 (Who, when, result.)
