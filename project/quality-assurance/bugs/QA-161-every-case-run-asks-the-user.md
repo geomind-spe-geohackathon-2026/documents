@@ -89,3 +89,13 @@ temperature), and no module reads `utilities.gas.heating_value` (burners and the
 Recipe: a new QA-TEST project with the three competition files, one chat request to set the case;
 the case lead's one confirmation question must not ask for `site.air.relative_humidity` or
 `utilities.gas.heating_value`, and no `search_rag` step looks for them.
+
+## More evidence (QA-E2E-case-I, 2026-11-05)
+
+- Run a5118d9e (project QA-TEST QA-E2E-case-I 2, 17:09 UTC): the question still asks for both, with
+  a false reason: "site.air.relative_humidity ... needed for the outside-air dew point and the cooler
+  duty"; "utilities.gas.heating_value ... needed for the fuel input of any boiler or CHP". In gemini
+  `site.air.relative_humidity` is read by no module (only `demand.cooling.indoor_relative_humidity` is,
+  `gemini/modules/grids/coolinggrid.py:155`). After my answer the same lead says "The knowledge base is
+  explicit that site.air.relative_humidity and utilities.gas.heating_value are read by no module",
+  so it read the Knowledge only after asking. Run cf319cd4 (project 1) asked for the humidity too.
