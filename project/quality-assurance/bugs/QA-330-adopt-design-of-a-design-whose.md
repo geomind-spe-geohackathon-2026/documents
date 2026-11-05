@@ -41,3 +41,7 @@ adopt_design(design/v1) returns "design/v1 is plant version 1 already; nothing t
 ## Retest
 
 (Who, when, result.)
+
+## Addendum (QA-E2E-study-II, 2026-11-05 19:50 UTC)
+
+Afterwards "Optimise the design" (run 71a9392e) treated design/v1 (HackathonPlant) as "the current project plant" and optimised it, while the Plant page showed v2 (valid, 2 values missing). So the chat's idea of the current plant (v1) and the Plant page (v2) differ since the no-op adopt of the comparison. Evidence: chats of this project.
