@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | verified |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -32,3 +32,5 @@ Fix: when `_missing_paths()` is empty, name the parameter itself (`self.path.nam
 ## Fix
 
 ## Retest
+
+- 2026-11-05 18:03 UTC: Manual QA-IV 18:04 UTC on gemini 0.6.19: the same patch_plant (d0.nominal_flow on design/A_filled, run bfcec811) saves design/A_flow and lists missing values (pump_efficiency, nominal_wellhead_pressure) instead of IndexError
