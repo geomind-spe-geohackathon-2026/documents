@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
@@ -39,6 +39,7 @@ Also seen once on this card: a red "Request validation failed" under the empty a
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 00:09 UTC: frontend 1.1.60 (f5683b5), pushed, build checked, deploy at 00:30 UTC: multi-line answer field. One field per value with units would need the request to carry the value list (geomind); the stray 'Request validation failed' was not reproduced.
+- 2026-11-05 00:31 UTC: frontend 1.1.60, commit f5683b5, deployed (1.1.67)
 ## Retest
 
 (Who, when, result.)
