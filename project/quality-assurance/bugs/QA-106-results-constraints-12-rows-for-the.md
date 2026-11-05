@@ -36,4 +36,16 @@ Guess: the check returns one row per module that serves the role (several pipes 
 
 ## Fix
 
-## Retest
+hotfix-back-II, 2026-11-05 10:47 UTC. Cause (backend, shown by gemini's design): gemini's
+`requirements()` adds its own service check per supply, at least `demand.heating.supply_temperature`
+on each heating grid and at most `demand.cooling.supply_temperature` on each cooling grid, named
+`heating_supply_temperature` / `cooling_supply_temperature`, the same names the case lead gives
+its rules. The report had 12 checks (10 case + 2 service). The backend looked up the case limit
+by name, so the service checks showed the case's bound, and both rows had the same name, which the
+page uses as row key, so a third Heating row was drawn. The two cooling values differ because the
+case rule is min = max = 20 °C (10 °C fails as too cold, QA-091) and the service rule is ≤ 20 °C
+(24.1 °C fails as too warm).
+Fix: backend 1.1.85 (b0b90d1, d2fc41c): the repeat is `<module>.<name>.service`, titled
+"... (service supply rule)", with its own bound (≥ 100 degC, ≤ 20 degC); a case rule in °C now
+shows its direction (= 100 degC, = 20 degC). Constraints are computed on read, so result c16255f0
+shows 12 distinct rows at once. Deploy 11:00 UTC.
