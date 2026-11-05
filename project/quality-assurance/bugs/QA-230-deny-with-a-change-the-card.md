@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 17:39 UTC |
 | Versions | frontend 1.1.113, backend 1.1.105-1.1.107 (geomind 0.4.100+) |
 | Where | https://geomind.team/projects/290484c7-3c42-46be-bba5-20444b2bb307/assistant/chat; project QA-TEST QA-E2E-case-I 4; run 679f3555 |
-| Fixer | |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
