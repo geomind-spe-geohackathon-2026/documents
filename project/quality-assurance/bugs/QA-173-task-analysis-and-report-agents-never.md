@@ -40,6 +40,44 @@ as `handbook-report.md` §0.2.
 - `agents/project/explainer.py:39`, `reviewer.py:38`, `agents/analysis/economist.py:39`,
   `lead.py:46`: `self.search_rag = tools.search_rag`, no knowledge read tool.
 
+## Exact lines to paste (checked against `tools/sections.py` `section_span` on the uploaded files)
+
+Each agent first gets the Knowledge-only read tool (`read_knowledge`, as the design engineers
+have it). Then one bullet under `## Rules` of each prompt:
+
+**prompts/analysis/economist.md**
+
+```
+- Method: read `read_knowledge(name="knowledge/handbook-economics.md", section="0")` once before you cost (0.1 rules, 0.5 metrics, 0.7 checklist); for what a metric means, `section="16"`; for a sensitivity or uncertainty, `section="12"` or `section="13"`. Never compute with its formulas: they explain gemini.
+```
+
+**prompts/analysis/lead.md**
+
+```
+- Method: `read_knowledge(name="knowledge/handbook-economics.md", section="0")` once for costs; to compare or rank designs, `section="14"`; for a sensitivity, `section="12"`.
+```
+
+**prompts/project/explainer.md**
+
+```
+- Before you write, read `read_knowledge(name="knowledge/handbook-report.md", section="0.2")` (what goes under each heading, from which tool) and `section="0.4"` (checklist), once each. For the economic basis, `read_knowledge(name="knowledge/handbook-economics.md", section="0.5")`. For a competition entry, its brief: `read_knowledge(name="knowledge/hackathon-2026-brief.md", section="4")`.
+```
+
+**prompts/project/reviewer.md**
+
+```
+- Check the explanation against `read_knowledge(name="knowledge/handbook-report.md", section="15")` and the verdict rules of `section="9"`, read once each.
+```
+
+**prompts/project/lead.md**
+
+```
+- For a report to a scored brief (a competition or tender), read `read_knowledge(name="knowledge/handbook-report.md", section="16.1")`; for the GEMINI hackathon its criteria and limits are `read_knowledge(name="knowledge/hackathon-2026-brief.md", section="Judging criteria")` and `section="2"`.
+```
+
+Notes: cite numbers, not titles (QA-169), except the brief's first section: its number `1`
+resolves to the file's own `#` title, so it is cited by the title "Judging criteria" (checked).
+
 ## Cause
 
 Fact: the handbooks were added to Knowledge after these prompts were written; only the design
