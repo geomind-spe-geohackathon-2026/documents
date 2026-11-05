@@ -62,3 +62,5 @@ frontend 1.1.119 (commit f176515, bundle index-BdK4BvuF.js): each Results tab sh
 ## Retest
 
 Not run (no tests now).
+
+QA-E2E-study-I, 2026-11-05 18:40 UTC: frontend part verified: tabs read 'sized 5 Nov, 18:51', 'simulation opt1 plant v4 · 5 Nov, 18:22'; the strip scrolls alone. Still open (backend): plant_version is null on every study row (project 2: 6 rows, all null), identical designs still get one row each (project 1: 4 rows of the same design), and a sensitivity study record is still raw JSON (sens_v2_dr_el).
