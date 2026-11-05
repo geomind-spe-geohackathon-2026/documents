@@ -83,3 +83,25 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
 ## Fix
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:04 UTC, QA-AI-analysis-I, backend 1.1.118 (geomind 0.4.130, gemini 0.6.26): project `QA-TEST
+  QA-AI-analysis-I 10`, run 923b728e-4f88-47dc-b812-f693c33e7ea1. The plants are no longer re-typed (QA-221 verified),
+  but the agents' `size_plant` + `optimize(evaluations=20, seed=0)` still give other optima than the page study
+  `minimize` (lcts, 20, seed 0, prepare size) on the same stored versions in the same project, run right after:
+
+  | Family | Agents | Page study (gemini 0.6.26) |
+  |---|---|---|
+  | v1 HeatingFullCoolingPlant | 52.82 EUR/MWh, rank 6 | 32.31 (CO2 9.43 kt, 15/15 checks, depth 3212 m) |
+  | v3 HackathonPlant | 32.54, rank 1 | 32.535 (QA-285 retest) |
+  | v2 HeatingHeatPumpCoolingPlant | 36.73 | (38.03 on 0.6.19) |
+  | v4 HeatingCoolingPlant | 43.82 | 39.48 (20/20 checks, depth 3087 m) |
+  | v5 HeatingAbsorptionCoolingPlant | 49.33 | (49.3 showcase) |
+  | v6 HeatingPlant | 44.62, infeasible | infeasible |
+
+  The agents' winner (v3, 32.54) is now within 0.23 EUR/MWh of gemini's (v1, 32.31), but v1 is reported last at 52.82
+  and v4 4.3 EUR/MWh too high, so the ranking is still wrong. Guess: `size_plant` stores a sized design whose search
+  ranges or doublet count differ from what `minimize` with `prepare: [size]` searches (the agents' v1 optimum: see the
+  log, study v1_best, 85.9 s); the agents' v1 optimize ran 18:51:38-18:53:04, around the 1.1.118 deploy, but v4 ran
+  after it (18:55) and differs too. Still open.
