@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 19:43 UTC |
 | Versions | backend 1.1.124 (geomind 0.4.131, gemini 0.6.31) |
 | Where | project 2630a05f-3ef6-4618-8f08-53191b8c906e (no-agent rerun), studies e5d0dc3f, f7140d63, f96fd1fc, 8d762d63, 9bcfe88a; celery 20:42 CET |
-| Fixer | |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
@@ -31,7 +31,7 @@ Every study with a full-year run is broken on production, agent runs included.
 ## Fix
 
 Backend 1.1.125 (study.plain_day delegates to evaluate.plain_day; bools, numbers, None, labels kept), hotfix-back-lead-II.
-
+- 2026-11-05 19:54 UTC: backend live 1.1.125
 ## Retest
 
 Run a minimize study on gemini 0.6.31+: it finishes; Results opens its coverage.
