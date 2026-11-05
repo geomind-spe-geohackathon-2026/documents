@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-study-I |
@@ -62,6 +62,7 @@ the stored plant as a candidate (or the lead compares best vs the start and keep
 
 - 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 - 2026-11-05 19:12 UTC: QA-E2E-study-I: speed fixed (4.7 min); optimum still worse than the stored plant and compared only with the sized start
+- 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 ## Retest
 
 ## Retest
