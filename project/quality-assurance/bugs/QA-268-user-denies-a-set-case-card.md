@@ -6,33 +6,60 @@
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
-| Found | 2026-11-05 18:18 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 18:17 UTC |
+| Versions | backend 1.1.112 (geomind 0.4.118/0.4.119), API only |
+| Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 6` (d168c5d1-acd4-4795-9442-f2dbe56d0b2d); chat 2fd795ec-8012-40cc-8666-6eca57ecd2a3; run ca876a33-96a1-45b7-a428-70bccdb15152 |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Project with the reference case + economics (analysis_period 25 yr), HackathonPlant costed (NPV 28.453 MEUR).
+2. Chat: "Set the analysis period in the case to 30 years and give me the new NPV."
+3. The case lead's `set_case` card (request-66, analysis_period 30 yr): Deny, reason "Do not change the case; just
+   tell me what the NPV would be at 30 years."
+4. Answer "stop" on the question that follows.
 
 ## Expected
 
+After the denial: nothing written, and the what-if answered without changing the case (NPV at 30 yr from gemini on a
+copy of the case, or a plain "I can only give it by changing the case; shall I?"). No other economics touched.
+
 ## Actual
+
+- 18:13:54 set_case refused by the user. The case lead tries to `finish` (18:15:39, "The case is unchanged - nothing
+  was written") and the guard refuses it: "economics not asked: you wrote economics with set_case, but the user never
+  answered the economics question. Economics enter the case only through ask_economics: call it now ...".
+- So at 18:15:59 it calls `ask_economics` (request-109): a question proposing EVERY economics key from the catalogue's
+  recommended rows, replacing the reference values the case holds: discount_rate 0.051 (case 0.05), electricity
+  115.015 EUR/MWh (105.75), gas 37.5077 (39.92), carbon 57.4757 EUR/t (57.03), heat_cost_share 0.76 (0.8),
+  capex.heat_exchanger 0.108893 EUR/W (0.5 EUR/(W/K), another quantity, QA-168 part 4), injection_pump 0.0990291 EUR/W
+  (0.5), cooler 0.0490933 (0.1), gas_makeup 636893 EUR (50000), opex.fixed.heat_pump 1652.04 EUR/MW/yr (0.2239 %/yr),
+  plus keys this plant has no use for (ice_storage, thermal_storage, electric_boiler ...), with "approve all" as the
+  first option. One click on "approve all" would have rewritten the whole economics of a user who had just said "do not
+  change the case".
+- After "stop": the answer says the case is unchanged (right) and "I cannot give [the 30-year NPV] ... needs the analysis
+  team to re-run estimate_costs"; the question the user asked is not answered. 4 min 15 s, 222 k tokens, 0.0072 USD.
+- Routing: the coordinator sent the request to the project loop -> case lead (no costing tools), not to the analysis
+  lead.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-268/1.png)
-- Run JSON: `../evidence/QA-268/run-<id>.json`
+- `../evidence/QA-268/run-ca876a33-log.json` (case lead steps 2-9), `question-request-109.txt` (the whole question).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+- The case lead's finish guard (geomind 0.4.107+, QA-168 fix, `agents/case/lead.py` around `calls_of(messages,
+  "ask_economics")`) counts a `set_case` of economics that the user DENIED as "wrote economics", and forces
+  `ask_economics`.
+- `ask_economics` proposes all keys from the catalogue even when the case already holds approved economics; it does not
+  start from the case's values.
 
-## Fix
+## Proposed fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
-## Retest
-
-(Who, when, result.)
+1. Finish guard: only a `set_case` that was applied counts; a denied (or refused) call never forces `ask_economics`.
+2. `ask_economics`: when the case already has economics, ask only about the keys the task changes (here
+   analysis_period), never re-propose the others.
+3. Coordinator: "what would X be if Y" / "set Y and give me X" -> the analysis lead (it can cost; it reused a stored
+   sensitivity study for "LCTS at 8 %" in 19 s, run e26ff474), not the project loop.
+4. A what-if on an economics value that no stored study covers: the economist re-costs the stored result on a
+   modified copy of the case (no write), or the lead asks once "change the case?".
