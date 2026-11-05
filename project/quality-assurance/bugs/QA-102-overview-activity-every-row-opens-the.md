@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
@@ -47,3 +47,5 @@ N, design/study/<id> to the study; sentence-case actor.
 hotfix-front-III, frontend part 1.1.99 (e9435c4): `overview/link.ts` sends a case or plant row with an id to `design/case?version=N` / `design/plant?version=N`, which open History on version N (closing it drops the parameter); a study row with an id opens `design/study/<id>/record`; rows are sentence case ("Assistant saved plant version 3"). Deploy 11:30 UTC.
 - 2026-11-05 14:11 UTC: frontend 1.1.99 (e9435c4) deployed 14:10 UTC, bundle index-BlepNtQt.js
 ## Retest
+
+- 2026-11-05 14:12 UTC: live 1.1.99: plant ?version=1 opens History on v1, closing drops the param; rows read 'Assistant saved plant version 5'; current rows predate backend 1.1.87 so carry no id, new rows will
