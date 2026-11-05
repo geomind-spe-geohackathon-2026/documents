@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind,backend |
 | Reporter | Manual QA-IV |
@@ -30,4 +30,5 @@ Guess: the one-sentence summary of QA-121 counts the changes of the old mapping 
 
 ## Fix
 
+- 2026-11-05 17:27 UTC: geomind 0.4.105, commit d687b9d, deployed (same fix as QA-172)
 ## Retest
