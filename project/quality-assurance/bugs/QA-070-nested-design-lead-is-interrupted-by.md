@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 01:21 UTC |
 | Versions | backend 1.1.62 (health 2026-11-05 ~01:20 local server time), geomind per backend |
 | Where | https://geomind.team/projects/61134432-45fa-48db-afef-4f930f3825da/assistant/runs/861ef137-08a2-4252-bf30-437630caf747; project QA2 functional-qa-I full run; chat 81b51db5; run 861ef137; project_lead steps 3 and 4 (run JSON steps index 28 and 60) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
