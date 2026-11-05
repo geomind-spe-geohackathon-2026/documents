@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -73,3 +73,7 @@ The same pattern in the next run (c2b815a8): the economist read the case or the 
    read the case again or `read_stored` a result you already got. If the case has no `about.sources`,
    say the prices' source is the case's economics file and stop."
 3. Lead prompt: do not `read_stored` your own brief.
+
+## Fix
+
+- 2026-11-05 18:56 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
