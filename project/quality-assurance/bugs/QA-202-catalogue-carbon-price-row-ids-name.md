@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | data |
 | Reporter | QA-E2E-economics-I |
@@ -138,3 +138,9 @@ The conversions are exact products; 16 digits claim a precision no source has. S
 
 - 2026-11-05 17:30 UTC: geomind 802aa38 (data/knowledge) + documents a67e69e; Knowledge data-economics.csv d131d47f, .md fc16fbd5, handbook-economics 8a18dc2d, hackathon-2026-assumptions ad05815c (2026-11-05 ~17:45 UTC, handbook-econ-report-I). Catalogue read from Knowledge at run time: no deploy needed.
 ## Retest
+
+- 2026-11-05 18:02 UTC, QA-E2E-economics-I: PASSES. Project "QA-TEST QA-E2E-economics-I 5", run
+  f7097fbc: "Use the EU ETS average spot price of 2025 from ESMA in the cost catalogue as the carbon
+  price" -> row `carbon-price-eu-ets-esma-price-2025`, 57.4757 EUR/t (6 digits), summary names the
+  2024 row as the other one. (The run's many set_case calls are QA-256.)
+- 2026-11-05 18:03 UTC: QA-E2E-economics-I 18:02 UTC, run f7097fbc: right row and 57.4757 EUR/t; see Retest
