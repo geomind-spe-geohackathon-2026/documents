@@ -28,6 +28,7 @@ The second card lists only the 7 catalogue rows under "Values". All 42 document 
 ## Evidence
 
 - Card JSON: `../evidence/QA-361/request-390.json`
+- Third card after my 'change some' with the values: `../evidence/QA-361/request-415.json`. It keeps only the 15 fixed-opex lines (with %/yr); the other 27 are again 'a source with no value'. The case still has no economics (case version 1, economics null).
 
 ## Cause
 
