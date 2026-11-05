@@ -1,349 +1,372 @@
-# Designing Geothermal Heating and Cooling Plants
+**Designing Geothermal Heating and Cooling Plants** (handbook-design)
 
-*A reference handbook for engineers and agents who design plants with gemini*
+*A handbook for the agents and engineers who design plants with gemini. Cite it as
+`knowledge/handbook-design.md`, section by number (for example "0.7").*
 
-Version 1, 2026-11-05. Written for the GeoMind project; general, for any case and any site.
+Version 2, 2026-11-05. General, for any case and any site; chapter 12 is one worked example (the
+GEMINI hackathon 2026 case). Checked against gemini 0.6.17 and the geomind design prompts.
 
----
+**How to use this handbook** (front matter; the chapters start at 0)
 
-## Preface
+- Read by section: `read_knowledge(name="knowledge/handbook-design.md", section="0.7")`, or
+  `outline=true` for the heading tree. Every section stands alone; cross-references name a section
+  number. Read a section once: it does not change during a run.
+- **Chapter 0 is the working chapter**: the checklist, the decision order, where each value comes
+  from, a table of design values with units and sources, and the hard limits of the hackathon case.
+  Chapters 1 to 11 give the reasons; chapter 12 the worked example; the appendices formulas,
+  rules of thumb, glossary and references.
+- How to call a tool is in its skill, never here (11.9).
+- Prices and costs are not in this handbook: they come from the case's economics, which
+  `knowledge/handbook-economics.md` and `knowledge/data-economics.csv` source.
 
-### Who this handbook is for
+| Reader | Read first | Then, when the brief or a failure points there |
+|---|---|---|
+| Design lead | 0 (whole, once) | 8, 10, 11.7 |
+| Reservoir engineer: subsurface and wells | 0.3, 0.7, 0.8 | 3, 4 |
+| Well engineer: pump depth and ESP | 0.7 (wells, ESP), 0.8 | 4.3 to 4.5 |
+| Reservoir engineer: treatment and gas | 0.7 (treatment, gas) | 5 |
+| Energy systems engineer: heating | 0.7 (heating) | 6, 8.3, 9 |
+| Energy systems engineer: cooling | 0.7 (cooling) | 7 |
 
-This handbook is for anyone who designs a geothermal heating and cooling plant: a human
-engineer, or an agent of GeoMind (design lead, reservoir, well, process, integration and energy
-systems engineers, analysts). It assumes the reader knows basic thermodynamics and hydraulics.
-It does not assume the reader knows geothermal practice or gemini.
-
-The aim is a **good** plant: one that meets every demand on every day, uses the reservoir well,
-keeps its pumps and exchangers inside their safe windows, costs little per MWh delivered and emits
-little. A plant that merely runs in a simulation is not yet a good plant.
-
-### How to read it
-
-- Every chapter starts with what it is for, and every section (`##`) stands on its own: an agent
-  may read only the section it needs. Cross-references name the section number (for example
-  "see 4.4").
-- Chapter 0 is the design lead's short path: read it first, then only the sections it names.
-- Chapters 1 to 10 are engineering and hold for any tool. Chapter 11 maps that engineering onto
-  gemini: its plant files, modules, roles and the GeoMind skills that drive it. Chapter 12 is one
-  worked example (the GEMINI hackathon 2026 case). The appendices hold the formulas, the rules of
-  thumb with their sources, a glossary and the references.
-- How to call a GeoMind tool is written in exactly one place: that tool's skill. This handbook names
-  the skill (`designing-a-plant`, `simulating-a-plant`, `reading-results`, ...) and never re-explains
-  a tool's arguments.
-
-### How values are labelled
-
-No number in this handbook is a default. Each carries its source in brackets:
+Labels on values:
 
 | Label | Meaning |
 |---|---|
-| **[textbook / paper / standard / catalogue]** | Named in Appendix D, with author and year. |
-| **[gemini: path]** | A file of the gemini repository (code, sample plant, README). The value is what gemini states or does; a sample's value is a sample assumption unless the file cites a source. |
-| **[derived]** | Computed in this handbook from the values named next to it; the formula is in Appendix A. |
-| **[assumption]** | A placeholder with no verified source. It may orient a first guess; it must never enter a design as a fact. A design that uses it records it as an assumption with its reason and gets it approved. |
-
-Where no reliable figure could be confirmed, the handbook says so and tells you how to obtain the
-value (from the case, from Knowledge, from a connector, from a gemini calculation) instead of
-giving one.
-
----
-
-## Table of contents
-
-0. Design path in gemini
-   - 0.1 How the lead uses it
-   - 0.2 Choosing the plant family
-   - 0.3 Module groups for up to four engineers
-   - 0.4 The order: build, size, simulate, check, optimize
-   - 0.5 Failure to fix
-1. Introduction and design philosophy
-   - 1.1 What a good plant is
-   - 1.2 Demand first
-   - 1.3 Design and operation are different problems
-   - 1.4 The design loop
-   - 1.5 Values, sources and the no-defaults rule
-2. Demand analysis
-   - 2.1 The demand series and its time step
-   - 2.2 Load duration curve: base load and peak load
-   - 2.3 Heating and cooling together
-   - 2.4 Supply and return temperatures
-   - 2.5 Network losses and network pumping
-   - 2.6 Demand checklist
-3. The subsurface
-   - 3.1 Reservoir temperature from the gradient
-   - 3.2 Reservoir pressure at depth
-   - 3.3 Productivity and injectivity
-   - 3.4 Drawdown and the capacity of a doublet
-   - 3.5 Thermal breakthrough and doublet spacing
-   - 3.6 Choosing the depth
-   - 3.7 Subsurface uncertainty
-4. Wells and pumps
-   - 4.1 Well geometry
-   - 4.2 Friction in the wells
-   - 4.3 ESP setting depth and intake pressure
-   - 4.4 Free gas at the pump intake
-   - 4.5 Pump power and efficiency
-   - 4.6 ESP or line-shaft pump
-   - 4.7 Reinjection pressure and the injection pump
-   - 4.8 Wells and pumps checklist
-5. Brine chemistry and associated gas
-   - 5.1 Dissolved gas and why it comes out
-   - 5.2 Degassers and separators
-   - 5.3 Scaling, corrosion and inhibitors
-   - 5.4 Sand and filters
-   - 5.5 What to do with the gas: flare, boiler, CHP
-   - 5.6 Emissions: CO2, methane and electricity
-6. Surface heat
-   - 6.1 Heat exchangers: approach, UA and effectiveness
-   - 6.2 Cascading: using the brine more than once
-   - 6.3 Temperature reach and temperature lift
-   - 6.4 Heat pumps
-   - 6.5 Peak and backup boilers
-   - 6.6 Combined heat and power
-   - 6.7 Thermal storage
-7. Cooling
-   - 7.1 The cooling service
-   - 7.2 Absorption chillers
-   - 7.3 Adsorption chillers
-   - 7.4 Compression chillers
-   - 7.5 Free cooling
-   - 7.6 Heat rejection: dry and wet coolers
-   - 7.7 Heating and cooling in one plant
-   - 7.8 Choosing the cold source
-8. System configurations
-   - 8.1 A catalogue of archetypes
-   - 8.2 When each archetype wins
-   - 8.3 Sizing ratios and the base/peak split
-   - 8.4 Redundancy, backup and N-1
-   - 8.5 Availability: 330 days of a doublet against 365 days of supply
-9. Control and operation
-   - 9.1 Dispatch: the merit order
-   - 9.2 Part load and minimum loads
-   - 9.3 Seasonal operation, outages and maintenance
-   - 9.4 Setpoints and margins
-10. Sizing and optimisation
-    - 10.1 What to fix and what to search
-    - 10.2 Search ranges
-    - 10.3 Objectives: LCOH, LCOC, LCTS, annualised cost, CO2
-    - 10.4 Constraints
-    - 10.5 Sensitivity and uncertainty
-    - 10.6 Staying out of infeasible regions
-    - 10.7 Comparing families
-11. Designing in gemini
-    - 11.1 The case and the plant
-    - 11.2 Anatomy of a plant file
-    - 11.3 Module classes by engineering function
-    - 11.4 Roles, quantities and requirements
-    - 11.5 Plant classes: the templates
-    - 11.6 The good path
-    - 11.7 Reading results and violations
-    - 11.8 Common failures and their engineering fixes
-    - 11.9 Which skill to read
-12. Worked example: the GEMINI hackathon 2026 case
-    - 12.1 The case
-    - 12.2 Demand analysis
-    - 12.3 Subsurface and one doublet
-    - 12.4 Gas
-    - 12.5 Configurations and what gemini found
-    - 12.6 A recommended path
-    - 12.7 Lessons from QA
-- Appendix A: Formulas
-- Appendix B: Rules of thumb and their sources
-- Appendix C: Glossary
-- Appendix D: References
+| **[textbook / paper / standard / catalogue]** | Named in Appendix D. |
+| **[gemini: path]** | What a file of the gemini repository states or does. |
+| **[derived]** | Computed from the values named beside it (formulas in Appendix A). |
+| **[assumption]** | No verified source. It may start a design only as a recorded assumption (`confirmed: false`) with its reason; never as a fact. |
 
 ---
 
 # 0 Design path in gemini
 
-For the design lead: one section to plan a plant from. It chooses a family, splits the modules
-among up to four engineers, fixes the order of work and says what to do when a check fails. The
-reasons and the numbers are in chapters 1 to 11; this chapter only points to them. No value is
-given here: every value comes from the case, Knowledge, a connector, or a gemini calculation, and
-is approved with its source (1.5). General: any case, any site.
+The design lead plans and runs a design from this chapter; each engineer reads the sections its
+brief names. A value in 0.7 or 0.8 is a value with its source, to be cited, never a package
+default: gemini has none (1.5).
 
-## 0.1 How the lead uses it
+## 0.1 Checklist for the design lead
 
-1. Read the case (demand peaks and energy, site, requirements, economics; Chapter 2) and choose
-   one or more families (0.2).
-2. Give each engineer of 0.3 its modules, the case values it needs, and the chapters it reads. An
-   engineer returns module values with their sources; it writes no project file. A number that
-   needs gemini (a pump power, a COP at a lift) is asked of the lead, who evaluates the module
-   (skill `evaluating-a-module`).
-3. The lead builds the whole plant in one write, then follows 0.4, and re-splits a failure to the
-   owner of 0.5.
+Do the steps in order; do not start a step before its gate holds.
+
+| # | Step | Gate to go on |
+|---|---|---|
+| 1 | `read_case` (whole, once), `list_plants`, `list_profiles`; read this chapter once | the case has no missing value; else hand over `case change needed: <path>: <why>` |
+| 2 | Choose the family by 0.2; record it in `design.families` with its reason | one family (a superstructure when two ways are sensible) |
+| 3 | Build ONCE (`build_plant`): a project plant that fits, else the gemini class of the family; set `params.backup` (8.4), `params.control.dispatch` and `params.control.outages` (each the one value gemini suggests) | stored design; `issues` listed |
+| 4 | Split the `issues` by the groups of 0.3, at most four; ONE `fill_parts`, one brief per group with its paths, the plant text of its modules, the case values with units, the interface values and the sections to read (0.7, 0.8 and its chapter) | every engineer answered |
+| 5 | Write ONCE: all `changes` in one `patch_plant`; record every assumption in one `update_state` | `missing` is 0 |
+| 6 | `size_plant` (new name); read what was sized and what was left (0.4) | no broken module |
+| 7 | `simulate` a short window around the critical day (heating peak; cooling peak too when cold is made from brine heat), then `check_results` | no failed step |
+| 8 | Fix from the failures by 0.5: the failure, gemini's message and the module's plant text to its owner, all owners in one `fill_parts`, one `patch_plant` | the change is applied |
+| 9 | `simulate` the whole period (no `start`, `end`), `check_results` | `feasible` true |
+| 10 | `optimize` few leaves with ranges from the user or the case (10.1, 10.2), `simulate` the best for the whole period, check it | a feasible, better design |
+| 11 | With two or more buildable families: one `run_study`, keep the best feasible, simulate it for the whole period | ranked |
+| 12 | Record `design.reference`, `design.result`, `design.family`, `design.schematic`, the study key (`update_state`), then `finish` | recorded |
+
+Stop rule: at most three changes aimed at one failing requirement. After the third, keep the
+design that fails least, simulate it for the whole period, record it as final and name the open
+requirement (its `name`, the value reached, its limit, why). Never loosen a requirement.
 
 ## 0.2 Choosing the plant family
 
-The test is the case, not the habit. Compare at least two materially different families (10.7);
-mark a family gemini cannot run `blocked` with the reason.
+Answer the questions in order; the first answers narrow the families, the later ones pick one.
 
-| Family (8.1) | Choose when (8.2) | gemini class (closest) | Read |
+1. **Is there a project plant that fits the services?** Start from it (`read_plant(project_plant=...)`).
+2. **Which services?** Heating only: A, G or H. Heating and cooling: B, C, D, E, F or I.
+3. **How hot is the brine against the heating supply?** Take the reservoir temperature at the
+   design depth from the case's gradient (3.1) and compare with the heating supply T_s, the return
+   T_r and an exchanger approach (6.1, 6.3):
+   - T_brine ≥ T_s + approach: direct use (A, C, E);
+   - T_r + approach < T_brine < T_s + approach: heat pump boost (B, D), or deeper wells (3.6);
+   - T_brine ≤ T_r + approach: a heat pump on the brine only (H).
+4. **How is cold made?** Brine above an absorption chiller's minimum drive temperature plus the
+   approach in summer: absorption is a candidate (C, D, E). Otherwise, or with a high chilled-water
+   supply (20 °C and up) and affordable electricity: compression (B) (7.8).
+5. **Is there co-produced gas?** Substantial gas: burn it before you flare (F, G; 5.5). Some gas:
+   degas and flare, inside the chosen family.
+6. **More than one sensible answer?** One superstructure (optional modules, `choices`), or a
+   `run_study` of the buildable families (10.7); never one design built by hand per variant.
+
+| Family (8.1) | Choose when (8.2) | gemini class | Read |
 |---|---|---|---|
 | A. Direct use + peak boiler | brine hotter than the supply plus the approach; no cooling | `HeatingPlant`, `DoubletHeatPlant` | 6.1, 6.5 |
 | B. Heat pump boost + peak boiler, compression chiller | brine somewhat colder than the supply, moderate lift, affordable electricity | `HeatingHeatPumpCoolingPlant` | 6.3, 6.4, 7.4 |
-| C. Direct use + absorption cooling | brine hot enough in summer to drive the chiller; doublets otherwise idle | `HeatingAbsorptionCoolingPlant` | 7.2, 7.8 |
-| D. Heat pump boost + all chillers | as B, and each chiller covers a distinct part of the cold load duration curve | `HeatingCoolingPlant` | 7.7, 7.8 |
+| C. Direct use + absorption cooling | brine hot enough in summer to drive the chiller | `HeatingAbsorptionCoolingPlant` | 7.2, 7.8 |
+| D. Heat pump boost + all chillers | as B, and each chiller covers a distinct part of the cold load | `HeatingCoolingPlant` | 7.7, 7.8 |
 | E. Direct use + all chillers | as A with D's cooling | `HeatingFullCoolingPlant` | 7.7, 7.8 |
-| F. Hybrid with gas use | co-produced gas substantial: burn it for heat or power, flare only the surplus | a plant file built from modules (the sample of 8.1) | 5.5, 5.6 |
+| F. Hybrid with gas use | co-produced gas substantial: burn it for heat or power, flare only the surplus | none: built from modules and connections | 5.5, 5.6 |
 | G. Boiler + CHP on the secondary side | co-produced gas substantial, no cooling | `BoilerCHPPlant` | 5.5, 6.6 |
 | H. Low-temperature aquifer with heat pump | low-temperature reservoir | `ATESPlant` | 6.4, 6.7 |
 | I. District energy on an aquifer store | heating and cooling networks on one store | `DistrictEnergyPlant` | 6.7, 7.7 |
 
+A family that needs a module gemini lacks is `blocked: gemini has no module for it`.
+
 ## 0.3 Module groups for up to four engineers
 
-One engineer per group; the lead owns the wiring and what the groups share. Module classes are
-those of 11.3 (`gm.modules.<Name>`) and the plant classes of 11.5.
+One engineer per group; the lead owns the wiring and what the groups share. Classes are those of
+11.3 and 11.5.
 
-| Engineer | Group | gemini module classes | Chapters |
+| Engineer (role) | Group | gemini module classes | Read |
 |---|---|---|---|
-| I | Subsurface and wells | `ProductionReservoir`, `InjectionReservoir`, `ThermalDecline`, `BoreholeField`, `DownholeHeatExchanger`, `ProductionWell`, `InjectionWell`, `ESP`, `LineShaftPump`, `InjectionPump`, `Formation`; plant classes `Doublet`, `NodalDoublet`, `MultiWellPlant` | 3, 4 |
-| II | Treatment and gas | `Degasser`, `Desander`, `Filter`, `InhibitorDosing`, `Flare`, `Blowdown`, `GasCompressor`, `GasMakeup`, `GasGrid`, `ChemicalGrid`, `WasteGrid` | 5 |
-| III | Heating | `HeatExchanger`, `HeatPump` (heating mode), `Boiler`, `ElectricBoiler`, `CHP`, `ThermalStorage`, `HeatingGrid` | 6, 8.3, 9 |
-| IV | Cooling | `AbsorptionUnit`, `AdsorptionChiller`, `HeatPump` (cooling mode, an electric chiller), `Cooler`, `IceStorage`, `CoolingGrid`, `Atmosphere` | 7 |
+| I (`reservoir_engineer`) | Subsurface and wells (`params.dN.*`, `depth`) | `ProductionReservoir`, `InjectionReservoir`, `ThermalDecline`, `BoreholeField`, `DownholeHeatExchanger`, `ProductionWell`, `InjectionWell`, `Formation`; plant classes `Doublet`, `NodalDoublet`, `MultiWellPlant` | 0.7, 3, 4 |
+| I' (`well_engineer`) | Pump depth and pumps (`params.dN.riser.esp_depth`, `params.dN.esp.*`, the injection pump) | `ESP`, `LineShaftPump`, `InjectionPump` | 0.7, 4.3 to 4.7 |
+| II (`reservoir_engineer`) | Treatment and gas | `Degasser`, `Desander`, `Filter`, `InhibitorDosing`, `Flare`, `Blowdown`, `GasCompressor`, `GasMakeup`, `GasGrid`, `ChemicalGrid`, `WasteGrid` | 0.7, 5 |
+| III (`energy_systems_engineer`) | Heating | `HeatExchanger`, `HeatPump` (heating), `Boiler`, `ElectricBoiler`, `CHP`, `ThermalStorage`, `HeatingGrid` | 0.7, 6, 8.3, 9 |
+| IV (`energy_systems_engineer`) | Cooling | `AbsorptionUnit`, `AdsorptionChiller`, `HeatPump` (cooling: an electric chiller), `Cooler`, `IceStorage`, `CoolingGrid`, `Atmosphere` | 0.7, 7 |
 | Lead | Shared | `Pipe`, `Mixer`, `Splitter`, `Valve`, `PressurizationTank`, `CirculationPump`, `CentrifugalPump`, `ElectricityGrid`, `PIDController`, `ORC`, `FlashTurbine`, `Separator`, `AquiferStorage`; the plant `type`, `size`, `params.backup`, `params.control`, `fluids`, every connection | 8, 9, 11.2 |
 
-Interfaces where two groups meet, settled by the lead before the engineers start: the brine
-temperature and flow at the exit of the wells (I to the others); the gas stream out of the
-degasser (II to III for a boiler or CHP that burns it); the hot water that drives an absorption
-chiller (III to IV); the brine order of the cascade (6.2). A module whose class is unsure is read
-with `describe_module` (skill `evaluating-a-module`) before its values are asked.
+At most four briefs run at once: when the well engineer has its own brief, give treatment and gas
+to engineer I or join heating and cooling, by where the open issues are.
+
+Interfaces the lead settles before the engineers start, and puts in every brief that needs them:
+the brine temperature and flow at the wellhead (I to the others); the gas stream out of the
+degasser (II to III for a burner); the hot water that drives an absorption chiller (III to IV);
+the brine order of the cascade (6.2); the heat pump's minimum source outlet temperature, which
+follows from the brine cooling limit (0.8).
 
 ## 0.4 The order: build, size, simulate, check, optimize
 
-| Step | What | Gate to the next step | Read |
+| Step | What | Gate | Read |
 |---|---|---|---|
-| 1. Build | start from a complete plant file or a class; fill every `issue` from a source; backup policy with its reason; pump intake limits on every ESP | `missing` count is 0 | 11.2, 11.5, 8.4, 4.4 |
-| 2. Size | `size_plant`; read what was sized, what stayed unchanged, what is broken | no broken module in the notes | 8.3, 10.1 |
-| 3. Simulate a short window | around the critical day (the heating peak; the cooling peak too if cold is made from brine heat) | no failed step | 11.6 |
-| 4. Check | `check_results`; fix what it names, owner by owner (0.5); after any change every earlier result of that design is stale | `feasible` true | 11.7 |
-| 5. Simulate the whole period and check again | the engineering checks beyond the verdict | `feasible` true on the whole period | 11.7 |
-| 6. Optimize | few leaves with ranges that come from the case or the user | a feasible, better result | 10.1, 10.2, 10.6 |
-| 7. Compare and record | families by one study; simulate the best for the whole period and check it; record design, result and study key | recorded in the shared state | 10.7, 11.6 |
+| 1. Build | project plant or class; every `issue` filled from a source (0.6); backup policy with its reason; both pump intake limits on every ESP | `missing` is 0 | 11.2, 11.5, 8.4, 4.4 |
+| 2. Size | `size_plant` | no broken module in the notes | 8.3, 10.1 |
+| 3. Short window | around the critical day | no failed step | 11.7 |
+| 4. Check | `check_results`; fix owner by owner (0.5); after any change every earlier result is stale | `feasible` true | 11.7 |
+| 5. Whole period | simulate and check again; read the engineering checks of 11.7 | `feasible` true | 11.7 |
+| 6. Optimize | few leaves, ranges from the case or the user | feasible and better | 10.1, 10.2, 10.6 |
+| 7. Compare, record | one study for the families; record design, result, study key | recorded | 10.7 |
 
-Skills: `designing-a-plant` (build), `simulating-a-plant` (size, simulate, optimize),
-`reading-results` (check), `comparing-designs` (compare), `working-in-a-team` (record).
-Three rounds on the same failing requirement without progress: stop, record the best variant and
-the conflict with its owner (1.4).
+What `size_plant` sets, and what stays yours [gemini: `gemini/study/size.py`]:
+
+| `size_plant` sets | It leaves unchanged (you set it, from 0.7) |
+|---|---|
+| the doublet count: the smallest in the range of `size.doublets` whose heat at the case's flow limit and brine cooling limit covers the heating peak | exchanger UA (`thermal_conductance`) |
+| each doublet's `nominal_flow`: the case's flow limit | CHP capacity |
+| boiler capacity, by `params.backup` | coolers (`capacity`, `flow`, `loop_pressure`) |
+| heat pump capacity: (T_s − T_reservoir) / (T_s − T_r) of the heating peak | pipes, treatment, ESP limits |
+| chiller capacities: the cooling peak shared; the last chiller of the series gets the whole peak | a heat pump not needed (reservoir hotter than the supply) |
+| injection pump `nominal_flow` and `nominal_head` | |
+
+The sized plant is simulated once and every broken requirement is listed: read the notes before
+step 3.
 
 ## 0.5 Failure to fix
 
-Read the worst step of the failing reason first (11.7), then the module's results around it
-(`read_result`), then change one owner's values. This is the table of 11.8, moved here.
+Read the worst step of the failing reason (11.7), then the module's results around it
+(`read_result`), then change one owner's values.
 
-| Symptom | Engineering cause | Fix | Owner (§0.3) |
+| Symptom | Engineering cause | Fix | Owner (0.3) |
 |---|---|---|---|
-| `missing_value` naming a path | a design value or a case value not stated | give the value from a source; for a designed doublet give the design value (`depth`, `well_diameter`), not the derived child [gemini: `docs/guide.md`] | lead |
-| `missing_value` on `params.backup` | backup policy not stated | state `peak` or `none` with its reason (8.4) | lead |
+| `missing_value` on a case path (`site`, `demand`, `utilities`, `time`, `economics`, `requirements`) | the case lacks a value | stop; hand over `case change needed: <path>: <why>`; never put it in the plant | lead (case lead decides) |
+| `missing_value` on a plant path | a design value not stated | a value from 0.7 or a source, recorded with its reason; for a designed doublet the design value (`depth`, `well_diameter`), not a derived child [gemini: `docs/guide.md`] | the group's engineer |
+| `missing_value` on `params.backup` | backup policy not stated | `peak` or `none` with its reason (8.4) | lead |
+| `missing_value` on `params.control.dispatch` / `params.control.outages` | plant rules not stated | `least_cost` / `lowest_demand`, the only values gemini offers [gemini: `gemini/engine/schedule/schedule.py`] | lead |
+| `missing_value` on `params.dN.riser.esp_depth` | pump depth not stated | the well engineer chooses it (4.3); never the lead | I' |
 | Plant file refused for a case value | a site or network value written in the plant | remove it; it belongs to the case (11.1) | lead |
-| Pipe `PhysicsError`: outlet pressure below zero | friction and static drop exceed the inlet pressure: pipe too narrow or too long for its flow, or the loop pressure too low [gemini: `gemini/modules/piping/pipe.py`] | enlarge the diameter, shorten the pipe, or raise the loop pressure; check the flow is the intended one | lead (pipe's module group) |
-| `bound` on `intake_pressure` or `intake_gas_fraction` | pump set too shallow for the drawdown, or too much flow per well, or too deep a design | set deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) | I |
-| Heat pump: no duty, source below the minimum | brine already at or below `minimum_source_outlet_temperature` at the evaporator, or a lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, or check the limit (6.4) | III |
-| Unit off: below minimum part load | machine too large for a low-demand step | smaller units, or two units, or accept and cover by backup (9.2) | III or IV |
-| Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | drive from hotter water (first in the cascade), larger cooler, or another chiller (7.2) | IV |
-| `heat_delivered` / `cold_delivered` fails | not enough capacity on peak days or outage days, or a unit capped | read the worst step; add boiler/chiller capacity, or check the backup policy covers outage days (8.4, 8.5) | III (IV for cold) |
-| `brine_cooling_limit` fails | brine cooled beyond the cap (heat pump on brine too large or its source limit missing) | set the heat pump's `minimum_source_outlet_temperature` to the production temperature less the cap, or lower its capacity | III |
-| `running_time_limit` fails | a doublet runs more days than allowed | outages policy `lowest_demand`, a second doublet, backup that covers the days off (8.5) | lead; III |
-| `numerical` reason | a loop that does not close, or water returned into a fixed-temperature supply | plan where each stream goes; do not mix a colder return into a fixed supply (skill `designing-a-plant`, "What gemini can run") | lead |
-| Supply temperature rule fails on zero-demand days | a rule with `when: always` | a case change: the rule holds only while that supply runs (9.4, QA-091); never force circulation | lead; case lead for the rule |
-| `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call (QA-083) | lead |
+| Tear stream with no first guess (a closed loop) | a loop module lacks the values that let it offer its outlet; for a `Cooler`: `loop_pressure` and `flow` [gemini 0.6.17] | set those values on the module the message names | the module's group |
+| `inlet 'X': <error>` | the value at that inlet is invalid [gemini 0.6.17] | fix the value the message names; an inlet is `<module>.<port>` (QA-083) | lead |
+| Pipe `PhysicsError`: outlet pressure below zero | friction and static drop exceed the inlet pressure | wider pipe (2.5: 1 to 3 m/s), shorter pipe, or higher loop pressure; check the flow [gemini: `gemini/modules/piping/pipe.py`] | lead |
+| `bound` on `intake_pressure` or `intake_gas_fraction` | pump too shallow for the drawdown, too much flow per well, or a deep design | set the pump deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) | I' |
+| ESP `out_of_range` with a `curve` | the ESP curves do not cover the flows run | the well engineer gives sourced curves, or `pump_type` `"unspecified"` with no curves (the doublet derives them) | I' |
+| Doublet flow below the demand it should carry | the schedule runs a doublet at most at its `nominal_flow` [gemini 0.6.15] | raise `nominal_flow` up to the case's flow cap, or add a doublet | I |
+| Heat pump: no duty, source below the minimum | brine at or below `minimum_source_outlet_temperature`, or lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, check the limit (6.4, 0.8) | III |
+| Unit off below its minimum part load | machine too large for a low-demand step | smaller or two units, or accept and cover by backup (9.2) | III or IV |
+| Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | hotter drive water (first in the cascade), larger cooler, or another chiller (7.2) | IV |
+| `heat_delivered` / `cold_delivered` fails | too little capacity on peak or outage days | read the worst step; add boiler or chiller capacity; check the backup policy covers outage days (8.4, 8.5) | III (IV for cold) |
+| `brine_cooling_limit` fails | brine cooled beyond the cap | heat pump `minimum_source_outlet_temperature` = production temperature less the cap, or a smaller heat pump (0.8) | III |
+| `running_time_limit` fails | a doublet runs more days than allowed | `params.control.outages` `lowest_demand`, a second doublet, backup that covers the days off (8.5) | lead; III |
+| `numerical` reason | a loop that does not close, or a colder return mixed into a fixed-temperature supply | plan where each stream goes (skill `designing-a-plant`, "What gemini can run") | lead |
+| Supply temperature rule fails on zero-demand days | a rule with `when: always` | a case change: the rule holds only while that supply runs (9.4); never force circulation | case lead |
+| `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call | lead |
+
+## 0.6 Where a value comes from: case, Knowledge, your choice, or the user
+
+| Kind of value | Examples | Comes from | Ask the user? |
+|---|---|---|---|
+| Case value | demand, supply temperatures, gradient, permeability, prices, requirements, the time axis | the case (`read_case`); the case lead set it from the user's files, Knowledge and the user's answers | never from design: hand over `case change needed: <path>: <why>` |
+| Equipment design value | well diameter, roughness, heat transfer coefficient, efficiencies, COP model, UA, pipe size, cooler approach, treatment values | 0.7 first; then one `search_knowledge` / `search_rag`; else your engineering choice with a one-line reason; record as an assumption `{id, text, value, source, confirmed: false}` | no; never ask for a datasheet, a pump curve or stage coefficients |
+| Equipment operating limit | ESP minimum intake pressure and maximum gas fraction, minimum drive temperature, minimum part load | as an equipment value; keep it on every unit (4.4, 10.4) | no |
+| Plant rule | `params.control.dispatch`, `params.control.outages` | the one value gemini's `suggestions` give (0.5) | no |
+| Lead's decision | backup policy, objective, number of evaluations, seed, family | the lead, as an assumption with its reason | no |
+| Search range or option | `size.doublets` 1 to 3, `dN.nominal_flow`, `depth`, capacities | the user or the case (a range the plant file states, a requirement such as the doublet count) | yes, when missing: `ask_user` with the proposed values and a reason; `set_ranges` only after the answer |
+
+Sources in order of preference: the user's files, Knowledge, a connector, the web, a recorded
+assumption (1.5). Cite a value from this handbook as `knowledge/handbook-design.md` section 0.7
+(or 0.8) with the source the row names.
+
+## 0.7 Design values: meaning, unit, sourced values
+
+Values for the paths gemini asks for when a plant is built from a class. `dN` is each doublet
+(`d0`, `d1`, ...). Write each with its unit as `{"value": 0.244, "unit": "m"}`; a dimensionless
+value is a number (skill `gemini-units`). "Cited" values carry a source; "assumption" values are
+gemini's hackathon sample values with no verified source: use them only as a recorded assumption
+with that reason. Case-dependent sizes say how to get them, not a number. Sample values are from
+[gemini: `examples/hackathon_2026/README.md`, "Values the plants state that a module no longer
+defaults", and `examples/hackathon_2026/plants/*.json`].
+
+**Doublet, wells and reservoir (engineer I)**
+
+| Path | Meaning | Unit | Value | Source and status |
+|---|---|---|---|---|
+| `depth` (`dN.depth` on a free plant) | true vertical depth of the reservoir midpoint | m | the case's reservoir depth, or searched (3.6) | case; range from the user or case |
+| `dN.nominal_flow` | design flow per doublet; the schedule never runs above it | m3/h | the case's flow cap; `size_plant` sets it | case requirement |
+| `dN.well_diameter` | inner diameter of the production casing | m | 0.244 (9 5/8 in casing class) | assumption of the sample; 9 5/8 in or 7 in casing is common [Stober and Bucher 2013] |
+| `dN.drainage_radius` | drainage radius of the Darcy productivity (enters by a log, 3.3) | m | 1000 | assumption: lower end of 1 to 2 km Dutch doublet spacing [Willems 2016] |
+| `dN.roughness` | wall roughness of the wells | m | 4.5e-5 | cited: new commercial steel [Moody 1944] |
+| `dN.pump_efficiency` | production pump efficiency | 1 | the case's value (hackathon 0.70) | case requirement |
+| `dN.nominal_wellhead_pressure` | production wellhead pressure at design flow | bar | 10 | assumption of the sample; keeps gas in solution in the surface loop (5.1) |
+| `dN.reservoir.skin`, `dN.sink.skin` | near-well skin of producer, injector | 1 | 0 | assumption (new well; optimistic for an injector, 3.3) |
+| `dN.reservoir.decline_threshold`, `dN.sink.decline_threshold` | alarm threshold of decline | 1 | 0.15 | assumption (alarm) |
+| `dN.well.*`, `dN.riser.*`, `dN.injector.*` `friction_correlation` / `two_phase_friction_correlation` | friction models | text | `darcy_weisbach` / `BeggsBrill` | assumption (model choice, 4.2) |
+| `dN.well.*`, `dN.riser.*`, `dN.injector.*` `heat_transfer_coefficient` | heat loss of the brine to the rock on the way up | W/m2/K | 10 | assumption (the original GEMINI well model) |
+
+**Pumps (well engineer I')**
+
+| Path | Meaning | Unit | Value | Source and status |
+|---|---|---|---|---|
+| `dN.riser.esp_depth` | ESP setting depth | m | asked only for a well split at its pump (`segment` `below_esp` / `above_esp`); a designed `Doublet` derives it (4.3). Choose the shallowest depth that keeps the intake above its minimum at the largest flow and lowest pressure; check it with `evaluate_module` | engineering, the well engineer's [gemini: `gemini/engine/check.py`] |
+| `dN.esp.pump_type` | pump curves | text | `"unspecified"` with no curves when no source gives a curve (the doublet derives them) | gemini sample |
+| `dN.esp.minimum_intake_pressure` | lowest intake pressure the pump may see | bar | 5 | assumption: no verified source; the published rule (above the bubble point) needs PVT data |
+| `dN.esp.maximum_gas_fraction` | largest free gas share at the intake | 1 | 0.1875 | cited: Baker Hughes, standard stages handle 1/4 of the 75 % of gas handlers |
+| `dN.esp.motor_efficiency` | ESP motor efficiency | 1 | 1.0 in the sample (the case's pump efficiency carries the loss) | assumption of the sample |
+| `injection_pump.efficiency` | injection pump efficiency | 1 | the case's pump efficiency (hackathon 0.70) | case |
+| `injection_pump.nominal_flow`, `nominal_head` | injection pump rating | m3/h, bar | `size_plant` sets them (4.7) | gemini |
+
+**Treatment and gas (engineer II)**
+
+| Path | Meaning | Unit | Value | Source and status |
+|---|---|---|---|---|
+| `degasser.separation_efficiency` | share of free gas removed | 1 | 1.0 | assumption of the sample |
+| `degasser.nominal_pressure_drop` | pressure loss of the vessel | Pa | 14900 | assumption (0.149 bar, original GEMINI example) |
+| `filters.<f>.nominal_pressure_drop` | clean filter loss | Pa | 1600 | assumption (original GEMINI example) |
+| `filters.<f>.nominal_mass_flow` | flow at that loss | kg/s | the brine flow through it | derived from the design flow |
+| `filters.<f>.clogging_pressure_drop` | loss at which the filter is clogged | Pa | 50000 | assumption (0.5 bar) |
+| `desander.separation_efficiency`, `nominal_pressure_drop` | hydrocyclone | 1, Pa | 0.9, 20000 | assumption of the sample; of the order of 1 bar [Svarovsky 2000] |
+| `dosing.dose`, `dosing.product_concentration` | inhibitor dose, active share | ppm, 1 | 10, 0.3 | assumption; doses a few to tens of ppm [Gallup 2009] |
+| `flare.combustion_efficiency` | share of methane burned | 1 | 0.98 | cited: US EPA AP-42 13.5 |
+
+**Heating (engineer III)**
+
+| Path | Meaning | Unit | Value | Source and status |
+|---|---|---|---|---|
+| `heat_exchanger.thermal_conductance` | UA; `size_plant` does not size it | W/K | from the duty and the chosen approach, Q = UA ΔT_lm; check with `evaluate_module`. Sample: 1.5e6 | derived; sample value an assumption |
+| `heat_exchanger.arrangement` | flow arrangement | text | `counterflow` (plate exchangers are close to it) | assumption |
+| `heat_exchanger.hot_nominal_mass_flow`, `cold_nominal_mass_flow` | design flows | kg/s | from the design flows (brine; network: duty / (c_p (T_s − T_r))) | derived |
+| `heat_exchanger.fouling_threshold` | fouling alarm | 1 | 0.15 | assumption |
+| `heat_pump.cop_model` | COP model | text | `carnot` (or `lorenz` for large glides, 6.4) | model choice |
+| `heat_pump.carnot_fraction` | real COP over Carnot COP | 1 | 0.5 | cited: Frutschi 1996; 0.4 to 0.6 [Arpagaus et al. 2018] |
+| `heat_pump.lorenz_fraction` | the same for `lorenz` | 1 | 0.5 | assumption |
+| `heat_pump.minimum_temperature_lift` | lift below which the COP is capped | K | 10 | cited: lowest lift in Arpagaus et al. 2018 |
+| `heat_pump.minimum_source_outlet_temperature` | lowest brine temperature leaving the evaporator | degC | production temperature less the brine cooling cap (0.8) | derived from the case |
+| `heat_pump.supply_margin`, `boiler.supply_margin` | heating above the supply setpoint | K | 0 in the sample | assumption (9.4) |
+| `heat_pump.capacity`, `boiler.capacity` | ratings | MW | `size_plant` sets them (0.4) | gemini |
+| `boiler.efficiency` | fuel to heat | 1 | 0.9 | assumption of the sample; source it for the boiler class (6.5) |
+| pipes `length`, `inner_diameter`, `roughness`, `elevation_change`, `heat_transfer_coefficient` | plant pipes | m, m, m, m, W/m2/K | sample: 100, 0.5, 4.5e-5, 0, 0; size the diameter for 1 to 3 m/s at the design flow (2.5) | roughness cited [Moody 1944]; the rest assumptions |
+
+**Cooling (engineer IV)**
+
+| Path | Meaning | Unit | Value | Source and status |
+|---|---|---|---|---|
+| `compression_chiller.mode` | heat pump as a chiller | text | `cooling` | gemini |
+| `compression_chiller.carnot_fraction`, `minimum_temperature_lift` | as the heat pump | 1, K | 0.5, 10 | cited as for the heat pump |
+| `absorption_chiller.thermal_cop` | cold over drive heat | 1 | 0.7 (single effect LiBr) | cited: Herold et al. 2016 |
+| `absorption_chiller.minimum_driving_temperature` | drive below which it delivers nothing | K | 353.15 (80 °C) | assumption (GEMINI LiBr limit) |
+| `absorption_chiller.characteristic_slope`, `minimum_driving_difference`, `rejection_coefficient`, `evaporator_coefficient`, `auxiliary_power_ratio` | characteristic equation (7.2) | W/K, K, 1, 1, 1 | 700000, 10, 2.2, 1.2, 0.01 | assumption of the sample |
+| `adsorption_chiller.thermal_cop` | as above | 1 | 0.55 | cited: Wang and Oliveira 2006 |
+| `adsorption_chiller.minimum_driving_temperature`, `maximum_driving_temperature` | drive window | K | 328.15, 363.15 | assumption (GEMINI silica-gel range) |
+| `<cooler>.cooler_type`, `approach` | dry or wet; outlet above air (wet bulb) | text, K | `dry`, 5 | dry 5 to 15 K, wet 3 to 8 K [ASHRAE] |
+| `<cooler>.specific_fan_power` | fan power over duty | 1 | 0.02 | assumption |
+| `<cooler>.capacity` | heat rejected: cold plus drive (compression: cold × (1 + 1/COP); absorption: about 2.4 × cold at COP 0.7) | MW | derived; sample: 20 (compression, 10 MW cold), 40 (absorption) | derived |
+| `<cooler>.loop_pressure`, `flow`, `temperature_setpoint` | condenser loop; needed for its first guess (0.5) | bar, kg/s, degC | sample: 3, 400 (compression) or 800 (absorption), 25 (compression) or 15 (sorption) | assumption; flow = capacity / (c_p ΔT of the loop) |
+
+## 0.8 Hard limits of the GEMINI hackathon 2026 case
+
+Only for this case; another case states its own. They are requirements of the case (`read_case`
+shows them by `name`): never loosen one. Sources: the competition PDF (p. 2), the organisers, and
+`knowledge/hackathon-2026-assumptions.md` (Team tolerances).
+
+| Limit | Value | Requirement (`name`: role.quantity) | How it binds the design |
+|---|---|---|---|
+| Doublets | 1 to 3 | `doublet_count`: doublet.count | `size.doublets` range 1 to 3 |
+| Flow per running doublet | 50 to 300 m3/h | `production_flow_range`: doublet.production_flow | `dN.nominal_flow` range 50 to 300 m3/h; below 50 a doublet stops (9.2) |
+| Brine cooling, producer to injector | at most 40 K | `brine_cooling_limit`: doublet.brine_cooling | heat pump `minimum_source_outlet_temperature` = production temperature − 40 K: 47 °C at 2500 m, about 62 °C at 3000 m [derived, 3.1] |
+| Running time per doublet | at most 330 days; the whole plant supplies all 365 days | `running_time_limit` | `params.control.outages` `lowest_demand`; a backup that covers the days off (8.4, 8.5) |
+| Pump efficiency | 0.70 | `pump_efficiency`: doublet.pump_efficiency | `dN.pump_efficiency` 0.7 |
+| Reinjection | equal liquid volumes (ratio 0.99999 to 1.00001 while running, Team) | `full_reinjection`: doublet.reinjection_ratio | every doublet reinjects its own flow |
+| Heating supply | 100 °C, while it runs | heating_supply.temperature | brine at 2500 m (87 °C) cannot reach it alone: heat pump or boiler (12.3) |
+| Cooling supply | 20 °C, while it runs | cooling_supply.temperature | favours compression and free cooling (7.4, 7.5) |
+| Heat and cold delivered | unmet share at most 1 % (Team), all 365 days | `heat_delivered`, `cold_delivered`: unmet_share | peak and outage days set the boiler and chiller sizes |
+| Depth | may change; hydrostatic pressure and 30 K/km for another depth | (not a requirement) | change the plant's `depth`, never the case's reference depth (3.2); search 2000 to 3500 m (Team) |
+| Pump intake (equipment, not the case) | intake at least 5 bar, free gas at most 0.1875 | `bound` reasons on the ESP | keep both on every `dN.esp` (4.4) |
+
+Case values for the design (PDF p. 2 unless named): reservoir midpoint 2500 m TVD, 100 m thick,
+200 mD, 250 bar(g); gradient 30 K/km, surface 12 °C; brine 1030 kg/m3, 0.40 mPa·s, GLR 0.8 Nm3/m3,
+gas 80 mol% CH4 and 20 mol% CO2; heating peak 30.0 MW (111.67 GWh/yr), cooling peak 10.0 MW
+(23.74 GWh/yr); return temperatures a team choice (60 °C and 25 °C in the assumptions file); grid
+300 g CO2/kWh (organisers).
+
+## 0.9 Read once, search once
+
+- Everything a tool returned stays in the conversation: read the case, a plant, a profile, a
+  section of this handbook once, and again only after you wrote it.
+- Do not search Knowledge for a value 0.7 or 0.8 already gives. For any other value: one search
+  with the value's name and the case; if it finds nothing, choose by 0.6 and record the
+  assumption. Never repeat a search in other words: a QA run spent 139 searches on the same few
+  equipment values (QA-145).
+- Compute nothing by hand: a number comes from the case, a gemini tool (`evaluate_module`, a short
+  `simulate`), or a row of 0.7 with its source.
 
 ---
 
 # 1 Introduction and design philosophy
 
-This chapter says what the designer optimises and in what order: demand, then reliability, then
-efficiency, then cost and emissions. It also says how design differs from operation, and gives the
-loop every design follows.
+Why the design is done the way chapter 0 says.
 
 ## 1.1 What a good plant is
 
-A good geothermal heating and cooling plant meets five goals, in this order of priority:
-
-1. **It meets the demand.** Every service (heat at its supply temperature, cold at its supply
-   temperature) is delivered on every step of the year, within the tolerance the case states. A
-   plant that leaves demand unmet is infeasible, however cheap.
-2. **It is robust.** It keeps meeting the demand when one unit is out (a doublet in maintenance, a
-   heat pump tripped), when the reservoir turns out somewhat worse than expected, and on the coldest
-   and the hottest day. Pumps stay inside their intake pressure and gas windows; exchangers stay
-   inside their approach; machines stay above their minimum loads.
-3. **It is efficient.** It takes as much heat as it can from the brine (deep brine cooling), at
-   the smallest temperature lift a machine must make, with low pumping power. Efficiency is
-   measured by delivered energy per unit of bought energy (COP of the plant), not by the efficiency
-   of one machine.
-4. **It is economic.** The levelised cost of the thermal supply (Chapter 10.3) is low over the
-   whole analysis period: investment, fixed and variable operation, energy, carbon.
-5. **It emits little.** CO2 from burned gas and bought electricity, and methane from the
-   co-produced gas, counted with its global warming potential (5.6).
-
-These goals conflict. A deeper well raises the brine temperature (efficiency) and the drilling
-cost (economics) and lowers the pump intake margin (robustness, 4.4). The designer's job is the
-best compromise, found by search (Chapter 10) inside the feasible region.
+In this order of priority: it **meets the demand** on every step (every service at its supply
+temperature, within the case's tolerance); it is **robust** (it still meets the demand with one
+unit out, a weaker reservoir, on the coldest and hottest day; pumps, exchangers and machines stay
+in their windows); it is **efficient** (deep brine cooling, small lift, low pumping power); it is
+**economic** (a low levelised cost of the thermal supply, 10.3); it **emits little** (CO2 and
+methane, 5.6). The goals conflict (a deeper well is hotter, dearer and harder on the pump), so the
+best compromise is found by search inside the feasible region (chapter 10).
 
 ## 1.2 Demand first
 
-Every design decision follows from the demand: its peak, its energy, its shape over the year, its
-temperatures, and the coincidence of heating and cooling. Read the demand before choosing
-anything (Chapter 2). Two errors are common:
-
-- **Sizing on the peak alone.** A plant sized so the geothermal source covers the peak runs at
-  part load most of the year and costs too much. The base/peak split (2.2, 8.3) decides how much of
-  the peak the geothermal source should carry.
-- **Sizing on the energy alone.** A plant sized on the mean power cannot deliver on the peak day.
-  Peak capacity is usually cheap (a boiler, 6.5); energy is what the geothermal source should
-  supply.
+Every decision follows from the demand: peak, energy, shape, temperatures and the coincidence of
+heating and cooling (chapter 2). Do not size the geothermal source on the peak alone (it idles at
+part load) nor on the mean alone (it fails the peak day): peak capacity is cheap (a boiler, 6.5),
+energy is what the geothermal source should supply (2.2, 8.3).
 
 ## 1.3 Design and operation are different problems
 
-- **Design** fixes what is built: the number and depth of doublets, the well diameter, the pump,
-  the exchangers, the heat pumps, chillers, boilers and their capacities, the network temperatures.
-  These are decided once and are expensive to change.
-- **Operation** decides, each step, how the built plant meets that step's demand: which units run,
-  at what load, at what setpoint (Chapter 9).
-
-A design is judged by simulating its operation over a representative year (or the case's period)
-with a fixed operating rule. The design is good only if a sensible operating rule makes it meet
-every requirement. A design that needs a clever operating rule to survive is fragile.
+Design fixes what is built (doublets, depth, diameter, pumps, exchangers, machines, capacities);
+operation decides each step which units run and how (chapter 9). A design is judged by simulating
+its operation over the case's period with gemini's fixed operating rule; a design that needs a
+clever rule to survive is fragile.
 
 ## 1.4 The design loop
 
-Every design, by hand or by agent, follows the same loop:
-
-1. **Read** the case: demand, site, utilities, requirements, economics (Chapter 2, 3).
-2. **Choose** one or a few configurations (families) that can meet the services (Chapter 8).
-3. **Complete** the plant: every design value stated, from a sourced value or a labelled
-   assumption (1.5).
-4. **Size** it: first capacities from the demand peaks and the subsurface (8.3, 10.1).
-5. **Simulate** a short window around the critical day, then the whole period.
-6. **Check** the results against the requirements and the safe windows of each unit (11.7).
-7. **Fix** what the check names, owner by owner; never loosen a requirement (0.5).
-8. **Optimise** the few values that matter, inside sensible ranges (Chapter 10).
-9. **Compare** the families on the same case and objective, and pick one with its reasons.
-
-Steps 5 to 7 repeat until the check passes. A loop that makes no progress on the same failing
-requirement after three rounds is a sign that the configuration is wrong, not the numbers: change
-the structure (8.2) or report the conflict [gemini-hackathon design guide, QA-090 lesson: see 12.7].
+Read, choose, complete, size, simulate a short window, check, fix, simulate the whole period,
+optimise, compare (the steps of 0.1). Steps from simulate to fix repeat until the check passes.
+When three changes aimed at one failing requirement make no progress, the structure is wrong, not
+the numbers: change the family (8.2) or report the conflict (0.1, stop rule; QA-090 in 12.7).
 
 ## 1.5 Values, sources and the no-defaults rule
 
-A design is only as good as its inputs. Three rules hold in GeoMind and in gemini [gemini:
-`docs/rules.md`, "No defaults"]:
+[gemini: `docs/rules.md`, "No defaults"]
 
-- **No default values.** Nothing a user must decide (a price, a temperature, a limit, an
-  efficiency) has a default. A missing value is an error that names its path, never silently
-  filled.
-- **Every value has a source.** In order of preference: the user's files; the Knowledge base
-  (RAG); a connected server (MCP); a published source found on the web; and only then a labelled
-  engineering assumption that the user approves with its reason (skills `finding-sources`,
-  `connectors`, `web-search`).
-- **Derive, never guess.** A number that can be computed (a heat duty from a flow and a
-  temperature difference, a pressure at depth) is computed with a tool (skills `calculator`,
-  `python`, `evaluating-a-module`) and cited by its calculation, never worked out in the head.
+- **No default values.** Nothing a user must decide has a default in gemini; a missing value is an
+  error that names its path.
+- **Every value has a source**: the user's files, Knowledge, a connector, the web, and only then a
+  labelled assumption with its reason (0.6; skills `finding-sources`, `connectors`, `web-search`).
+- **Derive, never guess**: a number that can be computed is computed with a tool (`calculator`,
+  `python`, `evaluate_module`) and cited by its calculation.
 
-The typical values in this handbook orient a first guess and help to recognise a wrong result.
-They are not inputs.
+The typical values in chapters 2 to 9 orient a first guess and help to recognise a wrong result;
+they are inputs only through 0.7 with their label.
 
 ---
 
@@ -576,9 +599,9 @@ Depth is a design choice whenever the case allows it. Deeper wells give:
 
 - **hotter brine** (3.1): more heat per m3, a smaller temperature lift for a heat pump, possibly a
   direct supply without a heat pump;
-- **higher drilling cost**: cost per metre rises with depth [catalogue: gemini
-  `docs/cost-sources`, rows `drilling-nl-2013-2300m`, `-3000m`, `-4000m`: 1246.83, 1844.74 and
-  2075.37 EUR2015/m];
+- **higher drilling cost**: cost per metre rises with depth; the price is the case's
+  (`economics.capex.drilling`, sourced in `knowledge/data-economics.csv`), never a figure of this
+  handbook;
 - **a deeper pump setting and more friction**, and, with dissolved gas, more gas at a given intake
   pressure if the setting does not follow (4.4).
 
@@ -859,8 +882,9 @@ Count three sources over the period:
    year, average or marginal); never a typical value.
 
 gemini's `co2` metric counts all three: direct, methane and electricity [gemini:
-`gemini/study/metrics.py`]. The CO2 price of the case (for example an emissions trading price)
-turns emissions into cost.
+`gemini/study/metrics.py`]. The case's CO2 price applies only to the plant's own CO2 and methane
+(CO2e), not again to grid electricity, whose price already carries its CO2 [gemini 0.6.16,
+`docs/CHANGELOG.md`, QA-128].
 
 ---
 
@@ -963,16 +987,14 @@ sample plant files]. Consequences:
   machines; check availability and source a cost for that class [paper: Arpagaus et al. 2018].
 
 Size the heat pump to the heat the brine cannot reach (6.3), not to the whole peak; let a boiler
-carry the peak (8.3). Capital cost of large heat pumps in district heating is of the order of 0.74
-EUR2015 per W of heat [catalogue: Danish Energy Agency, Technology Data, sheet 40, as cited in
-gemini `examples/hackathon_2026/README.md`].
+carry the peak (8.3). A heat pump costs about ten times a gas boiler per MW of capacity
+[catalogue: Danish Energy Agency, Technology Data, sheets 40 and 44]; the prices are the case's
+economics.
 
 ## 6.5 Peak and backup boilers
 
-A boiler is the cheapest capacity per MW: about 0.061 EUR2015/W for a natural gas district heating
-boiler [catalogue: DEA Technology Data sheet 44, as cited in gemini
-`examples/hackathon_2026/README.md`], an order of magnitude below a heat pump. It is expensive per
-MWh (fuel and CO2). Its two jobs:
+A boiler is the cheapest capacity per MW, an order of magnitude below a heat pump [catalogue: DEA
+Technology Data, sheets 40 and 44], and expensive per MWh (fuel and CO2). Its two jobs:
 
 - **Peak**: cover the top of the load duration curve, the few hundred hours above the base
   capacity (2.2).
@@ -982,7 +1004,7 @@ Boiler efficiency is a property of the boiler (the samples state 0.9 [gemini: sa
 source it for the boiler class. An **electric boiler** does the same with electricity at an
 efficiency near 1; it pays where electricity is cheap or low-carbon, and needs no gas connection
 (gemini `ElectricBoiler`, counted as backup in coverage since gemini 0.6.13 [gemini:
-`CHANGELOG.md`]).
+`docs/CHANGELOG.md`]).
 
 ## 6.6 Combined heat and power
 
@@ -993,8 +1015,8 @@ Heywood 1988, as cited in gemini `gemini/modules/heating/chp.py`]. A CHP pays wh
 - there is a use for its heat for many hours (otherwise its heat is dumped);
 - its electricity is worth more than the gas it burns, or the fuel is free co-produced gas (5.5).
 
-Capital cost of a small natural gas engine is of the order of 0.96 EUR2015 per W of electricity
-[catalogue: DEA sheet 06, as cited in gemini README].
+Its capital cost per W of electricity is far above a boiler's per W of heat [catalogue: DEA sheet
+06]; the price is the case's economics.
 
 ## 6.7 Thermal storage
 
@@ -1056,10 +1078,9 @@ generator must still satisfy the brine cooling limits. Check that the combined h
 
 Silica-gel/water adsorption chillers run on lower drive temperatures (about 55 to 90 °C in gemini's
 model), with a thermal COP about 0.55 [paper: Wang and Oliveira 2006, as cited in gemini sample
-files]. They are larger and more expensive per kW than absorption chillers: the gemini catalogue
-rows give 0.83 to 0.86 EUR2015/W, nearly three times the absorption rows [gemini:
-`examples/hackathon_2026/README.md`, catalogue ids `adsorption-chiller-edinburgh-2023`,
-`-bigee-100-150kw`]. Use them where the drive water is too cool for absorption.
+files]. They are larger and dearer per kW than absorption chillers [gemini: catalogue rows
+`adsorption-chiller-edinburgh-2023`, `-bigee-100-150kw` in `knowledge/data-economics.csv`]. Use
+them where the drive water is too cool for absorption.
 
 ## 7.4 Compression chillers
 
@@ -1069,9 +1090,9 @@ COP_cooling = η_C · T_evap / (T_cond − T_evap)
 
 A high chilled-water supply and a low condensing (rejection) temperature give a high COP; with a 20
 °C chilled-water supply the COP is high [derived from the formula]. Compression chillers are cheap
-and compact; their cost per W of cold in the gemini catalogue is about 0.16 EUR2015/W [gemini:
-catalogue row `compression-chiller-ecos-2023`]. Their electricity costs money and CO2 at the case's
-grid intensity. A compression chiller can also run as a **heat recovery chiller**: its condenser heat
+and compact (price: the case's `economics.capex`, row `compression-chiller-ecos-2023` in
+`knowledge/data-economics.csv`). Their electricity costs money and CO2 at the case's grid
+intensity. A compression chiller can also run as a **heat recovery chiller**: its condenser heat
 goes to a heating network instead of a cooler (7.7).
 
 ## 7.5 Free cooling
@@ -1140,7 +1161,7 @@ how to provide redundancy.
 | C | Direct use + absorption cooling | doublets → exchanger → boiler; hot water drives absorption chiller | absorption | `HeatingAbsorptionCoolingPlant` |
 | D | Heat pump boost + all chillers | as B | absorption + adsorption + compression | `HeatingCoolingPlant` |
 | E | Direct use + all chillers | as A | absorption + adsorption + compression | `HeatingFullCoolingPlant` |
-| F | Hybrid with gas use | as B or C, boiler/CHP burns co-produced gas first, surplus flared, desander and inhibitor | absorption | `HackathonPlant` (sample plant file, built from modules) |
+| F | Hybrid with gas use | as B or C, boiler/CHP burns co-produced gas first, surplus flared, desander and inhibitor | absorption | none: a plant built from modules and connections (gemini's sample `HackathonPlant` is one) |
 | G | Boiler + CHP on the secondary side | doublet → exchanger → boiler + CHP | none | `BoilerCHPPlant` |
 | H | Low-temperature aquifer with heat pump | well pair → exchanger → heat pump | cooling exchanger | `ATESPlant` |
 | I | District energy on an aquifer store | heating and cooling networks on one store | store | `DistrictEnergyPlant` |
@@ -1339,7 +1360,8 @@ finds better designs faster.
 
 Minimise one cost objective, report CO2 alongside, and look at the Pareto front when cost and
 emissions trade off: a design that is slightly dearer and much cleaner may be the better
-recommendation. A cost objective already includes CO2 at the case's carbon price.
+recommendation. A cost objective already includes the plant's own CO2 and methane at the case's
+carbon price (5.6).
 
 ## 10.4 Constraints
 
@@ -1393,7 +1415,7 @@ search (`evolve_structure`) explores structures beyond the hand-picked families.
 This chapter maps the engineering of Chapters 1 to 10 onto gemini: what the case and the plant
 file hold, which modules represent which equipment, how roles and requirements judge a run, the
 template plants, the good path from template to compared designs, and how to read and fix
-failures. It names modules and fields as they exist in gemini 0.6.13 [gemini: `CHANGELOG.md`]. For
+failures. It names modules and fields as they exist in gemini 0.6.17 [gemini: `docs/CHANGELOG.md`]. For
 how to call each GeoMind tool, read its skill (11.9).
 
 ## 11.1 The case and the plant
@@ -1501,7 +1523,7 @@ one [skill `designing-a-plant`].
 ## 11.5 Plant classes: the templates
 
 `gm.plants.names()` lists the classes; `list_plants` shows them with the project's own plant files
-[skill `designing-a-plant`]. The classes in gemini 0.6.13 [gemini: `gemini/plants/*.py`]:
+[skill `designing-a-plant`]. The classes in gemini 0.6.17 [gemini: `gemini/plants/*.py`]:
 
 | Class | What it is |
 |---|---|
@@ -1518,36 +1540,21 @@ one [skill `designing-a-plant`].
 | `DistrictNetwork`, `HeatingSubstation`, `CoolingSubstation` | networks and building substations |
 | `Doublet`, `NodalDoublet`, `MultiWellPlant` | building blocks for the subsurface side |
 
-A class is read without values: every parameter it needs is missing until filled. A **complete
-plant file** (a project's plant, or a sample such as `examples/hackathon_2026/plants/<Class>.json`)
-is a far better start than a bare class: it holds a coherent set of design values. A module can be
-added to a class (for example `thermal_storage`) through `build_plant` with `from_class` [skill
-`designing-a-plant`].
+A class is read without values: every parameter it needs is an `issue` until filled. Fill them
+from 0.7 and the engineers' proposals (0.1, steps 3 to 5); a project's own plant file, when one
+fits, starts with its values. gemini's hackathon sample plants are not templates for a design
+(user decision, IMP-023): they are the source of the sample values cited in 0.7 and of the results
+in 12.5. A module can be added to a class (for example `thermal_storage`) through `build_plant`
+with `from_class` [skill `designing-a-plant`].
 
 ## 11.6 The good path
 
-1. **Read the case** (skill `setting-the-case` for the tools, `designing-a-plant` for what to read):
-   demand peaks, energy, overlap (Chapter 2), site, requirements, economics.
-2. **Pick families** (8.1, 8.2): one, or two to six for a comparison; mark a family gemini cannot run
-   `blocked` with the reason.
-3. **Start from a complete plant file**: the project's plant if it has one, else a class whose
-   sample file exists; fill the `issues` it lists, each from a source (1.5). Set `params.backup` with
-   its reason (8.4). Keep the pump intake limits on every `esp` (4.4).
-4. **Build** the plant; continue only when its `missing` count is 0.
-5. **Size** (`size_plant`): read the notes: what was sized, what stayed unchanged (exchanger UA,
-   CHP), what is broken.
-6. **Simulate a short window** around the critical day (the heating peak; also the cooling peak if
-   cold is made from brine heat), check, fix; then **simulate the whole period** and check.
-7. **Fix** what the check names (0.5), owner by owner. After any change every earlier result of
-   that design is stale.
-8. **Optimise** few leaves with ranges that come from the case or the user (10.1, 10.2).
-9. **Compare** families with one study (10.7); simulate the best for the whole period and check it
-   again.
-10. **Record** the reference design, its result, the alternatives and the study key in the shared
-    state (skill `working-in-a-team`): a result kept only in a note is lost.
-
-Get every number from gemini (a module evaluation, a short simulation), never by hand [skill
-`designing-a-plant`].
+The good path is the checklist of 0.1 with the gates of 0.4: read the case once; choose one family
+(0.2); build once from a project plant or a class; one round of engineers' proposals and one
+patch; size; simulate a short window, check; fix by 0.5; simulate the whole period, check;
+optimise; compare; record design, result, alternatives and study key in the shared state (skill
+`working-in-a-team`): a result kept only in a note is lost. Get every number from gemini (a module
+evaluation, a short simulation), never by hand [skill `designing-a-plant`].
 
 ## 11.7 Reading results and violations
 
@@ -1568,7 +1575,7 @@ Get every number from gemini (a module evaluation, a short simulation), never by
 Read the worst step: it tells when (the peak day, a zero-demand day) and where (which module). Then
 read the module's results around that step (`read_result`) before changing anything. An
 `unmet_share` of a run with failed steps is undecided (`passed` null), not failed: fix the failed
-steps first [gemini: `CHANGELOG.md` 0.6.13, QA-104].
+steps first [gemini: `docs/CHANGELOG.md` 0.6.13, QA-104].
 
 Engineering checks beyond the verdict (read them in every full-period result):
 
@@ -1584,11 +1591,8 @@ Engineering checks beyond the verdict (read them in every full-period result):
 
 ## 11.8 Common failures and their engineering fixes
 
-The table is section 0.5 (symptom, cause, fix, owner). The rule that belongs to chapter 11 stays
-here:
-
-Three rounds on the same failing requirement without progress: stop, record the best variant and
-the conflict with its owner (1.4).
+The table is section 0.5 (symptom, cause, fix, owner); the stop rule after three changes on one
+failing requirement is in 0.1.
 
 ## 11.9 Which skill to read
 
@@ -1718,6 +1722,10 @@ Gemini's six sample plants are archetypes A to F of 8.1. Common sample values: 2
 and chillers at 0.5 of Carnot; the heat pump plants state a 15 MW heat pump [gemini:
 `examples/hackathon_2026/plants/*.json`].
 
+The figures below are gemini's end-to-end golden results (`tests/e2e/expected/`, last updated at
+gemini 0.5.6). Since 0.6.16 the carbon price applies only to the plant's own emissions (5.6), so a
+run today gives other costs: use the ranking and the reasons, not the numbers, as a check.
+
 Search: size, then minimise LCTS, 20 evaluations, seed 0, with the pump intake limits [gemini:
 `tests/e2e/expected/hackathon.txt`]:
 
@@ -1754,14 +1762,18 @@ Engineering reading:
 
 ## 12.6 A recommended path
 
-1. Read the case and the demand (12.1, 12.2).
-2. Families: A = `HeatingHeatPumpCoolingPlant`, B = `HeatingCoolingPlant` (absorption cooling);
-   optionally the free `HackathonPlant` for gas use.
-3. Start from the sample plant files; keep `backup` `peak` (a doublet outage must not cut heat);
-   keep both pump intake limits.
+1. Read the case and the demand (12.1, 12.2); the hard limits are in 0.8.
+2. Family by 0.2: at 2500 m the brine (87 °C) is below the 100 °C supply, so heat pump boost;
+   the 20 °C cold supply favours compression: B, `HeatingHeatPumpCoolingPlant`. When absorption
+   cooling or gas use should be weighed too, one superstructure or one `run_study` with D
+   (`HeatingCoolingPlant`) or F (a free plant with a `GasMakeup`).
+3. Build the class once; fill its issues from 0.7 and the engineers' proposals; `backup` `peak`
+   (a doublet outage must not cut heat); both pump intake limits on every ESP; heat pump
+   `minimum_source_outlet_temperature` 47 °C at 2500 m (0.8).
 4. Size, simulate a window around 28 January, check; then the whole year, check.
-5. Compare A and B in one study (minimise LCTS, the same evaluations and seed, size first); simulate
-   the best for the whole year; report LCTS, CO2, coverage, the Pareto front and the sensitivity.
+5. Optimise with the ranges the user approves (for example `size.doublets` 1 to 3,
+   `dN.nominal_flow` 50 to 300 m3/h, `depth` 2000 to 3500 m), minimising LCTS; simulate the best
+   for the whole year; report LCTS, CO2, coverage and the study key.
 6. Record design, result, alternatives and study in the state.
 
 ## 12.7 Lessons from QA
@@ -1858,10 +1870,7 @@ Orientation only: never an input without its source and the user's approval (1.5
 | Geothermal scale inhibitor dose | a few to some tens of ppm | Gallup 2009 |
 | Hydrocyclone pressure loss | of the order of 1 bar at design flow | Svarovsky 2000, cited in gemini |
 | Base at half the peak covers | most of the energy (78 % in the hackathon case) | Frederiksen and Werner 2013; derived for the case |
-| Large heat pump capex | about 0.74 EUR2015/W | DEA Technology Data, sheet 40 |
-| Gas DH boiler capex | about 0.061 EUR2015/W | DEA sheet 44 |
-| Gas engine CHP capex | about 0.96 EUR2015/W_e | DEA sheet 06 |
-| Drilling cost | 1247 / 1845 / 2075 EUR2015/m at about 2300 / 3000 / 4000 m | gemini `docs/cost-sources` (Dutch rows, secondary source) |
+| Capital cost: heat pump against gas boiler per MW | about ten times | DEA Technology Data, sheets 40 and 44 (prices: the case's economics) |
 | Plate exchanger approach | no general figure confirmed; below 1 K is achievable at a cost | Tranter (vendor); choose by cost |
 
 ---
@@ -1956,8 +1965,8 @@ Catalogues and web pages:
 - Eurostat `nrg_pc_203`, `nrg_pc_205`, `prc_hicp_aind`; Instrat EU ETS 2025 summary (economics of
   the hackathon sample).
 
-gemini files (repository `gemini`, version 0.6.13): `docs/guide.md`, `docs/rules.md`,
-`CHANGELOG.md`, `docs/cost-sources/`, `gemini/plants/*.py`, `gemini/plants/roles.py`,
+gemini files (repository `gemini`, version 0.6.17): `docs/guide.md`, `docs/rules.md`,
+`docs/CHANGELOG.md`, `docs/cost-sources/`, `gemini/plants/*.py`, `gemini/plants/roles.py`,
 `gemini/plants/doublet.py`, `gemini/study/size.py`, `gemini/study/metrics.py`,
 `gemini/evaluate/costs.py`, `gemini/evaluate/verdict.py`, `gemini/engine/apply.py`,
 `gemini/engine/schedule/schedule.py`, `gemini/physics/ground.py`, the module files under
