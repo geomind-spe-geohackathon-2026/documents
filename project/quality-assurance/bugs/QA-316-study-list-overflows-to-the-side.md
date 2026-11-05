@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -31,4 +31,6 @@ Also (Sahand 20:12 CET: the auto-approve box keeps popping up again and again, i
 
 ## Fix
 
+Fix: frontend 1.1.132 (commits 2d2dc84, ffd5e38; bundle index-DXxLVfMK.js): part 1 by front-m1 (Study table fits its pane, actions in a '...' menu, names wrap); part 2 by front-m2 (auto-approve asks at most once per browser, quiet when off).
+- 2026-11-05 19:24 UTC: frontend 1.1.132
 ## Retest
