@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -52,6 +52,7 @@ tell the lead to ask the user for a fixed file. `calculate`: accept a file cell 
 
 - 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 - 2026-11-05 20:32 UTC: QA-E2E-case-I retest 20:32 UTC (run 3bc29e97): repair_series cannot add the missing row, cannot re-repair its output, output header 'date' refused by set_case; proposal 500 kW (sign dropped) vs neighbours 5237/5342; no case after 17 min, cancelled
+- 2026-11-05 20:36 UTC: geomind 8e1d0b0: gaps inserted, output round-trips into set_case, neighbours shown; pending deploy
 ## Retest
 
 Update 19:19 UTC: a 6th cut save_profile (output tokens 124774 -> 140774); I cancelled the run at 19:19
