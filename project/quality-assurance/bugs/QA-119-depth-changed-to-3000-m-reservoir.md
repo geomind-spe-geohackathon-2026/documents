@@ -35,7 +35,12 @@ Guess: the agent treats reservoir.pressure as an independent input; no rule ties
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-python-III, 2026-11-05, geomind 0.4.85 (tag v0.4.85), backend 1.1.88 (deploy 11:30 UTC).
+Cause: the case lead moved `site.reservoir.reference_depth` (the depth AT which the given
+pressure and temperature hold) and kept 250 bar(g). Fix: `set_case` returns `check` when the
+reference depth moves while pressure or temperature stay, saying a well depth is the plant's
+`params.depth` (gemini derives pressure and temperature there); the case lead prompt says the
+same and asks the user which is meant.
 
 ## Retest
 

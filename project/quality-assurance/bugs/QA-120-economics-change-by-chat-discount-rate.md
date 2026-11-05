@@ -34,7 +34,10 @@ Guess: the agent keeps the user's "8" and sends it without converting percent to
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+hotfix-python-III, 2026-11-05, geomind 0.4.85 (tag v0.4.85), backend 1.1.88 (deploy 11:30 UTC).
+Fix: `ask_economics` refuses a fraction key (`discount_rate`, `*share*`, `*fraction*`) given a
+number above 1 with no unit: "8 reads as 800 %. For 8 % give 0.08" (`refuse_percents`), before
+the user is asked.
 
 ## Retest
 
