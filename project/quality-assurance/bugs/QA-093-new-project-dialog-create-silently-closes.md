@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-3 |
@@ -40,3 +40,4 @@ frontend 1.1.81, commit 8eacf11 (hotfix-front-II): the dialog ignores clicks out
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 10:03 UTC: hotfix-front-II 10:03 UTC on geomind.team 1.1.84 at 1280x577: Create visible (y=512), outside click keeps the dialog open, Create with empty Shared memory shows the message and focuses the select, nothing created
