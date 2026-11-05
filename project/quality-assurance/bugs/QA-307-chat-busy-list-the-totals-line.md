@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -37,6 +37,8 @@ Follow-up of QA-291, Sahand's request (top priority).
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.131 (commit db989a2, bundle index-PVHgYO42.js), by front-m1: Total row under the agent rows (Total · N agents working · steps · tokens · cost · time).
+- 2026-11-05 19:14 UTC: frontend 1.1.131
 ## Retest
 
 (Who, when, result.)
