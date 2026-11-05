@@ -41,4 +41,4 @@ Cause: `geomind/engine/questions.py::asking_new` appended the repeat guard's not
 - 2026-11-05 00:23 UTC: geomind 0.4.60 (c9fdb22, no internal already-answered note in the question; only-path questions get one plain line), backend 1.1.61 (3d2aa31), deployed
 ## Retest
 
-(Who, when, result.)
+functional-qa-I, 2026-11-05 ~00:55 UTC, backend 1.1.62: four question cards in project 61134432 (case list, assumptions, two economics cards) showed no 'Already answered in this run ... request-N' note. Passed.
