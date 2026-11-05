@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend |
 | Reporter | QA-E2E-design-I |
@@ -55,7 +55,7 @@ In `last_simulation`, skip a `simulate` whose input has non-empty `changes` (or 
 hotfix-back-lead, backend 1.1.109 (tag v1.1.109), deployed 2026-11-05 ~17:43 UTC.
 `adapters/simulated.py` `last_simulation` skips a `simulate` whose input has `changes`, `start` or
 `end` (`is_what_if`); the newest plain simulate becomes the result row. Old rows stay as stored.
-
+- 2026-11-05 17:43 UTC: backend 1.1.109
 ## Retest
 
 Recipe: a run whose analysis lead calls a what-if simulate after the plain simulate of the chosen
