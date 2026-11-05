@@ -38,4 +38,5 @@ Guess: a day counts as Short when the supply temperature misses 100 °C (93 °C 
 ## Fix
 
 - 2026-11-05 10:47 UTC: for hotfix-python-III and hotfix-front: not backend (backend passes gemini daily_coverage as is); analysis in Fix
+- 2026-11-05 10:53 UTC: hotfix-front-II takes part (b) (frontend: partly short days with the unmet share, legend states the rule); part (a) stays with its owner
 ## Retest
