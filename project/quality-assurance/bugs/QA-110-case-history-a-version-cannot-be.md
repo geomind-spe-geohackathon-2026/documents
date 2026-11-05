@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -48,5 +48,5 @@ read-only, diff with the previous one, Restore, Saved by from `by`.
 - 2026-11-05 ~12:40 UTC (live backend 1.1.86, so 1.1.87 not out yet): the Plant History has the same gaps, so the frontend part should cover both panels: a version cannot be opened or compared (only Restore); Saved by "Administrator" on assistant versions; the notes are cut ("Plant energy_r8 changed by the assist...") and say only the design's name, not what changed; a "#" column (1, 2, 3 ...) beside Version repeats the order and means nothing to the user. ![plant history](../evidence/QA-110/2-plant-history.webp)
 
 hotfix-front-III, frontend part: 1.1.97 (f19a7da) and 1.1.98 (464d96d), shared `frontend/src/shared/versions/` (diff and history views) for Case and Plant History: no "#" column beside Version; the full note; Saved by "Assistant" from `Version.by`; Open on every row opens the version read-only with "Changes from version N-1" (path, added/removed/changed, old and new value, source; case files included; plant modules, connections, spec, structure) and "All values". Case: "Restore this version" posts `/design/case/versions/{n}/restore` with the latest number as base (a 409 says the case was saved again; disabled while the form has unsaved changes). Plant: Restore loads the version into the editor as before. Deploy 11:30 UTC.
-
+- 2026-11-05 14:11 UTC: frontend 1.1.99 (e9435c4) deployed 14:10 UTC, bundle index-BlepNtQt.js
 ## Retest
