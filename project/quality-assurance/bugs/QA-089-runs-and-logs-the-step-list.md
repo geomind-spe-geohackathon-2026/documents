@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
 | Found | 2026-11-05 09:18 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
 | Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
-| Fixer | hotfix-front |
+| Fixer | hotfix-front-II |
 
 ## Steps
 1. Open Runs and logs for a run with nested agents (project 61134432, run 3bdd7ebb).
@@ -31,6 +31,7 @@ One long flat column of every model step (Process engineer · step 1..10, Energy
 frontend 1.1.80 (commit in git log, 'QA-089: ...'): agent tree with step count and tokens per agent, the selected step's agent open, a 260 px list with its own scroll beside the detail. Status per agent is not shown: the run log has no per-agent status.
 - 2026-11-05 09:20 UTC: frontend 1.1.80 (8673032), pushed, build checked, held
 - 2026-11-05 09:29 UTC: handover: hotfix-front-II deploys 1.1.80 at 10:00 UTC and rechecks (notes/sessions/hotfix-front-1.md)
+- 2026-11-05 10:02 UTC: frontend 1.1.80, commit 8673032, deployed 10:01 UTC (live 1.1.84, bundle index-DAUzTKG5.js)
 ## Retest
 
 (Who, when, result.)
