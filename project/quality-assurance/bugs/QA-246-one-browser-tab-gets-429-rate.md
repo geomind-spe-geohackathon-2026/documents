@@ -48,3 +48,5 @@ frontend 1.1.122 (commit ea98520, bundle index-DbPhHg2A.js). Cause (from code): 
 Not run (no tests now). Retest: open a chat with a long finished run plus the Design pane; the network log stays far below 100 requests a minute.
 
 ## Retest
+
+Retest (QA-E2E-design-I, 2026-11-05 19:15 UTC, frontend after 1.1.113): one tab on the chat of project QA-TEST QA-E2E-design-I 3 during the 21-min run 06fd16f0 (18:51-19:12 UTC) and the Results/Plant panes: 525 requests, **0 responses 429**; `runs?status=active` 168 times in 21 min (about 8 a minute, no bursts). Works.
