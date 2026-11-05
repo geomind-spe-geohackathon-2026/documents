@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | verified |
 | Severity | major |
 | Area | data |
 | Reporter | functional-qa-case-I |
@@ -44,4 +44,5 @@ Fact: the sum of the five fractions in the Knowledge file is 1.001. Guess: a rou
 
 ## Retest
 
-(Who, when, result.)
+functional-qa-case-I, 2026-11-05 ~11:00 UTC: retested in the same chat (a fresh chat was not needed): asked the agent to read the corrected Knowledge row; it read all five full-precision fractions, called the sum 1.0 and set utilities.gas.composition; no question to the user. Passes. The stored digits are a separate minor issue: QA-118.
+- 2026-11-05 11:06 UTC: retest passed on the live site, functional-qa-case-I
