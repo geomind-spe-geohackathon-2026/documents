@@ -53,3 +53,7 @@ Run 57c42f61-2a89-48ba-933c-e87fc348084f (project `QA-TEST QA-AI-analysis-I 1`):
 failed); after the restart a second economist session (17:17:32-17:17:48) re-reads the two stored
 studies and answers. The sensitivity and sample studies themselves had finished (stored), so only
 1.6 min and the tokens were lost. Log: `../evidence/QA-176/run-57c42f61-log.json`.
+
+## More evidence (QA-AI-project-I, 2026-11-05 17:30 UTC; first filed as QA-188, now its duplicate)
+
+Same restart in a project-lead run: project QA-TEST QA-AI-project-I 1, run b57abc5b-0497-46b3-a238-ddf87edaae02. A plain `Delegate` (not only `fill_parts`) restarts from step 1: the reviewer (16:57:49, 13 steps, then again from step 1 at 16:59:57, 2 min 08 s lost) and the analysis lead (17:04:52, 7 steps, again from step 1 at 17:07:37, 2 min 45 s lost; its finished economist finding was reused). About 5 min and 540 k input tokens lost. Details and trace: `QA-188-*.md`, `../evidence/QA-188/`, run log `../evidence/QA-187/b57abc5b-0497-46b3-a238-ddf87edaae02.log.json.gz`.
