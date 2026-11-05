@@ -67,3 +67,4 @@ wont-fix, duplicate.
 | [QA-059](bugs/QA-059-question-card-a-15-value-questionnaire.md) | fixing | minor | frontend | Question card: a 15-value questionnaire gets a one-line text input; no per-value fields, no multiline | qa-ux | hotfix-front |
 | [QA-060](bugs/QA-060-during-a-deploy-the-site-answers.md) | open | minor | infra | During a deploy the site answers every page with a bare text '404 page not found' (no app shell, no retry) | qa-ux |  |
 | [QA-061](bugs/QA-061-question-card-shows-an-internal-note.md) | open | minor | geomind | Question card shows an internal note: 'Already answered in this run, not asked again: ... (request-530)' | qa-ux |  |
+| [QA-062](bugs/QA-062-chat-opened-or-reloaded-during-a.md) | open | minor | frontend | Chat opened (or reloaded) during a run shows the top of the transcript and 'Thinking'; the pending question card is not in view | qa-ux |  |
