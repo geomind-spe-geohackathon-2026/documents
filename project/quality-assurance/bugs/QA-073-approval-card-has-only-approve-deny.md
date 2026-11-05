@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-I |
@@ -36,6 +36,7 @@ Product gap, not a defect in a working feature; severity minor.
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 04:33 UTC: frontend 1.1.75 (2b275e7), pushed, build checked, deploy at 05:00 UTC: hint 'write the change and press Deny'. Editing values in the card needs the Approval answer to carry changed input (backend/geomind); not done.
+- 2026-11-05 05:01 UTC: frontend 1.1.75, commit 2b275e7, deployed
 ## Retest
 
 (Who, when, result.)
