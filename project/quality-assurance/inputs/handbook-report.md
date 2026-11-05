@@ -1,125 +1,81 @@
 # Writing an Engineering Design Report: A Handbook for Geothermal Heating and Cooling
 
 How to report a plant design so that a reviewer can follow every decision back to its reason and
-its source, and check every number.
+its source, and check every number. For the explainer, the reviewer and the project lead, and for
+anyone who writes a feasibility study, concept design, competition entry or design memo.
 
 Cite as `knowledge/handbook-report.md`, with the section number (for example
-`knowledge/handbook-report.md §7.2`).
+`knowledge/handbook-report.md §7.2`). Every numbered section stands alone. Chapter 0 is the short
+version for agents; chapter 15 the review checklist; chapter 16 the GEMINI hackathon 2026
+example; Appendix A templates.
+
+This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
+`comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
+`calculator` and `python`. The case: `knowledge/handbook-case.md`; the design:
+`knowledge/handbook-design.md`; the costs and CO2 behind the numbers:
+`knowledge/handbook-economics.md`. A value marked **(derived)** is explained by its formula; in a
+report it is a number a tool gave, never one the writer computed. "Must" is a team rule, "should"
+good practice (Appendix B).
 
 ---
 
-## Preface
+# 0. Quick reference for the agents
 
-### Who this handbook is for
+## 0.1 Rules that hold in every section
 
-For the project lead, the explainer and the reviewer of a design team, and for anyone who writes
-or reviews the report of a heating and cooling plant: a feasibility study, a concept design, a
-competition entry or a design memo.
+1. **Every number from the state or a tool, digit for digit**, with the unit the tool returns.
+   Never estimate, compute, round or convert one; a sum, share or difference is a tool's, or it
+   is left out (§8.6).
+2. **Every reference from the state or a tool**: `design.reference`, `design.result`,
+   `verification.result`, `study/<name>`. Never a made-up one.
+3. **Feasible means gemini's verdict**: `feasible` true with no reason, from the reviewer's
+   `check_results` (state `verification`). Not the report's `passed`, which only tallies the
+   checks that ran. A check with `passed` `None` is "not judged", never "passed" (§9).
+4. **Every decision with its reason and source** (§7); every choice the agents made themselves
+   and every case change the user approved is listed so the user can overrule it (§7.3).
+5. **What gemini did not judge is open**, never compliant (§9.3, §11).
+6. **No internal version numbers** to the user: say the case or the design was saved.
 
-### What it covers and what it does not
+## 0.2 The explainer's headings: what goes under each
 
-It covers what an engineering design report contains and why: the structure, the executive
-summary, the design basis, the alternatives, every major decision with its reason and source, the
-results, the compliance with the requirements, the uncertainty, the limitations, the figures and
-tables, and the record of how an agent team worked. It ends with a review checklist and a worked
-example.
+The explainer finishes with Markdown under exactly these headings, in this order:
 
-It does not explain any agent tool. How to read results is the skill `reading-results`; how to
-quote a study is `comparing-designs` and `report`; uncertainty and sensitivity runs are
-`economics`; derived numbers are `calculator` and `python`. How to define the case is
-`knowledge/handbook-case.md`; how to design the plant is
-`knowledge/handbook-design.md`; the economics behind the costs is
-`knowledge/handbook-economics.md`.
+| Heading | Holds | From | Section |
+|---|---|---|---|
+| `Design` | family, doublets (number, depth, flow), every unit, how the supply temperature is reached, how cold is made, where the gas goes | `read_plant`, state `design` | §8.1 |
+| `Schematic` | the flow of brine, heating water, chilled water, gas and electricity, units labelled | state `design.schematic` | §8.1 |
+| `Capacities` | each unit's capacity, peak use and share, against `peak_heat` and `peak_cold` | `compute_kpis` `capacities` | §8.2 |
+| `Delivered` | heat and cold delivered beside the case's demand; surplus named; heat by source; electricity and gas bought | `compute_kpis` | §8.3 |
+| `Costs` | capex, opex, LCOH, LCOC, LCTS, NPV, CO2 with units; the economic basis once; missing or unconfirmed economics | `estimate_costs`, state `results` | §8.4, §8.5 |
+| `Checks` | gemini's verdict, then one line per requirement by `name`: worst value, limit, passed or "not judged" with the reason | state `verification` and the reviewer's report (its `check_results`) | §9 |
+| `Open points` | what gemini did not judge, what the case does not constrain, unconfirmed assumptions, limitations | state `assumptions`, `verification` | §9.3, §11 |
+| `Decisions` | each major decision with reason and source; the study's ranked table; agent choices and approved case changes | `list_studies`, `read_study`, `case_changes` | §6, §7 |
 
-### How to read it
+## 0.3 Order of work
 
-Every numbered section stands on its own. Chapter 15 is the review checklist, chapter 16 a
-worked example, Appendix A ready templates.
+1. Read once, in one step: `read_case`, `read_plant`, `compute_kpis` (no `names`),
+   `estimate_costs`, `list_studies` on `design.result` and `design.reference`; `case_changes`.
+   Never call them again for the same thing.
+2. When a study's `tool` is `evolve_structure`, read `read_skill('report')` before `Decisions`.
+3. Write the eight headings of §0.2, every number copied from step 1.
+4. Check the answer against §0.4 before `finish`.
 
-### Conventions
+## 0.4 Short checklist (the full one is §15)
 
-- Every number and rule carries its source. A value marked **(derived)** is explained by its
-  formula; in a report it is a number a tool gave, never one the writer computed.
-- gemini's names in `code` are the ones in `gemini/gemini/evaluate/` (metrics and verdict); the
-  explainer's headings are those of `geomind/geomind/prompts/project/explainer.md`.
-- "Must" states a team rule; "should" states good practice from the references (Appendix B).
+- [ ] Verdict first in `Checks`; `feasible` only when gemini says so; "not judged" named.
+- [ ] Heat and cold delivered beside the demand; surplus said plainly.
+- [ ] LCOH and LCOC with the `heat_cost_share` they rest on; LCTS for the ranking.
+- [ ] Currency and price year stated once (`read_case` section `economics`).
+- [ ] Every study cited by `study/<name>`; a study on an older case named so.
+- [ ] Every `source: agent` assumption and approved case change listed under `Decisions`.
+- [ ] No number that a tool did not give; no unit conversion.
 
----
+## 0.5 What the writer asks, and what it does not
 
-## Table of contents
-
-1. What a design report is for
-   1.1 Readers and their questions
-   1.2 The report as evidence
-   1.3 The reference textbooks in brief
-2. Structure
-   2.1 The standard parts of a technical report
-   2.2 A design report outline
-   2.3 Short formats: pages and slides
-   2.4 The explainer's answer
-3. What reviewers look for
-   3.1 General review criteria
-   3.2 Example: the judging criteria of a competition
-4. The executive summary
-   4.1 What it holds
-   4.2 How to write it
-5. The design basis
-   5.1 The case in one table
-   5.2 Requirements
-   5.3 Assumptions and their sources
-   5.4 Economic basis
-6. Alternatives considered
-   6.1 Why alternatives are reported
-   6.2 A fair comparison
-   6.3 The comparison table
-   6.4 Trade-offs and the Pareto front
-7. Decisions and their reasons
-   7.1 The decision record
-   7.2 The major decisions of a geothermal heating and cooling plant
-   7.3 Choices the agents made themselves
-   7.4 Decisions that rest on a study
-8. Results
-   8.1 The plant and its schematic
-   8.2 Capacities
-   8.3 Energies delivered
-   8.4 Costs and key performance indicators
-   8.5 Emissions
-   8.6 Quoting numbers
-9. Compliance with the requirements
-   9.1 gemini's verdict
-   9.2 The compliance table
-   9.3 What was not judged
-   9.4 A design that does not pass
-10. Uncertainty and sensitivity
-   10.1 Stating uncertainty
-   10.2 Presenting a Monte Carlo result
-   10.3 Presenting a sensitivity
-   10.4 Accuracy of a cost estimate
-11. Limitations and open points
-12. Figures and tables
-   12.1 Principles
-   12.2 Figures a heating and cooling report needs
-   12.3 Tables
-   12.4 Captions and numbering
-13. The agent log
-   13.1 Why it is part of the report
-   13.2 What to record
-   13.3 How to present it
-   13.4 Gaps found and filled
-14. Style
-   14.1 Plain technical English
-   14.2 Numbers and units
-   14.3 Citations
-15. Review checklist
-16. Worked example: the GEMINI hackathon 2026 report
-   16.1 What the jury scores
-   16.2 Deliverables
-   16.3 The explainer's answer for this case
-   16.4 The 5-page report
-   16.5 For the reviewer and the project lead
-
-Appendix A. Templates
-Appendix B. References
+A report asks the user nothing. A value it lacks is named under `Open points` ("not given:
+<what>, <why it matters>"); a missing economics key is named with its `economics.<key>` path for
+the case lead. Facts about a competition (deliverables, judging) come from Knowledge, such as §3.2
+and §16 here, never from memory.
 
 ---
 
@@ -242,7 +198,7 @@ asks the same questions:
 ## 3.2 Example: the judging criteria of a competition
 
 One example of what reviewers look for: the organisers' kick-off slides of the SPE Europe Energy
-GeoHackathon (`.claude/memory/competition-judging-criteria.md`):
+GeoHackathon (2026, shared by the team on 2026-11-05):
 
 - **Challenge 1 (50 %), the agentic workflow**: it analyses the problem, works with the GEMINI
   digital twin, selects and runs the right models, identifies missing modelling capabilities and
@@ -450,6 +406,7 @@ gemini's metrics with their display titles (`gemini/gemini/evaluate/_utils/displ
 | `lcoh` | Cost of heat | with the heat's cost share |
 | `lcoc` | Cost of cold | with the cold's share |
 | `lcts` | Cost of thermal supply | one cost over heat and cold together |
+| `npv` | (no display title) | net present value; needs revenue |
 | `payback` | Payback time | needs revenue |
 | `co2` | CO2 | CO2-equivalent |
 | `methane_emitted` | Methane emitted | vented methane |
@@ -462,8 +419,10 @@ assumptions are missing or not confirmed. What each metric means and how it is c
 
 CO2-equivalent of the period, with what it contains: CO2 from burnt fuel and released brine
 gas, vented methane times its GWP, grid electricity times the grid intensity, and any offset of
-on-site power (`knowledge/handbook-economics.md`, carbon accounting). State the GWP
-standard and the grid intensity's source.
+on-site power (`knowledge/handbook-economics.md` §9, §16.6). State the GWP standard and the
+grid intensity's source. The carbon cost in the opex covers only the plant's own CO2 and methane,
+not the grid electricity's CO2 (gemini 0.6.16 and later; `knowledge/handbook-economics.md`
+§16.7): say so when both the CO2 and the carbon cost are reported.
 
 ## 8.6 Quoting numbers
 
@@ -482,8 +441,10 @@ standard and the grid intensity's source.
 ## 9.1 gemini's verdict
 
 A design is final only when gemini's verdict is feasible: `check_results` returns `feasible`
-true with no reason (skill `reading-results`; reviewer rule,
-`geomind/geomind/prompts/project/reviewer.md`). gemini's verdict has four kinds of reason
+true with no reason (skill `reading-results`; reviewer rule). The report's `passed` is not the
+verdict: it tallies only the checks that ran, so a plant that delivers no cold can show `passed`
+true while `cold_delivered` makes the verdict infeasible (`knowledge/handbook-economics.md`
+§17.9). gemini's verdict has four kinds of reason
 (`gemini/gemini/evaluate/verdict.py`): `requirement` (a requirement or a supply temperature
 failed, or none could be judged), `failed_step` (rows that failed or were skipped),
 `numerical` (a mass or energy residual above tolerance, a loop that did not converge) and
@@ -621,7 +582,7 @@ reviewer who cannot see the log cannot judge the workflow; a competition may sco
 ## 13.2 What to record
 
 - the model and provider of each agent role (the team's agents run on DeepSeek through
-  OpenRouter, `.claude/STATUS.md`);
+  OpenRouter);
 - each LLM call: prompt, answer, tool calls with arguments and results, tokens in and out, by
   agent, session and step;
 - each question to the user and the answer;
@@ -721,10 +682,17 @@ sources).
 
 ## 16.2 Deliverables
 
-From the organisers' slides (`.claude/memory/competition-judging-criteria.md`): a technical
-report of at most 5 pages or a presentation of at most 10 slides; a video pitch of at most
-5 minutes; the agent's interactions recorded (prompts, answers, token use); all contributions
-committed and pushed to GitHub.
+Hard limits from the organisers' slides:
+
+| Deliverable | Limit |
+|---|---|
+| Technical report, or presentation | at most 5 pages, or at most 10 slides |
+| Video pitch | at most 5 minutes: solution, key findings, design choices, novelty, main technical or economic results |
+| Evidence | the agentic system, with its interactions recorded (prompts, answers, token use); the final configuration and its supporting calculations explained |
+| Code | all contributions committed and pushed to GitHub (merging into main not required) |
+
+The report must cover the geothermal assessment, the system design and the heating and cooling
+capacities, and document the agent architecture, models and libraries.
 
 ## 16.3 The explainer's answer for this case
 
@@ -740,7 +708,10 @@ Under the explainer's headings (§2.4):
   cold, PDF p. 1), the heat from geothermal, heat pump and boiler as gemini gives each, the days
   not covered.
 - **Costs:** LCOH, LCOC, LCTS, capex, opex, NPV and CO2, with the economics source
-  (`knowledge/hackathon-2026-assumptions.md`) and the CH4 GWP 29.8 (IPCC AR6 WG1 table 7.15).
+  (`knowledge/hackathon-2026-assumptions.md`: EUR at 2015 prices, discount rate 0.05, 25 yr,
+  `heat_cost_share` 0.8), the CH4 GWP 29.8 (IPCC AR6 WG1 table 7.15) and the grid intensity
+  300 g/kWh (organisers). Name the team placeholders (revenue 60 EUR/MWh, most capex factors) as
+  such, so NPV and payback read as indicative.
 - **Checks:** gemini's verdict for each of the 8 requirements by `name`
   (`production_flow_range`, `brine_cooling_limit`, `running_time_limit`, `pump_efficiency`,
   `full_reinjection`, `doublet_count`, `heat_delivered`, `cold_delivered`) and the two supply
@@ -766,15 +737,15 @@ Under the explainer's headings (§2.4):
 5. Agent interaction: prompts, answers, questions to the user, tokens and cost per agent; what
    the agents found missing in gemini and how they filled it.
 
-gemini's own sample (`gemini/tests/e2e/expected/hackathon.txt`, output of
-`gemini/examples/hackathon.py`) is a reference to compare with, never a result of the team: if
-the team's numbers differ much from it on the same economics, check the economics of the case
-first.
+gemini's own sample (six stored plants on gemini's sample economics,
+`knowledge/handbook-economics.md` §17.9: LCTS 42.34 to 51.82 EUR/MWh for the feasible ones) is a
+reference to compare with, never a result of the team: if the team's numbers differ much from it
+on similar economics, check the economics of the case first.
 
 ## 16.5 For the reviewer and the project lead
 
-- A design is final only with gemini's feasible verdict (`"passed": true`). A zero-cooling day
-  is no failure under `cold_delivered` (QA-091).
+- A design is final only with gemini's verdict `feasible` true (§9.1; not the report's
+  `passed`). A zero-cooling day is no failure under `cold_delivered` (QA-091).
 - When a rule keeps failing after a real change of approach, finish with the best design, the
   passing and failing rules by name and their owners (QA-090).
 - Never call the design compliant on a point gemini did not judge.
@@ -850,8 +821,8 @@ first.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
 - gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `_utils/display.py`;
-  `gemini/tests/e2e/expected/hackathon.txt`.
+  gemini sample `examples/hackathon_2026`.
 - geomind: prompts `geomind/geomind/prompts/project/explainer.md`, `reviewer.md`; skills
   `reading-results`, `comparing-designs`, `report`, `economics`, `calculator`, `python`.
-- Team: `.claude/memory/competition-judging-criteria.md`; bug files QA-090, QA-091, QA-094 in
-  `documents/project/quality-assurance/`.
+- Team: the organisers' kick-off slides (2026); bug files QA-090, QA-091, QA-094 of the team's
+  quality assurance.
