@@ -47,6 +47,8 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 18. Cooling demand: sources of load, sensible and latent, free cooling and heat recovery
 19. Subsurface data: kinds and scales, well temperatures, permeability across scales,
     conflicting sources
+20. Produced fluid in depth: reading an analysis, gas and degassing, corrosion, scaling and
+    solids
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1781,6 +1783,76 @@ checking that says the cores over-sample the best sand.
 5. A value the user gave beats every other source (§17.4); a conflict with a better source is
    named once in the question, then the user's answer stands.
 
+# 20. Produced fluid in depth: gas, corrosion, scaling and solids
+
+What a fluid analysis says, which parts are case values and which belong to the design, and
+how gemini uses them. It extends §4.4, §13.6, §15.3 and §15.4. Examples use invented numbers.
+
+## 20.1 Reading a fluid analysis
+
+A geothermal water analysis typically lists: sampling point, pressure and temperature; major
+ions (Na⁺, K⁺, Ca²⁺, Mg²⁺, Cl⁻, SO₄²⁻, HCO₃⁻) in mg/l; TDS; pH (and the temperature it was read
+at); dissolved gas: GLR and composition; density and viscosity at stated conditions; suspended
+solids (Gallup 2009; Huenges 2010, ch. 5).
+
+**Case values.** Only what the case has keys for (`describe_case`): density, viscosity, GLR,
+dissolved gas composition, sand concentration (§2.4). Everything else (ions, pH, scaling
+indices) is not a case key: it informs the design (treatment, materials, injection temperature)
+and goes into the handover with its source.
+
+**Check the sample.** A surface sample after degassing under-reports gas; a sample with drilling
+fluid contamination shows odd ions (high K⁺ from KCl mud). The pH of a sample read at the
+surface after CO₂ loss is higher than downhole. Name each such caveat.
+
+## 20.2 Gas: dissolution, degassing and what gemini models
+
+**Lesson.** CO₂ solubility in water follows Henry's law: the dissolved concentration is
+proportional to the CO₂ partial pressure, and falls as temperature rises (`gemini.physics.
+chemistry.henry_constant`). When pressure falls below the bubble point the gas comes out; in the
+plant, a degasser takes off a share of the free gas (`gemini/modules/treatment/degasser.py`),
+and a flare or a burner uses it (`gas_burned` of `plant`, §6.4). Keeping the loop above the
+bubble point holds the gas in solution and limits calcite scaling, which CO₂ loss drives
+(Gallup 2009).
+
+**Case rule.** GLR and composition as the analysis prints them, with `Nm3`/`Sm3` as printed
+(§13.6). A bubble point is a value for checking or a rule (§6.10); a minimum loop pressure the
+operator sets is a design limit for the handover, not a case value.
+
+**Example (invented).** GLR 1.4 Nm³/m³, 88 mol% CO₂, 10 mol% CH₄, 2 mol% N₂; bubble point
+12 bar at 70 °C from the lab. Case: GLR and composition. Handover: "bubble point 12 bar at 70 °C
+(lab, page): keep the surface loop above it, or plan a degasser".
+
+## 20.3 Corrosion
+
+**Lesson.** Dissolved CO₂ makes carbonic acid; carbon steel corrodes at a rate that grows with
+CO₂ partial pressure and temperature (up to a protective-film range) and falls with pH. NORSOK
+M-506 (2017) and de Waard and Lotz (1991, 1995) give the standard correlations; gemini implements
+them (`gemini.physics.corrosion.co2_corrosion_rate`, valid for 5 to 150 °C, pH 3.5 to 6.5, used
+by the well modules). H₂S, oxygen ingress and chloride also matter for the choice of material.
+
+**Case rule.** The case gives the gas composition and the pressure and temperature data; the
+material, the wall allowance and the inhibitor are design choices (`InhibitorDosing`, doses in
+ppm of the treated mass, typically a few to some tens of ppm, Gallup 2009). A brief's "the
+operator requires corrosion below X mm/a" is a rule gemini may not hold as a requirement
+(§6.10): name it.
+
+## 20.4 Scaling and solids
+
+**Lesson.** Cooling brine lowers the solubility of silica and of some sulfates (barite,
+celestite); degassing CO₂ raises pH and precipitates calcite (Gallup 2009; Stober and Bucher
+2021, ch. 7). So the lowest injection temperature is often set by scaling, not by the heat
+users. Sand and fines erode pumps and pipe (API RP 14E; DNV RP O501); filters and desanders
+remove them (`gemini/modules/treatment/filter.py`, `desander.py`).
+
+**Case rule.** A minimum injection temperature the operator or a scaling study states is a
+limit: write it as a requirement on `doublet` `injection_temperature` (`min`, `over: each`,
+`when: running`) when it is binding, citing the study (§17.2); the brine cooling limit is the
+same idea expressed as a temperature drop (§6.9). Never derive a scaling limit yourself.
+
+**Example (invented).** A scaling study: "barite saturation is reached below 35 °C at the
+expected Ba and SO₄; keep injection at 40 °C or above". Requirement:
+`injection_temperature_floor`, doublet, injection_temperature, each, running, min 40 degC.
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -1839,8 +1911,10 @@ checking that says the cores over-sample the best sand.
 - Batzle, M. and Wang, Z. (1992). Seismic properties of pore fluids. *Geophysics* 57(11),
   1396-1408.
 - Bullard, E.C. (1947). The time necessary for a bore hole to attain temperature equilibrium.
-  *Geophysical Journal International* 5(s5), 127-130.
+  *Geophysical Supplements to the Monthly Notices of the RAS* 5(5), 127-130.
 - CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
+- de Waard, C., Lotz, U. and Milliams, D.E. (1991). *Corrosion* 47(12), 976-985; de Waard, C.,
+  Lotz, U. and Dugstad, A. (1995). CORROSION/95, NACE (as cited in `gemini/physics/corrosion.py`).
 - DNV RP O501 (2015). *Managing sand production and erosion*.
 - Dake, L.P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
 - Horne, R.N. (1995). *Modern Well Test Analysis*, 2nd ed. Petroway.
@@ -1851,6 +1925,8 @@ checking that says the cores over-sample the best sand.
   load*. EN ISO 15927-6:2007. *Hygrothermal performance of buildings: accumulated temperature
   differences (degree-days)*.
 - EN 16798-1:2019. *Energy performance of buildings: indoor environmental input parameters*.
+- Gallup, D.L. (2009). Production engineering in geothermal technology: a review.
+  *Geothermics* 38(3), 326-334.
 - Gringarten, A.C. and Sauty, J.P. (1975). A theoretical study of heat extraction from aquifers
   with uniform regional flow. *Journal of Geophysical Research* 80(35), 4956-4962.
 - Hyndman, R.J. and Athanasopoulos, G. (2021). *Forecasting: Principles and Practice*, 3rd ed.
@@ -1864,6 +1940,7 @@ checking that says the cores over-sample the best sand.
 - Kestin, J., Khalifa, H.E. and Correia, R.J. (1981). Tables of the dynamic and kinematic
   viscosity of aqueous NaCl solutions. *J. Phys. Chem. Ref. Data* 10(1), 71-87.
 - Lund, H. et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
+- NORSOK M-506 (2017). *CO2 corrosion rate calculation model*. Standards Norway.
 - NIST SP 811 (2008). *Guide for the Use of the International System of Units*.
 - RFC 2119 (1997). *Key words for use in RFCs to indicate requirement levels*.
 - Ramey, H.J. (1962). Wellbore heat transmission. *Journal of Petroleum Technology* 14(4),
