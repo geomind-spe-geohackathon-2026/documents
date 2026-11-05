@@ -37,7 +37,7 @@ The card disappears at once. No line shows approved or denied, and the reason te
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:08 UTC: frontend 1.1.59 (55ef789), pushed, build checked, deploy at 00:30 UTC: the tab remembers its answers and the chat shows 'You approved/denied "X": reason'. A lasting record (other browsers, after the tab closes, auto-approve by the worker) needs geomind/backend to publish the answer: the 'permission' event with decision 'answer' (request id, approved, reason) is internal today.
 ## Retest
 
 (Who, when, result.)
