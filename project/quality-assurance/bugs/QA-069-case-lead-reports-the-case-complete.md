@@ -30,12 +30,12 @@ The case lead reported the case complete; the design stage then blocked on site.
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+`gm.case.missing` lists only what the case file needs by itself; a value a plant needs from the case (`site.air.pressure` for every plant of the hackathon example) is named only by `gm.check(plant, case)`, which the case lead never ran, so the case looked complete to it (checked: the hackathon case without pressure gives no missing path, and gm.check of each of its six plants names site.air.pressure).
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 01:05 UTC: geomind 0.4.62 (7a71ecc: set_case returns plants_need from gm.check of each project plant; case lead checklist), backend 1.1.64 (ae8e646), deployed 01:06 UTC
+`set_case` now checks the stored case against each of the project's plants (`gm.check`) and returns `plants_need` `[{path, message, plants}]` with a note; the case lead's checklist calls the case complete only when it is empty or each path was asked in the one confirmation question. A project with no plant file gets no such check (the design stage still names the value). geomind 0.4.62 (commit 7a71ecc, tag v0.4.62), backend 1.1.64 (ae8e646), deployed 2026-11-05 01:06 UTC by hotfix-python-II.
+
 ## Retest
 
 (Who, when, result.)
