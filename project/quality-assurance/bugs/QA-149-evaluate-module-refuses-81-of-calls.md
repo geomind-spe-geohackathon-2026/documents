@@ -42,3 +42,12 @@ Note: since geomind 0.4.96 (QA-145) the design engineers no longer call plant to
 
 - 2026-11-05 16:56 UTC: gemini 0.6.17 (a872275d, tag v0.6.17), backend 1.1.103 (665763d), deployed 2026-11-05: reader skips non-port inlets values; tear without first guess names the loop's offering modules (Cooler loop_pressure and flow); inlet errors say 'inlet X: <error>'. QA-149 geomind part (control in parameters) already fixed since geomind 0.4.81. Not live-retested.
 ## Retest
+
+## More evidence (QA-AI-design-I, 2026-11-05 17:04-17:24 UTC, geomind 0.4.98, gemini 0.6.16/0.6.17)
+
+Run 0df89b7e-69e0-46b3-abe1-231e51d9570a (project QA-TEST QA-AI-design-I 1): the design lead's `evaluate_module` 11 of 14 refused:
+
+- HeatPump: `sink_in` without m_dot (2x, the second flagged "second time in a row"); `inlets = []` with design only; `cop_model 'lorenz'` with `mode 'cooling'` (Lorenz defined for heating only).
+- Pipe (8x, 17:20-17:23): `controls.flow` is not a control of Pipe; `dt` given for a stateless pipe; then 5x `missing_value length, inner_diameter, roughness, elevation_change` (the lead sent the stream but no `parameters` and no `design=`), 2 of them refused as `failed_before` exact repeats.
+Evidence: `../evidence/QA-211/run-0df89b7e-tool-calls.txt` (design_lead #16-#19, #42-#52).
+Proposed extra: when parameters are missing and the call names no design, the error should say "give parameters, or design='design/<name>' and the module key"; the skill `evaluating-a-module` should show one Pipe example.
