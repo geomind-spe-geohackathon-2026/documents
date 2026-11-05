@@ -37,7 +37,7 @@ Guess: the card text container uses class `whitespace-pre-line` (seen in the DOM
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:06 UTC: frontend 1.1.58 (742031b), pushed, build checked; deploy at 00:30 UTC
 ## Retest
 
 (Who, when, result.)
