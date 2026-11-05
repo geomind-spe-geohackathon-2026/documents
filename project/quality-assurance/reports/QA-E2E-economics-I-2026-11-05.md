@@ -70,3 +70,24 @@ User changes: 6 % -> 0.06, 7 % -> 0.07, 80 EUR/t stored right (QA-120 does not r
 The case lead finds `hackathon-2026-assumptions.md` at once and prefers it to the catalogue; one
 economics question with a source per key; stop leaves the case untouched with a clear summary;
 the grid-CO2 explanation is right and cited; chips after the run fit the state.
+
+## Round 2 (17:27-18:35 UTC): retests and new scenarios
+
+Versions moved during the round: backend 1.1.106 -> 1.1.110+, geomind 0.4.106 -> 0.4.110+, several
+deploys (runs survived; some "interrupted by a crash" tool calls during restarts).
+
+Retests: QA-181 failed on 0.4.106 (reopened with the code cause: answered calls not in
+`succeeded`), verified on 0.4.110; QA-185, QA-186, QA-191, QA-193, QA-202 verified. QA-216
+(uncertainty) observed working. Open: QA-192 (fixing), QA-194.
+
+| Project | Run | Scenario | Time | Tokens in | Cost USD | Result |
+|---|---|---|---|---|---|---|
+| 4 (7d1d7b7c) | 92e9d156 | approve all (QA-181 retest) | 2.5 min | 428k | 0.0096 | failed (guard) |
+| 4 | 236f17d4 | "electricity 95 EUR/MWh in 2026 prices" | 13 min incl. my waits | | | good question on price year; 95 -> 73.79 EUR2015 (HICP 2025 proxy) with source |
+| 5 (8ed137a6) | 4aa5be35 | approve all (QA-181 retest) | 3 min 7 s | | | done; every reference value exact |
+| 5 | f7097fbc | "ESMA EU ETS 2025 price" | 8 min 40 s | 1.44M | 0.023 | right row 57.4757 (QA-202 ok); 6 set_case, re-ask (QA-256) |
+| 6 (in list) | 74ef2d84 | approve all with 3 changes (QA-186 retest) | 4 min 33 s | 741k | 0.0137 | one set_case, user sources |
+| 6 | d66897ee | question after a hand edit to 0.07 | 8 s | 48k | 0.001 | answers 0.06 (QA-284) |
+| 7 (fa001b0b) | 5c1cd7b2 | "Trondheim, Norwegian prices where they differ" | 19 min | 3.55M | 0.072 | unasked site survey (QA-280); catalogue rows replace the assumptions (QA-279); fixed after a typed answer |
+
+New bugs: QA-256, QA-279, QA-280, QA-284 (all major, geomind).
