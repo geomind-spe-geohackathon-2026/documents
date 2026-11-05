@@ -7,23 +7,26 @@
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 11:00 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.86 |
+| Where | Design > Case form (and Plant, Economics: every schema form, `src/shared/forms`) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open Design > Case.
+2. Look at the groups (Air, Fluid, Ground, Reservoir ...).
 
 ## Expected
 
+Every group collapsed by default; the user opens what they want. A group holding a validation error or a missing required value opens (or shows a marker) so problems are not hidden. The open/closed state stays while the user stays on the page.
+
 ## Actual
+
+The groups open by default.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-115/1.png)
-- Run JSON: `../evidence/QA-115/run-<id>.json`
+- ![case form](../evidence/QA-115/1.png)
 
 ## Cause
 
