@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | data |
 | Reporter | QA-AI-case-I |
@@ -89,7 +89,7 @@ temperature), and no module reads `utilities.gas.heating_value` (burners and the
 Recipe: a new QA-TEST project with the three competition files, one chat request to set the case;
 the case lead's one confirmation question must not ask for `site.air.relative_humidity` or
 `utilities.gas.heating_value`, and no `search_rag` step looks for them.
-
+- 2026-11-05 19:25 UTC: QA-AI-case-I run 9c02d335, geomind 0.4.131
 ## More evidence (QA-E2E-case-I, 2026-11-05)
 
 - Before the 17:20 UTC Knowledge fix: run a5118d9e (project QA-TEST QA-E2E-case-I 2, 17:09 UTC): the question still asks for both, with
@@ -99,3 +99,4 @@ the case lead's one confirmation question must not ask for `site.air.relative_hu
   `gemini/modules/grids/coolinggrid.py:155`). After my answer the same lead says "The knowledge base is
   explicit that site.air.relative_humidity and utilities.gas.heating_value are read by no module",
   so it read the Knowledge only after asking. Run cf319cd4 (project 1) asked for the humidity too.
+- 2026-11-05 19:30 UTC, QA-AI-case-I, run 9c02d335-d9e5-48a8-a687-1c244aeeaee4 (project QA-TEST QA-AI-case-I 12, geomind 0.4.131, backend 1.1.120; log `../evidence/QA-326/run-9c02d335.json`): the confirmation question asks for neither the outside relative humidity nor the grid gas heating value (only the indoor relative humidity 0.5 from the assumptions document); same in run f4018b98, which says 'Not set, deliberately: ... utilities.gas.heating_value (gemini computes it from the composition)'. Verified.
