@@ -7,23 +7,26 @@
 | Area | geomind |
 | Reporter | functional-qa-report-I |
 | Found | 2026-11-05 11:17 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.84 (geomind 0.4.80), frontend not read |
+| Where | https://geomind.team/projects/91b202b6-6236-45e7-8860-a58437d6eb98/assistant/chat; project QA3 report; run result/11c2e401cd91606b |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Ask: "What heating and cooling capacities does the design actually realise? ..." (answer: heat_exchanger capacity 1500000 W/K, "gemini reports no use of this module in the run (peak null)").
+2. Ask the explainer question (see QA of the same day): it reports the exchanger duty mean 7.85 MW, max 12.36 MW and adds "Correction to an earlier capacities read".
 
 ## Expected
 
+One consistent statement of the exchanger use; the capacities report must not call a working module unused.
+
 ## Actual
+
+Two answers in one chat contradict each other; the first would make a reader think CAPEX 0.75 MEUR was spent on an idle module.
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-123/1.png)
-- Run JSON: `../evidence/QA-123/run-<id>.json`
+- Chat text: `../evidence/QA-123/chat.txt` (the answer is after the question quoted in Steps)
 
 ## Cause
 
