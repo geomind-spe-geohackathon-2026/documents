@@ -36,6 +36,16 @@ Facts: ownership checks (design.owners) refuse writes of roles that do not own a
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+- 2026-11-05 hotfix-back (backend check): no backend part. The run's plants are built and read
+  inside geomind (`build_plant`, `read_plant` on `design/hackathon_superstructure_2`); the backend's
+  plant template and case code are not on that path. At steps[49] `read_plant` does not return
+  issues: it fails with `error.code = missing_value` listing d0.drainage_radius, d0.roughness and
+  the d0.reservoir.* values the case would fill (pressure, temperature, permeability, thickness,
+  top_depth). So the design is read without the case, or the load raises before `gm.check(plant,
+  case)` runs. Per QA-049, gemini fills a doublet's reservoir from the case only once the plant's
+  `depth` is set, and gemini's check does not name `depth`. For hotfix-python-II (geomind
+  `read_plant` / gemini).
+
 ## Retest
 
 (Who, when, result.)
