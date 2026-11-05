@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | hotfix-front-lead (QA-185 follow-up) |
@@ -33,6 +33,8 @@
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.130, by front-m2: SourcedFile shows Key / Value / Source table (about.sources, linked) above the raw JSON.
+- 2026-11-05 19:01 UTC: frontend 1.1.130
 ## Retest
 
 (Who, when, result.)
