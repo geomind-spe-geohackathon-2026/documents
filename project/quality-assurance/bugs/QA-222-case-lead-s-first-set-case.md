@@ -1,4 +1,4 @@
-# QA-222: Case lead's first set_case is refused in every run (4 of 4 runs, 2 refusals each): files-only call, source=project, missing time_zone, dropped columns; the 'date' column error does not name the columns argument
+# QA-222: Case lead's first set_case is refused in every run (2 refusals in each of 3 runs): files-only call, source=project, missing time_zone, dropped columns; the 'date' column error does not name the columns argument
 
 | Field | Value |
 |---|---|
@@ -6,28 +6,57 @@
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
-| Found | 2026-11-05 17:33 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Found | 2026-11-05 17:35 UTC |
+| Versions | geomind 0.4.98 (runs 1, 2), 0.4.100 (run 3); backend 1.1.102-1.1.104 |
+| Where | api.geomind.team; runs f5f86362 (project QA-TEST QA-AI-case-I 1), 519ccc65 (... 2), 84526204 (... 3) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. New project with the three competition files; chat "Set up the case ... from the uploaded
+   challenge brief and the two daily demand files."
+2. Read the case lead's `set_case` calls in the run log.
 
 ## Expected
 
+One full `set_case` (prompt `case/lead.md`: "ONE `set_case` with everything ..."; "never a
+files-only call: `files` alone sets no case").
+
 ## Actual
+
+| Run | Refused call 1 | Refused call 2 | Then |
+|---|---|---|---|
+| 1 (0.4.98) | `set_case(source="project", files=[...], columns=...)`: "project has no case" (12 s) | full call without `time_zone`: "has no offset" (14 s) | stored, then requirements in another call |
+| 2 (0.4.98) | same `source="project"` | same `time_zone` | same |
+| 3 (0.4.100) | `set_case(files=[...], columns=...)` only: "files alone set no case" (11 s) | full call, `columns` dropped: "first column = 'date'; expected 'time'" (12 s) | stored with `columns`, then requirements in another call |
+
+Each run loses about 23-26 s and two LLM round trips (~140 k input tokens), and writes the
+requirements in a separate `set_case` (another approval card).
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-222/1.png)
-- Run JSON: `../evidence/QA-222/run-<id>.json`
+- Run logs: `../evidence/QA-153/run-f5f86362.json`, `run-519ccc65.json`, `run-84526204.json`
+  (case_lead steps 9-12 / 10-13)
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+1. The model starts with a files-first call although the prompt forbids it; `set_case`'s skill
+   or argument description probably still invites it (guess).
+2. The error for a time column of another name says "expected 'time'" and gives no fix; it does
+   not say "pass `columns={file: {date: time}}`", so the model drops or forgets `columns` (run 3).
+
+## Proposed fix
+
+- geomind `tools/gemini/case.py` (`set_case`): on the 'first column = date; expected time' error,
+  add a suggestion with the exact `columns` argument; when a call has `files` and `columns` but no
+  `changes`, keep them and say "send changes now with these files and columns" instead of failing.
+- geomind `prompts/case/lead.md` step 4: give one full example call with `changes` (each series
+  with `file`, `column`, `unit`, `time_zone`), `columns` and `requirements` together, so the
+  first call is right.
+
+## Speed and accuracy
+
+23-26 s and ~140 k input tokens per run; one extra approval card for the requirements call.
 
 ## Fix
 
