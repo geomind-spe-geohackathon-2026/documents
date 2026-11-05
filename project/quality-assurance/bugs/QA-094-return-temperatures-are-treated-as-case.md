@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (organisers' answers), Claude (write-up) |
@@ -43,5 +43,5 @@ records it `source: agent`, `reason: design choice, approved by the user`, citat
 choice`; it never asks the user to supply it nor stops for it. `prompts/design/energy.md` and the
 `designing-a-plant` skill: the design team proposes a return temperature with its reason within
 the case's limits (brine cooling, demand met) and never stops the design to wait for one.
-
+- 2026-11-05 10:31 UTC: geomind 0.4.79/0.4.80, backend 1.1.84, deployed 10:30 UTC by hotfix-python-III
 ## Retest
