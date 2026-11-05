@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
-| Area | frontend,backend |
+| Area | frontend |
 | Reporter | functional-qa-case-I |
 | Found | 2026-11-05 14:20 UTC |
 | Versions | backend 1.1.88 |
@@ -36,7 +36,7 @@ Guess: cancel is not handled for the waiting status, or a deploy resume left the
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:29 UTC: hotfix-back-III, cause (fact, traefik access log 09:30-14:30 UTC): no POST /api/v1/assistant/runs/11597465-.../cancel ever reached the server; the only cancel near 14:20 was 14:21:04 for run 1461ca81 (QA3 study project, another session), 200, ended cancelled. So the chat's Cancel run button sends nothing while a run waits at an approval card (no toast either). Backend cancel_run handles waiting runs (resumes once with a stand-in answer, ends cancelled). Frontend fix for hotfix-front-III: send POST /runs/{id}/cancel for the waiting run (the run of the open approval card) and show the result; consider a cancel action in Runs and logs. Run 11597465 is still waiting; the cancel by API was refused to me, command given to the coordinator.
 ## Retest
 
 (Who, when, result.)
