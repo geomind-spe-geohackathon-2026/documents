@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | blocker |
 | Area | backend |
 | Reporter | Manual QA-IV |
@@ -34,6 +34,7 @@ Guess: the answer was stored (or half-stored) while the worker restarted; on res
 ## Fix
 
 - 2026-11-05 18:18 UTC: Manual QA-IV 18:19 UTC on the backend that health reports: run bfcec811 still 'waiting' on request-1290, answer still 409 'answered already', usage 0; not fixed for this run
+- 2026-11-05 18:29 UTC: backend 1.1.116
 ## Retest
 
 ## Fix (hotfix-back-lead)
