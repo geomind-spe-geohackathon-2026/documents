@@ -49,3 +49,7 @@ Time to the needless question: 3 min 13 s (17:33:53 to 17:37:06), with the appro
 ## Fix
 
 ## Retest
+
+## More evidence (QA-AI-project-I, 17:38 UTC)
+
+After the user's answer "150 mD. It is already in the case I saved (version 4).", the case lead asks a third card (request-118): "Allow set_case (write)? Change the case: site.reservoir.permeability." with the same value 150 mD the case already holds (a no-op write). One user edit of one value cost three stops: load card, question, no-op change card.
