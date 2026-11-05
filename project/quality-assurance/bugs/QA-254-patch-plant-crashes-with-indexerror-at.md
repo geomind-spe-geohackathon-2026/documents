@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | verified |
+| Status | fixed |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -31,6 +31,7 @@ Fix: when `_missing_paths()` is empty, name the parameter itself (`self.path.nam
 
 ## Fix
 
+- 2026-11-05 18:08 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 ## Retest
 
 - 2026-11-05 18:03 UTC: Manual QA-IV 18:04 UTC on gemini 0.6.19: the same patch_plant (d0.nominal_flow on design/A_filled, run bfcec811) saves design/A_flow and lists missing values (pump_efficiency, nominal_wellhead_pressure) instead of IndexError
