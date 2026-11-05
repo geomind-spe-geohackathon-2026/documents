@@ -32,3 +32,5 @@ Report section 8 has the scope paragraph.
   that develops over a longer life of the plant is checked." Verified (it does not name injectivity or thermal
   breakthrough by name, but says plainly what is and is not covered).
 - 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:59 UTC: checks scope stated
+
+QA-E2E-report-I, 2026-11-05 20:05 UTC, backend 1.1.125, https://geomind.team/projects/0e44cb05-6096-434e-95ee-56b434898015/design/report, result 'simulation HeatingAbsorptionCoolingPlant' (plant v2, case v3), page and Export PDF (21 pages, `../evidence/QA-313/retest-report-v2.pdf`): Section 8 Checks: 'The checks are the 15 rules of the case. They bound brine cooling, count, production flow, pump efficiency, reinjection ratio, temperature and unmet share ... The engine can also bound approach, co2, ... wellhead pressure; the case sets no rule on them, so they are not checked. Every check judges the run of 365 d only: nothing that develops over a longer life of the plant is checked.' Same in the PDF. Verified. (The Summary line 'All 15 assessed checks pass' still has no scope next to it; the scope is in section 8.)
