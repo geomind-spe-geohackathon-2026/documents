@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -41,3 +41,4 @@ hotfix-front-III, frontend 1.1.93 (564972b): one `CollapsibleGroup` for required
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 14:12 UTC: live 1.1.99: Case Demand/Site/Economics groups closed by default; Air stays open across tab switches
