@@ -7,18 +7,22 @@
 | Area | backend |
 | Reporter | functional-qa-I |
 | Found | 2026-11-05 01:49 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.53-1.1.62 (see Where), geomind per backend |
+| Where | project a0947848, chat 235c60c5, run 92971ce5 (backend 1.1.62, started 00:28 UTC) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Answer a question card (reservoir pressure), then send 'go on' about 00:28 UTC.
+2. Look at Runs and logs for 10 minutes.
 
 ## Expected
 
+Steps or tokens appear within a minute, or an error.
+
 ## Actual
+
+Run status 'running', 0 tokens for about 10 min, chat showed 'Case lead Thinking, Steps so far' (empty). I cancelled it: 'Worked through 32 steps, 18 needed another try' (so there were retries). Deploys 1.1.61 to 1.1.62 happened around that time (QA-017 pattern: running with no process). Not tied to a deploy with certainty.
 
 ## Evidence
 
@@ -27,7 +31,7 @@
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Guess: the run was resumed after the 00:3x deploy and stalled, or the provider call retried 18 times without showing it (QA-030).
 
 ## Fix
 
