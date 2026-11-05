@@ -43,7 +43,7 @@ Facts: no tool call to simulate in 70 min; the plant is built by hand edits (IMP
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 15:21 UTC: hotfix-python-V: WIP on geomind branch wip/hotfix-python-V (d168ea9), not released; handover note .claude/notes/sessions/hotfix-python-5.md
 ## Retest
 
 (Who, when, result.)
