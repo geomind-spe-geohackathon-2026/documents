@@ -82,6 +82,7 @@ Do these in order; skip none.
 | the produced gas in `utilities.gas` or the bought gas in `site.fluid` | `site.fluid.dissolved_gas` vs `utilities.gas.composition` | §4.4 |
 | a demand series without an offset and without `time_zone` | give `time_zone` (from a source, or confirmed as an assumption) | §3.2 |
 | ask the same value twice | the user's answer is final; an open value stays open | §8.4 |
+| ask for, or search, an optional key the case does not need | leave it unset; ask only what `set_case` reports as needed | §8.6 |
 
 ## 0.3 Ask the user or use Knowledge
 
@@ -115,7 +116,7 @@ The case lead splits the case into 2 to 4 groups, one geoscientist each (prompt
 `case/lead.md`, step 1). A geoscientist reads no file and sets nothing: it returns, per value,
 `base`, `low`, `high`, the unit as printed, the case path, the quality (`measured`, `tested`,
 `interpreted`, `estimated`, `unknown`) and the source (file, page, table, depth, quote), plus
-`missing` and `disagreements`. Economics are not a group: the lead sets them with
+`missing` (only keys the case needs, §8.6) and `disagreements`. Economics are not a group: the lead sets them with
 `ask_economics`.
 
 | Group | Keys it owns | Read |
@@ -123,7 +124,7 @@ The case lead splits the case into 2 to 4 groups, one geoscientist each (prompt
 | I. Time and demand | `time.*`; `demand.heating.*`; `demand.cooling.*` (power, supply and return temperatures and pressures, indoor values) | §2.1, §2.2, §3 |
 | II. Ground and reservoir | `site.ground.*`; `site.reservoir.*`; quality and range of each | §2.3, §4.1 to §4.3, §9 |
 | III. Brine, gas, air and utilities | `site.fluid.*`; `site.air.*`; `utilities.electricity.*`; `utilities.gas.*` | §2.3, §2.4, §4.4, §4.5, §5 |
-| IV. Requirements | every rule of the brief as a requirement; rules gemini cannot express; tolerances to propose | §6, §7 |
+| IV. Requirements | every rule of the brief as a requirement; rules gemini cannot express; tolerances to propose | §6 (above all §6.7, §6.11, §6.12), §7 |
 
 With two or three geoscientists, merge neighbouring groups (I with IV, II with III).
 
@@ -514,6 +515,34 @@ that means something else.
 | `unit: "%"` on an efficiency | a fraction, no unit |
 | a team preference as a requirement | it belongs to the design brief |
 | a doublet's availability read as the system's | system demand met every day |
+| two proposals on the same `on` and `quantity` (`min_stable_flow` 50 and `max_production_flow` 300) kept apart when merging | merge them into one requirement with `min` and `max` (§6.12) |
+| an exact ratio as `min: 1, max: 1` | a narrow band from the tolerance source (§6.8): an exact 1 fails on round-off |
+| a temperature difference (`brine_cooling`, `approach`, `lift`) in `degC` | `K`, the unit of a difference |
+| a rule a source marks conditional ("only if the design checks it") written as a requirement | left out of the case; named in the handover for the design team |
+| a requirement the brief does not state, added from a reference or a habit | only rules of the brief, the client or an assumptions document of the case |
+
+## 6.12 The same requirements every run
+
+The same brief must give the same requirements every time. Write them by this procedure, not
+freely:
+
+1. **One row per rule.** List each rule sentence of the brief (§1.2) with its page; one rule is
+   one requirement. A geoscientist proposes, the lead decides.
+2. **Merge on `on` + `quantity`.** Before `set_case`, group all proposals by `on`, `quantity`,
+   `over` and `when`. Two in one group are one rule: one requirement with the `min` of one and
+   the `max` of the other. Two different values for the same bound are a disagreement (§1.4).
+3. **Shape from §6.9.** Take `over`, `when` and `unit` from the pattern table, never chosen anew.
+4. **Names by pattern.** `<quantity>_range` (both bounds), `<quantity>_limit` (`max`),
+   `<quantity>_floor` (`min`), `<quantity>_exact` (`min` = `max`); for days of operation
+   `running_time_limit`; for a count `<role>_count`; for demand met `heat_delivered` and
+   `cold_delivered`. Stable names keep the verdict, the comparison of designs and the report
+   readable across runs.
+5. **Tolerances from one source, all of them.** When an assumptions document of the case lists
+   tolerances, take every one of its rows (demand met, ratios), as written; otherwise propose each
+   in the one question (§6.8). Never a tolerance in one run and an exact value in the next.
+6. **Count and compare.** Count the requirements against the rule list of step 1; when an
+   assumptions document or a reference case of the same brief lists its requirements, compare
+   name by name and name every difference with its reason in the handover.
 
 ---
 
@@ -557,7 +586,7 @@ case lead changes it and the user approves (`case_changes`, skill `setting-the-c
 ## 8.1 Order of sources
 
 The table in §0.3. Before the one question, ALWAYS, also when the files look complete: search
-Knowledge for every missing value (the case lead: `search_rag`, then `read_rag("knowledge/<name>")`;
+Knowledge for every needed missing value (§8.6) (the case lead: `search_rag`, then `read_rag("knowledge/<name>")`;
 a geoscientist: `search_knowledge`, then `read_knowledge` of the document or section) and read the cost catalogue's rows of the missing keys only. Never a typical value at
 any step.
 
@@ -609,6 +638,30 @@ Knowledge gave, digit for digit, in its unit. Never a sum, product, conversion, 
 value from a formula; never a constant from memory. A derived number that matters is named by
 the values it comes from and left to gemini; it never goes into the case. (`calculate` serves
 the design and the report, not the case.)
+
+## 8.6 Only what the case needs
+
+Many keys of the key tree (§2) are optional: gemini needs them only for some plants or some
+studies. Searching and asking for them costs the user a question and may move the case away from
+what the brief meant.
+
+- **Needed** is what gemini says is needed: a path in `case_incomplete`, `missing_value` or
+  `plants_need`, or a key the brief itself gives. Search the gaps (§8.1) and ask (§8.4) only for
+  those, plus the values that need confirmation because they came from Knowledge or a connector.
+- **Optional and not given:** leave it unset, say nothing to the user, and do not list it as
+  "missing" in a geoscientist's findings. Typical ones:
+
+| Key | Needed only when | Otherwise |
+|---|---|---|
+| `site.air.relative_humidity` | the plant rejects heat to air by evaporation (a cooling tower) or a study needs it | unset |
+| `utilities.gas.heating_value` | no `utilities.gas.composition` is given | unset: gemini computes the heating value from the composition |
+| `utilities.electricity.import_limit`, `export_limit` | the grid operator states a limit | unset |
+| `demand.*.minimum_return_temperature`, `maximum_return_temperature` | the network data state them | unset |
+| extra gas species (`O2`, `H2S`) | the analysis lists them | not added |
+
+- A reason given to the user must be true: never "needed to price the gas" for a key gemini does
+  not need. When unsure whether a key is needed, `describe_case(path)` and the `set_case` result
+  decide, not a habit.
 
 ---
 
@@ -701,6 +754,8 @@ economics included, waits for the user's approval (`case_changes`, `accept_case`
 - [ ] Durations as durations, counts as counts, one rule per range, fractions without unit.
 - [ ] `when: running` on supply temperatures and per-step doublet limits.
 - [ ] Tolerances proposed and confirmed (§6.8).
+- [ ] Requirements written by §6.12: proposals merged on `on` + `quantity`, names by pattern, count equals the brief's rules.
+- [ ] No optional key asked for or listed as missing (§8.6).
 - [ ] Every value not from the files confirmed and recorded with its source (§8.3).
 - [ ] Economics set in the one `ask_economics` question.
 
