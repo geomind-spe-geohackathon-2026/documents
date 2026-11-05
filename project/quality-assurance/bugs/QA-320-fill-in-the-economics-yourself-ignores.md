@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -94,3 +94,9 @@ geomind:
   catalogue rows (per-energy-boiler-gas-dea-ch44, ...) but labelled "agent" instead of the row.
   Card: `../evidence/QA-320/retest-card.txt`. Expected: invented keys stay Open with "no source";
   catalogue values carry their row id.
+- 2026-11-05 20:05 UTC, QA-E2E-economics-I: PASSES on backend 1.1.126. Project "QA-TEST
+  QA-E2E-economics-I 16", same request: card at 5 min 10 s, "42 from
+  knowledge/hackathon-2026-assumptions.md; 5 from catalogue rows, general", no value sourced
+  "agent"; subsidy and the whole per-energy map under Open (no source); approve all ends the run.
+  Card: `../evidence/QA-320/retest-2-card.txt`.
+- 2026-11-05 20:16 UTC: QA-E2E-economics-I 20:05 UTC backend 1.1.126: no agent-sourced values; subsidy and per-energy open; see Retest
