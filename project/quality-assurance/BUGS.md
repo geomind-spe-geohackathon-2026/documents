@@ -74,3 +74,4 @@ wont-fix, duplicate.
 | [QA-066](bugs/QA-066-new-project-dialog-is-taller-than.md) | fixing | minor | frontend | New project dialog is taller than a 577 px window and cannot scroll: title and Create/Cancel buttons are cut off | qa-ux | hotfix-front |
 | [QA-067](bugs/QA-067-auto-approve-toggle-does-nothing-in.md) | open | minor | frontend | Auto-approve toggle does nothing in a new chat before the first message | qa-func-2-II |  |
 | [QA-068](bugs/QA-068-openrouter-api-key-limit-reached-403.md) | fixing | blocker | infra | OpenRouter API key limit reached (403 'Key limit exceeded', 10 USD of 10 USD used): every agent run fails; the chat shows only 'internal error in geomind' | qa-func-1 | hotfix-back |
+| [QA-069](bugs/QA-069-case-lead-reports-the-case-complete.md) | open | minor | geomind | Case lead reports the case complete while site.air.pressure is unset; the design stage then blocks and asks the user again | functional-qa-I |  |
