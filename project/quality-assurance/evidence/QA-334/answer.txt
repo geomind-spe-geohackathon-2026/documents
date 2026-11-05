@@ -1,0 +1,56 @@
+Explain the design to me: how many MW of heat come from the reservoir brine and how many from the heat pump's electricity at the January peak? Is a brine cooling of about 35 K consistent with 2 x 300 m3/h? And why an absorption chiller instead of a compression chiller here?
+20:40
+Copy
+Worked through 48 steps, 4 needed another try
+· 915 K tokens
+· 0.023 USD
+design/v1 at the January heat peak — short form
+
+Peak day: 2027-01-28, heating demand 30.0 MW (demand profile, read_profile). Cooling demand that day is 0.0 MW, so the chiller is idle and the whole peak is a heating problem.
+
+Where the 30.0 MW comes from (all from result/9b0db55da13a4a5b, that step):
+
+Source
+	
+Value
+
+
+Brine → heating water in the heat exchanger (hx.duty)
+	
+12.364 MW
+
+
+Brine → heat pump, source side (source in 246.9501 MW, out 235.5447 MW)
+	
+11.405 MW (calculation Ce9335a)
+
+
+Brine total
+	
+23.769 MW (calculation C0c6184)
+
+
+Heat pump electricity (power_in, COP 4.173)
+	
+3.595 MW
+
+
+Boiler (out 279.8625 MW, in 277.2265 MW)
+	
+2.636 MW
+
+So roughly 24 MW of the peak is reservoir heat and 3.6 MW is electricity; the boiler trims the last 2.6 MW. The heat pump's sink rises from 262.2265 MW to 277.2265 MW, i.e. it runs at its full 15.0 MW.
+
+Is ~35 K brine cooling consistent with 2 × 300 m3/h? Yes. At that step the brine flow is 599.9955 m3/h (171.665 kg/s) and the brine cools from 85.028 degC at the wellhead to 52.196 degC after the heat pump — 32.83 K (calculation C52cde1). The year's worst is 35.52 K (d0, 2027-07-19) and 34.77 K (d1, 2027-05-25), against the case's 40 K limit: both pass. The worst cooling is in summer, not January, because the chiller then draws heat from the same 100 degC loop.
+
+Why an absorption chiller, not a compression chiller: two reasons.
+
+gemini has no compression chiller module. Its cooling category holds only AbsorptionUnit and AdsorptionChiller (list_modules), so a compression chiller could not be modelled here at all — this is a limit of the tool, not a finding about the site.
+The design has 100 degC water to spare. The absorption chiller (10.0 MW, thermal COP 0.7) is driven by that water and needs almost no power of its own: 237.425 MWh/yr of electricity for 23743 MWh of cold, plus 1157.96 MWh/yr for its dry cooler. On a plant that already buys 26728 MWh/yr of electricity, making cold from heat rather than from power is the cheaper route — and it is why geothermal cold share is 100 %.
+
+Caveat: the 24 / 3.6 / 2.6 MW split is a single day's snapshot from the daily-step run, not a design guarantee; the brine cooling figure is the one the case's requirement judges, and it passes at 35.52 K against 40 K.
+
+Write the report
+Explain the results
+Sensitivity analysis
+Auto-approve
