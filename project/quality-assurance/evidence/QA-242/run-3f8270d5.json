@@ -1,0 +1,23 @@
+{
+ "id": "3f8270d5-b11e-4c86-b3ca-b0b4d4feb61c",
+ "status": "failed",
+ "started": "2026-11-05T16:51:19.654441Z",
+ "ended": "2026-11-05T17:40:48.125661Z",
+ "usage": {
+  "input_tokens": 5442560,
+  "output_tokens": 233011,
+  "cost": 0.15163588800000002
+ },
+ "error": {
+  "code": "step_limit",
+  "message": "stopped after 30 steps"
+ },
+ "total": {
+  "input_tokens": 5442560,
+  "output_tokens": 233011,
+  "cached_tokens": 3405824,
+  "cost": 0.151635888,
+  "steps": 216,
+  "tool_calls": 365
+ }
+}
