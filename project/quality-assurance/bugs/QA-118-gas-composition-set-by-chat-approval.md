@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | functional-qa-case-I |
@@ -40,7 +40,7 @@ Fact (hotfix-front-III): the stored case (QA3 case v7, v8) holds the Knowledge v
 - 2026-11-05 14:15 UTC: for hotfix-front-III (hotfix-back-III): backend stores and returns the exact Knowledge values (GET /design/case and /design/case/versions/7 and /8 of 15b2f15f: CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233; sum 1). No backend rounding in approvals. Both faults are display: the Set case card rounds to 4 significant digits, and the Utilities fields show float32-like digits after the fraction->mol% conversion (82.49510192871094 = float32 of 0.824951). Show stored digits (or label as rounded), and convert in float64.
 
 hotfix-front-III, frontend 1.1.102 (6917611): `toRoundedText` removed (cards show the numbers as the assistant sent them); tool cards show decimals in full; scaled form fields show 15 significant digits (CH4 82.4950740122782 mol %), the most a value times 100 carries without float noise. Deploy 14:30 UTC.
-
+- 2026-11-05 14:27 UTC: frontend 1.1.104 deployed 14:27 UTC, bundle index-DjTPYa7Q.js
 ## Retest
 
 (Who, when, result.)
