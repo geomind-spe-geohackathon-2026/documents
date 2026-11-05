@@ -117,3 +117,4 @@ so, and the lead should not re-delegate the same refused call.
 ## Fix
 
 - 2026-11-05 17:02 UTC: geomind 0.4.99 (163c82b, tag v0.4.99), pushed 2026-11-05; NOT deployed yet (deploy freeze during the live run): the backend hotfix-mode deploy picks it up. QA-152: design/<project plant name> or design/v<N> in every design tool; QA-158: case lead prompt asks time_zone as an assumption.
+- 2026-11-05 17:07 UTC: Deployed: geomind 0.4.100 in backend 1.1.104 hotfix image, 2026-11-05.
