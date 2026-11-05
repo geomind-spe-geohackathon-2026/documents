@@ -65,3 +65,4 @@ requirements in a separate `set_case` (another approval card).
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 18:05 UTC, QA-AI-case-I, run 6a8dba9a-c35a-4474-8f66-d749a3a95964 (project QA-TEST QA-AI-case-I 6, ed01f425-6c69-4ec4-af65-fcc7902ac04e; geomind 0.4.114, backend 1.1.110; 17:56:00-18:03:13 UTC; log `../evidence/QA-230/run-6a8dba9a.json`) (geomind 0.4.114): still 2 refusals before the first stored `set_case`: (1) files-only call, (2) full call with `"unit": ""` on every fraction (dissolved gas CH4/CO2, gas composition, indoor relative humidity) and `columns` dropped: "problems at 10 paths". The suggestions now name the `columns` argument. New variant: an empty unit string is refused although the key takes "no unit" (`describe_case`: "no unit, or a unit of a fraction"); proposal: treat `"unit": ""` as no unit in `set_case` (geomind) or gemini's reader, or say "leave out unit" in the error.
