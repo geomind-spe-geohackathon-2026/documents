@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend |
 | Reporter | functional-qa-3 |
 | Found | 2026-11-05 09:27 UTC |
 | Versions | backend 1.1.79 (geomind 0.4.73), frontend 1.1.71 |
 | Where | https://geomind.team/projects/932b318c-f285-4827-aefe-c8fa3327735b/design/plant and /design/study; project QA2 functional-qa-3 studies (932b318c-f285-4827-aefe-c8fa3327735b), chat 510ab94f-c4f7-4019-9f75-cb40229b374e; runs 753645c0 and the 08:27 UTC run |
-| Fixer | |
+| Fixer | hotfix-back-II |
 
 ## Steps
 
