@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | blocker |
 | Area | infra |
 | Reporter | qa-func-1 |
@@ -35,7 +35,7 @@ Fact: the OpenRouter key has a total cap of 10 USD that does not reset. Chat tex
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:26 UTC: hotfix-back, backend 1.1.62 (9223d0b), deployed: the error is not swallowed in geomind (run.finished has stop_reason error and OpenRouter's text); the frontend shows 'internal error in geomind' for every stop_reason error. The backend now maps a provider 401/402/403/429 in the failure message to stop_reason and error.code provider_refused with a plain message (403 key limit: 'The model provider refused: key limit exceeded; an admin must raise it.'), live, on replay and in the run row; the frontend then shows 'Run failed: <message>'. Checked with the QA-068 message. The key limit itself is Sahand's (raised separately).
 ## Retest
 
 (Who, when, result.)
