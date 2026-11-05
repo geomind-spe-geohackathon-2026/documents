@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -35,7 +35,7 @@ Every place wrote durations and tokens with `Quantity` (plain number plus unit);
 ## Fix
 
 frontend 1.1.87, commit 97ab8e4 (hotfix-front-II): `src/shared/quantity/usage.tsx` (formatDuration, formatTokens, Duration, Tokens with the exact value as title). Used in: run header (log-page), run list and project total (runs/page), step tree, LLM and tool call lines (step-detail), per-agent/per-model totals, chat usage ring, agent usage, activity block durations, run_python card, chat timer. Study records carry no durations or tokens. Checked locally on run 7dcfcf93: "7 h 43 min 58 s 2.91 M tokens in · 90.6 K tokens out", hover "27,837.591 s", "2,906,166 tokens in". Deploy: 11:00 UTC window.
-
+- 2026-11-05 11:02 UTC: deployed 11:01 UTC, live 1.1.92 bundle index-BnoB2Kcd.js; live verification left to hotfix-front-III (handover at the context limit)
 ## Retest
 
 (Who, when, result.)
