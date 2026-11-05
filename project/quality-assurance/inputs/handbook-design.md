@@ -59,7 +59,7 @@ Do the steps in order; do not start a step before its gate holds.
 | # | Step | Gate to go on |
 |---|---|---|
 | 1 | `read_case` (whole, once), `list_plants`, `list_profiles`; read this chapter once | the case has no missing value; else hand over `case change needed: <path>: <why>` |
-| 2 | Choose the family by 0.2; record it in `design.families` with its reason | one family (a superstructure when two ways are sensible) |
+| 2 | Choose by 0.2 the family that fits best and at least one materially different alternative (10.7); record both in `design.families` with their reasons | two families: one superstructure, or two designs for one study |
 | 3 | Build ONCE (`build_plant`): a project plant that fits, else the gemini class of the family; set `params.backup` (8.4), `params.control.dispatch` and `params.control.outages` (each the one value gemini suggests) | stored design; `issues` listed |
 | 4 | Split the `issues` by the groups of 0.3, at most four; ONE `fill_parts`, one brief per group with its paths, the plant text of its modules, the case values with units, the interface values and the sections to read (0.7, 0.8 and its chapter) | every engineer answered |
 | 5 | Write ONCE: all `changes` in one `patch_plant`; record every assumption in one `update_state` | `missing` is 0 |
@@ -67,8 +67,8 @@ Do the steps in order; do not start a step before its gate holds.
 | 7 | `simulate` a short window around the critical day (heating peak; cooling peak too when cold is made from brine heat), then `check_results` | no failed step |
 | 8 | Fix from the failures by 0.5: the failure, gemini's message and the module's plant text to its owner, all owners in one `fill_parts`, one `patch_plant` | the change is applied |
 | 9 | `simulate` the whole period (no `start`, `end`), `check_results` | `feasible` true |
-| 10 | `optimize` few leaves with ranges from the user or the case (10.1, 10.2), `simulate` the best for the whole period, check it | a feasible, better design |
-| 11 | With two or more buildable families: one `run_study`, keep the best feasible, simulate it for the whole period | ranked |
+| 10 | `optimize` few leaves with ranges from the user or the case (10.1, 10.2), always the doublets (`size.doublets`, `dN.nominal_flow`) besides the capacities; `simulate` the best for the whole period, check it | a feasible, better design; no verdict on a design whose doublets were neither sized nor searched |
+| 11 | Compare the families in one `run_study` (each sized first, same objective, evaluations and seed), keep the best feasible, simulate it for the whole period | ranked; a family that cannot be built is reported `blocked` with its reason |
 | 12 | Record `design.reference`, `design.result`, `design.family`, `design.schematic`, the study key (`update_state`), then `finish` | recorded |
 
 Stop rule: at most three changes aimed at one failing requirement. After the third, keep the
@@ -200,6 +200,7 @@ Read the worst step of the failing reason (11.7), then the module's results arou
 | Equipment operating limit | ESP minimum intake pressure and maximum gas fraction, minimum drive temperature, minimum part load | as an equipment value; keep it on every unit (4.4, 10.4) | no |
 | Plant rule | `params.control.dispatch`, `params.control.outages` | the one value gemini's `suggestions` give (0.5) | no |
 | Lead's decision | backup policy, objective, number of evaluations, seed, family | the lead, as an assumption with its reason | no |
+| Network length and layout | the length, diameter and elevation of the pipes to the consumers when the plant models the network | the case, its files or its assumptions document in Knowledge; never invented | yes, when none gives it: hand over `case change needed: <path>: network length not given`, so the case lead asks the user |
 | Search range or option | `size.doublets` 1 to 3, `dN.nominal_flow`, `depth`, capacities | the user or the case (a range the plant file states, a requirement such as the doublet count) | yes, when missing: `ask_user` with the proposed values and a reason; `set_ranges` only after the answer |
 
 Sources in order of preference: the user's files, Knowledge, a connector, the web, a recorded
@@ -270,7 +271,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `heat_pump.supply_margin`, `boiler.supply_margin` | heating above the supply setpoint | K | small and positive to cover losses after the unit (9.4) | — |
 | `heat_pump.capacity`, `boiler.capacity` | ratings | MW | `size_plant` sets them (0.4) | — |
 | `boiler.efficiency` | fuel to heat | 1 | the boiler class (6.5) | — |
-| pipes `length`, `inner_diameter`, `roughness`, `elevation_change`, `heat_transfer_coefficient` | plant pipes | m, m, m, m, W/m2/K | the layout; the diameter for 1 to 3 m/s at the design flow (2.5) | roughness 4.5e-5 m for new steel [Moody 1944] |
+| pipes `length`, `inner_diameter`, `roughness`, `elevation_change`, `heat_transfer_coefficient` | plant pipes | m, m, m, m, W/m2/K | the length of a network pipe is the site's: from the case or Knowledge, else asked (0.6), never invented; the diameter for 1 to 3 m/s at the design flow (2.5) | roughness 4.5e-5 m for new steel [Moody 1944] |
 
 **Cooling (C)**
 
