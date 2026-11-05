@@ -33,11 +33,11 @@ rechecked against gemini 0.6.34.
 
 | Reader | Read first | Then, when the brief or a failure points there |
 |---|---|---|
-| Design lead | 0 (whole, once) | 8, 10, 11.7 |
-| Reservoir engineer (R): reservoir, doublets, treatment and gas | 0.3, 0.7, 0.8 | 3, 5 |
-| Well engineer (W): wells and pumps | 0.3, 0.7, 0.8 | 4 |
-| Energy systems engineer I (H): heating | 0.3, 0.7 | 6, 8.3, 9 |
-| Energy systems engineer II (C): cooling | 0.3, 0.7 | 7 |
+| Design lead | 0 (whole, once) | 8, 10, 11.7; 12.12 checking an optimum; 12.14, 12.15 lessons from runs |
+| Reservoir engineer (R): reservoir, doublets, treatment and gas | 0.3, 0.7, 0.8 | 3, 5; 12.17; 13.5, 13.7, 13.13, 13.16, 13.18 |
+| Well engineer (W): wells and pumps | 0.3, 0.7, 0.8 | 4; 12.10, 12.11; 13.1 to 13.4, 13.17 |
+| Energy systems engineer I (H): heating | 0.3, 0.7 | 6, 8.3, 9; 12.8, 12.16, 12.18; 13.6, 13.8, 13.10 to 13.12, 13.14, 13.15 |
+| Energy systems engineer II (C): cooling | 0.3, 0.7 | 7; 12.9, 12.19; 13.9, 13.11, 13.19 |
 
 Labels on values:
 
