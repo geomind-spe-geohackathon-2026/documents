@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | data |
 | Reporter | QA-E2E-economics-I |
@@ -134,4 +134,5 @@ to 157), and let the assumptions file cite these row ids for the three prices.
 
 ## Fix
 
+- 2026-11-05 17:30 UTC: Data part: exact sample values, gwp.standard text, the four economics uncertainties as JSON in the assumptions file, three cited catalogue rows. geomind 802aa38 (data/knowledge) + documents a67e69e; Knowledge data-economics.csv d131d47f, .md fc16fbd5, handbook-economics 8a18dc2d, hackathon-2026-assumptions ad05815c (2026-11-05 ~17:45 UTC, handbook-econ-report-I). Catalogue read from Knowledge at run time: no deploy needed. Code part (ask_economics carrying uncertainty) filed as QA task below.
 ## Retest
