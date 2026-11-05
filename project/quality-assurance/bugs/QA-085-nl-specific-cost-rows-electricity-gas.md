@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-2 |
@@ -37,6 +37,19 @@ Fact: source ids in about.sources. Guess: the catalogue's 'recommended' row per 
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 10:01 UTC: geomind 0.4.78 + gemini 0.6.12 in backend 1.1.83 (5b2691e), deployed 2026-11-05 10:00 UTC by hotfix-python-II
+- 2026-11-05 18:41 UTC: reopened by QA-E2E-case-I: site Trondheim, Norway in the case, economics question still recommends 9 NL rows (see file)
 ## Retest
 
 (Who, when, result.)
+
+## Seen again (QA-E2E-case-I, 2026-11-05 18:40 UTC, backend 1.1.116)
+
+Project QA-TEST QA-E2E-case-I 6 (80139e85), no files, site given by the user: "Trondheim, Norway"
+(the case holds `about.site: "Trondheim, Norway"`). The economics question (run 3bb1de01) recommends
+rows "prices of the Netherlands" for electricity (115.015 EUR/MWh, electricity-nl-eurostat-price-2024-band-ie),
+gas (37.5077, gas-nl-...), drilling (drilling-nl-2013-2300m), degasser (degasser-nl-2013) and the
+discount rate (0.051, pbl SDE++ NL), while it takes a Norway row for the cold revenue. The note under
+the list says "name the site's country to take its rows" although the country is already in the case.
+Evidence: `../evidence/QA-085/QA-E2E-case-I-project6-economics-question.txt` (9 NL rows, 1 NO row).
+Proposed fix: ask_economics / the economist pick rows by `about.site` country first; when none exists for
+that country, the EU row (not another country's), and say so in the question.
