@@ -272,7 +272,7 @@ with the study's kind, settings and plant version (editable), and the backend ne
 
 ## IMP-025: parallel agents, one lead assigns
 
-Status: approved by the user, TOP priority (Coordinator-IV's chat, 2026-11-05 15:05 UTC). Goal: a
+Status: approved by the user, TOP priority (Coordinator-IV's chat, 2026-11-05 15:05 UTC; every stage, plant building next after the case). Goal: a
 complete case in about 5 minutes instead of 30+.
 
 The lead of a stage splits its work into tasks and assigns each to an agent instance; instances
