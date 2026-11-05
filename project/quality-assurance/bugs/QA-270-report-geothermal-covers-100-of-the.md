@@ -9,7 +9,7 @@
 | Found | 2026-11-05 18:30 UTC |
 | Versions | backend 1.1.109 (geomind 0.4.110, gemini 0.6.17+), frontend bundle index-TsXgd_n9.js |
 | Where | https://geomind.team/projects/fa329839-43df-48c3-81c3-89af503b92c0/design/report; project QA-TEST QA-E2E-report-I 2; result "simulation v1" (plant v1 HackathonPlant); same on project 1 result a528d8da |
-| Fixer | |
+| Fixer | hotfix-back-lead-II |
 
 ## Steps
 
@@ -57,6 +57,7 @@ split may need a gemini coverage field (list it for Sahand if so).
 
 - Note (QA-E2E-report-I, 2026-11-05 19:00 UTC): gemini already gives the split. In run 8efe3722 (project 2, case v4) the agents quote from `compute_kpis`: "geothermal_heat 95922 MWh (85.90 % of the heat delivered), heat_pump_electricity 15746 MWh, boiler_heat 0.0 MWh". On the same result the Report page still says "Geothermal covers 100%". So the backend can take `geothermal_heat` / `heat_pump_electricity` from the KPIs instead of demand minus boiler; no gemini request needed.
 - 2026-11-05 18:59 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+- 2026-11-05 19:02 UTC: backend 1.1.118 d4ee0d2
 ## Retest
 
 A new simulation of a heat-pump plant: Report Summary and tiles give the heat-pump electricity share apart from geothermal.
