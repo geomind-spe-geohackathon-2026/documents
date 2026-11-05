@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -40,3 +40,4 @@ hotfix-front-IV: DialogContent `max-h` instead of `h` (height follows content, a
 ## Retest
 
 hotfix-front-IV, live, Playwright /tmp/hf-check/qa137.js: list window and version window size to their content; Flowsheet view fits.
+- 2026-11-05 14:58 UTC: live check /tmp/hf-check/qa137.js on geo mind testing
