@@ -83,3 +83,15 @@ history by hand.
 ## Retest
 
 (Who, when, result.)
+
+- 2026-11-05 18:44 UTC, QA-AI-analysis-I, backend 1.1.112 (geomind 0.4.119, gemini 0.6.19): fresh project
+  `QA-TEST QA-AI-analysis-I 7` (96aa1de5-80e9-4e52-8424-1c9c95bbcc1f), same seed (v1 HackathonPlant, v2
+  HeatingAbsorptionCoolingPlant) and the same chat text, run 73ef62c4-c095-4551-96dc-2ccaffe4549d. `optimize(design/v2)`
+  60.1 s, 270 trials; the trials were not read one by one any more (design lead: 1 `read_stored result.history.0`, 0
+  `run_python`, no analysis-lead re-reading); the answer says "270 trials ... best point is exactly the design we
+  started from" (2 doublets, 300 m3/h, 10 MW chiller, LCTS 49.28 EUR/MWh - the same as the original report's 49.281)
+  and no longer rests on a sample of the trials. Verified for this bug. Not given: the feasible share and the spread per
+  variable (the answer has no history summary at all). The "best = start" is again the optimiser not moving (see
+  QA-285). The run itself took 33 min / 0.101 USD, mostly because the design lead re-built the stored plant 5 times and
+  sent it to 4 engineers before using `design/v2` (QA-221; the re-built `sized2` failed all 270 trials, 68 s).
+  Log: `../evidence/QA-205/run-73ef62c4-retest-log.json`.
