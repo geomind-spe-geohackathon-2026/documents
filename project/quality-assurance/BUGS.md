@@ -68,3 +68,4 @@ wont-fix, duplicate.
 | [QA-060](bugs/QA-060-during-a-deploy-the-site-answers.md) | open | minor | infra | During a deploy the site answers every page with a bare text '404 page not found' (no app shell, no retry) | qa-ux |  |
 | [QA-061](bugs/QA-061-question-card-shows-an-internal-note.md) | open | minor | geomind | Question card shows an internal note: 'Already answered in this run, not asked again: ... (request-530)' | qa-ux |  |
 | [QA-062](bugs/QA-062-chat-opened-or-reloaded-during-a.md) | fixing | minor | frontend | Chat opened (or reloaded) during a run shows the top of the transcript and 'Thinking'; the pending question card is not in view | qa-ux | hotfix-front |
+| [QA-063](bugs/QA-063-case-page-shows-dissolved-gas-as.md) | open | major | frontend | Case page shows dissolved gas as CH4 8000 mol% and CO2 2000 mol% (total 10000 %, 'should be 100 %') while the stored case says 80 and 20 | qa-func-1 |  |
