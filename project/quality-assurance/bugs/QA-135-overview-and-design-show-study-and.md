@@ -37,6 +37,9 @@ Study and Results 'Out of date' before and after the run; Activity shows 'Study 
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 14:37 UTC: hotfix-back-III, cause (fact): GET /design/results lists oldest first (contract, paginate by created asc); frontend toStaleSteps(project, results.data?.[0]) in src/app/layouts/progress.tsx:20 and src/domains/workspace/overview/page.tsx:20 takes the OLDEST result as the newest. QA3 study: oldest = 'simulation HackathonPlant' (case 3, plant 1) vs project plant 13 -> Out of date; newest is sized2 (case 3, plant null) -> current. Fix for hotfix-front-III: use the last item (or max by created). Note: agent results have plant_version null (backend 1.1.81) and a plain chat simulate saves a new plant version with no result (QA-092), so freshness there is judged by case only. No backend change.
+
+hotfix-front-III, frontend part, 1.1.106 (b2720e5), deployed 14:43 UTC (bundle index-C139P2pV.js). Cause (fact): Overview (`overview/page.tsx`) and the sidebar (`app/layouts/progress.tsx`) passed `results[0]` to `toStaleSteps`, but GET /design/results lists oldest first, so the stepper compared the project's case/plant versions with its OLDEST result. QA3 study: oldest result (simulation, 10:01, older plant) vs newest sized2 (11:10, current). Fix: judge by the newest result by `created`. Live after deploy: QA3 study and geo mind testing no longer 'Out of date'; SPE GeoHackathon 2026 still is (its newest result is older than its plant). Backend part (a plain simulate writes no Results row, QA-092) stays with hotfix-back-III.
+
 ## Retest
 
 (Who, when, result.)
