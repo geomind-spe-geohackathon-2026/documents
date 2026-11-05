@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
 | Found | 2026-11-05 19:46 UTC |
 | Versions | backend 1.1.123 |
 | Where | https://api.geomind.team; project QA-TEST QA-AI-project-I 1 (35a70dbe-5e24-4f51-9c6f-50e06d47fe82); chat 134dae07-2e37-4a3a-ae0b-83b5e812017e (the long chat); run b848fa44-5833-4b39-bfee-19633798a880 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II (m3) |
 
 ## Steps
 
