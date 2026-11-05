@@ -298,6 +298,13 @@ team, which have no file access, only do their sub-task and return the result; w
 the lead writes once, re-splits any remaining problem among its team, repeats until done, then
 reports to the project manager.
 
+Frontend (d) done: frontend 1.1.107 (commit 5aa65f3, live 2026-11-05, bundle index-BDwy0Jz3.js,
+hotfix-front-IV): while a run works, each instance has its own line under its lead ("Geoscientist I
+· Thinking · 12 steps"), each opening its own steps; lines and step counts are keyed by agent path
+and `instance` (the public events carry no run id). Run panel agents and per-agent usage show the
+instance name. Checked live with a mocked event stream (three instances, /tmp/hf-check/imp025.js);
+a real parallel run is still to be seen once geomind 0.4.91 is live.
+
 ## IMP-026: cooling with real heat loss and part load
 
 Status: idea (Fatemeh, 2026-11-05 15:00 UTC). Today the cooling side is tested only with lossless
