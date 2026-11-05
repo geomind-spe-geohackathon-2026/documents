@@ -84,3 +84,4 @@ Not found; facts and two guesses:
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 19:41 UTC, QA-AI-case-I: reproduced in run e4e3e1f7-e5ef-4a0c-8df8-da7d3b8c4419 (project QA-TEST QA-AI-case-I 13, ; same request, geomind 0.4.131): after approve all (19:28:03) the case lead sends files-only `set_case` 3 times and stops (nested_stopped); the project lead re-sends it twice more (6 + 3 files-only calls); the project lead then stores the case itself after 2 more files-only calls and 3 refused full calls (19:38:39). 16 files-only calls in total. The run then fails on QA-331. Evidence: `../evidence/QA-326/run-e4e3e1f7.json`. 2 of 2 runs on 0.4.131.
