@@ -55,4 +55,5 @@ from the run's `request`. At least change the text to point to a place that has 
 
 ## Fix
 
+- 2026-11-05 18:39 UTC: QA-E2E-case-I 18:39 UTC, backend 1.1.116: the set_case card of project QA-TEST QA-E2E-case-I 6 lists every leaf (path: value unit, 60+ lines), nothing cut: looks resolved by another change; fixer please confirm and close
 ## Retest
