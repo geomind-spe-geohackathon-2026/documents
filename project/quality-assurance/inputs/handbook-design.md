@@ -22,6 +22,7 @@ rechecked against gemini 0.6.34.
   section: ESP curves, split wells, injection pump, wellhead pressure, productivity and skin,
   pressure drops, degasser, boiler efficiency, dew point, storage, part load, COP models, brine
   cooling, network, CHP, gas compressor, line-shaft and circulation pumps, ATES, ice storage);
+  15 brine and water properties;
   14 the core design problem step by step (temperature match, doublets, part load and days
   off, backup, co-produced gas, cooling choice, pressure budget, families, energy checks); appendices A formulas, B rules of thumb, C glossary, D references.
 - **Chapter 0 is the working chapter**: the checklist, the decision order, where each value comes
@@ -2123,7 +2124,8 @@ et al. 2013; Dake 1978]:
 p_wh,inj = p_res + Q / II + Δp_f − ρ_inj g z_res
 
 with II the injectivity index (m3/h/bar), Δp_f the friction down the injector and ρ_inj the
-density of the cooled brine. Cold brine is denser than reservoir brine, so the column helps.
+density of the cooled brine. Cold brine is denser than reservoir brine, so the column helps. gemini
+holds one density for the brine (15.1), so its injection pressure leaves this help out.
 
 Invented numbers: p_res 250 bar at 2,500 m, II 25 m3/h/bar, Q 300 m3/h (12 bar), friction 4 bar,
 ρ_inj 1,060 kg/m3 (column 260 bar): p_wh,inj = 250 + 12 + 4 − 260 = 6 bar [derived]. With a skin
@@ -2666,7 +2668,8 @@ brine 1,065 kg/m3, injector friction 3 bar) [derived]:
 - Pumping is 550 kW against 12.1 MW of heat: 4.5 % [derived]. A pumping share above about 10 %
   points to a low PI, too much flow per doublet, or too small wells.
 
-Lessons: the cold column helps injection by 4 bar here (ρ_inj − ρ), the injector's skin and
+Lessons: the cold column helps injection by 4 bar here (ρ_inj − ρ; gemini's constant density
+leaves this out, 15.1), the injector's skin and
 the producer's PI dominate both pumps, and a deeper pump buys intake pressure at about 0.1 bar
 per metre (12.10). In gemini a designed `Doublet` sets the ESP depth and rating from
 `nominal_flow`, `pump_efficiency` and `nominal_wellhead_pressure`; `size_plant` rates the
@@ -2767,6 +2770,82 @@ and check intake pressure, gas fraction, pump power and delivered heat. If the l
 hard limit, the design needs margin: a deeper pump setting, a lower design flow with one more
 doublet, or a backup policy that covers a weak doublet (14.4). State which case the design was
 sized for.
+
+# 15 Brine and water properties
+
+The properties of the produced brine and the network water set every heat and pressure number.
+This chapter gives their values with temperature and salinity, and how gemini uses them.
+
+## 15.1 How gemini holds fluid properties
+
+gemini's fluids use one property model, `constant_stp`: density, viscosity, specific heat and
+thermal conductivity are constants that do not change with pressure or temperature [gemini:
+`gemini/physics/fluid.py`, `gemini/streams/fluid.py`]. The reservoir brine is the case's
+`site.fluid` [gemini: `gemini/engine/apply.py`]; the model "does not infer brine density or
+viscosity from salt concentration; supply measured values" [gemini: `gemini/streams/fluid.py`].
+
+Consequences for the designer:
+
+- **State the properties at the temperature where they matter most.** Viscosity enters the
+  productivity index (13.5) at reservoir temperature; take it there. The same constant then holds
+  in the injector, where cold brine is about twice as viscous (15.2): gemini's injectivity and
+  injection pressure are optimistic for cold injection. Add margin to the injection pump (4.9) or
+  test a lower injectivity in a sensitivity study.
+- **Density is one number**: gemini's well columns carry the same density hot and cold, so the
+  extra weight of the cooled injection column (14.7, 13.3) is not in its numbers. The hand
+  budget of 14.7 shows its size; gemini's injection pressure is the conservative side of it.
+- **Specific heat** sets heat per cubic metre (A.5): a 5 % error in c_p is a 5 % error in every
+  doublet's heat.
+- Free gas is given by `gas_liquid_ratio` and `gas_composition` (or `gas_mass_fraction`);
+  dissolved CO2 for corrosion by `co2_mass_fraction` (17.4) [gemini: `gemini/streams/fluid.py`].
+
+These are case values: the case lead sets them from the user's files or Knowledge; a designer who
+finds them missing or implausible hands over `case change needed` (0.5.1).
+
+## 15.2 Water properties with temperature
+
+Saturated liquid water [textbook: Incropera et al. 2007, table A.6; Cengel and Boles 2015]:
+
+| T, °C | Density, kg/m3 | Viscosity, mPa s | c_p, kJ/kg/K |
+|---|---|---|---|
+| 20 | 998 | 1.00 | 4.18 |
+| 40 | 992 | 0.65 | 4.18 |
+| 60 | 983 | 0.47 | 4.18 |
+| 80 | 972 | 0.35 | 4.20 |
+| 100 | 958 | 0.28 | 4.22 |
+| 120 | 943 | 0.23 | 4.25 |
+
+What it shows: viscosity falls by a factor of three to four from 20 to 100 °C, density by about
+4 %, c_p hardly changes. A PI measured at 20 °C water in a test is not the PI of 100 °C brine:
+scale it by the viscosity ratio (PI ∝ 1/μ, 13.5).
+
+## 15.3 Brine: the effect of salinity
+
+Dissolved salt raises density and lowers specific heat. Near seawater salinity, using seawater as
+the proxy for a sodium chloride brine [paper: Sharqawy, Lienhard and Zubair 2010]:
+
+- density rises about 0.75 kg/m3 per g/kg of salt (seawater of 35 g/kg: about 1,024 kg/m3 at
+  25 °C against 997 for pure water);
+- c_p falls about 1 % per 10 g/kg (35 g/kg: about 3.99 kJ/kg/K against 4.18);
+- viscosity rises a few per cent per 10 g/kg.
+
+Sedimentary basin brines often carry 50 to 250 g/l of salt [textbook: Stober and Bucher 2013];
+beyond seawater salinity the proxy loses accuracy: use measured values.
+
+Worked (invented): a brine of 100 g/kg against pure water at 80 °C: density about 972 + 75 =
+1,047 kg/m3, c_p about 4.20 × (1 − 0.10) = 3.78 kJ/kg/K [derived, extrapolated; treat as an
+estimate]. Per m3, ρ c_p = 3.96 MJ/m3/K against 4.08 for water: 3 % less heat per m3. The heavier
+column raises the hydrostatic reservoir pressure (A.2) and the pump work for the same lift.
+
+## 15.4 Network water and glycol
+
+District heating water is treated water: use water properties at the network's mean
+temperature. Chilled water circuits that may freeze, or ice storage coils (13.19), use glycol
+mixtures; gemini's `glycol_fraction` is a volume fraction [gemini: `gemini/streams/fluid.py`].
+Glycol lowers c_p and raises viscosity, so the pump and the coil need more flow and power for the
+same duty: a 30 % propylene glycol mixture has a c_p about 10 % below water's and a viscosity
+several times higher at low temperature [ASHRAE Handbook, Fundamentals, chapter on secondary
+coolants]. Use glycol only where freezing is possible.
 
 ---
 
@@ -2952,6 +3031,8 @@ always in the original):
 - Mijnlieff, H., et al. (2013). SDE+ reference case, European Geothermal Congress (as cited in gemini).
 - Moody, L. F. (1944). Friction factors for pipe flow. *Trans. ASME* 66.
 - Nocedal, J., Wright, S. J. (2006). *Numerical Optimization*, 2nd ed. Springer.
+- Sharqawy, M. H., Lienhard, J. H., Zubair, S. M. (2010). Thermophysical properties of seawater: a
+  review of existing correlations and data. *Desalination and Water Treatment* 16, 354-380.
 - Stober, I., Bucher, K. (2013). *Geothermal Energy: From Theoretical Models to Exploration and
   Development*. Springer.
 - Svarovsky, L. (2000). *Solid-Liquid Separation*, 4th ed. Butterworth-Heinemann.
