@@ -36,6 +36,17 @@ still active, 58 steps.
 | IMP-009 | idea | geomind | read_case returns an unset section as empty with a note, not an error | fewer red errors (QA-001, QA-014) |
 | IMP-010 | idea | geomind | Ask only for the values gemini reports missing for the chosen plant | one question instead of six (QA-009, QA-010, QA-015) |
 | IMP-011 | idea | geomind | The design lead gives each engineer a case summary in its brief | fewer repeated reads, smaller contexts |
+| IMP-012 | idea | geomind | Tools fix pure format slips in code and say so (names, {value}, setpoint, over/when, unit aliases) | about half of the first-try refusals |
+| IMP-013 | idea | geomind | evaluate_module takes its inlets from the design, and its schema requires them | 77 % of 430 calls fail today |
+| IMP-014 | idea | geomind | Each engineer is told and shown only its own paths | 170 patch_plant not_allowed |
+| IMP-015 | idea | geomind | Stop repeating the same failing call: after two identical errors the agent must change the call or hand back | 89 identical evaluate_module errors in a row |
+| IMP-016 | idea | geomind | A round budget per failing requirement: hand back to the project lead instead of hours of attempts | QA-090: 2h40, 17.7M tokens |
+| IMP-017 | idea | geomind | Make the design reach optimisation: optimize once all requirements pass; a targeted test of optimize and evolve_structure | 0 of 45 runs reached optimize; evolve_structure never called |
+| IMP-018 | idea | geomind | Check build_plant and patch_plant before the approval, as set_case does | no approval of a refused write |
+| IMP-019 | idea | geomind, gemini | A choice gemini allows only one value for (dispatch least_cost) is filled by the tool with a note | 14 refused simulates; Sahand decides |
+| IMP-020 | idea | geomind | read_stored shows the outline of a result (keys two levels deep) when the path is wrong | 127 unknown_name |
+| IMP-021 | idea | geomind | Examples in the skills generated from gemini's own schema; evals from the real refusals | prompts that do not drift from gemini |
+| IMP-022 | idea | QA | Two measures after every deploy: first-try error rate per tool; runs that reach simulate, check and optimize | shows whether a fix helps |
 
 ## IMP-001: ask_economics fills the recommended rows itself
 
@@ -117,3 +128,97 @@ utilities and economics, read_profile, read_plant, and up to 16 describe_module 
 systems engineer, steps[94]). Each starts at 20 k to 50 k input tokens, and a restart (QA-016) reads
 it all again. Proposal: the design lead (or fill_parts) puts a short case and plant summary in each
 brief, and the engineers read only what their part needs.
+
+## Measured on production, 2026-11-05 10:15 UTC (tool calls since 2026-11-04 18:00 UTC)
+
+Read-only from `run_events` by Fatemeh's QA session. 45 runs; 6 reached a successful `simulate`; 0
+called `optimize`; `evolve_structure` was never called by an agent (one `optimize` ever, 2026-11-02).
+
+| Tool | Calls | Refused | Main refusals |
+|---|---|---|---|
+| calculate | 67 | 82 % | units gemini lacked (m/s2, kg/m2: QA-074) |
+| evaluate_module | 430 | 77 % | `inlets = []` (about 140), `temperature_setpoint` as a parameter, not a control (52), module names `heat_pump` / `compression_chiller` (20), wrong inlet names |
+| simulate | 175 | 67 % | missing plant values, `params.control.dispatch` missing (14: 'least_cost' is the only value) |
+| patch_plant | 502 | 61 % | `not_allowed`: another engineer's path (170), internal error (18, QA-083), missing values |
+| build_plant | 102 | 60 % | type with other modules, bare strings for choices (QA-018, QA-052) |
+| set_case | 171 | 49 % | value forms, `over`/`when` where the quantity takes none, files without a time zone |
+| read_stored | 1088 | 12 % | guessed paths (`steps.0`, `summary.summary`, a module id) (127) |
+
+The same error came back in a row from the same agent: evaluate_module 89 times, read_plant 19,
+patch_plant 19. By agent, the most refusals: design lead 454 of 3622 calls, energy systems engineer
+375 of 1453, case lead 191 of 1686.
+
+## IMP-012: tools fix pure format slips in code
+
+A slip of form, not of value, is fixed by the tool itself, with a note in the answer saying what it
+changed, so the agent learns it and the user can see it: a module name in another case or in snake
+case (`heat_pump` -> `HeatPump`), a bare choice (`"none"` -> `{"value": "none"}`), a control given as
+a parameter (`temperature_setpoint` moved to `controls`), `over`/`when` on a quantity that takes
+none (dropped), a known unit spelling (`m/s^2`, `m/s²` -> `m/s2`). No value is invented, so the
+no-default rule holds. The cheapest and largest gain.
+
+## IMP-013: evaluate_module gets its inlets from the design
+
+Agents call evaluate_module with no inlets about 140 times; the tool cannot work without them. When
+the call names a design (or a simulated result), the tool takes the module's inlets from it; the
+input schema makes `inlets` required with at least one item and names the module's inlet names, so
+a call without them is not even sent. If agents still cannot use it, take it from the agents that
+do not need it (the energy systems engineer has the most refusals).
+
+## IMP-014: each engineer sees only its own paths
+
+170 patch_plant refusals are one engineer writing another's path. fill_parts (and every brief to an
+engineer) lists the paths it owns from `design.owners`; read_plant called by an engineer shows its
+own missing values first and marks the others as "owned by X, hand back". patch_plant's precheck
+refuses another's path before any approval, with the owner's name.
+
+## IMP-015: no identical failing call twice
+
+The loop's guard stops a run after three identical calls; slightly different calls with the same
+error go on (89 identical evaluate_module errors in a row). After the same error code on the same
+path twice, the loop tells the agent: "this failed twice the same way: change the call (see the
+message) or hand back with the message". Saves steps and tokens at once.
+
+## IMP-016: a round budget per failing requirement
+
+QA-090: 2h40, 17.7M input tokens, 18 plant variants on one failing rule (QA-091). After two design
+rounds that end with the same requirement failing, the design lead hands back to the project lead
+with that requirement, what it tried and gemini's messages; the project lead reports to the user
+(or the team) instead of a third round.
+
+## IMP-017: reach optimisation
+
+The brief asks to "improve the design iteratively"; no run since yesterday reached `optimize`, and
+gemini's genetic search (`evolve_structure`) has never run through the agents. Once a design passes
+every requirement, the design lead runs `optimize` on it (objective from the brief, a small number
+of evaluations first) and simulates the best; and a QA session runs one targeted test: a feasible
+sized design, then `optimize`, then `evolve_structure` on a superstructure, before the deadline.
+
+## IMP-018: precheck before approval for plant writes
+
+set_case checks before it asks for approval (QA-037). build_plant and patch_plant ask first, then
+gemini refuses (60 % and 61 %). Run gemini's check first; ask for approval only for a write that
+passes.
+
+## IMP-019: a choice with one allowed value
+
+`params.control.dispatch` has one valid value ('least_cost'); simulate refused 14 times for its
+absence. The tool fills a choice that gemini allows only one value for, with a note. It is no
+physical value, but it touches the no-default rule: Sahand decides.
+
+## IMP-020: read_stored shows the outline
+
+127 refusals from guessed paths. On a wrong path, read_stored returns the result's outline (keys two
+levels deep, list lengths) beside the message, so the next call is right.
+
+## IMP-021: examples from gemini's schema, evals from real refusals
+
+Hand-written prompt rules drift from gemini (today: the new unmet_share rule written with over/when,
+QA-091). The skills carry one example per requirement quantity and per module call, generated from
+gemini's schema at release time. Each refusal above becomes an offline eval case (no LLM tokens), so
+a prompt or tool change is checked against them.
+
+## IMP-022: two measures after every deploy
+
+The table above, per deploy: first-try refusal rate per tool, and how many runs reach simulate,
+check_results feasible, and optimize. A fix that does not move them did not help.
