@@ -51,3 +51,12 @@ Either (a) in `set_case`, replace an `uncertainty` object whole when the patch c
 ## Fix
 
 - 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
+
+## Retest
+
+- 2026-11-05 19:15 UTC, QA-AI-analysis-I, backend 1.1.120: project `QA-TEST QA-AI-analysis-I 8` (reference case,
+  discount_rate normal std 0.01), "How sensitive is the LCTS to the discount rate if it lies uniformly between 3 % and
+  9 %? Use exactly my range.", run 6c88bb13-3982-4c05-a310-ee32162ee622. The lead's first `set_case` sent
+  `{"kind": "uniform", "min": 0.03, "max": 0.09, "std": null}` and was accepted (one card); the economist ran
+  `sensitivity(values=["economics.discount_rate"])`: LCTS 41.65 at 3 %, 52.99 at 9 %, effect 11.34 EUR/MWh. 58 s,
+  0.0029 USD. Verified. Log: `../evidence/QA-154/run-6c88bb13-retest-log.json`.
