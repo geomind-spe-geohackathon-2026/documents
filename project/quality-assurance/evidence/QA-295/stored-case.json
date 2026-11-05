@@ -1,0 +1,188 @@
+{
+ "project": "77e0d7c1-cf15-4931-a74d-71516aafd0a4",
+ "version": 2,
+ "content": {
+  "kind": "case",
+  "name": "Trondheim small-town geothermal district heating",
+  "site": {
+   "air": {
+    "about": {
+     "pressure": "ISA (ISO 2533:1975) at the site's elevation 10 m: p = 101325*(1-2.25577e-5*h)^5.25588 Pa, h the elevation in m"
+    },
+    "pressure": {
+     "unit": "Pa",
+     "value": 101204.92615896827
+    },
+    "temperature": {
+     "unit": "degC",
+     "value": 5
+    }
+   },
+   "fluid": {
+    "density": {
+     "unit": "kg/m3",
+     "value": 1030
+    },
+    "viscosity": {
+     "unit": "mPa.s",
+     "value": 0.4
+    },
+    "dissolved_gas": {
+     "CH4": {
+      "unit": "-",
+      "value": 0.8
+     },
+     "CO2": {
+      "unit": "-",
+      "value": 0.2
+     }
+    },
+    "gas_liquid_ratio": {
+     "unit": "Nm3/m3",
+     "value": 0.8
+    },
+    "sand_concentration": {
+     "unit": "mg/l",
+     "value": 20
+    }
+   },
+   "ground": {
+    "gradient": {
+     "unit": "\u00b0C/km",
+     "value": 30
+    },
+    "surface_temperature": {
+     "unit": "degC",
+     "value": 5
+    }
+   },
+   "reservoir": {
+    "pressure": {
+     "unit": "barg",
+     "value": 250
+    },
+    "thickness": {
+     "unit": "m",
+     "value": 100
+    },
+    "permeability": {
+     "unit": "mD",
+     "value": 200
+    },
+    "reference_depth": {
+     "unit": "m",
+     "value": 2500
+    }
+   }
+  },
+  "time": {
+   "end": "2028-01-01",
+   "step": {
+    "unit": "d",
+    "value": 1
+   },
+   "start": "2027-01-01"
+  },
+  "about": {
+   "site": "a town of about 5000 homes near Trondheim, Norway; heating only, about 20 MW peak; no demand file, so the heating demand is a constant power",
+   "notes": "No project files and no case existed; no Knowledge assumptions document covers this town. Every value not given by the user is an engineering assumption or a design choice, approved by the user in one question."
+  },
+  "demand": {
+   "heating": {
+    "power": {
+     "unit": "MW",
+     "value": 20
+    },
+    "return_pressure": {
+     "unit": "bar",
+     "value": 6
+    },
+    "return_temperature": {
+     "unit": "degC",
+     "value": 50
+    },
+    "supply_temperature": {
+     "unit": "degC",
+     "value": 90
+    }
+   }
+  },
+  "format": 1,
+  "economics": "economics.json",
+  "utilities": {
+   "electricity": {
+    "co2_intensity": {
+     "unit": "g/kWh",
+     "value": 30
+    }
+   }
+  },
+  "requirements": [
+   {
+    "on": "doublet",
+    "max": 3,
+    "min": 1,
+    "name": "doublet_count",
+    "quantity": "count"
+   },
+   {
+    "on": "heating_supply",
+    "max": 0.01,
+    "name": "heat_delivered",
+    "quantity": "unmet_share"
+   },
+   {
+    "on": "doublet",
+    "max": 0.7,
+    "min": 0.7,
+    "name": "pump_efficiency",
+    "quantity": "pump_efficiency"
+   },
+   {
+    "on": "doublet",
+    "max": 1.00001,
+    "min": 0.99999,
+    "name": "full_reinjection",
+    "over": "each",
+    "when": "running",
+    "quantity": "reinjection_ratio"
+   },
+   {
+    "on": "doublet",
+    "max": 330,
+    "name": "running_time_limit",
+    "over": "duration",
+    "unit": "d",
+    "when": "running",
+    "quantity": "production_flow"
+   },
+   {
+    "on": "doublet",
+    "max": 40,
+    "name": "brine_cooling_limit",
+    "over": "each",
+    "unit": "K",
+    "when": "running",
+    "quantity": "brine_cooling"
+   },
+   {
+    "on": "doublet",
+    "max": 300,
+    "min": 50,
+    "name": "production_flow_range",
+    "over": "each",
+    "unit": "m3/h",
+    "when": "running",
+    "quantity": "production_flow"
+   }
+  ]
+ },
+ "files": [
+  {
+   "name": "economics.json",
+   "size": 24570
+  }
+ ],
+ "missing": [],
+ "problems": []
+}
