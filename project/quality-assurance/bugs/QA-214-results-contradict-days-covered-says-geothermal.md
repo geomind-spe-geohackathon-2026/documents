@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | gemini,frontend |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 17:30 UTC |
 | Versions | backend 1.1.106, frontend bundle index-CEvw1roy.js |
 | Where | https://geomind.team/projects/8fcbf709-537a-40d9-ac1f-abadd1061775/design/results (project `QA-TEST QA-E2E-study-I 1`); result 7e0c79f0-3a4d-429a-bbdb-2f3ed13c53f2 "simulation opt1" (plant version 4, HeatingAbsorptionCoolingPlant, 2 doublets, 2500 m) |
-| Fixer | |
+| Fixer | hotfix-front-VII |
 
 ## Steps
 
