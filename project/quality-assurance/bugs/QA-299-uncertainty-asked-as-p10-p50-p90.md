@@ -52,3 +52,9 @@ gemini: the sample summary takes `percentiles` (default [5, 10, 50, 90, 95]) or 
   20bd2c15-1af8-4372-a47f-a32d054f339e: still p5/p50/p95 only ("gemini cannot give P10 and P90"), but now rounded to 5
   digits (40.845 / 46.347 / 51.571 EUR/MWh). STATUS says gemini 0.6.27 (the fix) was pushed, not deployed, at 20:20 CET,
   so this is not a failed retest; to retest once gemini 0.6.27+ is live.
+- 2026-11-05 21:05 CET (20:05 UTC), QA-AI-analysis-II, backend live with gemini 0.6.33: project `QA-TEST QA-AI-analysis-I 8`,
+  run b7c1de20-c79d-435e-95e0-83abac599439: not retestable yet. The economist's `read_skill economics` still returns the
+  old text ("summary gives p5, p50 and p95 only; P10/P90 are named as not given"), no `percentiles` is passed, and the
+  answer again says P10 and P90 are not available (p5/p50/p95 = 40.845/46.347/51.571). The geomind fix 1cc7ea6 (skill
+  text + `percentiles` pass-through) is on main and an ancestor of c4108d3, but the live worker does not carry it:
+  geomind deploy pending (gemini side 0.6.27+ is live). Retest after the next geomind deploy.
