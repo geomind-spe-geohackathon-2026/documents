@@ -763,7 +763,7 @@ with `current`. `read_study(study)`: one study by its key; its history comes sum
 ## 13. Questions agents ask, answered
 
 **Where is an earlier result or study of this project?** `list_studies`: project studies and
-`project_result` entries, newest first; never `search_rag` for a result id (QA-294).
+`project_result` entries, newest first; never `search_knowledge` for a result id (QA-294).
 
 **The user asked for P10/P90 but gemini gives p5/p95.** Pass `percentiles=[10, 90]` (§3.7).
 

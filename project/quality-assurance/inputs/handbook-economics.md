@@ -245,7 +245,7 @@ Ask each tool only for what it holds; a name it does not hold is refused and cos
 | energies delivered and bought, coverage, peaks, COP, capacities, the `co2` metric | `compute_kpis` on the result | `read_result` |
 | feasible or not, and why | `check_results`: `feasible` and `reasons` | the report's `passed` |
 | one module's series (a flow, a temperature, a day range) | `read_result` with that module's `path` | it holds module columns only: never `costs`, `lcts` or a cost name |
-| the prices, rates and factors the costs used | `read_case` with section `economics` | `read_rag` (economics is a case file, not a document) |
+| the prices, rates and factors the costs used | `read_case` with section `economics` | `read_knowledge` (economics is a case file, not a document) |
 | a ranking, a range or a sensitivity | `read_study` of its `study/<name>` | recomputing it |
 
 ### 0.9 A case without economics

@@ -95,7 +95,7 @@ concept, a why), answer that question only, under headings that fit it, not the 
 of §0.2.
 
 **Finding a section.** Open a handbook section by its number with `read_knowledge`
-(§0.6). Search (`search_rag`) only to find which document holds a topic, a few times per answer
+(§0.6). Search (`search_knowledge`) only to find which document holds a topic, a few times per answer
 at most, never to fish for a section whose number you already know: a search returns snippets,
 not the section.
 
@@ -959,7 +959,7 @@ A study made on an older case is named as such (§0.4). The reviewer's check of 
 Every read is quoted, or it is not made. A reviewer with a feasible verdict at step 2 is done
 after recording it; an explainer reads the five tools of §0.3 once and writes (QA-187, QA-218).
 A section of a handbook is opened by its number with `read_knowledge`, after the outline;
-`search_rag` only finds which document holds a topic (QA-351).
+`search_knowledge` only finds which document holds a topic (QA-351).
 
 ## 17.7 Name the design and the case that ran
 
