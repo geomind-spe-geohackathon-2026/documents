@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
@@ -38,4 +38,5 @@ Fact: the case's economics has no opex.per_energy for the compression chiller. G
 
 ## Fix
 
+- 2026-11-05 11:01 UTC: geomind 0.4.81, backend 1.1.86, deployed 11:00 UTC by hotfix-python-III
 ## Retest
