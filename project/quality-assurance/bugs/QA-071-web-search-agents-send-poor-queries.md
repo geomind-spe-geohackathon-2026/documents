@@ -48,8 +48,10 @@ sends no language to SearXNG.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 02:00 UTC: geomind 0.4.65 (ea62530: language=en, English-only short queries, query rules in tool and skill), backend 1.1.69 (c330a8d), deployed 02:00 UTC
+Cause (read in prod run_events, hotfix-python-II): queries in Dutch (`Nederland warmtenet ontwerptemperatuur aanvoer 100 °C retour temperatuur`, `KNMI De Bilt langjarig gemiddelde temperatuur 1991-2020 ...`), a search for the project itself (`GEMINI agentic geothermal design hackathon site location Netherlands demand profiles`), searches for values the brief fixes (100 C supply, 20 C chilled water), and long piles of terms for two values (Sahand's sand example, 11 words). The tool sent no language and gave no query rules; the skill had one line on queries.
+
+Fix: `web_search` sends `language=en` to SearXNG and refuses a query longer than 8 words or not in English (non-Latin letters, or common Dutch, German, French or Norwegian words), with an error that says why. The tool description and the `web-search` skill teach: first whether the value is needed at all (a detail the brief never mentions becomes a labelled assumption or a gap, not a long search); never a value the files or the case give, never the project or the chat; one value per query, 3 to 6 English technical terms (quantity, technology, unit, region and year when they matter), with good and bad examples (Sahand's sand query among the bad); 2 or 3 refined queries when results are weak, then ask; primary sources first (IEA, IRENA, EU JRC, TNO, manufacturers, papers). geomind 0.4.65 (commit ea62530, tag v0.4.65), backend 1.1.69 (c330a8d), deployed 2026-11-05 02:00 UTC. Checked in geomind-celery: `geothermal well sand production ppm` gives a GEUS geothermal best-practice PDF among the results; the Dutch KNMI query is refused.
+
 ## Retest
 
 (Who, when, result.)
