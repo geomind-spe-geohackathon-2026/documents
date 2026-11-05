@@ -72,3 +72,12 @@ say why. Re-typing a plant through the LLM also drops values (step 15).
 ## Retest: not fixed for one stored plant (QA-AI-design-I, 2026-11-05 17:50 UTC)
 
 Backend 1.1.109 (geomind 0.4.110, the QA-221 rule is in the design lead's system prompt of this run). Run 5e847cc6-14af-4f05-a34f-5b3cb10fdb2e, project QA-TEST QA-AI-design-I 3: "Size the stored plant ..." on plant version 1 (HeatingHeatPumpCoolingPlant). The design lead reads the project plant and re-types it into `build_plant` twice (12,886 and 6,619 characters, the first refused, the second an approval card), although the brief says "Start from that stored plant". The rule says "to compare or rank plant versions" only; see QA-247.
+
+## More evidence (2026-11-05 18:44 UTC, backend 1.1.112)
+
+Run 73ef62c4-c095-4551-96dc-2ccaffe4549d (project `QA-TEST QA-AI-analysis-I 7`, "Optimise this plant ..."): the design
+lead built the stored plant again 5 times (start_1 ... start_5, "the build only took the header keys"), then sent the
+complete plant to 4 engineers with `fill_parts` (183.8 s, each engineer step 45-95 s) to re-fill values the stored
+version already had, then `optimize(design/sized2)` failed all 270 trials (68 s, a bypass map lost in re-typing), and
+only then `optimize(design/v2)` worked (60 s). 33 min, 0.101 USD for a 60 s study. Log:
+`../evidence/QA-205/run-73ef62c4-retest-log.json`.
