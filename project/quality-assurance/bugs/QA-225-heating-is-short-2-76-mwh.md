@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,geomind |
 | Reporter | QA-E2E-design-I |
@@ -46,4 +46,5 @@ Guess: gemini's dispatch sets the boiler/heat pump duty to the consumer demand a
 
 ## Fix
 
+- 2026-11-05 18:08 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 ## Retest
