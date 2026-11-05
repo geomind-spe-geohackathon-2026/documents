@@ -111,3 +111,34 @@ chat (R9) gave the same to every digit. R11 v1/v2 figures equal the page studies
 
 Bug status at 19:40 UTC: verified QA-165, QA-166, QA-167, QA-257, QA-289; reopened QA-233,
 QA-274, QA-290; open QA-234, QA-269, QA-270; QA-242 being fixed.
+
+## Round 3 (19:40-20:47 UTC): retests and new inputs
+
+Projects added: QA-TEST QA-E2E-report-I 4 (8b484b52, no study), 5 (c60d19cd, page study of v1),
+6 (07912156, reference case only, no plant: a seed error of mine, kept as a from-scratch case),
+7 (551392b1, v1 + v2, no study).
+
+| Run | Request | Wall time | Input tokens | Cost USD | Outcome |
+|---|---|---|---|---|---|
+| fd996d09 | R4 design question again (project 3) | 8 min 49 s | 0.88 M | 0.023 | answered; brine 23.77 MW + HP electricity 3.60 + boiler 2.64 = 30 MW (hand check ~23.7 MW); QA-269 verified; wrong "no compression chiller" claim -> QA-334 |
+| 124cd4c4 | "design report for the hackathon submission" (project 4, v1+v2) | 5 min 56 s | 1.85 M | 0.028 | reported only v2 as recommended -> QA-337 |
+| 227814f2 | R1 typed report (project 5) | 3 min 55 s | 0.71 M | 0.012 | QA-233 verified (was 48 min, then 26 min) |
+| 4ffa1142 | "why absorption, could compression be simulated?" (project 5) | 6 min 29 s | 0.95 M | 0.018 | QA-334 verified; cross-team request unroutable -> QA-347 |
+| 5a873d21 | same submission request (project 6, no plant) | 17 min 6 s | 3.82 M | 0.085 | agents designed and sized a HeatingHeatPumpCoolingPlant |
+| bbee08fa | same submission request (project 7, v1+v2) | 7 min 36 s | 1.10 M | 0.030 | compares v1/v2 by run_study, recommends v1: QA-337 verified |
+| a91b8412 | sensitivity chip (project 5) | 1 min 36 s | 0.43 M | 0.010 | study not on the Report page: QA-274 reopened again |
+
+From-scratch design (project 6), checked independently: the chat's design `hhpc_sized` (2 doublets
+x 300 m3/h at 2500 m, 9.75 MW heat pump, 30 MW peak boiler, 10 MW compression chiller) gives
+LCTS 37.06 EUR/MWh, LCOH 35.95, LCOC 42.28, CAPEX 29.15 MEUR, OPEX 2.954 MEUR/yr, CO2 11.18 kt,
+15/15 checks. Adopted as plant v1 of project 6 and run as a Study-page `run` (study c6da7df5,
+result abc8b5e7): the same figures to every digit. Both reference plants are worse (HackathonPlant
+45.10, HeatingAbsorptionCoolingPlant 49.28 EUR/MWh).
+
+Report page and PDF (backend 1.1.125, project 1 v2): QA-313 (numbered sections, captions,
+page breaks; PDF 21 pages), QA-323 (fuel burned 85.37 GWh = 65.19 bought + 20.18 produced;
+boiler 76.83 / 85.37 = 0.90), QA-325 (checks scope stated) verified. QA-290 verified (banner only
+on a real case change). QA-270 verified (brine 82 %, heat-pump electricity 18 %, backup 0.23 %).
+
+Bug status at 20:47 UTC: verified QA-165, 166, 167, 233, 234, 257, 269, 270, 289, 290, 313,
+323, 325, 334, 337; open QA-274 (reopened twice), QA-347 (major, new); QA-242 being fixed.
