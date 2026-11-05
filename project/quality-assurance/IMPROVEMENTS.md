@@ -36,13 +36,13 @@ still active, 58 steps.
 | IMP-009 | idea | geomind | read_case returns an unset section as empty with a note, not an error | fewer red errors (QA-001, QA-014) |
 | IMP-010 | idea | geomind | Ask only for the values gemini reports missing for the chosen plant | one question instead of six (QA-009, QA-010, QA-015) |
 | IMP-011 | idea | geomind | The design lead gives each engineer a case summary in its brief | fewer repeated reads, smaller contexts |
-| IMP-012 | idea | geomind | Tools fix pure format slips in code and say so (names, {value}, setpoint, over/when, unit aliases) | about half of the first-try refusals |
-| IMP-013 | idea | geomind | evaluate_module takes its inlets from the design, and its schema requires them | 77 % of 430 calls fail today |
-| IMP-014 | idea | geomind | Each engineer is told and shown only its own paths | 170 patch_plant not_allowed |
-| IMP-015 | idea | geomind | Stop repeating the same failing call: after two identical errors the agent must change the call or hand back | 89 identical evaluate_module errors in a row |
-| IMP-016 | idea | geomind | A round budget per failing requirement: hand back to the project lead instead of hours of attempts | QA-090: 2h40, 17.7M tokens |
-| IMP-017 | idea | geomind | Make the design reach optimisation: optimize once all requirements pass; a targeted test of optimize and evolve_structure | 0 of 45 runs reached optimize; evolve_structure never called |
-| IMP-018 | idea | geomind | Check build_plant and patch_plant before the approval, as set_case does | no approval of a refused write |
+| IMP-012 | done (geomind 0.4.81 (evaluate_module, set_case)) | geomind | Tools fix pure format slips in code and say so (names, {value}, setpoint, over/when, unit aliases) | about half of the first-try refusals |
+| IMP-013 | done (geomind 0.4.81 (design/result/time; inlets [] taken as none)) | geomind | evaluate_module takes its inlets from the design, and its schema requires them | 77 % of 430 calls fail today |
+| IMP-014 | done (geomind 0.4.82) | geomind | Each engineer is told and shown only its own paths | 170 patch_plant not_allowed |
+| IMP-015 | done (geomind 0.4.82) | geomind | Stop repeating the same failing call: after two identical errors the agent must change the call or hand back | 89 identical evaluate_module errors in a row |
+| IMP-016 | done (geomind 0.4.79 (prompt), 0.4.83 (loop stops after 3 rounds)) | geomind | A round budget per failing requirement: hand back to the project lead instead of hours of attempts | QA-090: 2h40, 17.7M tokens |
+| IMP-017 | done (geomind 0.4.83 (part 1: optimise a passed design once)) | geomind | Make the design reach optimisation: optimize once all requirements pass; a targeted test of optimize and evolve_structure | 0 of 45 runs reached optimize; evolve_structure never called |
+| IMP-018 | done (geomind 0.4.82) | geomind | Check build_plant and patch_plant before the approval, as set_case does | no approval of a refused write |
 | IMP-019 | idea | geomind, gemini | A choice gemini allows only one value for (dispatch least_cost) is filled by the tool with a note | 14 refused simulates; Sahand decides |
 | IMP-020 | idea | geomind | read_stored shows the outline of a result (keys two levels deep) when the path is wrong | 127 unknown_name |
 | IMP-021 | idea | geomind | Examples in the skills generated from gemini's own schema; evals from the real refusals | prompts that do not drift from gemini |
