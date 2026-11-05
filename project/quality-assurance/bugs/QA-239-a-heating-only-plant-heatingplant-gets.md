@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,backend |
 | Reporter | Manual QA-IV |
@@ -36,7 +36,7 @@ Compare: frontend) leaves out the others. gemini part (a missing role on a state
 with the python team.
 
 Frontend part (hotfix-front-lead): frontend 1.1.123 (commit 9e72fd7, bundle index-C7R5NeXi.js) reads `feasible` (backend 1.1.110): an infeasible result is never the Compare best, never on the trade-off line, never the report default; its checks read "infeasible: does not serve every demand".
-
+- 2026-11-05 18:54 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 Recipe: GET /design/results?project=...: the heating-only result on a case with cooling has feasible false.
