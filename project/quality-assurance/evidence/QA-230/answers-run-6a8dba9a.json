@@ -1,0 +1,111 @@
+[
+ {
+  "t": 180,
+  "request": "request-433",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "case_lead",
+   "parent": "6a8dba9ac35a44748f66d749a3a95964",
+   "call_id": "call-111eb26b-5a12-4954-90e9-80805cec1ed9",
+   "message": "Nothing is saved yet. On `approve all` the case is set with the values the brief and the two demand files state (time axis 2027-01-01 to 2028-01-01 daily; both demand series from the CSVs; heating supply 100 degC and cooling supply 20 degC; reservoir 2500 m / 100 m / 200 mD / 250 bar(g); gradient 30 degC/km; surface 12 degC; brine 1030 kg/m3, 0.4 mPa.s, GLR 0.8 Nm3/m3, produced gas 80 mol% CH4 / 20 mol% CO2; 8 requirements) PLUS the following values, which no project file gives. Each is from the case's assumptions document in Knowledge (knowledge/hackathon-2026-assumptions.md, section \"Case values\" / \"Requirements: tolerances the PDF does not give\") unless marked otherwise:\n\n1. time_zone of both demand series = UTC | agent assumption, no source | the brief names no site location and the dates carry no offset; gemini refuses a series without a zone, and gemini's sample uses UTC timestamps.\n2. demand.heating.return_temperature = 60 degC | knowledge/hackathon-2026-assumptions.md, \"Case values\" | team design choice, below the fixed 100 degC supply.\n3. demand.heating.return_pressure = 6 bar | same document | team value.\n4. demand.cooling.return_temperature = 25 degC | same document | team design choice, above the fixed 20 degC supply.\n5. demand.cooling.return_pressure = 4 bar | same document | team value.\n6. demand.cooling.dew_point_margin = 1 K | same document | team value.\n7. demand.cooling.indoor_temperature = 26 degC | same document | team value.\n8. demand.cooling.indoor_relative_humidity = 50 % (0.5) | same document | team value.\n9. site.air.temperature = 10 degC, constant | same document | team value; no site location is given, so no weather series can be fetched.\n10. site.air.pressure = 101325 Pa, constant | same document | team value.\n11. site.fluid.sand_concentration = 20 mg/l | same document | team value.\n12. utilities.electricity.co2_intensity = 300 g/kWh | same document, \"Organisers\" | the organisers' answer on Discord #technical-q-and-a, 2026-11-04.\n13. utilities.gas.composition (bought grid gas, mole fractions) = CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233 | same document | team value; this is the bought gas, not the produced gas.\n14. requirements.full_reinjection: reinjection_ratio 0.99999 to 1.00001, per doublet, each running step | same document, \"Requirements: tolerances\" | the brief requires equal production and injection volumes but gives no tolerance.\n15. requirements.heat_delivered: unmet_share of the yearly heat demand at most 0.01 (1 %) | same document | the brief requires the demand be met but gives no tolerance.\n16. requirements.cold_delivered: unmet_share of the yearly cold demand at most 0.01 (1 %) | same document | as above.\n\nLeft open, not asked (the assumptions document marks them \"not set, not needed\"): site.air.relative_humidity and utilities.gas.heating_value. Also left unset because gemini derives them: site.reservoir.temperature. The well depth and the number of doublets are design freedoms, not case values.\n\nDo you approve these?",
+   "options": [
+    {
+     "label": "approve all",
+     "value": "approve all"
+    },
+    {
+     "label": "change some",
+     "value": "change some"
+    },
+    {
+     "label": "stop",
+     "value": "stop"
+    }
+   ],
+   "request": "request-433"
+  },
+  "answer": {
+   "text": "approve all"
+  }
+ },
+ {
+  "t": 252,
+  "request": "request-476",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "case_lead",
+   "parent": "6a8dba9ac35a44748f66d749a3a95964",
+   "call_id": "call-3537b07a-3954-4112-b830-a9d617cfc2ee",
+   "message": "Allow set_case (write)?\n\nChange the case: about.brief, about.design_freedoms, about.open_rules, demand.cooling.dew_point_margin, demand.cooling.indoor_relative_humidity, demand.cooling.indoor_temperature and 40 more.\n\nWhat the call sends:\n{\n  \"changes\": {\n    \"about\": {\n      \"brief\": \"GEMINI Hackathon Challenge Requirements, 28 October 2026 (GEMINI_Hackathon_Challenge_Requirements.pdf)\",\n      \"design_freedoms\": [\n        \"well depth (search range 2000 to 3500 m)\",\n        \"number of doublets (1 to 3, bounded by doublet_count)\",\n        \"backup policy, number and kind of units, associated gas handling (flare, boiler, CHP)\"\n      ],\n      \"open_rules\": [\n        \"Production and injection in the same reservoir: no requirement quantity of gemini expresses 'same reservoir'; the reinjection_ratio requirement bounds only the injected over produced volume.\",\n        \"Daily power and energy balance: a modelling rule of the organisers, not a bound on a role quantity; only the 330-day duration is a requirement.\",\n        \"Pump intake limits (free gas at most 18.75 % of the volume, intake pressure at least 5 bar) are conditional in the assumptions document ('only if the design checks it') and are not written as requirements.\"\n      ]\n    },\n    \"demand\": {\n      \"cooling\": {\n        \"dew_point_margin\": {\n          \"unit\": \"K\",\n          \"value\": 1\n        },\n        \"indoor_relative_humidity\": {\n          \"unit\": \"-\",\n          \"value\": 0.5\n        },\n        \"indoor_temperature\": {\n          \"unit\": \"degC\",\n          \"value\": 26\n        },\n        \"power\": {\n          \"column\": \"cooling_demand_MWcool\",\n          \"file\": \"GEMINI_Cooling_Demand_Daily_2027.csv\",\n          \"time_zone\": \"UTC\",\n          \"unit\": \"MW\"\n       \n... (cut; the whole input is in the run log)",
+   "request": "request-476"
+  },
+  "answer": {
+   "approved": false,
+   "reason": "Change: demand.heating.return_temperature = 55 \u00b0C instead of 60. Everything else as you have it."
+  }
+ },
+ {
+  "t": 288,
+  "request": "request-509",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "case_lead",
+   "parent": "6a8dba9ac35a44748f66d749a3a95964",
+   "call_id": "call-16128f14-5d8e-4ed5-874a-a5fff6ab99af",
+   "message": "Allow set_case (write)?\n\nChange the case: format, kind, name, time.start, time.end, time.step and 45 more.\n\nWhat the call sends:\n{\n  \"changes\": {\n    \"format\": 1,\n    \"kind\": \"case\",\n    \"name\": \"GEMINI hackathon 2026 geothermal heating and cooling plant\",\n    \"time\": {\n      \"start\": \"2027-01-01\",\n      \"end\": \"2028-01-01\",\n      \"step\": {\n        \"value\": 1,\n        \"unit\": \"d\"\n      }\n    },\n    \"site\": {\n      \"ground\": {\n        \"surface_temperature\": {\n          \"value\": 12,\n          \"unit\": \"degC\"\n        },\n        \"gradient\": {\n          \"value\": 30,\n          \"unit\": \"\u00b0C/km\"\n        }\n      },\n      \"reservoir\": {\n        \"reference_depth\": {\n          \"value\": 2500,\n          \"unit\": \"m\"\n        },\n        \"thickness\": {\n          \"value\": 100,\n          \"unit\": \"m\"\n        },\n        \"permeability\": {\n          \"value\": 200,\n          \"unit\": \"mD\"\n        },\n        \"pressure\": {\n          \"value\": 250,\n          \"unit\": \"bar(g)\"\n        }\n      },\n      \"fluid\": {\n        \"density\": {\n          \"value\": 1030,\n          \"unit\": \"kg/m3\"\n        },\n        \"viscosity\": {\n          \"value\": 0.4,\n          \"unit\": \"mPa.s\"\n        },\n        \"gas_liquid_ratio\": {\n          \"value\": 0.8,\n          \"unit\": \"Nm3/m3\"\n        },\n        \"dissolved_gas\": {\n          \"CH4\": {\n            \"value\": 80,\n            \"unit\": \"mol%\"\n          },\n          \"CO2\": {\n            \"value\": 20,\n            \"unit\": \"mol%\"\n          }\n        },\n        \"sand_concentration\": {\n          \"value\": 20,\n          \"unit\": \"mg/l\"\n        }\n      },\n      \"air\": {\n        \"temperature\": {\n          \"value\": 10,\n          \n... (cut; the whole input is in the run log)",
+   "request": "request-509"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 298,
+  "request": "request-525",
+  "kind": "approval",
+  "question": {
+   "kind": "approval",
+   "agent": "case_lead",
+   "parent": "6a8dba9ac35a44748f66d749a3a95964",
+   "call_id": "call-dfd8a0e9-4fdd-400b-aa73-ac201b276452",
+   "message": "Allow set_case (write)?\n\nSet the case.\n\nWhat the call sends:\n{\n  \"requirements\": {\n    \"production_flow_range\": {\n      \"name\": \"production_flow_range\",\n      \"on\": \"doublet\",\n      \"quantity\": \"production_flow\",\n      \"over\": \"each\",\n      \"when\": \"running\",\n      \"min\": 50,\n      \"max\": 300,\n      \"unit\": \"m3/h\"\n    },\n    \"brine_cooling_limit\": {\n      \"name\": \"brine_cooling_limit\",\n      \"on\": \"doublet\",\n      \"quantity\": \"brine_cooling\",\n      \"over\": \"each\",\n      \"when\": \"running\",\n      \"max\": 40,\n      \"unit\": \"K\"\n    },\n    \"running_time_limit\": {\n      \"name\": \"running_time_limit\",\n      \"on\": \"doublet\",\n      \"quantity\": \"production_flow\",\n      \"over\": \"duration\",\n      \"when\": \"running\",\n      \"max\": 330,\n      \"unit\": \"d\"\n    },\n    \"pump_efficiency\": {\n      \"name\": \"pump_efficiency\",\n      \"on\": \"doublet\",\n      \"quantity\": \"pump_efficiency\",\n      \"min\": 0.7,\n      \"max\": 0.7\n    },\n    \"full_reinjection\": {\n      \"name\": \"full_reinjection\",\n      \"on\": \"doublet\",\n      \"quantity\": \"reinjection_ratio\",\n      \"over\": \"each\",\n      \"when\": \"running\",\n      \"min\": 0.99999,\n      \"max\": 1.00001\n    },\n    \"doublet_count\": {\n      \"name\": \"doublet_count\",\n      \"on\": \"doublet\",\n      \"quantity\": \"count\",\n      \"min\": 1,\n      \"max\": 3\n    },\n    \"heat_delivered\": {\n      \"name\": \"heat_delivered\",\n      \"on\": \"heating_supply\",\n      \"quantity\": \"unmet_share\",\n      \"max\": 0.01\n    },\n    \"cold_delivered\": {\n      \"name\": \"cold_delivered\",\n      \"on\": \"cooling_supply\",\n      \"quantity\": \"unmet_share\",\n      \"max\": 0.01\n    }\n... (cut; the whole input is in the run log)",
+   "request": "request-525"
+  },
+  "answer": {
+   "approved": true
+  }
+ },
+ {
+  "t": 324,
+  "request": "request-551",
+  "kind": "question",
+  "question": {
+   "kind": "question",
+   "agent": "case_lead",
+   "parent": "6a8dba9ac35a44748f66d749a3a95964",
+   "call_id": "call-2e91b27e-cb23-42bf-b597-5c6e86ad90d5",
+   "message": "Economics of the case, from the cost catalogue.\nValues from the case's assumptions document (knowledge/hackathon-2026-assumptions.md), EUR at 2015 prices. The per-energy O&M map is open because the case has cooling and no source prices the chillers per MWh; there is no subsidy, so every revenue.subsidy key stays open. Keys the document does not give (circulation pump, electric boiler, thermal and ice storage) take the catalogue's recommended row.\n\nValues (approve all sets each, with its row):\neconomics.discount_rate = 0.05 | no row | knowledge/hackathon-2026-assumptions.md\neconomics.currency = EUR | no row | the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)\neconomics.price_year = 2015 | no row | the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)\neconomics.analysis_period = 25 yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.energy.electricity = 105.75 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.energy.gas = 39.92 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.carbon.price = 57.03 EUR/t | no row | knowledge/hackathon-2026-assumptions.md\neconomics.revenue.heat = 60 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.revenue.cold = 60 EUR/MWh | no row | knowledge/hackathon-2026-assumptions.md\neconomics.accounting.allocation.heat_cost_share = 0.8 | no row | knowledge/hackathon-2026-assumptions.md\neconomics.accounting.gwp.CH4 = 29.8 | no row | knowledge/hackathon-2026-assumptions.md\neconomics.accounting.gwp.standard = IPCC AR6 WG1 table 7.15, GWP100 of fossil methane | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.variable.chemical = 3 EUR/kg | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.variable.waste_disposal = 0.2 EUR/kg | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.drilling = 1239.1304347826087 EUR/m | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.drilling = 1 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.heat_pump = 0.73786 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.heat_pump = 0.2239 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.boiler = 0.06073 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.boiler = 3.25 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.chp = 0.96155 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.chp = 1.0263 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.degasser = 1000000 EUR | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.degasser = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.compression_chiller = 0.3 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.compression_chiller = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.absorption_chiller = 0.3 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.absorption_chiller = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.adsorption_chiller = 0.3 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.adsorption_chiller = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.production_pump = 0.5 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.production_pump = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.injection_pump = 0.5 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.injection_pump = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.heat_exchanger = 0.5 EUR/(W/K) | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.heat_exchanger = 1 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.flare = 100000 EUR | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.flare = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.gas_makeup = 50000 EUR | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.gas_makeup = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.cooler = 0.1 EUR/W | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.cooler = 2 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.pipe = 500 EUR/m | no row | knowledge/hackathon-2026-assumptions.md\neconomics.opex.fixed.pipe = 0.5 %/yr | no row | knowledge/hackathon-2026-assumptions.md\neconomics.capex.electric_boiler = 0.07 EUR/W | row boiler-electric-dea-2017-over-10mw | verified | 2017 | Technology Data for Generation of Electricity and District Heating (DEA data sheet workbook, mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_for_el_and_dh.xlsx (recommended; other rows: 0.15 EUR/W [boiler-electric-dea-2017-1-5mw, verified])\neconomics.capex.ice_storage = 23249.9 EUR/MWh | row ice-storage-mlakar-2022-low | secondary | 2022 | Upgrade of ice storage system in congress centre (Mlakar and Stritih, CLIMA 2022) | https://proceedings.open.tudelft.nl/clima2022/article/download/235/218/227 | the row's unit is EUR/MWh cold; set as EUR/MWh, which the key reads per J of energy capacity (recommended; other rows: 31704.4 EUR/MWh cold [ice-storage-mlakar-2022-high, secondary]; 10062.0 EUR/MWh cold [ice-storage-proxy-irena-2013-pcm-low, secondary]; 50310.0 EUR/MWh cold [ice-storage-proxy-irena-2013-pcm-high, secondary])\neconomics.capex.thermal_storage = 168.554 EUR/m3 | row thermal-storage-tank-dea-2025-3000m3 | verified | 2025 | Technology Data for Energy Storage, data sheet workbook Version 9 (mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_catalogue_for_energy_storage.xlsx (recommended; other rows: 64.8547 EUR/m3 [thermal-storage-pit-dea-2025-70000m3, verified])\neconomics.opex.fixed.circulation_pump = 2.0 %/yr | row circulation-pump-om-vdi2067-vicus-2026-low | secondary | 2026 | VDI 2067: Economic Analysis and Service Life (section 3, Operation-related costs: maintenance and servicing) | https://vicus-software.com/en/knowledge/economics/vdi2067/ (recommended; other rows: 3.0 %/yr [circulation-pump-om-vdi2067-vicus-2026-high, secondary])\neconomics.opex.fixed.electric_boiler = 1070 EUR/MW/yr | row opex-boiler-electric-dea-2017 | verified | 2017 | Technology Data for Generation of Electricity and District Heating (DEA data sheet workbook, mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_for_el_and_dh.xlsx\neconomics.opex.fixed.ice_storage = 0.876924 %/yr | row ice-storage-om-spice-2024-single-building-2000kwh | secondary | 2024 | Ice Storage vs. Battery Storage for Cooling Systems - A Cost and Performance Comparison | https://sp-icestorage.com/vblog/ice-storage-vs-battery-storage/ (recommended; other rows: 0.742728 %/yr [ice-storage-om-spice-2024-mid-size-10000kwh, secondary]; 0.513 %/yr [ice-storage-om-spice-2024-district-cooling-50000kwh, secondary]; 2 %/yr [ice-storage-om-proxy-hao-2022-cooling-plant, secondary]; 1.66667 %/yr [ice-storage-om-proxy-irena-2013-pcm-low, secondary]; 4.16667 %/yr [ice-storage-om-proxy-irena-2013-pcm-high, secondary])\neconomics.opex.fixed.thermal_storage = 0.282326 %/yr | row opex-thermal-storage-tank-dea-2025 | verified | 2025 | Technology Data for Energy Storage, data sheet workbook Version 9 (mirrored in the PyPSA technology-data repository) | https://raw.githubusercontent.com/PyPSA/technology-data/master/inputs/technology_data_catalogue_for_energy_storage.xlsx\n\nOpen (no usable row; give a value with change some, or leave it open):\neconomics.opex.per_energy.boiler\neconomics.opex.per_energy.electric_boiler\neconomics.opex.per_energy.chp\neconomics.opex.per_energy.heat_pump\neconomics.opex.per_energy.compression_chiller\neconomics.opex.per_energy.absorption_chiller\neconomics.opex.per_energy.adsorption_chiller\neconomics.revenue.subsidy.amount\neconomics.revenue.subsidy.duration\neconomics.revenue.subsidy.cap\neconomics.revenue.subsidy.capacity\neconomics.capex.circulation_pump (the row's unit is EUR/W heat; set as EUR/W, which the key reads per W of shaft power at the nominal flow; the row is heat, not shaft power: not converted, the user decides)",
+   "options": [
+    {
+     "label": "approve all",
+     "value": "approve all"
+    },
+    {
+     "label": "change some",
+     "value": "change some"
+    },
+    {
+     "label": "stop",
+     "value": "stop"
+    }
+   ],
+   "request": "request-551"
+  },
+  "answer": {
+   "text": "approve all"
+  }
+ }
+]
