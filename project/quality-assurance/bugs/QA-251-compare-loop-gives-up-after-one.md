@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-design-I |
@@ -45,3 +45,4 @@ Fact: `geomind/agents/project/comparison.py` `after_batch` records a family with
 ## Retest
 
 Retest (QA-E2E-design-I, 2026-11-05 19:36 UTC, backend 1.1.117): run 06fd16f0: the first whole-year runs failed (365/365, then 330/365, QA-250) and the design lead ran a repair round (well engineer, 8 values) and reached a feasible run, then compared it with the 150 m3/h variant; run e3c10ff9 compared 1/2/3 doublets with run_study and compare, all feasible, ranked. The loop no longer gives up after one failed simulate. Works.
+- 2026-11-05 19:36 UTC: QA-E2E-design-I: repair round and ranking in runs 06fd16f0, e3c10ff9
