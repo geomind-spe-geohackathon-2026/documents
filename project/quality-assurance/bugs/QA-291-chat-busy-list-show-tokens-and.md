@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot) |
@@ -36,6 +36,8 @@ Feature request from Sahand (top priority, his bug). Per-agent usage exists per 
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.128 (commit 19006f6, bundle index-bxsE_Wl4.js), by front-m1: AgentNode has tokens and cost summed from each step.finished usage per actor; busy line `Name · doing · N steps · tokens · cost · time`; totals line the same (time only while running). No backend field needed.
+- 2026-11-05 18:46 UTC: frontend 1.1.128
 ## Retest
 
 (Who, when, result.)
