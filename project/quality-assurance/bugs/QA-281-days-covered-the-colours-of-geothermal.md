@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
 | Found | 2026-11-05 18:28 UTC |
 | Versions | backend 1.1.115, frontend 1.1.126 |
 | Where | https://geomind.team/projects/4678c5c6-66fc-46dd-9d1e-358c3c5c1d24/design (No-agent showcase) |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Steps
 
