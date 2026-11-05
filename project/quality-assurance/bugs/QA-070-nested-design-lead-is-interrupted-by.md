@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-I |
@@ -35,7 +35,7 @@ Guess: a worker restart (deploy) killed the nested run and the parent treated it
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 01:31 UTC: geomind 0.4.64 (d60481a: Delegate/Team calls left open by a restart rerun on resume; project lead never narrows the brief silently), backend 1.1.65 (599b639), deployed 01:30 UTC
 ## Retest
 
 (Who, when, result.)
