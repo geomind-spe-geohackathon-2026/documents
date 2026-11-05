@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
@@ -51,4 +51,8 @@ sentence ("Make the case you approved the project's case: economics v3 -> v5").
 
 ## Fix
 
+frontend 1.1.117 (commit b5ab7ef, bundle index-CnfyoHnO.js): the card (`request-card.tsx`) is a flex column inside the 45svh box (`workspace.tsx`); only the request text and JSON (`RequestMessage`) shrink and scroll, the reason box and Approve/Deny stay visible. An `accept_case` request with no text of its own gets one sentence in the frontend ("It keeps the case with the changes you approved as the case you gave ..."). The geomind approval sentence (with versions) is still open for hotfix-python if wanted.
+- 2026-11-05 17:24 UTC: frontend 1.1.117, commit b5ab7ef
 ## Retest
+
+Not run (no tests now). Retest: a set_case approval with a long JSON at 1440x1000 shows Approve without scrolling.
