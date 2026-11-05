@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | backend |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 19:55 UTC |
 | Versions | frontend (bundle index-PVHgYO42.js), backend 1.1.121+ |
 | Where | https://geomind.team/projects/331bf443-ac7d-465f-afa2-b5c1e5ece6a8/assistant/chat/54c0c924-2cff-4352-8e26-1b8213ef89dc; project QA-TEST QA-E2E-case-I 12; run 3152a411 |
-| Fixer | |
+| Fixer | back-m2 |
 
 ## Steps
 
