@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | Manual QA-IV |
 | Found | 2026-11-05 17:29 UTC |
 | Versions | backend 1.1.104 (geomind 0.4.98, gemini 0.6.17) |
 | Where | https://geomind.team/projects/fcc641c0-0119-4182-9a72-adce5a17b3ed; run d4ab496f-4a1f-43fa-b760-0f550fda0714 (hackathon report run), design stage 17:07-17:29 UTC |
-| Fixer | hotfix-python-VIII |
+| Fixer | hotfix-python-lead |
 
 ## Steps
 
