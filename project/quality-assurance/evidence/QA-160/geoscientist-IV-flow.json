@@ -1,0 +1,51 @@
+{
+ "low": null,
+ "base": 300.0,
+ "high": null,
+ "note": "Proposed: {name: max_production_flow, on: doublet, quantity: production_flow, over: each, when: running, max: 300, unit: m³/h}. A cap on every step the doublet carries flow.",
+ "path": "requirements.max_production_flow",
+ "unit": "m³/h",
+ "source": {
+  "file": "GEMINI_Hackathon_Challenge_Requirements.pdf",
+  "page": 2,
+  "depth": null,
+  "quote": "Maximum production flow | 300 m³/h per doublet | hard challenge cap",
+  "table": "3 Design and operating constraints"
+ },
+ "quality": "estimated",
+ "quantity": "maximum production flow per doublet"
+}
+{
+ "low": null,
+ "base": 50.0,
+ "high": null,
+ "note": "Proposed: {name: min_stable_flow, on: doublet, quantity: production_flow, over: each, when: running, min: 50, unit: m³/h}. 'while active' is exactly when: running; a stopped doublet is not bound by the floor.",
+ "path": "requirements.min_stable_flow",
+ "unit": "m³/h",
+ "source": {
+  "file": "GEMINI_Hackathon_Challenge_Requirements.pdf",
+  "page": 2,
+  "depth": null,
+  "quote": "Minimum stable flow while active | 50 m³/h per doublet | hard challenge cap",
+  "table": "3 Design and operating constraints"
+ },
+ "quality": "estimated",
+ "quantity": "minimum stable production flow per doublet while active"
+}
+{
+ "low": null,
+ "base": 330.0,
+ "high": null,
+ "note": "Proposed: {name: annual_operation, on: doublet, quantity: production_flow, over: duration, when: running, min: 330, max: 330, unit: d} — days of operation are a duration, never a count. The brief writes 330 daily steps as a required setting, so I propose it exact (min = max); the skill's own example form uses only max: 330, so the case lead must decide exact vs cap. The demand is 2027 daily (365 steps), so 330 of 365 days run.",
+ "path": "requirements.annual_operation",
+ "unit": "d",
+ "source": {
+  "file": "GEMINI_Hackathon_Challenge_Requirements.pdf",
+  "page": 2,
+  "depth": null,
+  "quote": "Annual operation of geothermal doublet | 330 daily steps | daily power and energy balance",
+  "table": "3 Design and operating constraints"
+ },
+ "quality": "estimated",
+ "quantity": "annual operation of a geothermal doublet (running time)"
+}
