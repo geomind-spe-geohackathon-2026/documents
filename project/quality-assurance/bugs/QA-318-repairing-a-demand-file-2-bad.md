@@ -51,3 +51,6 @@ tell the lead to ask the user for a fixed file. `calculate`: accept a file cell 
 ## Fix
 
 ## Retest
+
+Update 19:19 UTC: a 6th cut save_profile (output tokens 124774 -> 140774); I cancelled the run at 19:19
+(QA-TEST QA-E2E-case-I 10, 19 min, ~1.5 M input tokens, no case).
