@@ -82,3 +82,33 @@ this is a first look; with a larger budget it should reach the 36.0 of the enume
 | Bonus: automatic model generation | superstructure, 32 structures, `evolve` | Proposes configurations, writes the plant |
 | Bonus: autonomous verification | `gm.check`, requirement verdicts, failure groups | Reviewer agent checks the final result |
 | Bonus: multi-agent collaboration | not applicable | The agent team (case, design, analysis leads, engineers, reviewer) |
+
+## 6. The same in the app, no agent (geomind.team, 2026-11-05 17:36-17:50 UTC)
+
+Project https://geomind.team/projects/4678c5c6-66fc-46dd-9d1e-358c3c5c1d24 ("No-agent showcase"), built through the API by
+hand: gemini's sample case (with its uncertainty), the hackathon superstructure plant and the six candidate plants, and these
+studies (backend 1.1.107-1.1.109, gemini 0.6.17). Results, Compare and the Study pages show them.
+
+| Study | Result |
+|---|---|
+| evolve on the superstructure (LCTS and CO2, 192 evaluations, population 16, seed 0, 30 structures, 12 invalid) | **LCTS 29.55 EUR/MWh, CO2 8.54 kt, 15/15 checks passed**: 2 doublets, depth 3,282 m, 281 m3/h each, no heat pump, gas peak boiler (30 MW rated, 7.4 MW peak), absorption chiller 5.87 MW + compression chiller 4.93 MW; capex 29.9 MEUR, opex 1.88 MEUR/yr; heat 86.5 % geothermal |
+| minimize HeatingFullCoolingPlant (LCTS, 40 evaluations) | 32.38 EUR/MWh, 9.13 kt, 15/15 |
+| minimize HeatingHeatPumpCoolingPlant | 38.03, 12.90 kt, 10/10 (1 doublet) |
+| minimize HeatingCoolingPlant | 38.16, 11.69 kt, 15/15 |
+| minimize HackathonPlant | 41.30, 13.05 kt, 15/15 |
+| minimize HeatingAbsorptionCoolingPlant | 49.34, 20.96 kt, 15/15 |
+| minimize HeatingPlant | 26.96, 7.11 kt, 13 passed + 2 not assessed: **no cooling, not a valid design** (bug QA-239) |
+| sensitivity of the best (one at a time) | LCTS swing: gradient 25-35 K/km 16.8 EUR/MWh (35 K/km infeasible: brine cooling > 40 K), discount rate 2-8 % 9.4, electricity 3.9, carbon 3.5, permeability ~2 |
+| sample of the best (50 draws, seed 1) | LCTS mean 30.5, p5 26.1, p50 29.6, p95 37.7 EUR/MWh; CO2 mean 8.9 kt (p5 7.8, p95 12.5); 27 of 50 draws feasible |
+| run of the best (full year) | same as the evolve result, 15/15 checks |
+
+### Physics check of the best result (by hand)
+
+- LCTS: capex 29.93 MEUR x CRF(5 %, 25 yr) 0.07095 = 2.124 MEUR/yr, + opex 1.880 = 4.004 MEUR/yr; / (111,744 + 23,759) MWh = 29.55 EUR/MWh. Matches.
+- Heat balance: geothermal 96,539 + boiler 15,129 = 111,668 MWh = demand. Matches. Unmet 0.
+- Reservoir at 3,282 m: 12 + 30 x 3.282 = 110.5 degC; the network needs 100 degC from 60 degC; after wellbore loss and the exchanger approach the boiler tops up every day (shown as "geothermal topped up by backup" on 365 days), 13.5 % of the heat.
+- Brine: 2 x 281 m3/h, cooling 39.0-39.1 K (limit 40 K), 330 running days each, reinjection ratio 1, pump efficiency 0.7: all checks pass, several near their limits.
+- Pump energy: drawdown Q mu ln(re/rw)/(2 pi k h) = 0.078 x 0.4e-3 x 9.2 / (2 pi x 200e-15 x 100) = about 23 bar, plus friction and 10 bar wellhead: about 40 bar lift; 2 pumps x 0.078 m3/s x 40e5 Pa / 0.7 = 0.9 MW, about 7 GWh/yr, consistent with 8.9 GWh/yr of electricity bought (the rest drives the compression chiller).
+- Produced gas: 0.8 Nm3/m3 x 2 x 281 m3/h x 0.8 CH4 = 360 Nm3/h CH4, about 3.6 MW of fuel while running, about 28 GWh/yr at full flow; the plant burns 23.3 GWh/yr and buys 3.9 GWh/yr of gas. Plausible.
+- Not optimal but not wrong: the dry coolers keep their range maximum (40 MW and 20 MW rated, 14.3 and 4.4 MW peak), about 4 MEUR of extra capex at 0.1 EUR/W; adding cooler capacities to the search would lower the LCTS.
+- Display issues found: compression-chiller cold counted as geothermal (QA-238), heating-only plant not failed (QA-239), compare table (QA-244), sample metric (QA-240).
