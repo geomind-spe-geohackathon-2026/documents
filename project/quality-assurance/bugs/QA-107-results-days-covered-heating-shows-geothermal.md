@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | gemini,frontend |
 | Reporter | Fatemeh (screenshots), Claude (DB read and write-up) |
@@ -47,3 +47,5 @@ Part (b), frontend 1.1.92 (hotfix-front-II): `shared/charts/days-strip.tsx` spli
 hotfix-front-III, frontend 1.1.103 (with QA-126): Days covered states the shares of the year's demand on the report's basis (geothermal energy / demand, as `geothermal_share` in backend narrative.py): sized1 reads 'Geothermal gave 96% of the year's demand (96614 of 100690 MWh), unmet 4%', the report tile says 96%. The day classes stay strict (a day with any unmet MWh is partly short), so 0 'Geothermal only' days remain correct for sized1. Part (a) (gemini's classes/demand) unchanged. Deploy 14:30 UTC.
 - 2026-11-05 14:27 UTC: frontend 1.1.104 deployed 14:27 UTC, bundle index-DjTPYa7Q.js
 ## Retest
+
+- 2026-11-05 14:29 UTC: live 1.1.104: sized1 'Geothermal gave 96% of the year's demand', same as the report tile; classes strict (partly short 243, short 122)
