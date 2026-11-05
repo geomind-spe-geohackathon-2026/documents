@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | blocker |
 | Area | gemini |
 | Reporter | functional-qa-3 |
 | Found | 2026-11-05 06:06 UTC |
 | Versions | backend 1.1.74 (geomind 0.4.69, gemini 0.6.8); frontend 1.1.71 |
 | Where | project QA2 functional-qa-3 studies (932b318c-f285-4827-aefe-c8fa3327735b), chat 510ab94f-c4f7-4019-9f75-cb40229b374e, run eb7b95df (a 'go on' after QA-081; cancelled by me after about 35 min, 5.1M tokens in) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
