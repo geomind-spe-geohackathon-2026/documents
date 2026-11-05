@@ -37,4 +37,10 @@ Fact: the backend writes plant and case activity with no version id, and the fro
 
 ## Fix
 
+hotfix-back-II, 2026-11-05 11:05 UTC, backend part: backend 1.1.87 (49d587b) writes the version
+number as `link.id` on new "Saved case/plant version N" rows (assistant and user); study rows
+already carry the study id. Older rows stay without an id. Deploy 11:30 UTC. Still owed
+(frontend, hotfix-front-III): route design/case and design/plant with id N to History on version
+N, design/study/<id> to the study; sentence-case actor.
+
 ## Retest
