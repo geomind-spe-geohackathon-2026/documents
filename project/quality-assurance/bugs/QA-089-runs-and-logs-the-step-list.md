@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
@@ -35,3 +35,4 @@ frontend 1.1.80 (commit in git log, 'QA-089: ...'): agent tree with step count a
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 10:03 UTC: hotfix-front-II 10:03 UTC, run 3bdd7ebb on 1.1.84: compact agent list with step counts and tokens, the selected step's agent (Coordinator) open, no wrapped labels, step detail beside it. In this run every agent shows at the top level; nesting under the calling agent was not visible (no parent data in this run, or not shown); reopen if expected
