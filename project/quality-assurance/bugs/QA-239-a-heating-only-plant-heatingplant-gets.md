@@ -30,6 +30,8 @@ Fact: a requirement on a role the plant lacks is reported as not assessed. For a
 
 ## Fix
 
+Backend part, backend 1.1.119 (back-m1): GET /design/results/compare computes the pareto over feasible results only.
+
 hotfix-back-lead, backend 1.1.110, deployed ~17:50 UTC (backend part). Additive: every result
 (list and detail) has `feasible` = no check failed and none not assessed; a ranking (Results,
 Compare: frontend) leaves out the others. gemini part (a missing role on a stated demand fails)
@@ -38,5 +40,7 @@ with the python team.
 Frontend part (hotfix-front-lead): frontend 1.1.123 (commit 9e72fd7, bundle index-C7R5NeXi.js) reads `feasible` (backend 1.1.110): an infeasible result is never the Compare best, never on the trade-off line, never the report default; its checks read "infeasible: does not serve every demand".
 - 2026-11-05 18:54 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+Compare a heating-only result with feasible ones on a cooling case: it is not on the front.
 
 Recipe: GET /design/results?project=...: the heating-only result on a case with cooling has feasible false.

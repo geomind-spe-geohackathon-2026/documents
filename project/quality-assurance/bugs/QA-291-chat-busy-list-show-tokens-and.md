@@ -34,10 +34,14 @@ Feature request from Sahand (top priority, his bug). Per-agent usage exists per 
 
 ## Fix
 
+Backend part, backend 1.1.118 (7efabc1, back-m2): live `agent.usage` event per nested agent session {agent, instance, run_id, parent, input_tokens, output_tokens, cost, steps, started}; root `usage` totals unchanged. Frontend part shows it.
+
 (Hotfix session: cause, commit, version, deployed at.)
 
 Fix: frontend 1.1.128 (commit 19006f6, bundle index-bxsE_Wl4.js), by front-m1: AgentNode has tokens and cost summed from each step.finished usage per actor; busy line `Name · doing · N steps · tokens · cost · time`; totals line the same (time only while running). No backend field needed.
 - 2026-11-05 18:46 UTC: frontend 1.1.128
 ## Retest
+
+Start a chat run with a team: the busy list shows steps, tokens, cost and time per agent, live.
 
 (Who, when, result.)
