@@ -64,5 +64,5 @@ Proposal (geomind, hotfix-python):
 - 2026-11-05 18:32 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
 
-QA-E2E-report-I, 2026-11-05 19:30 UTC, project QA-TEST QA-E2E-report-I 3 (a9ff33c4), run 12115d92 (19:00:07-19:26:29 UTC), backend 1.1.122: no sensitivity or sample_uncertainty ran; the report says 'No uncertainty or sensitivity study was run' and the chips offer 'Sensitivity analysis'. Verified.
+QA-E2E-report-I, 2026-11-05 19:30 UTC, project QA-TEST QA-E2E-report-I 3 (a9ff33c4), run 12115d92 (19:00:07-19:26:29 UTC), backend 1.1.118 at the start (1.1.122 at the end): no sensitivity or sample_uncertainty ran; the report says 'No uncertainty or sensitivity study was run' and the chips offer 'Sensitivity analysis'. Verified.
 - 2026-11-05 19:28 UTC: retest run 12115d92: no unrequested studies
