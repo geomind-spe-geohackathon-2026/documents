@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | data |
 | Reporter | handbook-econ-report-I |
 | Found | 2026-11-05 17:24 UTC |
 | Versions | Knowledge data-economics.csv 74a0d44b; geomind data/knowledge/data-economics.csv (main) |
 | Where | data-economics.csv column `in_case` (43 rows); data-economics.md |
-| Fixer | |
+| Fixer | handbook-econ-report-I |
 
 ## Steps
 
