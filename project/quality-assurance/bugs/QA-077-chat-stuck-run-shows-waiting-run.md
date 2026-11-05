@@ -35,7 +35,7 @@ Guess: the run ended failed in the worker but the DB status stayed waiting (depl
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 04:19 UTC: frontend part: 1.1.74 (d9c8dd4), pushed, build checked, deploy at 04:30 UTC (Cancel shows while the run row is unfinished)
 ## Retest
 
 (Who, when, result.)
