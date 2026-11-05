@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
 | Found | 2026-11-04 23:50 UTC |
 | Versions | frontend 1.1.50 (per STATUS.md), backend 1.1.53 (health), geomind 0.4.54 |
 | Where | https://geomind.team/projects/4cfeab2d-73e3-4299-a1f8-afec3d7e4bae/assistant/chat; project QA2 qa-ux flow; first run of the first chat; approval of set_case |
-| Fixer | |
+| Fixer | hotfix-front |
 
 ## Steps
 
