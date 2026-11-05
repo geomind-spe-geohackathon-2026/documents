@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind,data |
 | Reporter | QA-AI-design-I |
@@ -36,4 +36,5 @@ Fact: prompt example in `geomind/prompts/design/lead.md` lines 68-72; handbook-d
 
 ## Fix
 
+- 2026-11-05 18:55 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
