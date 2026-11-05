@@ -60,3 +60,5 @@ hotfix-back-lead, backend 1.1.109 (tag v1.1.109), deployed 2026-11-05 ~17:43 UTC
 
 Recipe: a run whose analysis lead calls a what-if simulate after the plain simulate of the chosen
 design; the new Results row holds the chosen design's KPIs (not the trial's).
+
+Retest (QA-E2E-design-I, 2026-11-05 19:14 UTC, backend 1.1.117): FAILS in a new form. Project QA-TEST QA-E2E-design-I 3 (d555740a-1054-4642-b905-4919d36702a7), run 06fd16f0-8c66-4f76-a2d5-711e24081b85. Chat asked: "... Then also simulate the same design at 150 m3/h per doublet for comparison, but keep the best design as the result." The design lead stored the variant as its own design (`patch_plant` hc_wellfix -> hc_flow150, then a plain `simulate {"design": "design/hc_flow150"}` at 19:06:31) and recorded `/design/reference = design/hc_wellfix` (300 m3/h, the winner). The only Results row added at the run end (19:12:12) is `simulation hc_flow150` (d0 capacity 150 m3/h), plant_version null. Skipping simulates with `changes` is not enough: the recorder should take the simulate of the run's design of record (`state.design.reference`), or the last simulate of that design.
