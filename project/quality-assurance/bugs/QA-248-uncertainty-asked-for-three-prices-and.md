@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | geomind,gemini |
 | Reporter | QA-E2E-study-I |
 | Found | 2026-11-05 17:47 UTC |
 | Versions | backend 1.1.108 |
 | Where | project `QA-TEST QA-E2E-study-I 1` (8fcbf709-537a-40d9-ac1f-abadd1061775); chat c0cae905-a2a8-44cf-8bec-f4899f313e8b; run fd4b7e2c (cancelled by me after 40 s), run 01222f3a-43f3-4331-aa69-0e73a3cb8eea ("please continue") |
-| Fixer | hotfix-python-lead-II |
+| Fixer | m7 |
 
 ## Steps
 
