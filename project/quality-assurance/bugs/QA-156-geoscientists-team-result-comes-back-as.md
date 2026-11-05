@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-case-I |
@@ -70,3 +70,5 @@ Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4
 
 (Who, when, result.)
 - 2026-11-05 17:35 UTC, QA-AI-case-I, run 3 (geomind 0.4.100, backend 1.1.104; project QA-TEST QA-AI-case-I 3 f400fa2d-292d-4358-b3c1-9f4a51f51f7f; run 84526204-bfb7-4611-a476-abde6317c58e; log `../evidence/QA-153/run-84526204.json`): still present (bug open, no fix yet): `geoscientists` result outlined, then 4 `read_stored` of the findings in 2 steps (17:14:19, 17:14:22).
+- 2026-11-05 19:30 UTC (20:30 CET), QA-AI-case-I, run 9c02d335-d9e5-48a8-a687-1c244aeeaee4 (project QA-TEST QA-AI-case-I 12, geomind 0.4.131, backend 1.1.120; log `../evidence/QA-326/run-9c02d335.json`): the `geoscientists` result comes back whole (37 687 characters, one key per instance, Geoscientist I-IV); the case lead went from it straight to the Knowledge search and the question (19:09:25 -> 19:11:05) with no `read_stored` of the findings. Verified. (The same run has a set_case loop, QA-326, in which the lead later re-read 2 findings; unrelated.)
+- 2026-11-05 19:25 UTC: QA-AI-case-I run 9c02d335, geomind 0.4.131
