@@ -45,6 +45,8 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 17. Requirements documents, limits, units and time in depth: modal verbs and traceability, the
     four questions from limit to requirement, tolerances, ask or take from Knowledge, units, time
 18. Cooling demand: sources of load, sensible and latent, free cooling and heat recovery
+19. Subsurface data: kinds and scales, well temperatures, permeability across scales,
+    conflicting sources
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -1712,6 +1714,73 @@ heating and cooling above a small share of their peaks.
 "simultaneous heating and cooling on 120 days: heat recovery is worth a look". No requirement
 follows from it.
 
+# 19. Subsurface data: kinds, quality and conflicts
+
+What each kind of subsurface data measures, how reliable it is, and how to choose when sources
+disagree. It extends §4.2 and §4.3. Examples use invented numbers.
+
+## 19.1 Kinds of data and what they measure
+
+| Data | Measures | Scale | Typical caveat |
+|---|---|---|---|
+| core plugs | permeability, porosity of a few cm of rock | cm | misses fractures; lab conditions (Dake 1978, ch. 1) |
+| wireline logs | porosity, lithology, net sand by depth | dm to m | permeability only by correlation |
+| bottom-hole temperature (BHT) | temperature soon after drilling | point | cooled by mud circulation: reads low (§19.2) |
+| drill-stem test (DST) | pressure, short flow, temperature | tens of m | short: near-well only |
+| production or injection test | productivity or injectivity, kh, skin | hundreds of m | best for flow capacity (Horne 1995) |
+| interference test | connectivity between wells | km | rare before a doublet exists |
+| regional maps, analog wells | depth, thickness, temperature trend | km | a prior, not a site value |
+| fluid samples | composition, GLR, salinity | well | contamination by drilling fluid |
+
+**Rule.** The case records which kind each value is (the quality of §4.3). A well test beats a
+core plug for kh; a stabilised temperature log beats a BHT; a site measurement beats a map.
+
+## 19.2 Temperatures from wells
+
+**Lesson.** Drilling mud cools the rock near the borehole; a temperature measured hours after
+circulation stops is below the formation temperature and recovers over days (Bullard 1947;
+Stober and Bucher 2021, ch. 2). Corrections (the Horner-type plot of temperature against
+`log((t_c + Δt)/Δt)`, with `t_c` the circulation time and `Δt` the time since it stopped)
+extrapolate to the undisturbed value. A stabilised log (weeks after drilling) or a production
+temperature at high flow needs no correction.
+
+**Rule for the case.** A temperature a source gives as corrected or stabilised is a measurement
+for `reservoir.temperature`. An uncorrected BHT is a flaw to name ("likely low"); the agent never
+corrects it itself (§8.5). Without a usable measurement, `reservoir.temperature` stays unset and
+gemini derives it from the ground (§13.3).
+
+**Example (invented).** Three BHTs at 2 300 m: 71 °C after 6 h, 74 °C after 12 h, 76 °C after
+24 h, rising with time: the rock had not recovered. The report's corrected value is 82 °C. Case:
+82 °C at 2 300 m, quality `interpreted`, source the report's correction. The raw BHTs are values
+for checking.
+
+## 19.3 Permeability across scales
+
+**Lesson.** Core permeability, log-derived permeability and well-test permeability differ:
+fractures and layering raise the well-scale value, plugs from the best sand raise the core
+average, mud damage near the well (skin) lowers a short test's result (Dake 1978; Horne 1995).
+Layered flow averages arithmetically along layers (`k̄ = Σ k_i h_i / Σ h_i`); a random mix is
+closer to the geometric mean.
+
+**Rule.** Prefer the well-test kh; a core value is named as such; never average values of
+different kinds yourself. When the only values are from cores or maps, the uncertainty is wide:
+keep the report's range (§9, §21).
+
+**Example (invented).** Core plugs average 520 mD; the well test gives kh = 21 D·m over 60 m net,
+i.e. 350 mD. Case: 350 mD with 60 m, from the test; the 520 mD core average is a value for
+checking that says the cores over-sample the best sand.
+
+## 19.4 When sources disagree
+
+1. Same quantity, same place, different kinds: take the more direct and larger-scale kind
+   (§19.1); name the other in the question.
+2. Same kind, different dates: the newer, unless the older is a better test; say why.
+3. Site against regional: the site value.
+4. Two values that cannot both hold (a pressure above lithostatic, a temperature below the
+   surface value): a flaw to name, never an average.
+5. A value the user gave beats every other source (§17.4); a conflict with a better source is
+   named once in the question, then the user's answer stands.
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -1769,9 +1838,12 @@ follows from it.
 - BIPM (2019). *The International System of Units (SI)*, 9th ed.
 - Batzle, M. and Wang, Z. (1992). Seismic properties of pore fluids. *Geophysics* 57(11),
   1396-1408.
+- Bullard, E.C. (1947). The time necessary for a bore hole to attain temperature equilibrium.
+  *Geophysical Journal International* 5(s5), 127-130.
 - CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
 - DNV RP O501 (2015). *Managing sand production and erosion*.
 - Dake, L.P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
+- Horne, R.N. (1995). *Modern Well Test Analysis*, 2nd ed. Petroway.
 - Hyland, R.W. and Wexler, A. (1983). Formulations for the thermodynamic properties of the
   saturated phases of H2O from 173.15 K to 473.15 K. *ASHRAE Transactions* 89(2A), 500-519.
 - IANA. *Time Zone Database* (tz). ISO 8601-1:2019. *Date and time: representations*.
