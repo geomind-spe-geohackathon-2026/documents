@@ -6,13 +6,16 @@ is claimed twice. Use it instead of editing ``BUGS.md`` by hand.
 
     python3 qa.py new "Title" --severity major --area frontend --reporter qa-3
     python3 qa.py next --area frontend,backend --fixer hotfix-front
+    python3 qa.py next --area gemini --peek          # show the next bug, claim nothing
     python3 qa.py claim QA-012 --fixer hotfix-back
     python3 qa.py set QA-012 --status fixed --note "backend 1.1.16, commit abc1234"
     python3 qa.py list --status open
 
 ``new`` prints the new bug file and evidence folder; fill in the file, then commit and push it
 (``python3 qa.py save QA-012``). ``next`` claims the open bug of the highest severity in the
-given areas and prints it, or prints nothing when none is left.
+given areas and prints it, or prints nothing when none is left; with ``--peek`` it only prints
+the bugs of those areas in the order ``next`` would take them, claiming nothing, so a member can
+check a bug's files before ``claim QA-NNN``.
 """
 
 import argparse
@@ -192,7 +195,14 @@ def cmd_next(args):
     ]
     if not open_rows:
         return
-    row = min(open_rows, key=lambda r: (SEVERITIES.index(r["severity"]) if r["severity"] in SEVERITIES else 9, r["id"]))
+    order = sorted(open_rows, key=lambda r: (SEVERITIES.index(r["severity"]) if r["severity"] in SEVERITIES else 9, r["id"]))
+    if args.peek:
+        for item in order:
+            print(f"{item['id']}\t{item['severity']}\t{item['area']}\t{HERE / item['file']}\t{item['title']}")
+        return
+    if not args.fixer:
+        sys.exit("next: --fixer is required to claim; or --peek to only show the next bugs")
+    row = order[0]
     path = claim(row, args.fixer)
     write_rows(items)
     publish(f"{row['id']}: claimed by {args.fixer}", [INDEX, path])
@@ -276,7 +286,8 @@ def main():
     one.add_argument("--fixer", required=True)
     nxt = sub.add_parser("next")
     nxt.add_argument("--area")
-    nxt.add_argument("--fixer", required=True)
+    nxt.add_argument("--fixer")
+    nxt.add_argument("--peek", action="store_true", help="show the open bugs in claim order; claim nothing")
     put = sub.add_parser("set")
     put.add_argument("bug")
     put.add_argument("--status", required=True)

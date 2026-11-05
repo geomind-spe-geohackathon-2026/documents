@@ -67,6 +67,8 @@ blocks every deploy of that repo (`hotfix_deploy.sh` refuses it), for every sess
 
 ## Who fixes what (hotfix sessions)
 
+`qa.py next --area <areas> --peek` lists the open bugs of those areas in the order `next` takes them and claims nothing; check a bug's files, then `qa.py claim QA-NNN --fixer <name>`. `next` without `--peek` claims the first at once, as before.
+
 | Session | Claims (`qa.py next --area ...`) | Edits |
 |---|---|---|
 | hotfix-front | `frontend` | the frontend clone |
