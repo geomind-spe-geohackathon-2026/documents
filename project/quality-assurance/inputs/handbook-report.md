@@ -7,7 +7,13 @@ anyone who writes a feasibility study, concept design, competition entry or desi
 Cite as `knowledge/handbook-report.md`, with the section number (for example
 `knowledge/handbook-report.md §7.2`). Every numbered section stands alone. Chapter 0 is the short
 version for agents; chapter 15 the review checklist; chapter 16 a worked example for a scored
-brief; Appendix A templates.
+brief; chapter 17 lessons from reviewed reports; Appendix A templates.
+
+Outline: 0 Quick reference · 1 Purpose · 2 Structure · 3 What reviewers look for · 4 Executive
+summary · 5 Design basis · 6 Alternatives · 7 Decisions · 8 Results (8.6 numbers, 8.7 heat by
+source, 8.8 COP and SPF, 8.9 energy balance) · 9 Compliance (9.5 scope, 9.6 values) · 10
+Uncertainty · 11 Limitations · 12 Figures and tables · 13 Agent log · 14 Style · 15 Checklist ·
+16 Worked example · 17 Lessons from reviewed reports · A Templates · B References.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -23,9 +29,9 @@ good practice (Appendix B).
 
 ## 0.1 Rules that hold in every section
 
-1. **Every number from the state or a tool, digit for digit**, with the unit the tool returns.
-   Never estimate, compute, round or convert one; a sum, share or difference is a tool's, or it
-   is left out (§8.6).
+1. **Every number from the state or a tool**, with the unit the tool returns, shown to four
+   significant figures (§8.6). Never estimate, compute or convert one; a sum, share or
+   difference is a tool's, or it is left out (§8.6).
 2. **Every reference from the state or a tool**: `design.reference`, `design.result`,
    `verification.result`, `study/<name>`. Never a made-up one.
 3. **Feasible means gemini's verdict**: `feasible` true with no reason, from the reviewer's
@@ -110,6 +116,12 @@ extra steps cost about four times the tokens of the whole review.
 | What a scored brief or a page limit asks | §3.2, §16, and the brief's own document in Knowledge |
 | What a study found, how many runs it took, how to read its history | `knowledge/handbook-studies.md` §0.2, §0.4, §6.1 |
 | Heat by source (geothermal, heat pump, boiler) | `knowledge/handbook-economics.md` §1.4 |
+| How to round and write numbers | §8.6 |
+| What "geothermal share" may claim; heat by source | §8.7 |
+| COP, SPF or plant ratio | §8.8 |
+| Does the energy balance close; fuel by source | §8.9 |
+| What the checks cover; every check with its number | §9.5, §9.6 |
+| A short form; which design when several; stale results | §17 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -142,7 +154,8 @@ Write so that each finds the answer in its own section, without reading the rest
 A design report is evidence: every claim must be checkable. In this team that means
 (`geomind/geomind/prompts/project/explainer.md`):
 
-- every number comes from the problem state or a tool, digit for digit, with its unit;
+- every number comes from the problem state or a tool, with its unit, shown to four significant
+  figures (§8.6);
 - every reference (design, result, study) is one the state or a tool gave;
 - every decision names its reason and its source;
 - nothing is called compliant that gemini did not judge.
@@ -473,13 +486,85 @@ not the grid electricity's CO2 (gemini 0.6.16 and later; `knowledge/handbook-eco
 
 ## 8.6 Quoting numbers
 
-- Each number with the unit the tool returns, digit for digit: `111667.68 MWh`, not "about 112
-  GWh" (`geomind/geomind/prompts/project/explainer.md`).
-- No conversion of your own: a UA of `1500000.0 W/K` is written so, not "1.5 MW/K".
+- Each number with the unit the tool returns, rounded to **four significant figures**, never
+  with more digits than the tool gave: `34.63640461864158 MEUR` is `34.64 MEUR`, `253.8975 MWh`
+  is `253.9 MWh`, `111667.68 MWh` is `111700 MWh` (better: `1.117e5 MWh` in a table)
+  (`geomind/geomind/prompts/project/explainer.md`; QA-099, QA-234).
+- A share from zero to one is a percent: `0.9999925` is `100.0 %`. A value smaller than `1e-9`
+  of its limit is `0` (`1.0178e-16` unmet share is `0 %`): it is numerical noise, not a result.
+- Rounding is the only change. No conversion of your own: a UA of `1500000.0 W/K` is
+  `1.500e6 W/K`, not "1.5 MW/K"; the unit stays the tool's.
+- Round once, at the end, from the tool's value; never round a rounded number again, and never
+  compute with rounded numbers (ISO 80000-1:2022, Annex B; NIST SP 811, Appendix B.7).
 - A sum, share or difference is one a tool gave, or a calculation with its id
   (`calculate`, skill `calculator`), or it is left out.
-- In a document written by people after the run, rounding for readability is allowed only with
-  the exact value in a table or appendix.
+- Write the number and the unit with a space (`45.1 EUR/MWh`, `12 %`), the unit symbol upright
+  and never pluralised (BIPM SI Brochure, 9th ed., §5.4.3).
+- Four significant figures are presentation, not accuracy: a concept capex is uncertain by tens
+  of percent (§10.4). Say so once instead of trimming digits further.
+
+Invented example: a tool gives LCOH `48.927109216402506 EUR/MWh` and an unmet share
+`2.3e-17`. The report writes "LCOH 48.93 EUR/MWh; unmet heat 0 %", and in `Costs` one line: "A
+concept-stage estimate; capex accuracy about −30 % to +50 % (§10.4)".
+
+## 8.7 Heat by source: what "geothermal" may claim
+
+A share of heat is named by where the energy came from, never by the plant's name. gemini's
+daily coverage splits each service into `geothermal` (heat taken from the brine), `electricity`
+(the work a heat pump or a compression chiller adds), `backup` (boilers, CHP, electric boilers,
+compression chillers used as cooling backup) and `short` (unmet) (`gemini/gemini/evaluate/
+coverage.py`, `KEYS`, `BACKUP_ROLES`). Heat by source for the year is in
+`knowledge/handbook-economics.md` §1.4.
+
+- A heat pump's output is not all geothermal: its electricity is a separate source. "Geothermal
+  covers 100 %" for a plant with a heat pump on grid power is wrong (QA-270); write "brine heat
+  x %, heat-pump electricity y %, boilers z %" with the tool's figures.
+- Renewable claims follow a stated rule. The EU Renewable Energy Directive counts as renewable
+  only `E_RES = Q_usable × (1 − 1/SPF)` of a heat pump's output, and only when its seasonal
+  performance factor is high enough (Directive (EU) 2018/2001, Annex VII). Name the rule if the
+  report claims a renewable share, or make no such claim.
+- Produced gas burned on site is a fuel of the plant: name it beside gas bought (§8.9).
+
+Invented example: a year delivers 100 GWh of heat: brine 70 GWh, heat-pump electricity 18 GWh,
+boilers 12 GWh. The report says "brine heat 70 %, heat-pump electricity 18 %, boilers 12 %",
+never "geothermal 88 %".
+
+## 8.8 Performance ratios: say what is divided by what
+
+A coefficient of performance (COP) is one machine's useful heat (or cold) divided by that
+machine's electricity, at stated conditions (EN 14511 for rated values). A seasonal performance
+factor (SPF) is the same over a season, inside a stated boundary: the SEPEMO-Build boundaries H1
+to H4 add, step by step, the source pumps, the backup heater and the distribution pumps (SEPEMO-Build;
+Zottl et al., 2012). A plant ratio such as "heat delivered per MWh of electricity bought" includes
+geothermal and boiler heat and is not a COP: name it in words (QA-322).
+
+- Quote a COP only from the tool for that unit (per-unit results, `compute_kpis`), with the
+  boundary; never divide two plant totals and call it a COP.
+- A heat-pump COP far above the Carnot limit `T_hot / (T_hot − T_cold)` (kelvin) is an error of
+  definition, not a good machine (Çengel and Boles, 2019, ch. 6).
+
+Invented example: a plant delivers 120 GWh of heat and buys 6 GWh of electricity; its heat pump
+alone makes 30 GWh from 7.5 GWh of its own electricity, partly self-generated. The heat pump's
+SPF (H1) is 4.0; "20 MWh of heat per MWh bought" is a plant ratio, and calling it COP 20 is
+wrong.
+
+## 8.9 The energy balance closes
+
+The first law holds for the plant and for each unit: energy in (brine heat, electricity, fuel by
+source, absorbed heat) equals energy out (heat and cold delivered, rejected heat, losses), within
+the tolerance gemini reports (`gemini/gemini/evaluate/balances.py`, `ENERGY_INPUTS`). Show every
+input, so a reader can check a unit's efficiency.
+
+- List fuel by source: gas bought, produced gas burned, gas flared. Showing only gas bought next
+  to boiler heat makes a reader compute an efficiency above 100 % (QA-323).
+- A boiler efficiency above about 1.0 on the lower heating value, or a balance residual above
+  gemini's tolerance, is a finding for the reviewer, not a number to explain away.
+- A plausibility check of a large figure is allowed with `calculate` and its id: brine heat is
+  `ρ · c_p · V̇ · ΔT`.
+
+Invented example: 200 m3/h of brine cooled by 30 K with ρ c_p = 4.0 MJ/(m3 K) gives
+`calculate`: 200/3600 × 4.0e6 × 30 = 6.67 MW. A result that claims 20 MW of brine heat from the
+same flow and cooling is wrong somewhere; the reviewer names it.
 
 ---
 
@@ -525,6 +610,34 @@ When a rule keeps failing after a real change of approach, report the best desig
 passing and failing rules by name, the worst values and their owners, and what was tried (team
 rule, QA-090): never an empty result, never a failure dropped. A zero-demand day is no failure
 of a supply temperature judged while running (QA-091).
+
+## 9.5 Say what the checks cover
+
+"All 12 checks pass" reads as full validation unless the report says what was checked (QA-325).
+Next to the verdict, state in one or two lines:
+
+- the period simulated and its time step (for example one year of daily steps), and that the
+  plant's lifetime behaviour was not simulated unless a study did so;
+- the case's rules that were checked, and the quantities gemini can bound but this case did not
+  (`knowledge/handbook-case.md` §6.10);
+- what lies outside the model: reservoir pressure decline over the years, thermal breakthrough
+  between wells, injectivity beyond the modelled value, scaling and corrosion, permits.
+
+Thermal breakthrough and pressure decline are lifetime questions of the doublet: their time
+scale depends on well spacing, flow and reservoir thickness, and they are judged with a
+reservoir model over decades (Grant and Bixley, 2011; Willems et al., 2017). A
+one-year plant simulation does not answer them; the report names them as open (§11).
+
+Invented example: "gemini's verdict is feasible: 9 of 9 checks pass over one simulated year
+(daily steps). Not checked: pressure decline and thermal breakthrough over the 30-year life
+(no reservoir model run), CO2 limit (the case sets none)."
+
+## 9.6 Every check with its number
+
+A requirement's value, limit and worst step are in `check_results` `requirements`, not only in
+`read_result`. Never write that a requirement "rests on gemini's verdict" when its entry has a
+value: quote the value and the limit (QA-124; skill `reading-results`). Only a check with
+`passed` `None` has no value, and it is "not judged" with its reason (§9.2).
 
 ---
 
@@ -697,7 +810,7 @@ For the reviewer and the project lead, before a report goes out:
 - [ ] Capacities of every unit and of the plant, against the demand peaks.
 - [ ] Heat and cold delivered against demand; surplus named.
 - [ ] LCOH, LCOC, LCTS, capex, opex, CO2 with units and basis.
-- [ ] Every number traceable to a tool or the state, digit for digit; no number computed by
+- [ ] Every number traceable to a tool or the state, to four significant figures; no number computed by
       the writer.
 
 **Compliance and uncertainty**
@@ -788,6 +901,64 @@ a deep doublet reservoir producing 75 °C brine with dissolved gas.
 
 ---
 
+# 17. Lessons from reviewed reports
+
+Each lesson is general; the bug file named in brackets is where the team learnt it.
+
+## 17.1 Answer the question that was asked
+
+A follow-up question gets its own answer, not the earlier report again. A format the user names
+("short form", "for my manager", "one slide") sets the length: one table and three to five lines
+of recommendation, not the full eight headings (QA-289, QA-333). The rule is the old one of
+technical writing: the reader's question decides the content and the length (Markel and Selber,
+2021). Run the explainer once per question; re-running it with the same brief adds
+nothing.
+
+Invented example: "Short form for my manager: v1 or v2?" The answer is a two-column table
+(LCTS, capex, CO2, verdict) and "Recommend v1: 8 % lower LCTS, both feasible; open: no
+lifetime reservoir study."
+
+## 17.2 Report what was asked; offer the rest
+
+A report of an existing design reports that design and its existing studies. A sensitivity or
+an uncertainty study the user did not ask for is offered as a next step (the finish
+suggestions), never run inside the report (QA-257). A study run without being asked costs time
+and tokens and changes what the user has to read.
+
+## 17.3 Which design: when the project holds several
+
+When the project holds more than one plant version and the request names none, the report
+either compares the current versions on the same case (a plain simulate each is cheap) and
+recommends one with its reason, or asks the project lead which to report. Never call the latest
+version "the recommended design" without that comparison (QA-337). A fair comparison is §6.2.
+
+## 17.4 Never claim a model is missing without looking
+
+Before writing "gemini cannot model X", look it up: `list_plants`, `list_modules`,
+`describe_module`. A module can serve several roles: a `HeatPump` in the role `chiller` is an
+electric compression chiller (`gemini/gemini/evaluate/coverage.py`, `BACKUP_ROLES`; QA-334).
+Compare a choice with the reference plant families `list_plants` gives, and give the reason from
+the design and its numbers.
+
+## 17.5 A result belongs to one case and one design
+
+Every number quoted must come from a result that ran the current design on the current case. A
+result that ran an older case version or another plant is stale: say so at the top ("this
+result ran on an earlier case; run it again before sending") or run it again (QA-290, QA-233).
+A study made on an older case is named as such (§0.4). The reviewer's check of a stale result is
+§0.5.
+
+## 17.6 One read, then write
+
+Every read is quoted, or it is not made. A reviewer with a feasible verdict at step 2 is done
+after recording it; an explainer reads the five tools of §0.3 once and writes (QA-187, QA-218).
+A section of a handbook is opened by its number with `read_knowledge`, after the outline;
+`search_rag` only finds which document holds a topic (QA-351).
+
+---
+
+---
+
 # Appendix A. Templates
 
 ## A.1 Report skeleton
@@ -854,9 +1025,27 @@ a deep doublet reservoir producing 75 °C brine with dissolved gas.
   Applied in Engineering, Procurement, and Construction for the Process Industries*. (Ranges in
   §10.4 from secondary summaries.)
 - BIPM (2019). *The International System of Units (SI)*, 9th ed.
+- ISO 80000-1:2022. *Quantities and units — Part 1: General*, Annex B (rounding of numbers).
+- NIST SP 811 (2008). Thompson, A. and Taylor, B. N. *Guide for the Use of the International
+  System of Units (SI)*, Appendix B.7 (rounding).
+- Directive (EU) 2018/2001 (Renewable Energy Directive), Annex VII: energy from heat pumps.
+- EN 14511 (all parts). *Air conditioners, liquid chilling packages and heat pumps … — rating
+  conditions and test methods*. CEN.
+- Zottl, A., Nordman, R. et al. (2012). *Concept for evaluation of the SPF*. SEPEMO-Build
+  project (EU Intelligent Energy Europe), system boundaries H1–H4.
+- Çengel, Y. A. and Boles, M. A. (2019). *Thermodynamics: An Engineering Approach*, 9th ed.
+  New York: McGraw-Hill. Ch. 6 (second law, Carnot COP).
+- Grant, M. A. and Bixley, P. F. (2011). *Geothermal Reservoir Engineering*, 2nd ed.
+  Burlington, MA: Academic Press.
+- Willems, C. J. L., Nick, H. M., Weltje, G. J. and Bruhn, D. F. (2017). "An evaluation of
+  interferences in heat production from low enthalpy geothermal doublets systems". *Energy* 135,
+  500–512.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
-- gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `_utils/display.py`.
+- gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `coverage.py`,
+  `balances.py`, `_utils/display.py`.
 - geomind: prompts `geomind/geomind/prompts/project/explainer.md`, `reviewer.md`; skills
   `reading-results`, `comparing-designs`, `report`, `economics`, `calculator`, `python`.
-- Team: bug files QA-090, QA-091, QA-094 of the team's quality assurance.
+- Team: bug files QA-090, QA-091, QA-094, QA-099, QA-124, QA-187, QA-218, QA-233, QA-234,
+  QA-257, QA-270, QA-289, QA-290, QA-322, QA-323, QA-325, QA-333, QA-334, QA-337, QA-351 of the
+  team's quality assurance.
