@@ -165,7 +165,11 @@ step 3.
 ## 0.5 Failure to fix
 
 Read the worst step of the failing reason (11.7), then the module's results around it
-(`read_result`), then change one owner's values.
+(`read_result`), then change one owner's values. Each subsection below holds one group of symptoms:
+0.5.1 missing values and refused inputs, 0.5.2 wells, pumps and doublets, 0.5.3 surface units and
+checks.
+
+### 0.5.1 Missing values and refused inputs
 
 | Symptom | Engineering cause | Fix | Owner (0.3) |
 |---|---|---|---|
@@ -177,6 +181,13 @@ Read the worst step of the failing reason (11.7), then the module's results arou
 | Plant file refused for a case value | a site or network value written in the plant | remove it; it belongs to the case (11.1) | lead |
 | Tear stream with no first guess (a closed loop) | a loop module lacks the values that let it offer its outlet; for a `Cooler`: `loop_pressure` and `flow` [gemini 0.6.17] | set those values on the module the message names | the module's group |
 | `inlet 'X': <error>` | the value at that inlet is invalid [gemini 0.6.17] | fix the value the message names; an inlet is `<module>.<port>` (QA-083) | lead |
+| `numerical` reason | a loop that does not close, or a colder return mixed into a fixed-temperature supply | plan where each stream goes (skill `designing-a-plant`, "What gemini can run") | lead |
+| `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call | lead |
+
+### 0.5.2 Wells, pumps and doublets
+
+| Symptom | Engineering cause | Fix | Owner (0.3) |
+|---|---|---|---|
 | Pipe `PhysicsError`: outlet pressure below zero | friction and static drop exceed the inlet pressure | wider pipe (2.5: 1 to 3 m/s), shorter pipe, or higher loop pressure; check the flow [gemini: `gemini/modules/piping/pipe.py`] | lead |
 | `bound` on `intake_pressure` or `intake_gas_fraction` | pump too shallow for the drawdown, too much flow per well, or a deep design | set the pump deeper, lower the flow per doublet and add one, wider well, higher wellhead pressure (4.3, 4.4) | W |
 | ESP `out_of_range`: flow above `maximum_flow` on every step at the design flow | the pump's window equals the case's flow band and the design flow sits on its edge | a margin below the case's maximum, and a pump window wider than the band (4.9) | W |
@@ -184,15 +195,18 @@ Read the worst step of the failing reason (11.7), then the module's results arou
 | `size_plant` returns a count outside `size.doublets`, or `read_plant` shows no `type`/`size` | a class plant saved as a free plant | build again from the class with the values found (11.10) | lead |
 | ESP `out_of_range` with a `curve` | the ESP curves do not cover the flows run | the well engineer gives sourced curves, or `pump_type` `"unspecified"` with no curves (the doublet derives them) | W |
 | Doublet flow below the demand it should carry | the schedule runs a doublet at most at its `nominal_flow` [gemini 0.6.15] | raise `nominal_flow` up to the case's flow cap, or add a doublet | R |
+
+### 0.5.3 Surface units and checks
+
+| Symptom | Engineering cause | Fix | Owner (0.3) |
+|---|---|---|---|
 | Heat pump: no duty, source below the minimum | brine at or below `minimum_source_outlet_temperature`, or lift below the minimum | move the heat pump upstream in the cascade, lower the exchanger duty before it, check the limit (6.4, 0.8) | H |
 | Unit off below its minimum part load | machine too large for a low-demand step | smaller or two units, or accept and cover by backup (9.2) | H or C |
 | Absorption chiller delivers nothing | drive water below `minimum_driving_temperature`, or cooling water too warm | hotter drive water (first in the cascade), larger cooler, or another chiller (7.2) | C |
 | `heat_delivered` / `cold_delivered` fails | too little capacity on peak or outage days | read the worst step; add boiler or chiller capacity; check the backup policy covers outage days (8.4, 8.5) | H (C for cold) |
 | `brine_cooling_limit` fails | brine cooled beyond the cap | heat pump `minimum_source_outlet_temperature` = production temperature less the cap, or a smaller heat pump (0.8) | H |
 | `running_time_limit` fails | a doublet runs more days than allowed | `params.control.outages` `lowest_demand`, a second doublet, backup that covers the days off (8.5) | lead; H |
-| `numerical` reason | a loop that does not close, or a colder return mixed into a fixed-temperature supply | plan where each stream goes (skill `designing-a-plant`, "What gemini can run") | lead |
 | Supply temperature rule fails on zero-demand days | a rule with `when: always` | a case change: the rule holds only while that supply runs (9.4); never force circulation | case lead |
-| `internal` error from a tool | an input gemini did not anticipate | change the input; never repeat the same call | lead |
 
 ## 0.6 Where a value comes from: case, Knowledge, your choice, or the user
 
@@ -217,9 +231,11 @@ each doublet (`d0`, `d1`, ...). Write each with its unit as `{"value": 0.244, "u
 dimensionless value is a number (skill `gemini-units`). The last column gives a published value
 where one exists; otherwise the value is an engineering choice: take it from the case's own
 assumptions document in Knowledge when there is one (search it once by the path), else choose it
-with a one-line reason and record it as an assumption (0.6).
+with a one-line reason and record it as an assumption (0.6). Read only the subsection of your
+group: 0.7.1 doublet and reservoir, 0.7.2 pumps, 0.7.3 treatment and gas, 0.7.4 heating, 0.7.5
+cooling.
 
-**Doublet, wells and reservoir (R: reservoir values; W: `depth`, wells, wellhead)**
+### 0.7.1 Doublet, wells and reservoir (R: reservoir values; W: `depth`, wells, wellhead)
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -235,7 +251,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `dN.well/riser/injector.friction_correlation`, `two_phase_friction_correlation` | friction models | text | single phase `darcy_weisbach`; two phase `BeggsBrill` where gas comes out (4.2) | — |
 | `dN.well/riser/injector.heat_transfer_coefficient` | heat loss of the brine to the rock | W/m2/K | of the order of 10 for a cased well; a low value keeps the wellhead close to the reservoir temperature (3.1) | — |
 
-**Pumps (W)**
+### 0.7.2 Pumps (W)
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -247,7 +263,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `injection_pump.efficiency` | injection pump efficiency | 1 | as the production pump | — |
 | `injection_pump.nominal_flow`, `nominal_head` | injection pump rating | m3/h, bar | `size_plant` sets them (4.7) | — |
 
-**Treatment and gas (R)**
+### 0.7.3 Treatment and gas (R)
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -259,7 +275,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `dosing.dose`, `dosing.product_concentration` | inhibitor dose, active share | ppm, 1 | geochemistry (5.3) | doses a few to tens of ppm [Gallup 2009] |
 | `flare.combustion_efficiency` | share of methane burned | 1 | flare type | 0.98 [US EPA AP-42 13.5] |
 
-**Heating (H)**
+### 0.7.4 Heating (H)
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
@@ -276,7 +292,7 @@ with a one-line reason and record it as an assumption (0.6).
 | `boiler.efficiency` | fuel to heat | 1 | the boiler class (6.5) | — |
 | pipes `length`, `inner_diameter`, `roughness`, `elevation_change`, `heat_transfer_coefficient` | plant pipes | m, m, m, m, W/m2/K | the length of a network pipe is the site's: from the case or Knowledge, else asked (0.6), never invented; the diameter for 1 to 3 m/s at the design flow (2.5) | roughness 4.5e-5 m for new steel [Moody 1944] |
 
-**Cooling (C)**
+### 0.7.5 Cooling (C)
 
 | Path | Meaning | Unit | How to choose | Published value |
 |---|---|---|---|---|
