@@ -34,8 +34,8 @@ Guess: the case fallback ('empty takes it from the case') works only when the do
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 06:31 UTC: gemini 0.6.9 (2b771f5f: check names a doublet's missing depth first) + geomind 0.4.70 (simulate changes set control.dispatch/outages/backup), backend 1.1.75 (6dfb1c7), deployed 06:30 UTC; the d0.gradient failure on design/A_sized did not reproduce (same plant and chat case simulate in prod now)
+Findings (hotfix-python-II): the 30 failing simulate calls were all after 05:30 (gemini 0.6.8). In a fresh process, inside the prod worker, `gm.simulate` of the run's `design/A_sized` on the chat's own case and files now succeeds; `d0` is a `Doublet`, `apply_case` sets its ground and reservoir values, and its `depth` (2500 m) is given. So the plain `d0.gradient: no value` failure did not reproduce, and its cause is not found; copying the chat's files out of prod for a local run was refused by the permission check. Fixed what the run showed: (1) gemini 0.6.9 (2b771f5f): `gm.check` names a doublet without a depth first, saying the case's reservoir temperature and pressure reach it only with it (the plain issue of the same path is not repeated); (2) geomind 0.4.70: `simulate`'s `changes` set the plant's own options (`{"control": {"dispatch": ...}}`, `{"backup": {"value": ...}}`), which the agent tried 8 times and got `unknown module path 'control'`, so runs stopped on `dispatch is missing`. The ESP curves (stage_count, head/power coefficients) are design inputs of the well engineer with no default; with QA-076's ownership fix the well engineer can write them. backend 1.1.75 (6dfb1c7), deployed 2026-11-05 06:30 UTC. Retest: simulate a design in a new chat; if `d0.gradient: no value` comes back, note the design and time.
+
 ## Retest
 
 (Who, when, result.)

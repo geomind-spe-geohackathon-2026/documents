@@ -39,8 +39,8 @@ Guess: an uncaught exception in gemini 0.6.8 (new in 0.6.7/0.6.8, since QA-076/Q
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-- 2026-11-05 06:31 UTC: geomind 0.4.71 (2be9007: internal errors carry class, message, file:line) + gemini 0.6.10 (bare inlet name is invalid_connection, was KeyError), backend 1.1.75 (6dfb1c7), deployed 06:30 UTC; ESP-flow patch internals not reproduced, their cause now shows in the message
+Cause (build_plant, reproduced): the agent wrote `"inlets": {"grid_gas": "gas"}`; gemini's port lookup read the bare name as module path `''` and raised `KeyError('')`, which geomind's dispatch turned into a bare `<tool>: internal error`. Fix: gemini 0.6.10 (commit before 957e13af) refuses a bare inlet or outlet name as `invalid_connection`, naming `<module>.<port>`; geomind 0.4.71 (2be9007): any unexpected tool exception reaches the agent as `internal` with its class, message and innermost file:line, and the advice to change the input and never repeat the call. The ESP flow window and nominal_wellhead_pressure patches did not reproduce on gemini directly (set_params of each works); their cause will show in the new message. backend 1.1.75 (6dfb1c7), deployed 2026-11-05 06:30 UTC by hotfix-python-II.
+
 ## Retest
 
 (Who, when, result.)
