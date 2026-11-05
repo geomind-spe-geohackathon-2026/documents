@@ -5,34 +5,34 @@
 | Status | open |
 | Severity | major |
 | Area | geomind |
-| Reporter | Fatemeh |
+| Reporter | Fatemeh (organisers' answers), Claude (write-up) |
 | Found | 2026-11-05 09:27 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | backend 1.1.78 (geomind 0.4.73), or later |
+| Where | every challenge case; seen in chats 33c76f29 and cb8b9b2d |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. A design chat on the challenge files (the brief gives supply temperatures 100 °C and 20 °C, no return temperatures).
+2. The case lead and the design team need the heating and cooling return temperatures.
 
 ## Expected
 
+The organisers' answer (Discord #technical-q-and-a, pejman.shoeibi, 2026-11-03 23:22, to Arash): "as long as the return temperature does not violate the constraints, then it is fine. Heating and cooling demand is provided, supply temperature is provided, source temperature is defined by the selected depth ... and there is a constraint on how much you can cool down the geothermal brine." So the return temperatures are the team's design choice: the design team picks them, gives a reason, and gemini's check (brine cooling 40 K, demand met) decides.
+
 ## Actual
+
+geomind treats them as case values with no source: `prompts/design/energy.md:65` "a return temperature the case lacks is a case change, never a typical value". The agents asked the user for them again and again and stopped the design without them (QA-009, QA-010, QA-015; chat 33c76f29 "six case values ... the design still cannot be sized").
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-094/1.png)
-- Run JSON: `../evidence/QA-094/run-<id>.json`
+- ![organisers' answer on return temperatures](../evidence/QA-094/1.png)
+- `geomind/geomind/prompts/design/energy.md` line 65; `prompts/case/lead.md` line 84 (depth, units, backup are design freedoms; return temperatures are not listed).
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+Fact: the prompts put the return temperature with the case. Proposal: list the network return temperatures with the design freedoms (like depth and backup): the design team chooses them as a recorded design assumption with its reason, within the constraints, and the user sees them in the report.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
-
 ## Retest
-
-(Who, when, result.)
