@@ -17,6 +17,7 @@ Projects (kept): `QA-TEST QA-E2E-design-I 1` (f1704a61-f1b8-4b63-84d3-20bd30beae
 | 2 | 17:46-18:36 | "Design the plant for this case." Build card denied with a change (2 doublets, backup peak); pipe question answered by typing | dca5ed1a | Failed: build_plant blocked after the worded deny (QA-230); restarted; doublets 2 lost to 1 (QA-260); 31-min ESP patch loop (QA-287); cancelled at 50 min, no simulate |
 | 3 | 18:36-18:50 | "Change the current plant to 4 doublets at 400 m3/h and allow 60 K, no peak boiler. Then check it." | 365bcbd3 | Variant built and simulated; the answer names the breached requirement (4 doublets) and that the flow stays at 300 m3/h; asked how to proceed; nothing silently clamped in the answer |
 | 4 | 18:51-19:12 | "Design ... within its limits; size, simulate, check; also simulate 150 m3/h for comparison, keep the best design as the result" (project 3) | 06fd16f0 | Feasible 1 doublet x 300 m3/h, LCTS 37.49 EUR/MWh, unmet heat 0 and cold 0, 21 min, 3.18 M input tokens, 0.087 USD; 1,066-word answer; the Results row is still the 150 m3/h variant (QA-223 reopened) |
+| 5 | 19:15-19:31 | "Now compare the kept design with 2 and 3 doublets at 300 m3/h each; keep the counts exactly" (project 3) | e3c10ff9 | 1/2/3 doublets all feasible, LCTS 37.49 / 37.82 / 42.48 EUR/MWh, 1 doublet best; the third doublet ran at 50 m3/h while the answer says each at 300; patch of size.doublets ignored 14 times (QA-260 reopened); no approval card for ~20 writes with auto-approve off (QA-329); 16 min, 4.43 M input tokens, 0.097 USD |
 
 ## Timing (round 1, run 76d19df6)
 
@@ -65,13 +66,18 @@ Round 2: 50 min, 6.07 M input tokens, 0.145 USD, no simulate. Round 3: 12 min to
 | QA-231 | minor | backend | Run usage jumps down and up during a run | open |
 | QA-241 | major | backend,frontend | Plant page '3 values missing' on a complete plant (free_document drops backup/control/size) | open |
 | QA-246 | major | frontend | One tab gets 429 rate_limited; Plant page fails | verified (round 4: 0 of 525) |
-| QA-260 | major | geomind,gemini | patch_plant drops type and size: 2 doublets become 1; size_plant returns 1 for range 2-2 | open |
+| QA-260 | major | geomind,gemini | patch_plant drops type and size: 2 doublets become 1; size_plant returns 1 for range 2-2 | reopened (round 5) |
+| QA-329 | major | backend,geomind | Writes ran without approval cards with auto-approve off (round 5) | open |
 | QA-230 | blocker | geomind | (evidence added) worded deny blocks build_plant for the run | fixing |
 | QA-254 | blocker | gemini | (evidence added) IndexError values.py:70 in patch_plant and size_plant, 17:57 and 18:02 UTC | verified; round 4 no IndexError in 13 calls |
 | QA-287 | blocker | geomind,gemini | (evidence added) 31-min ESP / injection pump patch loop | open |
 
 Not filed: agent-browser ref clicks on Approve sometimes did nothing (a DOM click worked, the
 element was hit-tested correctly: tool, not app). Cancel run on a waiting card worked (round 2).
+
+## Retests on 1.1.117 (19:15-19:36 UTC)
+
+Verified: QA-169, QA-172, QA-246, QA-247, QA-251, QA-253, QA-287. Reopened: QA-212 (5 patches), QA-223, QA-250 (first whole-year run 365/365 failed, m_dot nan; then 330/365, ESP flow 8.8e6 m3/s, until the well segments were set), QA-260.
 
 ## Next
 
