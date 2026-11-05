@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -65,3 +65,7 @@ opex 4.035 MEUR/yr, equal to a page `run` study on that case version 4).
 3. `estimate_costs`: state in its answer the case version / economics digest it used and whether the result's run used
    the same case; if the case changed since the run, say "simulate again" (or re-cost on the current case itself).
 4. Never call design_lead for state bookkeeping after the final answer.
+
+## Fix
+
+- 2026-11-05 18:33 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
