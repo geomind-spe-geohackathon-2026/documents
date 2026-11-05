@@ -1520,8 +1520,358 @@ the conflict with its owner (1.4).
 
 All are in `geomind/geomind/skills/<name>/SKILL.md`.
 
+
 ---
 
-> **Draft status (2026-11-05, paused for the usage limit):** Chapters 1 to 11 are written. Chapter
-> 12 (worked example) and Appendices A to D (formulas, rules of thumb, glossary, references) follow
-> in the next commit.
+# 12 Worked example: the GEMINI hackathon 2026 case
+
+This chapter applies Chapters 2 to 11 to one case: the SPE Europe Energy GeoHackathon 2026 (GEMINI
+digital twin). It is an example, not a template: its numbers belong to this case only. Sources: the
+three competition files (`GEMINI_Heating_Demand_Daily_2027.csv`,
+`GEMINI_Cooling_Demand_Daily_2027.csv`, `GEMINI_Hackathon_Challenge_Requirements.pdf`, dated 28
+October 2026) and gemini's sample [gemini: `examples/hackathon_2026/README.md`, `case.json`,
+`plants/`, `tests/e2e/expected/hackathon.txt`, `evolve.txt`]. Values the competition files do not
+give are in the global Knowledge document `hackathon-2026-assumptions.md`, each labelled.
+
+## 12.1 The case
+
+| Item | Value | Source |
+|---|---|---|
+| Heating demand | 365 daily values; peak 30.0 MW on 28 January; 111.67 GWh/yr | CSV, PDF p. 1 |
+| Cooling demand | 365 daily values; peak 10.0 MW on 19 July; 23.74 GWh/yr | CSV, PDF p. 1 |
+| Supply temperatures | heating 100 °C, cooling 20 °C, fixed | PDF p. 2 |
+| Return temperatures | a design choice of the team; the sample uses 60 °C and 25 °C | organisers; sample **[assumption]** |
+| Reservoir | midpoint 2500 m TVD, 100 m thick, 200 mD, 250 bar(g) | PDF p. 2 |
+| Ground | gradient 30 °C/km, surface 12 °C | PDF p. 2 |
+| Brine | 1030 kg/m3, 0.40 mPa·s, GLR 0.8 Nm3/m3, gas 80 mol% CH4 and 20 mol% CO2 | PDF p. 2 |
+| Doublets | 1 to 3 | PDF p. 2 |
+| Flow per doublet | 50 to 300 m3/h while running | PDF p. 2 |
+| Brine cooling | at most 40 K, producer to injector | PDF p. 2 |
+| Pump efficiency | 70 % | PDF p. 2 |
+| Reinjection | equal liquid volumes | PDF p. 2 |
+| Doublet operation | at most 330 days; the whole system meets demand on all 365 days | PDF p. 2; organisers |
+| Depth | may change; hydrostatic pressure and the gradient for another depth | PDF p. 2; organisers |
+| Grid CO2 intensity | 300 g/kWh | organisers |
+
+The sample's case states the requirements as eight named rules: `doublet_count`,
+`production_flow_range`, `brine_cooling_limit`, `running_time_limit`, `pump_efficiency`,
+`full_reinjection` (ratio 0.99999 to 1.00001, a band of the sample), `heat_delivered` and
+`cold_delivered` (unmet share at most 1 %, a tolerance of the sample) [gemini:
+`examples/hackathon_2026/README.md`].
+
+## 12.2 Demand analysis
+
+**[derived** from the two CSVs**]**:
+
+- Heating: mean 12.75 MW, minimum 2.673 MW (heat demand on all 365 days), full-load hours about
+  3720 h. More than 14 MW on 161 days; more than 28 MW on 4 days.
+- Cooling: demand on 219 days, full-load hours about 2370 h.
+- Heat plus cold in one day: at most 30.0 MW. On cooling days the heat demand ranges from 2.673 to
+  18.9 MW.
+- Base/peak: a heating base of 15 MW (half the peak) covers 78.4 % of the heat; 21 MW covers 93.4 %
+  (table in 2.2).
+
+Reading: a peaky heating demand with a long low summer tail. A base of one to two doublets plus a
+cheap peak unit fits; the summer tail is far below one doublet's capacity, so either the doublets
+also drive cooling in summer or they take their days off then.
+
+## 12.3 Subsurface and one doublet
+
+**[derived**, formulas in Appendix A**]**:
+
+| Quantity | Value |
+|---|---|
+| Reservoir temperature at 2500 / 3000 / 3500 m | 87 / 102 / 117 °C |
+| Reservoir pressure at 3000 / 3500 m (from 250 bar(g) at 2500 m, hydrostatic) | about 300.5 / 351.0 bar(g) |
+| Productivity index (radial Darcy, r_e 1000 m, r_w 0.122 m, zero skin) | about 12.4 m3/h/bar |
+| Drawdown at 300 m3/h | about 24 bar |
+| Friction in a 0.244 m well at 300 m3/h | about 0.96 bar/km |
+| Mass flow at 300 m3/h | 85.8 kg/s |
+| Heat at 300 m3/h and 40 K (c_p about 4.2 kJ/kg/K, an assumption: the PDF gives none) | about 14.4 MW |
+| Brine leaving at 87 °C less 40 K | 47 °C, the sample heat pump's `minimum_source_outlet_temperature` |
+
+Consequences (6.3, 8.3):
+
+- 87 °C brine cannot give a 100 °C supply directly. Brine at 87 °C can preheat 60 °C return water
+  to about 87 °C less the approach; the remaining lift to 100 °C needs a heat pump, a boiler, or
+  wells deeper than about 3000 m (102 °C less the approach) [derived].
+- The share of the peak the brine cannot reach (ideal exchanger) is (100 − 87) / (100 − 60) =
+  0.325, about 9.75 MW of the 30 MW peak [derived, the rule of `gm.study.size`].
+- One doublet (about 14 MW at the caps) cannot carry the 30 MW peak; two or three doublets, or one
+  or two plus a heat pump and a boiler.
+- Sensitivity: the gradient (25 to 35 K/km) moves the LCTS of the best design from 47.16 to 33.76
+  EUR/MWh, more than any price [gemini: `tests/e2e/expected/hackathon.txt`].
+
+## 12.4 Gas
+
+Per doublet at 300 m3/h **[derived]**:
+
+- 240 Nm3/h of gas, of which 192 Nm3/h CH4 (137.7 kg/h) and 48 Nm3/h CO2.
+- Fuel value about 1.9 MW (methane LHV about 35.8 MJ/Nm3): a useful fuel for a peak boiler, small
+  against the 30 MW peak.
+- Over 330 days at full flow about 1090 t CH4 per doublet. Flared at 98 %, about 22 t of methane
+  escape, about 650 t CO2e at GWP 29.8, besides the combustion CO2.
+
+Free gas at the pump: the stored sample designs at 300 m3/h have intake pressures of at least 7.7
+bar and at most 12.1 % free gas over the first 32 days [gemini: README, "Pump intake limits"]; the
+upper-bound estimate of 4.4 gives about 12 % at 7.7 bar, consistent. Deep searched designs without
+intake limits reach 35.7 % at 2.0 bar: keep the limits.
+
+Design rule for this case: degas after joining the doublets, burn the gas in the peak boiler first
+through a `GasMakeup`, flare only the surplus (5.5).
+
+## 12.5 Configurations and what gemini found
+
+Gemini's six sample plants are archetypes A to F of 8.1. Common sample values: 2 doublets (range 1 to
+3), depth 2500 m (range 2000 to 3500 m), 300 m3/h per doublet (range 50 to 300), well diameter
+0.244 m, pump efficiency 0.7, wellhead pressure 10 bar, drainage radius 1000 m, `backup` `peak`,
+`dispatch` `least_cost`, `outages` `lowest_demand`, peak boiler 30 MW (efficiency 0.9), heat pumps
+and chillers at 0.5 of Carnot; the heat pump plants state a 15 MW heat pump [gemini:
+`examples/hackathon_2026/plants/*.json`].
+
+Search: size, then minimise LCTS, 20 evaluations, seed 0, with the pump intake limits [gemini:
+`tests/e2e/expected/hackathon.txt`]:
+
+| Plant | LCTS [EUR/MWh] | CO2 [kt] | Rank | Feasible |
+|---|---|---|---|---|
+| `HeatingHeatPumpCoolingPlant` (heat pump, boiler, compression chiller) | 40.34 | 12.9 | 1 | yes, Pareto |
+| `HeatingCoolingPlant` (heat pump, boiler, three chillers) | 42.54 | 10.34 | 2 | yes, Pareto |
+| `HackathonPlant` (free plant: gas use, desander, inhibitor, absorption) | 44.25 | 13.05 | 3 | yes |
+| `HeatingAbsorptionCoolingPlant` | 50.5 | 20.96 | 4 | yes |
+| `HeatingFullCoolingPlant` | 55.57 | 22.16 | 5 | yes |
+| `HeatingPlant` (no cooling) | 29.79 | 7.827 | 6 | no: `cold_delivered` |
+
+Without the pump intake limits `HeatingFullCoolingPlant` ranks first at 40.29 EUR/MWh, but its
+design (3 doublets at 3319 m) runs its pumps at 2.0 bar intake and 35.7 % free gas: unbuildable
+with standard stages (4.4). With the limits it falls to 55.57 [gemini: README and
+`hackathon.txt`]. This is the clearest example in this handbook of why operating limits belong on
+every unit (10.6).
+
+A structure search over 32 valid structures (small budget) found heat pump + boiler + compression
+chiller best: 34.58 EUR/MWh, 8.70 kt CO2 [gemini: `tests/e2e/expected/evolve.txt`]. Monte Carlo of
+the best ranked design (5 draws): LCTS mean 44.56, p5 40.85, p95 49.41 EUR/MWh; CO2 mean 13.83 kt
+[gemini: `hackathon.txt`] (five draws are a demonstration, not a converged estimate).
+
+Engineering reading:
+
+- Heat pump boost wins: at 87 °C brine and 100 °C supply the lift is moderate, and cooling the brine
+  further (down to 47 °C) gets more heat per doublet.
+- Compression cooling beats absorption on cost in this case: the 20 °C chilled-water supply gives a
+  compression chiller a high COP, and absorption needs drive water above its 80 °C minimum, which
+  87 °C brine only just reaches after an approach.
+- `HeatingCoolingPlant` (with absorption) has lower CO2: a candidate for a recommendation that
+  weighs emissions or values geothermal cooling.
+- `HeatingPlant` is cheapest only because it delivers no cold: it is infeasible by structure (10.7).
+
+## 12.6 A recommended path
+
+1. Read the case and the demand (12.1, 12.2).
+2. Families: A = `HeatingHeatPumpCoolingPlant`, B = `HeatingCoolingPlant` (absorption cooling);
+   optionally the free `HackathonPlant` for gas use.
+3. Start from the sample plant files; keep `backup` `peak` (a doublet outage must not cut heat);
+   keep both pump intake limits.
+4. Size, simulate a window around 28 January, check; then the whole year, check.
+5. Compare A and B in one study (minimise LCTS, the same evaluations and seed, size first); simulate
+   the best for the whole year; report LCTS, CO2, coverage, the Pareto front and the sensitivity.
+6. Record design, result, alternatives and study in the state.
+
+## 12.7 Lessons from QA
+
+From GeoMind's QA of agent runs on this case [documents: `project/quality-assurance/BUGS.md` and
+the hackathon design guide in Knowledge]:
+
+- QA-090: one failing rule chased through 15 variants for 2 h 40 min: stop after three rounds
+  without progress (1.4).
+- QA-091: a supply temperature rule `when: always` fails on the 146 days without cooling demand;
+  the rule holds only while the supply runs; never force circulation (9.4).
+- QA-082: case values written into a plant are refused (11.1).
+- QA-083: an inlet is `<module>.<port>`; after an internal error change the input (11.8).
+- QA-104: `unmet_share` with failed steps is undecided; fix the steps first (11.7).
+- QA-119: change the plant's depth, not the case's reference depth (3.2).
+
+---
+
+# Appendix A: Formulas
+
+Symbols: SI units unless stated; temperatures in K inside ratios.
+
+**A.1 Geotherm.** T(z) = T_s + G · z; with a reference: T(z) = T_ref + G (z − z_ref)
+[gemini: `gemini/physics/ground.py`].
+
+**A.2 Hydrostatic pressure.** p(z) = p_ref + ρ g (z − z_ref), g = 9.80665 m/s2 [gemini: same file].
+
+**A.3 Productivity index (steady radial Darcy).** PI = 2π k h / (μ (ln(r_e / r_w) + S)); drawdown
+Δp = Q / PI [textbook: Dake 1978]. 1 mD = 9.869e-16 m2.
+
+**A.4 Darcy-Weisbach.** Δp_f = f (L / D) ρ v² / 2; Haaland: 1/√f = −1.8 log10[(ε/D / 3.7)^1.11 +
+6.9 / Re]; Re = ρ v D / μ [textbook: Incropera et al. 2007; Haaland 1983, J. Fluids Eng. 105].
+
+**A.5 Thermal power of a doublet.** P = ρ Q c_p (T_prod − T_inj).
+
+**A.6 Free gas fraction, upper bound (all gas free, ideal gas).** With R = GLR · (p_n / p) · (T / T_n),
+p_n = 1.01325 bar(a), T_n = 273.15 K: α = R / (1 + R) [derived; ignores solubility, so it
+overestimates].
+
+**A.7 Pump power.** P_el = Q Δp / (η_pump η_motor).
+
+**A.8 Heat exchanger.** Q = UA ΔT_lm; ΔT_lm = (ΔT_1 − ΔT_2) / ln(ΔT_1 / ΔT_2); NTU = UA / C_min;
+counterflow ε = (1 − exp(−NTU (1 − C_r))) / (1 − C_r exp(−NTU (1 − C_r))), C_r = C_min / C_max;
+for C_r = 1, ε = NTU / (1 + NTU) [textbook: Incropera et al. 2007].
+
+**A.9 Heat pump and chiller COP (Carnot fraction).** COP_h = η_C T_sink / (T_sink − T_source);
+COP_c = η_C T_source / (T_sink − T_source); gemini uses the outlet temperatures and a minimum lift
+[gemini: `gemini/modules/heating/heatpump.py`]. Lorenz: replace T by the log-mean temperatures of the
+glides.
+
+**A.10 Sorption chiller characteristic equation.** Q_E = s (ΔΔt − ΔΔt_min), ΔΔt = t_G − a t_AC + r
+t_E (mean circuit temperatures, °C); Q_G = Q_E / COP_th; Q_reject = Q_G + Q_E + P_el [gemini:
+`absorptionunit.py`, after Hellmann, Schweigler and Ziegler 1999].
+
+**A.11 Doublet breakthrough.** V_B = π L² H (ρc)_a / (3 (ρc)_w); t_B = V_B / Q; (ρc)_a = φ (ρc)_w +
+(1 − φ)(ρc)_r [paper: Gringarten and Sauty 1975].
+
+**A.12 Willans line (CHP).** F = F_full (f0 + (1 − f0) L) [textbook: Heywood 1988].
+
+**A.13 Capital recovery factor.** CRF = r (1 + r)^n / ((1 + r)^n − 1); annualised cost = CRF · capex +
+fixed opex + variable opex + energy + carbon. LCTS = annualised cost / (heat + cold delivered per
+year) [gemini: `gemini/evaluate/costs.py`; the annuity form as in its `npv`].
+
+**A.14 Combustion CO2.** CH4 + 2 O2 → CO2 + 2 H2O: 44/16 = 2.75 kg CO2 per kg CH4; CO2e of methane
+released = m_CH4 · GWP.
+
+**A.15 Base load coverage.** Share covered by base B = Σ min(D_t, B) / Σ D_t over the steps.
+
+---
+
+# Appendix B: Rules of thumb and their sources
+
+Orientation only: never an input without its source and the user's approval (1.5).
+
+| Rule | Value | Source |
+|---|---|---|
+| Continental geothermal gradient | about 25 to 35 K/km | Stober and Bucher 2013 |
+| Dutch doublet spacing | about 1 to 2 km | Willems 2016, cited in gemini README |
+| Steel pipe roughness (new) | 4.5e-5 m | Moody 1944 |
+| Heat pump Carnot fraction | about 0.4 to 0.6; "close to 50 %" | Arpagaus et al. 2018; Frutschi 1996 |
+| Heat pump lift range of water-to-water machines | about 10 to 80 K | Arpagaus et al. 2018 |
+| Single-effect LiBr absorption | thermal COP about 0.7 (0.7 to 0.8 at 95 °C) | Herold et al. 2016; Techniques de l'Ingénieur BE9735 |
+| Double-effect LiBr absorption | COP about 1.0 to 1.3, drive about 150 to 180 °C | Herold et al. 2016 as quoted; Techniques de l'Ingénieur BE9735 |
+| Absorption minimum drive temperature | 80 °C | GEMINI operating limit, **[assumption]** |
+| Silica-gel adsorption chiller | COP about 0.55, drive about 55 to 90 °C | Wang and Oliveira 2006; gemini model |
+| Dry cooler approach | 5 to 15 K | ASHRAE Handbook, HVAC Systems and Equipment |
+| Wet cooler approach | 3 to 8 K | same |
+| Flare combustion efficiency | 98 % | US EPA AP-42, 13.5 |
+| Methane GWP100 (fossil) | 29.8 | IPCC AR6 WG1, table 7.15 |
+| Methane LHV | about 50.0 MJ/kg, about 35.8 MJ/Nm3 | combustion tables; per Nm3 derived |
+| ESP free gas, standard stages | 18.75 % (75 % / 4) | Baker Hughes Ace Plus page, cited in gemini README |
+| ESP free gas, stricter rule | 10 % | Takacs 2009 as quoted, not verified at the book |
+| ESP minimum intake pressure | 5 bar | **[assumption]**, gemini sample |
+| Geothermal scale inhibitor dose | a few to some tens of ppm | Gallup 2009 |
+| Hydrocyclone pressure loss | of the order of 1 bar at design flow | Svarovsky 2000, cited in gemini |
+| Base at half the peak covers | most of the energy (78 % in the hackathon case) | Frederiksen and Werner 2013; derived for the case |
+| Large heat pump capex | about 0.74 EUR2015/W | DEA Technology Data, sheet 40 |
+| Gas DH boiler capex | about 0.061 EUR2015/W | DEA sheet 44 |
+| Gas engine CHP capex | about 0.96 EUR2015/W_e | DEA sheet 06 |
+| Drilling cost | 1247 / 1845 / 2075 EUR2015/m at about 2300 / 3000 / 4000 m | gemini `docs/cost-sources` (Dutch rows, secondary source) |
+| Plate exchanger approach | no general figure confirmed; below 1 K is achievable at a cost | Tranter (vendor); choose by cost |
+
+---
+
+# Appendix C: Glossary
+
+- **Approach**: the smallest temperature difference between the two streams of an exchanger.
+- **Backup policy**: the rule that sizes boilers: whole peak with doublets off (`peak`) or only what
+  doublets cannot reach (`none`).
+- **Base load / peak load**: the steady lower part of the demand / the short high part.
+- **Breakthrough**: arrival of injected cold water at the producer.
+- **Brine cooling**: production temperature less injection temperature.
+- **Bubble point**: pressure below which dissolved gas comes out of solution.
+- **Carnot fraction**: real COP over the ideal (Carnot) COP at the same temperatures.
+- **Case**: in gemini, everything a plant is asked to do and its surroundings (demand, site,
+  utilities, requirements, economics).
+- **Cascade**: use of one heat stream by several users in order of falling temperature.
+- **COP**: coefficient of performance: useful heat or cold over the energy driving it.
+- **Doublet**: a production well and an injection well into one aquifer.
+- **Drawdown**: pressure drop from reservoir to well bottom needed for a flow.
+- **ESP**: electrical submersible pump.
+- **Family**: one plant configuration (structure), searched over its design values.
+- **Free cooling**: cooling by a cold ambient source without a chiller.
+- **GLR**: gas-liquid ratio, Nm3 of gas per m3 of liquid.
+- **GWP**: global warming potential relative to CO2 over 100 years.
+- **Intake pressure**: pressure at the pump inlet.
+- **LCOH / LCOC / LCTS**: levelised cost of heat / cold / thermal supply.
+- **Lift**: temperature difference a heat pump or chiller makes between sink and source.
+- **Load duration curve**: demand sorted from highest to lowest.
+- **Merit order**: units loaded from the cheapest marginal cost upward.
+- **N-1**: supply still met with the largest unit out.
+- **Plant file**: gemini's JSON description of a plant: modules, connections, parameters, fluids,
+  sizes, ranges.
+- **Productivity / injectivity index**: flow per unit drawdown (production / injection).
+- **Requirement**: a named limit of the case on a role's quantity.
+- **Role**: the function of a unit in a plant (`doublet`, `heat_pump`, `boiler`, `chiller`, ...).
+- **Skin**: dimensionless extra pressure loss near the wellbore.
+- **Transmissivity**: permeability times thickness (k·h).
+- **Verdict**: gemini's judgement of a run: feasible, or the reasons it is not.
+
+---
+
+# Appendix D: References
+
+Textbooks and papers (cited as named; figures quoted through gemini were checked there, not
+always in the original):
+
+- Arpagaus, C., Bless, F., Uhlmann, M., Schiffmann, J., Bertsch, S. S. (2018). High temperature heat
+  pumps: market overview, state of the art, research status, refrigerants, and application
+  potentials. *Energy* 152, 985-1010.
+- ASHRAE. *ASHRAE Handbook: HVAC Systems and Equipment* (chapter on cooling towers and fluid coolers).
+- Dake, L. P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
+- DiPippo, R. (2016). *Geothermal Power Plants*, 4th ed. Butterworth-Heinemann.
+- Danish Energy Agency. *Technology Data for Generation of Electricity and District Heating*,
+  version 0019 (August 2026), data sheets 06, 40, 44, 45.
+- Forster, P., et al. (2021). The Earth's energy budget, climate feedbacks and climate sensitivity.
+  IPCC AR6 WG1, chapter 7 (table 7.15).
+- Frederiksen, S., Werner, S. (2013). *District Heating and Cooling*. Studentlitteratur.
+- Frutschi, H. U. (1996). ABB Review 5/1996, pp. 33-34.
+- Gallup, D. L. (2009). Production engineering in geothermal technology: a review. *Geothermics* 38,
+  326-334.
+- Gringarten, A. C., Sauty, J. P. (1975). A theoretical study of heat extraction from aquifers with
+  uniform regional flow. *J. Geophys. Res.* 80(35), 4956-4962.
+- Hellmann, H.-M., Schweigler, C., Ziegler, F. (1999). The characteristic equations of absorption
+  chillers. International Sorption Heat Pump Conference.
+- Herold, K. E., Radermacher, R., Klein, S. A. (2016). *Absorption Chillers and Heat Pumps*, 2nd ed.
+  CRC Press.
+- Heywood, J. B. (1988). *Internal Combustion Engine Fundamentals*. McGraw-Hill.
+- Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007). *Fundamentals of Heat and Mass
+  Transfer*, 6th ed. Wiley.
+- Lindal, B. (1973). Industrial and other applications of geothermal energy. UNESCO, Geothermal
+  Energy, Earth Sciences 12.
+- Lund, H., et al. (2014). 4th Generation District Heating (4GDH). *Energy* 68, 1-11.
+- Mijnlieff, H., et al. (2013). SDE+ reference case, European Geothermal Congress (as cited in gemini).
+- Moody, L. F. (1944). Friction factors for pipe flow. *Trans. ASME* 66.
+- Stober, I., Bucher, K. (2013). *Geothermal Energy: From Theoretical Models to Exploration and
+  Development*. Springer.
+- Svarovsky, L. (2000). *Solid-Liquid Separation*, 4th ed. Butterworth-Heinemann.
+- Takacs, G. (2009). *Electrical Submersible Pumps Manual*. Gulf Professional (quoted, not verified).
+- US EPA. AP-42, 5th ed., section 13.5, Industrial Flares (2018).
+- Wang, R. Z., Oliveira, R. G. (2006). Adsorption refrigeration: an efficient way to make good use of
+  waste heat and solar energy. *Prog. Energy Combust. Sci.* 32.
+- Willems, C. (2016), Dutch doublet spacing, as cited in gemini `examples/hackathon_2026/README.md`.
+
+Catalogues and web pages:
+
+- Baker Hughes, Ace Plus gas handler pumps (opened 2026-11-01 by gemini's authors).
+- Techniques de l'Ingénieur, BE9735, Absorption chillers: water-lithium bromide systems.
+- Thermoeconomic analysis of a single and double effect LiBr/H2O chiller, UNICAMP
+  (nipe.unicamp.br).
+- Tranter, plate heat exchangers (vendor page).
+- Eurostat `nrg_pc_203`, `nrg_pc_205`, `prc_hicp_aind`; Instrat EU ETS 2025 summary (economics of
+  the hackathon sample).
+
+gemini files (repository `gemini`, version 0.6.13): `docs/guide.md`, `docs/rules.md`,
+`CHANGELOG.md`, `docs/cost-sources/`, `gemini/plants/*.py`, `gemini/plants/roles.py`,
+`gemini/plants/doublet.py`, `gemini/study/size.py`, `gemini/study/metrics.py`,
+`gemini/evaluate/costs.py`, `gemini/evaluate/verdict.py`, `gemini/engine/apply.py`,
+`gemini/engine/schedule/schedule.py`, `gemini/physics/ground.py`, the module files under
+`gemini/modules/`, `examples/hackathon_2026/` (README, case, plants), `tests/e2e/expected/`.
+
+GeoMind skills: `geomind/geomind/skills/<name>/SKILL.md`.
