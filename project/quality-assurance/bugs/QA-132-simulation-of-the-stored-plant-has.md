@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | gemini |
 | Reporter | functional-qa-simulation-I |
 | Found | 2026-11-05 14:18 UTC |
 | Versions | backend 1.1.86-1.1.88 (run on 1.1.84), geomind 0.4.80 |
 | Where | https://geomind.team/projects/ef87f914-3aaa-4f58-be60-2d54c7687511 (QA3 simulation); simulate result 11c2e401cd91606b; d0 series result-6a5e0fdfc8567e08 |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
