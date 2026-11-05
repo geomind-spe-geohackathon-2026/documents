@@ -21,7 +21,9 @@ rechecked against gemini 0.6.34.
   gemini, 12 worked lessons, 13 answers to the design questions agents ask (one per
   section: ESP curves, split wells, injection pump, wellhead pressure, productivity and skin,
   pressure drops, degasser, boiler efficiency, dew point, storage, part load, COP models, brine
-  cooling, network, CHP, gas compressor, line-shaft and circulation pumps, ATES, ice storage); appendices A formulas, B rules of thumb, C glossary, D references.
+  cooling, network, CHP, gas compressor, line-shaft and circulation pumps, ATES, ice storage);
+  14 the core design problem step by step (temperature match, doublets, part load and days
+  off, backup, co-produced gas, cooling choice, pressure budget, families, energy checks); appendices A formulas, B rules of thumb, C glossary, D references.
 - **Chapter 0 is the working chapter**: the checklist, the decision order, where each value comes
   from, a table of design values with units and how to choose them, and how a case's limits bind
   the design. Chapters 1 to 11 give the reasons; chapter 12 worked lessons; the appendices formulas,
@@ -33,7 +35,7 @@ rechecked against gemini 0.6.34.
 
 | Reader | Read first | Then, when the brief or a failure points there |
 |---|---|---|
-| Design lead | 0 (whole, once) | 8, 10, 11.7; 12.12 checking an optimum; 12.14, 12.15 lessons from runs |
+| Design lead | 0 (whole, once) | 14 (the design path, by section); 8, 10, 11.7; 12.12 checking an optimum; 12.14, 12.15 lessons from runs |
 | Reservoir engineer (R): reservoir, doublets, treatment and gas | 0.3, 0.7, 0.8 | 3, 5; 12.17; 13.5, 13.7, 13.13, 13.16, 13.18 |
 | Well engineer (W): wells and pumps | 0.3, 0.7, 0.8 | 4; 12.10, 12.11; 13.1 to 13.4, 13.17 |
 | Energy systems engineer I (H): heating | 0.3, 0.7 | 6, 8.3, 9; 12.8, 12.16, 12.18; 13.6, 13.8, 13.10 to 13.12, 13.14, 13.15 |
@@ -2446,6 +2448,102 @@ e = 1 − exp(−UA / C) [gemini: `gemini/modules/storage/icestorage.py`; Incrop
 Latent cold = M L x with L = 334 kJ/kg: 1,000 t of water hold 92.8 MWh of cold [derived].
 Charging needs glycol below 0 °C, which lowers the chiller's COP by the extra lift (6.4); ice
 pays when off-peak electricity is cheap or the chiller would otherwise be sized for a short peak.
+
+# 14 The core design problem, step by step
+
+This chapter walks the design of a geothermal heating and cooling plant in the order a designer
+decides it. Each section gives the decision, the theory, a procedure, the invented case of 12.1
+worked through, the checks, and where it lives in gemini. Earlier sections hold the background;
+this chapter ties them into one path.
+
+## 14.1 Reservoir temperature against the supply temperature
+
+**Decision**: can the brine heat the network directly, or does a heat pump, a boiler or a deeper
+well close the gap?
+
+Theory (3.1, 6.3): T_res(z) = T_surface + G z. The exchanger brings the network water to at most
+T_b − a (a the approach, 6.1), T_b the wellhead brine temperature, a little below T_res when the
+wells lose heat (`heat_transfer_coefficient`, 0.7.1). The share of the heating peak the brine
+cannot reach is s = (T_s − T_b) / (T_s − T_r) for an ideal exchanger [gemini:
+`gemini/study/size.py`, `_lift_share`]; with an approach use T_b − a.
+
+Worked on 12.1 (supply 110 °C, return 55 °C, 10 °C + 32 K/km) [derived]:
+
+| Midpoint depth, km | T_res, °C | Share s (ideal) | Share with a = 5 K |
+|---|---|---|---|
+| 2.8 | 99.6 | 0.19 | 0.28 |
+| 3.0 | 106.0 | 0.07 | 0.16 |
+| 3.3 | 115.6 | 0 | 0 (direct supply) |
+
+Decision table:
+
+| Situation | First family to try | Also test |
+|---|---|---|
+| T_b − a ≥ T_s | direct exchanger, boiler peak (A) | one doublet fewer with a larger peak unit |
+| small gap (s below about 0.2) | heat pump boost or deeper wells | boiler for the gap only if gas is cheap or free (5.5) |
+| large gap (s above about 0.3) | heat pump on the brine (B, D) | lower supply temperature, if the case allows it (a case change) |
+| T_b < T_r + a | heat pump only (the brine cannot preheat) | another resource |
+
+What each option costs: depth costs drilling on every well, once (about 2 × 500 m per doublet
+for 2.8 to 3.3 km); a heat pump costs capital and electricity every hour it runs (COP 3.46 at
+110 °C sink and 54.6 °C source, 12.4); a boiler for an all-year gap burns fuel every hour. Only a
+costed comparison decides (14.8); the table says which families to put in it.
+
+In gemini: the depth is the plant's `depth` (never the case's reference depth, QA-119); every
+depth searched moves T_res, the heat pump share and the heat pump's
+`minimum_source_outlet_temperature` (T_res less the brine cooling cap): recompute them per depth,
+or let `size_plant` do it after each change.
+
+## 14.2 Doublet count and flow from the peak and the brine cooling limit
+
+**Decision**: how many doublets, at what design flow?
+
+Heat of one doublet: P = ρ Q c_p ΔT (A.5). The ΔT the plant actually reaches is
+
+ΔT = min(cap, T_b − (T_r + a))  with an exchanger only;  up to the cap with a heat pump on the
+brine after the exchanger.
+
+gemini's `size_plant` rates each doublet at the flow cap **and the cooling cap** [gemini:
+`gemini/study/size.py`, `_doublets`]; an exchanger-only plant whose return temperature binds
+gets less than that rating.
+
+Worked on 12.1 at 250 m3/h, a = 5 K [derived]:
+
+| Plant | ΔT, K | Heat per doublet, MW | Doublets for the 24 MW peak |
+|---|---|---|---|
+| exchanger only | 99.6 − 60 = 39.6 | 12.1 | 2 (24.3 MW, no margin) |
+| exchanger + heat pump to the cap | 45 | 13.8 brine + heat pump electricity | 2 (27.6 MW plus electricity) |
+
+The exchanger-only plant meets the peak with 0.3 MW to spare: any loss of productivity, a warmer
+return or a larger approach breaks it. That is why the count is a search variable (10.2) and the
+peak unit takes the top of the curve (8.3, 12.2), not the doublets.
+
+Procedure: (1) ΔT as above at the design depth; (2) heat per doublet at the flow cap; (3) count =
+ceil(geothermal share of the peak / heat per doublet), within the case's range; (4) test one
+fewer with a larger peak unit (12.3); (5) search `size.doublets` and `dN.nominal_flow` in the
+optimisation (11.10). Check the flow on the worst step against the cap (QA-132).
+
+## 14.3 Minimum stable flow, part load and days off
+
+**Decision**: does the plant run on the lowest-demand steps and on a doublet's days off?
+
+- **Minimum flow**: a running doublet keeps at least the case's minimum flow; gemini runs it
+  there "when no heat is left for it" [gemini: `gemini/engine/schedule/schedule.py`]. At the
+  minimum flow the brine is cooled less. On 12.1 at 60 m3/h the exchanger-only heat is 2.9 MW,
+  above the 2.0 MW summer minimum [derived]: the excess is not taken; either the plant cools the
+  brine less, or the doublet stops (another unit then covers, 12.5).
+- **Part load of machines**: a heat pump or chiller below `minimum_part_load` × capacity is off
+  (13.11); stage units to reach low loads.
+- **Days off**: a doublet with a running-time limit is off on the lowest-demand steps
+  (`params.control.outages` `lowest_demand`), at most one doublet off per step [gemini: same
+  file]. With 320 running days a doublet has 45 days off. On those steps the rest of the plant
+  must cover the demand: with two doublets, one doublet plus the peak unit; with one doublet,
+  the peak unit alone (8.5).
+- **A heat pump fed only by doublets that are off stops** [gemini: same file]; its heat then also
+  goes to the backup.
+
+Check in results: the steps of lowest demand and the outage steps the run reports; the unmet energy on those steps; the running days per doublet
+against the limit (`running_time_limit`).
 
 ---
 
