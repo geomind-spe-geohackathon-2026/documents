@@ -1,0 +1,27 @@
+runs read: 109
+agent                    calls whole reads  before chars  after chars
+case_lead                  361          43     2,640,567    1,832,039
+geoscientist               408          11     1,179,301      986,935
+design_lead                 86           2       816,721      779,689
+analysis_lead               67           2       629,899      592,867
+energy_systems_engineer     86           1       557,099      538,583
+economist                   30           0       462,963      462,963
+reservoir_engineer          53           1       310,545      291,570
+explainer                   49           2       274,383      237,351
+reviewer                    58           0       212,869      212,869
+well_engineer               24           0       153,588      153,588
+project_lead                 8           4       100,270       24,898
+TOTAL                     1230          66     7,338,205    6,113,352
+
+knowledge/handbook-design.md                              1,680,740  whole reads 0
+knowledge/hackathon-2026-assumptions.md                   1,581,095  whole reads 64
+knowledge/handbook-case.md                                1,532,760  whole reads 0
+knowledge/handbook-economics.md                           1,108,347  whole reads 2
+knowledge/cost-sources.csv                                  596,872  whole reads 0
+knowledge/handbook-report.md                                326,243  whole reads 0
+knowledge/data-economics.csv                                321,895  whole reads 0
+knowledge/handbook-studies.md                               101,307  whole reads 0
+knowledge/hackathon-2026-brief.md                            73,361  whole reads 0
+knowledge/data-equipment.csv                                  9,558  whole reads 0
+knowledge/finding-53de5f90                                    4,421  whole reads 0
+knowledge/GEMINI_Heating_Demand_Daily_2027.csv                  712  whole reads 0
