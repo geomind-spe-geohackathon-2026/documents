@@ -53,3 +53,23 @@ Simulate from chat; optimise from chat; comparison and recommendation; Results p
 energy balance, capacities, days covered, constraints; Compare chart and table; "Use this design as
 the plant" (Plant v6 saved, toast); Runs and logs list, run page, per agent and per model, Export
 JSON (3.2 MB, no secrets, no Claude model); Cancel run; continue after cancel.
+
+# Round 2 and retests (17:48-19:06 UTC)
+
+Projects `QA-TEST QA-E2E-study-I 2` (8eabf827-1f43-4cf8-86a4-39147bea32a0) and
+`QA-TEST QA-E2E-study-I 3` (ac687987-8bfe-452f-8013-7a4b577a3655), same seed as round 1.
+
+| Request | Run | Wall time | Calls | Cost | Outcome |
+|---|---|---|---|---|---|
+| Chip "Optimise the design", first card denied with a reason | 83182f0e | 36 min (answer ready at 4 min) | 145 | 0.071 USD | denial kept; then 32 min on an unasked family (QA-276); estimate_costs internal error (QA-275); usage goes backwards (QA-277) |
+| Sensitivity of plant v2 to discount rate and electricity (QA-152 retest) | 82efd097 | 1 min 24 s | 23 | 0.007 USD | passes; a reload during the run keeps the live steps |
+| Optimise, "how many trials were feasible" (QA-205/209 retest) | 4885075b | 14 min 11 s | 107 | 0.037 USD | passes (240 trials, 3 feasible); 20 approval cards, 9 refused after approval (QA-296) |
+| Compare plants v1 and v2 (QA-228 retest) | b709a671 | 1 min 7 s | 18 | 0.006 USD | passes (geothermal 43 626 MWh = Results); raw "improvement:" lines (QA-300) |
+| Uncertainty, three prices, P10/P50/P90 (QA-248 retest) | ce4be675 | 2 min 36 s | 25 | 0.009 USD | subset passes; P10/P90 still missing; 15 digits (QA-099) |
+| Use the best design as the project plant, simulate January | 9a45c7ce | 9 min 5 s | 96 | 0.047 USD | cannot adopt from chat (QA-312); January peak boiler 17.64 MW ok |
+| Study page: Run again opt1 (no LLM) | study f37742d7 | 41 s | - | - | ok: lcts 49.268 EUR/MWh at 285 m3/h on plant v6, slightly below the chat's "cannot beat 49.281" at 300 m3/h |
+
+Retest results: verified QA-152, QA-205, QA-209, QA-213, QA-228, QA-249; partly fixed and reopened
+QA-214 (running time value), QA-215 (backend part), QA-248 (percentiles); QA-237 backend part passes
+(no plant versions written by agents), but it removed the chat's only way to change the plant
+(QA-312). QA-099 still shows for sensitivity and uncertainty figures.
