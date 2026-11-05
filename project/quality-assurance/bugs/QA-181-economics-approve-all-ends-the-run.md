@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | blocker |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -77,4 +77,21 @@ it as a crash.
 ## Fix
 
 - 2026-11-05 17:27 UTC: geomind 0.4.103, commit 1f8c2c8, deployed (backend 1.1.106): an answered question with on_answer counts as a write in same_result, so read_case/case_changes run again after approve all
+- 2026-11-05 17:33 UTC: retest 17:32 UTC on backend 1.1.106 / geomind 0.4.106 still fails (run 92e9d156): answered ask_economics has source 'answer', recovery.py skips it in succeeded, so _may_write never sees it; see Retest
 ## Retest
+
+- 2026-11-05 17:32 UTC, QA-E2E-economics-I: **FAILS** on backend 1.1.106 (celery has geomind
+  0.4.106, `step._may_write` present). Project "QA-TEST QA-E2E-economics-I 4"
+  (7d1d7b7c-96bb-403a-b0d1-5a88aec22466), run 92e9d156-a3a4-41c1-bb77-c9a03ff40a9b: "Set up the
+  economics of this case." -> card at 17:31:59 -> approve all 17:32:05 -> failed 17:32:29, same
+  chat text "internal error in geomind", run error `read_case: the same call as an earlier
+  successful one was sent in 3 steps in a row`. Case lead steps 9-10 and project lead steps 4-6
+  get the stale "economics unset" / `case_changes []` notes again.
+  Cause (fact, from the code): the answered call is recorded with `source="answer"`
+  (`engine.py:417` `record_result(..., source="answer")`), and `_remember_succeeded` in
+  `engine/recovery.py:161` returns early for `event.source != "tool"`, so `ask_economics` never
+  enters `state.succeeded`; `_may_write` therefore never sees it. Fix: append answered calls
+  (source "answer") to `succeeded` too (or mark the state "written" when `on_answer` ran), and
+  check the same for the project lead, whose `read_case`/`case_changes` after the case lead's
+  nested run also stay stale. Evidence: `../evidence/QA-181/retest-1.png`,
+  `../evidence/QA-181/run-92e9d156.json.gz`.
