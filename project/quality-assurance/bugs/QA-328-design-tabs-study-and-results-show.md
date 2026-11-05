@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
 | Found | 2026-11-05 19:29 UTC |
 | Versions | frontend live 2026-11-05 20:28 CET, backend 1.1.118 |
 | Where | Design panel, Study tab of a project with 3 done studies (sized, best, sens-gradient-permeability), Sahand's screenshot |
-| Fixer | |
+| Fixer | hotfix-front-lead |
 
 ## Expected
 
