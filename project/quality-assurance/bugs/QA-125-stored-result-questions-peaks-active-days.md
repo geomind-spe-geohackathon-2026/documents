@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | geomind |
 | Reporter | functional-qa-simulation-I |
 | Found | 2026-11-05 11:18 UTC |
 | Versions | backend 1.1.84 at start (1.1.86 at 11:18 UTC); geomind 0.4.80 (as announced) |
 | Where | https://geomind.team/projects/ef87f914-3aaa-4f58-be60-2d54c7687511 (QA3 simulation); chat 'Chat' of 10:31 UTC; simulate result 11c2e401cd91606b; second question (peaks, active days, geothermal share) |
-| Fixer | |
+| Fixer | hotfix-python |
 
 ## Steps
 
