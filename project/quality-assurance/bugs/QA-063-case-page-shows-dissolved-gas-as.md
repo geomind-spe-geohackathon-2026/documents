@@ -35,7 +35,7 @@ Guess: mol% is treated as a fraction and shown x100; the values 0.8 humidity and
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 00:13 UTC: frontend 1.1.62 (edf2d60), pushed, build checked, deploy at 00:30 UTC. Stored case (GET /design/case, project a0947848) is right: CH4 80 mol%, CO2 20 mol%, viscosity 0.4; the page read every share as a fraction and showed x100. The float noise is not in the stored case either; the page now shows it rounded.
 ## Retest
 
 (Who, when, result.)
