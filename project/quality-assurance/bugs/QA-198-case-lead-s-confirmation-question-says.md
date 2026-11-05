@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -53,3 +53,5 @@ says "case is set". Better: fix QA-200 so the first set_case does not fail.
 
 - 2026-11-05 17:53 UTC: geomind 0.4.111-0.4.114 (HEAD 778970d), deployed in backend 1.1.110 at 18:51 CET
 ## Retest
+- 2026-11-05 18:05 UTC (19:05 CET), QA-AI-case-I, run 6a8dba9a-c35a-4474-8f66-d749a3a95964 (project QA-TEST QA-AI-case-I 6, ed01f425-6c69-4ec4-af65-fcc7902ac04e; geomind 0.4.114, backend 1.1.110; 17:56:00-18:03:13 UTC; log `../evidence/QA-230/run-6a8dba9a.json`): the confirmation question starts "Nothing is saved yet. On `approve all` the case is set with the values the brief and the two demand files state ...", asked before any `set_case`. Verified. (Same wording check in run 7.)
+- 2026-11-05 18:03 UTC: QA-AI-case-I run 6a8dba9a, geomind 0.4.114
