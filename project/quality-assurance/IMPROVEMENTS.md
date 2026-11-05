@@ -252,7 +252,7 @@ whether that counts as a source under the no-default rule).
 
 ## IMP-024: "Run again" on a study
 
-Status: idea. From Coordinator-III (2026-11-05, engine check for functional-qa-study-I): a study
+Status: done in frontend 1.1.104 (0f058b4, hotfix-front-III, deploy 14:30 UTC). From Coordinator-III (2026-11-05, engine check for functional-qa-study-I): a study
 record (Study tab, and a study's result) has no action to run it again with the same kind, name
 and settings, on the current plant version or a chosen one. To repeat project 46d15d6b's
 "Optimise LCTS" (minimize lcts, prepare size, 20 evaluations, seed 0) the user must read its
