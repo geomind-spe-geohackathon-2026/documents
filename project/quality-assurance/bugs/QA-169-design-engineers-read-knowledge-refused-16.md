@@ -46,6 +46,16 @@ Speed: reservoir_engineer spent 698 s of LLM time, energy_systems_engineer 390 s
 - `../evidence/QA-169/refused-read-knowledge.json`: every refused call (agent, ts, call id, input, error) and the lead's brief to the reservoir engineer.
 - Run log at 17:10 UTC: `../evidence/QA-169/run-76d19df6-log-1710.json.gz`.
 
+## Second run (QA-AI-design-I, 2026-11-05 16:50-17:04 UTC)
+
+Run 0df89b7e-69e0-46b3-abe1-231e51d9570a, project QA-TEST QA-AI-design-I 1 (API only, backend 1.1.102-1.1.104, geomind 0.4.98): same pattern, 13 of 50 `read_knowledge` refused, all from the design engineers:
+
+- 10x bare `handbook-design.md` (sections "5", "4", "3 Wells", outline): "expected a Knowledge document 'knowledge/<name>'; a project file is the lead's to read" (the second half is wrong: it is a Knowledge file, not a project file).
+- 1x section "3 Wells" with the right name: no such heading (the lead's brief named it).
+- 3x a skill or a finding through read_knowledge: `evaluating-a-module`, `knowledge/evaluating-a-module`, `finding-54590b50`. The lead's briefs say "Read ... skill evaluating-a-module", but `proposer_tools` (`geomind/agents/design/proposal.py:56`) gives the engineers no `read_skill` and no `read_stored`; each instance also spent a `search_knowledge("evaluating a module skill")` on it (6 calls over two passes).
+
+Extra proposed fix: give the engineers `read_skill` (or have the brief say "no skills: your prompt holds the rules"), and make the lead prompt (`prompts/design/lead.md` step 3) say section numbers only ("section 4"), never invented titles.
+
 ## Cause
 
 - `geomind/geomind/tools/knowledge_only.py:30` `read_knowledge` refuses a name without the `knowledge/` prefix although only Knowledge documents are possible for that tool (fact).
