@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | functional-qa-report-I |
@@ -35,7 +35,7 @@ Two answers in one chat contradict each other; the first would make a reader thi
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:28 UTC: gemini 0.6.14 (capacities reason for unmeasured ratings) + geomind 0.4.86 skill, backend 1.1.89, deployed 14:27 UTC
 ## Retest
 
 (Who, when, result.)
