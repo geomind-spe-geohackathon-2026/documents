@@ -14,7 +14,7 @@ summary · 5 Design basis · 6 Alternatives · 7 Decisions · 8 Results (8.6 num
 source, 8.8 COP and SPF, 8.9 energy balance) · 9 Compliance (9.5 scope, 9.6 values) · 10
 Uncertainty · 11 Limitations · 12 Figures and tables · 13 Agent log · 14 Style · 15 Checklist ·
 16 Worked example · 17 Lessons from reviewed reports · 18 Explaining a result · 19
-Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · A Templates · B References.
+Recommendations and risks · 20 Indicators beyond cost · 21 gemini's metrics · 22 Method and V&V · A Templates · B References.
 
 This handbook explains no tool. Reading results: skill `reading-results`; quoting a study:
 `comparing-designs` and `report`; uncertainty and sensitivity: `economics`; derived numbers:
@@ -128,6 +128,7 @@ extra steps cost about four times the tokens of the whole review.
 | How to write a recommendation, risks, next stage | §19 |
 | Full-load hours, capacity factor, specific indicators | §20 |
 | What a gemini metric name means (`cop`, `heat_useful`, `capacities` ...) | §21 |
+| What the method section holds; verified versus validated | §22 |
 | The full review checklist | §15 |
 
 ## 0.7 What the writer asks, and what it does not
@@ -1205,6 +1206,57 @@ with `heat_pump_cop` 3.9 is "the heat pumps run at a seasonal ratio of 3.9; the 
 
 ---
 
+# 22. The method: models, verification and validation
+
+## 22.1 What the method section holds
+
+A reader trusts a result only as far as the method that made it. The method section names
+(ANSI/NISO Z39.18-2005, "methods"):
+
+- the tools and their versions: gemini's version as the result records it, geomind's agents;
+- the model of each unit and its main assumptions (`knowledge/handbook-design.md` for the
+  modules), the period and the time step, the weather and demand series and their sources;
+- the solver's tolerances and how the loops were solved (first guesses, iterations);
+- the studies run (`study/<name>`, kind, number of runs) and how the design was chosen (§7);
+- the agent team and the user's part: what was asked, what was approved (§13).
+
+Name every simplification next to the model it simplifies, not only under limitations (§11).
+
+## 22.2 Verification and validation
+
+Two different questions (Oberkampf and Roy, 2010, ch. 2; ASME V&V 20-2009):
+
+- **Verification**: does the model solve its equations correctly? Evidence: mass and energy
+  balances close within tolerance, loops converged, no failed steps. gemini's verdict reports a
+  failure of this kind as reason `numerical` or `failed_step` (§9.1;
+  `gemini/gemini/evaluate/verdict.py`). A feasible verdict therefore includes verification of
+  the run, not of the model's physics.
+- **Validation**: does the model represent the real plant well enough for the decision?
+  Evidence: comparison with measured data, a vendor's performance data or an independent
+  reference result. A concept design is usually not validated against its own plant, which does
+  not exist yet; say what the models were validated against, if anything, or that they were not.
+
+Never write "validated" for a result that was only verified.
+
+## 22.3 Is the model good enough for the decision?
+
+A model is adequate when a better one would not change the decision (Oberkampf and Roy, 2010,
+ch. 12). Ask for each simplification whether it could move the ranking or a check:
+
+| Simplification | Can hide | Check |
+|---|---|---|
+| Daily time step | hourly peaks above the daily mean | peak capacity margin; an hourly study |
+| One simulated year | reservoir cooling and pressure decline over the life | reservoir study (§9.5) |
+| Constant efficiency or approach | part-load losses | sensitivity on that parameter |
+| Generic cost data | cost overrun | estimate class (§10.4), uncertainty study |
+
+Invented example: two designs differ by 0.6 EUR/MWh in LCTS, while the capex is a Class 5
+estimate (−30 % to +50 %). "The cost model cannot separate them; the ranking rests on CO2 and
+the resource risk." When they differ by 15 EUR/MWh and the dominant input moves the LCTS by 4
+EUR/MWh across its range, the daily model is good enough for the ranking.
+
+---
+
 ---
 
 # Appendix A. Templates
@@ -1295,6 +1347,10 @@ with `heat_pump_cop` 3.9 is "the heat pumps run at a seasonal ratio of 3.9; the 
   002/12. Washington, DC: World Bank.
 - ISO 31000:2018. *Risk management — Guidelines*.
 - EN ISO 52000-1:2017. *Energy performance of buildings — Overarching EPB assessment — Part 1*.
+- Oberkampf, W. L. and Roy, C. J. (2010). *Verification and Validation in Scientific
+  Computing*. Cambridge: Cambridge University Press.
+- ASME V&V 20-2009 (R2021). *Standard for Verification and Validation in Computational Fluid
+  Dynamics and Heat Transfer*. New York: ASME.
 - Frederiksen, S. and Werner, S. (2013). *District Heating and Cooling*. Lund:
   Studentlitteratur. ISBN 978-91-44-08530-2.
 - gemini source: `gemini/gemini/evaluate/verdict.py`, `summary.py`, `coverage.py`,
