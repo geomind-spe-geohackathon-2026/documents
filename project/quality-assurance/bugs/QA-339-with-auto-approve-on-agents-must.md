@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind,backend |
 | Reporter | Sahand |
 | Found | 2026-11-05 19:59 UTC |
 | Versions | live 2026-11-05 20:58 Trondheim |
 | Where | any chat with Auto-approve on |
-| Fixer | m2 |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -35,7 +35,7 @@ Guess: Auto-approve only covers write-tool approvals in the backend; question to
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 20:12 UTC: QA-343 gemini 14d7ab5f (0.6.34); QA-339 geomind e7ccb36; pending deploy
 ## Retest
 
 (Who, when, result.)
