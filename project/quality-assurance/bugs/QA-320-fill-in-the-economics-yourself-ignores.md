@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 19:18 UTC |
 | Versions | backend 1.1.118 (geomind 0.4.130), Knowledge data-economics.csv and hackathon-2026-assumptions.md as of 18:00 UTC |
 | Where | project "QA-TEST QA-E2E-economics-I 11"; run 6bb98a04-1d74-4207-a96c-89aa9058909e; case lead steps 8-9 (`set_case`) |
-| Fixer | hotfix-python-lead-II (m8) |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -79,6 +79,7 @@ geomind:
 
 - 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
 - 2026-11-05 19:42 UTC: retest 19:41 UTC: assumptions file used (good) but 9 values with source 'agent': subsidy 30 EUR/MWh x 15 yr and chiller per-energy invented; DEA per-energy rows labelled 'agent'; see Retest
+- 2026-11-05 19:46 UTC: reopen fixed in geomind main (after c4108d3): agent-sourced values refused or tied to their catalogue row; pending deploy
 ## Retest
 
 - 2026-11-05 19:41 UTC, QA-E2E-economics-I: PARTLY FIXED (backend 1.1.123, geomind 0.4.131 with
