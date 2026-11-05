@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | hotfix-front-lead (from back-m1) |
@@ -33,6 +33,8 @@
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.129 (commit afa855a, bundle index-DjK0zKa6.js), by front-m2: heat-pump electricity band and share in Days covered; geothermal + electricity without backup counts as geothermal-served.
+- 2026-11-05 18:54 UTC: frontend 1.1.129
 ## Retest
 
 (Who, when, result.)
