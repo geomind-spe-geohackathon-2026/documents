@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
 | Found | 2026-11-05 18:55 UTC |
 | Versions | backend 1.1.116+ (geomind 0.4.12x, gemini 0.6.2x) |
 | Where | project QA-TEST QA-E2E-case-I 9 (dbe6165f), run 08d3739c, case v2 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -48,4 +48,5 @@ handbook-case 12.4 marks site.air.pressure as needed (Atmosphere).
 
 ## Fix
 
+- 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
