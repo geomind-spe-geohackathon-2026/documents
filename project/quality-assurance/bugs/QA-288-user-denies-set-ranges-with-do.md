@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -47,3 +47,5 @@ geomind:
 
 - 2026-11-05 18:53 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
+
+- 2026-11-05 19:30 UTC: QA-AI-project-I 19:30 UTC, backend 1.1.119, run c5793754-770f-4e7c-b0fc-fc973a859078 (project 3, new chat): set_ranges denied with the reason -> no second set_ranges card, the project lead did not re-brief; final answer is a pick (about 12 MW) marked 'an engineering pick, not a searched optimum'. Slow: the design lead then spent 25 steps (22 min, 0.93 M tokens) on hand analysis with run_python until I denied it (design-team behaviour, QA-AI-design-I scope). Memory stage now 2-3 cards (was 9, QA-265/QA-199). evidence/QA-288/retest-c5793754-770f-4e7c-b0fc-fc973a859078.trace.txt
