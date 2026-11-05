@@ -67,3 +67,7 @@ since replaced by later revisions):
 ## Retest
 
 (Who, when, result.)
+
+## Seen in a run
+
+- 2026-11-05 18:52 UTC, QA-AI-case-I run 7825eeac-4526-45d5-8ac9-baeca2b90223 (project QA-TEST QA-AI-case-I 9, cbcd3c85-b7ab-46f9-a8f7-d3c830189d2a; "design me a geothermal plant" with the three files; geomind 0.4.114+): at the checklist the case lead calls `read_stored(path="plants_need")` and `read_stored(path="converted")` on its `read_case` result: both refused ("no key or index of the result"). Row 2 in practice: the prompt sends it looking for `plants_need` and `converted`, which only a `set_case` result carries, and its one `set_case` came after the question. Evidence: `../evidence/QA-177/run-7825eeac.json` (case_lead 18:52:19).
