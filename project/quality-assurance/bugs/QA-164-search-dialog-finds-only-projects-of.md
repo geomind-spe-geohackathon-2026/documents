@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -37,4 +37,8 @@ page are never matched. Fix: send the typed term to `projectsQuery(term)` (the A
 
 ## Fix
 
+frontend 1.1.114 (commit 5fdd4ea, bundle index-Co1lDzOn.js): `search-dialog.tsx` keeps the typed term, debounces it (250 ms) and loads `projectsQuery(term)`, so the API `search` finds every project; the previous list stays while the next one loads.
+- 2026-11-05 17:11 UTC: frontend 1.1.114, commit 5fdd4ea
 ## Retest
+
+Not run (no tests now). Retest: Search, type `report`, the 16:58 'Hackathon report run' must show.
