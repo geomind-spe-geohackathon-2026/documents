@@ -1,0 +1,335 @@
+{
+ "format": 1,
+ "kind": "economics",
+ "name": "hackathon_2026 economics",
+ "discount_rate": {
+  "value": 0.06
+ },
+ "analysis_period": {
+  "value": 25,
+  "unit": "yr"
+ },
+ "energy": {
+  "electricity": {
+   "value": 105.75,
+   "unit": "EUR/MWh"
+  },
+  "gas": {
+   "value": 39.92,
+   "unit": "EUR/MWh"
+  }
+ },
+ "carbon": {
+  "price": {
+   "value": 80,
+   "unit": "EUR/t"
+  }
+ },
+ "revenue": {
+  "heat": {
+   "value": 60,
+   "unit": "EUR/MWh"
+  },
+  "cold": {
+   "value": 60,
+   "unit": "EUR/MWh"
+  }
+ },
+ "accounting": {
+  "allocation": {
+   "heat_cost_share": {
+    "value": 0.8
+   }
+  },
+  "gwp": {
+   "CH4": {
+    "value": 29.8
+   },
+   "standard": {
+    "value": "IPCC AR6 GWP100"
+   }
+  }
+ },
+ "opex": {
+  "variable": {
+   "chemical": {
+    "value": 3,
+    "unit": "EUR/kg"
+   },
+   "waste_disposal": {
+    "value": 0.2,
+    "unit": "EUR/kg"
+   }
+  },
+  "fixed": {
+   "drilling": {
+    "value": 1,
+    "unit": "%/yr"
+   },
+   "heat_pump": {
+    "value": 0.224,
+    "unit": "%/yr"
+   },
+   "boiler": {
+    "value": 3.25,
+    "unit": "%/yr"
+   },
+   "chp": {
+    "value": 1.026,
+    "unit": "%/yr"
+   },
+   "degasser": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "compression_chiller": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "absorption_chiller": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "adsorption_chiller": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "production_pump": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "injection_pump": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "heat_exchanger": {
+    "value": 1,
+    "unit": "%/yr"
+   },
+   "flare": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "gas_makeup": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "cooler": {
+    "value": 2,
+    "unit": "%/yr"
+   },
+   "pipe": {
+    "value": 0.5,
+    "unit": "%/yr"
+   }
+  }
+ },
+ "capex": {
+  "drilling": {
+   "value": 1239.13,
+   "unit": "EUR/m"
+  },
+  "heat_pump": {
+   "value": 0.738,
+   "unit": "EUR/W"
+  },
+  "boiler": {
+   "value": 0.0607,
+   "unit": "EUR/W"
+  },
+  "chp": {
+   "value": 0.962,
+   "unit": "EUR/W"
+  },
+  "degasser": {
+   "value": 1000000,
+   "unit": "EUR"
+  },
+  "compression_chiller": {
+   "value": 0.3,
+   "unit": "EUR/W"
+  },
+  "absorption_chiller": {
+   "value": 0.3,
+   "unit": "EUR/W"
+  },
+  "adsorption_chiller": {
+   "value": 0.3,
+   "unit": "EUR/W"
+  },
+  "production_pump": {
+   "value": 0.5,
+   "unit": "EUR/W"
+  },
+  "injection_pump": {
+   "value": 0.5,
+   "unit": "EUR/W"
+  },
+  "heat_exchanger": {
+   "value": 0.5,
+   "unit": "EUR/(W/K)"
+  },
+  "flare": {
+   "value": 100000,
+   "unit": "EUR"
+  },
+  "gas_makeup": {
+   "value": 50000,
+   "unit": "EUR"
+  },
+  "cooler": {
+   "value": 0.1,
+   "unit": "EUR/W"
+  },
+  "pipe": {
+   "value": 500,
+   "unit": "EUR/m"
+  }
+ },
+ "currency": {
+  "value": "EUR"
+ },
+ "price_year": {
+  "value": 2015
+ },
+ "about": {
+  "sources": {
+   "discount_rate": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "analysis_period": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team, DEA 25 yr technical lifetime)"
+   },
+   "energy.electricity": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: Eurostat nrg_pc_205, EU non-household, band IE, excl. VAT, 2025, in EUR 2015)"
+   },
+   "energy.gas": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: Eurostat nrg_pc_203, EU non-household, band I4, excl. VAT, 2025, in EUR 2015)"
+   },
+   "carbon.price": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: Instrat, EU ETS 2025 average allowance price, 8 Jan 2026, in EUR 2015)"
+   },
+   "revenue.heat": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "revenue.cold": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "accounting.allocation.heat_cost_share": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "accounting.gwp.CH4": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: IPCC AR6 WG1 table 7.15, GWP100, fossil methane)"
+   },
+   "opex.variable.chemical": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.variable.waste_disposal": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.drilling": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team, SDE+ 2013 reference case, Mijnlieff et al. 2013)"
+   },
+   "opex.fixed.drilling": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.heat_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: DEA Technology Data v0019, sheet 40)"
+   },
+   "opex.fixed.heat_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: DEA Technology Data v0019, sheet 40)"
+   },
+   "capex.boiler": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: DEA Technology Data v0019, sheet 44)"
+   },
+   "opex.fixed.boiler": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: DEA Technology Data v0019, sheet 44)"
+   },
+   "capex.chp": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: DEA Technology Data v0019, sheet 06)"
+   },
+   "opex.fixed.chp": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Cited: DEA Technology Data v0019, sheet 06)"
+   },
+   "capex.degasser": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.degasser": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.compression_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.compression_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.absorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.absorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.adsorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.adsorption_chiller": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.production_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.production_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.injection_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.injection_pump": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.heat_exchanger": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.heat_exchanger": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.flare": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.flare": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.gas_makeup": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.gas_makeup": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.cooler": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.cooler": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "capex.pipe": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "opex.fixed.pipe": {
+    "source": "knowledge/hackathon-2026-assumptions.md (Economics; Team)"
+   },
+   "accounting.gwp.standard": {
+    "row": "gwp-standard-ipcc-ar6-gwp100",
+    "source": "IPCC Global Warming Potential Values (August 2024)",
+    "year": 2024,
+    "url": "https://ghgprotocol.org/sites/default/files/2024-08/Global-Warming-Potential-Values%20%28August%202024%29.pdf",
+    "status": "verified"
+   },
+   "currency": {
+    "source": "the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)"
+   },
+   "price_year": {
+    "source": "the cost catalogue's value_2015 and unit_2015 columns: EUR at 2015 prices (knowledge/data-economics.md)"
+   }
+  }
+ }
+}
