@@ -20,6 +20,10 @@
 
 Carbon is priced on the emissions the plant pays a carbon price for (its own fuel combustion and flared gas). Grid electricity carries its carbon cost inside the electricity price (EU ETS covers power generation), so it is either not priced again or priced only when the case says so.
 
+## Actual
+
+gemini prices carbon on ALL CO2e, grid electricity included (`gemini/evaluate/_utils/cost.py` `_bills` -> `emitted_steps`). In the hackathon example 0.45 of 0.71 MEUR/yr of carbon cost comes from grid electricity, which may double count the ETS cost already in the electricity price.
+
 ## Evidence
 
 - ![screenshot](../evidence/QA-128/1.png)
