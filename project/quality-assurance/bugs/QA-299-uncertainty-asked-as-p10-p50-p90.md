@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | gemini |
 | Reporter | QA-AI-analysis-I |
 | Found | 2026-11-05 18:47 UTC |
 | Versions | backend 1.1.117 (gemini 0.6.21+), API only |
 | Where | https://api.geomind.team; project `QA-TEST QA-AI-analysis-I 8` (485dbcfc-63f4-474f-a2dd-b94ab85bc34f); run 8d7c09f7-3356-4e40-8c37-40fefeeacc1e |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -41,3 +41,7 @@ compute them.
 
 gemini: the sample summary takes `percentiles` (default [5, 10, 50, 90, 95]) or always adds p10 and p90; geomind
 `sample_uncertainty` passes a `percentiles` input and the display rounds to 4 significant digits (QA-099).
+
+## Fix
+
+- 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
