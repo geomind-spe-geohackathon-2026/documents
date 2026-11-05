@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | Manual QA-II (timed run approved by the user), Claude (write-up) |
@@ -51,7 +51,7 @@ The run itself was fast and complete:
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 15:14 UTC: geomind 0.4.92 (case lead always splits into 2-4 geoscientists, single tool removed), backend 1.1.97, deployed ~15:20 UTC
 ## Retest
 
 (Who, when, result.)
