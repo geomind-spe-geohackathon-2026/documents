@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -43,3 +43,4 @@ Addition (user, 10:47 UTC: every table, a row-number column '#'): frontend 1.1.9
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 11:04 UTC: live 1.1.92: header sunken, even rows sunken/60, light and dark checked, row numbers present
