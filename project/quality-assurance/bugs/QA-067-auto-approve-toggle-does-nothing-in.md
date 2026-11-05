@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-func-2-II |
@@ -42,3 +42,4 @@ Guess: the toggle state is stored per chat and there is no chat yet to store it 
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 01:04 UTC: geomind.team 1.1.68 (index-CDtctsI4.js), Playwright 01:05 UTC: empty chat (project ae542488, /assistant/chat?new, 'New chat.' shown): Auto-approve aria-pressed false -> true -> false, no write before the chat exists. Saving it on the first message was not rechecked (that would start a run). On an existing chat the toggle PUTs and was set back to off.
