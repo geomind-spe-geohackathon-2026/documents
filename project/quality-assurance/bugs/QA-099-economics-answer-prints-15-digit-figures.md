@@ -56,3 +56,5 @@ compute_kpis and estimate_costs but not the study tools (`optimize`/`read_study`
 The 365.25-day basis (heat 111744.16 vs 111667.68 MWh) is named, but not explained to the user.
 Proposed: round in the study results the agent reads (the same `rounded`), and say the basis in one
 line. Reopened.
+
+QA-E2E-study-I, 2026-11-05 18:53 UTC: still 15 digits in study answers: sensitivity run 82efd097 (45.79283566620754 ...), uncertainty run ce4be675 (53.917317324077345 ...). The optimisation answer of run 4885075b is rounded (49.34), so the rounding now covers optimize but not sensitivity / sample_uncertainty.
