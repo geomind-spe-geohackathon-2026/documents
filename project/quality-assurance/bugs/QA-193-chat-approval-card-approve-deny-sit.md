@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
@@ -56,3 +56,4 @@ frontend 1.1.117 (commit b5ab7ef, bundle index-CnfyoHnO.js): the card (`request-
 ## Retest
 
 Not run (no tests now). Retest: a set_case approval with a long JSON at 1440x1000 shows Approve without scrolling.
+- 2026-11-05 17:47 UTC: QA-E2E-economics-I 17:47 UTC, frontend live 2026-11-05: set_case card Approve visible at y=819/1000 and a plain click works (run 236f17d4, project QA-TEST QA-E2E-economics-I 4); Accept case card now has a sentence. evidence/QA-193/retest-1.png, retest-2.png
