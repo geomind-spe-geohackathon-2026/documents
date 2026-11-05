@@ -47,6 +47,7 @@ still active, 58 steps.
 | IMP-020 | idea | geomind | read_stored shows the outline of a result (keys two levels deep) when the path is wrong | 127 unknown_name |
 | IMP-021 | idea | geomind | Examples in the skills generated from gemini's own schema; evals from the real refusals | prompts that do not drift from gemini |
 | IMP-022 | idea | QA | Two measures after every deploy: first-try error rate per tool; runs that reach simulate, check and optimize | shows whether a fix helps |
+| IMP-023 | idea | geomind, frontend | Start from gemini's six hackathon plant files (125 values each) and a complete case; size then optimize; no hand-built plants | the only path that has reached a passing result |
 
 ## IMP-001: ask_economics fills the recommended rows itself
 
@@ -229,3 +230,22 @@ a prompt or tool change is checked against them.
 
 The table above, per deploy: first-try refusal rate per tool, and how many runs reach simulate,
 check_results feasible, and optimize. A fix that does not move them did not help.
+
+## IMP-023: the short path that works
+
+Measured 2026-11-05 12:20 UTC. The only result in the system that passes every check is the
+user-run study "Optimise LCTS" in project "SPE GeoHackathon 2026" (2026-11-02): 10 of 10 checks,
+the full heat (111,668 MWh) and cold (23,743 MWh) demand met, lcts 40.34 EUR/MWh, CO2 12.9 kt. It
+used gemini's `examples/hackathon_2026`: the plant file `plants/HeatingHeatPumpCoolingPlant.json`
+with 125 design values already set and a doublets range 1 to 3, a complete case, then `size` and
+`minimize` on lcts (20 evaluations, seed 0).
+
+The agents take another path: an empty plant class (the app's template is an 86-character
+skeleton), five engineers filling about 125 values by hand. Since 2026-11-04 18:00 UTC: 529
+patch_plant, 40 fill_parts, 15 size_plant, 0 optimize; 45 runs, none feasible.
+
+Proposal: (a) gemini's six hackathon plant files become real templates, in Start from template and
+for the agents; (b) the design lead picks a template, sizes, simulates, checks and optimizes; the
+engineers fill only what gemini reports missing; (c) the case starts complete: the sample's values
+offered to the user in one approval question, with gemini's README as their source (Sahand decides
+whether that counts as a source under the no-default rule).
