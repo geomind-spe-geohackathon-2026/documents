@@ -59,6 +59,10 @@ Geoscientist IV did not copy them; the lead then merges the findings without app
 Accuracy: 9 requirements vs 8 in the reference (the extra two supply-temperature requirements are
 by the prompt's rule; the flow split is not). No speed effect.
 
+## Second run
+
+Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4386e6e3c744, run 519ccc65-564e-4d1e-9139-a23777cd1107, backend 1.1.104, log `../evidence/QA-153/run-519ccc65.json`): here the lead set ONE `production_flow_range` (min 50, max 300), as the reference. The split is not deterministic: 1 of 2 runs.
+
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
