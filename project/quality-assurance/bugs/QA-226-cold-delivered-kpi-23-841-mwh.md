@@ -6,7 +6,7 @@
 | Severity | major |
 | Area | gemini |
 | Reporter | QA-E2E-design-I |
-| Found | 2026-11-05 17:45 UTC |
+| Found | 2026-11-05 17:35 UTC |
 | Versions | backend 1.1.104, geomind 0.4.97, gemini 0.6.16 |
 | Where | project QA-TEST QA-E2E-design-I 1 (f1704a61-f1b8-4b63-84d3-20bd30beaed7); run 76d19df6-485f-46ee-a182-6b03ed70ab33; `result/b8bc0df839230959` (design/best_v1) and Results row a6a3aec3 |
 | Fixer | hotfix-python-lead |
