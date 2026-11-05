@@ -157,6 +157,13 @@ a parameter (`temperature_setpoint` moved to `controls`), `over`/`when` on a qua
 none (dropped), a known unit spelling (`m/s^2`, `m/s²` -> `m/s2`). No value is invented, so the
 no-default rule holds. The cheapest and largest gain.
 
+Seen again 2026-11-05 ~10:25 UTC (chat 27379f2e, fill_parts), four evaluate_module refusals in a row:
+`parameters.production_rate is a control, not a parameter`; then the control given as
+`{'value': 300, 'unit': ...}` is "invalid control value" (controls take another form than parameters,
+so the agent cannot carry the `{value, unit}` habit over); `inlets = []` on InjectionReservoir (IMP-013);
+`productivity_index is required`. One form for parameters and controls (or the tool converting a
+`{value, unit}` control) removes the second one. ![evaluate_module refusals](evidence/imp-012-evaluate-module.webp)
+
 ## IMP-013: evaluate_module gets its inlets from the design
 
 Agents call evaluate_module with no inlets about 140 times; the tool cannot work without them. When
