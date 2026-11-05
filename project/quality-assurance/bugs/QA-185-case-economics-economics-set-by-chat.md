@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | frontend |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 17:11 UTC |
 | Versions | frontend 1.1.114 (bundle index-Co1lDzOn.js), backend 1.1.104 (geomind 0.4.102) |
 | Where | https://geomind.team/projects/e4a51b01-9faf-4bbc-819e-2223ef3d9e7b/design/case, tab Economics; project "QA-TEST QA-E2E-economics-I 1", case v5 |
-| Fixer | |
+| Fixer | hotfix-front-VII |
 
 ## Steps
 
