@@ -58,6 +58,10 @@ not to be outlined by `stored_form` when it fits that budget; or give `Team` a `
 Speed only: about 5-6 s and 116 k input tokens per case run. No accuracy effect: the lead read all
 four findings by hand.
 
+## Reproduced
+
+Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4386e6e3c744, run 519ccc65-564e-4d1e-9139-a23777cd1107, backend 1.1.104, log `../evidence/QA-153/run-519ccc65.json`): same: `geoscientists` result outlined, then 5 `read_stored` calls by the case lead.
+
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
