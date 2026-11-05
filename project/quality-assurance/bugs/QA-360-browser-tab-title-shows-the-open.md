@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand |
@@ -35,6 +35,8 @@ Sahand's request (top); already sent to front-lead.
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.148 (bundle index-B5Gm_bU6.js): project-layout.tsx sets document.title to 'Geomind · <project name>' while a project is open and restores 'Geomind' when leaving.
+- 2026-11-05 21:32 UTC: frontend 1.1.148
 ## Retest
 
 (Who, when, result.)
