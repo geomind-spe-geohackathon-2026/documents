@@ -60,3 +60,11 @@ re-read for nothing, was Knowledge enough, how long did each take.
 
 Each AI thread runs its own projects (`QA-TEST <thread> <n>`); the stage before its scope is
 loaded from the reference JSON, never produced by another thread.
+
+## Never stop (Sahand, 2026-11-05 18:28 Trondheim)
+
+QA threads (QA-E2E-*, QA-AI-*) never stop or wait after finding a bug: file it with qa.py and go
+on at once. When a stage is blocked by a bug, load that stage from the reference JSON (or work
+around it) and keep testing what comes after. When a round is done, start the next one: another
+scenario of your section, other inputs (vague request, no files, change some, deny), retests of
+fixed bugs as they deploy, accuracy and speed comparisons. Never end with "done, waiting".
