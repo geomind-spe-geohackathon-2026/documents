@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -91,3 +91,4 @@ only then `optimize(design/v2)` worked (60 s). 33 min, 0.101 USD for a 60 s stud
   parallel), 0 `build_plant`, 0 `patch_plant`, 0 approval cards. 14 min 14 s, 0.066 USD (was 56 min 49 s, 0.168 USD).
   Verified. Waste left: v2 and v3 first optimised with 60 evaluations (the user said 20), then again with 20.
   The ranking is still wrong for v1 and v4: see QA-278. Log: `../evidence/QA-278/run-923b728e-retest-log.json`.
+- 2026-11-05 19:05 UTC: retest QA-AI-analysis-I 19:04 UTC: design/v1..v6 used directly, 14 min (was 57)
