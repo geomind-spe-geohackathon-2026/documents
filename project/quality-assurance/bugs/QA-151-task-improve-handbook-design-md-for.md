@@ -51,6 +51,14 @@ Guess: the handbook lacks concrete sizing rules and a fixed order of steps.
   kept (prompts and skills cite 0, 10.x, 11.x); checked with geomind `tools/sections.py`.
 - Knowledge: handbook-design.md re-uploaded as f1a84a92 (replaces 6d617b90), searchable ready.
   No code change, no LLM run.
+- 2026-11-05 ~17:35 UTC, handbook-design-I (Sahand: handbooks general, no competition data): documents
+  bdbe89e, handbook-design v3. 0.7 says how to choose each value (published values only), 0.8 says
+  how each kind of case limit binds the design, chapter 12 is worked lessons on an invented case
+  (base/peak, doublet count, supply above reservoir temperature, flow range, gas use, QA lessons);
+  every hackathon number removed. The sample plant values and the limits' consequences moved to
+  hackathon-2026-assumptions.md ("Plant design values", "What the limits mean"). Section keys by
+  number, stated in the front matter and 0.3 (QA-169). Knowledge: handbook-design 17f26c53 (was
+  f1a84a92), hackathon-2026-assumptions ee185062 (was 9f98c448).
 - 2026-11-05 17:01 UTC: handbook-design v2, documents 401c58f; Knowledge f1a84a92 (was 6d617b90)
 ## Retest
 
