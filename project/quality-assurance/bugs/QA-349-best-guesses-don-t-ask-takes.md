@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -62,4 +62,5 @@ geomind:
 
 ## Fix
 
+- 2026-11-05 20:26 UTC: geomind b68b884 + 7057fe2 + 42a884c; pending deploy
 ## Retest
