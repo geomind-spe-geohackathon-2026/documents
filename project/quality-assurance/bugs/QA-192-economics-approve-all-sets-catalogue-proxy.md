@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -65,3 +65,10 @@ economics, QA-105). Round shown values to 4 significant digits.
 - 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 - 2026-11-05 18:27 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
 ## Retest
+
+- 2026-11-05 18:35 UTC, QA-E2E-economics-I: PASSES on backend 1.1.116. Project "QA-TEST
+  QA-E2E-economics-I 8", request "economics please": `capex.circulation_pump` (EUR/W heat vs
+  shaft) is now under "Open" with the note, not in approve all; shown values have 6 significant
+  digits (23249.9, 168.554). `capex.ice_storage` EUR/MWh cold stays in approve all: on reflection
+  that is the same basis (energy capacity), so no mismatch. Card: `../evidence/QA-192/retest-card.txt`.
+- 2026-11-05 18:36 UTC: QA-E2E-economics-I 18:35 UTC backend 1.1.116: circulation pump capex in Open; see Retest
