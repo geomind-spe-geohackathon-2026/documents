@@ -7,31 +7,34 @@
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 10:18 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | frontend 1.1.84 |
+| Where | https://geomind.team, any page, the browser tab |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open https://geomind.team in a browser.
+2. Look at the tab icon.
 
 ## Expected
 
+The GeoMind logo (the sidebar mark) as the tab icon: favicon.ico plus SVG/PNG sizes (16, 32, 180 apple-touch), linked in index.html, each URL returning the image.
+
 ## Actual
+
+A generic globe. /favicon.svg, /favicon-32.png and /favicon.ico all returned index.html (text/html, 3225 bytes).
 
 ## Evidence
 
-- ![screenshot](../evidence/QA-098/1.png)
-- Run JSON: `../evidence/QA-098/run-<id>.json`
+- ![tab](../evidence/QA-098/1.png)
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+`vite.config.ts` sets `publicDir` off for the build (so the MSW worker in `public/` never ships); the favicons were in `public/` too, so they were never in `dist/` and nginx fell back to index.html.
 
 ## Fix
 
-(Hotfix session: cause, commit, version, deployed at.)
+frontend 1.1.86 (hotfix-front-II): icons moved to `static/`, the build's publicDir; added favicon.ico (16/32/48), favicon-16.png, apple-touch-icon.png (180, white ground) rendered from the logo SVG; all linked in index.html; nginx serves them as files (=404 otherwise, 1-day cache). Local build: each URL 200 with image/svg+xml, image/png or image/x-icon; mockServiceWorker.js still not shipped. Deploy: 10:30 UTC window.
 
 ## Retest
 
