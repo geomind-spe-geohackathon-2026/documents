@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | major |
 | Area | backend,geomind |
 | Reporter | Sahand (task) |
 | Found | 2026-11-05 17:21 UTC |
 | Versions | backend 1.1.104 (geomind 0.4.98) |
 | Where | geomind tools/delegate.py:233 (MAX_INSTANCES = 4), prompts/case/lead.md:41 ('2 to 4 field groups'); backend settings/.env |
-| Fixer | |
+| Fixer | hotfix-back-VI |
 
 ## Steps
 
