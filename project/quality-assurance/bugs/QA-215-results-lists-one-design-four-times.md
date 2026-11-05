@@ -65,6 +65,7 @@ frontend 1.1.119 (commit f176515, bundle index-BdK4BvuF.js): each Results tab sh
 - 2026-11-05 18:46 UTC: backend part 1.1.117 bf766bb; frontend part open
 - 2026-11-05 20:17 UTC: QA-E2E-study-II 2026-11-05 20:20 UTC, backend 1.1.125 retest of the Results rows (project QA-E2E-study-II 1, 8 rows via GET /design/results): no duplicate rows now, every row has its study; BUT plant_version is still empty (None) on 6 of 8 rows (chat simulation v2, uncertainty, compare v2, opt-v1-lcoh, opt-v3-lcoh-r2); filled only on the page-made studies (QA-332/285 retest) and compare v1
 - 2026-11-05 22:05 Trondheim, back-m1, backend e9675d8 (not deployed): agent study results (callbacks.add_results: run_study, optimize, size) carry the plant each run ended with, a sized or new design no saved version holds, so the digest found none. Now (1) saved versions are matched by stored digest and by the digest of their content normalised by gemini (an adopted design is saved un-normalised), and (2) a result whose design matches no version takes the version of the design its study read, as a page study does. Never creates a version (QA-237). Page studies already write study.plant_version. Old rows stay as they are.
+- 2026-11-05 21:09 UTC: backend 1.1.132 e9675d8; frontend part open
 ## Retest
 
 New chat run with simulate + study of an adopted design: Results shows one row per design, each with a plant version.
