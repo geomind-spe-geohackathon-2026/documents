@@ -18,13 +18,15 @@ rechecked against gemini 0.6.34.
   once: it does not change during a run.
 - Chapters: 0 design path, 1 philosophy, 2 demand, 3 subsurface, 4 wells and pumps, 5 brine and
   gas, 6 surface heat, 7 cooling, 8 configurations, 9 control, 10 sizing and optimisation, 11
-  gemini, 12 worked lessons, 13 answers to the design questions agents ask (one per
-  section: ESP curves, split wells, injection pump, wellhead pressure, productivity and skin,
-  pressure drops, degasser, boiler efficiency, dew point, storage, part load, COP models, brine
-  cooling, network, CHP, gas compressor, line-shaft and circulation pumps, ATES, ice storage);
-  15 brine and water properties;
-  14 the core design problem step by step (temperature match, doublets, part load and days
-  off, backup, co-produced gas, cooling choice, pressure budget, families, energy checks); appendices A formulas, B rules of thumb, C glossary, D references.
+  gemini, 12 worked lessons, 13 answers to the design questions agents ask (ESP curves, split
+  wells, injection pump, wellhead pressure, productivity and skin, pressure drops, degasser,
+  boiler efficiency, dew point, storage, part load, COP models, brine cooling, network, CHP, gas
+  compressor, line-shaft and circulation pumps, ATES, ice storage), 14 the core design problem
+  step by step (temperature match, doublets, part load and days off, backup, co-produced gas,
+  cooling choice, pressure budget, families, energy checks, heat pump share, reservoir
+  uncertainty), 15 brine and water properties, 16 networks, consumers and substations, 17
+  monitoring, degradation and well integrity, 18 climate, air and heat rejection, 19 shallow and
+  closed-loop geothermal; appendices A formulas, B rules of thumb, C glossary, D references.
 - **Chapter 0 is the working chapter**: the checklist, the decision order, where each value comes
   from, a table of design values with units and how to choose them, and how a case's limits bind
   the design. Chapters 1 to 11 give the reasons; chapter 12 worked lessons; the appendices formulas,
@@ -37,10 +39,10 @@ rechecked against gemini 0.6.34.
 | Reader | Read first | Then, when the brief or a failure points there |
 |---|---|---|
 | Design lead | 0 (whole, once) | 14 (the design path, by section); 8, 10, 11.7; 12.12 checking an optimum; 12.14, 12.15 lessons from runs |
-| Reservoir engineer (R): reservoir, doublets, treatment and gas | 0.3, 0.7, 0.8 | 3, 5; 12.17; 13.5, 13.7, 13.13, 13.16, 13.18 |
-| Well engineer (W): wells and pumps | 0.3, 0.7, 0.8 | 4; 12.10, 12.11; 13.1 to 13.4, 13.17 |
-| Energy systems engineer I (H): heating | 0.3, 0.7 | 6, 8.3, 9; 12.8, 12.16, 12.18; 13.6, 13.8, 13.10 to 13.12, 13.14, 13.15 |
-| Energy systems engineer II (C): cooling | 0.3, 0.7 | 7; 12.9, 12.19; 13.9, 13.11, 13.19 |
+| Reservoir engineer (R): reservoir, doublets, treatment and gas | 0.3, 0.7, 0.8 | 3, 5; 12.17; 13.5, 13.7, 13.13, 13.16, 13.18; 15, 17, 19 |
+| Well engineer (W): wells and pumps | 0.3, 0.7, 0.8 | 4; 12.10, 12.11; 13.1 to 13.4, 13.17; 17.3, 17.4 |
+| Energy systems engineer I (H): heating | 0.3, 0.7 | 6, 8.3, 9; 12.8, 12.16, 12.18; 13.6, 13.8, 13.10 to 13.12, 13.14, 13.15; 16 |
+| Energy systems engineer II (C): cooling | 0.3, 0.7 | 7; 12.9, 12.19; 13.9, 13.11, 13.19; 18 |
 
 Labels on values:
 
@@ -3071,6 +3073,64 @@ the hottest step makes the chiller deliver less (7.6, 12.9); check the cooling s
 5. Fan power at `specific_fan_power` (row `cooler-specific-fan-power`, 0.02, a placeholder):
    0.2 MW of fans per 10 MW rejected at 0.02 [derived]; count it as electricity (14.9).
 
+# 19 Shallow and closed-loop geothermal
+
+Where no aquifer gives water, heat comes through a closed loop: a field of borehole heat
+exchangers or one deep coaxial well. gemini models both; they serve heat pumps, not direct use.
+
+## 19.1 Borehole heat exchanger fields
+
+gemini's `BoreholeField` holds the mean ground temperature of a field of N boreholes of depth H
+at spacing s, starting from `undisturbed_ground_temperature`. The fluid exchanges heat with that
+mean through the borehole resistance R_b plus the steady-flux resistance of each borehole's cell
+(Hellström 1991): UA = N H / (R_b + R_sf), effectiveness ε = 1 − exp(−UA / (ṁ c_p)) [gemini:
+`gemini/modules/subsurface/boreholefield.py`]. Heat taken cools the ground; heat rejected (summer
+cooling) warms it, so a field is also a seasonal store (BTES).
+
+Design values: `borehole_count`, `borehole_resistance` (about 0.06 to 0.15 m K/W for grouted
+single or double U-tubes), `ground_conductivity` (1.5 to 3.5 W/m/K), `ground_volumetric_heat_capacity`
+(2 to 2.5 MJ/m3/K) [standard: VDI 4640 part 2; textbook: Stober and Bucher 2013]. Conductivity is
+best measured by a thermal response test; it is site data (the case's), not a designer's guess.
+
+Sizing rule of first order: specific extraction of about 50 W/m of borehole for normal solid rock
+at about 1,800 full-load hours a year, less (about 20 to 30 W/m) in dry loose sediment, more in
+high-conductivity rock [VDI 4640 part 2, for small systems; large fields need a simulation].
+
+Worked (invented): a 1 MW heat pump at COP 4 takes 0.75 MW from the ground; at 50 W/m that is
+15,000 m of borehole, 75 boreholes of 200 m [derived]. A field that also rejects summer cooling
+heat recovers its temperature; one that only extracts cools year after year, which gemini's
+lumped state shows over a multi-year run.
+
+## 19.2 Deep coaxial borehole heat exchangers
+
+`DownholeHeatExchanger` is a deep coaxial well: fluid down the annulus, up an insulated centre
+pipe, exchanging heat with rock whose temperature rises with `geothermal_gradient` [gemini:
+`gemini/modules/subsurface/downholeheatexchanger.py`]. The rock resistance follows Ramey's
+quasi-steady time function, f(t) = ln(2 √(α t) / r_b) − γ / 2, at the `operating_time` [paper:
+Ramey 1962].
+
+What to expect: one deep closed well delivers far less than a doublet, because heat must conduct
+through the rock to the wall; outputs of the order of a few hundred kW for wells of 2 to 3 km are
+reported [paper: Kohl, Salton and Rybach 2000, the Weggis well; treat as indicative]. Use it where
+drilling is possible but no permeable aquifer exists, or to reuse an old well.
+
+Worked comparison (invented): a doublet at 250 m3/h and 40 K gives about 12 MW (14.2); to reach
+that with deep coaxial wells of a few hundred kW each would take dozens of wells. The closed loop
+is a different product: small, base-load, heat pump supplied.
+
+## 19.3 Choosing between open and closed systems
+
+| Question | Open doublet (aquifer) | Closed loop (field or coaxial) |
+|---|---|---|
+| Needs | permeable aquifer, brine handling (5) | only drillable ground |
+| Output per well | MW-scale | tens of W per metre (field), hundreds of kW (deep coaxial) |
+| Temperature | reservoir temperature, direct use possible | ground temperature; heat pump needed |
+| Risks | productivity, scaling, gas, injectivity | ground conductivity, long-term cooling |
+| gemini | `Doublet`, class plants (11.5) | `BoreholeField`, `DownholeHeatExchanger` in a free plant |
+
+A case without aquifer data cannot be designed as a doublet; a case with them rarely needs a
+closed loop. State which the case allows before building a plant (0.2).
+
 ---
 
 # Appendix A: Formulas
@@ -3198,6 +3258,9 @@ Orientation only: never an input without its source and the user's approval (1.5
 Textbooks and papers (cited as named; figures quoted through gemini were checked there, not
 always in the original):
 
+
+## D.1 Textbooks, papers and standards, A to G
+
 - Alduchov, O. A., Eskridge, R. E. (1996). Improved Magnus form approximation of saturation
   vapor pressure. *J. Appl. Meteorology* 35, 601-609.
 - API Specification 12J. *Specification for Oil and Gas Separators*. American Petroleum
@@ -3240,6 +3303,9 @@ always in the original):
   326-334.
 - Gringarten, A. C., Sauty, J. P. (1975). A theoretical study of heat extraction from aquifers with
   uniform regional flow. *J. Geophys. Res.* 80(35), 4956-4962.
+
+## D.2 Textbooks, papers and standards, H to Z
+
 - Hyland, R. W., Wexler, A. (1983). Formulations for the thermodynamic properties of the saturated
   phases of H2O from 173.15 K to 473.15 K. *ASHRAE Transactions* 89(2A), 500-519.
 - ISO 2533. *Standard Atmosphere*. International Organization for Standardization.
@@ -3250,11 +3316,15 @@ always in the original):
   chillers. International Sorption Heat Pump Conference.
 - Herold, K. E., Radermacher, R., Klein, S. A. (2016). *Absorption Chillers and Heat Pumps*, 2nd ed.
   CRC Press.
+- Hellström, G. (1991). *Ground Heat Storage: Thermal Analyses of Duct Storage Systems*. Lund
+  University.
 - Heywood, J. B. (1988). *Internal Combustion Engine Fundamentals*. McGraw-Hill.
 - Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007). *Fundamentals of Heat and Mass
   Transfer*, 6th ed. Wiley.
 - Kakaç, S., Liu, H., Pramuanjaroenkij, A. (2012). *Heat Exchangers: Selection, Rating, and
   Thermal Design*, 3rd ed. CRC Press.
+- Kohl, T., Salton, M., Rybach, L. (2000). Data analysis of the deep borehole heat exchanger plant
+  Weggis (Switzerland). World Geothermal Congress 2000.
 - Lindal, B. (1973). Industrial and other applications of geothermal energy. UNESCO, Geothermal
   Energy, Earth Sciences 12.
 - Lorenz, H. (1894). Die Ermittlung der Grenzwerte der thermodynamischen Energieumwandlung.
@@ -3264,6 +3334,7 @@ always in the original):
 - Moody, L. F. (1944). Friction factors for pipe flow. *Trans. ASME* 66.
 - NORSOK M-506. *CO2 Corrosion Rate Calculation Model*. Standards Norway.
 - Nocedal, J., Wright, S. J. (2006). *Numerical Optimization*, 2nd ed. Springer.
+- Ramey, H. J. (1962). Wellbore heat transmission. *J. Petroleum Technology* 14(4), 427-435.
 - Sharqawy, M. H., Lienhard, J. H., Zubair, S. M. (2010). Thermophysical properties of seawater: a
   review of existing correlations and data. *Desalination and Water Treatment* 16, 354-380.
 - Stober, I., Bucher, K. (2013). *Geothermal Energy: From Theoretical Models to Exploration and
@@ -3277,9 +3348,14 @@ always in the original):
   correlation of data. Proc. 3rd International Pump Symposium, Texas A&M (quoted in Takacs 2009,
   not verified).
 - US EPA. AP-42, 5th ed., section 13.5, Industrial Flares (2018).
+- VDI 4640 part 2. *Thermal Use of the Underground: Ground Source Heat Pump Systems*. Verein
+  Deutscher Ingenieure.
 - Wang, R. Z., Oliveira, R. G. (2006). Adsorption refrigeration: an efficient way to make good use of
   waste heat and solar energy. *Prog. Energy Combust. Sci.* 32.
 - Willems, C. (2016), Dutch doublet spacing.
+
+
+## D.3 Catalogues, gemini files and skills
 
 Catalogues and web pages:
 
@@ -3289,7 +3365,7 @@ Catalogues and web pages:
   (nipe.unicamp.br).
 - Tranter, plate heat exchangers (vendor page).
 
-gemini files (repository `gemini`, version 0.6.17): `docs/guide.md`, `docs/rules.md`,
+gemini files (repository `gemini`, version 0.6.17; 11.5 and chapters 13 to 19 checked against 0.6.34): `docs/guide.md`, `docs/rules.md`,
 `docs/CHANGELOG.md`, `docs/cost-sources/`, `gemini/plants/*.py`, `gemini/plants/roles.py`,
 `gemini/plants/doublet.py`, `gemini/study/size.py`, `gemini/study/metrics.py`,
 `gemini/evaluate/costs.py`, `gemini/evaluate/verdict.py`, `gemini/engine/apply.py`,
