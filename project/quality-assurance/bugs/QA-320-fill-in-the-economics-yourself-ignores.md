@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -78,4 +78,18 @@ geomind:
 ## Fix
 
 - 2026-11-05 19:34 UTC: geomind main 0df5771, gemini dev e6284347 (0.6.31); pending deploy
+- 2026-11-05 19:42 UTC: retest 19:41 UTC: assumptions file used (good) but 9 values with source 'agent': subsidy 30 EUR/MWh x 15 yr and chiller per-energy invented; DEA per-energy rows labelled 'agent'; see Retest
 ## Retest
+
+- 2026-11-05 19:41 UTC, QA-E2E-economics-I: PARTLY FIXED (backend 1.1.123, geomind 0.4.131 with
+  33b9349/fbefa51). Project "QA-TEST QA-E2E-economics-I 14", same request, economics question at
+  19:41:33 (6 min). Good: 42 keys from `hackathon-2026-assumptions.md` (exact reference values),
+  no Dutch tariff, sources per key; it asks one economics question (fine: approval is needed).
+  Still failing: 9 values with source "agent" and "no row", i.e. invented:
+  `revenue.subsidy.amount = 30 EUR/MWh`, `revenue.subsidy.duration = 15 yr` (no scheme named, no
+  country), `opex.per_energy.compression_chiller = 2`, `absorption_chiller = 1.5`,
+  `adsorption_chiller = 1.5 EUR/MWh` (no catalogue row exists), and
+  `opex.per_energy.boiler 1.1 / electric_boiler 0.9 / chp 5.4 / heat_pump 1.69` whose values are
+  catalogue rows (per-energy-boiler-gas-dea-ch44, ...) but labelled "agent" instead of the row.
+  Card: `../evidence/QA-320/retest-card.txt`. Expected: invented keys stay Open with "no source";
+  catalogue values carry their row id.
