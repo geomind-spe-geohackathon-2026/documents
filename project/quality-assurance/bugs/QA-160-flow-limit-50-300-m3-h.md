@@ -70,3 +70,9 @@ Run 2 (17:00-17:04 UTC, project QA-TEST QA-AI-case-I 2 cf19d767-b62b-4caa-a90e-4
 ## Retest
 
 (Who, when, result.)
+
+## More evidence (QA-E2E-case-I, 2026-11-05)
+
+- Run a5118d9e, case v5 of QA-TEST QA-E2E-case-I 2: `min_stable_flow` (min 50 m3/h) and
+  `max_production_flow` (max 300 m3/h). Run cf319cd4 (project 1) wrote ONE `production_flow_range`
+  as the reference. See QA-203 for the other run-to-run differences.
