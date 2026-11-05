@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | backend,frontend |
 | Reporter | QA-E2E-study-I |
@@ -57,4 +57,8 @@ render the study record of a sensitivity as a table/tornado.
 
 ## Fix
 
+frontend 1.1.119 (commit f176515, bundle index-BdK4BvuF.js): each Results tab shows `plant vN · <time>` (when plant_version is set) so repeats can be told apart; the tab strip scrolls on its own. Open, backend (hotfix-back): set plant_version on every result row, skip or link a row whose design equals an existing one, give a sensitivity study a Results row with `tornado`. Open, frontend (later): render a sensitivity study record as a table or tornado instead of raw JSON.
+- 2026-11-05 17:40 UTC: frontend 1.1.119 part; backend dedup/plant_version open
 ## Retest
+
+Not run (no tests now).
