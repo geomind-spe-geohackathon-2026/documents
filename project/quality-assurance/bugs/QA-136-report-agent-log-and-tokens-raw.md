@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | backend |
 | Reporter | hotfix-front-III |
 | Found | 2026-11-05 14:30 UTC |
 | Versions | frontend 1.1.104 |
 | Where | https://geomind.team/projects/cf0c3d9c-d925-4ffa-bd29-3ac8205090d3/design/report; run 32a12115 |
-| Fixer | |
+| Fixer | hotfix-back-III |
 
 ## Steps
 
