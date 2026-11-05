@@ -45,3 +45,5 @@ Sahand's request (top). text.delta events carry the agent and instance since IMP
 The label is now on its own line above the text (![now](../evidence/QA-345/2.png)). Sahand wants it
 inline, on the same line, as a bold prefix with a colon: '**Case lead:** The PDF is fully read
 (3,663 characters, pages 1-2). Now I'll split the case ...'.
+
+Sahand 21:36 Trondheim: exact form 'Case lead: ...' (name as in the busy list, sentence case, then a colon), inline.
