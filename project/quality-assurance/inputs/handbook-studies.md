@@ -1034,3 +1034,52 @@ Peak boiler swept 0, 2, 4, 6, 8 MW on a fixed geothermal base: LCOH 44.1 (infeas
 96.8 %), 44.6 (feasible, 99.1 %), 45.4, 46.3, 47.2 EUR/MWh. The cheapest feasible level is
 2 MW; each further 2 MW costs about 0.85 EUR/MWh; the cliff lies between 0 and 2 MW. A 3 MW boiler
 buys margin for about 0.4 EUR/MWh: offered as a robust option (§16).
+
+---
+
+## 20. Metrics as objectives
+
+### 20.1 Levelised cost as an objective
+
+A levelised cost spreads the investment over the life with the capital recovery factor and adds
+the yearly costs, per unit of energy delivered (Short, Packey & Holt 1995, NREL/TP-462-5173;
+`knowledge/handbook-economics.md` §5.2, §6):
+
+`LC = (CRF · I + C_year) / E_year`,  `CRF = r(1+r)^n / ((1+r)^n − 1)`
+
+with I the investment (EUR), C_year the yearly operating cost (EUR/y), E_year the energy delivered
+(MWh/y), r the real discount rate (1/y) and n the life (y). Unit: EUR/MWh.
+
+Properties that matter in a study:
+- It is a ratio: a design that delivers less energy can look cheaper per MWh. Coverage
+  requirements stop that; never optimise a levelised cost on a case without them.
+- The discount rate weighs investment against running cost: a high rate favours cheap-to-build,
+  dear-to-run designs (boilers), a low rate the reverse (wells, heat pumps). That is why the
+  discount rate so often heads a tornado (§3.4).
+- `lcts` adds heat and cold in one denominator: it ranks plants serving both; it hides which
+  service carries the cost. Quote `lcoh` and `lcoc` beside it.
+
+### 20.2 Absolute or specific
+
+`annualised_cost` (EUR/y) and a levelised cost (EUR/MWh) rank designs the same way only when all
+deliver the same energy. Within one case with coverage requirements they usually agree; across
+cases, use the specific one.
+
+### 20.3 Composite objectives
+
+A weighted sum `w₁f₁ + w₂f₂` turns two objectives into one, but the weights are a value judgement
+and a weighted sum cannot reach designs in non-convex parts of a Pareto front (Das & Dennis 1997).
+Better:
+- **Constraint form** (ε-constraint, Haimes et al. 1971): minimise cost with CO2 as a requirement
+  the user sets; one study per ε gives the front point by point.
+- **Front**: `evolve_structure` with two objectives (§5.3).
+- **Monetise** only when the case states the price (a carbon price in the economics already makes
+  CO2 part of the cost: do not add it twice).
+
+### 20.4 Worked example (invented numbers)
+
+I = 30 MEUR, C_year = 1.2 MEUR/y, E_year = 60,000 MWh/y, r = 6 %, n = 25 y:
+CRF = 0.06·1.06²⁵/(1.06²⁵ − 1) = 0.0782; LC = (0.0782·30 + 1.2)/0.06 = 59.1 EUR/MWh.
+At r = 3 %: CRF = 0.0574; LC = 48.7 EUR/MWh. A rival with I = 18 MEUR, C_year = 2.0 MEUR/y gives
+56.8 at 6 % and 50.6 at 3 %: the ranking flips between the two rates, a switching value (§15) to
+report.
