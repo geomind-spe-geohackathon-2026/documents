@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini,geomind |
 | Reporter | QA-AI-design-I |
@@ -57,4 +57,5 @@ Guess: `build_plant`/`patch_plant` stop at the first failing stage of gemini's v
 ## Fix
 
 - 2026-11-05 17:15 UTC: gemini part needs Sahand's OK (gemini-requests.md)
+- 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 ## Retest
