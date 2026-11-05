@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -79,3 +79,7 @@ Two deploys (1.1.106 ~17:45, 1.1.112 ~18:05) restarted the run; the design lead 
 2. `build_plant` from a stored version (or `from_class` of a stored class plant) must not be the path; if the lead
    re-builds, `build_plant` warns when the result differs from a project plant version of the same name/type.
 3. Comparison of N stored families: one study, not N design rounds; the reviewer checks the winner only.
+
+## Fix
+
+- 2026-11-05 18:57 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
