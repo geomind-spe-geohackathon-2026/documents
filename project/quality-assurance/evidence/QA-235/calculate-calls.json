@@ -1,0 +1,460 @@
+[
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T16:51:30.994912+00:00",
+  "input": {
+   "unit": "degC",
+   "label": "reservoir temperature at reference depth",
+   "operands": [
+    12,
+    {
+     "operands": [
+      30,
+      2.5
+     ],
+     "operation": "multiply"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": "operands[0]",
+    "message": "calculate: operands[0] = 12; expected an object: a reference to a sourced value (one of case, assumption, catalogue, stored, calculation), {\"constant\": \"pi\"} or {\"number\": 24, \"unit\": \"h\"}; read_skill('calculator') for the rules",
+    "suggestions": []
+   },
+   "skill": "[skill calculator, sent with the first call of calculate]\nNever work a number out in your head. When a value has to be derived (a sum, a ratio, an energy\nfrom a power and a time, a cost from a price and a size), call `calculate` and cite the\ncalculation's id from then on.\n\nOperands: each is an object. Every calculation needs at least one operand with a source:\n\n- `{\"case\": \"<path>\"}`: a field of the case, dotted, such as `site.depth` or\n  `demand.heating.peak`. It must hold one number or `{\"value\", \"unit\"}`.\n- `{\"assumption\": \"<id>\"}`: an assumption of the problem state the user has confirmed, with its\n  value. An unconfirmed assumption is refused: ask the user first, with its source.\n- `{\"catalogue\": \"<row id>\"}`: a row of the cost catalogue `knowledge/data-economics.csv`; its 2015\n  value and unit are used, and its citation goes with the result.\n- `{\"stored\": \"<result-... reference>\", \"path\": \"<dotted path>\"}`: one value of a result stored by\n  reference (`read_stored` shows its parts).\n- `{\"calculation\": \"<id>\"}`: an earlier calculation, such as `C2`.\n\nBeside them, and never alone:\n\n- `{\"number\": 24, \"unit\": \"h\"}`: a plain number you give, shown to the user as `24 h (plain)`.\n  Only for a fact that needs no source (hours in a day, a count you were told, a factor of a\n  formula); never for a price, a property or a site value: those need a source. Leave out `unit`\n  for a dimensionless number.\n- `{\"constant\": \"pi\"}`, `{\"constant\": \"e\"}` or `{\"constant\": \"g\"}`, the standard gravity\n  9.80665 m/s2 (a hydrostatic pressure is density \u00d7 g \u00d7 depth).\n\nA calculation whose operands are all plain numbers or constants is refused.\n\nA value from the web, a connector or the user's words enters only after the user approves it as\nan assumption with its source; then reference the assumption.\n\nOperations: `add`, `subtract`, `multiply`, `divide` (two operands), `power` (one operand and an\ninteger `exponent`), `min`, `max`, `sum`, `mean`. The exponent is a plain integer in the\ncall itself, not an operand: it is structure (a square, a cube), never data, so it needs no\nsource and no sourced operand beside it.\n\nUnits:\n\n- `unit` is the unit you want the result in, one gemini knows (see `gemini-units`); `-` for a\n  dimensionless result. gemini converts every operand: give each number in its own unit and\n  never a conversion factor (no 1000 for kW to MW, no 3600 for h to s).\n- add, subtract, min, max, sum and mean need operands of one dimension. A wrong `unit` is an\n  error that lists the units of the result's dimension.\n- subtract of two temperatures is a difference: give it in `K`. Never add absolute temperatures;\n  a mean of temperatures is fine.\n\nThe result has `id`, `label`, `value`, `unit`, `expression` and `operands`, each operand with its\nvalue and `source`. It is kept in the problem state (`Calculation C1: ...`); `update_state`\ncannot write calculations. When you report or record a derived number, give its calculation id.\nA chain of steps is one call per step, each citing the one before.\n\n## The tools\n\n### `calculate`\n\nDerive a value from sourced values and keep it as a calculation with an id.\n\nEach operand is a reference to a value with a source, one of\n`{\"case\": \"<path in the case>\"}`, `{\"assumption\": \"<id of a confirmed assumption>\"}`,\n`{\"catalogue\": \"<row id of knowledge/data-economics.csv>\"}`,\n`{\"stored\": \"<result-... reference>\", \"path\": \"<dotted path of one value>\"}` or\n`{\"calculation\": \"<id of an earlier calculation>\"}`; or `{\"constant\": \"pi\"}` (pi, e) or a\nplain `{\"number\": 24, \"unit\": \"h\"}`, shown as plain. At least one operand must have a\nsource. `operation` is add, subtract,\nmultiply, divide, power (one operand and an integer `exponent`), min, max, sum or mean.\n`unit` is the unit of the result, one gemini knows (`-` for none); gemini converts every\nvalue. `label` says what the value is. Read the skill calculator for the rules."
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T16:51:43.595484+00:00",
+  "input": {
+   "unit": "degC",
+   "label": "reservoir temperature at the case reference depth (surface temperature + gradient x depth)",
+   "operands": [
+    {
+     "case": "site.ground.surface_temperature"
+    },
+    {
+     "operands": [
+      {
+       "case": "site.ground.gradient"
+      },
+      {
+       "case": "site.reservoir.reference_depth"
+      }
+     ],
+     "operation": "multiply"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": "operands[1]",
+    "message": "calculate: operands[1] = {'operation': 'multiply', 'operands': [{'case': 'site.ground.gradient'}, {'case': 'site.reservoir.reference_depth'}]}; expected one key of case, assumption, catalogue, stored, calculation, constant, number (path only beside stored, unit only beside number); read_skill('calculator') for the rules",
+    "suggestions": []
+   }
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T16:51:54.654002+00:00",
+  "input": {
+   "unit": "K",
+   "label": "temperature rise from surface to reference depth (gradient x depth)",
+   "operands": [
+    {
+     "case": "site.ground.gradient"
+    },
+    {
+     "case": "site.reservoir.reference_depth"
+    }
+   ],
+   "operation": "multiply"
+  },
+  "output": {
+   "id": "C289b07",
+   "unit": "K",
+   "label": "temperature rise from surface to reference depth (gradient x depth)",
+   "value": 75.0,
+   "version": 3,
+   "operands": [
+    {
+     "unit": "K/km",
+     "value": 30.0,
+     "source": {
+      "kind": "case",
+      "path": "site.ground.gradient"
+     },
+     "reference": {
+      "case": "site.ground.gradient"
+     }
+    },
+    {
+     "unit": "m",
+     "value": 2500.0,
+     "source": {
+      "kind": "case",
+      "path": "site.reservoir.reference_depth"
+     },
+     "reference": {
+      "case": "site.reservoir.reference_depth"
+     }
+    }
+   ],
+   "operation": "multiply",
+   "expression": "case:site.ground.gradient [30 K/km] \u00d7 case:site.reservoir.reference_depth [2500 m]"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T16:51:57.071451+00:00",
+  "input": {
+   "unit": "degC",
+   "label": "reservoir temperature at the reference depth",
+   "operands": [
+    {
+     "case": "site.ground.surface_temperature"
+    },
+    {
+     "calculation": "C289b07"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "id": "Cd5099b",
+   "unit": "degC",
+   "label": "reservoir temperature at the reference depth",
+   "value": 87.0,
+   "version": 4,
+   "operands": [
+    {
+     "unit": "degC",
+     "value": 12.0,
+     "source": {
+      "kind": "case",
+      "path": "site.ground.surface_temperature"
+     },
+     "reference": {
+      "case": "site.ground.surface_temperature"
+     }
+    },
+    {
+     "unit": "K",
+     "value": 75.0,
+     "source": {
+      "id": "C289b07",
+      "kind": "calculation",
+      "label": "temperature rise from surface to reference depth (gradient x depth)",
+      "expression": "case:site.ground.gradient [30 K/km] \u00d7 case:site.reservoir.reference_depth [2500 m]"
+     },
+     "reference": {
+      "calculation": "C289b07"
+     }
+    }
+   ],
+   "operation": "add",
+   "expression": "case:site.ground.surface_temperature [12 degC] + calculation:C289b07 [75 K]"
+  }
+ },
+ {
+  "run": "0df89b7e69e046b3abe1231e51d9570a",
+  "ts": "2026-11-05T17:04:22.351593+00:00",
+  "input": {
+   "unit": "kg/s",
+   "label": "brine mass flow at the top of the case's per-doublet flow band (300 m3/h at the case brine density)",
+   "operands": [
+    {
+     "case": "site.fluid.density"
+    },
+    {
+     "unit": "m3/h",
+     "number": 300
+    }
+   ],
+   "operation": "multiply"
+  },
+  "output": {
+   "id": "C60c2d6",
+   "unit": "kg/s",
+   "label": "brine mass flow at the top of the case's per-doublet flow band (300 m3/h at the case brine density)",
+   "value": 85.8333333333,
+   "version": 15,
+   "operands": [
+    {
+     "unit": "kg/m3",
+     "value": 1030.0,
+     "source": {
+      "kind": "case",
+      "path": "site.fluid.density"
+     },
+     "reference": {
+      "case": "site.fluid.density"
+     }
+    },
+    {
+     "unit": "m3/h",
+     "value": 300.0,
+     "source": {
+      "kind": "number"
+     },
+     "reference": {
+      "unit": "m3/h",
+      "number": 300
+     }
+    }
+   ],
+   "operation": "multiply",
+   "expression": "case:site.fluid.density [1030 kg/m3] \u00d7 300 m3/h (plain)"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:30:15.914242+00:00",
+  "input": {
+   "unit": "degC",
+   "label": "reservoir temperature at 2500 m from the case gradient",
+   "operands": [
+    12,
+    {
+     "operands": [
+      30,
+      2.5
+     ],
+     "operation": "multiply"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": "operands[0]",
+    "message": "calculate: operands[0] = 12; expected an object: a reference to a sourced value (one of case, assumption, catalogue, stored, calculation), {\"constant\": \"pi\"} or {\"number\": 24, \"unit\": \"h\"}; read_skill('calculator') for the rules",
+    "suggestions": []
+   },
+   "skill": "[skill calculator, sent with the first call of calculate]\nNever work a number out in your head. When a value has to be derived (a sum, a ratio, an energy\nfrom a power and a time, a cost from a price and a size), call `calculate` and cite the\ncalculation's id from then on.\n\nOperands: each is an object. Every calculation needs at least one operand with a source:\n\n- `{\"case\": \"<path>\"}`: a field of the case, dotted, such as `site.depth` or\n  `demand.heating.peak`. It must hold one number or `{\"value\", \"unit\"}`.\n- `{\"assumption\": \"<id>\"}`: an assumption of the problem state the user has confirmed, with its\n  value. An unconfirmed assumption is refused: ask the user first, with its source.\n- `{\"catalogue\": \"<row id>\"}`: a row of the cost catalogue `knowledge/data-economics.csv`; its 2015\n  value and unit are used, and its citation goes with the result.\n- `{\"stored\": \"<result-... reference>\", \"path\": \"<dotted path>\"}`: one value of a result stored by\n  reference (`read_stored` shows its parts).\n- `{\"calculation\": \"<id>\"}`: an earlier calculation, such as `C2`.\n\nBeside them, and never alone:\n\n- `{\"number\": 24, \"unit\": \"h\"}`: a plain number you give, shown to the user as `24 h (plain)`.\n  Only for a fact that needs no source (hours in a day, a count you were told, a factor of a\n  formula); never for a price, a property or a site value: those need a source. Leave out `unit`\n  for a dimensionless number.\n- `{\"constant\": \"pi\"}`, `{\"constant\": \"e\"}` or `{\"constant\": \"g\"}`, the standard gravity\n  9.80665 m/s2 (a hydrostatic pressure is density \u00d7 g \u00d7 depth).\n\nA calculation whose operands are all plain numbers or constants is refused.\n\nA value from the web, a connector or the user's words enters only after the user approves it as\nan assumption with its source; then reference the assumption.\n\nOperations: `add`, `subtract`, `multiply`, `divide` (two operands), `power` (one operand and an\ninteger `exponent`), `min`, `max`, `sum`, `mean`. The exponent is a plain integer in the\ncall itself, not an operand: it is structure (a square, a cube), never data, so it needs no\nsource and no sourced operand beside it.\n\nUnits:\n\n- `unit` is the unit you want the result in, one gemini knows (see `gemini-units`); `-` for a\n  dimensionless result. gemini converts every operand: give each number in its own unit and\n  never a conversion factor (no 1000 for kW to MW, no 3600 for h to s).\n- add, subtract, min, max, sum and mean need operands of one dimension. A wrong `unit` is an\n  error that lists the units of the result's dimension.\n- subtract of two temperatures is a difference: give it in `K`. Never add absolute temperatures;\n  a mean of temperatures is fine.\n\nThe result has `id`, `label`, `value`, `unit`, `expression` and `operands`, each operand with its\nvalue and `source`. It is kept in the problem state (`Calculation C1: ...`); `update_state`\ncannot write calculations. When you report or record a derived number, give its calculation id.\nA chain of steps is one call per step, each citing the one before.\n\n## The tools\n\n### `calculate`\n\nDerive a value from sourced values and keep it as a calculation with an id.\n\nEach operand is a reference to a value with a source, one of\n`{\"case\": \"<path in the case>\"}`, `{\"assumption\": \"<id of a confirmed assumption>\"}`,\n`{\"catalogue\": \"<row id of knowledge/data-economics.csv>\"}`,\n`{\"stored\": \"<result-... reference>\", \"path\": \"<dotted path of one value>\"}` or\n`{\"calculation\": \"<id of an earlier calculation>\"}`; or `{\"constant\": \"pi\"}` (pi, e) or a\nplain `{\"number\": 24, \"unit\": \"h\"}`, shown as plain. At least one operand must have a\nsource. `operation` is add, subtract,\nmultiply, divide, power (one operand and an integer `exponent`), min, max, sum or mean.\n`unit` is the unit of the result, one gemini knows (`-` for none); gemini converts every\nvalue. `label` says what the value is. Read the skill calculator for the rules."
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:30:28.958869+00:00",
+  "input": {
+   "unit": "degC",
+   "label": "reservoir temperature at the case reference depth 2500 m (surface 12 degC + 30 K/km)",
+   "operands": [
+    {
+     "case": "site.ground.surface_temperature"
+    },
+    {
+     "operands": [
+      {
+       "case": "site.ground.gradient"
+      },
+      {
+       "unit": "km",
+       "number": 2.5
+      }
+     ],
+     "operation": "multiply"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": "operands[1]",
+    "message": "calculate: operands[1] = {'operation': 'multiply', 'operands': [{'case': 'site.ground.gradient'}, {'number': 2.5, 'unit': 'km'}]}; expected one key of case, assumption, catalogue, stored, calculation, constant, number (path only beside stored, unit only beside number); read_skill('calculator') for the rules",
+    "suggestions": []
+   }
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:30:34.620299+00:00",
+  "input": {
+   "unit": "K",
+   "label": "temperature rise from surface to the case reference depth of 2500 m at 30 K/km",
+   "operands": [
+    {
+     "case": "site.ground.gradient"
+    },
+    {
+     "unit": "km",
+     "number": 2.5
+    }
+   ],
+   "operation": "multiply"
+  },
+  "output": {
+   "id": "C317ae8",
+   "unit": "K",
+   "label": "temperature rise from surface to the case reference depth of 2500 m at 30 K/km",
+   "value": 75.0,
+   "version": 2,
+   "operands": [
+    {
+     "unit": "K/km",
+     "value": 30.0,
+     "source": {
+      "kind": "case",
+      "path": "site.ground.gradient"
+     },
+     "reference": {
+      "case": "site.ground.gradient"
+     }
+    },
+    {
+     "unit": "km",
+     "value": 2.5,
+     "source": {
+      "kind": "number"
+     },
+     "reference": {
+      "unit": "km",
+      "number": 2.5
+     }
+    }
+   ],
+   "operation": "multiply",
+   "expression": "case:site.ground.gradient [30 K/km] \u00d7 2.5 km (plain)"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:30:40.233932+00:00",
+  "input": {
+   "unit": "degC",
+   "label": "reservoir temperature at 2500 m: surface 12 degC plus 75 K rise",
+   "operands": [
+    {
+     "case": "site.ground.surface_temperature"
+    },
+    {
+     "calculation": "C317ae8"
+    }
+   ],
+   "operation": "add"
+  },
+  "output": {
+   "id": "Ce9a9e7",
+   "unit": "degC",
+   "label": "reservoir temperature at 2500 m: surface 12 degC plus 75 K rise",
+   "value": 87.0,
+   "version": 3,
+   "operands": [
+    {
+     "unit": "degC",
+     "value": 12.0,
+     "source": {
+      "kind": "case",
+      "path": "site.ground.surface_temperature"
+     },
+     "reference": {
+      "case": "site.ground.surface_temperature"
+     }
+    },
+    {
+     "unit": "K",
+     "value": 75.0,
+     "source": {
+      "id": "C317ae8",
+      "kind": "calculation",
+      "label": "temperature rise from surface to the case reference depth of 2500 m at 30 K/km",
+      "expression": "case:site.ground.gradient [30 K/km] \u00d7 2.5 km (plain)"
+     },
+     "reference": {
+      "calculation": "C317ae8"
+     }
+    }
+   ],
+   "operation": "add",
+   "expression": "case:site.ground.surface_temperature [12 degC] + calculation:C317ae8 [75 K]"
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:40:05.823133+00:00",
+  "input": {
+   "unit": "kg/s",
+   "label": "Brine mass flow at the 300 m3/h design flow",
+   "operands": [
+    {
+     "unit": "m3/h",
+     "value": 300
+    },
+    {
+     "unit": "kg/m3",
+     "value": 1030
+    }
+   ],
+   "operation": "multiply"
+  },
+  "output": {
+   "error": {
+    "code": "invalid_input",
+    "path": "operands[0]",
+    "message": "calculate: operands[0] = {'value': 300, 'unit': 'm3/h'}; expected one key of case, assumption, catalogue, stored, calculation, constant, number (path only beside stored, unit only beside number); read_skill('calculator') for the rules",
+    "suggestions": []
+   },
+   "skill": "[skill calculator, sent with the first call of calculate]\nNever work a number out in your head. When a value has to be derived (a sum, a ratio, an energy\nfrom a power and a time, a cost from a price and a size), call `calculate` and cite the\ncalculation's id from then on.\n\nOperands: each is an object. Every calculation needs at least one operand with a source:\n\n- `{\"case\": \"<path>\"}`: a field of the case, dotted, such as `site.depth` or\n  `demand.heating.peak`. It must hold one number or `{\"value\", \"unit\"}`.\n- `{\"assumption\": \"<id>\"}`: an assumption of the problem state the user has confirmed, with its\n  value. An unconfirmed assumption is refused: ask the user first, with its source.\n- `{\"catalogue\": \"<row id>\"}`: a row of the cost catalogue `knowledge/data-economics.csv`; its 2015\n  value and unit are used, and its citation goes with the result.\n- `{\"stored\": \"<result-... reference>\", \"path\": \"<dotted path>\"}`: one value of a result stored by\n  reference (`read_stored` shows its parts).\n- `{\"calculation\": \"<id>\"}`: an earlier calculation, such as `C2`.\n\nBeside them, and never alone:\n\n- `{\"number\": 24, \"unit\": \"h\"}`: a plain number you give, shown to the user as `24 h (plain)`.\n  Only for a fact that needs no source (hours in a day, a count you were told, a factor of a\n  formula); never for a price, a property or a site value: those need a source. Leave out `unit`\n  for a dimensionless number.\n- `{\"constant\": \"pi\"}`, `{\"constant\": \"e\"}` or `{\"constant\": \"g\"}`, the standard gravity\n  9.80665 m/s2 (a hydrostatic pressure is density \u00d7 g \u00d7 depth).\n\nA calculation whose operands are all plain numbers or constants is refused.\n\nA value from the web, a connector or the user's words enters only after the user approves it as\nan assumption with its source; then reference the assumption.\n\nOperations: `add`, `subtract`, `multiply`, `divide` (two operands), `power` (one operand and an\ninteger `exponent`), `min`, `max`, `sum`, `mean`. The exponent is a plain integer in the\ncall itself, not an operand: it is structure (a square, a cube), never data, so it needs no\nsource and no sourced operand beside it.\n\nUnits:\n\n- `unit` is the unit you want the result in, one gemini knows (see `gemini-units`); `-` for a\n  dimensionless result. gemini converts every operand: give each number in its own unit and\n  never a conversion factor (no 1000 for kW to MW, no 3600 for h to s).\n- add, subtract, min, max, sum and mean need operands of one dimension. A wrong `unit` is an\n  error that lists the units of the result's dimension.\n- subtract of two temperatures is a difference: give it in `K`. Never add absolute temperatures;\n  a mean of temperatures is fine.\n\nThe result has `id`, `label`, `value`, `unit`, `expression` and `operands`, each operand with its\nvalue and `source`. It is kept in the problem state (`Calculation C1: ...`); `update_state`\ncannot write calculations. When you report or record a derived number, give its calculation id.\nA chain of steps is one call per step, each citing the one before.\n\n## The tools\n\n### `calculate`\n\nDerive a value from sourced values and keep it as a calculation with an id.\n\nEach operand is a reference to a value with a source, one of\n`{\"case\": \"<path in the case>\"}`, `{\"assumption\": \"<id of a confirmed assumption>\"}`,\n`{\"catalogue\": \"<row id of knowledge/data-economics.csv>\"}`,\n`{\"stored\": \"<result-... reference>\", \"path\": \"<dotted path of one value>\"}` or\n`{\"calculation\": \"<id of an earlier calculation>\"}`; or `{\"constant\": \"pi\"}` (pi, e) or a\nplain `{\"number\": 24, \"unit\": \"h\"}`, shown as plain. At least one operand must have a\nsource. `operation` is add, subtract,\nmultiply, divide, power (one operand and an integer `exponent`), min, max, sum or mean.\n`unit` is the unit of the result, one gemini knows (`-` for none); gemini converts every\nvalue. `label` says what the value is. Read the skill calculator for the rules."
+  }
+ },
+ {
+  "run": "5d0216a64acb487ba885396a5e99366d",
+  "ts": "2026-11-05T17:40:11.668948+00:00",
+  "input": {
+   "unit": "kg/s",
+   "label": "Brine mass flow at the 300 m3/h design flow",
+   "operands": [
+    {
+     "unit": "m3/h",
+     "number": 300
+    },
+    {
+     "case": "site.fluid.density"
+    }
+   ],
+   "operation": "multiply"
+  },
+  "output": {
+   "id": "C1524b1",
+   "unit": "kg/s",
+   "label": "Brine mass flow at the 300 m3/h design flow",
+   "value": 85.8333333333,
+   "version": 16,
+   "operands": [
+    {
+     "unit": "m3/h",
+     "value": 300.0,
+     "source": {
+      "kind": "number"
+     },
+     "reference": {
+      "unit": "m3/h",
+      "number": 300
+     }
+    },
+    {
+     "unit": "kg/m3",
+     "value": 1030.0,
+     "source": {
+      "kind": "case",
+      "path": "site.fluid.density"
+     },
+     "reference": {
+      "case": "site.fluid.density"
+     }
+    }
+   ],
+   "operation": "multiply",
+   "expression": "300 m3/h (plain) \u00d7 case:site.fluid.density [1030 kg/m3]"
+  }
+ }
+]
