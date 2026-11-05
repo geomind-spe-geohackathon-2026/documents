@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | major |
-| Area | frontend |
+| Area | backend,frontend |
 | Reporter | QA-E2E-design-I |
 | Found | 2026-11-05 17:43 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
@@ -32,7 +32,7 @@
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 17:44 UTC: cause found in backend free_document
 ## Retest
 
 (Who, when, result.)
