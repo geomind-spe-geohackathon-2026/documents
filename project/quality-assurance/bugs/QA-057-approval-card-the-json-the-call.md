@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
@@ -38,6 +38,7 @@ Guess: the card text container uses class `whitespace-pre-line` (seen in the DOM
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 00:06 UTC: frontend 1.1.58 (742031b), pushed, build checked; deploy at 00:30 UTC
+- 2026-11-05 00:31 UTC: frontend 1.1.58, commit 742031b, deployed (1.1.67)
 ## Retest
 
 (Who, when, result.)
