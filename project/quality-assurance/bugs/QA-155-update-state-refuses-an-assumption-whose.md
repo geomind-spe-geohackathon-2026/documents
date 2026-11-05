@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -61,3 +61,4 @@ Run 57c42f61-2a89-48ba-933c-e87fc348084f, economist steps 11 and 15: the same re
   runs since the deploy (676a19e1, 6c88bb13, edaad491, 1fba1e30, 511a6821) no `update_state` was refused for a citation;
   the agents now send citations as objects. Verified (by the deployed code and no recurrence; the agents did not send a
   text citation in these runs, so the text path itself was not hit live).
+- 2026-11-05 19:40 UTC: QA-AI-analysis-I: validator live in 0.4.130, no refusal in 5 runs
