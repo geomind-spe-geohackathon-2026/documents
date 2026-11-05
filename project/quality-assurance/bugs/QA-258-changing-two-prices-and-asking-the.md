@@ -69,3 +69,15 @@ opex 4.035 MEUR/yr, equal to a page `run` study on that case version 4).
 ## Fix
 
 - 2026-11-05 18:33 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
+
+## Retest
+
+- 2026-11-05 18:59 UTC, QA-AI-analysis-I, backend 1.1.117/1.1.118: project `QA-TEST QA-AI-analysis-I 9`, same chat text
+  (discount 6 %, carbon 80), run ac818659-26af-400b-a6f6-9cd41513e38d. Whole run 9 min 10 s, 0.0204 USD, 856 k input
+  tokens (was 15 min, 0.060 USD, 2.74 M). Of it, 5.5 min is the case lead: one applied set_case, then two forced
+  `ask_economics` questions (QA-268) and a deploy (502) while my answer waited. After the case: design lead simulate
+  21 s, analysis lead + economist 1.5 min (one estimate_costs on the new result, no re-costing of the old one), explainer
+  3 s, final 18:58:46: about 3.2 min. Numbers: LCTS 47.94, NPV 20.90 MEUR, LCOH 46.50, LCOC 54.68 EUR/MWh, equal to the
+  page study of run ce5d9ffc. The bookkeeping design lead is gone. Verified (the old-result re-costing and the 15 min).
+  Left: still serial design_lead -> analysis_lead -> explainer, and the project lead calls `finish` 3 times.
+  Log: `../evidence/QA-258/run-ac818659-retest-log.json`.
