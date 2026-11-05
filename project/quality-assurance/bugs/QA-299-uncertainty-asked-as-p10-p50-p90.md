@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | gemini |
 | Reporter | QA-AI-analysis-I |
@@ -58,3 +58,9 @@ gemini: the sample summary takes `percentiles` (default [5, 10, 50, 90, 95]) or 
   answer again says P10 and P90 are not available (p5/p50/p95 = 40.845/46.347/51.571). The geomind fix 1cc7ea6 (skill
   text + `percentiles` pass-through) is on main and an ancestor of c4108d3, but the live worker does not carry it:
   geomind deploy pending (gemini side 0.6.27+ is live). Retest after the next geomind deploy.
+- 2026-11-05 21:15 CET (20:15 UTC), QA-AI-analysis-II, deploy 55 (backend 1.1.127, geomind main HEAD): VERIFIED in a fresh chat of project 8, run
+  84462291-a6fb-4672-8e2a-e5c18a51de74: sample_uncertainty got `percentiles: [10, 90]`; answer P10 41.035, P50 45.796, P90 50.722
+  EUR/MWh (also mean, P5, P95, 0 failed), rounded, study/uncertainty-prices-lcts-s44. In the OLD chat (run
+  0f587461-d154-4317-be9f-a548197f5be2, same deploy) the agents still said "P10/P90 not available": the earlier answers
+  and the project state ("gemini returns no P10/P90") overruled the new skill. See the follow-up bug.
+- 2026-11-05 20:14 UTC: fresh chat run 84462291 gives P10/P90
