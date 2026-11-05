@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -40,6 +40,7 @@ geomind `tools/suggestions.py` `next_steps`: after `checked`, append the stage's
 
 ## Fix
 
+- 2026-11-05 18:58 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
 ## More evidence (QA-AI-project-I, 17:57 UTC)
