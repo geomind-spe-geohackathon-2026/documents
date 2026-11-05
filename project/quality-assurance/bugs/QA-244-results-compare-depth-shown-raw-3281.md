@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -36,6 +36,8 @@ Depth rounded (3,282 m); Doublets 2 for the superstructure result; readable poin
 hotfix-back-lead, backend 1.1.111: `design_facts` counts the `Doublet` modules when the plant has no class size (`counted_doublets`).
 - 2026-11-05 18:05 UTC: backend 1.1.111
 - 2026-11-05 18:29 UTC: Sahand 18:28 UTC: labels still overlap and are cut at the right edge; top priority
+Reopened (screenshot 2): frontend 1.1.127 (commit 65f4f6c, bundle index-DnQKqly3.js), by front-m2: points carry their table row number (# column) instead of the full name; full name in tooltip and table; no label shifting; right margin 24 px.
+- 2026-11-05 18:39 UTC: frontend 1.1.127
 ## Retest
 
 Recipe: Compare a superstructure result with d0, d1: doublets shows 2.
