@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend |
 | Reporter | qa-ux |
@@ -41,3 +41,4 @@ Measured with the dialog open: height 671 px, top -48 px, bottom 625 px in a 577
 ## Retest
 
 (Who, when, result.)
+- 2026-11-05 00:32 UTC: geomind.team 1.1.67 (index-D3Dw0_He.js), Playwright 00:35 UTC: 1280x577 window, New project dialog top 16 / bottom 561 of 577, overflow-y auto, Create button in view (closed with Escape, nothing created)
