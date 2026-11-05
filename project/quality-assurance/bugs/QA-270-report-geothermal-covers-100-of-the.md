@@ -53,6 +53,8 @@ pump electricity y %, boiler z %" in the Summary, the KPI tile, Days covered and
 or, at least, call the share "geothermal and heat pump". Backend narrative/figures; the series
 split may need a gemini coverage field (list it for Sahand if so).
 
+- Note (QA-E2E-report-I, 2026-11-05 19:00 UTC): gemini already gives the split. In run 8efe3722 (project 2, case v4) the agents quote from `compute_kpis`: "geothermal_heat 95922 MWh (85.90 % of the heat delivered), heat_pump_electricity 15746 MWh, boiler_heat 0.0 MWh". On the same result the Report page still says "Geothermal covers 100%". So the backend can take `geothermal_heat` / `heat_pump_electricity` from the KPIs instead of demand minus boiler; no gemini request needed.
+
 ## Retest
 
 (Who, when, result.)
