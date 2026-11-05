@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -43,6 +43,7 @@ geomind `tools/suggestions.py` `next_steps`: after `checked`, append the stage's
 - 2026-11-05 18:58 UTC: deploy 36: backend 1.1.118, geomind 0.4.130, gemini 0.6.26 (hotfix-python-lead-II)
 ## Retest
 
+- 2026-11-05 19:15 UTC: QA-AI-project-I 19:08 UTC, backend 1.1.119, run a5cd1779: the lead proposed two chips, the user sees three (the stage's 'Run the study again' added); labels match their messages.
 ## More evidence (QA-AI-project-I, 17:57 UTC)
 
 Run 194c3879-076e-4e3a-b6bf-8f54da25a7ae (same chat, case changed by hand): the lead passes two suggestions and the user sees two. One of them has a label that does not match its message: label "Compare 100 vs 400 mD", message "Show the full sensitivity table of the new study on the current case, with each driver's effect on LCOH, LCOC and LCTS." `_fits` checks only length and script, not that the label names the message's action; a fix could keep the code's own label for a known `step` and let the lead change only the message.
