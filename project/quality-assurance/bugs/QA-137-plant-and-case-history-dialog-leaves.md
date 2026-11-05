@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
 | Found | 2026-11-05 14:53 UTC |
 | Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
 | Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
-| Fixer | |
+| Fixer | hotfix-front-IV |
 
 ## Steps
 
