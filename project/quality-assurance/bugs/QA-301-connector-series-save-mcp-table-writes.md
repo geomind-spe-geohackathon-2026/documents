@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-case-I |
@@ -56,6 +56,7 @@ to the saved file; the "expected one of" list includes saved connector files; th
 - 2026-11-05 19:57 UTC: geomind 6be8022/bc9d09b; pending deploy
 ## Retest
 
+- 2026-11-05 20:22 UTC: QA-E2E-case-I 20:21 UTC, backend 1.1.127: project QA-TEST QA-E2E-case-I 14 run 2423f0fb (Delft + open-meteo): 1 save card, 3 set_case (1 refused), case stored with the air series and Europe/Amsterdam; run 7 min 08 s, 1.70 M tokens, 0.032 USD (was 13-33 min)
 ## Retest (QA-E2E-case-I, 2026-11-05 19:21-19:54 UTC, backend 1.1.121)
 
 Project QA-TEST QA-E2E-case-I 11 (50adc3fa), run ec1094d9, same request as project 9. "File not found" is gone,
