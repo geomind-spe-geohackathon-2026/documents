@@ -34,6 +34,10 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 10. How gemini handles a case
 11. Checklists
 12. Worked example: a brief with daily demand files
+13. Engineering background for checking a case: demand, load duration, ground, reservoir,
+    doublet power, brine and gas, emission factors, outside air (each with a worked example)
+14. Lessons from case reviews: stored = approved, nothing to start from, how the user answers,
+    scope
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -927,6 +931,248 @@ the team's choice inside the case, confirmed once and changed later only through
 
 ---
 
+# 13. Engineering background for checking a case
+
+What a case value means physically, how to check it for plausibility, and how gemini uses it.
+These are checks, never values: a number here never enters a case (§8.5, §0.2). Every example
+uses invented numbers.
+
+## 13.1 Heat demand: power, energy and the degree-day check
+
+**Lesson.** A demand series is power over time; its energy is the sum of power times step
+length, `E = Σ P_i · Δt_i`. Space-heating demand follows the outside temperature roughly
+linearly below a balance (base) temperature; hot-water demand is nearly constant over the year.
+The degree-day method (CIBSE TM41; EN ISO 15927-6) states this:
+`E_space ≈ UA · HDD · 24 h`, with `HDD = Σ max(0, T_base − T_out,day)` in K·d and `UA` the
+building's heat loss coefficient. The design (peak) load of EN 12831-1 is
+`P_design ≈ UA · (T_inside − T_design,out)`.
+
+**How to use it.** When a brief gives both a series and a yearly energy, the two must agree
+within the rounding of the brief (§1.3). When a brief gives a peak and an energy, the ratio
+`E / (P_peak · 8760 h)` is the load factor: typical space heating gives a low load factor,
+process heat a high one (Frederiksen and Werner 2013, ch. 4). A load factor far outside the
+pattern of the stated use is a flaw to name in the confirmation question, not to fix.
+
+**Worked example (invented).** A daily series has 365 values in MW. Mean 4.2 MW, peak 11.0 MW.
+Energy `4.2 MW × 8760 h = 36 792 MWh ≈ 36.8 GWh`. Load factor `4.2 / 11.0 = 0.38`. The brief
+says "about 37 GWh a year": consistent. Had the brief said 3.7 GWh, the file is likely in
+MWh/d or the brief in another unit: ask, never rescale (Appendix A).
+
+**Traps.** A daily series in MW is the day's mean power, not its peak: the hourly peak inside
+the day is higher. Keep the series as given and name the resolution in the handover so the
+design team knows peaks are smoothed (§3.4).
+
+## 13.2 Load duration curve, base and peak
+
+**Lesson.** Sorting a year of demand from highest to lowest gives the load duration curve. The
+area under it is the energy; its left end is the peak. A base-load source (geothermal, a heat
+pump on a steady source) that covers a fraction of the peak power usually covers a much larger
+fraction of the energy, because high loads last few hours (Frederiksen and Werner 2013, ch. 4;
+Huenges 2010, ch. 9).
+
+**How to use it.** In the case: give the series as it is; the split into base and peak is a
+design freedom (§7.2), never a case value. In the handover: name the peak, the mean and the
+duration of high loads, so the design team can size the base source from the curve.
+
+**Worked example (invented).** Sorted daily means: 60 days above 8 MW, 120 days between 4 and
+8 MW, 185 days below 4 MW. A base source of 6 MW is the full demand on most days below 6 MW and
+6 MW on the rest. With a mean of 4.2 MW, it covers on the order of 80 to 90 % of the energy
+while holding only 55 % of the 11 MW peak. The design team computes the exact share with gemini;
+the case lead only checks that the series supports such a split.
+
+**Cooling.** The same curve applies to cooling demand. Heating and cooling at the same time
+(spring, autumn, process loads) matter for a plant that recovers heat between them: say in the
+handover whether the series overlap.
+
+## 13.3 Ground temperature and the reservoir temperature
+
+**Lesson.** In conductive crust the temperature rises about linearly with depth:
+`T(z) = T_surface + G · z`. The geothermal gradient `G` depends on the rock's thermal
+conductivity and the heat flow `q`: `G = q / λ` (Fourier's law; Stober and Bucher 2021, ch. 2).
+Sediments with low conductivity (shale) give higher gradients than crystalline rock. A regional
+average is a prior; a measured well temperature at depth beats it.
+
+**In gemini.** `gemini.physics.ground.geotherm_temperature(surface_temperature, gradient,
+depth)` and `reservoir_temperature(...)`: with a measured reference temperature, gemini uses
+`T = T_ref + G (z − z_ref)`; without one, it starts from the surface. That is why the case
+holds `reservoir.temperature` only when it is a measurement (§2.3): a computed value would hide
+the gradient's uncertainty and is a computed value (§8.5).
+
+**Worked example (invented).** Surface 9 °C, gradient 31 K/km, reservoir top at 2 400 m TVD:
+`9 + 31 × 2.4 = 83.4 °C`. A drill-stem test at 2 400 m gave 79 °C. Keep the measurement; the
+mismatch (4 K) is a value for checking that says the gradient overstates this site.
+
+**Traps.** Depth must be true vertical depth (TVD), not measured depth along a deviated well
+(Appendix B). Gradients printed as °C/km and K/km are equal; °F/100 ft is not (1 °F/100 ft ≈
+18.2 K/km).
+
+## 13.4 Reservoir pressure and deliverability
+
+**Lesson.** At hydrostatic conditions the pore pressure is `p(z) ≈ p_surface + ρ g z`
+(`gemini.physics.hydraulics.hydrostatic_pressure`). Overpressure or underpressure is what a well
+test shows against that line. How much water a well delivers per unit of drawdown is its
+productivity index `PI = Q / (p_res − p_wf)`; for injection the injectivity index `II`
+(`productivity_index`, `injectivity_index` in the same module). For steady radial flow (Thiem;
+Dake 1978, ch. 6) `PI` scales with the transmissivity `k h`: double the thickness or the
+permeability, double the PI. The case holds `permeability` and `thickness`; gemini derives the
+indices (`radial_index`).
+
+**How to use it.** Keep the permeability with the thickness it was measured over (gross or net,
+as the source says), since the product is what matters. A core-plug permeability is often far
+from the well-test value at reservoir scale; prefer the well test and say which it is.
+
+**Worked example (invented).** `k = 400 mD`, `h = 60 m`: `kh = 24 000 mD·m = 24 D·m`. A second
+source gives 300 mD over a net 80 m: also 24 D·m. The two agree on the product; record the pair
+from the better source, never mix one source's k with the other's h.
+
+**Units.** 1 D = 9.869233×10⁻¹³ m² (Appendix A); `barg` is gauge, add one standard atmosphere for
+absolute (§2.3). A pressure without its reference depth is incomplete.
+
+## 13.5 Thermal power of a doublet and thermal breakthrough
+
+**Lesson.** Heat taken from produced water is `P = ṁ · c_p · (T_prod − T_inj)` with
+`ṁ = ρ · Q` (`gemini.physics.energy.circuit_flow` solves it for the flow). The injection
+temperature is a design choice bounded by the users' return temperature and any scaling limit
+(§7.3); the production temperature falls once the cold front from the injector arrives.
+Gringarten and Sauty (1975) give the breakthrough time of a doublet in a confined aquifer;
+gemini implements it (`gemini.physics.ground.doublet_breakthrough_volume`,
+`doublet_breakthrough_time`, `doublet_cold_fraction`). The well spacing is a design freedom,
+never a case value.
+
+**How to use it.** The case gives what the ground is (temperature, pressure, permeability,
+thickness, fluid); flow, spacing and injection temperature are design. When a brief states a
+flow or a spacing as a site "fact", classify it: if it is a licence limit it is a rule (§6.10);
+if it is a suggestion it is a freedom (§7.2).
+
+**Worked example (invented).** `Q = 150 m³/h = 0.0417 m³/s`, `ρ = 1 050 kg/m³`,
+`c_p = 3.9 kJ/(kg·K)`, `T_prod = 80 °C`, `T_inj = 40 °C`:
+`P = 0.0417 × 1 050 × 3.9 × 40 = 6 830 kW ≈ 6.8 MW`. Halving the temperature drop halves the
+power: the injection temperature matters as much as the flow.
+
+**Traps.** Brine heat capacity is lower than that of pure water (salt lowers it); never use
+4.18 kJ/(kg·K) for a brine without a source.
+
+## 13.6 Brine, dissolved gas and their effect on the case
+
+**Lesson.** Formation water in sedimentary basins is often saline. Salinity raises density and
+viscosity and lowers heat capacity; temperature lowers density and viscosity (Batzle and Wang
+1992; Kestin et al. 1981). Dissolved gas (CO₂, CH₄, N₂) comes out of solution when the
+pressure falls below the bubble point, in the well or the surface plant; it changes the
+mixture density and the pump's work and may be a fuel (CH₄) or an emission (CO₂) (Huenges 2010,
+ch. 5).
+
+**In gemini.** The liquid properties are constant snapshots (`gemini/physics/fluid.py`,
+`FluidProperties`): gemini does not correct a density or viscosity for temperature or salinity.
+So the case must hold the value at the conditions the plant sees, and the source must say those
+conditions (§2.4). A density "at 20 °C, surface" for an 80 °C brine is a flaw to name.
+The gas-liquid ratio and the gas composition feed `gemini.physics.gas` (`gas_mass_fraction`,
+`combustion_co2`, `emission_per_energy`).
+
+**Worked example (invented).** A fluid report gives salinity 120 g/l, density 1 080 kg/m³ at
+20 °C, viscosity 1.3 mPa·s at 20 °C, and GLR 0.9 Nm³/m³ with 75 mol% CO₂, 20 mol% CH₄,
+5 mol% N₂. The composition sums to 100 % (check). Density and viscosity are at 20 °C, not at the
+production temperature: put them in the confirmation question as "file values at 20 °C;
+reservoir values unknown", and let the user approve or give better ones. Never correct them
+yourself with a correlation: that is a computed value (§8.5).
+
+**Normal vs standard.** `Nm³` is at 0 °C, `Sm³` at 15 °C (DIN 1343, ISO 13443): the same gas
+volume differs by about 5.5 %. Keep the unit the source prints (Appendix A).
+
+## 13.7 Grid electricity and emission factors
+
+**Lesson.** The GHG Protocol Scope 2 Guidance (WRI and WBCSD 2015) defines two methods: the
+**location-based** factor (the average intensity of the grid where power is used) and the
+**market-based** factor (the contracts the user buys: guarantees of origin, supplier mix,
+residual mix). An **average** factor describes the grid's mean; a **marginal** factor describes
+the plant that changes when demand changes. They answer different questions and can differ by a
+factor of two or more.
+
+**How to use it.** The case holds the factor the brief or the user names, with its method and
+year (§5.2). When the brief names none, the confirmation question offers the candidates with
+their method and source; the user picks (§8.4). A factor in g/kWh and one in kg/MWh are equal;
+t/MWh is 1 000 times larger.
+
+**Worked example (invented).** A plant uses 9 GWh of electricity a year. Location-based
+0.35 kg/kWh gives `9×10⁶ × 0.35 = 3.15×10⁶ kg = 3 150 t CO₂`. Market-based with a renewable
+contract 0.02 kg/kWh gives 180 t. Both are right for their method; the report must say which.
+
+**Gas.** For bought gas the factor per energy needs the heating value basis: lower (LHV) or
+higher (HHV); for natural gas HHV is about 10 % above LHV. Keep the basis the source states.
+
+## 13.8 Outside air and weather series
+
+**Lesson.** Air temperature drives air-source heat pumps, dry coolers and cooling towers. A
+constant air temperature hides the season: the plant's worst hours are the cold heating hours
+and the hot cooling hours. Air pressure falls with elevation (ISO 2533 standard atmosphere),
+which matters for air density in fans and coolers; gemini derives it from the elevation
+(§2.4).
+
+**How to use it.** Prefer a series of the same span and step as the demand, from a file or a
+weather connector, with its time zone (§3.2). A connector that prints `GMT` means `UTC`. A
+typical-year or reanalysis series is an assumption: name it as such in the confirmation
+question. Say "constant" in the case when a single value is used.
+
+**Worked example (invented).** Demand is daily for one year; the connector gives hourly air
+temperature. The case keeps the connector's series as a saved file with its own step and time zone
+(§3.4); `describe_case` says whether gemini accepts the mixed steps. Never average it by hand
+into a new series (§8.5). If the connector covers only part of the year, the
+gap is a flaw to name, not to fill with a guess.
+
+# 14. Lessons from case reviews
+
+General lessons from reviewed case runs. Each names the mistake, the rule and the section that
+holds the rule. They apply to any case.
+
+## 14.1 What is stored must be what was approved
+
+- **Stored differs from approved.** The user approved one value and the case holds another
+  (a candidate from an earlier search, a rounded value, a second source). Rule: the `set_case`
+  call carries exactly the approved values, digit for digit; after it, `read_case` and compare
+  every approved path (§11.2).
+- **Approved but left out.** A value the user approved is dropped because "no module needs it".
+  Rule: what the user approved is stored; only values never asked may stay unset (§8.6).
+- **Computed and stored.** A value derived by a formula (a standard-atmosphere pressure, a
+  corrected density, an averaged series) is written into the case. Rule: store the input the
+  source gives (the elevation, the measured density, the series) and let gemini derive the rest
+  (§8.5, §10.2).
+- **Retyped series.** A user's fix to a few values of a long series is sent by retyping the
+  whole series. Rule: repair only the named steps with `repair_series` (it inserts missing rows and
+  shows the neighbours) and pass the result by file name; a series is never retyped (§10.6).
+
+## 14.2 When there is nothing to start from
+
+- **No case yet.** Reading the case before one exists returns an error; it is not a fault to
+  retry. Rule: start from `list_files`; call `read_case` once a case exists (§0.1).
+- **No files at all.** With no brief and no data, every value is an assumption: offer the
+  candidates with sources in the one confirmation question; never claim an example case or
+  files exist that are not in the project (§8.1, §8.4).
+- **Connector series.** A series saved from a connector is a project file like any other; pass
+  it by the saved name and with its time zone (`GMT` is `UTC`) (§3.2, §13.8).
+
+## 14.3 How the user answers
+
+- **Auto-approve is on.** Ask the user nothing: no confirmation question, no follow-up. Use the
+  same sources in the same order and record each choice with its source in the case, so the
+  user can review it later (§8.1, §8.3).
+- **"Best guesses, don't ask".** The same: one search per gap, the best-sourced candidate, its
+  source recorded; no retries of a refused call with the same arguments.
+- **Deny.** A deny with a reason stops the change it denies; a deny with a change means propose
+  again with that change, once (§8.7). A refusal by the user is never overridden by a later
+  step of another agent.
+- **Changed by hand.** When the user edits the case on the Case page, the next `read_case` is
+  the truth; compare with what you held and name what changed (§10.6).
+
+## 14.4 Scope of the case lead
+
+- **Only the case.** A request about economics, a design or a report does not reopen the site
+  survey; read the case and pass on. Site values are re-surveyed only when the user asks or a
+  value is missing (§0.3).
+- **One assumptions document per case.** When the case names an assumptions document, its
+  values come first for every key it covers; a source for another place or country replaces it
+  only for the keys the user names (§8.1, §8.2).
+- **Read by section.** Knowledge is read by section after its outline, never whole; a search
+  result is a pointer to a section, not a value to paste (front matter of this handbook).
+
 # Appendix A. Unit pitfalls
 
 | Source writes | gemini reads | Note |
@@ -970,6 +1216,22 @@ the team's choice inside the case, confirmed once and changed later only through
 - WRI and WBCSD (2015). *GHG Protocol Scope 2 Guidance*.
 - ISO 2533:1975 *Standard Atmosphere*; DIN 1343 *Normal conditions*; ISO 13443:1996 *Natural gas
   standard reference conditions*.
+- Batzle, M. and Wang, Z. (1992). Seismic properties of pore fluids. *Geophysics* 57(11),
+  1396-1408.
+- CIBSE (2006). *TM41 Degree-days: theory and application*. CIBSE, London.
+- Dake, L.P. (1978). *Fundamentals of Reservoir Engineering*. Elsevier.
+- EN 12831-1:2017. *Energy performance of buildings: method for calculation of the design heat
+  load*. EN ISO 15927-6:2007. *Hygrothermal performance of buildings: accumulated temperature
+  differences (degree-days)*.
+- Gringarten, A.C. and Sauty, J.P. (1975). A theoretical study of heat extraction from aquifers
+  with uniform regional flow. *Journal of Geophysical Research* 80(35), 4956-4962.
+- Kestin, J., Khalifa, H.E. and Correia, R.J. (1981). Tables of the dynamic and kinematic
+  viscosity of aqueous NaCl solutions. *J. Phys. Chem. Ref. Data* 10(1), 71-87.
+- Ramey, H.J. (1962). Wellbore heat transmission. *Journal of Petroleum Technology* 14(4),
+  427-435.
+- gemini physics: `gemini/gemini/physics/ground.py` (geotherm, Gringarten-Sauty doublet, Ramey),
+  `hydraulics.py` (hydrostatic, productivity and injectivity indices), `energy.py`, `fluid.py`
+  (constant property snapshots), `gas.py`.
 - gemini 0.6.17: `gemini/gemini/case/`, `gemini/gemini/plants/roles.py`,
   `gemini/gemini/units/inputs.py`.
 - geomind: prompts `case/lead.md`, `case/geoscientist.md`; skills `setting-the-case`,
