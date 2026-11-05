@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | geomind |
 | Reporter | Fatemeh (screenshot), Claude (write-up) |
@@ -40,5 +40,5 @@ the agent read `plants_need` (shown inline) from the stored artifact under a wro
 `stored_form` overwrote the answer's own `note` with "read_stored(reference)". Fix (geomind
 c. "QA-097"): `read_stored` says, on a missing top-level key, that a key shown beside a
 `reference` is in the answer itself; `stored_form` keeps the answer's note as `answer_note`.
-
+- 2026-11-05 11:32 UTC: geomind 0.4.85, backend 1.1.88, deployed 11:30 UTC by hotfix-python-III
 ## Retest
