@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -35,6 +35,8 @@ Sahand's request (top).
 
 (Hotfix session: cause, commit, version, deployed at.)
 
+Fix: frontend 1.1.150 (bundle index-qer52PGv.js): busy list shows every agent of a running run; a finished one gets a green filled circle with a white check, 'done', frozen steps/tokens/cost/time; Total counts all and says how many still work.
+- 2026-11-05 22:09 UTC: frontend 1.1.150
 ## Retest
 
 (Who, when, result.)
