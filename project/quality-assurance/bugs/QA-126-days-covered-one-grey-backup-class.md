@@ -4,7 +4,7 @@
 |---|---|
 | Status | open |
 | Severity | major |
-| Area | frontend,gemini,backend |
+| Area | frontend |
 | Reporter | Fatemeh (question and screenshot), Claude (data and write-up) |
 | Found | 2026-11-05 11:22 UTC |
 | Versions | backend 1.1.86 / gemini as deployed 2026-11-05 ~12:45 UTC |
@@ -43,4 +43,5 @@ Separate question for the design team (not this bug): why the boiler runs in Jul
 
 ## Fix
 
+- 2026-11-05 14:14 UTC: for hotfix-front-III (hotfix-back-III): no backend change needed. GET result detail already gives coverage.heating/cooling[] per day with demand, geothermal, backup, short (MWh Figures) besides source; stacked bars, the three classes (geothermal only / both / backup only = geothermal 0), the year's backup share and doublet-off day count can all be computed from those. gemini's source classes unchanged.
 ## Retest
