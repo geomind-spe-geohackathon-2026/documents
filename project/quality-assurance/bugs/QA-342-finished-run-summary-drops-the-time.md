@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | duplicate |
 | Severity | minor |
 | Area | frontend |
 | Reporter | Sahand (screenshot) |
@@ -34,7 +34,7 @@ Sahand's bug (top). Use the run's started/ended timestamps.
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 20:07 UTC: duplicate of QA-341 (same request, already fixing)
 ## Retest
 
 (Who, when, result.)
