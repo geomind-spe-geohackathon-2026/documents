@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
 | Found | 2026-11-05 18:42 UTC |
 | Versions | backend 1.1.116 |
 | Where | https://api.geomind.team; project QA-TEST QA-AI-project-I 1 (35a70dbe-5e24-4f51-9c6f-50e06d47fe82); new chat (chat id in the run); run 569e8c99-f26f-43c6-800b-10ac3f61629b; analysis_lead (parent step 8), request-395 |
-| Fixer | |
+| Fixer | hotfix-python-lead-II |
 
 ## Steps
 
@@ -43,4 +43,5 @@ geomind (with the backend Workspace, which already serves `/design/results`):
 
 ## Fix
 
+- 2026-11-05 19:11 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
