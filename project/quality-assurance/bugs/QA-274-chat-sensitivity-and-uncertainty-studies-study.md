@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | open |
 | Severity | minor |
 | Area | backend |
 | Reporter | QA-E2E-report-I |
@@ -47,6 +47,7 @@ with its tornado / spread (the fields the Results page already reads), named aft
 - 2026-11-05 18:46 UTC: backend 1.1.117, 8936366
 - 2026-11-05 19:38 UTC: retest QA-E2E-report-I 19:40 UTC: chat sensitivity (and chat simulate) not saved as results in project 3
 - 2026-11-05 19:56 UTC: backend 1.1.117 8936366
+- 2026-11-05 20:45 UTC: retest QA-E2E-report-I 20:47 UTC backend 1.1.130: chat sensitivity sens_v1_main still not a result; fix note repeats 8936366
 ## Retest
 
 Chat: simulate a design, then a sensitivity study on it. Report page: the Design list offers the study and 'Uncertainty and sensitivity' shows its tornado.
