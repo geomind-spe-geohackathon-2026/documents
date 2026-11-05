@@ -7,27 +7,30 @@
 | Area | backend |
 | Reporter | Sahand (screenshot), Coordinator-V (log) |
 | Found | 2026-11-05 21:49 UTC |
-| Versions | frontend <x.y.z>, backend <x.y.z> (geomind <x.y.z>) |
-| Where | <URL>; project <name/id>; chat <id>; run <id>; step <n> |
+| Versions | live 2026-11-05 22:49 Trondheim |
+| Where | Design > Report, 'Draft from b_sized'; POST /api/v1/reporting/design/preview 500 (21:48:57 and 21:49:00 UTC) |
 | Fixer | |
 
 ## Steps
 
-1. 
-2. 
+1. Open Report for a project whose result is a sized/study result (b_sized).
 
 ## Expected
 
+The report renders; a study with no objective (a sizing or plain study) says so instead of naming an objective.
+
 ## Actual
+
+'internal - Internal server error' (screenshot). Traceback: services.py:191 findings -> document.studies (document.py:984) -> study_origin (document.py:1178) -> gemini_evaluate.title_of(objective) -> evaluate.py:42 `name.replace` with name None.
 
 ## Evidence
 
 - ![screenshot](../evidence/QA-362/1.png)
-- Run JSON: `../evidence/QA-362/run-<id>.json`
+- geomind-fastapi log, AttributeError: 'NoneType' object has no attribute 'replace'
 
 ## Cause
 
-(Facts, or a guess marked as one.)
+study_origin builds 'with the objective ...' even when the study has no objective (sizing). Fix: skip the objective clause when objective is None (and make title_of tolerate None). Likely from the QA-313 report rework. Sahand's bug: top.
 
 ## Fix
 
