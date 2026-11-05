@@ -91,6 +91,7 @@ evaluations before a study would take more than the tool's time limit (15 minute
 - [ ] Seed and evaluations or samples given, each with who chose it.
 - [ ] The comparison is fair: same case, same economics, same effort per design (§5.2).
 - [ ] No conclusion drawn from part of a history (§6.1).
+- [ ] A broad question covered every declared uncertainty; a narrow one names what was held (§3.1).
 
 ---
 
@@ -169,6 +170,26 @@ To test drivers the user names with ranges the user gives: put each range into t
 value's `uncertainty` first, then run `sensitivity` with `values` naming only those paths
 (skill `economics`). A new range of another kind replaces the whole old `uncertainty`
 (`knowledge/handbook-economics.md` §13.1).
+
+#### Which uncertain values a study covers (all of them for a broad question)
+
+The scope of a sensitivity or a Monte Carlo follows the question:
+
+- **A broad question** ("is this a good investment?", "how robust is this design?", "what drives
+  the cost?"): cover **every** uncertainty the case declares. Run `sensitivity` without `values`
+  and `sample_uncertainty` over all of them. Choosing a few yourself decides the answer before the
+  study runs.
+- **A question that names values** ("how does the electricity price change the LCTS?"): move only
+  those (`values` names their paths), and say that the others were held at their case values.
+- **A value the user names that the case declares no uncertainty for**: put the user's range into
+  the case first (`knowledge/handbook-economics.md` §13.1), never a range of your own.
+
+Report which values were moved, and which declared ones were not.
+
+Invented example: a case declares six uncertain values. A study of only electricity and gas
+prices finds electricity dominant (LCTS 38 to 46 EUR/MWh). Over all six, permeability moves the
+LCTS from 35 to 55 EUR/MWh and the discount rate from 37 to 47: electricity is third. An answer
+to "is this a good investment?" built on the two-value study names the wrong driver.
 
 ### 3.2 Monte Carlo uncertainty
 
@@ -313,3 +334,5 @@ study with a new name.
 10. A requirement of the case offered as the thing to change when a design stays infeasible
     (§0.3).
 11. A study quoted without its key, or a stale study quoted as current (§6.3).
+12. A sensitivity or Monte Carlo over a few values the agent picked, answering a broad question
+    (§3.1).
