@@ -40,3 +40,4 @@ Run a minimize study on gemini 0.6.31+: it finishes; Results opens its coverage.
   project `QA-TEST QA-AI-analysis-I 1`: study 4423e81a-004e-4ec4-87aa-6cd767d70ba6 done in 10 s, result
   b7af0082-b903-4346-a084-11e01f8e2710, LCTS 31.487 EUR/MWh, 15/15 checks, 365 coverage days. Verified.
 - 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:58 UTC backend 1.1.125: minimize done in 10 s
+- 2026-11-05 20:02 UTC: QA-E2E-study-II 2026-11-05 20:05 UTC, backend 1.1.125, project QA-TEST QA-E2E-study-II 1: POST /design/study minimize (prepare [size], lcts, 40 evaluations, seed 0, plant v1) done in ~40 s, result adf2b986-3a15-48b1-b3ac-8a504a338448. Verified again
