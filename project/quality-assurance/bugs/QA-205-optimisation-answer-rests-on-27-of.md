@@ -96,3 +96,7 @@ history by hand.
   sent it to 4 engineers before using `design/v2` (QA-221; the re-built `sized2` failed all 270 trials, 68 s).
   Log: `../evidence/QA-205/run-73ef62c4-retest-log.json`.
 - 2026-11-05 18:44 UTC: retest QA-AI-analysis-I 18:44 UTC backend 1.1.112: no one-by-one trial reading; answer on all 270 trials (no history summary given)
+
+## Retest
+
+QA-E2E-study-I, 2026-11-05 18:47 UTC, project QA-TEST QA-E2E-study-I 3, run 4885075b: passes. The answer now uses the whole history: "240 trials, 3 feasible", the 3 feasible with rounded LCTS 49.34 / 49.72 / 53.32 EUR/MWh, violations 0.00015-1.002 of the rest. Cost of getting there is a new bug (QA-296: 15 run_python cards, 6 refused).
