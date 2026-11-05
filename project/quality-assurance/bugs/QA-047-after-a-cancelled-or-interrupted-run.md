@@ -68,4 +68,5 @@ write, and a new run's brief starts from them.
 
 - 2026-11-04 21:28 UTC: part fixed in geomind 0.4.45 (commit 5ec7d83, project and design lead prompts: go on from the stored design after a stopped run); backend 1.1.43, waiting for deploy. The engineers' loss in (A) is QA-016 (fixed). Left for development mode: a work-in-progress record of unwritten findings (B: the geoscientist's answer before set_case).
 - 2026-11-04 21:39 UTC: shipped with backend 1.1.45 (geomind 0.4.46 holds 0.4.44/0.4.45); live retest still to do
+- 2026-11-05 01:31 UTC: part 2: geomind 0.4.63/0.4.64 (e90aa56: every teammate answer kept as a finding, artifact finding-<id> + problem state findings; shared rule reads it before asking again), backend 1.1.65 (599b639), deployed 01:30 UTC
 ## Retest
