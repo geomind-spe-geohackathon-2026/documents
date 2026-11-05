@@ -33,7 +33,7 @@ cooling plant in gemini. For the case lead, the geoscientists and any reviewer o
 9. Uncertainty
 10. How gemini handles a case
 11. Checklists
-12. Worked example: the GEMINI hackathon 2026
+12. Worked example: a brief with daily demand files
 Appendix A. Unit pitfalls
 Appendix B. Glossary
 Appendix C. References
@@ -71,10 +71,10 @@ Do these in order; skip none.
 | set a derived key (reservoir temperature without a measurement, ISA air pressure) | leave it to gemini | §10.2 |
 | put a design freedom (well depth, doublet count, flows, units) in the case | a requirement for its bound; the choice is the plant's | §7 |
 | correct a flaw yourself | name both values in the one question | §1.4 |
-| two requirements for the two ends of one range | one requirement with `min` and `max` | §6.6 |
-| `when: always` on a supply temperature or a flow band | `when: running` | §6.5 |
-| a count for days of operation | `over: duration`, unit `d` | §6.6 |
-| `%` as the unit of an efficiency or a share | a fraction without unit (70 % is `0.7`) | §6.6 |
+| two requirements for the two ends of one range | one requirement with `min` and `max` | §6.7 |
+| `when: always` on a supply temperature or a flow band | `when: running` | §6.6 |
+| a count for days of operation | `over: duration`, unit `d` | §6.7 |
+| `%` as the unit of an efficiency or a share | a fraction without unit (70 % is `0.7`) | §6.7 |
 | a brief's peak or annual total as a case value | check the data with it | §1.3 |
 | the produced gas in `utilities.gas` or the bought gas in `site.fluid` | `site.fluid.dissolved_gas` vs `utilities.gas.composition` | §4.4 |
 | a demand series without an offset and without `time_zone` | give `time_zone` (from a source, or confirmed as an assumption) | §3.2 |
@@ -100,7 +100,7 @@ Decide by the kind of value:
 | missing, and Knowledge or a connector has it | propose it with its source in the one question |
 | missing, no source anywhere | ask for it by path and unit, no number; with no answer it stays unset and open |
 | a design choice the case still needs (a return temperature the brief leaves open) | propose it in the one question as `design choice` with a reason (§7.3) |
-| a tolerance the brief implies but does not give (demand met, an exact ratio) | propose it in the one question as an assumption with a reason (§6.7) |
+| a tolerance the brief implies but does not give (demand met, an exact ratio) | propose it in the one question as an assumption with a reason (§6.8) |
 | the user delegates ("use reasonable assumptions") and no source exists | propose `engineering assumption, no source` with a reason, in one question (§8.3) |
 | the time zone of a series no file states | propose it in the one question as an assumption (§3.2) |
 | a flaw (wrong side, span mismatch, two sources disagree) | name every flaw with both values in the one question |
@@ -266,9 +266,9 @@ holds.
   (`gemini/gemini/case/time.py`).
 - A **series** needs an offset (`2027-01-01T00:00:00Z`) on every timestamp, or a `time_zone`
   (an IANA name such as `Europe/Amsterdam`) for the file. Without both, gemini refuses the
-  series: there is no default zone (`gemini/gemini/units/inputs.py`, `from_series`; QA-140).
+  series: there is no default zone (`gemini/gemini/units/inputs.py`, `from_series`).
 - With a `time_zone` and a step of one day or more, gemini matches the rows to the case's steps
-  by local calendar date, so a 23- or 25-hour day of daylight saving does no harm (QA-039).
+  by local calendar date, so a 23- or 25-hour day of daylight saving does no harm.
 - A zone that no file and no user message states is an assumption: propose it in the one
   question with its reason (the site's location), `source: agent`, never "the user chose it".
 - The time column is read as `time`; a column of another name (`date`) is named in `columns`
@@ -288,7 +288,7 @@ Report each failure as a flaw (§1.4); correct none.
 | unit | the peak or total is far from the brief's values for checking (§1.3) |
 | season | heating peaks in summer or cooling in winter (northern hemisphere) |
 | span | the case's span differs from the file's: the span is wrong, never the data |
-| zero days | many zero days of cooling are normal; note how many (they matter for `when`, §6.5) |
+| zero days | many zero days of cooling are normal; note how many (they matter for `when`, §6.6) |
 | base load | a heating series that never reaches zero has a summer base: say so |
 
 ## 3.4 Resolution
@@ -369,7 +369,7 @@ from a grid operator; otherwise unset.
 | location-based | the average intensity of the grid at the site | the usual basis for a plant design |
 | market-based | the intensity of the contracted electricity | only when a contract is given |
 
-A brief's or organiser's value comes first; name the method.
+A value from the brief or the client comes first; name the method.
 
 ## 5.3 Bought gas
 
@@ -390,25 +390,35 @@ heat/cold cost allocation are economics: `ask_economics` and `knowledge/handbook
 A rule of a third party on the outcome: a quantity of a role, with its band
 (`gemini/gemini/case/requirement.py`). It applies to every unit of the role on its own, and
 gemini's verdict judges it (`check_results`). Never a design choice ("use two doublets"), a set
-point the team chooses, or a site value. A good requirement is necessary (from the brief),
-unambiguous, singular, feasible, verifiable (a role and quantity gemini has) and traceable (its
-page) (ISO/IEC/IEEE 29148:2018).
+point the team chooses, or a site value.
 
-## 6.2 Keys
+## 6.2 Qualities of a good requirement
+
+| Quality (ISO/IEC/IEEE 29148:2018) | In a case |
+|---|---|
+| necessary | it comes from the brief or a third party, not from the team's preference |
+| unambiguous | one reading: which unit, which steps, which quantity |
+| complete | both ends where the brief gives both; the steps it holds in |
+| singular | one rule per requirement; a range with two ends is one rule |
+| feasible | some plant can meet it; one no plant can meet is a flaw to ask about |
+| verifiable | gemini can judge it: a role and quantity of §6.4 |
+| traceable | its `name` and its source page recorded with it |
+
+## 6.3 Keys
 
 `{name, on, quantity, unit, over, when, min, max}` (`KEYS`).
 
 | Key | Rule |
 |---|---|
 | `name` | unique, snake_case (`production_flow_range`) |
-| `on` | a role (§6.3) |
+| `on` | a role (§6.4) |
 | `quantity` | a quantity of that role |
-| `over` | per-step quantities only: how the run is read (§6.4); refused on a property or window quantity |
-| `when` | per-step quantities only: `always` or `running`; every step when absent (§6.5) |
+| `over` | per-step quantities only: how the run is read (§6.5); refused on a property or window quantity |
+| `when` | per-step quantities only: `always` or `running`; every step when absent (§6.6) |
 | `min`, `max` | at least one; exact rule: `min` = `max` (`equals` is refused) |
 | `unit` | present only when the bounds have a dimension; over `duration`, a duration (`d`, `h`) |
 
-## 6.3 Roles and quantities
+## 6.4 Roles and quantities
 
 From `gemini/gemini/plants/roles.py` (`TABLE`; `gm.plants.roles()`). A role is read from the
 plant's wiring, never from a module name. *Property* and *window* quantities take no `over` and
@@ -430,7 +440,7 @@ no `when`.
 `unmet_share`: unmet over demanded energy of the service over the whole period. `co2` of `plant`:
 CO2-equivalent mass per step, so `over: sum` is the run's mass.
 
-## 6.4 `over`: how the run is read
+## 6.5 `over`: how the run is read
 
 | `over` | Judges | Use for |
 |---|---|---|
@@ -440,33 +450,33 @@ CO2-equivalent mass per step, so `over: sum` is the run's mass.
 | `max`, `min` | the extreme | a peak as one figure |
 | `duration` | total time of the steps where `when` holds; bounds are durations | days or hours of operation |
 
-## 6.5 `when`: which steps count
+## 6.6 `when`: which steps count
 
 - `running`: steps where the unit carries flow. Use for anything that holds while equipment
   runs: flow bands, brine cooling, a fixed supply temperature. An idle loop sits at its return
-  temperature; `always` would fail a correct plant (QA-091).
+  temperature; `always` would fail a correct plant.
 - `always`: every step, running or not; rare (a rating that may never be exceeded).
 
-## 6.6 Bounds
+## 6.7 Bounds
 
-- cap: `max`; floor: `min`; a range with both ends: ONE requirement with both (QA-080);
+- cap: `max`; floor: `min`; a range with both ends: ONE requirement with both;
 - exact: `min` = `max`;
 - fraction, share, ratio, efficiency: no unit (70 % is `0.7`);
 - days of operation: `over: duration`, `when: running`, unit `d`;
 - number of units: `{on: doublet, quantity: count, min, max}`, no `over`, `when`, `unit`.
 
-## 6.7 Tolerances
+## 6.8 Tolerances
 
 A brief that says "the demand shall be met" or "equal volumes are reinjected" gives no
 tolerance, and a simulation never meets them exactly. Propose one in the one question, named as
 an assumption with its reason:
 
-- demand met: one `unmet_share` requirement per supply, a small `max` (the hackathon uses 0.01);
-- an exact ratio: a narrow band (the hackathon uses 0.99999 to 1.00001).
+- demand met: one `unmet_share` requirement per supply, a small `max` such as a percent of the period's energy;
+- an exact ratio: a narrow band around it (such as ± 0.001 % of the ratio).
 
 Too loose passes a design the client rejects; too tight fails one on numerical noise.
 
-## 6.8 Brief text to requirement
+## 6.9 Brief text to requirement
 
 Placeholders A, B, X, N, E, M come from the brief.
 
@@ -476,7 +486,7 @@ Placeholders A, B, X, N, E, M come from the brief.
 | "Brine cooled by at most X K" | `on: doublet, quantity: brine_cooling, over: each, when: running, max: X, unit: K` |
 | "A doublet operates at most N days a year" | `on: doublet, quantity: production_flow, over: duration, when: running, max: N, unit: d` |
 | "Pump efficiency E %" | `on: doublet, quantity: pump_efficiency, min: E/100, max: E/100` (written as the fraction) |
-| "All produced water is reinjected" | `on: doublet, quantity: reinjection_ratio, over: each, when: running`, narrow band (§6.7) |
+| "All produced water is reinjected" | `on: doublet, quantity: reinjection_ratio, over: each, when: running`, narrow band (§6.8) |
 | "1 to 3 doublets" | `on: doublet, quantity: count, min: 1, max: 3` |
 | "The heat demand is met" | `on: heating_supply, quantity: unmet_share, max: <tolerance>` |
 | "Supply at T °C, fixed" | case value `demand.*.supply_temperature`; a temperature requirement, if written, is `when: running` |
@@ -485,13 +495,13 @@ Placeholders A, B, X, N, E, M come from the brief.
 A limit on one source's availability (a doublet's days) is that source's, never the system's:
 the system meets the demand on every day.
 
-## 6.9 Rules gemini cannot express
+## 6.10 Rules gemini cannot express
 
 A noise, land-use or permit rule, or one on a role gemini lacks, goes in the case's `about` and
 is named as open in the handover and the report. Never dropped, never forced into a requirement
 that means something else.
 
-## 6.10 Common mistakes
+## 6.11 Common mistakes
 
 | Mistake | Fix |
 |---|---|
@@ -526,7 +536,7 @@ never written into the case; a bound on it is a requirement.
 ## 7.3 Return temperatures
 
 The one team choice that sits in the case. A return temperature no file gives is a design
-choice within the case's limits, not a value the design waits for (QA-094): never ask the user
+choice within the case's limits, not a value the design waits for: never ask the user
 to supply it and never stop for it. Propose it in the one question:
 `<path> = <value> <unit> | design choice, the brief leaves it to the team | <reason>`, taking
 the value of an assumptions document of the case when one gives it. On approval record it with
@@ -551,7 +561,8 @@ any step.
 ## 8.2 Assumptions documents
 
 A Knowledge document that names this case's brief or site, or gives its values key by key, is
-an assumptions document (hackathon: `knowledge/hackathon-2026-assumptions.md`). It comes before
+an assumptions document (for a competition, its own document such as
+`knowledge/<competition>-assumptions.md`). It comes before
 the cost catalogue, so the case matches it in one question. It lives in global Knowledge only,
 never in a project's files.
 
@@ -676,10 +687,10 @@ economics included, waits for the user's approval (`case_changes`, `accept_case`
 - [ ] No derived key set (§10.2).
 - [ ] Units as printed; heating return below supply, cooling return above.
 - [ ] Case span equals data span.
-- [ ] Every hard rule of the brief is a requirement or named open in `about` (§6.9).
+- [ ] Every hard rule of the brief is a requirement or named open in `about` (§6.10).
 - [ ] Durations as durations, counts as counts, one rule per range, fractions without unit.
 - [ ] `when: running` on supply temperatures and per-step doublet limits.
-- [ ] Tolerances proposed and confirmed (§6.7).
+- [ ] Tolerances proposed and confirmed (§6.8).
 - [ ] Every value not from the files confirmed and recorded with its source (§8.3).
 - [ ] Economics set in the one `ask_economics` question.
 
@@ -693,116 +704,105 @@ economics included, waits for the user's approval (`case_changes`, `accept_case`
 
 ---
 
-# 12. Worked example: the GEMINI hackathon 2026
+# 12. Worked example: a brief with daily demand files
 
-One competition case. Reference shape: `gemini/examples/hackathon_2026/case.json` and
-`economics.json`. Values the competition files lack: `knowledge/hackathon-2026-assumptions.md`.
+A general pattern with **invented numbers** (a fictional town, "Northbay"). It shows the method
+of chapters 0 to 11 end to end; no number here is a value for any real case. A competition or a
+client case keeps its own values in its own assumptions document in Knowledge (§8.2).
 
 ## 12.1 Inputs
 
 | File | Holds |
 |---|---|
-| `GEMINI_Heating_Demand_Daily_2027.csv` | `date`, `heating_demand_MWth`: 365 daily values, 2027-01-01 to 2027-12-31 |
-| `GEMINI_Cooling_Demand_Daily_2027.csv` | `date`, `cooling_demand_MWcool`: 365 daily values, same days |
-| `GEMINI_Hackathon_Challenge_Requirements.pdf` | 2 pages, 28 October 2026: reservoir, brine and gas, constraints, supply temperatures |
+| `Northbay_Heat_Daily.csv` | `day`, `heat_MWth`: one row per day of one year, dates without offset |
+| `Northbay_Cold_Daily.csv` | `day`, `cold_MWc`: same days |
+| `Northbay_Brief.pdf` | 3 pages: supply temperatures, reservoir, brine, rules, freedoms |
 
-The time column is `date` (named in `columns`), and its dates have no offset: each series needs
-a `time_zone`, which no competition file gives. Propose it in the one question as an assumption
-(QA-140 was refused without it). gemini's sample avoids this with UTC timestamps
-(`2027-01-01T00:00:00Z`).
+Lessons:
+- the time column is `day`: name it in `columns` when the files are given (§3.2);
+- the dates have no offset: each series needs a `time_zone`. The brief names the site but no
+  zone, so the zone is an assumption with its reason (the site's location) in the one question
+  (§3.2, §0.3);
+- the brief is the only source of rules; read every note under its tables (§1.1).
 
-## 12.2 Values for checking (PDF p. 1)
+## 12.2 Values for checking
 
-Heating peak 30.0 MWth on 28 January, 111.67 GWhth/year; cooling peak 10.0 MWcool on 19 July,
-23.74 GWhcool/year. Checks only; the case takes the CSV series.
+The brief says (p. 1): "heating peak 18 MW in January, 70 GWh per year; cooling peak 6 MW in
+July". These check the CSV files (§1.3): a peak of 18,000 in the file would be kW; a cooling
+peak in January a column swap. The case takes the series, never these numbers. gemini's
+`read_profile` summary gives the file's own peak and total for the comparison.
 
-## 12.3 Values from the files
+## 12.3 Classifying the brief
 
-| As written | Case path and value | Source |
+| Brief says (invented) | Kind (§1.2) | Goes to |
 |---|---|---|
-| daily heating demand | `demand.heating.power`: heating CSV, column `heating_demand_MWth`, `MW` | CSV |
-| daily cooling demand | `demand.cooling.power`: cooling CSV, column `cooling_demand_MWcool`, `MW` | CSV |
-| time axis | `time.start` 2027-01-01, `time.end` 2028-01-01 (excluded), `time.step` 1 d | CSV `span` |
-| heating supply 100 °C, fixed | `demand.heating.supply_temperature` 100 degC | PDF p. 2 |
-| cooling supply 20 °C, fixed | `demand.cooling.supply_temperature` 20 degC | PDF p. 2 |
-| reservoir midpoint 2,500 m TVD | `site.reservoir.reference_depth` 2500 m | PDF p. 2 |
-| gross thickness 100 m | `site.reservoir.thickness` 100 m | PDF p. 2 |
-| gradient 30 °C/km | `site.ground.gradient` 30 °C/km | PDF p. 2 |
-| surface temperature 12 °C | `site.ground.surface_temperature` 12 degC | PDF p. 2 |
-| reservoir pressure 250 bar(g) | `site.reservoir.pressure` 250 barg | PDF p. 2 |
-| permeability 200 mD | `site.reservoir.permeability` 200 mD | PDF p. 2 |
-| brine density 1,030 kg/m³ | `site.fluid.density` 1030 kg/m3 | PDF p. 2 |
-| viscosity 0.40 mPa·s | `site.fluid.viscosity` 0.4 mPa.s | PDF p. 2 |
-| gas-liquid ratio 0.8 Nm³/m³ | `site.fluid.gas_liquid_ratio` 0.8 Nm3/m3 | PDF p. 2 |
-| 80 mol% CH₄, 20 mol% CO₂ | `site.fluid.dissolved_gas` CH4 0.8, CO2 0.2 (produced gas) | PDF p. 2 |
+| "Heating is supplied at 85 °C (fixed)" | case value | `demand.heating.supply_temperature` 85 degC |
+| "Chilled water at 8 °C (fixed)" | case value | `demand.cooling.supply_temperature` 8 degC |
+| "Reservoir top 1,900 m TVD, 60 m net sand, 150 mD" | case values | `site.reservoir.reference_depth`, `thickness`, `permeability` |
+| "Gradient 32 °C/km; mean surface temperature 9 °C" | case values | `site.ground.gradient`, `surface_temperature` |
+| "Reservoir pressure 190 bar(g)" | case value | `site.reservoir.pressure` 190 barg |
+| "Expected reservoir temperature about 70 °C" | not a measurement | not set: gemini derives it (§4.2, §10.2) |
+| "Flow per well 40 to 200 m³/h" | rule | one requirement, `min` 40, `max` 200 (§6.7) |
+| "Reinjection temperature not below 30 °C" | rule | `doublet`, `injection_temperature`, `each`, `running`, `min` 30, `degC` |
+| "The heat and cold demand shall be met" | rule without tolerance | `unmet_share` per supply; tolerance proposed (§6.8) |
+| "Up to 2 doublets; depth may be chosen" | freedoms with a bound | `doublet.count` `max` 2; depth stays in the plant (§7) |
+| "Noise at the fence below 40 dB(A)" | rule gemini cannot express | case `about`, named open (§6.10) |
 
-Not set: the reservoir temperature (gemini derives it); "for a different well depth, use
-hydrostatic pressure and the gradient" is a reading instruction.
+## 12.4 Filling the gaps
 
-## 12.4 Values from the assumptions document
+The brief gives no return temperatures, no air values and no grid CO2 intensity. In order (§0.3):
 
-All in the ONE confirmation question, source `knowledge/hackathon-2026-assumptions.md`:
+1. search Knowledge for an assumptions document of this site; none is found;
+2. search Knowledge for a cited grid CO2 intensity of the country: one document gives it with
+   its year and method (location-based): propose it with that source (§5.2);
+3. a weather connector is offered: read the site's air temperature from it, cited with server,
+   tool and time (§4.5);
+4. return temperatures: design choices with a reason, heating below 85 °C, cooling above 8 °C
+   (§7.3);
+5. what still has no source is asked for by path and unit, with no number of yours.
 
-| Path | Value | Origin in that document |
-|---|---|---|
-| `demand.heating.return_temperature` | 60 degC | team design choice (§7.3) |
-| `demand.heating.return_pressure` | 6 bar | team |
-| `demand.cooling.return_temperature` | 25 degC | team design choice |
-| `demand.cooling.return_pressure` | 4 bar | team |
-| `demand.cooling.dew_point_margin` | 1 K | team |
-| `demand.cooling.indoor_temperature` | 26 degC | team |
-| `demand.cooling.indoor_relative_humidity` | 50 % (0.5) | team |
-| `site.air.temperature`, `site.air.pressure` | 10 degC, 101325 Pa (constant) | team |
-| `site.fluid.sand_concentration` | 20 mg/l | team |
-| `utilities.electricity.co2_intensity` | 300 g/kWh | organisers (QA-095) |
-| `utilities.gas.composition` | CH4, C2H6, C3H8, CO2, N2 with every digit of the document | team (bought gas) |
-| `site.air.relative_humidity`, `utilities.gas.heating_value` | not set, not needed: leave open, never search or ask (QA-161) | team |
+All of 2 to 5, the time zone, the tolerances and any flaw go into the ONE confirmation question
+(§8.4); economics follow in one `ask_economics` question.
 
-## 12.5 Requirements (8)
+## 12.5 Requirements
 
-| `name` | Rule | From |
-|---|---|---|
-| `production_flow_range` | `doublet`, `production_flow`, `each`, `running`, min 50, max 300, `m3/h` | PDF p. 2; one rule (QA-080) |
-| `brine_cooling_limit` | `doublet`, `brine_cooling`, `each`, `running`, max 40, `K` | PDF p. 2 |
-| `running_time_limit` | `doublet`, `production_flow`, `duration`, `running`, max 330, `d` | PDF p. 2 |
-| `pump_efficiency` | `doublet`, `pump_efficiency`, min 0.7, max 0.7 (no unit, over, when) | PDF p. 2 (70 %) |
-| `full_reinjection` | `doublet`, `reinjection_ratio`, `each`, `running`, min 0.99999, max 1.00001 | PDF p. 2; band from the assumptions document (§6.7) |
-| `doublet_count` | `doublet`, `count`, min 1, max 3 (no over, when, unit) | PDF p. 2 |
-| `heat_delivered` | `heating_supply`, `unmet_share`, max 0.01 | organisers (365 days); 1 % from the assumptions document |
-| `cold_delivered` | `cooling_supply`, `unmet_share`, max 0.01 | as above |
+| `name` | Rule |
+|---|---|
+| `production_flow_range` | `doublet`, `production_flow`, `over: each`, `when: running`, `min` 40, `max` 200, `unit` m3/h |
+| `injection_temperature_floor` | `doublet`, `injection_temperature`, `over: each`, `when: running`, `min` 30, `unit` degC |
+| `doublet_count` | `doublet`, `count`, `max` 2 (no over, when, unit) |
+| `heat_delivered` | `heating_supply`, `unmet_share`, `max` <tolerance, confirmed> |
+| `cold_delivered` | `cooling_supply`, `unmet_share`, `max` <tolerance, confirmed> |
 
-The supply temperatures are case values judged through `heat_delivered` and `cold_delivered`; a
-temperature requirement, if written, is `when: running` (QA-091). The 330 days limit each doublet
-only: the plant meets the demand on all 365 days. Pump intake limits (free gas at most 18.75 %,
-intake pressure at least 5 bar) are in the assumptions document "only if the design checks it".
+The noise rule is in `about`, named open. The fixed supply temperatures are case values; a
+temperature requirement, if written, is `when: running` (§6.6).
 
 ## 12.6 Design freedoms
 
-Never asked as missing case values:
+Never asked as missing case values (§7): the well depth, the number of doublets within the
+bound, flows, unit kinds and sizes, backup policy, gas handling. The return temperatures are
+the team's choice inside the case, confirmed once and changed later only through
+`case change needed` (§7.4).
 
-- well depth (search range 2000 to 3500 m, assumptions document);
-- number of doublets (1 to 3, bounded by `doublet_count`);
-- return temperatures: 60 and 25 degC as team design choices; another value comes as
-  `case change needed` (§7.4);
-- backup policy, number and kind of units, associated gas handling (flare, boiler, CHP).
+## 12.7 Common traps of this pattern
 
-## 12.7 Economics
-
-One `ask_economics` question: each key the assumptions document gives as
-`{key, value, unit, source}` with source `knowledge/hackathon-2026-assumptions.md`, so results
-compare with gemini's sample. Every `opex.per_energy.*` and `revenue.subsidy.*` key is `open`:
-there is no subsidy, and no source prices the chillers per MWh. Method:
-`knowledge/handbook-economics.md`.
+| Trap | Right reading |
+|---|---|
+| set the "about 70 °C" reservoir temperature | an expectation, not a measurement: leave it to gemini |
+| two requirements for "40 to 200 m³/h" | one requirement with both ends |
+| `when: always` on the injection floor | `running`: an idle doublet injects nothing |
+| use the brief's 70 GWh as a value | a check of the file only |
+| ask the user for the well depth | a design freedom |
+| series refused for a missing zone | add `time_zone` from a source or a confirmed assumption |
 
 ## 12.8 Done when
 
-- 8 requirements as above; no `when: always`.
-- No reservoir temperature, depth or doublet count in the case.
-- Both series with a confirmed `time_zone`.
-- Assumption values confirmed in the one question; `plants_need` empty.
-- Economics set (EUR, price year 2015).
-- Only the three competition files are project files; handbooks and the assumptions document
-  stay in global Knowledge.
+- gemini accepts the case; `plants_need` empty or each path asked (§10.4);
+- every brief value in, with its page; nothing derived set by hand;
+- every rule a requirement or named open; tolerances confirmed;
+- both series with a `time_zone` or offsets;
+- every value not from the files confirmed once and recorded with its source (§8.3);
+- economics set in one question.
 
 ---
 
@@ -850,8 +850,6 @@ there is no subsidy, and no source prices the chillers per MWh. Method:
 - ISO 2533:1975 *Standard Atmosphere*; DIN 1343 *Normal conditions*; ISO 13443:1996 *Natural gas
   standard reference conditions*.
 - gemini 0.6.17: `gemini/gemini/case/`, `gemini/gemini/plants/roles.py`,
-  `gemini/gemini/units/inputs.py`, `gemini/examples/hackathon_2026/`.
+  `gemini/gemini/units/inputs.py`.
 - geomind: prompts `case/lead.md`, `case/geoscientist.md`; skills `setting-the-case`,
   `finding-sources`, `connectors`, `gemini-units`, `calculator`.
-- Bug files QA-039, QA-080, QA-091, QA-094, QA-095, QA-140 in
-  `documents/project/quality-assurance/`.

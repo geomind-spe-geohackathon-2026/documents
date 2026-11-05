@@ -10,8 +10,9 @@ every value the case and the economics need that the three competition files
 `knowledge/hackathon-2026-assumptions.md`. The case lead puts these values in its ONE
 confirmation question (case values) and its ONE `ask_economics` call (economics), each with this
 file as the source; after the user approves them they are never asked again. A key this file marks "Not set, not
-needed" stays open: never search for it and never ask the user for it. How each value goes
-into the case: `knowledge/handbook-case.md`, chapter 12.
+needed" stays open: never search for it and never ask the user for it. The method is
+`knowledge/handbook-case.md`; how each competition file and value goes into the case is the last
+section here, "How the competition files map to the case".
 
 Each value says where it comes from:
 - **Organisers**: answers of the organisers on Discord #technical-q-and-a, 2026-11-04.
@@ -100,6 +101,118 @@ every other row is Team.
 | Gas make-up | 50,000 EUR | 2 %/yr | Team |
 | Cooler | 0.1 EUR/W | 2 %/yr | Team |
 | Pipe | 500 EUR/m | 0.5 %/yr | Team |
+
+## How the competition files map to the case
+
+The method is general and lives in `knowledge/handbook-case.md` (cited by section below); this
+section applies it to the competition only. Reference shape: `gemini/examples/hackathon_2026/case.json` and
+`economics.json`. Values the competition files lack: the tables above.
+
+### Competition: Inputs
+
+| File | Holds |
+|---|---|
+| `GEMINI_Heating_Demand_Daily_2027.csv` | `date`, `heating_demand_MWth`: 365 daily values, 2027-01-01 to 2027-12-31 |
+| `GEMINI_Cooling_Demand_Daily_2027.csv` | `date`, `cooling_demand_MWcool`: 365 daily values, same days |
+| `GEMINI_Hackathon_Challenge_Requirements.pdf` | 2 pages, 28 October 2026: reservoir, brine and gas, constraints, supply temperatures |
+
+The time column is `date` (named in `columns`), and its dates have no offset: each series needs
+a `time_zone`, which no competition file gives. Propose it in the one question as an assumption
+(QA-140 was refused without it). gemini's sample avoids this with UTC timestamps
+(`2027-01-01T00:00:00Z`).
+
+### Competition: Values for checking (PDF p. 1)
+
+Heating peak 30.0 MWth on 28 January, 111.67 GWhth/year; cooling peak 10.0 MWcool on 19 July,
+23.74 GWhcool/year. Checks only; the case takes the CSV series.
+
+### Competition: Values from the files
+
+| As written | Case path and value | Source |
+|---|---|---|
+| daily heating demand | `demand.heating.power`: heating CSV, column `heating_demand_MWth`, `MW` | CSV |
+| daily cooling demand | `demand.cooling.power`: cooling CSV, column `cooling_demand_MWcool`, `MW` | CSV |
+| time axis | `time.start` 2027-01-01, `time.end` 2028-01-01 (excluded), `time.step` 1 d | CSV `span` |
+| heating supply 100 °C, fixed | `demand.heating.supply_temperature` 100 degC | PDF p. 2 |
+| cooling supply 20 °C, fixed | `demand.cooling.supply_temperature` 20 degC | PDF p. 2 |
+| reservoir midpoint 2,500 m TVD | `site.reservoir.reference_depth` 2500 m | PDF p. 2 |
+| gross thickness 100 m | `site.reservoir.thickness` 100 m | PDF p. 2 |
+| gradient 30 °C/km | `site.ground.gradient` 30 °C/km | PDF p. 2 |
+| surface temperature 12 °C | `site.ground.surface_temperature` 12 degC | PDF p. 2 |
+| reservoir pressure 250 bar(g) | `site.reservoir.pressure` 250 barg | PDF p. 2 |
+| permeability 200 mD | `site.reservoir.permeability` 200 mD | PDF p. 2 |
+| brine density 1,030 kg/m³ | `site.fluid.density` 1030 kg/m3 | PDF p. 2 |
+| viscosity 0.40 mPa·s | `site.fluid.viscosity` 0.4 mPa.s | PDF p. 2 |
+| gas-liquid ratio 0.8 Nm³/m³ | `site.fluid.gas_liquid_ratio` 0.8 Nm3/m3 | PDF p. 2 |
+| 80 mol% CH₄, 20 mol% CO₂ | `site.fluid.dissolved_gas` CH4 0.8, CO2 0.2 (produced gas) | PDF p. 2 |
+
+Not set: the reservoir temperature (gemini derives it); "for a different well depth, use
+hydrostatic pressure and the gradient" is a reading instruction.
+
+### Competition: values from this document
+
+All in the ONE confirmation question, source `knowledge/hackathon-2026-assumptions.md` (this document):
+
+| Path | Value | Origin in that document |
+|---|---|---|
+| `demand.heating.return_temperature` | 60 degC | team design choice (`knowledge/handbook-case.md` §7.3) |
+| `demand.heating.return_pressure` | 6 bar | team |
+| `demand.cooling.return_temperature` | 25 degC | team design choice |
+| `demand.cooling.return_pressure` | 4 bar | team |
+| `demand.cooling.dew_point_margin` | 1 K | team |
+| `demand.cooling.indoor_temperature` | 26 degC | team |
+| `demand.cooling.indoor_relative_humidity` | 50 % (0.5) | team |
+| `site.air.temperature`, `site.air.pressure` | 10 degC, 101325 Pa (constant) | team |
+| `site.fluid.sand_concentration` | 20 mg/l | team |
+| `utilities.electricity.co2_intensity` | 300 g/kWh | organisers (QA-095) |
+| `utilities.gas.composition` | CH4, C2H6, C3H8, CO2, N2 with every digit of the document | team (bought gas) |
+| `site.air.relative_humidity`, `utilities.gas.heating_value` | not set, not needed: leave open, never search or ask (QA-161) | team |
+
+### Competition: Requirements (8)
+
+| `name` | Rule | From |
+|---|---|---|
+| `production_flow_range` | `doublet`, `production_flow`, `each`, `running`, min 50, max 300, `m3/h` | PDF p. 2; one rule (QA-080) |
+| `brine_cooling_limit` | `doublet`, `brine_cooling`, `each`, `running`, max 40, `K` | PDF p. 2 |
+| `running_time_limit` | `doublet`, `production_flow`, `duration`, `running`, max 330, `d` | PDF p. 2 |
+| `pump_efficiency` | `doublet`, `pump_efficiency`, min 0.7, max 0.7 (no unit, over, when) | PDF p. 2 (70 %) |
+| `full_reinjection` | `doublet`, `reinjection_ratio`, `each`, `running`, min 0.99999, max 1.00001 | PDF p. 2; band from the assumptions document (`knowledge/handbook-case.md` §6.7) |
+| `doublet_count` | `doublet`, `count`, min 1, max 3 (no over, when, unit) | PDF p. 2 |
+| `heat_delivered` | `heating_supply`, `unmet_share`, max 0.01 | organisers (365 days); 1 % from the assumptions document |
+| `cold_delivered` | `cooling_supply`, `unmet_share`, max 0.01 | as above |
+
+The supply temperatures are case values judged through `heat_delivered` and `cold_delivered`; a
+temperature requirement, if written, is `when: running` (QA-091). The 330 days limit each doublet
+only: the plant meets the demand on all 365 days. Pump intake limits (free gas at most 18.75 %,
+intake pressure at least 5 bar) are in the assumptions document "only if the design checks it".
+
+### Competition: Design freedoms
+
+Never asked as missing case values:
+
+- well depth (search range 2000 to 3500 m, assumptions document);
+- number of doublets (1 to 3, bounded by `doublet_count`);
+- return temperatures: 60 and 25 degC as team design choices; another value comes as
+  `case change needed` (`knowledge/handbook-case.md` §7.4);
+- backup policy, number and kind of units, associated gas handling (flare, boiler, CHP).
+
+### Competition: Economics
+
+One `ask_economics` question: each key the assumptions document gives as
+`{key, value, unit, source}` with source `knowledge/hackathon-2026-assumptions.md`, so results
+compare with gemini's sample. Every `opex.per_energy.*` and `revenue.subsidy.*` key is `open`:
+there is no subsidy, and no source prices the chillers per MWh. Method:
+`knowledge/handbook-economics.md`.
+
+### Competition: Done when
+
+- 8 requirements as above; no `when: always`.
+- No reservoir temperature, depth or doublet count in the case.
+- Both series with a confirmed `time_zone`.
+- Assumption values confirmed in the one question; `plants_need` empty.
+- Economics set (EUR, price year 2015).
+- Only the three competition files are project files; handbooks and the assumptions document
+  stay in global Knowledge.
 
 ## Uncertainty ranges (studies only)
 
