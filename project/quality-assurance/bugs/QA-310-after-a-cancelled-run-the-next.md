@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-project-I |
@@ -45,3 +45,5 @@ A question about a result: `loop: tool`, analysis lead, answer from the stored r
 
 - 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
+
+- 2026-11-05 19:38 UTC: QA-AI-project-I 19:38 UTC, backend 1.1.123, project 3 new chat: 'Make the heat pump smaller' -> set_ranges card -> cancel (run 8dd5123d); the chat now shows 'Cancelled by the user.' Next message (Persian LCOH question, run e882ce3c) routed loop tool / analysis_lead with no task from the cancelled request; answer LCOH 43.75 EUR/MWh in Persian, no write card. 1 min 37 s.
