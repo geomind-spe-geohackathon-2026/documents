@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | minor |
 | Area | frontend,geomind |
 | Reporter | QA-E2E-study-I |
@@ -54,3 +54,4 @@ frontend 1.1.118 (commit 246ad1a, bundle index-HNmh0ToS.js): `capacity-tiles.tsx
 Not run (no tests now).
 
 QA-E2E-study-I, 2026-11-05 18:40 UTC: verified on geomind.team, project QA-TEST QA-E2E-study-I 1, Results: the heat exchanger tile now says 'a rating in W/K is not a use the run measures; the module ran 365 of 365 steps' (no 'not used').
+- 2026-11-05 18:30 UTC: QA-E2E-study-I: heat exchanger tile reads the reason, no 'not used'
