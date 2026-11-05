@@ -1091,7 +1091,7 @@ report.
 ### 21.1 What the time step does to a study
 
 gemini simulates the case's profiles at their own time step (daily, hourly or other;
-`gm.profiles.from_csv`, `from_values`). A study multiplies the cost of one run by its number of
+`gm.case.from_csv`, `gm.case.from_values`). A study multiplies the cost of one run by its number of
 runs (§0.4), so the step decides what a study can afford: an hourly year is 8,760 steps, a daily
 year 365, about 24 times fewer.
 
@@ -1125,3 +1125,43 @@ runs): 27 s daily, 10.5 min hourly on one process. Plan: search on the daily cas
 best and the runner-up hourly (2 runs, 7 s). The hourly run of the best shows a peak shortfall of
 0.4 MW on two winter hours: coverage 98.9 % against 99 %. The runner-up, with a larger peak unit,
 passes: report both and recommend the runner-up, or the best with 0.5 MW more peak capacity.
+
+---
+
+## 22. Deciding under uncertainty
+
+### 22.1 Compare designs on the same draws
+
+Two designs each sampled with its own Monte Carlo give two clouds; their overlap says little about
+which is cheaper draw by draw. Sample both with the same `seed` and the same `values`
+(`run_study` `method="sample"`): gemini then draws the same inputs for each, and the difference
+`d_i = y_A,i − y_B,i` per draw is a paired comparison (common random numbers; Law 2015, ch 11).
+Its spread is far smaller than either cloud's when the designs react alike to the inputs.
+
+Quote: the mean difference with its standard error `s_d/√N`, and the share of draws in which A
+is cheaper, with its error `√(q(1−q)/N)` (§14.1).
+
+### 22.2 Decision rules
+
+| Rule | Prefer the design that | Fits when |
+|---|---|---|
+| Expected value | has the lowest mean cost | many similar projects; risk-neutral owner |
+| Percentile (risk) | has the lowest p90 (or another stated percentile) cost | a single large project; a budget limit |
+| Probability of feasibility | meets the requirements in the most draws, or above a stated share | service duty matters most |
+| First-order stochastic dominance | is cheaper at every percentile (its CDF lies left everywhere) | then every risk-averse or neutral owner agrees |
+| Minimax regret | loses least against the best design in the worst draw | owner fears hindsight |
+
+Sources: Clemen & Reilly 2014, ch 13-14 (utility and risk attitude); Hadar & Russell 1969 on
+stochastic dominance; Savage 1951 on regret. The rule is the user's choice: state which rule a
+recommendation uses, and when the rules disagree, show it.
+
+### 22.3 Worked example (invented numbers)
+
+300 paired draws, seed 11, all declared uncertainties. Design A (heat pump): mean 43.0, p10 39.2,
+p90 47.8 EUR/MWh, feasible 99 %. Design B (boiler peak): mean 44.1, p10 41.9, p90 46.5, feasible
+100 %. Paired: A cheaper in 71 % of draws (±2.6 %), mean difference −1.1 ± 0.15 EUR/MWh.
+- Expected value: A.
+- p90: B (46.5 < 47.8): A has the wider tail (electricity price).
+- No dominance: the CDFs cross near the 80th percentile.
+Answer: "A is cheaper on average and in 7 of 10 cases; B is the safer choice against high power
+prices. Which matters more to you?"
