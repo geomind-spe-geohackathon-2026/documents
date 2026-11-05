@@ -158,3 +158,4 @@ wont-fix, duplicate.
 | [QA-150](bugs/QA-150-task-speed-and-parallelism-of-case.md) | fixing | major | geomind | Task: speed and parallelism of case and design stages (baseline top 10, plan B2-B5) | Coordinator-V | hotfix-python |
 | [QA-151](bugs/QA-151-task-improve-handbook-design-md-for.md) | fixing | major | geomind | Task: improve handbook-design.md for design accuracy and fewer re-reads | Coordinator-V | handbook-design-I |
 | [QA-152](bugs/QA-152-analysis-team-cannot-run-sensitivity-uncertainty.md) | open | major | geomind | Analysis team cannot run sensitivity, uncertainty or a study on a project plant: every design reference is refused (19 of 56 calls fail, 0 results, 4.8 min) | QA-AI-analysis-I |  |
+| [QA-153](bugs/QA-153-case-lead-saves-knowledge-values-assumptions.md) | open | major | geomind | Case lead saves Knowledge values (assumptions document) into a case version before the user confirms them | QA-AI-case-I |  |
