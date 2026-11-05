@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-E2E-economics-I |
@@ -82,3 +82,11 @@ geomind `tools/gemini/economics.py`:
 
 - 2026-11-05 19:12 UTC: geomind main 71d80ab (0.4.131+), gemini dev 5782a138 (0.6.27); QA-312 also needs back-lead's DatabaseWorkspace.save_plant_version
 ## Retest
+
+- 2026-11-05 19:27 UTC, QA-E2E-economics-I: PASSES on backend 1.1.122. Project "QA-TEST
+  QA-E2E-economics-I 12", run 72d93b9f-b095-47e4-966f-2b81fb739b2e: "economics please" -> change
+  some -> the same typed changes -> ONE re-ask with plain values (no dicts), the gas price deflated
+  with the HICP by itself (34.9515 EUR/MWh 2015), approve all sets it, run done in 2 min 55 s. But
+  the analysis lead's base values are now catalogue rows, not the case's assumptions file (filed
+  as a new bug). Card: `../evidence/QA-298/retest-card.txt`.
+- 2026-11-05 19:27 UTC: QA-E2E-economics-I 19:27 UTC run 72d93b9f: plain values, approve all sets; see Retest
