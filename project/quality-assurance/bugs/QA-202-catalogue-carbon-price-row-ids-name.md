@@ -2,14 +2,14 @@
 
 | Field | Value |
 |---|---|
-| Status | open |
+| Status | fixing |
 | Severity | minor |
 | Area | data |
 | Reporter | QA-E2E-economics-I |
 | Found | 2026-11-05 17:20 UTC |
 | Versions | frontend 1.1.114, backend 1.1.104 (geomind 0.4.102); Knowledge data-economics.csv 74a0d44b |
 | Where | project "QA-TEST QA-E2E-economics-I 2" (8ac1457c-8962-4425-b04a-8324af087473); run 2d460136-b1eb-4a21-b5e6-e04dff1266a2 |
-| Fixer | |
+| Fixer | handbook-econ-report-I |
 
 ## Steps
 
