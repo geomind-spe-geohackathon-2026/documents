@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | geomind |
 | Reporter | QA-AI-analysis-I |
@@ -87,3 +87,7 @@ economics. Also: `simulate(changes={"plant": {"project_plant": ...}})` was tried
 4. Data: the catalogue's recommended row for `capex.heat_exchanger` should keep the gemini unit
    EUR/(W/K) (the lead picked `heat-exchanger-dea-2025-station`, EUR/W); check `in_case` rows of
    `knowledge/data-economics.csv` against gemini's units.
+
+## Fix
+
+- 2026-11-05 17:40 UTC: geomind 0.4.107, deployed: analysis lead has ask_economics and the rule to use it (parts 2-4 of the proposed fix not done)
