@@ -117,3 +117,4 @@ wont-fix, duplicate.
 | [QA-109](bugs/QA-109-report-the-agent-log-section-is.md) | open | minor | frontend | Report: the Agent log section is empty by default ('No assistant run was chosen'); the run that made the result is not picked | Fatemeh |  |
 | [QA-110](bugs/QA-110-case-history-a-version-cannot-be.md) | open | major | frontend,backend,geomind | Case History: a version cannot be opened, compared or restored; the note is always 'Case set by the assistant' and Saved by says Administrator | Fatemeh |  |
 | [QA-111](bugs/QA-111-projects-page-a-project-card-s.md) | fixing | minor | frontend | Projects page: a project card's ... menu has only Pin (no Settings, Rename, Delete) | user via coordinator | hotfix-front-II |
+| [QA-112](bugs/QA-112-knowledge-assumptions-bought-gas-composition-sums.md) | open | major | data | Knowledge assumptions: bought gas composition sums to 1.001, case cannot be set | functional-qa-case-I |  |
