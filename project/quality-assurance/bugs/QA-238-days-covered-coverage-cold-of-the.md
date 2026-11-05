@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | gemini |
 | Reporter | Manual QA-IV |
@@ -30,4 +30,5 @@ Guess: gemini's daily_coverage classes every cooling unit as geothermal, or clas
 
 ## Fix
 
+- 2026-11-05 18:09 UTC: deployed 19:01-19:03 CET: backend 1.1.112, geomind 0.4.118/0.4.119, gemini 0.6.19 (hotfix-python team)
 ## Retest
