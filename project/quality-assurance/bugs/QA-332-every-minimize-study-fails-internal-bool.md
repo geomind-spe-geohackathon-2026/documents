@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixed |
+| Status | verified |
 | Severity | blocker |
 | Area | backend |
 | Reporter | Manual QA-IV |
@@ -39,3 +39,4 @@ Run a minimize study on gemini 0.6.31+: it finishes; Results opens its coverage.
 - 2026-11-05 19:58 UTC, QA-AI-analysis-I, backend 1.1.125, API only: POST /design/study kind minimize (lcts, 40 evaluations, seed 0, prepare size) on plant version 1 HackathonPlant,
   project `QA-TEST QA-AI-analysis-I 1`: study 4423e81a-004e-4ec4-87aa-6cd767d70ba6 done in 10 s, result
   b7af0082-b903-4346-a084-11e01f8e2710, LCTS 31.487 EUR/MWh, 15/15 checks, 365 coverage days. Verified.
+- 2026-11-05 19:59 UTC: retest QA-AI-analysis-I 19:58 UTC backend 1.1.125: minimize done in 10 s
