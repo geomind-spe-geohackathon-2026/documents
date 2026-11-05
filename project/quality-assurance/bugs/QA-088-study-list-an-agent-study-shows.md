@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | major |
 | Area | backend |
 | Reporter | Sahand |
@@ -41,6 +41,7 @@ QA structures view), while the study list and the Results tab read only page stu
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 09:09 UTC: hotfix-back, backend 1.1.80 (f0c0562) pushed, not deployed (deploy hold): filters_sized is a size_plant record ({sizing}, no simulation), so it has no results. Results lists only page-study result rows; new GET /design/study/{id}/agent-record serves the agent's stored record (tool, method, designs, result); done agent studies show progress whole. Frontend: show agent-record on agent study rows (hotfix-front). Full Results rows for agent runs need geomind to store the full report and series (hotfix-python-II, if wanted).
 - 2026-11-05 09:11 UTC: frontend part by hotfix-front: 1.1.78 (74122f8), pushed and build-checked, NOT deployed (deploy hold). Agent study rows show a summary from /agent-record plus 'Open record' (runs/sizing/best page at design/study/<id>/record); with a 404 they keep 'Open run' only.
+- 2026-11-05 10:01 UTC: deployed in backend 1.1.83 (10:00 UTC, with geomind 0.4.78, gemini 0.6.12) by hotfix-python-II
 ## Retest
 
 (Who, when, result.)
