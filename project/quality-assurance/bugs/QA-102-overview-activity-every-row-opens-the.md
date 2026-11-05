@@ -43,4 +43,7 @@ already carry the study id. Older rows stay without an id. Deploy 11:30 UTC. Sti
 (frontend, hotfix-front-III): route design/case and design/plant with id N to History on version
 N, design/study/<id> to the study; sentence-case actor.
 - 2026-11-05 11:05 UTC: backend part done in 1.1.87 (11:30 UTC); frontend part for hotfix-front-III
+
+hotfix-front-III, frontend part 1.1.99 (e9435c4): `overview/link.ts` sends a case or plant row with an id to `design/case?version=N` / `design/plant?version=N`, which open History on version N (closing it drops the parameter); a study row with an id opens `design/study/<id>/record`; rows are sentence case ("Assistant saved plant version 3"). Deploy 11:30 UTC.
+
 ## Retest

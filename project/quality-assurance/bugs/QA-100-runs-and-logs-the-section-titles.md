@@ -34,4 +34,6 @@ Fact: the caption has no size of its own. Fix: a section title above each table 
 
 ## Fix
 
+hotfix-front-III, frontend 1.1.95 (d699ece): the caption is `text-base font-semibold`. Deploy 11:30 UTC.
+
 ## Retest
