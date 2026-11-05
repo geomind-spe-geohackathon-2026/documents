@@ -32,12 +32,15 @@ The approval card showed CH4 0.825, C2H6 0.03955, C3H8 0.01275, CO2 0.01191, N2 
 
 ## Cause
 
-Guess: the card rounds for display and the case page reads a float32; or the agent sends rounded values. Not separated.
+Fact (hotfix-front-III): the stored case (QA3 case v7, v8) holds the Knowledge values exactly (CH4 0.8249507401227822 ...). Both roundings were the frontend's: the approval/question card text went through `toRoundedText` (`frontend/src/shared/sse/pretty.ts`), which cut every decimal with 5+ places to 4 significant digits; the case form shows a composition in mol % through `scalar-control.tsx` with 6 significant digits (82.4951). The 82.49510192871094 values in the report were not reproduced from the stored data.
 
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
 - 2026-11-05 14:15 UTC: for hotfix-front-III (hotfix-back-III): backend stores and returns the exact Knowledge values (GET /design/case and /design/case/versions/7 and /8 of 15b2f15f: CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233; sum 1). No backend rounding in approvals. Both faults are display: the Set case card rounds to 4 significant digits, and the Utilities fields show float32-like digits after the fraction->mol% conversion (82.49510192871094 = float32 of 0.824951). Show stored digits (or label as rounded), and convert in float64.
+
+hotfix-front-III, frontend 1.1.102 (6917611): `toRoundedText` removed (cards show the numbers as the assistant sent them); tool cards show decimals in full; scaled form fields show 15 significant digits (CH4 82.4950740122782 mol %), the most a value times 100 carries without float noise. Deploy 14:30 UTC.
+
 ## Retest
 
 (Who, when, result.)
