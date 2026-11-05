@@ -599,8 +599,8 @@ case lead changes it and the user approves (`case_changes`, skill `setting-the-c
 ## 8.1 Order of sources
 
 The table in §0.3. Before the one question, ALWAYS, also when the files look complete: search
-Knowledge for every needed missing value (§8.6) (the case lead: `search_rag`, then `read_rag("knowledge/<name>")`;
-a geoscientist: `search_knowledge`, then `read_knowledge` of the document or section) and read the cost catalogue's rows of the missing keys only. Never a typical value at
+Knowledge for every needed missing value (§8.6) (`search_knowledge`, then `read_knowledge` of the document's
+section) and read the cost catalogue's rows of the missing keys only. Never a typical value at
 any step.
 
 ## 8.2 Assumptions documents
@@ -805,8 +805,8 @@ How to call each: the skills named in the front matter.
 
 | Job | Case lead | Geoscientist |
 |---|---|---|
-| list and read the user's files | `list_files`, `read_rag` | (gets the text in its brief) |
-| search and read Knowledge | `search_rag`, `read_rag` | `search_knowledge`, `read_knowledge` |
+| list and read the user's files | `list_files`, `read_knowledge` | (gets the text in its brief) |
+| search and read Knowledge | `search_knowledge`, `read_knowledge` | `search_knowledge`, `read_knowledge` |
 | keys, units, bounds, what is missing | `describe_case` | `describe_case` |
 | read the case | `read_case` (only once a case exists) | none |
 | write the case | `set_case` (once, after the one question) | none |
