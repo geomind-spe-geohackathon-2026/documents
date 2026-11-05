@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | minor |
-| Area | frontend,backend |
+| Area | frontend |
 | Reporter | functional-qa-case-I |
 | Found | 2026-11-05 11:06 UTC |
 | Versions | backend 1.1.84 (geomind 0.4.80) |
@@ -37,7 +37,7 @@ Guess: the card rounds for display and the case page reads a float32; or the age
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 14:15 UTC: for hotfix-front-III (hotfix-back-III): backend stores and returns the exact Knowledge values (GET /design/case and /design/case/versions/7 and /8 of 15b2f15f: CH4 0.8249507401227822, C2H6 0.039549858193534584, C3H8 0.012748086337494389, CO2 0.011912342910726407, N2 0.11083897243546233; sum 1). No backend rounding in approvals. Both faults are display: the Set case card rounds to 4 significant digits, and the Utilities fields show float32-like digits after the fraction->mol% conversion (82.49510192871094 = float32 of 0.824951). Show stored digits (or label as rounded), and convert in float64.
 ## Retest
 
 (Who, when, result.)
