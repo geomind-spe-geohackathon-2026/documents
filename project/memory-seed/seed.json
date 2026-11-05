@@ -1,0 +1,4003 @@
+{
+ "kind": "experience",
+ "entries": [
+  {
+   "id": "seed-hackathon_2026-HackathonPlant",
+   "features": {
+    "heating_peak": 30000000.0,
+    "heating_mean": 12747452.05479452,
+    "cooling_peak": 10000000.0,
+    "cooling_mean": 2710334.2465753425,
+    "heating_supply": 373.15,
+    "cooling_supply": 293.15,
+    "depth": 2500.0,
+    "step": 86400.0
+   },
+   "case": {
+    "sections": [
+     "demand",
+     "economics",
+     "format",
+     "kind",
+     "name",
+     "requirements",
+     "site",
+     "time",
+     "utilities"
+    ],
+    "services": [
+     "cooling",
+     "heating"
+    ]
+   },
+   "design": "examples/hackathon_2026 HackathonPlant, sized and searched (minimize lcts, 20 evaluations per doublet count, seed 0)",
+   "result": "examples/hackathon_2026/study.json: HackathonPlant",
+   "kpis": {
+    "heat_delivered": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_useful": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_surplus": {
+     "value": 1.8217e-12,
+     "unit": "MWh"
+    },
+    "cold_delivered": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_useful": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_surplus": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "electricity_bought": {
+     "value": 10360.0,
+     "unit": "MWh"
+    },
+    "electricity_sold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "gas_bought": {
+     "value": 11715.0,
+     "unit": "MWh"
+    },
+    "co2_emitted": {
+     "value": 7.0166,
+     "unit": "kt"
+    },
+    "methane_emitted": {
+     "value": 0.0044932,
+     "unit": "kt"
+    },
+    "waste": {
+     "value": 0.053282,
+     "unit": "kt"
+    },
+    "chemicals": {
+     "value": 0.030488,
+     "unit": "kt"
+    },
+    "losses": {
+     "value": 22834.0,
+     "unit": "MWh"
+    },
+    "heating_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cooling_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cop": {
+     "value": 10.778,
+     "unit": "-"
+    },
+    "heat_pump_cop": {
+     "value": 5.5196,
+     "unit": "-"
+    },
+    "peak_heat": {
+     "value": 30.0,
+     "unit": "MW"
+    },
+    "peak_cold": {
+     "value": 10.0,
+     "unit": "MW"
+    },
+    "geothermal_heat": {
+     "value": 85369.0,
+     "unit": "MWh"
+    },
+    "heat_pump_electricity": {
+     "value": 4702.4,
+     "unit": "MWh"
+    },
+    "backup_heat": {
+     "value": 21596.0,
+     "unit": "MWh"
+    },
+    "unmet_heat": {
+     "value": 1.1366e-11,
+     "unit": "MWh"
+    },
+    "geothermal_heat_share": {
+     "value": 0.7645,
+     "unit": "-"
+    },
+    "geothermal_cold": {
+     "value": 21578.0,
+     "unit": "MWh"
+    },
+    "backup_cold": {
+     "value": 2164.3,
+     "unit": "MWh"
+    },
+    "unmet_cold": {
+     "value": 2.0103e-12,
+     "unit": "MWh"
+    },
+    "geothermal_cold_share": {
+     "value": 0.90884,
+     "unit": "-"
+    },
+    "boiler_heat": {
+     "value": 24688.0,
+     "unit": "MWh"
+    },
+    "capacities": {
+     "d0": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 237.5,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 237.5,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "d1": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 237.5,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 237.5,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "hx": {
+      "kind": "heat_exchanger",
+      "capacity": {
+       "value": 1500000.0,
+       "unit": "W/K"
+      },
+      "peak": {
+       "value": null,
+       "unit": "W/K",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "boiler": {
+      "kind": "boiler",
+      "capacity": {
+       "value": 30.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 11.301,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.37669,
+       "unit": "-"
+      }
+     },
+     "chiller_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 40.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 24.386,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.60964,
+       "unit": "-"
+      }
+     },
+     "heat_pump": {
+      "kind": "heat_pump",
+      "capacity": {
+       "value": 3.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 3.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "chiller": {
+      "kind": "absorption_chiller",
+      "capacity": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     }
+    },
+    "capex": {
+     "value": 27.492,
+     "unit": "MEUR",
+     "modules": {
+      "d0": {
+       "value": 0.15336,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d0.well": {
+       "value": 3.1852,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.riser": {
+       "value": 0.37733,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.injector": {
+       "value": 3.5625,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1": {
+       "value": 0.15336,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d1.well": {
+       "value": 3.1852,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.riser": {
+       "value": 0.37733,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.injector": {
+       "value": 3.5625,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "degasser": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "degasser"
+      },
+      "hx": {
+       "value": 0.75,
+       "unit": "MEUR",
+       "kind": "heat_exchanger"
+      },
+      "makeup": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "gas_makeup"
+      },
+      "boiler": {
+       "value": 1.8219,
+       "unit": "MEUR",
+       "kind": "boiler"
+      },
+      "flare": {
+       "value": 0.1,
+       "unit": "MEUR",
+       "kind": "flare"
+      },
+      "chiller_cooler": {
+       "value": 4.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      },
+      "heat_pump": {
+       "value": 2.2136,
+       "unit": "MEUR",
+       "kind": "heat_pump"
+      },
+      "chiller": {
+       "value": 3.0,
+       "unit": "MEUR",
+       "kind": "absorption_chiller"
+      }
+     },
+     "price_year": {
+      "value": 2015,
+      "unit": "-"
+     }
+    },
+    "opex": {
+     "value": 2.4579,
+     "unit": "MEUR/yr",
+     "components": {
+      "fixed": {
+       "value": 0.3833,
+       "unit": "MEUR/yr"
+      },
+      "electricity": {
+       "value": 1.0964,
+       "unit": "MEUR/yr"
+      },
+      "fuel": {
+       "value": 0.46799,
+       "unit": "MEUR/yr"
+      },
+      "waste": {
+       "value": 0.010664,
+       "unit": "MEUR/yr"
+      },
+      "chemical": {
+       "value": 0.091528,
+       "unit": "MEUR/yr"
+      },
+      "co2": {
+       "value": 0.40807,
+       "unit": "MEUR/yr"
+      }
+     },
+     "fixed_by_kind": {
+      "production_pump": {
+       "value": 0.0061345,
+       "unit": "MEUR/yr"
+      },
+      "drilling": {
+       "value": 0.1425,
+       "unit": "MEUR/yr"
+      },
+      "degasser": {
+       "value": 0.02,
+       "unit": "MEUR/yr"
+      },
+      "heat_exchanger": {
+       "value": 0.0075,
+       "unit": "MEUR/yr"
+      },
+      "gas_makeup": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "boiler": {
+       "value": 0.059212,
+       "unit": "MEUR/yr"
+      },
+      "flare": {
+       "value": 0.002,
+       "unit": "MEUR/yr"
+      },
+      "cooler": {
+       "value": 0.08,
+       "unit": "MEUR/yr"
+      },
+      "heat_pump": {
+       "value": 0.0049562,
+       "unit": "MEUR/yr"
+      },
+      "absorption_chiller": {
+       "value": 0.06,
+       "unit": "MEUR/yr"
+      }
+     }
+    },
+    "lcts": {
+     "value": 32.535,
+     "unit": "EUR/MWh",
+     "annualised_cost": {
+      "value": 4.4086,
+      "unit": "MEUR/yr"
+     },
+     "heat": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "cold": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     }
+    },
+    "lcoh": {
+     "value": 31.562,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 27.492,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.4579,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "lcoc": {
+     "value": 37.111,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 27.492,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.4579,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "co2": {
+     "value": 10.259,
+     "unit": "kt",
+     "direct": {
+      "value": 7.0166,
+      "unit": "kt"
+     },
+     "methane": {
+      "value": 0.0044932,
+      "unit": "kt"
+     },
+     "electricity": {
+      "value": 3.1081,
+      "unit": "kt"
+     },
+     "fuel_energy": {
+      "value": 30489.0,
+      "unit": "MWh"
+     },
+     "grid_energy": {
+      "value": 10360.0,
+      "unit": "MWh"
+     },
+     "window": {
+      "value": 365.0,
+      "unit": "d"
+     }
+    },
+    "failed_steps": 0,
+    "annualised_cost": {
+     "value": 4.4086,
+     "unit": "MEUR/yr",
+     "capex": {
+      "value": 27.492,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.4579,
+      "unit": "MEUR/yr"
+     },
+     "annuity_factor": {
+      "value": 5147.8,
+      "unit": "d"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    }
+   },
+   "verdict": "passed",
+   "families": [
+    "HackathonPlant",
+    "HeatingAbsorptionCoolingPlant",
+    "HeatingCoolingPlant",
+    "HeatingFullCoolingPlant",
+    "HeatingHeatPumpCoolingPlant",
+    "HeatingPlant"
+   ],
+   "lessons": [],
+   "origin": {
+    "run": null,
+    "source": "gemini study examples/hackathon_2026/study.json, gemini 0.6.35 (55f2ddff)"
+   },
+   "project_id": null
+  },
+  {
+   "id": "seed-hackathon_2026-HeatingAbsorptionCoolingPlant",
+   "features": {
+    "heating_peak": 30000000.0,
+    "heating_mean": 12747452.05479452,
+    "cooling_peak": 10000000.0,
+    "cooling_mean": 2710334.2465753425,
+    "heating_supply": 373.15,
+    "cooling_supply": 293.15,
+    "depth": 2500.0,
+    "step": 86400.0
+   },
+   "case": {
+    "sections": [
+     "demand",
+     "economics",
+     "format",
+     "kind",
+     "name",
+     "requirements",
+     "site",
+     "time",
+     "utilities"
+    ],
+    "services": [
+     "cooling",
+     "heating"
+    ]
+   },
+   "design": "examples/hackathon_2026 HeatingAbsorptionCoolingPlant, sized and searched (minimize lcts, 20 evaluations per doublet count, seed 0)",
+   "result": "examples/hackathon_2026/study.json: HeatingAbsorptionCoolingPlant",
+   "kpis": {
+    "heat_delivered": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_useful": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_surplus": {
+     "value": 1.8217e-12,
+     "unit": "MWh"
+    },
+    "cold_delivered": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_useful": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_surplus": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "electricity_bought": {
+     "value": 9305.8,
+     "unit": "MWh"
+    },
+    "electricity_sold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "gas_bought": {
+     "value": 5120.0,
+     "unit": "MWh"
+    },
+    "co2_emitted": {
+     "value": 6.001,
+     "unit": "kt"
+    },
+    "methane_emitted": {
+     "value": 0.0071072,
+     "unit": "kt"
+    },
+    "waste": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "chemicals": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "losses": {
+     "value": 29916.0,
+     "unit": "MWh"
+    },
+    "heating_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cooling_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cop": {
+     "value": 12.0,
+     "unit": "-"
+    },
+    "heat_pump_cop": {
+     "value": null,
+     "unit": "-",
+     "reason": "the plant has no heat pump that heats"
+    },
+    "peak_heat": {
+     "value": 30.0,
+     "unit": "MW"
+    },
+    "peak_cold": {
+     "value": 10.0,
+     "unit": "MW"
+    },
+    "geothermal_heat": {
+     "value": 95774.0,
+     "unit": "MWh"
+    },
+    "heat_pump_electricity": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "backup_heat": {
+     "value": 15893.0,
+     "unit": "MWh"
+    },
+    "unmet_heat": {
+     "value": 1.1366e-11,
+     "unit": "MWh"
+    },
+    "geothermal_heat_share": {
+     "value": 0.85767,
+     "unit": "-"
+    },
+    "geothermal_cold": {
+     "value": 22041.0,
+     "unit": "MWh"
+    },
+    "backup_cold": {
+     "value": 1701.8,
+     "unit": "MWh"
+    },
+    "unmet_cold": {
+     "value": 2.0103e-12,
+     "unit": "MWh"
+    },
+    "geothermal_cold_share": {
+     "value": 0.92832,
+     "unit": "-"
+    },
+    "boiler_heat": {
+     "value": 18325.0,
+     "unit": "MWh"
+    },
+    "capacities": {
+     "d0": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "d1": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "heat_exchanger": {
+      "kind": "heat_exchanger",
+      "capacity": {
+       "value": 1500000.0,
+       "unit": "W/K"
+      },
+      "peak": {
+       "value": null,
+       "unit": "W/K",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "heating_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "peak_boiler": {
+      "kind": "boiler",
+      "capacity": {
+       "value": 30.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 7.1925,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.23975,
+       "unit": "-"
+      }
+     },
+     "absorption_chiller": {
+      "kind": "absorption_chiller",
+      "capacity": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "heating_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "cooling_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "cooling_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "absorption_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 40.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 24.386,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.60964,
+       "unit": "-"
+      }
+     }
+    },
+    "capex": {
+     "value": 27.776,
+     "unit": "MEUR",
+     "modules": {
+      "d0": {
+       "value": 0.23199,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d0.well": {
+       "value": 3.588,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.riser": {
+       "value": 0.43921,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.injector": {
+       "value": 4.0272,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1": {
+       "value": 0.23199,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d1.well": {
+       "value": 3.588,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.riser": {
+       "value": 0.43921,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.injector": {
+       "value": 4.0272,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "degasser": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "degasser"
+      },
+      "heat_exchanger": {
+       "value": 0.75,
+       "unit": "MEUR",
+       "kind": "heat_exchanger"
+      },
+      "injection_pump": {
+       "value": 0.28115,
+       "unit": "MEUR",
+       "kind": "injection_pump"
+      },
+      "heating_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "peak_boiler": {
+       "value": 1.8219,
+       "unit": "MEUR",
+       "kind": "boiler"
+      },
+      "absorption_chiller": {
+       "value": 3.0,
+       "unit": "MEUR",
+       "kind": "absorption_chiller"
+      },
+      "heating_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "cooling_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "cooling_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "gas_makeup": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "gas_makeup"
+      },
+      "flare": {
+       "value": 0.1,
+       "unit": "MEUR",
+       "kind": "flare"
+      },
+      "absorption_cooler": {
+       "value": 4.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      }
+     },
+     "price_year": {
+      "value": 2015,
+      "unit": "-"
+     }
+    },
+    "opex": {
+     "value": 1.9505,
+     "unit": "MEUR/yr",
+     "components": {
+      "fixed": {
+       "value": 0.4067,
+       "unit": "MEUR/yr"
+      },
+      "electricity": {
+       "value": 0.98476,
+       "unit": "MEUR/yr"
+      },
+      "fuel": {
+       "value": 0.20453,
+       "unit": "MEUR/yr"
+      },
+      "waste": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "chemical": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "co2": {
+       "value": 0.35456,
+       "unit": "MEUR/yr"
+      }
+     },
+     "fixed_by_kind": {
+      "production_pump": {
+       "value": 0.0092796,
+       "unit": "MEUR/yr"
+      },
+      "drilling": {
+       "value": 0.16109,
+       "unit": "MEUR/yr"
+      },
+      "degasser": {
+       "value": 0.02,
+       "unit": "MEUR/yr"
+      },
+      "heat_exchanger": {
+       "value": 0.0075,
+       "unit": "MEUR/yr"
+      },
+      "injection_pump": {
+       "value": 0.0056231,
+       "unit": "MEUR/yr"
+      },
+      "pipe": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "boiler": {
+       "value": 0.059212,
+       "unit": "MEUR/yr"
+      },
+      "absorption_chiller": {
+       "value": 0.06,
+       "unit": "MEUR/yr"
+      },
+      "gas_makeup": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "flare": {
+       "value": 0.002,
+       "unit": "MEUR/yr"
+      },
+      "cooler": {
+       "value": 0.08,
+       "unit": "MEUR/yr"
+      }
+     }
+    },
+    "lcts": {
+     "value": 28.939,
+     "unit": "EUR/MWh",
+     "annualised_cost": {
+      "value": 3.9213,
+      "unit": "MEUR/yr"
+     },
+     "heat": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "cold": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     }
+    },
+    "lcoh": {
+     "value": 28.073,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 27.776,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 1.9505,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "lcoc": {
+     "value": 33.009,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 27.776,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 1.9505,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "co2": {
+     "value": 9.0045,
+     "unit": "kt",
+     "direct": {
+      "value": 6.001,
+      "unit": "kt"
+     },
+     "methane": {
+      "value": 0.0071072,
+      "unit": "kt"
+     },
+     "electricity": {
+      "value": 2.7917,
+      "unit": "kt"
+     },
+     "fuel_energy": {
+      "value": 25198.0,
+      "unit": "MWh"
+     },
+     "grid_energy": {
+      "value": 9305.8,
+      "unit": "MWh"
+     },
+     "window": {
+      "value": 365.0,
+      "unit": "d"
+     }
+    },
+    "failed_steps": 0,
+    "annualised_cost": {
+     "value": 3.9213,
+     "unit": "MEUR/yr",
+     "capex": {
+      "value": 27.776,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 1.9505,
+      "unit": "MEUR/yr"
+     },
+     "annuity_factor": {
+      "value": 5147.8,
+      "unit": "d"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    }
+   },
+   "verdict": "passed",
+   "families": [
+    "HackathonPlant",
+    "HeatingAbsorptionCoolingPlant",
+    "HeatingCoolingPlant",
+    "HeatingFullCoolingPlant",
+    "HeatingHeatPumpCoolingPlant",
+    "HeatingPlant"
+   ],
+   "lessons": [],
+   "origin": {
+    "run": null,
+    "source": "gemini study examples/hackathon_2026/study.json, gemini 0.6.35 (55f2ddff)"
+   },
+   "project_id": null
+  },
+  {
+   "id": "seed-hackathon_2026-HeatingCoolingPlant",
+   "features": {
+    "heating_peak": 30000000.0,
+    "heating_mean": 12747452.05479452,
+    "cooling_peak": 10000000.0,
+    "cooling_mean": 2710334.2465753425,
+    "heating_supply": 373.15,
+    "cooling_supply": 293.15,
+    "depth": 2500.0,
+    "step": 86400.0
+   },
+   "case": {
+    "sections": [
+     "demand",
+     "economics",
+     "format",
+     "kind",
+     "name",
+     "requirements",
+     "site",
+     "time",
+     "utilities"
+    ],
+    "services": [
+     "cooling",
+     "heating"
+    ]
+   },
+   "design": "examples/hackathon_2026 HeatingCoolingPlant, sized and searched (minimize lcts, 20 evaluations per doublet count, seed 0)",
+   "result": "examples/hackathon_2026/study.json: HeatingCoolingPlant",
+   "kpis": {
+    "heat_delivered": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_useful": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_surplus": {
+     "value": 1.844e-12,
+     "unit": "MWh"
+    },
+    "cold_delivered": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_useful": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_surplus": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "electricity_bought": {
+     "value": 14885.0,
+     "unit": "MWh"
+    },
+    "electricity_sold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "gas_bought": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "co2_emitted": {
+     "value": 5.3982,
+     "unit": "kt"
+    },
+    "methane_emitted": {
+     "value": 0.031997,
+     "unit": "kt"
+    },
+    "waste": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "chemicals": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "losses": {
+     "value": 52226.0,
+     "unit": "MWh"
+    },
+    "heating_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cooling_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cop": {
+     "value": 7.5018,
+     "unit": "-"
+    },
+    "heat_pump_cop": {
+     "value": 5.4976,
+     "unit": "-"
+    },
+    "peak_heat": {
+     "value": 30.0,
+     "unit": "MW"
+    },
+    "peak_cold": {
+     "value": 10.0,
+     "unit": "MW"
+    },
+    "geothermal_heat": {
+     "value": 106440.0,
+     "unit": "MWh"
+    },
+    "heat_pump_electricity": {
+     "value": 5231.2,
+     "unit": "MWh"
+    },
+    "backup_heat": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "unmet_heat": {
+     "value": 1.1276e-11,
+     "unit": "MWh"
+    },
+    "geothermal_heat_share": {
+     "value": 0.95315,
+     "unit": "-"
+    },
+    "geothermal_cold": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "backup_cold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "unmet_cold": {
+     "value": 2.0103e-12,
+     "unit": "MWh"
+    },
+    "geothermal_cold_share": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "boiler_heat": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "capacities": {
+     "d0": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 267.02,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 267.02,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "d1": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 267.02,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 267.02,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "d2": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 267.02,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 87.516,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 0.32775,
+       "unit": "-"
+      }
+     },
+     "heat_exchanger": {
+      "kind": "heat_exchanger",
+      "capacity": {
+       "value": 1500000.0,
+       "unit": "W/K"
+      },
+      "peak": {
+       "value": null,
+       "unit": "W/K",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "heat_pump": {
+      "kind": "heat_pump",
+      "capacity": {
+       "value": 11.91,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 9.2925,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.78025,
+       "unit": "-"
+      }
+     },
+     "heating_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "peak_boiler": {
+      "kind": "boiler",
+      "capacity": {
+       "value": 30.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 0.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.0,
+       "unit": "-"
+      }
+     },
+     "absorption_chiller": {
+      "kind": "absorption_chiller",
+      "capacity": {
+       "value": 9.1726,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 9.1726,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "adsorption_chiller": {
+      "kind": "adsorption_chiller",
+      "capacity": {
+       "value": 9.1726,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 0.82737,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.0902,
+       "unit": "-"
+      }
+     },
+     "heating_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "cooling_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "compression_chiller": {
+      "kind": "compression_chiller",
+      "capacity": {
+       "value": 9.1726,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 0.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.0,
+       "unit": "-"
+      }
+     },
+     "cooling_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "absorption_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 40.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 22.368,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.5592,
+       "unit": "-"
+      }
+     },
+     "adsorption_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 2.3482,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.23482,
+       "unit": "-"
+      }
+     },
+     "compression_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 20.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 0.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.0,
+       "unit": "-"
+      }
+     }
+    },
+    "capex": {
+     "value": 52.073,
+     "unit": "MEUR",
+     "modules": {
+      "d0": {
+       "value": 0.18849,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d0.well": {
+       "value": 3.4704,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.riser": {
+       "value": 0.40656,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.injector": {
+       "value": 3.877,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1": {
+       "value": 0.18849,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d1.well": {
+       "value": 3.4704,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.riser": {
+       "value": 0.40656,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.injector": {
+       "value": 3.877,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d2": {
+       "value": 0.18849,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d2.well": {
+       "value": 3.4704,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d2.riser": {
+       "value": 0.40656,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d2.injector": {
+       "value": 3.877,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "degasser": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "degasser"
+      },
+      "heat_exchanger": {
+       "value": 0.75,
+       "unit": "MEUR",
+       "kind": "heat_exchanger"
+      },
+      "heat_pump": {
+       "value": 8.7877,
+       "unit": "MEUR",
+       "kind": "heat_pump"
+      },
+      "injection_pump": {
+       "value": 0.28115,
+       "unit": "MEUR",
+       "kind": "injection_pump"
+      },
+      "heating_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "peak_boiler": {
+       "value": 1.8219,
+       "unit": "MEUR",
+       "kind": "boiler"
+      },
+      "absorption_chiller": {
+       "value": 2.7518,
+       "unit": "MEUR",
+       "kind": "absorption_chiller"
+      },
+      "adsorption_chiller": {
+       "value": 2.7518,
+       "unit": "MEUR",
+       "kind": "adsorption_chiller"
+      },
+      "heating_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "cooling_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "compression_chiller": {
+       "value": 2.7518,
+       "unit": "MEUR",
+       "kind": "compression_chiller"
+      },
+      "cooling_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "gas_makeup": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "gas_makeup"
+      },
+      "flare": {
+       "value": 0.1,
+       "unit": "MEUR",
+       "kind": "flare"
+      },
+      "absorption_cooler": {
+       "value": 4.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      },
+      "adsorption_cooler": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      },
+      "compression_cooler": {
+       "value": 2.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      }
+     },
+     "price_year": {
+      "value": 2015,
+      "unit": "-"
+     }
+    },
+    "opex": {
+     "value": 2.6027,
+     "unit": "MEUR/yr",
+     "components": {
+      "fixed": {
+       "value": 0.66505,
+       "unit": "MEUR/yr"
+      },
+      "electricity": {
+       "value": 1.5752,
+       "unit": "MEUR/yr"
+      },
+      "fuel": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "waste": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "chemical": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "co2": {
+       "value": 0.36248,
+       "unit": "MEUR/yr"
+      }
+     },
+     "fixed_by_kind": {
+      "production_pump": {
+       "value": 0.01131,
+       "unit": "MEUR/yr"
+      },
+      "drilling": {
+       "value": 0.23262,
+       "unit": "MEUR/yr"
+      },
+      "degasser": {
+       "value": 0.02,
+       "unit": "MEUR/yr"
+      },
+      "heat_exchanger": {
+       "value": 0.0075,
+       "unit": "MEUR/yr"
+      },
+      "heat_pump": {
+       "value": 0.019676,
+       "unit": "MEUR/yr"
+      },
+      "injection_pump": {
+       "value": 0.0056231,
+       "unit": "MEUR/yr"
+      },
+      "pipe": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "boiler": {
+       "value": 0.059212,
+       "unit": "MEUR/yr"
+      },
+      "absorption_chiller": {
+       "value": 0.055036,
+       "unit": "MEUR/yr"
+      },
+      "adsorption_chiller": {
+       "value": 0.055036,
+       "unit": "MEUR/yr"
+      },
+      "compression_chiller": {
+       "value": 0.055036,
+       "unit": "MEUR/yr"
+      },
+      "gas_makeup": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "flare": {
+       "value": 0.002,
+       "unit": "MEUR/yr"
+      },
+      "cooler": {
+       "value": 0.14,
+       "unit": "MEUR/yr"
+      }
+     }
+    },
+    "lcts": {
+     "value": 46.475,
+     "unit": "EUR/MWh",
+     "annualised_cost": {
+      "value": 6.2975,
+      "unit": "MEUR/yr"
+     },
+     "heat": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "cold": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     }
+    },
+    "lcoh": {
+     "value": 45.085,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 52.073,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.6027,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "lcoc": {
+     "value": 53.012,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 52.073,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.6027,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "co2": {
+     "value": 10.817,
+     "unit": "kt",
+     "direct": {
+      "value": 5.3982,
+      "unit": "kt"
+     },
+     "methane": {
+      "value": 0.031997,
+      "unit": "kt"
+     },
+     "electricity": {
+      "value": 4.4656,
+      "unit": "kt"
+     },
+     "fuel_energy": {
+      "value": 21780.0,
+      "unit": "MWh"
+     },
+     "grid_energy": {
+      "value": 14885.0,
+      "unit": "MWh"
+     },
+     "window": {
+      "value": 365.0,
+      "unit": "d"
+     }
+    },
+    "failed_steps": 0,
+    "annualised_cost": {
+     "value": 6.2975,
+     "unit": "MEUR/yr",
+     "capex": {
+      "value": 52.073,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.6027,
+      "unit": "MEUR/yr"
+     },
+     "annuity_factor": {
+      "value": 5147.8,
+      "unit": "d"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    }
+   },
+   "verdict": "passed",
+   "families": [
+    "HackathonPlant",
+    "HeatingAbsorptionCoolingPlant",
+    "HeatingCoolingPlant",
+    "HeatingFullCoolingPlant",
+    "HeatingHeatPumpCoolingPlant",
+    "HeatingPlant"
+   ],
+   "lessons": [],
+   "origin": {
+    "run": null,
+    "source": "gemini study examples/hackathon_2026/study.json, gemini 0.6.35 (55f2ddff)"
+   },
+   "project_id": null
+  },
+  {
+   "id": "seed-hackathon_2026-HeatingFullCoolingPlant",
+   "features": {
+    "heating_peak": 30000000.0,
+    "heating_mean": 12747452.05479452,
+    "cooling_peak": 10000000.0,
+    "cooling_mean": 2710334.2465753425,
+    "heating_supply": 373.15,
+    "cooling_supply": 293.15,
+    "depth": 2500.0,
+    "step": 86400.0
+   },
+   "case": {
+    "sections": [
+     "demand",
+     "economics",
+     "format",
+     "kind",
+     "name",
+     "requirements",
+     "site",
+     "time",
+     "utilities"
+    ],
+    "services": [
+     "cooling",
+     "heating"
+    ]
+   },
+   "design": "examples/hackathon_2026 HeatingFullCoolingPlant, sized and searched (minimize lcts, 20 evaluations per doublet count, seed 0)",
+   "result": "examples/hackathon_2026/study.json: HeatingFullCoolingPlant",
+   "kpis": {
+    "heat_delivered": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_useful": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_surplus": {
+     "value": 2.2016e-12,
+     "unit": "MWh"
+    },
+    "cold_delivered": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_useful": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_surplus": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "electricity_bought": {
+     "value": 9580.5,
+     "unit": "MWh"
+    },
+    "electricity_sold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "gas_bought": {
+     "value": 11196.0,
+     "unit": "MWh"
+    },
+    "co2_emitted": {
+     "value": 7.3017,
+     "unit": "kt"
+    },
+    "methane_emitted": {
+     "value": 0.00060756,
+     "unit": "kt"
+    },
+    "waste": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "chemicals": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "losses": {
+     "value": 25504.0,
+     "unit": "MWh"
+    },
+    "heating_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cooling_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cop": {
+     "value": 11.656,
+     "unit": "-"
+    },
+    "heat_pump_cop": {
+     "value": null,
+     "unit": "-",
+     "reason": "the plant has no heat pump that heats"
+    },
+    "peak_heat": {
+     "value": 30.0,
+     "unit": "MW"
+    },
+    "peak_cold": {
+     "value": 10.0,
+     "unit": "MW"
+    },
+    "geothermal_heat": {
+     "value": 88687.0,
+     "unit": "MWh"
+    },
+    "heat_pump_electricity": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "backup_heat": {
+     "value": 22981.0,
+     "unit": "MWh"
+    },
+    "unmet_heat": {
+     "value": 1.0651e-11,
+     "unit": "MWh"
+    },
+    "geothermal_heat_share": {
+     "value": 0.7942,
+     "unit": "-"
+    },
+    "geothermal_cold": {
+     "value": 19165.0,
+     "unit": "MWh"
+    },
+    "backup_cold": {
+     "value": 4577.1,
+     "unit": "MWh"
+    },
+    "unmet_cold": {
+     "value": 2.0103e-12,
+     "unit": "MWh"
+    },
+    "geothermal_cold_share": {
+     "value": 0.80722,
+     "unit": "-"
+    },
+    "boiler_heat": {
+     "value": 28034.0,
+     "unit": "MWh"
+    },
+    "capacities": {
+     "d0": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "d1": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 300.0,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "heat_exchanger": {
+      "kind": "heat_exchanger",
+      "capacity": {
+       "value": 1500000.0,
+       "unit": "W/K"
+      },
+      "peak": {
+       "value": null,
+       "unit": "W/K",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "heating_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "peak_boiler": {
+      "kind": "boiler",
+      "capacity": {
+       "value": 30.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 8.8559,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.2952,
+       "unit": "-"
+      }
+     },
+     "absorption_chiller": {
+      "kind": "absorption_chiller",
+      "capacity": {
+       "value": 3.7702,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 3.7702,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "adsorption_chiller": {
+      "kind": "adsorption_chiller",
+      "capacity": {
+       "value": 3.7702,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 3.3786,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.89612,
+       "unit": "-"
+      }
+     },
+     "heating_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "cooling_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "compression_chiller": {
+      "kind": "compression_chiller",
+      "capacity": {
+       "value": 3.7702,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 2.8512,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.75625,
+       "unit": "-"
+      }
+     },
+     "cooling_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "absorption_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 40.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 9.1939,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.22985,
+       "unit": "-"
+      }
+     },
+     "adsorption_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 9.589,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.9589,
+       "unit": "-"
+      }
+     },
+     "compression_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 20.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 3.0457,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.15229,
+       "unit": "-"
+      }
+     }
+    },
+    "capex": {
+     "value": 30.571,
+     "unit": "MEUR",
+     "modules": {
+      "d0": {
+       "value": 0.23129,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d0.well": {
+       "value": 3.4389,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.riser": {
+       "value": 0.43921,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.injector": {
+       "value": 3.8781,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1": {
+       "value": 0.23129,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d1.well": {
+       "value": 3.4389,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.riser": {
+       "value": 0.43921,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.injector": {
+       "value": 3.8781,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "degasser": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "degasser"
+      },
+      "heat_exchanger": {
+       "value": 0.75,
+       "unit": "MEUR",
+       "kind": "heat_exchanger"
+      },
+      "injection_pump": {
+       "value": 0.28115,
+       "unit": "MEUR",
+       "kind": "injection_pump"
+      },
+      "heating_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "peak_boiler": {
+       "value": 1.8219,
+       "unit": "MEUR",
+       "kind": "boiler"
+      },
+      "absorption_chiller": {
+       "value": 1.1311,
+       "unit": "MEUR",
+       "kind": "absorption_chiller"
+      },
+      "adsorption_chiller": {
+       "value": 1.1311,
+       "unit": "MEUR",
+       "kind": "adsorption_chiller"
+      },
+      "heating_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "cooling_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "compression_chiller": {
+       "value": 1.1311,
+       "unit": "MEUR",
+       "kind": "compression_chiller"
+      },
+      "cooling_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "gas_makeup": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "gas_makeup"
+      },
+      "flare": {
+       "value": 0.1,
+       "unit": "MEUR",
+       "kind": "flare"
+      },
+      "absorption_cooler": {
+       "value": 4.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      },
+      "adsorption_cooler": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      },
+      "compression_cooler": {
+       "value": 2.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      }
+     },
+     "price_year": {
+      "value": 2015,
+      "unit": "-"
+     }
+    },
+    "opex": {
+     "value": 2.3474,
+     "unit": "MEUR/yr",
+     "components": {
+      "fixed": {
+       "value": 0.46857,
+       "unit": "MEUR/yr"
+      },
+      "electricity": {
+       "value": 1.0138,
+       "unit": "MEUR/yr"
+      },
+      "fuel": {
+       "value": 0.44726,
+       "unit": "MEUR/yr"
+      },
+      "waste": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "chemical": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "co2": {
+       "value": 0.41773,
+       "unit": "MEUR/yr"
+      }
+     },
+     "fixed_by_kind": {
+      "production_pump": {
+       "value": 0.0092518,
+       "unit": "MEUR/yr"
+      },
+      "drilling": {
+       "value": 0.15512,
+       "unit": "MEUR/yr"
+      },
+      "degasser": {
+       "value": 0.02,
+       "unit": "MEUR/yr"
+      },
+      "heat_exchanger": {
+       "value": 0.0075,
+       "unit": "MEUR/yr"
+      },
+      "injection_pump": {
+       "value": 0.0056231,
+       "unit": "MEUR/yr"
+      },
+      "pipe": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "boiler": {
+       "value": 0.059212,
+       "unit": "MEUR/yr"
+      },
+      "absorption_chiller": {
+       "value": 0.022621,
+       "unit": "MEUR/yr"
+      },
+      "adsorption_chiller": {
+       "value": 0.022621,
+       "unit": "MEUR/yr"
+      },
+      "compression_chiller": {
+       "value": 0.022621,
+       "unit": "MEUR/yr"
+      },
+      "gas_makeup": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "flare": {
+       "value": 0.002,
+       "unit": "MEUR/yr"
+      },
+      "cooler": {
+       "value": 0.14,
+       "unit": "MEUR/yr"
+      }
+     }
+    },
+    "lcts": {
+     "value": 33.331,
+     "unit": "EUR/MWh",
+     "annualised_cost": {
+      "value": 4.5165,
+      "unit": "MEUR/yr"
+     },
+     "heat": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "cold": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     }
+    },
+    "lcoh": {
+     "value": 32.335,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 30.571,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.3474,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "lcoc": {
+     "value": 38.02,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 30.571,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.3474,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "co2": {
+     "value": 10.194,
+     "unit": "kt",
+     "direct": {
+      "value": 7.3017,
+      "unit": "kt"
+     },
+     "methane": {
+      "value": 0.00060756,
+      "unit": "kt"
+     },
+     "electricity": {
+      "value": 2.8742,
+      "unit": "kt"
+     },
+     "fuel_energy": {
+      "value": 31563.0,
+      "unit": "MWh"
+     },
+     "grid_energy": {
+      "value": 9580.5,
+      "unit": "MWh"
+     },
+     "window": {
+      "value": 365.0,
+      "unit": "d"
+     }
+    },
+    "failed_steps": 0,
+    "annualised_cost": {
+     "value": 4.5165,
+     "unit": "MEUR/yr",
+     "capex": {
+      "value": 30.571,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.3474,
+      "unit": "MEUR/yr"
+     },
+     "annuity_factor": {
+      "value": 5147.8,
+      "unit": "d"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    }
+   },
+   "verdict": "passed",
+   "families": [
+    "HackathonPlant",
+    "HeatingAbsorptionCoolingPlant",
+    "HeatingCoolingPlant",
+    "HeatingFullCoolingPlant",
+    "HeatingHeatPumpCoolingPlant",
+    "HeatingPlant"
+   ],
+   "lessons": [],
+   "origin": {
+    "run": null,
+    "source": "gemini study examples/hackathon_2026/study.json, gemini 0.6.35 (55f2ddff)"
+   },
+   "project_id": null
+  },
+  {
+   "id": "seed-hackathon_2026-HeatingHeatPumpCoolingPlant",
+   "features": {
+    "heating_peak": 30000000.0,
+    "heating_mean": 12747452.05479452,
+    "cooling_peak": 10000000.0,
+    "cooling_mean": 2710334.2465753425,
+    "heating_supply": 373.15,
+    "cooling_supply": 293.15,
+    "depth": 2500.0,
+    "step": 86400.0
+   },
+   "case": {
+    "sections": [
+     "demand",
+     "economics",
+     "format",
+     "kind",
+     "name",
+     "requirements",
+     "site",
+     "time",
+     "utilities"
+    ],
+    "services": [
+     "cooling",
+     "heating"
+    ]
+   },
+   "design": "examples/hackathon_2026 HeatingHeatPumpCoolingPlant, sized and searched (minimize lcts, 20 evaluations per doublet count, seed 0)",
+   "result": "examples/hackathon_2026/study.json: HeatingHeatPumpCoolingPlant",
+   "kpis": {
+    "heat_delivered": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_useful": {
+     "value": 111670.0,
+     "unit": "MWh"
+    },
+    "heat_surplus": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "cold_delivered": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_useful": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "cold_surplus": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "electricity_bought": {
+     "value": 9949.4,
+     "unit": "MWh"
+    },
+    "electricity_sold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "gas_bought": {
+     "value": 19291.0,
+     "unit": "MWh"
+    },
+    "co2_emitted": {
+     "value": 7.1385,
+     "unit": "kt"
+    },
+    "methane_emitted": {
+     "value": 0.0052739,
+     "unit": "kt"
+    },
+    "waste": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "chemicals": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "losses": {
+     "value": 22777.0,
+     "unit": "MWh"
+    },
+    "heating_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cooling_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cop": {
+     "value": 11.224,
+     "unit": "-"
+    },
+    "heat_pump_cop": {
+     "value": 5.3741,
+     "unit": "-"
+    },
+    "peak_heat": {
+     "value": 30.0,
+     "unit": "MW"
+    },
+    "peak_cold": {
+     "value": 10.0,
+     "unit": "MW"
+    },
+    "geothermal_heat": {
+     "value": 82037.0,
+     "unit": "MWh"
+    },
+    "heat_pump_electricity": {
+     "value": 3769.7,
+     "unit": "MWh"
+    },
+    "backup_heat": {
+     "value": 25861.0,
+     "unit": "MWh"
+    },
+    "unmet_heat": {
+     "value": 9.5218e-12,
+     "unit": "MWh"
+    },
+    "geothermal_heat_share": {
+     "value": 0.73466,
+     "unit": "-"
+    },
+    "geothermal_cold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "backup_cold": {
+     "value": 23743.0,
+     "unit": "MWh"
+    },
+    "unmet_cold": {
+     "value": 2.0103e-12,
+     "unit": "MWh"
+    },
+    "geothermal_cold_share": {
+     "value": 0.0,
+     "unit": "-"
+    },
+    "boiler_heat": {
+     "value": 25861.0,
+     "unit": "MWh"
+    },
+    "capacities": {
+     "d0": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 175.0,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 175.0,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "d1": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 175.0,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 175.0,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "heat_exchanger": {
+      "kind": "heat_exchanger",
+      "capacity": {
+       "value": 1500000.0,
+       "unit": "W/K"
+      },
+      "peak": {
+       "value": null,
+       "unit": "W/K",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "heat_pump": {
+      "kind": "heat_pump",
+      "capacity": {
+       "value": 3.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 3.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "heating_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "peak_boiler": {
+      "kind": "boiler",
+      "capacity": {
+       "value": 30.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 14.23,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.47435,
+       "unit": "-"
+      }
+     },
+     "heating_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 365 of 365 steps"
+      }
+     },
+     "cooling_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "compression_chiller": {
+      "kind": "compression_chiller",
+      "capacity": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 10.0,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "cooling_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 100.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 219 of 365 steps"
+      }
+     },
+     "compression_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 20.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 10.777,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.53885,
+       "unit": "-"
+      }
+     }
+    },
+    "capex": {
+     "value": 25.852,
+     "unit": "MEUR",
+     "modules": {
+      "d0": {
+       "value": 0.092737,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d0.well": {
+       "value": 3.2471,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.riser": {
+       "value": 0.31545,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.injector": {
+       "value": 3.5625,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1": {
+       "value": 0.092737,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d1.well": {
+       "value": 3.2471,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.riser": {
+       "value": 0.31545,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d1.injector": {
+       "value": 3.5625,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "degasser": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "degasser"
+      },
+      "heat_exchanger": {
+       "value": 0.75,
+       "unit": "MEUR",
+       "kind": "heat_exchanger"
+      },
+      "heat_pump": {
+       "value": 2.2136,
+       "unit": "MEUR",
+       "kind": "heat_pump"
+      },
+      "injection_pump": {
+       "value": 0.28115,
+       "unit": "MEUR",
+       "kind": "injection_pump"
+      },
+      "heating_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "peak_boiler": {
+       "value": 1.8219,
+       "unit": "MEUR",
+       "kind": "boiler"
+      },
+      "heating_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "cooling_return_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "compression_chiller": {
+       "value": 3.0,
+       "unit": "MEUR",
+       "kind": "compression_chiller"
+      },
+      "cooling_supply_pipe": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "gas_makeup": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "gas_makeup"
+      },
+      "flare": {
+       "value": 0.1,
+       "unit": "MEUR",
+       "kind": "flare"
+      },
+      "compression_cooler": {
+       "value": 2.0,
+       "unit": "MEUR",
+       "kind": "cooler"
+      }
+     },
+     "price_year": {
+      "value": 2015,
+      "unit": "-"
+     }
+    },
+    "opex": {
+     "value": 2.5874,
+     "unit": "MEUR/yr",
+     "components": {
+      "fixed": {
+       "value": 0.3475,
+       "unit": "MEUR/yr"
+      },
+      "electricity": {
+       "value": 1.0529,
+       "unit": "MEUR/yr"
+      },
+      "fuel": {
+       "value": 0.77064,
+       "unit": "MEUR/yr"
+      },
+      "waste": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "chemical": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "co2": {
+       "value": 0.41636,
+       "unit": "MEUR/yr"
+      }
+     },
+     "fixed_by_kind": {
+      "production_pump": {
+       "value": 0.0037095,
+       "unit": "MEUR/yr"
+      },
+      "drilling": {
+       "value": 0.1425,
+       "unit": "MEUR/yr"
+      },
+      "degasser": {
+       "value": 0.02,
+       "unit": "MEUR/yr"
+      },
+      "heat_exchanger": {
+       "value": 0.0075,
+       "unit": "MEUR/yr"
+      },
+      "heat_pump": {
+       "value": 0.0049562,
+       "unit": "MEUR/yr"
+      },
+      "injection_pump": {
+       "value": 0.0056231,
+       "unit": "MEUR/yr"
+      },
+      "pipe": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "boiler": {
+       "value": 0.059212,
+       "unit": "MEUR/yr"
+      },
+      "compression_chiller": {
+       "value": 0.06,
+       "unit": "MEUR/yr"
+      },
+      "gas_makeup": {
+       "value": 0.001,
+       "unit": "MEUR/yr"
+      },
+      "flare": {
+       "value": 0.002,
+       "unit": "MEUR/yr"
+      },
+      "cooler": {
+       "value": 0.04,
+       "unit": "MEUR/yr"
+      }
+     }
+    },
+    "lcts": {
+     "value": 32.631,
+     "unit": "EUR/MWh",
+     "annualised_cost": {
+      "value": 4.4216,
+      "unit": "MEUR/yr"
+     },
+     "heat": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "cold": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     }
+    },
+    "lcoh": {
+     "value": 31.655,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 25.852,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.5874,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 111740.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "lcoc": {
+     "value": 37.221,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 25.852,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.5874,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 23759.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    },
+    "co2": {
+     "value": 10.28,
+     "unit": "kt",
+     "direct": {
+      "value": 7.1385,
+      "unit": "kt"
+     },
+     "methane": {
+      "value": 0.0052739,
+      "unit": "kt"
+     },
+     "electricity": {
+      "value": 2.9848,
+      "unit": "kt"
+     },
+     "fuel_energy": {
+      "value": 32324.0,
+      "unit": "MWh"
+     },
+     "grid_energy": {
+      "value": 9949.4,
+      "unit": "MWh"
+     },
+     "window": {
+      "value": 365.0,
+      "unit": "d"
+     }
+    },
+    "failed_steps": 0,
+    "annualised_cost": {
+     "value": 4.4216,
+     "unit": "MEUR/yr",
+     "capex": {
+      "value": 25.852,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 2.5874,
+      "unit": "MEUR/yr"
+     },
+     "annuity_factor": {
+      "value": 5147.8,
+      "unit": "d"
+     },
+     "discount_rate": {
+      "value": 0.05,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 25.0,
+      "unit": "yr"
+     }
+    }
+   },
+   "verdict": "passed",
+   "families": [
+    "HackathonPlant",
+    "HeatingAbsorptionCoolingPlant",
+    "HeatingCoolingPlant",
+    "HeatingFullCoolingPlant",
+    "HeatingHeatPumpCoolingPlant",
+    "HeatingPlant"
+   ],
+   "lessons": [],
+   "origin": {
+    "run": null,
+    "source": "gemini study examples/hackathon_2026/study.json, gemini 0.6.35 (55f2ddff)"
+   },
+   "project_id": null
+  },
+  {
+   "id": "seed-shallow_district-HeatingHeatPumpCoolingPlant",
+   "features": {
+    "heating_peak": 3034000.0,
+    "heating_mean": 1372392.857142857,
+    "cooling_peak": 150000.0,
+    "cooling_mean": 108833.33333333333,
+    "heating_supply": 338.15,
+    "cooling_supply": 289.15,
+    "depth": 1300.0,
+    "step": 3600.0
+   },
+   "case": {
+    "sections": [
+     "demand",
+     "economics",
+     "format",
+     "kind",
+     "name",
+     "requirements",
+     "site",
+     "time",
+     "utilities"
+    ],
+    "services": [
+     "cooling",
+     "heating"
+    ]
+   },
+   "design": "examples/shallow_district HeatingHeatPumpCoolingPlant, sized and searched (run None, None evaluations per doublet count, seed None)",
+   "result": "examples/shallow_district/study.json: HeatingHeatPumpCoolingPlant",
+   "kpis": {
+    "heat_delivered": {
+     "value": 691.69,
+     "unit": "MWh"
+    },
+    "heat_useful": {
+     "value": 691.69,
+     "unit": "MWh"
+    },
+    "heat_surplus": {
+     "value": 1.8685e-14,
+     "unit": "MWh"
+    },
+    "cold_delivered": {
+     "value": 54.852,
+     "unit": "MWh"
+    },
+    "cold_useful": {
+     "value": 54.852,
+     "unit": "MWh"
+    },
+    "cold_surplus": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "electricity_bought": {
+     "value": 115.08,
+     "unit": "MWh"
+    },
+    "electricity_sold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "gas_bought": {
+     "value": 34.145,
+     "unit": "MWh"
+    },
+    "co2_emitted": {
+     "value": 0.013969,
+     "unit": "kt"
+    },
+    "methane_emitted": {
+     "value": 4.73e-05,
+     "unit": "kt"
+    },
+    "waste": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "chemicals": {
+     "value": null,
+     "unit": "kt",
+     "reason": "the plant has no module at its edge that shows it"
+    },
+    "losses": {
+     "value": 128.09,
+     "unit": "MWh"
+    },
+    "heating_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cooling_coverage": {
+     "value": 1.0,
+     "unit": "-"
+    },
+    "cop": {
+     "value": 6.0103,
+     "unit": "-"
+    },
+    "heat_pump_cop": {
+     "value": 5.3248,
+     "unit": "-"
+    },
+    "peak_heat": {
+     "value": 3.034,
+     "unit": "MW"
+    },
+    "peak_cold": {
+     "value": 0.15,
+     "unit": "MW"
+    },
+    "geothermal_heat": {
+     "value": 594.24,
+     "unit": "MWh"
+    },
+    "heat_pump_electricity": {
+     "value": 65.55,
+     "unit": "MWh"
+    },
+    "backup_heat": {
+     "value": 31.894,
+     "unit": "MWh"
+    },
+    "unmet_heat": {
+     "value": 8.0327e-15,
+     "unit": "MWh"
+    },
+    "geothermal_heat_share": {
+     "value": 0.85912,
+     "unit": "-"
+    },
+    "geothermal_cold": {
+     "value": 0.0,
+     "unit": "MWh"
+    },
+    "backup_cold": {
+     "value": 54.852,
+     "unit": "MWh"
+    },
+    "unmet_cold": {
+     "value": 1.2224e-15,
+     "unit": "MWh"
+    },
+    "geothermal_cold_share": {
+     "value": 0.0,
+     "unit": "-"
+    },
+    "boiler_heat": {
+     "value": 31.894,
+     "unit": "MWh"
+    },
+    "capacities": {
+     "d0": {
+      "kind": "production_pump",
+      "capacity": {
+       "value": 130.0,
+       "unit": "m3/h"
+      },
+      "peak": {
+       "value": 116.32,
+       "unit": "m3/h"
+      },
+      "share": {
+       "value": 0.8948,
+       "unit": "-"
+      }
+     },
+     "heat_exchanger": {
+      "kind": "heat_exchanger",
+      "capacity": {
+       "value": 250000.0,
+       "unit": "W/K"
+      },
+      "peak": {
+       "value": null,
+       "unit": "W/K",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 504 of 504 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in W/K is not a use the run measures; the module ran 504 of 504 steps"
+      }
+     },
+     "heat_pump": {
+      "kind": "heat_pump",
+      "capacity": {
+       "value": 1.6,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 1.6,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 1.0,
+       "unit": "-"
+      }
+     },
+     "heating_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 400.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      }
+     },
+     "peak_boiler": {
+      "kind": "boiler",
+      "capacity": {
+       "value": 3.5,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 0.739,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.21114,
+       "unit": "-"
+      }
+     },
+     "heating_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 400.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      }
+     },
+     "cooling_return_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 400.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      }
+     },
+     "compression_chiller": {
+      "kind": "compression_chiller",
+      "capacity": {
+       "value": 0.4,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 0.15,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.375,
+       "unit": "-"
+      }
+     },
+     "cooling_supply_pipe": {
+      "kind": "pipe",
+      "capacity": {
+       "value": 400.0,
+       "unit": "m"
+      },
+      "peak": {
+       "value": null,
+       "unit": "m",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      },
+      "share": {
+       "value": null,
+       "unit": "-",
+       "reason": "a rating in m is not a use the run measures; the module ran 504 of 504 steps"
+      }
+     },
+     "compression_cooler": {
+      "kind": "cooler",
+      "capacity": {
+       "value": 1.0,
+       "unit": "MW"
+      },
+      "peak": {
+       "value": 0.16038,
+       "unit": "MW"
+      },
+      "share": {
+       "value": 0.16038,
+       "unit": "-"
+      }
+     }
+    },
+    "capex": {
+     "value": 7.2002,
+     "unit": "MEUR",
+     "modules": {
+      "d0": {
+       "value": 0.07598,
+       "unit": "MEUR",
+       "kind": "production_pump"
+      },
+      "d0.well": {
+       "value": 1.2753,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.riser": {
+       "value": 0.33552,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "d0.injector": {
+       "value": 1.6109,
+       "unit": "MEUR",
+       "kind": "drilling"
+      },
+      "degasser": {
+       "value": 1.0,
+       "unit": "MEUR",
+       "kind": "degasser"
+      },
+      "heat_exchanger": {
+       "value": 0.125,
+       "unit": "MEUR",
+       "kind": "heat_exchanger"
+      },
+      "heat_pump": {
+       "value": 1.1806,
+       "unit": "MEUR",
+       "kind": "heat_pump"
+      },
+      "injection_pump": {
+       "value": 0.03925,
+       "unit": "MEUR",
+       "kind": "injection_pump"
+      },
+      "heating_return_pipe": {
+       "value": 0.2,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "peak_boiler": {
+       "value": 0.21255,
+       "unit": "MEUR",
+       "kind": "boiler"
+      },
+      "heating_supply_pipe": {
+       "value": 0.2,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "cooling_return_pipe": {
+       "value": 0.2,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "compression_chiller": {
+       "value": 0.29514,
+       "unit": "MEUR",
+       "kind": "compression_chiller"
+      },
+      "cooling_supply_pipe": {
+       "value": 0.2,
+       "unit": "MEUR",
+       "kind": "pipe"
+      },
+      "gas_makeup": {
+       "value": 0.05,
+       "unit": "MEUR",
+       "kind": "gas_makeup"
+      },
+      "flare": {
+       "value": 0.1,
+       "unit": "MEUR",
+       "kind": "flare"
+      },
+      "compression_cooler": {
+       "value": 0.1,
+       "unit": "MEUR",
+       "kind": "cooler"
+      }
+     },
+     "price_year": {
+      "value": 2015,
+      "unit": "-"
+     }
+    },
+    "opex": {
+     "value": 0.35341,
+     "unit": "MEUR/yr",
+     "components": {
+      "fixed": {
+       "value": 0.080549,
+       "unit": "MEUR/yr"
+      },
+      "electricity": {
+       "value": 0.2402,
+       "unit": "MEUR/yr"
+      },
+      "fuel": {
+       "value": 0.032663,
+       "unit": "MEUR/yr"
+      },
+      "waste": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      },
+      "chemical": {
+       "value": 0.0,
+       "unit": "MEUR/yr"
+      }
+     },
+     "fixed_by_kind": {
+      "production_pump": {
+       "value": 0.0011397,
+       "unit": "MEUR/yr"
+      },
+      "drilling": {
+       "value": 0.032217,
+       "unit": "MEUR/yr"
+      },
+      "degasser": {
+       "value": 0.015,
+       "unit": "MEUR/yr"
+      },
+      "heat_exchanger": {
+       "value": 0.001875,
+       "unit": "MEUR/yr"
+      },
+      "heat_pump": {
+       "value": 0.0026433,
+       "unit": "MEUR/yr"
+      },
+      "injection_pump": {
+       "value": 0.00058875,
+       "unit": "MEUR/yr"
+      },
+      "pipe": {
+       "value": 0.012,
+       "unit": "MEUR/yr"
+      },
+      "boiler": {
+       "value": 0.006908,
+       "unit": "MEUR/yr"
+      },
+      "compression_chiller": {
+       "value": 0.0044272,
+       "unit": "MEUR/yr"
+      },
+      "gas_makeup": {
+       "value": 0.00075,
+       "unit": "MEUR/yr"
+      },
+      "flare": {
+       "value": 0.0015,
+       "unit": "MEUR/yr"
+      },
+      "cooler": {
+       "value": 0.0015,
+       "unit": "MEUR/yr"
+      }
+     }
+    },
+    "lcts": {
+     "value": 59.286,
+     "unit": "EUR/MWh",
+     "annualised_cost": {
+      "value": 0.7698,
+      "unit": "MEUR/yr"
+     },
+     "heat": {
+      "value": 12030.0,
+      "unit": "MWh/yr"
+     },
+     "cold": {
+      "value": 954.03,
+      "unit": "MWh/yr"
+     }
+    },
+    "lcoh": {
+     "value": 51.19,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 7.2002,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 0.35341,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 12030.0,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.04,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 30.0,
+      "unit": "yr"
+     }
+    },
+    "lcoc": {
+     "value": 161.38,
+     "unit": "EUR/MWh",
+     "capex": {
+      "value": 7.2002,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 0.35341,
+      "unit": "MEUR/yr"
+     },
+     "energy": {
+      "value": 954.03,
+      "unit": "MWh/yr"
+     },
+     "discount_rate": {
+      "value": 0.04,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 30.0,
+      "unit": "yr"
+     }
+    },
+    "co2": {
+     "value": 0.056808,
+     "unit": "kt",
+     "direct": {
+      "value": 0.013969,
+      "unit": "kt"
+     },
+     "methane": {
+      "value": 4.73e-05,
+      "unit": "kt"
+     },
+     "electricity": {
+      "value": 0.04143,
+      "unit": "kt"
+     },
+     "fuel_energy": {
+      "value": 66.864,
+      "unit": "MWh"
+     },
+     "grid_energy": {
+      "value": 115.08,
+      "unit": "MWh"
+     },
+     "window": {
+      "value": 21.0,
+      "unit": "d"
+     }
+    },
+    "failed_steps": 0,
+    "annualised_cost": {
+     "value": 0.7698,
+     "unit": "MEUR/yr",
+     "capex": {
+      "value": 7.2002,
+      "unit": "MEUR"
+     },
+     "opex": {
+      "value": 0.35341,
+      "unit": "MEUR/yr"
+     },
+     "annuity_factor": {
+      "value": 6315.9,
+      "unit": "d"
+     },
+     "discount_rate": {
+      "value": 0.04,
+      "unit": "-"
+     },
+     "analysis_period": {
+      "value": 30.0,
+      "unit": "yr"
+     }
+    },
+    "errors": {
+     "npv": {
+      "path": "economics.revenue.heat",
+      "code": "case_incomplete",
+      "message": "economics.revenue.heat is missing; expected a value in the case (it has no default)",
+      "suggestions": [
+       "economics.revenue.heat",
+       "economics.revenue.cold"
+      ]
+     },
+     "payback": {
+      "path": "economics.revenue.heat",
+      "code": "case_incomplete",
+      "message": "economics.revenue.heat is missing; expected a value in the case (it has no default)",
+      "suggestions": [
+       "economics.revenue.heat",
+       "economics.revenue.cold"
+      ]
+     }
+    }
+   },
+   "verdict": "passed",
+   "families": [
+    "HeatingHeatPumpCoolingPlant"
+   ],
+   "lessons": [],
+   "origin": {
+    "run": null,
+    "source": "gemini study examples/shallow_district/study.json, gemini 0.6.35 (55f2ddff)"
+   },
+   "project_id": null
+  }
+ ]
+}
