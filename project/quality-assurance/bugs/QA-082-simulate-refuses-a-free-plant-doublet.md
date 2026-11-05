@@ -44,4 +44,4 @@ Root cause (2026-11-05 ~06:40 UTC, hotfix-python-II), reproduced in the prod wor
 
 ## Retest
 
-(Who, when, result.)
+functional-qa-I, 2026-11-05 ~07:10 UTC, backend 1.1.76 / geomind 0.4.72: new message in chat cb8b9b2d (project 61134432). The design lead reported 'The block is cleared - simulate now runs' and listed three real violations (ESP flow slightly over its max, negative cooling-pipe pressure, supply temperatures short at the consumer), sending them to the owning engineers. Passed: no more 'd0.gradient: no value'. Next (design loop quality) is tracked in the start-to-end run.
