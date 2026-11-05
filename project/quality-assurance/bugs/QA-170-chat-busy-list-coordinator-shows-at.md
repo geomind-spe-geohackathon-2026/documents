@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend,backend |
 | Reporter | Sahand (screenshot), Manual QA-IV |
@@ -39,4 +39,8 @@ Note: the coordinator's `parent_session` is the project lead's session (the run 
 
 ## Fix
 
+frontend 1.1.115 (commit e21ad67, bundle index-CEvw1roy.js). Cause (fact): the run's events are right (the coordinator's route session ends with run.finished, seq 8). The phantom line came from a later run-level event with agent "": `touchAgent` (`chat/view.ts`) made a node for it, never marked done, and `toAgentName("")` names it "Coordinator" (QA-146). Now an event with no agent makes no node. No backend change.
+- 2026-11-05 17:18 UTC: frontend 1.1.115, commit e21ad67
 ## Retest
+
+Not run (no tests now). Retest: during a design run the busy list has no "Coordinator · 0 steps" line.
