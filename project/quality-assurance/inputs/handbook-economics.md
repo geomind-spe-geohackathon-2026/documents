@@ -2,12 +2,13 @@
 
 How to cost a geothermal heating and cooling plant, put a carbon footprint on it, and use both to
 choose between designs. General for any case; chapter 17 works a full example on invented
-numbers. Checked against gemini 0.6.17 and the cost catalogue `knowledge/data-economics.csv` (157
+numbers. Checked against gemini 0.6.34 (chapters 2, 18) and 0.6.17 (chapter 16) and the cost catalogue `knowledge/data-economics.csv` (157
 rows) on 2026-11-05.
 
 Cite as `knowledge/handbook-economics.md` with the section (for example
 `knowledge/handbook-economics.md §6.3`). Every section stands alone: read the one you need
-(`read_knowledge` with its number). Chapter 0 is the short version for agents.
+(`read_knowledge` with its number). Chapter 0 is the short version for agents; chapter 18 holds
+the lessons from practice (source order, units, basis, analysis period, stale results, sizing).
 
 This handbook explains no tool. Running costs, sensitivity and uncertainty: skill `economics`.
 Setting economics in a case (`ask_economics`, `set_case`): skill `setting-the-case`. Defining the
@@ -72,14 +73,22 @@ recommended row and sets `currency` EUR and `price_year` 2015 itself (skill
 
 Paths under `economics.` unless marked; values at 2015 prices from `knowledge/data-economics.csv`
 (status v verified, s secondary). The unit tells gemini the basis (§16.2): a `%/yr` fixed opex
-is a share of that kind's capex, `EUR/MW/yr` an amount per capacity.
+is a share of that kind's capex, `EUR/MW/yr` an amount per capacity. The rows are split in three
+sections: capex keys (§0.4.1), opex keys (§0.4.2), and prices, revenue, finance and accounting
+(§0.4.3). Read only the one you need.
+
+`currency`, `price_year` (EUR, 2015) are set by `ask_economics`. Keys with no row: the chillers'
+`opex.per_energy`, `revenue.subsidy.capacity` (a project value). A plant needs a `capex` and an
+`opex.fixed` value for every equipment kind it holds; once one `opex.per_energy` is given, every
+producing kind of the plant needs one (§16.1).
+
+A row's unit must fit the key's basis: a pump row in EUR/W of heat is not a price per W of shaft
+power (§18.3). A row that is a proxy (`proxy` in its id) says what it stands for in the catalogue.
+
+#### 0.4.1 Capex keys
 
 | Key | Catalogue rows: `id` value_2015 unit (status v = verified, s = secondary) |
 |---|---|
-| `accounting.allocation.heat_cost_share` | `heat-cost-share-energy-fiaschi-2021` 0.87 - (s); `heat-cost-share-pes-fiaschi-2021-low` 0.71 - (s); `heat-cost-share-pes-fiaschi-2021-high` 0.76 - (s) |
-| `accounting.gwp.CH4` | `gwp-ch4-fossil-ar6-ghgp-2024` 29.8 kg CO2e/kg CH4 (s); `gwp-ch4-non-fossil-ar6-ghgp-2024` 27 kg CO2e/kg CH4 (s); `gwp-ch4-ar6-ipcc-2021-sm` 27.9 kg CO2e/kg CH4 (v) |
-| `accounting.gwp.standard` | `gwp-standard-ipcc-ar6-gwp100` IPCC AR6 GWP100  (v); `gwp-standard-eu-2020-1044-ar5` IPCC AR5 GWP100  (v) |
-| `analysis_period` | `analysis-period-dea-2019-geothermal-dk` 25 yr (v); `analysis-period-sde-2025-subsidy-period` 15 yr (s) |
 | `capex.absorption_chiller` | `absorption-chiller-ecos-2023` 0.2339 EUR/W (s); `absorption-chiller-kim-2008-low` 0.3283 EUR/W (s); `absorption-chiller-kim-2008-high` 0.4377 EUR/W (s); `absorption-chiller-bigee-105kw` 0.4091 EUR/W (s) |
 | `capex.adsorption_chiller` | `adsorption-chiller-edinburgh-2023` 0.8266 EUR/W (s); `adsorption-chiller-bigee-100-150kw` 0.8589 EUR/W (s) |
 | `capex.boiler` | `boiler-gas-dea-2018-2-3mw` 0.06 EUR/W (v) |
@@ -99,10 +108,11 @@ is a share of that kind's capex, `EUR/MW/yr` an amount per capacity.
 | `capex.pipe` | `pipe-dea-2025-distribution-5-25mw` 1149 EUR/m (v); `pipe-dea-2025-distribution-1-5mw` 636 EUR/m (v); `pipe-dea-2025-transmission-0-50mw` 49.08 EUR/MW/m (v) |
 | `capex.production_pump` | `esp-unit-2019` 763359 EUR (s); `production-pump-esp-kennisagenda-2016-250kwel` 0.7183 EUR/W electric (s); `production-pump-esp-kennisagenda-2016-500kwel` 0.5986 EUR/W electric (s); `production-pump-schlagermann-2023-332kwel` 1.546 EUR/W electric (v) |
 | `capex.thermal_storage` | `thermal-storage-tank-dea-2025-3000m3` 168.6 EUR/m3 (v); `thermal-storage-pit-dea-2025-70000m3` 64.85 EUR/m3 (v) |
-| `carbon.price` | `carbon-price-eu-ets-esma-price-2025` 57.48 EUR/t CO2e (v); `carbon-price-eu-ets-esma-price-2024` 51.56 EUR/t CO2e (v); `carbon-price-nl-co2-levy-price-2026` 61.1 EUR/t CO2 (v); `carbon-price-eu-ets-instrat-price-2025` 57.03 EUR/t CO2e (s) |
-| `discount_rate` | `discount-rate-financial-eu` 0.04 - (v); `discount-rate-social-eu` 0.03 - (v); `discount-rate-pbl-sde-2022-geothermal-nominal` 0.056 - (v); `discount-rate-pbl-sde-2022-geothermal-real` 0.04 - (v); `discount-rate-ebn-gn-2026-pbl-ort` 0.087 - (s); `discount-rate-nl-mkba-2020` 0.0225 - (v); `discount-rate-pbl-sde-2025-geothermal-nominal` 0.072 - (v); `discount-rate-pbl-sde-2025-geothermal-real` 0.051 - (v); `discount-rate-pbl-sde-2026-erratum-row4-nominal` 0.073 - (s); `discount-rate-pbl-sde-2026-erratum-row4-real` 0.052 - (s) |
-| `energy.electricity` | `electricity-nl-eurostat-price-2024-band-ie` 115 EUR/MWh (s); `electricity-nl-eurostat-price-2024-band-if` 138 EUR/MWh (s); `electricity-eu-eurostat-price-2025-band-ie` 105.8 EUR/MWh (s) |
-| `energy.gas` | `gas-nl-eurostat-price-2024-band-i5` 37.51 EUR/MWh (GCV) (s); `gas-nl-eurostat-price-2024-band-i4` 44.42 EUR/MWh (GCV) (s); `gas-eu-eurostat-price-2025-band-i4` 39.92 EUR/MWh (GCV) (s) |
+
+#### 0.4.2 Opex keys
+
+| Key | Catalogue rows: `id` value_2015 unit (status v = verified, s = secondary) |
+|---|---|
 | `opex.fixed.absorption_chiller` | `opex-absorption-chiller-iea-shc-2024` 3 %/yr (v); `opex-absorption-chiller-hre4-2017-500kw-share` 4 %/yr (s); `opex-absorption-chiller-hre4-2017-500kw-per-mw` 6800 EUR/MW/yr (s) |
 | `opex.fixed.adsorption_chiller` | `opex-adsorption-chiller-iea-shc-2024` 3 %/yr (v) |
 | `opex.fixed.boiler` | `opex-boiler-gas-dea-2018` 1950 EUR/MW/yr (v) |
@@ -128,17 +138,25 @@ is a share of that kind's capex, `EUR/MW/yr` an amount per capacity.
 | `opex.per_energy.heat_pump` | `per-energy-heat-pump-dea-ch40-excess-heat-10mw-2025col` 1.69 EUR/MWh (v); `per-energy-heat-pump-dea-ch40-seawater-20mw-2025col` 1.19 EUR/MWh (v) |
 | `opex.variable.chemical` | `scale-inhibitor-proxy-watertap-2020` 2.908 EUR/kg (s); `scale-inhibitor-chemanalyst-2024-atmp-hamburg` 0.7695 EUR/kg (s); `scale-inhibitor-spitsov-2023-ro-jurbysoft` 2.146 EUR/kg (s); `scale-inhibitor-spitsov-2023-ro-aminat-k` 2.682 EUR/kg (s); `corrosion-inhibitor-indexbox-2026-eu-amine-low` 1.942 EUR/kg (s); `corrosion-inhibitor-indexbox-2026-eu-amine-high` 3.107 EUR/kg (s) |
 | `opex.variable.waste_disposal` | `waste-disposal-proxy-sewage-sludge` 0.04971 EUR/kg (s); `waste-disposal-norm-proxy-covra-2026` 45.93 EUR/kg (s); `waste-disposal-tfa-france-2022` 1027 EUR/m3 (s); `waste-density-geothermal-filter-nrg-2020` 0.2656 t/m3 (s); `waste-disposal-tfa-france-per-kg-filter-density` 3.867 EUR/kg (s) |
+
+#### 0.4.3 Prices, revenue, finance and accounting keys
+
+| Key | Catalogue rows: `id` value_2015 unit (status v = verified, s = secondary) |
+|---|---|
+| `accounting.allocation.heat_cost_share` | `heat-cost-share-energy-fiaschi-2021` 0.87 - (s); `heat-cost-share-pes-fiaschi-2021-low` 0.71 - (s); `heat-cost-share-pes-fiaschi-2021-high` 0.76 - (s) |
+| `accounting.gwp.CH4` | `gwp-ch4-fossil-ar6-ghgp-2024` 29.8 kg CO2e/kg CH4 (s); `gwp-ch4-non-fossil-ar6-ghgp-2024` 27 kg CO2e/kg CH4 (s); `gwp-ch4-ar6-ipcc-2021-sm` 27.9 kg CO2e/kg CH4 (v) |
+| `accounting.gwp.standard` | `gwp-standard-ipcc-ar6-gwp100` IPCC AR6 GWP100  (v); `gwp-standard-eu-2020-1044-ar5` IPCC AR5 GWP100  (v) |
+| `analysis_period` | `analysis-period-dea-2019-geothermal-dk` 25 yr (v); `analysis-period-sde-2025-subsidy-period` 15 yr (s) |
+| `carbon.price` | `carbon-price-eu-ets-esma-price-2025` 57.48 EUR/t CO2e (v); `carbon-price-eu-ets-esma-price-2024` 51.56 EUR/t CO2e (v); `carbon-price-nl-co2-levy-price-2026` 61.1 EUR/t CO2 (v); `carbon-price-eu-ets-instrat-price-2025` 57.03 EUR/t CO2e (s) |
+| `discount_rate` | `discount-rate-financial-eu` 0.04 - (v); `discount-rate-social-eu` 0.03 - (v); `discount-rate-pbl-sde-2022-geothermal-nominal` 0.056 - (v); `discount-rate-pbl-sde-2022-geothermal-real` 0.04 - (v); `discount-rate-ebn-gn-2026-pbl-ort` 0.087 - (s); `discount-rate-nl-mkba-2020` 0.0225 - (v); `discount-rate-pbl-sde-2025-geothermal-nominal` 0.072 - (v); `discount-rate-pbl-sde-2025-geothermal-real` 0.051 - (v); `discount-rate-pbl-sde-2026-erratum-row4-nominal` 0.073 - (s); `discount-rate-pbl-sde-2026-erratum-row4-real` 0.052 - (s) |
+| `energy.electricity` | `electricity-nl-eurostat-price-2024-band-ie` 115 EUR/MWh (s); `electricity-nl-eurostat-price-2024-band-if` 138 EUR/MWh (s); `electricity-eu-eurostat-price-2025-band-ie` 105.8 EUR/MWh (s) |
+| `energy.gas` | `gas-nl-eurostat-price-2024-band-i5` 37.51 EUR/MWh (GCV) (s); `gas-nl-eurostat-price-2024-band-i4` 44.42 EUR/MWh (GCV) (s); `gas-eu-eurostat-price-2025-band-i4` 39.92 EUR/MWh (GCV) (s) |
 | `revenue.cold` | `cold-price-no-2017` 103.5 EUR/MWh (s); `cold-price-eu27-alternative-2014` 81.15 EUR/MWh (s); `cold-price-eu27-new-investment-2014` 110.2 EUR/MWh (s) |
 | `revenue.heat` | `heat-price-nl-cap-2026` 114.6 EUR/MWh (v); `heat-price-se-2019` 81.11 EUR/MWh (v); `heat-price-nl-2019` 93.51 EUR/MWh (v) |
 | `revenue.subsidy.amount` | `sde-basisbedrag-geothermal-pbl-2026-over-20mw` 48.7 EUR/MWh (v); `sde-basisbedrag-geothermal-pbl-2026-under-12mw` 62.06 EUR/MWh (v); `sde-net-subsidy-geothermal-pbl-2026-over-20mw` 27.5 EUR/MWh (s) |
 | `revenue.subsidy.cap` | `sde-full-load-hours-geothermal-pbl-2026-over-20mw` 6000 h/yr (v) |
 | `revenue.subsidy.duration` | `sde-duration-geothermal-stcrt-2025` 15 yr (v) |
 | `utilities.electricity.co2_intensity` | `co2-grid-organisers-2026` 300 g/kWh (v); `co2-grid-eu-2025` 209.2 g/kWh (v); `co2-grid-eu-2024` 211.5 g/kWh (v) |
-
-`currency`, `price_year` (EUR, 2015) are set by `ask_economics`. Keys with no row: the chillers'
-`opex.per_energy`, `revenue.subsidy.capacity` (a project value). A plant needs a `capex` and an
-`opex.fixed` value for every equipment kind it holds; once one `opex.per_energy` is given, every
-producing kind of the plant needs one (§16.1).
 
 ### 0.5 What gemini returns, and how to read it
 
@@ -178,6 +196,23 @@ feasible and is never ranked on cost (§14.1). Each kind of limit moves the cost
 Read the limits before costing, and say in the report which of them drove the cost of the
 chosen design.
 
+### 0.7 Checklist before costs are reported
+
+- [ ] The costed result is the verified one, and its verdict is feasible (§0.1 rule 4).
+- [ ] Every key came from §0.2 and carries its source; open keys are named, not filled.
+- [ ] Currency and price year stated once; all prices in that year.
+- [ ] LCTS (and NPV when prices differ) used to rank; LCOH and LCOC given with the
+      `heat_cost_share` they rest on (§6.4).
+- [ ] Carbon cost read as gemini prices it: the plant's own CO2 and methane, not grid
+      electricity (§3.6, §16.7).
+- [ ] Every number as the tool gave it, with its unit and the result reference.
+- [ ] Sensitivity or uncertainty only when asked, with study key, samples, seed and failed draws.
+- [ ] Placeholder or `secondary` inputs named, so the reader knows the estimate class (§11.2).
+- [ ] Every number read from the tool that holds it (§0.8); the economics are the approved ones
+      (§0.9).
+- [ ] `estimate_costs` says `same_as_case` true; rated capacities checked against peak duty
+      (§18.5, §18.7).
+
 ### 0.8 Which tool gives which number
 
 Ask each tool only for what it holds; a name it does not hold is refused and costs a round trip.
@@ -209,21 +244,6 @@ Invented example of what goes wrong: the user approves "electricity 0.145 EUR/kW
 case receives 115 EUR/MWh (converted to 2015 by the agent). The user approved one number and the
 plant is costed on another; the card must show 115 EUR/MWh at 2015 prices from the start, as the
 catalogue's `value_2015` gives it.
-
-### 0.7 Checklist before costs are reported
-
-- [ ] The costed result is the verified one, and its verdict is feasible (§0.1 rule 4).
-- [ ] Every key came from §0.2 and carries its source; open keys are named, not filled.
-- [ ] Currency and price year stated once; all prices in that year.
-- [ ] LCTS (and NPV when prices differ) used to rank; LCOH and LCOC given with the
-      `heat_cost_share` they rest on (§6.4).
-- [ ] Carbon cost read as gemini prices it: the plant's own CO2 and methane, not grid
-      electricity (§3.6, §16.7).
-- [ ] Every number as the tool gave it, with its unit and the result reference.
-- [ ] Sensitivity or uncertainty only when asked, with study key, samples, seed and failed draws.
-- [ ] Placeholder or `secondary` inputs named, so the reader knows the estimate class (§11.2).
-- [ ] Every number read from the tool that holds it (§0.8); the economics are the approved ones
-      (§0.9).
 
 ---
 
@@ -361,6 +381,18 @@ Rules:
   named as left out or folded into a stated factor.
 - Drilling cost depends strongly on country, rig market and year; a figure from another market
   needs a stated reason to apply.
+- Count **every drilled section once**. A producer with a pump inside is one hole: the part above
+  the pump (the riser) and the part below it (the well) together are the drilled length. In
+  gemini both modules carry the WHOLE path and the pump depth cuts it (`segment` `above_esp` /
+  `below_esp`); a riser and a well given different paths are refused as `incompatible`
+  (gemini `engine/check.py`, QA-321). Check drilled metres = sum of the measured depths of all
+  wells before quoting a drilling cost.
+- Drilling prices move with the oil and gas market, not with general inflation: Lukawski et al.
+  (2014) built a drilling cost index from US well data 1976 to 2009 and found it rose about 70 %
+  more than the producer price index between 2003 and 2008. A HICP-converted drilling price is
+  a price-year conversion, not a market forecast (§4.2). The same paper finds a learning effect:
+  later wells of a field cost less than the first ones, so the first well of a new area is
+  priced at the upper end of a range.
 
 ### 2.3 Downhole and injection pumps
 
@@ -1053,11 +1085,21 @@ The cost catalogue grades each row:
   and must be named as one in any report.
 
 Estimate maturity matters as well. AACE International Recommended Practice 18R-97 defines estimate
-classes from Class 5 (concept screening, widest range) to Class 1 (definitive, narrowest). The
-ranges commonly quoted for Class 5 are about −20 % to −50 % on the low side and +30 % to +100 % on
-the high side (quoted from general knowledge of the practice, not re-read for this handbook:
-**not verified**). A plant costed from factors at the design-option stage is a Class 5 or Class 4
-estimate; its capex is a range, not a point.
+classes from Class 5 (concept screening, 0 to 2 % of the project defined, widest range) to Class 1
+(definitive, narrowest). The ranges it gives are bands whose width depends on the technology and
+the project; the outer values usually quoted for the process industries are:
+
+| Class | Project defined | Typical use | Low side | High side |
+|---|---|---|---|---|
+| 5 | 0 to 2 % | concept screening | -20 to -50 % | +30 to +100 % |
+| 4 | 1 to 15 % | study or feasibility | -15 to -30 % | +20 to +50 % |
+| 3 | 10 to 40 % | budget, authorisation | -10 to -20 % | +10 to +30 % |
+
+(AACE 18R-97 as summarised by secondary sources, e.g. *Products Finishing*, "Capital cost
+estimate classes"; status *secondary*, read the practice itself before a contract figure rests on
+it.) A plant costed from factors at the design-option stage is a Class 5 or Class 4 estimate: its
+capex is a range, not a point. Report it with the class and do not quote more digits than the
+class supports in prose; the tool's digits stay in tables (§0.1 rule 1).
 
 ### 11.3 Checklist before a figure enters a case
 
@@ -1224,6 +1266,11 @@ When cost and CO2 pull in different directions:
 20. **Numbers of your own**: a sum, share, difference or conversion of gemini's values in an
     agent's answer instead of the tool's value (§0.1, rule 1).
 21. **`passed` read as feasible**: feasibility is the verdict's `feasible` (§16.7).
+22. **The subsidy period as the analysis period** (§18.4).
+23. **A row of another basis** (EUR/W heat for EUR/W shaft) (§18.3).
+24. **Costing an old result after a price change** and expecting new numbers (§18.5).
+25. **An unsized capacity paid at its range maximum** (§18.7).
+26. **A riser and a well drilled as two short holes** instead of one path (§2.2).
 
 ---
 
@@ -1512,6 +1559,111 @@ Reading:
 
 ---
 
+## 18. Lessons from practice: economics in a running assessment
+
+General lessons from the team's quality rounds (bug numbers QA-nnn in
+`documents/project/quality-assurance/bugs/`). Each is a rule for any case. Read the one you need.
+
+### 18.1 One source order, whatever words the user uses
+
+The decision order of §0.2 holds for every request: "set up the economics", "fill them in
+yourself", "best guesses, don't ask", "use Norwegian prices", "economics please". The words change
+who approves, never where a value comes from (QA-279, QA-320, QA-327, QA-349).
+
+- A user who names a country or region keeps the case's own assumptions document as the base.
+  Only the keys for which a source **of that region** exists are replaced; the answer names
+  those keys and says which keys have no regional source and stayed as they were.
+- "Your best guesses" means "take the sourced values without asking", not "invent". A key no
+  source gives stays `open` and is named once; it is not re-asked or re-delegated (QA-349).
+- A subsidy is taken only from a scheme that applies to the site's country and technology. With
+  none, the answer says that no scheme fits and the subsidy keys stay unset.
+- Every value carries a source that a reader can open (a file and page, a Knowledge section or a
+  catalogue row `id`). "agent" is not a source.
+
+### 18.2 Values are numbers with units
+
+A value is a number (or a table) and its unit goes in its own field. In `ask_economics` each item
+has `key`, `value`, `unit`, `source` and, when a source gives one, `row` and `uncertainty`. A
+value written as `{"value": 25, "unit": "yr"}` inside `value` is an object, not a number; it was
+shown as raw text and failed only after the user approved it (QA-298). A `row` must be an `id`
+that exists in the catalogue; an invented id is refused (QA-243). Unit spellings that mean the
+same are the same (EUR/W/K and EUR/(W/K)); if a tool refuses one, use the spelling the refusal
+names, never change the number.
+
+### 18.3 A row must fit the key's basis
+
+A cost factor is per something: W of heat, W of shaft power, W of electric power, m of well, m3 of
+tank. A row for one basis is not a value for another (QA-192). Example on invented numbers: a
+pump row gives 0.09 EUR per W of **heat moved** by a station of 20 MW heat; the key wants EUR per
+W of **shaft power**, and the pump draws 0.4 MW shaft. Read as shaft price, 0.09 EUR/W x 0.4 MW
+= 36 kEUR; the station row actually means 0.09 x 20 MW = 1.8 MEUR for the whole station, most of
+which is not the pump. Neither is the pump's price. Either a source gives the right basis, or the
+key stays open and the mismatch is named. The catalogue writes the basis in `unit_2015` ("EUR/W
+heat", "EUR/W electric"): read it before choosing a row.
+
+### 18.4 The analysis period is the economic life, not a subsidy period
+
+`analysis_period` is the years over which costs and energy are discounted: the plant's economic
+life (for example 25 yr for a geothermal plant in the Danish Energy Agency's technology data).
+A subsidy duration (15 yr in some schemes) is `revenue.subsidy.duration`, a different key
+(QA-314). Mixing them changes every levelised cost. Invented numbers: capex 10 MEUR, real
+discount rate 5 %. The capital recovery factor `r / (1 - (1 + r)^-n)` (§5.2) is 0.0710 for
+25 yr and 0.0963 for 15 yr, so the annualised capex is 0.71 or 0.96 MEUR/yr: a 36 % higher
+capital share of the LCOH from the wrong key alone. (The formula explains gemini's result; agents
+quote gemini's number, §0.1.)
+
+### 18.5 A cost belongs to the case its run ran on
+
+A stored result keeps the case it was simulated with. `estimate_costs` on it gives the costs of
+that case's economics, also after a `set_case` changed the prices. Its answer says which:
+`economics.same_as_case` true, or false with the `changed` keys (QA-258). When it is false,
+simulate the same plant on the current case and cost the new result; costing the old result
+again gives the same numbers. Price-only changes need no new design round: one `set_case`, one
+`simulate`, one `estimate_costs`.
+
+Before any costing in a new conversation, read the case (`read_case`): a value changed by hand on
+the Case page is a new case version, and a remembered value may be stale (QA-284).
+
+### 18.6 One change, one `set_case`
+
+A single price change is one `set_case` with the new value and its source in
+`economics.about.sources`, one approval, then stop and answer (QA-256). It is not a reason to
+re-ask the whole economics. If the user denies the card and asks a question instead ("don't
+change the case, just tell me the NPV at 30 years"), answer from a study on the current case
+without changing it (QA-268; `handbook-studies`).
+
+### 18.7 Size what you pay for
+
+gemini prices equipment at its rated (design) capacity (§2.5). A capacity left at the maximum of
+its search range is paid in full even if the plant never uses it. A rated capacity far above the
+peak duty the result shows, without a stated reason (redundancy, future load), is a sizing gap,
+not a cost fact (QA-324: dry coolers rated at about twice their peak). Compare rated and peak for
+every costed kind before reporting capex; name any kind that was not sized. Margins for safety
+are stated in the design, not hidden in an unsized maximum (handbook-design 4.9).
+
+### 18.8 Check an optimum before calling it one
+
+An optimiser with a small evaluation budget stops at a good point, not always the best one
+(QA-285: a nearby feasible point had a lower LCTS than the reported optimum). Before reporting
+"the optimum", vary the most cost-relevant variable around it (one sizing or sensitivity study)
+and report whether a better feasible point appeared (`handbook-studies` 5 and 6).
+
+### 18.9 Uncertainty travels with its value
+
+A source that gives a range for a value (a distribution, a P10-P90, a min and max) gives it for
+the studies. Carry it into the case with the value: `ask_economics` reads an uncertainty table of
+the source document, rows `| \`economics.<key>\` | \`{"kind": ...}\` |`, and fills `uncertainty`
+(QA-259, QA-216). Never invent a range; a key without a sourced range is held fixed and the
+answer says so (`handbook-studies` 3.1).
+
+### 18.10 Do the economics, not a survey
+
+An economics request that names a place asks for prices of that place, not for new site physics
+(ground, air). If site values would also change, ask once and wait; do not start a site survey
+(QA-280). Stop searching when Knowledge has no source for the region and say so.
+
+---
+
 ## Appendix A. Symbols and formulas
 
 | Symbol | Meaning | Unit |
@@ -1541,8 +1693,8 @@ Reading:
 Sources marked *as quoted* were read through the named project file, not re-opened for this
 handbook.
 
-- AACE International, Recommended Practice 18R-97, Cost Estimate Classification System (ranges not
-  re-read; section 11.2).
+- AACE International, Recommended Practice 18R-97, Cost Estimate Classification System (read through
+  the summary below; section 11.2).
 - Copenhagen Economics (2021), *District Heating Tariffs in Europe*, for the Dutch Ministry of
   Economic Affairs and Climate, p. 21 (as quoted in the cost catalogue).
 - Danish Energy Agency and Energinet (2026), *Technology Data for Generation of Electricity and
@@ -1561,6 +1713,12 @@ handbook.
   in direct-use hydrothermal reservoirs", Table 4 (as quoted in the cost catalogue).
 - Instrat Foundation (W. Przedlacki, 2026), "EU ETS 2025 summary and the beginning of 2026
   auctions", https://energy.instrat.pl/en/eu-ets-2025-summary/ (as quoted in the sample README).
+- Lukawski, M. Z., Anderson, B. J., Augustine, C., Capuano, L. E., Beckers, K. F., Livesay, B. and
+  Tester, J. W. (2014), "Cost analysis of oil, gas, and geothermal well drilling", *Journal of
+  Petroleum Science and Engineering* 118, 1-14, https://doi.org/10.1016/j.petrol.2014.03.012
+  (abstract and summaries read; section 2.2).
+- *Products Finishing*, "Capital cost estimate classes", https://www.pfonline.com/articles/capital-cost-estimate-classes
+  (summary of AACE 18R-97; section 11.2).
 - Mijnlieff, H., Ramsak, P., Lako, P. et al. (2013), *Geothermal energy and support schemes in The
   Netherlands*, EGC 2013 slides, slide 26 (as quoted in the cost catalogue).
 - PBL (2026), *Eindadvies basisbedragen SDE++ 2026*, Tables 11.7a to c, p. 104 (as quoted in the
