@@ -117,3 +117,23 @@ See `documents/project/quality-assurance/BUGS.md`, reporter speed-analysis-II.
 Re-run with the runs on geomind 0.4.100+ (backend 1.1.104+): copy the scripts to a fresh work
 dir (`/tmp/sa2`, not the first baseline's `/tmp/sa/data`, which still holds the 41 old runs),
 set the start filter in `fetch2.py` to the deploy time, keep only ended runs.
+
+## Second pass (18:04 UTC): runs on geomind 0.4.102 to 0.4.106
+
+Runs that started after 17:21 UTC (backend 1.1.104+) and had ended by 18:04 UTC: only **3**, all
+QA-TEST QA-E2E-study-I 1 (52383511 done 7.7 min, 01222f3a done 2.4 min, fd4b7e2c cancelled
+0.9 min). The QA threads started few runs in this window; the numbers below are indicative only.
+
+- Calls: 123, refused 12 (10%; first pass 11%, first baseline 17%).
+- 52383511 plant stage (design_lead preparing a study): 28 calls, 9 refused: `read_plant` with two
+  of design / project_plant / plant_version at once (2), `run_study` with metrics `capex`/`opex`
+  that studies do not have and `by = 'heating_coverage'` (2), `calculate` with bare numbers (2),
+  `read_result('costs')` (1, QA-209).
+- QA-219 (economist `list_studies` repeats): 2 repeats in 3 runs, down from 4-6 per run, but too
+  few economist runs to call it fixed.
+- Long final write-ups persist: explainer 58 s / 7.0 k output tokens and 42 s / 5.4 k (61 k input);
+  analysis_lead median output 1.1 k, project_lead 1.2 k per call.
+- No approval waits in these 3 runs (no gap > 60 s between steps).
+
+Next pass: when the QA threads have ended runs on 0.4.106 with a case or a fresh design stage
+(T1, T2, T5, T6 are still untested since the first baseline).
