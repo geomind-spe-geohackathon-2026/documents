@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | fixed |
 | Severity | minor |
 | Area | frontend |
 | Reporter | user via coordinator |
@@ -32,7 +32,7 @@
 ## Fix
 
 (Hotfix session: cause, commit, version, deployed at.)
-
+- 2026-11-05 15:20 UTC: frontend 1.1.112, commit 5ddc296, deployed; cause (guess): event agent id empty for the root run, or empty instance; no live check (rule)
 ## Retest
 
 (Who, when, result.)
