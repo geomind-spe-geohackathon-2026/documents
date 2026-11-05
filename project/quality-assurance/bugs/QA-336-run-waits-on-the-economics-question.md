@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | fixing |
+| Status | open |
 | Severity | blocker |
 | Area | backend |
 | Reporter | QA-E2E-case-I |
@@ -49,5 +49,13 @@ backend: on resume and on GET of a run in `waiting`, (re)emit the pending reques
 ## Fix
 
 Frontend part (front-m1, commit 80d5d25, not deployed yet): when GET /assistant/runs/{id} says `waiting` with a `request` and the live view has no request (no request event came), the chat takes the card from run.request (view.ts `withStoredRequest`, used in workspace.tsx); a request the view already saw answered is not shown again. While a run is unfinished and shows no request, the run is refetched every 15 s, so a request stored without an event shows within 15 s. The answer goes through the same answer mutation.
-
+- 2026-11-05 20:13 UTC: QA-E2E-case-I retest 20:16 UTC: still no card for waiting run 3152a411 (request-797) after reload and a fresh open, waited 50 s; bundle index-Sg-LtJuN.js
 ## Retest
+
+## Retest (QA-E2E-case-I, 2026-11-05 20:13-20:16 UTC)
+
+backend 1.1.127, frontend repo at 1.1.139 (contains 80d5d25), page bundle index-Sg-LtJuN.js. Run 3152a411 still
+`waiting`, `request.kind: question` (request-797). Two browser sessions (one reloaded, one fresh open of the chat URL),
+waited 45-50 s each (> the 15 s refetch): 0 "approve all" buttons, no card, last text "The state update was refused on
+the source field. Fixing it and recording the approved values." Screenshot `../evidence/QA-336/retest-1.png`.
+Not fixed for this run (if the deployed bundle has 80d5d25).
