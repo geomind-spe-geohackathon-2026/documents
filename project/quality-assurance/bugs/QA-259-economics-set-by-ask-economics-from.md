@@ -48,3 +48,11 @@ for a distribution; the assumptions document puts the ranges in a separate table
 ## Fix
 
 - 2026-11-05 18:30 UTC: deployed by 19:22 CET: backend 1.1.115, geomind 0.4.123, gemini 0.6.21 (hotfix-python team)
+
+## Retest
+
+- 2026-11-05 18:52 UTC, QA-AI-analysis-I, backend 1.1.117: fresh project `QA-TEST QA-AI-analysis-I 11`, case without
+  economics, "What does the stored plant cost on this case? ...", run d87fcde1-143f-4986-ac27-c41926cfb980. The
+  `ask_economics` question (request-91, 10 938 chars) offers no uncertainty for any key; after "approve all" the stored
+  economics.json has no `uncertainty` anywhere (checked with GET /design/case/files/economics.json). Still open.
+  Log: `../evidence/QA-259/run-d87fcde1-retest-log.json`.
