@@ -1,0 +1,26 @@
+{
+ "id": "194c3879-076e-4e3a-b6bf-8f54da25a7ae",
+ "chat": "134dae07-2e37-4a3a-ae0b-83b5e812017e",
+ "project": "35a70dbe-5e24-4f51-9c6f-50e06d47fe82",
+ "status": "waiting",
+ "loop": "project",
+ "started": "2026-11-05T17:33:53.425910Z",
+ "ended": null,
+ "usage": {
+  "input_tokens": 140784,
+  "output_tokens": 3823,
+  "cost": 0.0030597280000000003
+ },
+ "request": {
+  "kind": "question",
+  "agent": "case_lead",
+  "parent": "194c3879076e4e3ab6bf8f54da25a7ae",
+  "call_id": "call-67fb274b-ccf3-48e0-8a85-2b47d15bb991",
+  "message": "The case's site.reservoir.permeability still holds the value the plant was verified on (150 mD, uncertainty min 100 / max 400, triangular), so the new permeability you saved is not in the case. What value did you save for site.reservoir.permeability? Please give the number with its unit (the key takes mD). It is needed because the reservoir permeability sets the well productivity and therefore the achievable production flow and pumping, which the plant's requirement checks and its LCOH depend on.",
+  "request": "request-90"
+ },
+ "error": null,
+ "sessions": null,
+ "agents": null,
+ "total": null
+}
