@@ -2545,6 +2545,93 @@ optimisation (11.10). Check the flow on the worst step against the cap (QA-132).
 Check in results: the steps of lowest demand and the outage steps the run reports; the unmet energy on those steps; the running days per doublet
 against the limit (`running_time_limit`).
 
+## 14.4 Backup and peak boilers
+
+**Decision**: how much boiler (or other peak) capacity, under which backup policy?
+
+gemini rates the boilers from the step where heating plus the drive heat of sorption chillers
+peak together [gemini: `gemini/study/size.py`, `_boiler_peak`]:
+
+- `peak`: the whole of that step, as if every doublet were off;
+- `none`: that step less the doublets' heat at their caps, but at least the share s of 14.1 that
+  the reservoir cannot reach.
+
+Worked on 12.1 (24 MW heating peak, no drive heat at the heating peak, two exchanger-only
+doublets of 12.1 MW each, s = 0.19 ideal) [derived]:
+
+| Policy or check | Boiler capacity, MW | What it covers |
+|---|---|---|
+| `peak` | 24.0 | the peak with both doublets out |
+| `none` | max(24.0 − 24.3, 0.19 × 24.0) = 4.5 | the temperature gap only |
+| N-1 check (one doublet out at the peak) | 24.0 − 12.1 = 11.9 needed | a `none` plant falls 7.4 MW short |
+
+The N-1 rule of district heating (8.4) [Frederiksen and Werner 2013] asks for the third line at
+least. Boiler capacity is cheap per MW against wells (6.5); a `none` design needs a stated
+reason and a test with one doublet out (a simulation with that doublet's flow set to zero, or
+its days off on the peak).
+
+Peak units other than a gas boiler: an electric boiler (cheap to build, dear to run; good with
+cheap off-peak power), a heat pump on another source, storage that shifts a daily peak (13.10).
+Merit order (9.1): geothermal first, then the heat pump, then the cheapest peak unit.
+
+Check in results: the boiler's full-load hours (energy / capacity) and its share of the heat.
+A boiler that carries much of the energy (QA-211: 49 %) means the geothermal side is too small
+or too cold, not that the boiler is too small.
+
+## 14.5 Co-produced gas: degassing, burning or flaring, CO2
+
+**Decision**: where the gas leaves the brine, and what burns it.
+
+Procedure, per doublet:
+
+1. Gas flow = GLR × Q (Nm3/h), split by the mole fractions of the case's gas composition.
+2. Fuel power = methane flow × LHV (50.0 MJ/kg, 35.8 MJ/Nm3, 5.5); on 12.1, 0.87 MW per doublet
+   (12.6).
+3. Pressure plan: keep the gas dissolved through pumps and exchangers (13.4), release it in a
+   degasser before units that cannot take two-phase flow (13.7).
+4. Burn before flaring (5.5): the burner takes the co-produced gas first and grid gas for the
+   rest, and the surplus goes to the flare [gemini: `GasMakeup`, `Boiler`, `CHP`].
+5. **Seasonal match**: the gas flows whenever the doublet runs, the boiler burns only when it
+   heats. The share of the gas used is Σ min(gas_t, burner fuel_t) / Σ gas_t over the steps. A
+   peak boiler that runs a few thousand hours uses little of an all-year gas stream; a base
+   burner (a CHP, 13.15, or a boiler on the base) uses more.
+6. CO2 (5.6): combustion CO2 (2.75 kg per kg CH4, A.14) plus the CO2 carried in the gas, whether
+   it is burned or flared; plus the methane slip at its global warming potential (about 30 for
+   fossil methane over 100 years [Forster et al. 2021]). Burning in a useful unit does not lower
+   the CO2 of the co-produced gas; it avoids the CO2 of the grid gas it replaces.
+
+Check in results: the flare's inlet (the surplus), the burner's co-produced and grid fuel, and
+the CO2 total against the hand estimate of step 6.
+
+## 14.6 Choosing the cooling at a given chilled-water temperature
+
+**Decision**: compression, absorption, adsorption, free cooling, or a mix.
+
+| Machine | COP range | Drive | Best when |
+|---|---|---|---|
+| Electric compression, water-cooled | about 5 to 7 at 7 °C chilled water | electricity | electricity cheap or clean; any chilled-water temperature |
+| Electric compression, air-cooled | about 3 | electricity | small plants, no cooling water |
+| Absorption LiBr, single effect | 0.6 to 0.75 | hot water above about 80 °C | brine hot enough and idle in summer |
+| Absorption, double effect | 1.0 to 1.3 | 140 to 180 °C | high-temperature heat; rarely geothermal |
+| Adsorption | 0.4 to 0.6 | 55 to 90 °C | drive too cool for absorption |
+| Free cooling | fans or pumps only | a cold source below supply − approach | high chilled-water temperature, cool climate |
+
+Sources: compression [ASHRAE Standard 90.1, minimum full-load efficiencies of chillers];
+absorption [Herold et al. 2016]; adsorption [Wang and Oliveira 2006]; free cooling (7.5, 12.19).
+
+The chilled-water temperature moves the electric COP: Carnot fraction 0.5 with a 35 °C condenser
+outlet gives 4.8 at 6 °C, 6.2 at 12 °C, 7.6 at 16 °C and 9.8 at 20 °C [derived, 12.8 method], about
+5 % per kelvin; real machines gain somewhat less. It does not move a single-effect absorption COP
+much, but a warmer chilled water lets it run on a cooler drive.
+
+Worked on 12.1 (6 MW cold) [derived]: absorption at COP 0.7 needs 8.6 MW of drive heat, which at
+250 m3/h cools one doublet's brine by 28 K, and rejects 14.6 MW (12.9); compression at COP 5 needs
+1.2 MW of electricity and rejects 7.2 MW. Absorption uses the summer brine that heating does not
+need (raising the doublets' running hours and so their value) but doubles the heat rejection and
+needs the drive heat on every cooling step: when a doublet is off on those days, the boiler
+drives the chiller (QA-228). Compare both as families (14.8); a mix (free cooling first, then a
+chiller) is often the cheapest.
+
 ---
 
 # Appendix A: Formulas
@@ -2680,6 +2767,8 @@ always in the original):
 - ANSI/HI 9.6.3. *Rotodynamic Pumps: Guideline for Operating Regions*. Hydraulic Institute.
 - Arnold, K., Stewart, M. (2008). *Surface Production Operations, Vol. 1: Design of Oil Handling
   Systems and Facilities*, 3rd ed. Gulf Professional.
+- ASHRAE Standard 90.1. *Energy Standard for Sites and Buildings Except Low-Rise Residential
+  Buildings* (tables of minimum chiller efficiencies).
 - Arpagaus, C., Bless, F., Uhlmann, M., Schiffmann, J., Bertsch, S. S. (2018). High temperature heat
   pumps: market overview, state of the art, research status, refrigerants, and application
   potentials. *Energy* 152, 985-1010.
